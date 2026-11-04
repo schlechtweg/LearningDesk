@@ -14,4 +14,4 @@ Bereiche:
 ### Ohne Claude öffnen
 
 `docs/index.html` ist eine eigenständige Version der App. Du kannst sie per Mail oder Messenger verschicken und mit jedem Browser öffnen. Nach Änderungen an `osmose.html` erzeugst du sie mit `tools/build-standalone.sh` neu.
-Mit GitHub Pages (Quelle: Branch `main`, Ordner `/docs`) wird die App zu einer öffentlichen Webseite. Dafür muss das Repository öffentlich sein oder du brauchst GitHub Pro.
+Mit GitHub Pages (Quelle: Standard-Branch, Ordner `/docs`) wird die App zu einer öffentlichen Webseite. Dafür muss das Repository öffentlich sein oder du brauchst GitHub Pro.
