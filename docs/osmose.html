@@ -1,0 +1,1112 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<title>Osmose verstehen</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Interaktive Lernhilfe zum Thema Osmose (Biologie, Klasse 11)">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: a lab notebook on a cool water-tinted ground; tab bar on top, one view at a time, max 960px column */
+:root {
+  --bg: #eef4f6;
+  --surface: #ffffff;
+  --surface-2: #e2ecef;
+  --ink: #122d36;
+  --muted: #4f6a73;
+  --line: #c9d8dd;
+  --water: #1f7fb8;
+  --water-soft: rgba(31, 127, 184, 0.16);
+  --solute: #c86f12;
+  --membrane: #6a4fc9;
+  --accent: #0d6f74;
+  --accent-ink: #ffffff;
+  --good: #23824f;
+  --good-soft: rgba(35, 130, 79, 0.12);
+  --bad: #b8382f;
+  --bad-soft: rgba(184, 56, 47, 0.10);
+  --cell: #d9534f;
+  --cell-pale: #f2a7a2;
+  --plant-wall: #5f8a3a;
+  --plant-cyto: #b9dc8f;
+  --vacuole: #a9d4ee;
+
+  --font-display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --font-body: "Atkinson Hyperlegible", "Segoe UI", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
+
+  --step--1: 0.875rem;
+  --step-0: 1.0625rem;
+  --step-1: 1.25rem;
+  --step-2: 1.6rem;
+  --step-3: 2.3rem;
+  --radius: 10px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0c181d; --surface: #13242b; --surface-2: #1a3038; --ink: #e2eef1; --muted: #93adb5; --line: #2a434c;
+    --water: #5ab4e6; --water-soft: rgba(90, 180, 230, 0.18); --solute: #f0a24e; --membrane: #a48ef0;
+    --accent: #3cc0b8; --accent-ink: #062022; --good: #5fd194; --good-soft: rgba(95, 209, 148, 0.14);
+    --bad: #f07a70; --bad-soft: rgba(240, 122, 112, 0.14); --cell: #e8706b; --cell-pale: #7a3a38;
+    --plant-wall: #8dbb63; --plant-cyto: #4f6e34; --vacuole: #2f5d78;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0c181d; --surface: #13242b; --surface-2: #1a3038; --ink: #e2eef1; --muted: #93adb5; --line: #2a434c;
+  --water: #5ab4e6; --water-soft: rgba(90, 180, 230, 0.18); --solute: #f0a24e; --membrane: #a48ef0;
+  --accent: #3cc0b8; --accent-ink: #062022; --good: #5fd194; --good-soft: rgba(95, 209, 148, 0.14);
+  --bad: #f07a70; --bad-soft: rgba(240, 122, 112, 0.14); --cell: #e8706b; --cell-pale: #7a3a38;
+  --plant-wall: #8dbb63; --plant-cyto: #4f6e34; --vacuole: #2f5d78;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+body {
+  background: var(--bg); color: var(--ink);
+  font-family: var(--font-body); font-size: var(--step-0); line-height: 1.6;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 0 48px;
+}
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--bg); }
+.wrap { max-width: 960px; margin: 0 auto; }
+h1, h2, h3 { font-family: var(--font-display); line-height: 1.15; text-wrap: balance; margin: 0; }
+h1 { font-size: var(--step-3); font-weight: 800; letter-spacing: -0.02em; }
+h2 { font-size: var(--step-2); font-weight: 700; letter-spacing: -0.01em; }
+h3 { font-size: var(--step-1); font-weight: 700; }
+p { margin: 0; max-width: 68ch; }
+.muted { color: var(--muted); }
+.mono { font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
+.eyebrow { font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); }
+strong { font-weight: 700; }
+.t-water { color: var(--water); font-weight: 700; }
+.t-solute { color: var(--solute); font-weight: 700; }
+.t-membrane { color: var(--membrane); font-weight: 700; }
+
+/* Header */
+header.top { padding-block: 28px 8px; display: grid; gap: 6px; }
+header.top p { color: var(--muted); }
+.hero-formula { font-family: var(--font-mono); font-size: var(--step--1); color: var(--muted); }
+
+/* Tabs */
+nav.tabs {
+  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--bg);
+  display: flex; gap: 6px; overflow-x: auto; padding-block: 12px; margin-bottom: 8px;
+  border-bottom: 1px solid var(--line); scrollbar-width: thin;
+}
+nav.tabs a {
+  flex: 0 0 auto; text-decoration: none; color: var(--ink); font-weight: 700;
+  padding: 8px 14px; border-radius: 999px; border: 1px solid var(--line); background: var(--surface);
+  font-size: var(--step--1);
+}
+nav.tabs a .n { font-family: var(--font-mono); color: var(--muted); margin-right: 6px; font-weight: 400; }
+nav.tabs a[aria-current="page"] { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+nav.tabs a[aria-current="page"] .n { color: var(--accent-ink); opacity: 0.75; }
+a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible { outline: 3px solid var(--membrane); outline-offset: 2px; }
+
+section.view { display: grid; gap: 28px; padding-top: 16px; }
+.stack { display: grid; gap: 12px; }
+.panel { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 20px; min-width: 0; }
+.grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+.grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
+
+.merksatz { border-left: 4px solid var(--accent); background: var(--surface); padding: 16px 20px; border-radius: 0 var(--radius) var(--radius) 0; }
+.merksatz .eyebrow { display: block; margin-bottom: 4px; }
+.merksatz p { font-size: var(--step-1); font-family: var(--font-display); font-weight: 500; line-height: 1.35; }
+
+.tonic-card { display: grid; gap: 8px; align-content: start; }
+.tonic-card .tag { justify-self: start; font-family: var(--font-mono); font-size: 0.75rem; padding: 2px 8px; border-radius: 4px; background: var(--surface-2); }
+
+table.compare { width: 100%; border-collapse: collapse; font-size: var(--step--1); }
+table.compare th, table.compare td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+table.compare th { font-family: var(--font-display); font-size: var(--step-0); }
+.table-scroll { overflow-x: auto; }
+
+ul.pitfalls { margin: 0; padding-left: 1.2em; display: grid; gap: 8px; max-width: 68ch; }
+
+.glossary { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 0 24px; margin: 0; }
+.glossary div { padding: 10px 0; border-top: 1px solid var(--line); }
+.glossary dt { font-weight: 700; }
+.glossary dd { margin: 0; color: var(--muted); font-size: var(--step--1); }
+
+/* Buttons and controls */
+button, .btn {
+  font: inherit; font-weight: 700; font-size: var(--step--1); cursor: pointer;
+  padding: 9px 16px; border-radius: 8px; border: 1px solid var(--line); background: var(--surface); color: var(--ink);
+}
+button:hover { border-color: var(--accent); }
+button.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+button[aria-pressed="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+button:disabled { opacity: 0.5; cursor: default; }
+.row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+
+/* Simulation */
+.sim-layout { display: grid; grid-template-columns: minmax(0, 1fr) 280px; gap: 16px; align-items: start; }
+@media (max-width: 760px) { .sim-layout { grid-template-columns: 1fr; } }
+.canvas-box { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 8px; min-width: 0; }
+canvas#sim { width: 100%; height: 380px; display: block; }
+.controls { display: grid; gap: 16px; align-content: start; }
+.slider label { display: flex; justify-content: space-between; font-weight: 700; font-size: var(--step--1); }
+.slider input[type="range"] { width: 100%; accent-color: var(--solute); }
+.readout { display: grid; grid-template-columns: 1fr auto; gap: 4px 12px; font-size: var(--step--1); }
+.readout dt { color: var(--muted); }
+.readout dd { margin: 0; font-family: var(--font-mono); font-variant-numeric: tabular-nums; text-align: right; }
+.legend { display: flex; flex-wrap: wrap; gap: 14px; font-size: var(--step--1); color: var(--muted); padding: 6px 8px 2px; }
+.legend span { display: inline-flex; align-items: center; gap: 6px; }
+.dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
+.status-box { padding: 12px 14px; border-radius: 8px; background: var(--surface-2); font-size: var(--step--1); }
+
+/* Cells */
+.cell-layout { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
+.cell-fig { display: grid; gap: 10px; }
+.cell-fig svg { width: 100%; max-width: 340px; height: auto; justify-self: center; display: block; }
+.cell-fig .state { font-family: var(--font-display); font-weight: 700; font-size: var(--step-1); }
+.medium-btns { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 8px; }
+.medium-btns button { text-align: left; display: grid; gap: 2px; padding: 12px 14px; }
+.medium-btns button small { font-weight: 400; opacity: 0.85; }
+
+/* Everyday examples */
+.ex-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
+.ex { display: grid; gap: 10px; align-content: start; }
+.ex .ctx { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+.ex .q { font-weight: 700; font-size: var(--step--1); }
+.ex .opts { display: grid; gap: 6px; }
+.ex .opts button { text-align: left; font-weight: 400; }
+.ex .opts button.right { border-color: var(--good); background: var(--good-soft); font-weight: 700; }
+.ex .opts button.wrong { border-color: var(--bad); background: var(--bad-soft); }
+.ex .answer { font-size: var(--step--1); padding: 12px; border-radius: 8px; background: var(--surface-2); }
+.ex .answer b.ok { color: var(--good); }
+.ex .answer b.no { color: var(--bad); }
+.progress-line { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+.bar { flex: 1 1 200px; height: 8px; background: var(--surface-2); border-radius: 999px; overflow: hidden; }
+.bar i { display: block; height: 100%; background: var(--accent); width: 0; transition: width 0.3s; }
+
+/* Quiz */
+.quiz { display: grid; gap: 16px; }
+.quiz .qtext { font-family: var(--font-display); font-size: var(--step-1); font-weight: 700; line-height: 1.3; }
+.quiz .opts { display: grid; gap: 8px; }
+.quiz .opts button { text-align: left; font-weight: 400; font-size: var(--step-0); padding: 12px 16px; display: flex; gap: 12px; }
+.quiz .opts button .k { font-family: var(--font-mono); color: var(--muted); }
+.quiz .opts button.right { border-color: var(--good); background: var(--good-soft); }
+.quiz .opts button.wrong { border-color: var(--bad); background: var(--bad-soft); }
+.quiz .feedback { padding: 14px 16px; border-radius: 8px; background: var(--surface-2); }
+.quiz .feedback b.ok { color: var(--good); }
+.quiz .feedback b.no { color: var(--bad); }
+.score-big { font-family: var(--font-display); font-size: 3.2rem; font-weight: 800; line-height: 1; }
+
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <span class="eyebrow">Biologie · Klasse 11 · Stofftransport</span>
+    <h1>Osmose verstehen</h1>
+    <p>Lies die Grundlagen, probiere die Simulation aus, beobachte Zellen in verschiedenen Lösungen, erkläre Alltagsbeispiele und teste dich am Ende im Quiz.</p>
+  </header>
+
+  <nav class="tabs" aria-label="Bereiche">
+    <a href="#verstehen" data-view="verstehen"><span class="n">1</span>Verstehen</a>
+    <a href="#simulation" data-view="simulation"><span class="n">2</span>Simulation</a>
+    <a href="#zellen" data-view="zellen"><span class="n">3</span>Zellen</a>
+    <a href="#alltag" data-view="alltag"><span class="n">4</span>Alltag</a>
+    <a href="#ueben" data-view="ueben"><span class="n">5</span>Quiz</a>
+  </nav>
+
+  <!-- ===================== 1 VERSTEHEN ===================== -->
+  <section class="view" id="view-verstehen">
+    <div class="merksatz">
+      <span class="eyebrow">Definition</span>
+      <p>Osmose ist die Diffusion von <span class="t-water">Wasser</span> durch eine <span class="t-membrane">selektiv permeable Membran</span> von der Lösung mit der niedrigeren zur Lösung mit der höheren Konzentration gelöster Teilchen.</p>
+    </div>
+
+    <div class="grid-2">
+      <div class="panel stack">
+        <h3>Was passiert an der Membran?</h3>
+        <svg viewBox="0 0 320 200" role="img" aria-label="Membran mit Poren: Wassermoleküle passen hindurch, größere gelöste Teilchen nicht">
+          <rect x="0" y="0" width="320" height="200" fill="var(--water-soft)" rx="8"></rect>
+          <g fill="var(--membrane)">
+            <rect x="154" y="0" width="12" height="30"></rect>
+            <rect x="154" y="44" width="12" height="40"></rect>
+            <rect x="154" y="98" width="12" height="40"></rect>
+            <rect x="154" y="152" width="12" height="48"></rect>
+          </g>
+          <!-- water left (more) -->
+          <g fill="var(--water)">
+            <circle cx="30" cy="30" r="4"></circle><circle cx="70" cy="22" r="4"></circle><circle cx="115" cy="40" r="4"></circle>
+            <circle cx="45" cy="75" r="4"></circle><circle cx="95" cy="90" r="4"></circle><circle cx="130" cy="70" r="4"></circle>
+            <circle cx="25" cy="130" r="4"></circle><circle cx="70" cy="150" r="4"></circle><circle cx="120" cy="125" r="4"></circle>
+            <circle cx="55" cy="180" r="4"></circle><circle cx="110" cy="175" r="4"></circle><circle cx="140" cy="155" r="4"></circle>
+            <!-- right -->
+            <circle cx="205" cy="25" r="4"></circle><circle cx="290" cy="60" r="4"></circle>
+            <circle cx="230" cy="130" r="4"></circle><circle cx="300" cy="165" r="4"></circle><circle cx="250" cy="185" r="4"></circle>
+          </g>
+          <g fill="var(--solute)">
+            <circle cx="90" cy="125" r="11"></circle>
+            <circle cx="240" cy="50" r="11"></circle><circle cx="280" cy="110" r="11"></circle>
+            <circle cx="205" cy="95" r="11"></circle><circle cx="200" cy="160" r="11"></circle><circle cx="285" cy="20" r="11"></circle>
+          </g>
+          <!-- arrows -->
+          <g stroke="var(--water)" stroke-width="3" fill="none" stroke-linecap="round">
+            <path d="M128 37 H190"></path><path d="M182 30 L190 37 L182 44"></path>
+            <path d="M128 91 H190"></path><path d="M182 84 L190 91 L182 98"></path>
+          </g>
+          <g stroke="var(--water)" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.55">
+            <path d="M190 145 H140"></path><path d="M148 138 L140 145 L148 152"></path>
+          </g>
+          <g stroke="var(--solute)" stroke-width="3" fill="none" stroke-linecap="round">
+            <path d="M190 95 L172 95"></path><path d="M176 86 L168 104 M168 86 L176 104"></path>
+          </g>
+          <text x="10" y="196" font-size="11" fill="var(--muted)" font-family="var(--font-mono)">niedrig konzentriert</text>
+          <text x="208" y="196" font-size="11" fill="var(--muted)" font-family="var(--font-mono)">hoch konzentriert</text>
+        </svg>
+        <p class="muted" style="font-size: var(--step--1)">Wasser bewegt sich in <strong>beide</strong> Richtungen. Auf der linken Seite sind aber mehr „freie“ Wassermoleküle, deshalb gehen mehr von links nach rechts als umgekehrt. Dieser <strong>Nettostrom</strong> ist die Osmose. Die gelösten Teilchen (orange) sind zu groß für die Poren.</p>
+      </div>
+
+      <div class="panel stack">
+        <h3>Drei Bedingungen für Osmose</h3>
+        <ol style="margin:0; padding-left:1.2em; display:grid; gap:8px">
+          <li>Zwei Lösungen mit <strong>unterschiedlicher Konzentration</strong> gelöster Teilchen.</li>
+          <li>Eine <strong>selektiv permeable</strong> (halbdurchlässige) Membran dazwischen: durchlässig für Wasser, nicht für die gelösten Teilchen.</li>
+          <li>Die Teilchen bewegen sich ungerichtet durch die <strong>Brownsche Molekularbewegung</strong>. Die Zelle muss dafür keine Energie (ATP) aufwenden. Osmose ist ein <strong>passiver</strong> Transport.</li>
+        </ol>
+        <p class="muted" style="font-size: var(--step--1)">In Zellmembranen gelangt Wasser vor allem durch spezielle Kanalproteine, die <strong>Aquaporine</strong>. Ein kleiner Teil geht auch direkt durch die Lipiddoppelschicht.</p>
+        <p class="muted" style="font-size: var(--step--1)">Der Druck, der nötig wäre, um den Wassereinstrom genau zu stoppen, heißt <strong>osmotischer Druck</strong>. Er ist umso größer, je größer der Konzentrationsunterschied ist.</p>
+      </div>
+    </div>
+
+    <div class="stack">
+      <h2>Hypotonisch, isotonisch, hypertonisch</h2>
+      <p class="muted">Diese Begriffe sind immer <strong>relativ</strong>. Eine Lösung ist nur hypertonisch <em>im Vergleich zu</em> einer anderen Lösung, meist zum Zellinneren.</p>
+      <div class="grid-3">
+        <div class="panel tonic-card">
+          <span class="tag">außen &lt; innen</span>
+          <h3>hypotonisch</h3>
+          <p style="font-size: var(--step--1)">Die Außenlösung hat <strong>weniger</strong> gelöste Teilchen als die Zelle. Netto strömt <span class="t-water">Wasser in die Zelle</span>.</p>
+          <p class="muted" style="font-size: var(--step--1)">Beispiel: destilliertes Wasser, Regenwasser</p>
+        </div>
+        <div class="panel tonic-card">
+          <span class="tag">außen = innen</span>
+          <h3>isotonisch</h3>
+          <p style="font-size: var(--step--1)">Gleiche Konzentration. Wasser bewegt sich in beide Richtungen gleich stark, es gibt <strong>keinen Nettostrom</strong>.</p>
+          <p class="muted" style="font-size: var(--step--1)">Beispiel: 0,9 % Kochsalzlösung für Blutzellen</p>
+        </div>
+        <div class="panel tonic-card">
+          <span class="tag">außen &gt; innen</span>
+          <h3>hypertonisch</h3>
+          <p style="font-size: var(--step--1)">Die Außenlösung hat <strong>mehr</strong> gelöste Teilchen. Netto strömt <span class="t-water">Wasser aus der Zelle</span>.</p>
+          <p class="muted" style="font-size: var(--step--1)">Beispiel: Salzwasser, konzentrierte Zuckerlösung</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="stack">
+      <h2>Diffusion und Osmose im Vergleich</h2>
+      <div class="panel table-scroll" style="padding: 8px 12px">
+        <table class="compare">
+          <thead><tr><th></th><th>Diffusion</th><th>Osmose</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Was bewegt sich?</strong></td><td>Beliebige Teilchen (gelöste Stoffe, Gase …)</td><td>Nur das Lösungsmittel Wasser (netto)</td></tr>
+            <tr><td><strong>Membran nötig?</strong></td><td>Nein, auch ohne Membran</td><td>Ja, eine selektiv permeable Membran</td></tr>
+            <tr><td><strong>Richtung</strong></td><td>Von hoher zu niedriger Konzentration <em>des Stoffes</em></td><td>Zur Lösung mit der höheren Konzentration <em>gelöster Teilchen</em></td></tr>
+            <tr><td><strong>Ende</strong></td><td>Wenn die Konzentrationen ausgeglichen sind</td><td>Bei Konzentrationsausgleich oder wenn ein Gegendruck (z.&nbsp;B. Zellwand, Wassersäule) den Einstrom stoppt</td></tr>
+            <tr><td><strong>Energie</strong></td><td colspan="2">Beides ist passiv, die Zelle braucht kein ATP</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="grid-2">
+      <div class="panel stack">
+        <h3>Typische Fehler in Klausuren</h3>
+        <ul class="pitfalls">
+          <li>„Das Salz wandert in die Zelle.“ <strong>Falsch.</strong> Bei Osmose bewegt sich das <em>Wasser</em>. Die gelösten Teilchen bleiben, wo sie sind.</li>
+          <li>„In isotonischer Lösung bewegt sich kein Wasser.“ <strong>Falsch.</strong> Es bewegt sich gleich viel in beide Richtungen.</li>
+          <li>„Hypertonisch“ ohne Bezug. Nenne immer, <em>womit</em> du vergleichst.</li>
+          <li>Es zählt die <strong>Teilchenzahl</strong>, nicht die Masse: NaCl zerfällt in Na⁺ und Cl⁻. 0,1 mol/L NaCl wirkt also etwa doppelt so stark wie 0,1 mol/L Glucose.</li>
+          <li>Pflanzenzellen platzen nicht, weil die <strong>Zellwand</strong> dem Turgordruck standhält. Tierzellen haben keine Zellwand.</li>
+        </ul>
+      </div>
+      <div class="panel stack">
+        <h3>Wichtige Begriffe</h3>
+        <dl class="glossary">
+          <div><dt>Turgor</dt><dd>Innendruck der Pflanzenzelle gegen die Zellwand. Er macht Pflanzen straff und knackig.</dd></div>
+          <div><dt>Plasmolyse</dt><dd>In hypertonischer Lösung verliert die Vakuole Wasser. Der Protoplast löst sich von der Zellwand.</dd></div>
+          <div><dt>Deplasmolyse</dt><dd>Die Plasmolyse wird rückgängig gemacht: In hypotonischer Lösung nimmt die Zelle wieder Wasser auf.</dd></div>
+          <div><dt>Hämolyse</dt><dd>Rote Blutzellen schwellen in hypotonischer Lösung an und platzen.</dd></div>
+          <div><dt>Stechapfelform</dt><dd>Rote Blutzellen schrumpfen in hypertonischer Lösung und bekommen eine zackige Oberfläche.</dd></div>
+          <div><dt>Osmoregulation</dt><dd>Lebewesen regulieren aktiv ihren Wasser- und Salzhaushalt, z.&nbsp;B. mit der pulsierenden Vakuole oder den Nieren.</dd></div>
+        </dl>
+      </div>
+    </div>
+
+    <div class="row"><a class="btn primary" href="#simulation" style="text-decoration:none">Weiter zur Simulation →</a></div>
+  </section>
+
+  <!-- ===================== 2 SIMULATION ===================== -->
+  <section class="view" id="view-simulation" hidden>
+    <div class="stack">
+      <span class="eyebrow">Modellversuch</span>
+      <h2>Das Osmometer: zwei Lösungen, eine Membran</h2>
+      <p class="muted">Stelle die Konzentration der gelösten Teilchen auf beiden Seiten ein und starte. Achte darauf, auf welcher Seite der Wasserspiegel steigt und wann er stehen bleibt.</p>
+    </div>
+    <div class="sim-layout">
+      <div class="canvas-box">
+        <canvas id="sim" aria-label="Simulation eines Gefäßes, das durch eine Membran geteilt ist"></canvas>
+        <div class="legend">
+          <span><i class="dot" style="background:var(--water)"></i>Wasser</span>
+          <span><i class="dot" style="background:var(--solute); width:13px; height:13px"></i>gelöster Stoff (z.&nbsp;B. Zucker)</span>
+          <span><i class="dot" style="background:var(--membrane); border-radius:2px"></i>Membran</span>
+        </div>
+      </div>
+      <div class="controls panel">
+        <div class="slider">
+          <label for="cLeft"><span>Links</span><span class="mono" id="cLeftOut">0,1 mol/L</span></label>
+          <input type="range" id="cLeft" min="0" max="1" step="0.1" value="0.1">
+        </div>
+        <div class="slider">
+          <label for="cRight"><span>Rechts</span><span class="mono" id="cRightOut">0,6 mol/L</span></label>
+          <input type="range" id="cRight" min="0" max="1" step="0.1" value="0.6">
+        </div>
+        <div class="stack" style="gap:6px">
+          <span style="font-weight:700; font-size: var(--step--1)">Membran</span>
+          <div class="row">
+            <button type="button" id="memSemi" aria-pressed="true">selektiv permeabel</button>
+            <button type="button" id="memFull" aria-pressed="false">für alles durchlässig</button>
+          </div>
+        </div>
+        <div class="row">
+          <button type="button" class="primary" id="simRun">Start</button>
+          <button type="button" id="simReset">Zurücksetzen</button>
+        </div>
+        <dl class="readout">
+          <dt>Konzentration links (aktuell)</dt><dd id="roCL">–</dd>
+          <dt>Konzentration rechts (aktuell)</dt><dd id="roCR">–</dd>
+          <dt>Wasser → nach rechts</dt><dd id="roToR">0</dd>
+          <dt>Wasser ← nach links</dt><dd id="roToL">0</dd>
+          <dt>Höhenunterschied</dt><dd id="roDh">0 mm</dd>
+        </dl>
+        <div class="status-box" id="simStatus" aria-live="polite">Drücke auf Start.</div>
+      </div>
+    </div>
+
+    <div class="grid-2">
+      <div class="panel stack">
+        <h3>Probier das aus</h3>
+        <ul class="pitfalls">
+          <li>Stelle beide Seiten auf <strong>0,5 mol/L</strong>. Bewegt sich trotzdem Wasser? Schau auf die Zähler.</li>
+          <li>Setze links auf <strong>0</strong> (reines Wasser) und rechts auf <strong>1,0</strong>. Warum hört der Spiegel irgendwann auf zu steigen?</li>
+          <li>Wähle „für alles durchlässig“. Was passiert jetzt mit den orangen Teilchen und mit den Wasserspiegeln?</li>
+        </ul>
+      </div>
+      <div class="panel stack">
+        <h3>Warum stoppt der Anstieg?</h3>
+        <p style="font-size: var(--step--1)">Die steigende Wassersäule drückt mit ihrem Gewicht (<strong>hydrostatischer Druck</strong>) zurück. Gleichzeitig wird die rechte Lösung verdünnt. Sobald der Gegendruck so groß ist wie der osmotische Druck, ist der Nettostrom null.</p>
+        <p class="muted" style="font-size: var(--step--1)">Zum Vergleich mit der echten Welt: Nach der Formel von van ’t Hoff (π = c · R · T) erzeugt schon ein Unterschied von 0,1 mol/L bei 20 °C etwa <span class="mono">2,4 bar</span>. Das entspricht einer Wassersäule von rund 25 m! In der Simulation ist das stark verkleinert dargestellt.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== 3 ZELLEN ===================== -->
+  <section class="view" id="view-zellen" hidden>
+    <div class="stack">
+      <span class="eyebrow">Mikroskopie</span>
+      <h2>Zellen in verschiedenen Lösungen</h2>
+      <p class="muted">Wähle eine Außenlösung. Beobachte, wie eine rote Blutzelle (Tierzelle, ohne Zellwand) und eine Zelle aus der Zwiebelhaut (Pflanzenzelle, mit Zellwand und Vakuole) reagieren.</p>
+    </div>
+    <div class="medium-btns" role="group" aria-label="Außenlösung wählen">
+      <button type="button" data-medium="hypo" aria-pressed="false">hypotonische Lösung<small>z.&nbsp;B. destilliertes Wasser</small></button>
+      <button type="button" data-medium="iso" aria-pressed="true">isotonische Lösung<small>z.&nbsp;B. 0,9 % NaCl (Blut) bzw. ca. 0,3 mol/L Saccharose (Zwiebel)</small></button>
+      <button type="button" data-medium="hyper" aria-pressed="false">hypertonische Lösung<small>z.&nbsp;B. 10 % NaCl oder 1 mol/L Saccharose</small></button>
+    </div>
+    <div class="cell-layout">
+      <div class="panel cell-fig">
+        <span class="eyebrow">Tierzelle</span>
+        <h3>Rote Blutzelle (Erythrocyt)</h3>
+        <svg id="rbcSvg" viewBox="0 0 240 240" role="img" aria-label="Rote Blutzelle">
+          <rect x="0" y="0" width="240" height="240" rx="10" fill="var(--water-soft)"></rect>
+          <path id="rbcBody" fill="var(--cell)" stroke="var(--cell)" stroke-width="2"></path>
+          <ellipse id="rbcCenter" cx="120" cy="120" rx="26" ry="26" fill="var(--cell-pale)"></ellipse>
+          <g id="rbcBurst" opacity="0" stroke="var(--cell)" stroke-width="3" stroke-linecap="round">
+            <path d="M48 70 l-14 -12 M196 64 l14 -12 M40 170 l-16 8 M200 176 l16 8 M120 30 v-16 M120 210 v16"></path>
+          </g>
+          <g id="rbcArrows" stroke="var(--water)" stroke-width="3" fill="none" stroke-linecap="round"></g>
+        </svg>
+        <span class="state" id="rbcState">normal (bikonkav)</span>
+        <p id="rbcText" style="font-size: var(--step--1)"></p>
+      </div>
+      <div class="panel cell-fig">
+        <span class="eyebrow">Pflanzenzelle</span>
+        <h3>Zelle der Zwiebelhaut</h3>
+        <svg id="plantSvg" viewBox="0 0 240 240" role="img" aria-label="Pflanzenzelle">
+          <rect x="0" y="0" width="240" height="240" rx="10" fill="var(--water-soft)"></rect>
+          <rect x="30" y="40" width="180" height="160" rx="6" fill="none" stroke="var(--plant-wall)" stroke-width="8"></rect>
+          <rect id="plantProto" x="36" y="46" width="168" height="148" rx="10" fill="var(--plant-cyto)" stroke="var(--plant-wall)" stroke-width="1.5"></rect>
+          <rect id="plantVac" x="56" y="62" width="128" height="116" rx="30" fill="var(--vacuole)"></rect>
+          <circle id="plantNuc" cx="70" cy="70" r="11" fill="var(--plant-wall)" opacity="0.75"></circle>
+          <g id="plantArrows" stroke="var(--water)" stroke-width="3" fill="none" stroke-linecap="round"></g>
+        </svg>
+        <span class="state" id="plantState">Grenzplasmolyse</span>
+        <p id="plantText" style="font-size: var(--step--1)"></p>
+      </div>
+    </div>
+    <div class="merksatz">
+      <span class="eyebrow">Merke</span>
+      <p>Die Zellwand schützt die Pflanzenzelle vor dem Platzen. Die Tierzelle hat keine Zellwand und ist deshalb auf eine isotonische Umgebung angewiesen.</p>
+    </div>
+    <div class="panel stack">
+      <h3>Einzeller: die pulsierende Vakuole</h3>
+      <p style="font-size: var(--step--1)">Ein Pantoffeltierchen lebt in Süßwasser. Das Wasser ist hypotonisch zum Zellinneren, deshalb strömt ständig Wasser in die Zelle. Damit die Zelle nicht platzt, sammelt die <strong>pulsierende (kontraktile) Vakuole</strong> das Wasser und pumpt es unter <strong>Energieaufwand</strong> regelmäßig nach außen. Das ist Osmoregulation. Je hypotonischer das Wasser ist, desto schneller pulsiert die Vakuole.</p>
+    </div>
+  </section>
+
+  <!-- ===================== 4 ALLTAG ===================== -->
+  <section class="view" id="view-alltag" hidden>
+    <div class="stack">
+      <span class="eyebrow">Osmose im Alltag</span>
+      <h2>Wo begegnet dir Osmose?</h2>
+      <p class="muted">Lies jede Situation und sage voraus, in welche Richtung sich das Wasser bei den Zellen bewegt. Danach bekommst du die Erklärung.</p>
+      <div class="progress-line">
+        <div class="bar" aria-hidden="true"><i id="exBar"></i></div>
+        <span class="mono" id="exScore">0 von 0 beantwortet</span>
+        <button type="button" id="exReset">Alle zurücksetzen</button>
+      </div>
+    </div>
+    <div class="ex-grid" id="exGrid"></div>
+  </section>
+
+  <!-- ===================== 5 QUIZ ===================== -->
+  <section class="view" id="view-ueben" hidden>
+    <div class="stack">
+      <span class="eyebrow">Selbsttest</span>
+      <h2>Quiz zur Osmose</h2>
+      <div class="progress-line">
+        <div class="bar" aria-hidden="true"><i id="qBar"></i></div>
+        <span class="mono" id="qProgress"></span>
+      </div>
+    </div>
+    <div class="panel quiz" id="quizBox" aria-live="polite"></div>
+  </section>
+</div>
+
+<script>
+(function () {
+  "use strict";
+
+  // ---------- Helpers ----------
+  const $ = (s, r = document) => r.querySelector(s);
+  const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
+  const fmt = (n, d = 2) => n.toFixed(d).replace(".", ",");
+  const css = (name) => getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+  const store = {
+    get(k) { try { return JSON.parse(localStorage.getItem(k)); } catch (e) { return null; } },
+    set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) { /* storage unavailable */ } }
+  };
+  function shuffle(a) {
+    const b = a.slice();
+    for (let i = b.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [b[i], b[j]] = [b[j], b[i]]; }
+    return b;
+  }
+
+  // ---------- Hash routing between views ----------
+  const VIEWS = ["verstehen", "simulation", "zellen", "alltag", "ueben"];
+  function showView() {
+    const name = location.hash.replace("#", "");
+    const v = VIEWS.includes(name) ? name : "verstehen";
+    VIEWS.forEach((n) => { $("#view-" + n).hidden = n !== v; });
+    $$("nav.tabs a").forEach((a) => {
+      if (a.dataset.view === v) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current");
+    });
+    if (v === "simulation") sim.resize();
+    window.scrollTo({ top: 0 });
+  }
+  window.addEventListener("hashchange", showView);
+
+  // =====================================================================
+  // Simulation: vessel split by a membrane, particle-based visualisation.
+  // Water level difference follows dd/dt = k * (A*Δc - 2d), where the
+  // concentrations are derived from solute counts and current volumes.
+  // =====================================================================
+  const sim = (function () {
+    const canvas = $("#sim");
+    const ctx = canvas.getContext("2d");
+    const PER_MOL = 40;          // solute particles per 1 mol/L at initial volume
+    const WATER_TOTAL = 170;     // visible water particles
+    let W = 600, H = 380, geo = {};
+    let running = false, permeable = false;
+    let d = 0;                   // half the level difference (px), right minus left
+    let particles = [];
+    let toR = 0, toL = 0;
+    let last = 0;
+
+    function resize() {
+      const rect = canvas.getBoundingClientRect();
+      if (!rect.width) return;
+      const dpr = window.devicePixelRatio || 1;
+      W = rect.width; H = rect.height;
+      canvas.width = Math.round(W * dpr); canvas.height = Math.round(H * dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      const oldGeo = geo;
+      geo = {
+        left: 28, right: W - 28, top: 22, floor: H - 26,
+        mid: W / 2
+      };
+      geo.h0 = (geo.floor - geo.top) * 0.46;
+      // rescale particle positions on resize
+      if (oldGeo.right) {
+        const sx = (geo.right - geo.left) / (oldGeo.right - oldGeo.left);
+        particles.forEach((p) => { p.x = geo.left + (p.x - oldGeo.left) * sx; });
+      }
+      draw();
+    }
+
+    function level(side) { return geo.h0 + (side === "R" ? d : -d); }
+    function bounds(p) {
+      const r = p.solute ? 6 : 3;
+      const xmin = p.side === "L" ? geo.left + r : geo.mid + 3 + r;
+      const xmax = p.side === "L" ? geo.mid - 3 - r : geo.right - r;
+      const ymin = geo.floor - level(p.side) + r;
+      const ymax = geo.floor - r;
+      return { xmin, xmax, ymin, ymax };
+    }
+    function randIn(side, solute) {
+      const p = { side, solute, x: 0, y: 0, vx: (Math.random() - 0.5) * 60, vy: (Math.random() - 0.5) * 60, crossing: null };
+      const b = bounds(p);
+      p.x = b.xmin + Math.random() * (b.xmax - b.xmin);
+      p.y = b.ymin + Math.random() * (b.ymax - b.ymin);
+      return p;
+    }
+
+    function reset() {
+      running = false; d = 0; toR = 0; toL = 0;
+      $("#simRun").textContent = "Start";
+      const cL = parseFloat($("#cLeft").value), cR = parseFloat($("#cRight").value);
+      particles = [];
+      for (let i = 0; i < Math.round(cL * PER_MOL); i++) particles.push(randIn("L", true));
+      for (let i = 0; i < Math.round(cR * PER_MOL); i++) particles.push(randIn("R", true));
+      for (let i = 0; i < WATER_TOTAL / 2; i++) { particles.push(randIn("L", false)); particles.push(randIn("R", false)); }
+      setStatus("Drücke auf Start.");
+      updateReadout();
+      draw();
+    }
+
+    function counts() {
+      let sL = 0, sR = 0, wL = 0, wR = 0;
+      particles.forEach((p) => {
+        const side = p.crossing ? p.crossing.from : p.side;
+        if (p.solute) { side === "L" ? sL++ : sR++; } else { side === "L" ? wL++ : wR++; }
+      });
+      return { sL, sR, wL, wR };
+    }
+    function conc() {
+      const c = counts();
+      return {
+        cL: (c.sL / PER_MOL) * (geo.h0 / level("L")),
+        cR: (c.sR / PER_MOL) * (geo.h0 / level("R"))
+      };
+    }
+
+    function startCrossing(p, to) {
+      p.crossing = { from: p.side, to };
+      p.vy = 0;
+      const lim = geo.floor - Math.min(level("L"), level("R")) + 6;
+      if (p.y < lim) p.y = lim + Math.random() * 10;
+    }
+    function pickWater(side) {
+      const cands = particles.filter((q) => !q.solute && !q.crossing && q.side === side);
+      if (!cands.length) return null;
+      // prefer particles near the membrane
+      cands.sort((a, b) => Math.abs(a.x - geo.mid) - Math.abs(b.x - geo.mid));
+      return cands[Math.floor(Math.random() * Math.min(6, cands.length))];
+    }
+
+    function step(dt) {
+      const { cL, cR } = conc();
+      // level dynamics: osmotic drive vs hydrostatic back pressure
+      const A = geo.h0 * 0.9, k = 0.55;
+      const target = permeable ? 0 : (A * (cR - cL)) / 2;
+      d += k * (target - d) * dt;
+      d = Math.max(-geo.h0 * 0.85, Math.min(geo.h0 * 0.85, d));
+
+      // water particle bookkeeping: target counts proportional to volume
+      const c = counts();
+      const pendingR = particles.filter((p) => p.crossing && p.crossing.to === "R").length;
+      const pendingL = particles.filter((p) => p.crossing && p.crossing.to === "L").length;
+      const targetR = Math.round(WATER_TOTAL * level("R") / (2 * geo.h0));
+      const projR = c.wR + pendingR - pendingL;
+      if (projR < targetR && pendingR < 4) { const p = pickWater("L"); if (p) startCrossing(p, "R"); }
+      if (projR > targetR && pendingL < 4) { const p = pickWater("R"); if (p) startCrossing(p, "L"); }
+      // random exchange in both directions (shows water moves both ways)
+      if (Math.random() < 1.6 * dt) {
+        const a = pickWater("L"), b = pickWater("R");
+        if (a && b) { startCrossing(a, "R"); startCrossing(b, "L"); }
+      }
+
+      particles.forEach((p) => {
+        if (p.crossing) {
+          const dir = p.crossing.to === "R" ? 1 : -1;
+          p.x += dir * 70 * dt;
+          if ((dir > 0 && p.x > geo.mid + 12) || (dir < 0 && p.x < geo.mid - 12)) {
+            p.side = p.crossing.to; p.crossing = null;
+            dir > 0 ? toR++ : toL++;
+            p.vx = dir * 30; p.vy = (Math.random() - 0.5) * 60;
+          }
+          return;
+        }
+        // Brownian-like motion
+        p.vx += (Math.random() - 0.5) * 140 * dt;
+        p.vy += (Math.random() - 0.5) * 140 * dt;
+        const vmax = p.solute ? 28 : 55;
+        p.vx = Math.max(-vmax, Math.min(vmax, p.vx));
+        p.vy = Math.max(-vmax, Math.min(vmax, p.vy));
+        p.x += p.vx * dt; p.y += p.vy * dt;
+        const b = bounds(p);
+        // permeable membrane: solutes may pass when touching it
+        if (p.solute && permeable) {
+          const atMem = (p.side === "L" && p.x > b.xmax) || (p.side === "R" && p.x < b.xmin);
+          const lim = geo.floor - Math.min(level("L"), level("R")) + 8;
+          if (atMem && p.y > lim && Math.random() < 0.35) {
+            p.side = p.side === "L" ? "R" : "L";
+            p.x = p.side === "R" ? geo.mid + 10 : geo.mid - 10;
+            return;
+          }
+        }
+        if (p.x < b.xmin) { p.x = b.xmin; p.vx = Math.abs(p.vx); }
+        if (p.x > b.xmax) { p.x = b.xmax; p.vx = -Math.abs(p.vx); }
+        if (p.y < b.ymin) { p.y = b.ymin; p.vy = Math.abs(p.vy); }
+        if (p.y > b.ymax) { p.y = b.ymax; p.vy = -Math.abs(p.vy); }
+      });
+    }
+
+    function arrow(x1, y, x2, color, w) {
+      ctx.strokeStyle = color; ctx.lineWidth = w; ctx.lineCap = "round";
+      ctx.beginPath(); ctx.moveTo(x1, y); ctx.lineTo(x2, y);
+      const dir = Math.sign(x2 - x1);
+      ctx.moveTo(x2, y); ctx.lineTo(x2 - dir * 8, y - 6);
+      ctx.moveTo(x2, y); ctx.lineTo(x2 - dir * 8, y + 6);
+      ctx.stroke();
+    }
+
+    function draw() {
+      if (!geo.right) return;
+      const water = css("--water"), solute = css("--solute"), membrane = css("--membrane"),
+        ink = css("--ink"), muted = css("--muted"), surface = css("--surface");
+      ctx.fillStyle = surface; ctx.fillRect(0, 0, W, H);
+      const hL = level("L"), hR = level("R");
+      // fluid
+      ctx.fillStyle = css("--water-soft");
+      ctx.fillRect(geo.left, geo.floor - hL, geo.mid - geo.left, hL);
+      ctx.fillRect(geo.mid, geo.floor - hR, geo.right - geo.mid, hR);
+      // initial level
+      ctx.setLineDash([4, 5]); ctx.strokeStyle = muted; ctx.lineWidth = 1;
+      ctx.beginPath(); ctx.moveTo(geo.left, geo.floor - geo.h0); ctx.lineTo(geo.right, geo.floor - geo.h0); ctx.stroke();
+      ctx.setLineDash([]);
+      // surface lines
+      ctx.strokeStyle = water; ctx.lineWidth = 2;
+      ctx.beginPath(); ctx.moveTo(geo.left, geo.floor - hL); ctx.lineTo(geo.mid, geo.floor - hL);
+      ctx.moveTo(geo.mid, geo.floor - hR); ctx.lineTo(geo.right, geo.floor - hR); ctx.stroke();
+      // particles
+      particles.forEach((p) => {
+        ctx.fillStyle = p.solute ? solute : water;
+        ctx.beginPath(); ctx.arc(p.x, p.y, p.solute ? 6 : 2.6, 0, Math.PI * 2); ctx.fill();
+      });
+      // membrane
+      ctx.strokeStyle = membrane; ctx.lineWidth = 4;
+      ctx.setLineDash(permeable ? [3, 9] : [10, 4]);
+      ctx.beginPath(); ctx.moveTo(geo.mid, geo.top); ctx.lineTo(geo.mid, geo.floor); ctx.stroke();
+      ctx.setLineDash([]);
+      // vessel
+      ctx.strokeStyle = ink; ctx.lineWidth = 3;
+      ctx.beginPath(); ctx.moveTo(geo.left, geo.top); ctx.lineTo(geo.left, geo.floor); ctx.lineTo(geo.right, geo.floor); ctx.lineTo(geo.right, geo.top); ctx.stroke();
+      // labels
+      ctx.fillStyle = muted; ctx.font = "12px " + css("--font-mono");
+      ctx.textAlign = "left"; ctx.fillText("links", geo.left + 8, geo.top + 14);
+      ctx.textAlign = "right"; ctx.fillText("rechts", geo.right - 8, geo.top + 14);
+      ctx.textAlign = "left"; ctx.fillText("Startniveau", geo.left + 8, geo.floor - geo.h0 - 6);
+      // net flow arrow
+      if (running && !permeable) {
+        const { cL, cR } = conc();
+        const target = (geo.h0 * 0.9 * (cR - cL)) / 2;
+        const rem = target - d;
+        if (Math.abs(rem) > 1.5) {
+          const y = geo.floor - Math.min(hL, hR) / 2;
+          if (rem > 0) arrow(geo.mid - 44, y, geo.mid + 44, water, 4); else arrow(geo.mid + 44, y, geo.mid - 44, water, 4);
+        }
+      }
+    }
+
+    function setStatus(t) { $("#simStatus").textContent = t; }
+    function updateReadout() {
+      const { cL, cR } = conc();
+      $("#roCL").textContent = fmt(cL) + " mol/L";
+      $("#roCR").textContent = fmt(cR) + " mol/L";
+      $("#roToR").textContent = toR;
+      $("#roToL").textContent = toL;
+      // display: assume the drawn level difference maps to mm on a lab scale
+      $("#roDh").textContent = Math.round(Math.abs(2 * d) / geo.h0 * 100) + " mm " + (Math.abs(d) < 1 ? "" : d > 0 ? "(rechts höher)" : "(links höher)");
+      if (!running) return;
+      const target = permeable ? 0 : (geo.h0 * 0.9 * (cR - cL)) / 2;
+      const settled = Math.abs(target - d) < 1.2;
+      if (permeable) {
+        setStatus(Math.abs(cL - cR) < 0.05 && Math.abs(d) < 1.5
+          ? "Die gelösten Teilchen haben sich durch Diffusion gleichmäßig verteilt. Es gibt keinen Spiegelunterschied, also keine Osmose."
+          : "Die Membran lässt auch die gelösten Teilchen durch. Sie diffundieren, bis die Konzentrationen gleich sind.");
+      } else if (Math.abs(cR - cL) < 0.02 && Math.abs(d) < 1) {
+        setStatus("Beide Seiten sind isotonisch. Wasser wandert in beide Richtungen gleich oft, der Nettostrom ist null.");
+      } else if (settled) {
+        setStatus("Gleichgewicht: Der hydrostatische Druck der höheren Wassersäule gleicht den osmotischen Druck aus.");
+      } else {
+        setStatus("Netto strömt Wasser zur Seite mit der höheren Konzentration (" + (cR > cL ? "rechts" : "links") + "). Dort steigt der Spiegel.");
+      }
+    }
+
+    function loop(t) {
+      const dt = Math.min(0.05, (t - last) / 1000 || 0.016);
+      last = t;
+      if (running && !$("#view-simulation").hidden) { step(dt); draw(); updateReadout(); }
+      requestAnimationFrame(loop);
+    }
+
+    // wiring
+    $("#cLeft").addEventListener("input", (e) => { $("#cLeftOut").textContent = fmt(+e.target.value, 1) + " mol/L"; reset(); });
+    $("#cRight").addEventListener("input", (e) => { $("#cRightOut").textContent = fmt(+e.target.value, 1) + " mol/L"; reset(); });
+    $("#simRun").addEventListener("click", () => {
+      running = !running;
+      $("#simRun").textContent = running ? "Pause" : "Weiter";
+      if (running) updateReadout(); else setStatus("Pausiert.");
+    });
+    $("#simReset").addEventListener("click", reset);
+    function setMem(full) {
+      permeable = full;
+      $("#memSemi").setAttribute("aria-pressed", String(!full));
+      $("#memFull").setAttribute("aria-pressed", String(full));
+      reset();
+    }
+    $("#memSemi").addEventListener("click", () => setMem(false));
+    $("#memFull").addEventListener("click", () => setMem(true));
+    window.addEventListener("resize", resize);
+    if (window.matchMedia) {
+      try { window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", draw); } catch (e) { /* old browsers */ }
+    }
+
+    return {
+      init() { resize(); reset(); requestAnimationFrame((t) => { last = t; loop(t); }); },
+      resize() { requestAnimationFrame(() => { resize(); }); }
+    };
+  })();
+
+  // =====================================================================
+  // Cells: red blood cell and onion epidermis cell react to the medium.
+  // Shapes are interpolated between parameter sets for each medium.
+  // =====================================================================
+  const cells = (function () {
+    const STATES = {
+      hypo: {
+        rbc: { R: 80, spike: 0, center: 0, burst: 1 },
+        plant: { inset: 6, vac: 1 },
+        rbcState: "angeschwollen, platzt (Hämolyse)",
+        rbcText: "Die Außenlösung ist hypotonisch. Netto strömt Wasser in die Zelle. Die Blutzelle wird kugelig, und weil keine Zellwand sie hält, reißt die Membran. Der rote Blutfarbstoff (Hämoglobin) tritt aus.",
+        plantState: "prall (hoher Turgor)",
+        plantText: "Wasser strömt in die Vakuole, sie wird größer. Der Protoplast drückt fest gegen die Zellwand (Turgor). Die Zellwand hält dagegen, deshalb platzt die Zelle nicht. So bleiben Pflanzen straff.",
+        dir: "in"
+      },
+      iso: {
+        rbc: { R: 62, spike: 0, center: 1, burst: 0 },
+        plant: { inset: 9, vac: 0.8 },
+        rbcState: "normal (bikonkav)",
+        rbcText: "Die Außenlösung ist isotonisch. Wassermoleküle bewegen sich gleich stark in beide Richtungen, es gibt keinen Nettostrom. Die Zelle behält ihre typische Scheibenform mit der Delle in der Mitte.",
+        plantState: "Grenzplasmolyse",
+        plantText: "Kein Nettostrom. Der Protoplast liegt gerade noch an der Zellwand an, drückt aber nicht mehr. Diesen Zustand nennt man Grenzplasmolyse. Mit ihm kann man die Konzentration des Zellsafts bestimmen.",
+        dir: "both"
+      },
+      hyper: {
+        rbc: { R: 50, spike: 1, center: 0.4, burst: 0 },
+        plant: { inset: 40, vac: 0.35 },
+        rbcState: "geschrumpft (Stechapfelform)",
+        rbcText: "Die Außenlösung ist hypertonisch. Netto strömt Wasser aus der Zelle. Sie schrumpft, und die Membran legt sich in Zacken.",
+        plantState: "Plasmolyse",
+        plantText: "Die Vakuole gibt Wasser ab und schrumpft. Der Protoplast löst sich von der Zellwand. Zwischen Wand und Protoplast dringt die Außenlösung ein, denn die Zellwand ist durchlässig. Gibt man die Zelle in Wasser, wird das rückgängig gemacht (Deplasmolyse).",
+        dir: "out"
+      }
+    };
+    let cur = { R: 62, spike: 0, center: 1, burst: 0, inset: 9, vac: 0.8 };
+    let target = Object.assign({}, cur);
+    let anim = null;
+
+    function rbcPath(R, spike) {
+      const n = 16, pts = [], steps = 160;
+      for (let i = 0; i <= steps; i++) {
+        const t = (i / steps) * Math.PI * 2;
+        const r = R * (1 + spike * 0.13 * Math.pow(Math.abs(Math.sin((n / 2) * t)), 3) - spike * 0.04);
+        pts.push((120 + r * Math.cos(t)).toFixed(1) + " " + (120 + r * Math.sin(t)).toFixed(1));
+      }
+      return "M" + pts.join(" L") + " Z";
+    }
+    function arrowsSvg(dir, cx, cy, rIn, rOut) {
+      const out = [];
+      [45, 135, 225, 315].forEach((deg) => {
+        const a = (deg * Math.PI) / 180, c = Math.cos(a), s = Math.sin(a);
+        const p1 = [cx + rOut * c, cy + rOut * s], p2 = [cx + rIn * c, cy + rIn * s];
+        const seg = (from, to) => {
+          const dx = to[0] - from[0], dy = to[1] - from[1], L = Math.hypot(dx, dy), ux = dx / L, uy = dy / L;
+          const h1 = [to[0] - ux * 8 - uy * 6, to[1] - uy * 8 + ux * 6], h2 = [to[0] - ux * 8 + uy * 6, to[1] - uy * 8 - ux * 6];
+          return `<path d="M${from[0].toFixed(1)} ${from[1].toFixed(1)} L${to[0].toFixed(1)} ${to[1].toFixed(1)} M${h1[0].toFixed(1)} ${h1[1].toFixed(1)} L${to[0].toFixed(1)} ${to[1].toFixed(1)} L${h2[0].toFixed(1)} ${h2[1].toFixed(1)}"/>`;
+        };
+        if (dir === "in") out.push(seg(p1, p2));
+        else if (dir === "out") out.push(seg(p2, p1));
+        else {
+          const m = [(p1[0] + p2[0]) / 2, (p1[1] + p2[1]) / 2];
+          out.push(`<g opacity="0.6">${seg(m, p2)}${seg(m, p1)}</g>`);
+        }
+      });
+      return out.join("");
+    }
+    function render(s) {
+      $("#rbcBody").setAttribute("d", rbcPath(s.R, s.spike));
+      const rc = 26 * s.center * (s.R / 62);
+      $("#rbcCenter").setAttribute("rx", rc.toFixed(1));
+      $("#rbcCenter").setAttribute("ry", rc.toFixed(1));
+      $("#rbcBody").setAttribute("opacity", (1 - 0.55 * s.burst).toFixed(2));
+      $("#rbcBody").setAttribute("stroke-dasharray", s.burst > 0.9 ? "10 6" : "none");
+      $("#rbcBurst").setAttribute("opacity", s.burst > 0.9 ? "1" : "0");
+      // plant: wall inner box is x 34..206, y 44..196
+      const i = s.inset, x = 34 + i, y = 44 + i * 0.85, w = 172 - 2 * i, h = 152 - 1.7 * i;
+      const proto = $("#plantProto");
+      proto.setAttribute("x", x.toFixed(1)); proto.setAttribute("y", y.toFixed(1));
+      proto.setAttribute("width", w.toFixed(1)); proto.setAttribute("height", h.toFixed(1));
+      proto.setAttribute("rx", (6 + i * 0.9).toFixed(1));
+      const vw = (w - 24) * s.vac, vh = (h - 24) * s.vac;
+      const vac = $("#plantVac");
+      vac.setAttribute("x", (x + w / 2 - vw / 2 + 6).toFixed(1)); vac.setAttribute("y", (y + h / 2 - vh / 2 + 4).toFixed(1));
+      vac.setAttribute("width", Math.max(8, vw).toFixed(1)); vac.setAttribute("height", Math.max(8, vh).toFixed(1));
+      vac.setAttribute("rx", Math.min(30, vw / 2, vh / 2).toFixed(1));
+      const nOff = 16 + i * 0.45;
+      $("#plantNuc").setAttribute("cx", (x + nOff).toFixed(1)); $("#plantNuc").setAttribute("cy", (y + nOff).toFixed(1));
+      $("#plantNuc").setAttribute("r", (8 + 3 * Math.min(1, w / 160)).toFixed(1));
+    }
+    function setMedium(m) {
+      const st = STATES[m];
+      $$("[data-medium]").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.medium === m)));
+      $("#rbcState").textContent = st.rbcState; $("#rbcText").textContent = st.rbcText;
+      $("#plantState").textContent = st.plantState; $("#plantText").textContent = st.plantText;
+      $("#rbcArrows").innerHTML = arrowsSvg(st.dir, 120, 120, 78 + (m === "hypo" ? 10 : 0), 112);
+      $("#plantArrows").innerHTML = arrowsSvg(st.dir, 120, 120, 70, 108);
+      target = Object.assign({}, st.rbc, st.plant);
+      // swelling first, then burst for hypotonic medium
+      const from = Object.assign({}, cur);
+      const t0 = performance.now(), dur = 1400;
+      const reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      cancelAnimationFrame(anim);
+      function tick(t) {
+        let k = reduce ? 1 : Math.min(1, (t - t0) / dur);
+        const e = 1 - Math.pow(1 - k, 3);
+        Object.keys(target).forEach((key) => {
+          if (key === "burst") cur.burst = k >= 1 ? target.burst : from.burst * (1 - e);
+          else cur[key] = from[key] + (target[key] - from[key]) * e;
+        });
+        render(cur);
+        if (k < 1) anim = requestAnimationFrame(tick);
+      }
+      anim = requestAnimationFrame(tick);
+    }
+    $$("[data-medium]").forEach((b) => b.addEventListener("click", () => setMedium(b.dataset.medium)));
+    return { init() { render(cur); setMedium("iso"); } };
+  })();
+
+  // =====================================================================
+  // Everyday examples: predict direction of net water flow for the cells.
+  // =====================================================================
+  const OPT = { in: "Wasser strömt netto in die Zellen", out: "Wasser strömt netto aus den Zellen", none: "Kein Nettostrom" };
+  const EXAMPLES = [
+    { ctx: "Küche", title: "Gurkensalat salzen", text: "Du salzt geschnittene Gurkenscheiben. Nach 20 Minuten steht eine Pfütze in der Schüssel und die Gurken sind weich.", ans: "out",
+      why: "Das Salz löst sich in der Flüssigkeit an der Oberfläche. Diese Lösung ist hypertonisch zum Zellsaft. Wasser verlässt die Gurkenzellen, die Zellen verlieren Turgor und die Scheiben werden weich (Plasmolyse)." },
+    { ctx: "Küche", title: "Welker Salat im Wasserbad", text: "Schlappe Salatblätter oder weiche Möhren legst du für eine halbe Stunde in kaltes Wasser. Danach sind sie wieder knackig.", ans: "in",
+      why: "Leitungswasser ist hypotonisch zum Zellsaft. Wasser strömt in die Vakuolen, der Turgor steigt und das Gewebe wird wieder straff." },
+    { ctx: "Garten", title: "Kirschen platzen im Regen", text: "Kurz vor der Ernte regnet es tagelang. Viele reife Kirschen am Baum sind aufgeplatzt.", ans: "in",
+      why: "Reife Kirschen enthalten viel Zucker. Ihr Zellsaft ist stark hypertonisch gegenüber dem Regenwasser auf der Schale. Wasser dringt ein, das Fruchtfleisch quillt und die Haut reißt." },
+    { ctx: "Küche", title: "Erdbeeren zuckern", text: "Du streust Zucker über geschnittene Erdbeeren. Nach kurzer Zeit liegen sie in ihrem eigenen roten Saft.", ans: "out",
+      why: "Der Zucker bildet mit etwas Fruchtsaft eine hypertonische Lösung. Den Zellen wird Wasser entzogen. Es tritt als Saft aus." },
+    { ctx: "Küche", title: "Rosinen einweichen", text: "Rosinen liegen über Nacht in Wasser. Am Morgen sind sie dick und rund.", ans: "in",
+      why: "Die getrockneten Trauben haben eine sehr hohe Zuckerkonzentration. Gegenüber dem Wasser sind sie stark hypertonisch, deshalb nehmen sie Wasser auf und quellen auf." },
+    { ctx: "Medizin", title: "Infusion im Krankenhaus", text: "Patienten bekommen eine Infusion mit „physiologischer Kochsalzlösung“ (0,9 % NaCl). Was passiert mit den roten Blutzellen?", ans: "none",
+      why: "0,9 % NaCl ist isotonisch zum Blutplasma. Wasser strömt gleich stark in die Zellen hinein und heraus. Die Blutzellen behalten ihre Form. Reines Wasser würde zur Hämolyse führen." },
+    { ctx: "Medizin", title: "Nasendusche", text: "Bei Schnupfen spült man die Nase mit isotonischer Kochsalzlösung. Mit reinem Leitungswasser brennt es dagegen unangenehm. Was passiert bei der Kochsalzlösung mit den Schleimhautzellen?", ans: "none",
+      why: "Die isotonische Lösung verursacht keinen Nettostrom, die Zellen bleiben unverändert. Leitungswasser ist hypotonisch. Die Zellen nehmen Wasser auf und schwellen an, das reizt die Schleimhaut." },
+    { ctx: "Straße", title: "Streusalz und Straßenbäume", text: "Im Winter wird viel Salz gestreut. Im Frühjahr kümmern Bäume und Hecken am Straßenrand, obwohl der Boden feucht ist. Was passiert an den Wurzelzellen?", ans: "out",
+      why: "Das Bodenwasser wird durch das Salz hypertonisch. Die Wurzeln können kein Wasser mehr aufnehmen und verlieren sogar welches. Die Pflanze vertrocknet im nassen Boden (physiologische Trockenheit)." },
+    { ctx: "Garten", title: "Zu viel Dünger", text: "Jemand meint es gut und gibt der Zimmerpflanze die dreifache Menge Flüssigdünger. Die Pflanze welkt trotz Gießen. Was passiert an den Wurzelzellen?", ans: "out",
+      why: "Die gelösten Düngesalze machen die Bodenlösung hypertonisch. Wasser verlässt die Wurzelzellen, die Pflanze welkt. Man sagt, die Wurzeln „verbrennen“." },
+    { ctx: "Vorratskammer", title: "Marmelade, Honig, Salzhering", text: "Marmelade, Honig und stark gesalzener Fisch halten sehr lange, ohne zu schimmeln. Was passiert mit Bakterien und Pilzsporen, die darauf landen?", ans: "out",
+      why: "Die hohe Zucker- bzw. Salzkonzentration ist stark hypertonisch. Mikroorganismen wird Wasser entzogen (Plasmolyse). Sie können nicht wachsen. So funktionieren Zuckern, Pökeln und Einsalzen als Konservierung." },
+    { ctx: "Natur", title: "Süßwasserfisch", text: "Eine Forelle lebt im Bach. Ihre Körperflüssigkeit ist salziger als das Bachwasser. Was passiert an den Kiemen?", ans: "in",
+      why: "Das Süßwasser ist hypotonisch. Über die Kiemen strömt ständig Wasser in den Körper. Deshalb trinkt der Fisch kaum und scheidet viel sehr verdünnten Urin aus. Salze nimmt er aktiv über die Kiemen auf." },
+    { ctx: "Natur", title: "Meeresfisch", text: "Ein Hering lebt im Meer. Das Meerwasser ist salziger als seine Körperflüssigkeit. Was passiert an den Kiemen?", ans: "out",
+      why: "Das Meerwasser ist hypertonisch. Der Fisch verliert ständig Wasser. Er gleicht das aus, indem er Meerwasser trinkt und überschüssiges Salz aktiv über die Kiemen ausscheidet." },
+    { ctx: "Schiffbruch", title: "Meerwasser trinken", text: "Schiffbrüchige sollen kein Meerwasser trinken, obwohl sie Durst haben. Was passiert mit den Körperzellen, wenn viel Salz ins Blut gelangt?", ans: "out",
+      why: "Das Blut wird hypertonisch zu den Körperzellen, sie verlieren Wasser. Außerdem braucht die Niere zusätzliches Wasser, um das Salz auszuscheiden. Der Körper trocknet schneller aus." }
+  ];
+  const ex = (function () {
+    let answers = store.get("osmose.ex") || {};
+    function renderAll() {
+      const grid = $("#exGrid");
+      grid.innerHTML = "";
+      EXAMPLES.forEach((e, idx) => {
+        const card = document.createElement("article");
+        card.className = "panel ex";
+        card.innerHTML = `<span class="ctx">${e.ctx}</span><h3>${e.title}</h3><p style="font-size:var(--step--1)">${e.text}</p>
+          <span class="q">Was passiert?</span><div class="opts"></div><div class="answer" hidden></div>`;
+        const opts = $(".opts", card), ansBox = $(".answer", card);
+        ["in", "out", "none"].forEach((k) => {
+          const b = document.createElement("button");
+          b.type = "button"; b.textContent = OPT[k]; b.dataset.k = k;
+          b.addEventListener("click", () => { answers[idx] = k; store.set("osmose.ex", answers); paint(); });
+          opts.appendChild(b);
+        });
+        function paint() {
+          const chosen = answers[idx];
+          $$("button", opts).forEach((b) => {
+            b.classList.remove("right", "wrong");
+            b.disabled = !!chosen;
+            if (chosen) {
+              if (b.dataset.k === e.ans) b.classList.add("right");
+              else if (b.dataset.k === chosen) b.classList.add("wrong");
+            }
+          });
+          if (chosen) {
+            ansBox.hidden = false;
+            ansBox.innerHTML = (chosen === e.ans ? '<b class="ok">Richtig.</b> ' : '<b class="no">Nicht ganz.</b> Richtig ist: ' + OPT[e.ans] + ". ") + e.why;
+          } else ansBox.hidden = true;
+          progress();
+        }
+        card._paint = paint;
+        grid.appendChild(card);
+        paint();
+      });
+    }
+    function progress() {
+      const keys = Object.keys(answers);
+      const right = keys.filter((i) => EXAMPLES[i] && answers[i] === EXAMPLES[i].ans).length;
+      $("#exScore").textContent = `${keys.length} von ${EXAMPLES.length} beantwortet · ${right} richtig`;
+      $("#exBar").style.width = (keys.length / EXAMPLES.length) * 100 + "%";
+    }
+    $("#exReset").addEventListener("click", () => { answers = {}; store.set("osmose.ex", answers); renderAll(); });
+    return { init: renderAll };
+  })();
+
+  // =====================================================================
+  // Quiz: multiple choice with immediate feedback and explanations.
+  // =====================================================================
+  const QUESTIONS = [
+    { q: "Was versteht man unter Osmose?", o: ["Die Diffusion gelöster Teilchen von hoher zu niedriger Konzentration", "Die Diffusion von Wasser durch eine selektiv permeable Membran zur Lösung mit höherer Teilchenkonzentration", "Den aktiven Transport von Wasser unter ATP-Verbrauch", "Das Auflösen von Salz in Wasser"], a: 1,
+      e: "Osmose ist ein Sonderfall der Diffusion: Es geht um das Lösungsmittel Wasser, und es braucht eine selektiv permeable Membran." },
+    { q: "Bei der Osmose bewegt sich netto …", o: ["das Wasser", "der gelöste Stoff", "beides gleichermaßen", "nichts, es ändert sich nur der Druck"], a: 0,
+      e: "Die Membran hält die gelösten Teilchen zurück, nur Wasser gelangt hindurch. Netto bewegt sich also Wasser." },
+    { q: "Eine Lösung ist hypertonisch im Vergleich zu einer anderen, wenn sie …", o: ["mehr Wasser enthält", "eine höhere Konzentration gelöster Teilchen hat", "wärmer ist", "eine niedrigere Konzentration gelöster Teilchen hat"], a: 1,
+      e: "hyper = über. Die Lösung hat mehr gelöste Teilchen und zieht deshalb Wasser an." },
+    { q: "Rote Blutzellen werden in destilliertes Wasser gegeben. Was passiert?", o: ["Sie schrumpfen zur Stechapfelform", "Nichts", "Sie schwellen an und platzen (Hämolyse)", "Sie bilden eine Zellwand"], a: 2,
+      e: "Destilliertes Wasser ist hypotonisch. Wasser strömt ein, und weil keine Zellwand die Zelle stützt, platzt sie." },
+    { q: "Zwiebelhautzellen liegen in konzentrierter Zuckerlösung. Unter dem Mikroskop siehst du …", o: ["Plasmolyse: Der Protoplast löst sich von der Zellwand", "Hämolyse", "Die Zellen platzen", "Die Vakuole wird größer"], a: 0,
+      e: "Die Zuckerlösung ist hypertonisch. Die Vakuole verliert Wasser, der Protoplast schrumpft und löst sich von der Zellwand." },
+    { q: "Warum platzt eine Pflanzenzelle in reinem Wasser nicht?", o: ["Weil Pflanzenzellen kein Wasser aufnehmen", "Weil die stabile Zellwand dem Turgordruck standhält", "Weil die Vakuole das Wasser sofort abpumpt", "Weil die Zellmembran für Wasser undurchlässig ist"], a: 1,
+      e: "Der Protoplast drückt gegen die Zellwand (Turgor). Die Wand übt einen Gegendruck aus, der den weiteren Wassereinstrom stoppt." },
+    { q: "Was passiert in einer isotonischen Lösung mit den Wassermolekülen?", o: ["Sie bewegen sich gar nicht", "Sie strömen nur in die Zelle", "Sie bewegen sich gleich stark in beide Richtungen, kein Nettostrom", "Sie strömen nur aus der Zelle"], a: 2,
+      e: "Ein häufiger Klausurfehler! Wassermoleküle bewegen sich immer. Im isotonischen Fall gleichen sich die beiden Richtungen aus." },
+    { q: "Im Osmometer (Membran in der Mitte) ist links reines Wasser, rechts Zuckerlösung. Was beobachtest du?", o: ["Der Spiegel links steigt", "Der Spiegel rechts steigt, bis der Gegendruck den Nettostrom stoppt", "Der Zucker wandert nach links", "Beide Spiegel bleiben gleich"], a: 1,
+      e: "Wasser strömt netto zur Zuckerlösung. Die steigende Wassersäule erzeugt einen hydrostatischen Gegendruck, bis ein Gleichgewicht erreicht ist." },
+    { q: "Was ändert sich, wenn die Membran auch für den Zucker durchlässig ist?", o: ["Die Osmose wird stärker", "Es findet keine Osmose statt, der Zucker diffundiert, bis die Konzentrationen gleich sind", "Das Wasser kann nicht mehr durch", "Der Zucker sammelt sich auf einer Seite"], a: 1,
+      e: "Ohne selektive Permeabilität gleichen sich die Konzentrationen durch Diffusion aus. Ein dauerhafter Spiegelunterschied entsteht nicht." },
+    { q: "Welche Lösung hat den höheren osmotischen Wert?", o: ["0,1 mol/L Glucose", "0,1 mol/L NaCl", "Beide gleich", "Kann man nicht sagen"], a: 1,
+      e: "NaCl zerfällt in Na⁺ und Cl⁻, also entstehen etwa 0,2 mol/L gelöste Teilchen. Glucose zerfällt nicht. Entscheidend ist die Teilchenzahl." },
+    { q: "Warum bekommt man bei einer Infusion 0,9-prozentige Kochsalzlösung und kein reines Wasser?", o: ["Weil Salz Bakterien abtötet", "Weil sie isotonisch zum Blut ist und die Blutzellen nicht schädigt", "Weil Salz den Blutdruck senkt", "Weil reines Wasser zu teuer ist"], a: 1,
+      e: "Reines Wasser wäre hypotonisch und würde rote Blutzellen platzen lassen. Die 0,9 % NaCl-Lösung ist isotonisch." },
+    { q: "Nach tagelangem Regen platzen reife Kirschen am Baum auf. Warum?", o: ["Der zuckerreiche Zellsaft ist hypertonisch zum Regenwasser, Wasser strömt ein", "Das Regenwasser ist hypertonisch", "Die Kirschen verlieren Wasser und reißen", "Kälte lässt die Haut springen"], a: 0,
+      e: "Viel Zucker im Fruchtfleisch zieht Wasser von außen an. Die Frucht quillt, bis die Haut reißt." },
+    { q: "Am Straßenrand vertrocknen Pflanzen nach dem Winter trotz feuchtem Boden. Ursache?", o: ["Das Streusalz macht das Bodenwasser hypertonisch, die Wurzeln können kein Wasser aufnehmen", "Das Salz verstopft die Blätter", "Die Wurzeln nehmen zu viel Wasser auf", "Der Boden ist hypotonisch"], a: 0,
+      e: "Hohe Salzkonzentration im Boden kehrt das Konzentrationsgefälle um. Die Wurzelzellen verlieren Wasser (physiologische Trockenheit)." },
+    { q: "Warum verdirbt Marmelade kaum, obwohl sie viel Wasser enthält?", o: ["Weil Zucker giftig für Bakterien ist", "Die hohe Zuckerkonzentration entzieht Mikroorganismen osmotisch das Wasser", "Weil Marmelade sauerstofffrei ist", "Weil Mikroorganismen Zucker nicht mögen"], a: 1,
+      e: "Die Marmelade ist stark hypertonisch. Bakterien und Pilze verlieren Wasser (Plasmolyse) und können sich nicht vermehren." },
+    { q: "Welche Aufgabe hat die pulsierende Vakuole des Pantoffeltierchens?", o: ["Sie speichert Nährstoffe", "Sie pumpt das osmotisch eingeströmte Wasser unter Energieaufwand nach außen", "Sie nimmt Salz auf", "Sie dient der Fortbewegung"], a: 1,
+      e: "Süßwasser ist hypotonisch, ständig strömt Wasser ein. Ohne die pulsierende Vakuole würde die Zelle platzen." },
+    { q: "Eine plasmolysierte Zwiebelzelle wird in destilliertes Wasser gelegt. Das nennt man …", o: ["Hämolyse", "Grenzplasmolyse", "Deplasmolyse", "Turgorverlust"], a: 2,
+      e: "Die Vakuole nimmt wieder Wasser auf, und der Protoplast legt sich erneut an die Zellwand an." },
+    { q: "Was beschreibt der Turgor?", o: ["Den Druck des Zellinhalts gegen die Zellwand", "Die Geschwindigkeit der Diffusion", "Die Dicke der Zellwand", "Den Salzgehalt der Vakuole"], a: 0,
+      e: "Der Turgor hält krautige Pflanzen aufrecht. Sinkt er, welkt die Pflanze." },
+    { q: "Warum sollten Schiffbrüchige kein Meerwasser trinken?", o: ["Weil es Bakterien enthält", "Weil das Salz dem Körper zusätzlich Wasser entzieht und die Niere Wasser zum Ausscheiden braucht", "Weil es zu kalt ist", "Weil es hypotonisch ist"], a: 1,
+      e: "Meerwasser ist hypertonisch zu unseren Körperflüssigkeiten. Statt den Durst zu stillen, verstärkt es die Austrocknung." }
+  ];
+  const quiz = (function () {
+    const N = 12;
+    let order = [], idx = 0, score = 0, answered = false;
+    function start() {
+      order = shuffle(QUESTIONS).slice(0, N).map((q) => {
+        const perm = shuffle(q.o.map((_, i) => i));
+        return { q: q.q, o: perm.map((i) => q.o[i]), a: perm.indexOf(q.a), e: q.e };
+      });
+      idx = 0; score = 0; render();
+    }
+    function render() {
+      const box = $("#quizBox");
+      $("#qBar").style.width = (idx / N) * 100 + "%";
+      if (idx >= N) {
+        const best = Math.max(score, store.get("osmose.best") || 0);
+        store.set("osmose.best", best);
+        const msg = score >= 11 ? "Hervorragend! Du hast das Thema sicher drauf." : score >= 8 ? "Gut gemacht! Wiederhole die Fragen, bei denen du unsicher warst." : "Schau dir „Verstehen“ und die Simulation noch einmal an und versuche es dann erneut.";
+        $("#qProgress").textContent = `fertig · Bestwert ${best} / ${N}`;
+        box.innerHTML = `<span class="eyebrow">Ergebnis</span><div class="score-big mono">${score} / ${N}</div><p>${msg}</p>
+          <div class="row"><button type="button" class="primary" id="qAgain">Neue Runde (gemischt)</button></div>`;
+        $("#qAgain").addEventListener("click", start);
+        return;
+      }
+      const q = order[idx];
+      answered = false;
+      $("#qProgress").textContent = `Frage ${idx + 1} von ${N} · ${score} richtig`;
+      box.innerHTML = `<div class="qtext">${q.q}</div><div class="opts"></div><div class="feedback" hidden></div>
+        <div class="row"><button type="button" class="primary" id="qNext" hidden>${idx + 1 < N ? "Nächste Frage" : "Ergebnis anzeigen"}</button></div>`;
+      const opts = $(".opts", box);
+      q.o.forEach((text, i) => {
+        const b = document.createElement("button");
+        b.type = "button";
+        b.innerHTML = `<span class="k">${"ABCD"[i]}</span><span></span>`;
+        b.lastChild.textContent = text;
+        b.addEventListener("click", () => choose(i));
+        opts.appendChild(b);
+      });
+      $("#qNext").addEventListener("click", () => { idx++; render(); });
+    }
+    function choose(i) {
+      if (answered) return;
+      answered = true;
+      const q = order[idx], box = $("#quizBox");
+      const btns = $$(".opts button", box);
+      btns.forEach((b, j) => { b.disabled = true; if (j === q.a) b.classList.add("right"); else if (j === i) b.classList.add("wrong"); });
+      const ok = i === q.a;
+      if (ok) score++;
+      const fb = $(".feedback", box);
+      fb.hidden = false;
+      fb.innerHTML = (ok ? '<b class="ok">Richtig!</b> ' : '<b class="no">Leider falsch.</b> ') + q.e;
+      $("#qNext").hidden = false;
+      $("#qNext").focus();
+      $("#qProgress").textContent = `Frage ${idx + 1} von ${N} · ${score} richtig`;
+    }
+    return { init: start };
+  })();
+
+  // ---------- Boot ----------
+  sim.init();
+  cells.init();
+  ex.init();
+  quiz.init();
+  showView();
+})();
+</script>
+
+<p style="text-align:center;margin-top:32px"><a href="index.html" style="color:inherit">← Alle Lern-Apps</a></p>
+</body>
+</html>
