@@ -4,7 +4,7 @@
 # the files in docs/ can be opened directly in any browser or served via GitHub Pages.
 set -euo pipefail
 cd "$(dirname "$0")/.."
-for app in osmose ableiten; do
+for app in osmose ableiten natrium-kalium-pumpe; do
   {
     printf '<!doctype html>\n<html lang="de">\n<head>\n<meta charset="utf-8">\n'
     printf '<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">\n'

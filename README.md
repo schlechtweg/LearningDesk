@@ -11,6 +11,16 @@ Bereiche:
 4. **Alltag**: 13 Alltagsbeispiele zum Vorhersagen und Erklären
 5. **Quiz**: 12 zufällige Fragen aus 18, jeweils mit Erklärung
 
+## Natrium-Kalium-Pumpe (`natrium-kalium-pumpe.html`)
+
+Lernhilfe zur Na⁺/K⁺-ATPase für Biologie, Klasse 11:
+1. **Grundlagen**: Stöchiometrie 3 Na⁺ / 2 K⁺ / 1 ATP, Ionenverteilung, Einordnung der Transportarten, typische Fehler
+2. **Pumpzyklus**: animierter Zyklus in sechs Schritten (E1/E2, Phosphorylierung, Affinitätswechsel)
+3. **Simulation**: Gradienten und Membranpotential mit Leckströmen. Pumpe hemmen, ATP entziehen, K⁺ außen ändern, Aktionspotentiale auslösen
+4. **Bedeutung**: Ruhepotential, Zellvolumen, sekundär aktiver Transport, Energiebedarf, Hemmstoffe
+5. **Was passiert, wenn …**: 8 Fallbeispiele zum Vorhersagen
+6. **Quiz**: 12 zufällige Fragen aus 17
+
 ## Ableiten lernen (`ableiten.html`)
 
 Lernhilfe zur Differentialrechnung für Mathematik, Klasse 11:

@@ -1,0 +1,897 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<title>Natrium-Kalium-Pumpe</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Interaktive Lernhilfe zur Natrium-Kalium-Pumpe (Biologie, Klasse 11)">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: membrane cross-section as the visual motif (outside on top, cytoplasm below); tab bar, one view at a time, max 980px */
+:root {
+  --bg: #f4f2f5;
+  --surface: #ffffff;
+  --surface-2: #ebe6ee;
+  --ink: #241b2b;
+  --muted: #5f5468;
+  --line: #d8d0de;
+  --accent: #8e2c5c;
+  --accent-ink: #ffffff;
+  --na: #d07312;
+  --na-ink: #ffffff;
+  --k: #5246c4;
+  --k-ink: #ffffff;
+  --atp: #b88f00;
+  --pump: #3f8f7d;
+  --pump-dark: #2c6b5d;
+  --lipid: #e6c6a6;
+  --lipid-tail: #f3e4d4;
+  --outside: #e6eef7;
+  --inside: #f6eef2;
+  --good: #1f7f4b;
+  --good-soft: rgba(31, 127, 75, 0.12);
+  --bad: #b5372e;
+  --bad-soft: rgba(181, 55, 46, 0.10);
+  --grid: #e6e0ea;
+
+  --font-display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --font-body: "Atkinson Hyperlegible", "Segoe UI", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
+  --step--1: 0.875rem;
+  --step-0: 1.0625rem;
+  --step-1: 1.25rem;
+  --step-2: 1.6rem;
+  --step-3: 2.3rem;
+  --radius: 10px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #141016; --surface: #1d1720; --surface-2: #272029; --ink: #efe8f2; --muted: #a99db0; --line: #382e3d;
+    --accent: #e0709f; --accent-ink: #1a0d14; --na: #f0a046; --na-ink: #1f1204; --k: #9a91f2; --k-ink: #120f2a;
+    --atp: #e3c14c; --pump: #5fbfa7; --pump-dark: #3f9a84; --lipid: #7a5f48; --lipid-tail: #4a3b30;
+    --outside: #18222d; --inside: #251a21; --good: #5fd194; --good-soft: rgba(95, 209, 148, 0.14);
+    --bad: #f07a70; --bad-soft: rgba(240, 122, 112, 0.14); --grid: #2a222e;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #141016; --surface: #1d1720; --surface-2: #272029; --ink: #efe8f2; --muted: #a99db0; --line: #382e3d;
+  --accent: #e0709f; --accent-ink: #1a0d14; --na: #f0a046; --na-ink: #1f1204; --k: #9a91f2; --k-ink: #120f2a;
+  --atp: #e3c14c; --pump: #5fbfa7; --pump-dark: #3f9a84; --lipid: #7a5f48; --lipid-tail: #4a3b30;
+  --outside: #18222d; --inside: #251a21; --good: #5fd194; --good-soft: rgba(95, 209, 148, 0.14);
+  --bad: #f07a70; --bad-soft: rgba(240, 122, 112, 0.14); --grid: #2a222e;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+body {
+  background: var(--bg); color: var(--ink);
+  font-family: var(--font-body); font-size: var(--step-0); line-height: 1.6;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 0 48px;
+}
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--bg); }
+.wrap { max-width: 980px; margin: 0 auto; }
+h1, h2, h3 { font-family: var(--font-display); line-height: 1.15; text-wrap: balance; margin: 0; }
+h1 { font-size: var(--step-3); font-weight: 800; letter-spacing: -0.02em; }
+h2 { font-size: var(--step-2); font-weight: 700; letter-spacing: -0.01em; }
+h3 { font-size: var(--step-1); font-weight: 700; }
+p { margin: 0; max-width: 68ch; }
+.muted { color: var(--muted); }
+.small { font-size: var(--step--1); }
+.mono { font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
+.eyebrow { font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); }
+.na { color: var(--na); font-weight: 700; }
+.k { color: var(--k); font-weight: 700; }
+.atp { color: var(--atp); font-weight: 700; }
+
+header.top { padding-block: 28px 8px; display: grid; gap: 6px; }
+header.top p { color: var(--muted); }
+nav.tabs {
+  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--bg);
+  display: flex; gap: 6px; overflow-x: auto; padding-block: 12px; margin-bottom: 8px; border-bottom: 1px solid var(--line);
+}
+nav.tabs a {
+  flex: 0 0 auto; text-decoration: none; color: var(--ink); font-weight: 700; padding: 8px 14px; border-radius: 999px;
+  border: 1px solid var(--line); background: var(--surface); font-size: var(--step--1);
+}
+nav.tabs a .n { font-family: var(--font-mono); color: var(--muted); margin-right: 6px; font-weight: 400; }
+nav.tabs a[aria-current="page"] { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+nav.tabs a[aria-current="page"] .n { color: var(--accent-ink); opacity: 0.75; }
+a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible { outline: 3px solid var(--k); outline-offset: 2px; }
+
+section.view { display: grid; gap: 28px; padding-top: 16px; }
+.stack { display: grid; gap: 12px; }
+.panel { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 20px; min-width: 0; }
+.grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; align-items: start; }
+.grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; align-items: start; }
+.merksatz { border-left: 4px solid var(--accent); background: var(--surface); padding: 16px 20px; border-radius: 0 var(--radius) var(--radius) 0; }
+.merksatz .eyebrow { display: block; margin-bottom: 4px; }
+.merksatz p { font-size: var(--step-1); font-family: var(--font-display); font-weight: 500; line-height: 1.35; }
+.bignum { display: flex; flex-wrap: wrap; gap: 6px 18px; align-items: baseline; font-family: var(--font-display); font-weight: 800; font-size: 2rem; line-height: 1.1; }
+.bignum small { font-family: var(--font-body); font-weight: 400; font-size: var(--step--1); color: var(--muted); }
+
+button, .btn {
+  font: inherit; font-weight: 700; font-size: var(--step--1); cursor: pointer; text-decoration: none; display: inline-block;
+  padding: 9px 16px; border-radius: 8px; border: 1px solid var(--line); background: var(--surface); color: var(--ink);
+}
+button:hover { border-color: var(--accent); }
+button.primary, .btn.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+button[aria-pressed="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+button:disabled { opacity: 0.5; cursor: default; }
+.row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+input[type="range"] { width: 100%; accent-color: var(--accent); }
+label.lbl { display: flex; justify-content: space-between; gap: 8px; font-weight: 700; font-size: var(--step--1); }
+
+table.data { width: 100%; border-collapse: collapse; font-size: var(--step--1); }
+table.data th, table.data td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+table.data th { font-family: var(--font-display); font-size: var(--step-0); }
+table.data td.num { font-family: var(--font-mono); font-variant-numeric: tabular-nums; text-align: right; white-space: nowrap; }
+table.data th.num { text-align: right; }
+.table-scroll { overflow-x: auto; }
+ul.list { margin: 0; padding-left: 1.2em; display: grid; gap: 8px; max-width: 68ch; }
+
+/* Pump cycle */
+.cycle-layout { display: grid; grid-template-columns: minmax(0, 1fr) 300px; gap: 16px; align-items: start; }
+@media (max-width: 800px) { .cycle-layout { grid-template-columns: 1fr; } }
+.svg-box { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 8px; min-width: 0; }
+.svg-box svg { width: 100%; height: auto; display: block; }
+.ion { transition: transform 0.9s cubic-bezier(.4, 0, .2, 1), opacity 0.6s; }
+.lobe { transition: opacity 0.6s; }
+.stepdots { display: flex; gap: 6px; flex-wrap: wrap; }
+.stepdots button { width: 34px; height: 34px; padding: 0; font-family: var(--font-mono); }
+.stepdots button[aria-current="step"] { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+.state-chip { display: inline-block; font-family: var(--font-mono); font-size: 0.75rem; padding: 2px 8px; border-radius: 4px; background: var(--surface-2); }
+@media (prefers-reduced-motion: reduce) { .ion, .lobe { transition: none; } }
+
+/* Simulation */
+.sim-layout { display: grid; grid-template-columns: minmax(0, 1fr) 300px; gap: 16px; align-items: start; }
+@media (max-width: 800px) { .sim-layout { grid-template-columns: 1fr; } }
+canvas.trace { width: 100%; height: 220px; display: block; }
+.bars { display: grid; gap: 8px; }
+.barrow { display: grid; grid-template-columns: 110px 1fr 80px; gap: 10px; align-items: center; font-size: var(--step--1); }
+.barrow .track { height: 14px; background: var(--surface-2); border-radius: 4px; overflow: hidden; }
+.barrow .fill { height: 100%; border-radius: 4px; transition: width 0.2s; }
+.barrow .val { font-family: var(--font-mono); text-align: right; font-variant-numeric: tabular-nums; }
+.readout { display: grid; grid-template-columns: 1fr auto; gap: 4px 12px; font-size: var(--step--1); margin: 0; }
+.readout dt { color: var(--muted); }
+.readout dd { margin: 0; font-family: var(--font-mono); font-variant-numeric: tabular-nums; text-align: right; }
+.status-box { padding: 12px 14px; border-radius: 8px; background: var(--surface-2); font-size: var(--step--1); }
+.legend { display: flex; flex-wrap: wrap; gap: 14px; font-size: var(--step--1); color: var(--muted); padding: 4px 8px; }
+
+/* Cases & quiz */
+.case-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 16px; }
+.case { display: grid; gap: 10px; align-content: start; }
+.case .ctx { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+.opts { display: grid; gap: 6px; }
+.opts button { text-align: left; font-weight: 400; }
+.opts button.right { border-color: var(--good); background: var(--good-soft); font-weight: 700; }
+.opts button.wrong { border-color: var(--bad); background: var(--bad-soft); }
+.answer { font-size: var(--step--1); padding: 12px; border-radius: 8px; background: var(--surface-2); }
+b.ok { color: var(--good); } b.no { color: var(--bad); }
+.progress-line { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+.bar { flex: 1 1 200px; height: 8px; background: var(--surface-2); border-radius: 999px; overflow: hidden; }
+.bar i { display: block; height: 100%; background: var(--accent); width: 0; transition: width 0.3s; }
+.quiz { display: grid; gap: 16px; }
+.quiz .qtext { font-family: var(--font-display); font-size: var(--step-1); font-weight: 700; line-height: 1.3; }
+.quiz .opts button { font-size: var(--step-0); padding: 12px 16px; display: flex; gap: 12px; }
+.quiz .opts button .key { font-family: var(--font-mono); color: var(--muted); }
+.feedback { padding: 14px 16px; border-radius: 8px; background: var(--surface-2); }
+.score-big { font-family: var(--font-display); font-size: 3.2rem; font-weight: 800; line-height: 1; }
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <span class="eyebrow">Biologie · Klasse 11 · Membrantransport &amp; Neurobiologie</span>
+    <h1>Natrium-Kalium-Pumpe</h1>
+    <p>Wie eine Zelle unter ATP-Verbrauch Ionen gegen ihr Konzentrationsgefälle transportiert und warum das für Nerven, Muskeln und das Zellvolumen so wichtig ist.</p>
+  </header>
+
+  <nav class="tabs" aria-label="Bereiche">
+    <a href="#grundlagen" data-view="grundlagen"><span class="n">1</span>Grundlagen</a>
+    <a href="#zyklus" data-view="zyklus"><span class="n">2</span>Pumpzyklus</a>
+    <a href="#simulation" data-view="simulation"><span class="n">3</span>Simulation</a>
+    <a href="#bedeutung" data-view="bedeutung"><span class="n">4</span>Bedeutung</a>
+    <a href="#faelle" data-view="faelle"><span class="n">5</span>Was passiert, wenn …</a>
+    <a href="#quiz" data-view="quiz"><span class="n">6</span>Quiz</a>
+  </nav>
+
+  <!-- ===================== 1 GRUNDLAGEN ===================== -->
+  <section class="view" id="view-grundlagen">
+    <div class="merksatz">
+      <span class="eyebrow">Kernaussage</span>
+      <p>Die Natrium-Kalium-Pumpe (Na⁺/K⁺-ATPase) ist ein Membranprotein. Pro Zyklus spaltet sie ein <span class="atp">ATP</span>, transportiert <span class="na">3 Na⁺ hinaus</span> und <span class="k">2 K⁺ hinein</span>, jeweils <strong>gegen</strong> das Konzentrationsgefälle.</p>
+    </div>
+
+    <div class="panel">
+      <div class="bignum">
+        <span><span class="na">3 Na⁺</span> <small>nach außen</small></span>
+        <span><span class="k">2 K⁺</span> <small>nach innen</small></span>
+        <span><span class="atp">1 ATP</span> <small>pro Zyklus</small></span>
+        <span>+1 <small>Ladung netto nach außen</small></span>
+      </div>
+    </div>
+
+    <div class="grid-2">
+      <div class="panel stack">
+        <h3>Ionenverteilung an einer Nervenzelle</h3>
+        <div class="table-scroll">
+          <table class="data">
+            <thead><tr><th>Ion</th><th class="num">innen</th><th class="num">außen</th></tr></thead>
+            <tbody>
+              <tr><td><span class="na">Na⁺</span></td><td class="num">≈ 12 mmol/L</td><td class="num">≈ 145 mmol/L</td></tr>
+              <tr><td><span class="k">K⁺</span></td><td class="num">≈ 140 mmol/L</td><td class="num">≈ 4 mmol/L</td></tr>
+              <tr><td>Cl⁻</td><td class="num">≈ 10 mmol/L</td><td class="num">≈ 110 mmol/L</td></tr>
+              <tr><td>organische Anionen (A⁻)</td><td class="num">hoch</td><td class="num">sehr gering</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="small muted">Typische Werte für Säugetierzellen, sie schwanken je nach Lehrbuch leicht. Die Pumpe erzeugt und erhält die Gradienten von Na⁺ und K⁺.</p>
+      </div>
+      <div class="panel stack">
+        <h3>Steckbrief</h3>
+        <ul class="list small">
+          <li><strong>Primär aktiver Transport:</strong> Die Energie kommt direkt aus der Spaltung von ATP. Die Pumpe ist selbst ein Enzym, eine ATPase.</li>
+          <li><strong>Antiport:</strong> Zwei Ionensorten werden gleichzeitig in entgegengesetzte Richtungen transportiert.</li>
+          <li><strong>Elektrogen:</strong> 3 positive Ladungen gehen hinaus, 2 kommen herein. Netto entsteht ein kleiner Strom nach außen.</li>
+          <li><strong>Arbeitsweise:</strong> Sie ist ein Carrier, kein offener Kanal. Sie ändert ihre Form (Konformation) und ist immer nur zu einer Seite hin offen.</li>
+          <li><strong>Vorkommen:</strong> in der Zellmembran fast aller tierischen Zellen. Sie läuft ständig, nicht nur nach einem Aktionspotential.</li>
+          <li><strong>Entdeckung:</strong> Jens Christian Skou, 1957 (Nobelpreis für Chemie 1997).</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="stack">
+      <h2>Einordnung: Arten des Membrantransports</h2>
+      <div class="panel table-scroll" style="padding: 8px 12px">
+        <table class="data">
+          <thead><tr><th>Transportart</th><th>Richtung</th><th>Energie</th><th>Beispiel</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Einfache Diffusion</strong></td><td>mit dem Gefälle</td><td>passiv</td><td>O₂, CO₂ durch die Lipiddoppelschicht</td></tr>
+            <tr><td><strong>Erleichterte Diffusion</strong> (Kanal oder Carrier)</td><td>mit dem Gefälle</td><td>passiv</td><td>K⁺-Leckkanäle, Aquaporine, Glucose-Carrier GLUT</td></tr>
+            <tr><td><strong>Primär aktiver Transport</strong></td><td>gegen das Gefälle</td><td>ATP direkt</td><td><strong>Na⁺/K⁺-Pumpe</strong>, Ca²⁺-Pumpe</td></tr>
+            <tr><td><strong>Sekundär aktiver Transport</strong></td><td>ein Stoff gegen sein Gefälle</td><td>nutzt den Na⁺-Gradienten</td><td>Na⁺-Glucose-Symporter (SGLT) im Darm und in der Niere</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="small muted"><strong>Uniport</strong>: ein Stoff, eine Richtung. <strong>Symport</strong>: zwei Stoffe, gleiche Richtung. <strong>Antiport</strong>: zwei Stoffe, entgegengesetzte Richtungen.</p>
+    </div>
+
+    <div class="panel stack">
+      <h3>Typische Fehler in Klausuren</h3>
+      <ul class="list small">
+        <li>„Die Pumpe tauscht Na⁺ und K⁺ 1 : 1.“ <strong>Falsch</strong>, das Verhältnis ist 3 : 2.</li>
+        <li>„Die Pumpe sorgt für die Repolarisation beim Aktionspotential.“ <strong>Falsch.</strong> Dafür sind spannungsgesteuerte K⁺-Kanäle zuständig. Die Pumpe ist dafür viel zu langsam und stellt nur langfristig die Gradienten wieder her.</li>
+        <li>„Das Ruhepotential entsteht direkt durch die Pumpe.“ <strong>Nur zu einem kleinen Teil</strong> (wenige mV, elektrogener Anteil). Es entsteht vor allem durch den K⁺-Ausstrom durch Leckkanäle. Dafür braucht es aber den K⁺-Gradienten, den die Pumpe aufbaut.</li>
+        <li>„Die Na⁺/K⁺-Pumpe ist ein Ionenkanal.“ <strong>Falsch.</strong> Ein Kanal ist offen und lässt Ionen nur mit dem Gefälle durch. Die Pumpe transportiert schrittweise mit Formänderung und gegen das Gefälle.</li>
+      </ul>
+    </div>
+    <div class="row"><a class="btn primary" href="#zyklus">Weiter zum Pumpzyklus →</a></div>
+  </section>
+
+  <!-- ===================== 2 PUMPZYKLUS ===================== -->
+  <section class="view" id="view-zyklus" hidden>
+    <div class="stack">
+      <span class="eyebrow">Mechanismus</span>
+      <h2>Der Pumpzyklus in sechs Schritten</h2>
+      <p class="muted">Die Pumpe wechselt zwischen zwei Formen: <strong>E1</strong> ist zum Zellinneren offen und bindet Na⁺ gut. <strong>E2</strong> ist nach außen offen und bindet K⁺ gut. Den Wechsel steuern die Phosphorylierung durch ATP und die Dephosphorylierung.</p>
+    </div>
+    <div class="cycle-layout">
+      <div class="svg-box">
+        <svg id="pumpSvg" viewBox="0 0 600 380" role="img" aria-label="Querschnitt durch die Membran mit der Natrium-Kalium-Pumpe">
+          <rect x="0" y="0" width="600" height="118" fill="var(--outside)"></rect>
+          <rect x="0" y="242" width="600" height="138" fill="var(--inside)"></rect>
+          <g id="lipids"></g>
+          <text x="14" y="24" font-family="var(--font-mono)" font-size="13" fill="var(--muted)">außen (Extrazellulärraum)</text>
+          <text x="14" y="368" font-family="var(--font-mono)" font-size="13" fill="var(--muted)">innen (Cytoplasma)</text>
+          <!-- pump lobes: three conformations, cross-faded -->
+          <g class="lobe" id="lobeIn">
+            <path d="M205 92 L300 92 L268 150 L268 215 L262 268 L205 268 Z" fill="var(--pump)"></path>
+            <path d="M395 92 L300 92 L332 150 L332 215 L338 268 L395 268 Z" fill="var(--pump-dark)"></path>
+          </g>
+          <g class="lobe" id="lobeClosed" opacity="0">
+            <path d="M205 92 L300 92 L268 150 L268 215 L300 268 L205 268 Z" fill="var(--pump)"></path>
+            <path d="M395 92 L300 92 L332 150 L332 215 L300 268 L395 268 Z" fill="var(--pump-dark)"></path>
+          </g>
+          <g class="lobe" id="lobeOut" opacity="0">
+            <path d="M205 92 L262 92 L268 150 L268 215 L300 268 L205 268 Z" fill="var(--pump)"></path>
+            <path d="M395 92 L338 92 L332 150 L332 215 L300 268 L395 268 Z" fill="var(--pump-dark)"></path>
+          </g>
+          <text id="confLabel" x="300" y="86" text-anchor="middle" font-family="var(--font-mono)" font-size="14" font-weight="600" fill="var(--ink)">E1</text>
+          <!-- ions -->
+          <g id="ions"></g>
+          <!-- ATP / phosphate -->
+          <g id="atpG" class="ion"><circle r="20" fill="var(--atp)"></circle><text text-anchor="middle" dy="5" font-family="var(--font-mono)" font-size="12" font-weight="600" fill="#1b1400">ATP</text></g>
+          <g id="adpG" class="ion" opacity="0"><circle r="17" fill="var(--atp)" opacity="0.6"></circle><text text-anchor="middle" dy="5" font-family="var(--font-mono)" font-size="11" font-weight="600" fill="var(--ink)">ADP</text></g>
+          <g id="pG" class="ion" opacity="0"><circle r="12" fill="var(--atp)"></circle><text text-anchor="middle" dy="4" font-family="var(--font-mono)" font-size="11" font-weight="600" fill="#1b1400">P</text></g>
+        </svg>
+      </div>
+      <div class="panel stack">
+        <div class="stepdots" id="stepDots" role="group" aria-label="Schritt wählen"></div>
+        <span class="state-chip" id="stepChip">E1 · offen nach innen</span>
+        <h3 id="stepTitle"></h3>
+        <p class="small" id="stepText"></p>
+        <div class="row">
+          <button type="button" id="stepPrev">← Zurück</button>
+          <button type="button" class="primary" id="stepNext">Weiter →</button>
+          <button type="button" id="stepAuto" aria-pressed="false">Automatisch</button>
+        </div>
+        <p class="small muted" id="cycleCount">Zyklen: 0</p>
+      </div>
+    </div>
+    <div class="grid-2">
+      <div class="panel stack">
+        <h3>Merkhilfe für die Reihenfolge</h3>
+        <ol class="list small">
+          <li><span class="na">Na⁺</span> bindet innen</li>
+          <li><span class="atp">ATP</span> phosphoryliert die Pumpe</li>
+          <li>Umklappen nach außen, <span class="na">Na⁺</span> wird frei</li>
+          <li><span class="k">K⁺</span> bindet außen</li>
+          <li>Phosphat wird abgespalten</li>
+          <li>Umklappen nach innen, <span class="k">K⁺</span> wird frei</li>
+        </ol>
+      </div>
+      <div class="panel stack">
+        <h3>Warum lässt die Pumpe die Ionen wieder los?</h3>
+        <p class="small">Mit der Form ändert sich auch die <strong>Affinität</strong> der Bindungsstellen, also wie fest sie ein Ion binden. In E1 binden sie Na⁺ fest und K⁺ kaum. In E2 ist es umgekehrt. Deshalb nimmt die Pumpe Na⁺ innen auf und gibt es außen ab, bei K⁺ läuft es genau andersherum.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== 3 SIMULATION ===================== -->
+  <section class="view" id="view-simulation" hidden>
+    <div class="stack">
+      <span class="eyebrow">Modell</span>
+      <h2>Gradienten und Membranpotential</h2>
+      <p class="muted">Durch Leckkanäle fließen ständig Na⁺ hinein und K⁺ hinaus. Die Pumpe arbeitet dagegen. Hemme die Pumpe oder entziehe ATP und beobachte, wie die Gradienten zerfallen und die Zelle depolarisiert. Die Zeit ist stark gerafft: In echten Zellen dauert das Minuten bis Stunden.</p>
+    </div>
+    <div class="sim-layout">
+      <div class="stack">
+        <div class="svg-box">
+          <canvas class="trace" id="vTrace" aria-label="Verlauf des Membranpotentials"></canvas>
+          <div class="legend"><span style="color:var(--accent)">━ Membranpotential</span><span style="color:var(--k)">┅ E<sub>K</sub></span></div>
+        </div>
+        <div class="panel bars" id="bars"></div>
+        <div class="svg-box">
+          <svg id="fluxSvg" viewBox="0 0 600 200" role="img" aria-label="Ionenströme durch Pumpe und Leckkanäle"></svg>
+        </div>
+      </div>
+      <div class="panel stack">
+        <div class="row">
+          <button type="button" id="simPump" aria-pressed="true">Pumpe aktiv</button>
+          <button type="button" id="simRun" class="primary">Pause</button>
+        </div>
+        <div>
+          <label class="lbl" for="simAtp"><span>ATP verfügbar</span><span class="mono" id="simAtpOut">100 %</span></label>
+          <input type="range" id="simAtp" min="0" max="100" step="5" value="100">
+        </div>
+        <div>
+          <label class="lbl" for="simKo"><span>K⁺ außen</span><span class="mono" id="simKoOut">4 mmol/L</span></label>
+          <input type="range" id="simKo" min="2" max="12" step="0.5" value="4">
+        </div>
+        <div class="row">
+          <button type="button" id="simAP">1000 Aktionspotentiale</button>
+          <button type="button" id="simReset">Zurücksetzen</button>
+        </div>
+        <dl class="readout">
+          <dt>Membranpotential</dt><dd id="roV">–</dd>
+          <dt>Gleichgewichtspot. E<sub>K</sub></dt><dd id="roEK">–</dd>
+          <dt>Gleichgewichtspot. E<sub>Na</sub></dt><dd id="roENa">–</dd>
+          <dt>Pumpleistung</dt><dd id="roPump">–</dd>
+        </dl>
+        <div class="status-box" id="simStatus" aria-live="polite"></div>
+      </div>
+    </div>
+    <div class="grid-2">
+      <div class="panel stack">
+        <h3>Probier das aus</h3>
+        <ul class="list small">
+          <li>Schalte die <strong>Pumpe aus</strong>. Das Potential bricht nicht sofort zusammen, sondern sinkt langsam. Warum?</li>
+          <li>Löse <strong>1000 Aktionspotentiale</strong> aus. Wie reagiert die Pumpleistung?</li>
+          <li>Erhöhe <strong>K⁺ außen</strong> auf 10 mmol/L. Was passiert mit dem Ruhepotential?</li>
+        </ul>
+      </div>
+      <div class="panel stack">
+        <h3>So rechnet das Modell</h3>
+        <p class="small">Das Membranpotential wird mit der Goldman-Gleichung aus den Konzentrationen berechnet. Dabei ist die Membran in Ruhe etwa 25-mal durchlässiger für K⁺ als für Na⁺. Die Pumpe arbeitet schneller, wenn innen mehr Na⁺ ist. Das ist eine eingebaute Rückkopplung.</p>
+        <p class="small muted">Gleichgewichtspotential (Nernst, 37 °C): E = 61,5 mV · log(c<sub>außen</sub> / c<sub>innen</sub>)</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== 4 BEDEUTUNG ===================== -->
+  <section class="view" id="view-bedeutung" hidden>
+    <div class="stack">
+      <span class="eyebrow">Funktion im Körper</span>
+      <h2>Wofür braucht die Zelle die Pumpe?</h2>
+    </div>
+    <div class="grid-2">
+      <div class="panel stack">
+        <span class="eyebrow">Nerven und Muskeln</span>
+        <h3>Ruhepotential und Erregbarkeit</h3>
+        <p class="small">Die Pumpe baut den K⁺-Gradienten auf. K⁺ strömt durch Leckkanäle hinaus, und dabei entsteht das Ruhepotential von etwa −70 mV. Ohne den Na⁺-Gradienten gäbe es außerdem keinen schnellen Na⁺-Einstrom und damit kein Aktionspotential.</p>
+      </div>
+      <div class="panel stack">
+        <span class="eyebrow">Nach Aktionspotentialen</span>
+        <h3>Gradienten wiederherstellen</h3>
+        <p class="small">Bei einem Aktionspotential fließt nur ein winziger Bruchteil der Ionen. Erst nach Tausenden Aktionspotentialen würden die Gradienten merklich abnehmen. Die Pumpe gleicht das ständig aus. Steigt Na⁺ innen an, arbeitet sie automatisch schneller.</p>
+      </div>
+      <div class="panel stack">
+        <span class="eyebrow">Verbindung zur Osmose</span>
+        <h3>Zellvolumen regulieren</h3>
+        <p class="small">In der Zelle liegen viele gelöste Teilchen vor (Proteine, organische Anionen). Ohne Pumpe würde Na⁺ einströmen, Cl⁻ und Wasser würden folgen und die Zelle würde anschwellen. Weil die Pumpe mehr Ionen hinaus- als hineinbefördert, hält sie die Teilchenkonzentration innen niedrig und verhindert so das Platzen.</p>
+      </div>
+      <div class="panel stack">
+        <span class="eyebrow">Darm und Niere</span>
+        <h3>Antrieb für sekundär aktiven Transport</h3>
+        <p class="small">Der Na⁺-Gradient ist ein Energiespeicher. Der Na⁺-Glucose-Symporter (SGLT) nutzt den Na⁺-Einstrom, um Glucose <em>gegen</em> ihr Gefälle in die Darm- oder Nierenzellen zu holen. Deshalb enthalten Trinklösungen gegen Durchfall Salz <strong>und</strong> Zucker.</p>
+      </div>
+      <div class="panel stack">
+        <span class="eyebrow">Energiebedarf</span>
+        <h3>Ein großer ATP-Verbraucher</h3>
+        <p class="small">Im Ruhezustand verbraucht der Körper ungefähr ein Viertel bis ein Drittel seines ATP für die Na⁺/K⁺-Pumpe, in Nervenzellen sogar deutlich mehr. Deshalb reagiert das Gehirn so empfindlich auf Sauerstoff- oder Zuckermangel.</p>
+      </div>
+      <div class="panel stack">
+        <span class="eyebrow">Medizin</span>
+        <h3>Hemmstoffe</h3>
+        <p class="small"><strong>Ouabain</strong> (früher als Pfeilgift genutzt) und <strong>Digitalis</strong>-Wirkstoffe aus dem Fingerhut hemmen die Pumpe. In niedriger Dosis werden Digitalis-Präparate bei Herzschwäche eingesetzt, weil der Herzmuskel dann stärker kontrahiert. In höherer Dosis sind sie giftig.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== 5 FÄLLE ===================== -->
+  <section class="view" id="view-faelle" hidden>
+    <div class="stack">
+      <span class="eyebrow">Anwenden</span>
+      <h2>Was passiert, wenn …?</h2>
+      <p class="muted">Sage voraus, was in jeder Situation passiert, und lies dann die Erklärung. So trainierst du die typischen Transferaufgaben aus Klausuren.</p>
+      <div class="progress-line">
+        <div class="bar" aria-hidden="true"><i id="caseBar"></i></div>
+        <span class="mono" id="caseScore"></span>
+        <button type="button" id="caseReset">Alle zurücksetzen</button>
+      </div>
+    </div>
+    <div class="case-grid" id="caseGrid"></div>
+  </section>
+
+  <!-- ===================== 6 QUIZ ===================== -->
+  <section class="view" id="view-quiz" hidden>
+    <div class="stack">
+      <span class="eyebrow">Selbsttest</span>
+      <h2>Quiz zur Natrium-Kalium-Pumpe</h2>
+      <div class="progress-line">
+        <div class="bar" aria-hidden="true"><i id="qBar"></i></div>
+        <span class="mono" id="qProgress"></span>
+      </div>
+    </div>
+    <div class="panel quiz" id="quizBox" aria-live="polite"></div>
+  </section>
+</div>
+
+<script>
+(function () {
+  "use strict";
+  const $ = (s, r = document) => r.querySelector(s);
+  const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
+  const css = (n) => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+  const num = (v, d = 1) => (Math.round(v * 10 ** d) / 10 ** d).toLocaleString("de-DE", { minimumFractionDigits: d, maximumFractionDigits: d });
+  const store = {
+    get(k) { try { return JSON.parse(localStorage.getItem(k)); } catch (e) { return null; } },
+    set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) { /* storage unavailable */ } }
+  };
+  function shuffle(a) { const b = a.slice(); for (let i = b.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [b[i], b[j]] = [b[j], b[i]]; } return b; }
+  const SVGNS = "http://www.w3.org/2000/svg";
+  const el = (tag, attrs, parent) => { const e = document.createElementNS(SVGNS, tag); Object.entries(attrs || {}).forEach(([k, v]) => e.setAttribute(k, v)); if (parent) parent.appendChild(e); return e; };
+
+  // ---------- Hash routing ----------
+  const VIEWS = ["grundlagen", "zyklus", "simulation", "bedeutung", "faelle", "quiz"];
+  const onShow = {};
+  function showView() {
+    const name = location.hash.replace("#", "");
+    const v = VIEWS.includes(name) ? name : "grundlagen";
+    VIEWS.forEach((n) => { $("#view-" + n).hidden = n !== v; });
+    $$("nav.tabs a").forEach((a) => { if (a.dataset.view === v) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current"); });
+    window.scrollTo({ top: 0 });
+    if (onShow[v]) requestAnimationFrame(onShow[v]);
+  }
+  window.addEventListener("hashchange", showView);
+
+  // =====================================================================
+  // Pump cycle: six steps, ions/ATP move between fixed positions
+  // =====================================================================
+  (function () {
+    // lipid bilayer drawing (skip the pump region)
+    const lip = $("#lipids");
+    for (let x = 10; x < 600; x += 20) {
+      if (x > 195 && x < 405) continue;
+      el("line", { x1: x, y1: 132, x2: x - 3, y2: 178, stroke: "var(--lipid)", "stroke-width": 2 }, lip);
+      el("line", { x1: x, y1: 228, x2: x + 3, y2: 184, stroke: "var(--lipid)", "stroke-width": 2 }, lip);
+      el("circle", { cx: x, cy: 128, r: 8, fill: "var(--lipid)" }, lip);
+      el("circle", { cx: x, cy: 232, r: 8, fill: "var(--lipid)" }, lip);
+    }
+    const P = {
+      naIn: [[150, 300], [215, 325], [120, 335]],
+      naBound: [[286, 166], [314, 166], [300, 198]],
+      naOut: [[450, 40], [510, 70], [560, 35]],
+      kOut: [[100, 55], [160, 80]],
+      kBound: [[286, 188], [314, 188]],
+      kIn: [[455, 300], [520, 330]],
+      atpStart: [520, 315], atpBound: [372, 288], adpAway: [560, 345], pAway: [470, 350]
+    };
+    const ions = $("#ions");
+    function mkIon(kind) {
+      const g = el("g", { class: "ion" }, ions);
+      el("circle", { r: kind === "na" ? 12 : 13, fill: kind === "na" ? "var(--na)" : "var(--k)" }, g);
+      const t = el("text", { "text-anchor": "middle", dy: 4, "font-size": 10, "font-weight": 700, "font-family": "var(--font-mono)", fill: kind === "na" ? "var(--na-ink)" : "var(--k-ink)" }, g);
+      t.textContent = kind === "na" ? "Na⁺" : "K⁺";
+      return g;
+    }
+    const na = [mkIon("na"), mkIon("na"), mkIon("na")];
+    const k = [mkIon("k"), mkIon("k")];
+    const atp = $("#atpG"), adp = $("#adpG"), ph = $("#pG");
+    const place = (g, pos, op = 1) => { g.style.transform = `translate(${pos[0]}px, ${pos[1]}px)`; g.setAttribute("opacity", op); };
+
+    const STEPS = [
+      { conf: "in", label: "E1", chip: "E1 · offen nach innen", title: "Ausgangszustand",
+        text: "Die Pumpe ist zum Cytoplasma hin offen (Konformation E1). Ihre Bindungsstellen haben eine hohe Affinität für Na⁺. Innen ist die Na⁺-Konzentration niedrig, außen die K⁺-Konzentration.",
+        na: "naIn", k: "kOut", atp: "start", p: false },
+      { conf: "in", label: "E1", chip: "E1 · 3 Na⁺ gebunden", title: "1 · Drei Na⁺ binden von innen",
+        text: "Drei Na⁺-Ionen aus dem Cytoplasma binden an die Bindungsstellen der Pumpe.",
+        na: "naBound", k: "kOut", atp: "start", p: false },
+      { conf: "closed", label: "E1–P", chip: "E1–P · phosphoryliert", title: "2 · ATP phosphoryliert die Pumpe",
+        text: "ATP bindet und wird gespalten. Die Phosphatgruppe bleibt an der Pumpe hängen (Phosphorylierung), ADP wird abgegeben. Die Na⁺-Ionen sind jetzt eingeschlossen.",
+        na: "naBound", k: "kOut", atp: "split", p: true },
+      { conf: "out", label: "E2–P", chip: "E2–P · offen nach außen", title: "3 · Umklappen, Na⁺ wird außen frei",
+        text: "Durch die Phosphorylierung ändert die Pumpe ihre Form (E2) und öffnet sich nach außen. Ihre Affinität für Na⁺ sinkt, die drei Na⁺ lösen sich und gelangen in den Extrazellulärraum, gegen ihr Konzentrationsgefälle.",
+        na: "naOut", k: "kOut", atp: "split", p: true },
+      { conf: "out", label: "E2–P", chip: "E2–P · 2 K⁺ gebunden", title: "4 · Zwei K⁺ binden von außen",
+        text: "In der E2-Form haben die Bindungsstellen eine hohe Affinität für K⁺. Zwei K⁺-Ionen aus dem Extrazellulärraum binden.",
+        na: "naOut", k: "kBound", atp: "split", p: true },
+      { conf: "closed", label: "E2", chip: "E2 · dephosphoryliert", title: "5 · Phosphat wird abgespalten",
+        text: "Die Bindung von K⁺ löst die Dephosphorylierung aus. Das Phosphat wird als Pᵢ freigesetzt. Die K⁺-Ionen sind eingeschlossen.",
+        na: "naOut", k: "kBound", atp: "gone", p: false },
+      { conf: "in", label: "E1", chip: "E1 · offen nach innen", title: "6 · Zurückklappen, K⁺ wird innen frei",
+        text: "Ohne Phosphat kehrt die Pumpe in die E1-Form zurück und öffnet sich nach innen. Die Affinität für K⁺ sinkt, und die zwei K⁺ werden ins Cytoplasma abgegeben. Der Zyklus kann von vorn beginnen.",
+        na: "naOut", k: "kIn", atp: "gone", p: false }
+    ];
+    let step = 0, cycles = 0, timer = null;
+    const dots = $("#stepDots");
+    STEPS.forEach((s, i) => {
+      const b = document.createElement("button");
+      b.type = "button"; b.textContent = i; b.setAttribute("aria-label", "Schritt " + i);
+      b.addEventListener("click", () => go(i));
+      dots.appendChild(b);
+    });
+    function render() {
+      const s = STEPS[step];
+      $("#lobeIn").setAttribute("opacity", s.conf === "in" ? 1 : 0);
+      $("#lobeClosed").setAttribute("opacity", s.conf === "closed" ? 1 : 0);
+      $("#lobeOut").setAttribute("opacity", s.conf === "out" ? 1 : 0);
+      $("#confLabel").textContent = s.label;
+      na.forEach((g, i) => place(g, P[s.na][i], s.na === "naOut" && step === 6 ? 0.55 : 1));
+      k.forEach((g, i) => place(g, P[s.k][i]));
+      if (s.atp === "start") { place(atp, P.atpStart); place(adp, P.atpBound, 0); }
+      else if (s.atp === "split") { place(atp, P.atpBound, 0); place(adp, P.adpAway, step === 2 ? 1 : 0.35); }
+      else { place(atp, P.atpBound, 0); place(adp, P.adpAway, 0); }
+      if (s.p) place(ph, P.atpBound, 1); else place(ph, step === 5 ? P.pAway : P.atpBound, step === 5 ? 0.8 : 0);
+      $("#stepChip").textContent = s.chip;
+      $("#stepTitle").textContent = s.title;
+      $("#stepText").textContent = s.text;
+      $$("button", dots).forEach((b, i) => { if (i === step) b.setAttribute("aria-current", "step"); else b.removeAttribute("aria-current"); });
+      $("#stepPrev").disabled = step === 0;
+      $("#stepNext").textContent = step === STEPS.length - 1 ? "Neuer Zyklus →" : "Weiter →";
+      $("#cycleCount").textContent = `Zyklen: ${cycles} · transportiert: ${cycles * 3} Na⁺ hinaus, ${cycles * 2} K⁺ hinein, ${cycles} ATP verbraucht`;
+    }
+    function go(i) { step = i; render(); }
+    function next() {
+      if (step === STEPS.length - 1) {
+        cycles++;
+        // new ions appear without animation, then the cycle restarts
+        [...na, ...k, atp, adp, ph].forEach((g) => { g.style.transition = "none"; });
+        step = 0; render();
+        void ions.getBoundingClientRect();
+        [...na, ...k, atp, adp, ph].forEach((g) => { g.style.transition = ""; });
+      } else { step++; render(); }
+    }
+    $("#stepNext").addEventListener("click", next);
+    $("#stepPrev").addEventListener("click", () => { if (step > 0) go(step - 1); });
+    $("#stepAuto").addEventListener("click", (e) => {
+      const on = e.currentTarget.getAttribute("aria-pressed") !== "true";
+      e.currentTarget.setAttribute("aria-pressed", String(on));
+      clearInterval(timer);
+      if (on) timer = setInterval(() => { if ($("#view-zyklus").hidden) return; next(); }, 2200);
+    });
+    render();
+  })();
+
+  // =====================================================================
+  // Simulation: intracellular Na/K with leak currents and pump.
+  // V from the Goldman equation (pK:pNa = 1:0.04). Linear leak fluxes,
+  // pump rate saturates with Na_i (Hill n=3) and K_o (n=2), scaled by ATP.
+  // Parameters are calibrated so that Na_i=12, K_i=140 is steady state.
+  // =====================================================================
+  (function () {
+    const NA_O = 145, RT = 61.5, PNA = 0.04;
+    const S = { nai: 12, ki: 140, ko: 4, atp: 1, pump: true, running: true, t: 0, hist: [] };
+    const ENa = () => RT * Math.log10(NA_O / S.nai);
+    const EK = () => RT * Math.log10(S.ko / S.ki);
+    const V = () => RT * Math.log10((S.ko + PNA * NA_O) / (S.ki + PNA * S.nai));
+    const KM_NA = 10, KM_K = 1.5;
+    const sat = (c, km, n) => Math.pow(c / (c + km), n);
+    const JMAX = 1 / (sat(12, KM_NA, 3) * sat(4, KM_K, 2));
+    const pumpRate = () => (S.pump ? JMAX * sat(S.nai, KM_NA, 3) * sat(S.ko, KM_K, 2) * S.atp : 0);
+    // leak conductances chosen for steady state at baseline
+    const base = { nai: 12, ki: 140, ko: 4 };
+    const v0 = RT * Math.log10((base.ko + PNA * NA_O) / (base.ki + PNA * base.nai));
+    const G_NA = 3 / (RT * Math.log10(NA_O / base.nai) - v0);
+    const G_K = 2 / (v0 - RT * Math.log10(base.ko / base.ki));
+    function step(dt) {
+      const v = V();
+      const naIn = G_NA * (ENa() - v);   // passive Na influx
+      const kOut = G_K * (v - EK());     // passive K efflux
+      const j = pumpRate();
+      S.nai = Math.max(0.5, S.nai + (naIn - 3 * j) * dt);
+      S.ki = Math.max(1, S.ki + (-kOut + 2 * j) * dt);
+      S.t += dt;
+      S.flux = { naIn, kOut, j };
+    }
+    // ----- drawing -----
+    const cv = $("#vTrace"), ctx = cv.getContext("2d");
+    const VMIN = -110, VMAX = 30;
+    function drawTrace() {
+      const r = cv.getBoundingClientRect(); if (!r.width) return;
+      const dpr = window.devicePixelRatio || 1;
+      if (cv.width !== Math.round(r.width * dpr)) { cv.width = Math.round(r.width * dpr); cv.height = Math.round(r.height * dpr); }
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      const W = r.width, H = r.height, L = 44, B = 18;
+      const Y = (v) => 6 + (H - 6 - B) * (VMAX - v) / (VMAX - VMIN);
+      ctx.fillStyle = css("--surface"); ctx.fillRect(0, 0, W, H);
+      ctx.font = "11px " + css("--font-mono"); ctx.fillStyle = css("--muted"); ctx.textAlign = "right"; ctx.textBaseline = "middle";
+      ctx.strokeStyle = css("--grid"); ctx.lineWidth = 1;
+      for (let v = -100; v <= 20; v += 20) { ctx.beginPath(); ctx.moveTo(L, Y(v)); ctx.lineTo(W - 4, Y(v)); ctx.stroke(); ctx.fillText((v + " mV").replace("-", "−"), L - 4, Y(v)); }
+      ctx.textAlign = "left"; ctx.textBaseline = "alphabetic"; ctx.fillText("Zeit (gerafft) →", L + 4, H - 4);
+      const span = 60, t1 = S.t, t0 = t1 - span;
+      const X = (t) => L + (W - L - 6) * (t - t0) / span;
+      const hist = S.hist.filter((h) => h.t >= t0);
+      ctx.setLineDash([5, 4]); ctx.strokeStyle = css("--k"); ctx.lineWidth = 1.5; ctx.beginPath();
+      hist.forEach((h, i) => { const x = X(h.t), y = Y(h.ek); i ? ctx.lineTo(x, y) : ctx.moveTo(x, y); }); ctx.stroke(); ctx.setLineDash([]);
+      ctx.strokeStyle = css("--accent"); ctx.lineWidth = 2.5; ctx.beginPath();
+      hist.forEach((h, i) => { const x = X(h.t), y = Y(h.v); i ? ctx.lineTo(x, y) : ctx.moveTo(x, y); }); ctx.stroke();
+    }
+    function bars() {
+      const rows = [
+        ["Na⁺ außen", NA_O, "--na"], ["Na⁺ innen", S.nai, "--na"],
+        ["K⁺ innen", S.ki, "--k"], ["K⁺ außen", S.ko, "--k"]
+      ];
+      $("#bars").innerHTML = rows.map(([l, v, c]) => `<div class="barrow"><span>${l}</span><div class="track"><div class="fill" style="width:${Math.min(100, v / 1.5)}%;background:var(${c})"></div></div><span class="val">${num(v, 1)} mM</span></div>`).join("");
+    }
+    function arrowPath(x, y1, y2) {
+      const d = Math.sign(y2 - y1);
+      return `M${x} ${y1} L${x} ${y2} M${x - 8} ${y2 - d * 10} L${x} ${y2} L${x + 8} ${y2 - d * 10}`;
+    }
+    function flux() {
+      const f = S.flux || { naIn: 3, kOut: 2, j: 1 };
+      const w = (v) => (1.5 + Math.min(10, Math.abs(v) * 2.2)).toFixed(1);
+      const svg = $("#fluxSvg");
+      svg.innerHTML = `
+        <rect x="0" y="0" width="600" height="72" fill="var(--outside)"></rect>
+        <rect x="0" y="72" width="600" height="56" fill="var(--lipid-tail)"></rect>
+        <rect x="0" y="128" width="600" height="72" fill="var(--inside)"></rect>
+        <text x="10" y="18" font-size="12" font-family="var(--font-mono)" fill="var(--muted)">außen</text>
+        <text x="10" y="192" font-size="12" font-family="var(--font-mono)" fill="var(--muted)">innen</text>
+        <rect x="70" y="66" width="70" height="68" rx="10" fill="var(--pump)" opacity="${S.pump ? 1 : 0.35}"></rect>
+        <text x="150" y="104" font-size="12" font-weight="700" fill="var(--ink)" font-family="var(--font-mono)">Pumpe</text>
+        <path d="${arrowPath(90, 150, 30)}" stroke="var(--na)" stroke-width="${w(3 * f.j)}" fill="none" stroke-linecap="round" opacity="${f.j > 0.01 ? 1 : 0.15}"></path>
+        <path d="${arrowPath(120, 30, 150)}" stroke="var(--k)" stroke-width="${w(2 * f.j)}" fill="none" stroke-linecap="round" opacity="${f.j > 0.01 ? 1 : 0.15}"></path>
+        <text x="150" y="36" font-size="12" fill="var(--na)" font-family="var(--font-mono)">3 Na⁺ hinaus</text>
+        <text x="150" y="168" font-size="12" fill="var(--k)" font-family="var(--font-mono)">2 K⁺ hinein</text>
+        <rect x="330" y="72" width="34" height="56" fill="var(--surface-2)"></rect>
+        <path d="${arrowPath(347, 30, 150)}" stroke="var(--na)" stroke-width="${w(f.naIn)}" fill="none" stroke-linecap="round"></path>
+        <text x="372" y="36" font-size="12" fill="var(--na)" font-family="var(--font-mono)">Na⁺-Leckstrom hinein</text>
+        <rect x="543" y="72" width="34" height="56" fill="var(--surface-2)"></rect>
+        <path d="${arrowPath(560, 150, 30)}" stroke="var(--k)" stroke-width="${w(f.kOut)}" fill="none" stroke-linecap="round"></path>
+        <text x="548" y="168" text-anchor="end" font-size="12" fill="var(--k)" font-family="var(--font-mono)">K⁺-Leckstrom hinaus</text>`;
+    }
+    function readouts() {
+      const v = V();
+      $("#roV").textContent = num(v, 1).replace("-", "−") + " mV";
+      $("#roEK").textContent = num(EK(), 1).replace("-", "−") + " mV";
+      $("#roENa").textContent = num(ENa(), 1).replace("-", "−") + " mV";
+      $("#roPump").textContent = Math.round(pumpRate() * 100) + " %";
+      let msg;
+      if (!S.pump || S.atp === 0) msg = v > -40 ? "Die Gradienten sind weitgehend abgebaut. Die Zelle ist stark depolarisiert und nicht mehr erregbar. Gleichzeitig würde sie durch Osmose anschwellen." : "Die Pumpe steht still. Na⁺ strömt weiter ein, K⁺ weiter aus. Die Gradienten werden langsam kleiner, und das Potential wird weniger negativ.";
+      else if (S.ko > 6) msg = "Mehr K⁺ außen verkleinert den K⁺-Gradienten. E_K und damit das Ruhepotential werden positiver (Depolarisation). Das ist bei Herzzellen gefährlich (Hyperkaliämie).";
+      else if (S.nai > 13.5) msg = "Na⁺ innen ist erhöht. Die Pumpe arbeitet deshalb schneller als normal und baut den Überschuss nach und nach ab.";
+      else if (S.atp < 1) msg = "Mit weniger ATP arbeitet die Pumpe langsamer. Es stellt sich ein neues Gleichgewicht mit kleineren Gradienten ein.";
+      else msg = "Gleichgewicht: Die Pumpe transportiert genau so viele Ionen zurück, wie durch die Leckkanäle fließen. Die Konzentrationen bleiben konstant.";
+      $("#simStatus").textContent = msg;
+    }
+    let last = 0, acc = 0;
+    function loop(t) {
+      const dt = Math.min(0.05, (t - last) / 1000 || 0.016); last = t;
+      if (S.running && !$("#view-simulation").hidden) {
+        for (let i = 0; i < 4; i++) step(dt);
+        acc += dt;
+        S.hist.push({ t: S.t, v: V(), ek: EK() });
+        if (S.hist.length > 4000) S.hist.splice(0, 1000);
+        drawTrace();
+        if (acc > 0.1) { acc = 0; bars(); flux(); readouts(); }
+      }
+      requestAnimationFrame(loop);
+    }
+    function reset() {
+      Object.assign(S, { nai: 12, ki: 140, ko: 4, atp: 1, pump: true, t: 0, hist: [], flux: null });
+      $("#simAtp").value = 100; $("#simAtpOut").textContent = "100 %";
+      $("#simKo").value = 4; $("#simKoOut").textContent = "4 mmol/L";
+      $("#simPump").setAttribute("aria-pressed", "true"); $("#simPump").textContent = "Pumpe aktiv";
+      S.hist.push({ t: 0, v: V(), ek: EK() });
+      bars(); flux(); readouts(); drawTrace();
+    }
+    $("#simPump").addEventListener("click", (e) => {
+      S.pump = !S.pump;
+      e.currentTarget.setAttribute("aria-pressed", String(S.pump));
+      e.currentTarget.textContent = S.pump ? "Pumpe aktiv" : "Pumpe gehemmt (Ouabain)";
+    });
+    $("#simRun").addEventListener("click", (e) => { S.running = !S.running; e.currentTarget.textContent = S.running ? "Pause" : "Weiter"; });
+    $("#simAtp").addEventListener("input", (e) => { S.atp = +e.target.value / 100; $("#simAtpOut").textContent = e.target.value + " %"; });
+    $("#simKo").addEventListener("input", (e) => { S.ko = +e.target.value; $("#simKoOut").textContent = num(S.ko, 1) + " mmol/L"; });
+    $("#simAP").addEventListener("click", () => { S.nai += 4; S.ki -= 4; });
+    $("#simReset").addEventListener("click", reset);
+    window.addEventListener("resize", drawTrace);
+    onShow.simulation = () => { drawTrace(); bars(); flux(); readouts(); };
+    reset();
+    requestAnimationFrame((t) => { last = t; loop(t); });
+  })();
+
+  // =====================================================================
+  // Cases: predict consequences
+  // =====================================================================
+  const CASES = [
+    { ctx: "Gift", title: "Ouabain blockiert die Pumpe", text: "Eine Nervenzelle wird mit Ouabain behandelt, das die Na⁺/K⁺-Pumpe vollständig hemmt. Was passiert in den nächsten Minuten?",
+      o: ["Die Zelle depolarisiert sofort auf 0 mV", "Na⁺ innen steigt langsam, K⁺ innen sinkt, das Membranpotential wird allmählich weniger negativ", "Nichts, denn das Ruhepotential entsteht durch Leckkanäle"], a: 1,
+      e: "Die Leckströme laufen weiter, aber niemand pumpt zurück. Die Gradienten zerfallen langsam, weil pro Sekunde nur wenige Ionen fließen. Deshalb sinkt das Potential nach und nach. Kurzfristig kann die Zelle sogar noch Aktionspotentiale bilden." },
+    { ctx: "Schlaganfall", title: "Sauerstoffmangel im Gehirn", text: "Bei einem Schlaganfall werden Nervenzellen nicht mehr mit Sauerstoff versorgt. Warum schwellen sie an?",
+      o: ["Ohne O₂ entsteht kaum ATP, die Pumpe fällt aus, Na⁺ strömt ein, Wasser folgt durch Osmose", "Sauerstoffmangel macht die Membran undurchlässig für Wasser", "Die Zellen bilden mehr Proteine"], a: 0,
+      e: "Ohne Zellatmung fehlt ATP. Die Pumpe stoppt, Na⁺ (und Cl⁻) sammeln sich in der Zelle. Die Zelle wird hypertonisch zur Umgebung, Wasser strömt osmotisch ein, und es entsteht ein Hirnödem." },
+    { ctx: "Nervenaktivität", title: "Viele Aktionspotentiale hintereinander", text: "Ein Neuron feuert sehr viele Aktionspotentiale kurz hintereinander. Wie reagiert die Pumpe?",
+      o: ["Sie stellt die Arbeit ein, bis die Zelle wieder in Ruhe ist", "Sie arbeitet schneller, weil innen mehr Na⁺ zur Bindung bereitsteht", "Sie kehrt ihre Richtung um"], a: 1,
+      e: "Die Na⁺-Bindungsstellen sind innen normalerweise nicht voll besetzt. Mehr Na⁺ innen heißt mehr Pumpzyklen pro Sekunde. Das ist eine automatische Rückkopplung." },
+    { ctx: "Klausurklassiker", title: "Repolarisation", text: "Eine Mitschülerin sagt: „Nach dem Aktionspotential pumpt die Na⁺/K⁺-Pumpe das Na⁺ wieder hinaus. Dadurch wird die Membran repolarisiert.“ Stimmt das?",
+      o: ["Ja, genau so", "Nein, die Repolarisation erfolgt durch den K⁺-Ausstrom durch spannungsgesteuerte K⁺-Kanäle", "Nein, die Repolarisation erfolgt durch Cl⁻-Einstrom über die Pumpe"], a: 1,
+      e: "Die Repolarisation dauert nur etwa eine Millisekunde. Sie entsteht durch das Öffnen spannungsgesteuerter K⁺-Kanäle. Die Pumpe ist dafür viel zu langsam. Sie gleicht die geringen Ionenverschiebungen langfristig aus." },
+    { ctx: "Medizin", title: "Zu viel Kalium im Blut", text: "Bei Nierenversagen steigt die K⁺-Konzentration im Blut (Hyperkaliämie). Was passiert mit dem Ruhepotential der Herzmuskelzellen?",
+      o: ["Es wird negativer (Hyperpolarisation)", "Es wird positiver (Depolarisation), weil der K⁺-Gradient kleiner wird", "Es bleibt gleich, weil die Pumpe alles ausgleicht"], a: 1,
+      e: "Das Ruhepotential liegt nahe am K⁺-Gleichgewichtspotential. Ist außen mehr K⁺, wird E_K positiver. Das kann zu gefährlichen Herzrhythmusstörungen führen. Probiere es in der Simulation aus." },
+    { ctx: "Durchfall", title: "Trinklösung mit Salz und Zucker", text: "Bei starkem Durchfall empfiehlt die WHO Trinklösungen, die Kochsalz und Glucose enthalten. Warum beides?",
+      o: ["Glucose wird über den Na⁺-Glucose-Symporter zusammen mit Na⁺ aufgenommen. Der Na⁺-Gradient dafür stammt von der Pumpe, und Wasser folgt osmotisch.", "Zucker macht die Lösung nur süßer", "Salz tötet die Durchfallerreger ab"], a: 0,
+      e: "Die Darmzellen nehmen Na⁺ und Glucose gemeinsam auf (sekundär aktiver Transport). Die Pumpe auf der anderen Zellseite hält Na⁺ innen niedrig. Mit den aufgenommenen Teilchen folgt Wasser durch Osmose." },
+    { ctx: "Herzmedikament", title: "Digitalis aus dem Fingerhut", text: "Digitalis hemmt die Na⁺/K⁺-Pumpe im Herzmuskel teilweise. Was passiert zuerst in den Herzmuskelzellen?",
+      o: ["Na⁺ innen steigt leicht an", "K⁺ innen steigt an", "ATP-Konzentration sinkt stark"], a: 0,
+      e: "Weniger Pumpleistung bedeutet etwas mehr Na⁺ innen. Ein Na⁺/Ca²⁺-Austauscher kann dann weniger Ca²⁺ hinausbefördern. Es bleibt mehr Ca²⁺ in der Zelle, und der Herzmuskel kontrahiert kräftiger. In zu hoher Dosis ist Digitalis giftig." },
+    { ctx: "Rechnen", title: "300 Pumpzyklen", text: "Eine Pumpe durchläuft 300 Zyklen. Wie viele Ionen transportiert sie, und wie viele positive Ladungen gelangen netto nach außen?",
+      o: ["300 Na⁺ hinaus, 300 K⁺ hinein, netto 0", "900 Na⁺ hinaus, 600 K⁺ hinein, netto 300 positive Ladungen nach außen", "600 Na⁺ hinaus, 900 K⁺ hinein, netto 300 nach innen"], a: 1,
+      e: "Pro Zyklus: 3 Na⁺ hinaus, 2 K⁺ hinein, also netto +1 Ladung nach außen. Bei 300 Zyklen ergibt das 900, 600 und netto 300. Außerdem werden 300 ATP verbraucht." }
+  ];
+  (function () {
+    let answers = store.get("nakpumpe.cases") || {};
+    function renderAll() {
+      const grid = $("#caseGrid"); grid.innerHTML = "";
+      CASES.forEach((c, idx) => {
+        const card = document.createElement("article");
+        card.className = "panel case";
+        card.innerHTML = `<span class="ctx"></span><h3></h3><p class="small"></p><div class="opts"></div><div class="answer" hidden></div>`;
+        $(".ctx", card).textContent = c.ctx; $("h3", card).textContent = c.title; $("p", card).textContent = c.text;
+        const opts = $(".opts", card), ans = $(".answer", card);
+        c.o.forEach((t, i) => {
+          const b = document.createElement("button"); b.type = "button"; b.textContent = t;
+          b.addEventListener("click", () => { answers[idx] = i; store.set("nakpumpe.cases", answers); paint(); });
+          opts.appendChild(b);
+        });
+        function paint() {
+          const ch = answers[idx];
+          $$("button", opts).forEach((b, i) => {
+            b.classList.remove("right", "wrong"); b.disabled = ch !== undefined;
+            if (ch !== undefined) { if (i === c.a) b.classList.add("right"); else if (i === ch) b.classList.add("wrong"); }
+          });
+          if (ch !== undefined) {
+            ans.hidden = false;
+            ans.innerHTML = ch === c.a ? '<b class="ok">Richtig.</b> ' : '<b class="no">Nicht ganz.</b> ';
+            ans.appendChild(document.createTextNode(c.e));
+          } else ans.hidden = true;
+          progress();
+        }
+        grid.appendChild(card); paint();
+      });
+    }
+    function progress() {
+      const keys = Object.keys(answers);
+      const right = keys.filter((i) => CASES[i] && answers[i] === CASES[i].a).length;
+      $("#caseScore").textContent = `${keys.length} von ${CASES.length} beantwortet · ${right} richtig`;
+      $("#caseBar").style.width = (keys.length / CASES.length) * 100 + "%";
+    }
+    $("#caseReset").addEventListener("click", () => { answers = {}; store.set("nakpumpe.cases", answers); renderAll(); });
+    renderAll();
+  })();
+
+  // =====================================================================
+  // Quiz
+  // =====================================================================
+  const QUESTIONS = [
+    { q: "Wie viele Ionen transportiert die Na⁺/K⁺-Pumpe pro ATP?", o: ["2 Na⁺ hinaus, 3 K⁺ hinein", "3 Na⁺ hinaus, 2 K⁺ hinein", "1 Na⁺ hinaus, 1 K⁺ hinein", "3 Na⁺ hinein, 2 K⁺ hinaus"], a: 1, e: "Merke: drei Natrium raus, zwei Kalium rein." },
+    { q: "Um welche Transportart handelt es sich?", o: ["Einfache Diffusion", "Erleichterte Diffusion", "Primär aktiver Transport", "Sekundär aktiver Transport"], a: 2, e: "Die Energie stammt direkt aus der ATP-Spaltung durch die Pumpe selbst." },
+    { q: "Die Pumpe transportiert zwei Ionensorten in entgegengesetzte Richtungen. Das nennt man …", o: ["Uniport", "Symport", "Antiport", "Endocytose"], a: 2, e: "Antiport: entgegengesetzte Richtungen. Symport: gleiche Richtung." },
+    { q: "Warum bezeichnet man die Pumpe als elektrogen?", o: ["Sie erzeugt Aktionspotentiale", "Pro Zyklus gelangt netto eine positive Ladung nach außen", "Sie wird durch Spannung geöffnet", "Sie leitet Strom wie ein Kabel"], a: 1, e: "3 positive Ladungen hinaus, 2 hinein: Netto entsteht ein kleiner Auswärtsstrom, der das Potential um wenige mV negativer macht." },
+    { q: "Wo sind die Konzentrationen von Na⁺ und K⁺ jeweils hoch?", o: ["Na⁺ innen, K⁺ außen", "Na⁺ außen, K⁺ innen", "Beide innen", "Beide außen"], a: 1, e: "Na⁺ ≈ 145 mmol/L außen, K⁺ ≈ 140 mmol/L innen." },
+    { q: "Was bewirkt die Phosphorylierung der Pumpe durch ATP?", o: ["Die Pumpe öffnet sich nach innen und bindet K⁺", "Eine Konformationsänderung: Die Pumpe öffnet sich nach außen, und die Affinität für Na⁺ sinkt", "Die Pumpe wird abgebaut", "Na⁺ wird chemisch verändert"], a: 1, e: "Phosphorylierung führt von E1 zu E2. Die Pumpe ist dann nach außen offen und gibt Na⁺ ab." },
+    { q: "Was löst die Rückkehr der Pumpe in die nach innen offene Form aus?", o: ["Die Bindung von Na⁺", "Die Dephosphorylierung nach der Bindung von K⁺", "Ein Aktionspotential", "Die Bindung von ATP"], a: 1, e: "K⁺-Bindung führt zur Abspaltung des Phosphats. Ohne Phosphat klappt die Pumpe zurück in E1 und gibt K⁺ innen frei." },
+    { q: "Welche Aussage zum Ruhepotential ist richtig?", o: ["Es entsteht ausschließlich durch die Pumpe", "Es entsteht vor allem durch K⁺-Ausstrom durch Leckkanäle. Die Pumpe baut den nötigen Gradienten auf und trägt direkt nur wenige mV bei", "Es entsteht durch Na⁺-Einstrom", "Es hat mit Ionen nichts zu tun"], a: 1, e: "Ohne den K⁺-Gradienten gäbe es kein Ruhepotential. Der direkte elektrogene Beitrag der Pumpe ist aber klein." },
+    { q: "Wer ist für die Repolarisation beim Aktionspotential hauptsächlich verantwortlich?", o: ["Die Na⁺/K⁺-Pumpe", "Spannungsgesteuerte K⁺-Kanäle", "Ligandengesteuerte Na⁺-Kanäle", "Aquaporine"], a: 1, e: "K⁺ strömt durch spannungsgesteuerte K⁺-Kanäle aus. Die Pumpe ist zu langsam und stellt nur langfristig die Gradienten wieder her." },
+    { q: "Was passiert, wenn man die Pumpe mit Ouabain hemmt?", o: ["Die Zelle hyperpolarisiert", "Die Gradienten werden langsam abgebaut, die Zelle depolarisiert allmählich und schwillt an", "Die Zelle verliert sofort alle Ionen", "Es passiert nichts"], a: 1, e: "Die Leckströme laufen weiter. Na⁺ sammelt sich innen, Wasser folgt osmotisch." },
+    { q: "Der Na⁺-Glucose-Symporter (SGLT) transportiert Glucose gegen ihr Konzentrationsgefälle. Woher stammt die Energie?", o: ["Direkt aus ATP-Spaltung durch den Symporter", "Aus dem Na⁺-Gradienten, den die Na⁺/K⁺-Pumpe aufbaut", "Aus dem Licht", "Aus der Glucose selbst"], a: 1, e: "Das ist sekundär aktiver Transport. Indirekt bezahlt die Pumpe mit ATP." },
+    { q: "Welchen Beitrag leistet die Pumpe zur Regulation des Zellvolumens?", o: ["Keinen", "Sie transportiert mehr Ionen hinaus als hinein und verhindert so, dass Wasser osmotisch einströmt und die Zelle platzt", "Sie pumpt direkt Wasser aus der Zelle", "Sie stabilisiert die Zellwand"], a: 1, e: "Tierzellen haben keine Zellwand. Ohne die Pumpe würden sie durch Osmose anschwellen." },
+    { q: "Ein Neuron hat viele Aktionspotentiale gebildet. Wie verändert sich die Pumpaktivität?", o: ["Sie nimmt ab", "Sie nimmt zu, weil mehr Na⁺ innen vorliegt", "Sie bleibt immer gleich", "Die Pumpe läuft rückwärts"], a: 1, e: "Mehr Na⁺ innen heißt mehr besetzte Bindungsstellen und damit mehr Pumpzyklen pro Zeit." },
+    { q: "Wie unterscheidet sich die Pumpe von einem Ionenkanal?", o: ["Kanäle verbrauchen ATP, die Pumpe nicht", "Die Pumpe transportiert gegen das Gefälle mit Konformationsänderungen und ist viel langsamer. Kanäle lassen Ionen schnell mit dem Gefälle passieren", "Es gibt keinen Unterschied", "Die Pumpe ist immer geöffnet"], a: 1, e: "Ein Kanal leitet bis zu Millionen Ionen pro Sekunde. Eine Pumpe schafft nur etwa einhundert Zyklen pro Sekunde." },
+    { q: "Eine Pumpe durchläuft 100 Zyklen. Wie viel ATP wird verbraucht, und wie viele Na⁺ werden transportiert?", o: ["100 ATP, 300 Na⁺", "300 ATP, 100 Na⁺", "100 ATP, 200 Na⁺", "50 ATP, 300 Na⁺"], a: 0, e: "1 ATP pro Zyklus, 3 Na⁺ pro Zyklus." },
+    { q: "In welcher Form (E1) bindet die Pumpe Na⁺ mit hoher Affinität?", o: ["Nach außen offen, phosphoryliert", "Nach innen offen, nicht phosphoryliert", "Geschlossen, mit ADP", "Nach außen offen, nicht phosphoryliert"], a: 1, e: "E1 ist zum Cytoplasma offen. Dort ist Na⁺ zwar niedrig konzentriert, wird aber trotzdem fest gebunden." },
+    { q: "Warum sind Nervenzellen besonders empfindlich gegenüber Sauerstoffmangel?", o: ["Sie haben keine Mitochondrien", "Sie verbrauchen sehr viel ATP, vor allem für die Na⁺/K⁺-Pumpe. Ohne ATP brechen Gradienten und Erregbarkeit zusammen", "Sauerstoff ist direkt für die Pumpe nötig", "Sie können nur Fett verwerten"], a: 1, e: "ATP stammt vor allem aus der Zellatmung, die O₂ braucht. Fällt die Pumpe aus, folgen Depolarisation und Zellschwellung." }
+  ];
+  (function () {
+    const N = 12;
+    let order = [], idx = 0, score = 0, answered = false;
+    function start() {
+      order = shuffle(QUESTIONS).slice(0, N).map((q) => { const perm = shuffle(q.o.map((_, i) => i)); return { q: q.q, o: perm.map((i) => q.o[i]), a: perm.indexOf(q.a), e: q.e }; });
+      idx = 0; score = 0; render();
+    }
+    function render() {
+      const box = $("#quizBox");
+      $("#qBar").style.width = (idx / N) * 100 + "%";
+      if (idx >= N) {
+        const best = Math.max(score, store.get("nakpumpe.best") || 0);
+        store.set("nakpumpe.best", best);
+        const msg = score >= 11 ? "Hervorragend! Du hast die Pumpe verstanden." : score >= 8 ? "Gut gemacht! Lies die Erklärungen zu den Fehlern noch einmal." : "Geh den Pumpzyklus noch einmal Schritt für Schritt durch und versuche es dann erneut.";
+        $("#qProgress").textContent = `fertig · Bestwert ${best} / ${N}`;
+        box.innerHTML = `<span class="eyebrow">Ergebnis</span><div class="score-big mono">${score} / ${N}</div><p>${msg}</p><div class="row"><button type="button" class="primary" id="qAgain">Neue Runde (gemischt)</button></div>`;
+        $("#qAgain").addEventListener("click", start);
+        return;
+      }
+      const q = order[idx]; answered = false;
+      $("#qProgress").textContent = `Frage ${idx + 1} von ${N} · ${score} richtig`;
+      box.innerHTML = `<div class="qtext"></div><div class="opts"></div><div class="feedback" hidden></div><div class="row"><button type="button" class="primary" id="qNext" hidden>${idx + 1 < N ? "Nächste Frage" : "Ergebnis anzeigen"}</button></div>`;
+      $(".qtext", box).textContent = q.q;
+      q.o.forEach((t, i) => {
+        const b = document.createElement("button"); b.type = "button";
+        b.innerHTML = `<span class="key">${"ABCD"[i]}</span><span></span>`; b.lastChild.textContent = t;
+        b.addEventListener("click", () => choose(i));
+        $(".opts", box).appendChild(b);
+      });
+      $("#qNext").addEventListener("click", () => { idx++; render(); });
+    }
+    function choose(i) {
+      if (answered) return; answered = true;
+      const q = order[idx], box = $("#quizBox");
+      $$(".opts button", box).forEach((b, j) => { b.disabled = true; if (j === q.a) b.classList.add("right"); else if (j === i) b.classList.add("wrong"); });
+      const ok = i === q.a; if (ok) score++;
+      const fb = $(".feedback", box); fb.hidden = false;
+      fb.innerHTML = ok ? '<b class="ok">Richtig!</b> ' : '<b class="no">Leider falsch.</b> ';
+      fb.appendChild(document.createTextNode(q.e));
+      $("#qNext").hidden = false; $("#qNext").focus();
+      $("#qProgress").textContent = `Frage ${idx + 1} von ${N} · ${score} richtig`;
+    }
+    start();
+  })();
+
+  showView();
+})();
+</script>
+
+<p style="text-align:center;margin-top:32px"><a href="index.html" style="color:inherit">← Alle Lern-Apps</a></p>
+</body>
+</html>
