@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<title>Factsheet Binomische Formeln</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=JetBrains+Mono:wght@400;600&family=STIX+Two+Text:ital,wght@0,400;0,600;1,400&display=swap">
+<link rel="stylesheet" href="factsheet.css">
+<style>:root { --accent: #1f6e8c; } </style>
+</head>
+<body>
+<div class="page">
+  <header>
+    <div>
+      <div class="eyebrow">Mathematik · Klasse 8 · Terme</div>
+      <h1>Binomische Formeln</h1>
+    </div>
+    <span class="tag">Factsheet</span>
+  </header>
+
+  <div class="kern">Wenn man eine Klammer mit zwei Teilen (ein <strong>Binom</strong>) mit sich selbst malnimmt, entsteht immer dasselbe Muster. Mit den drei binomischen Formeln löst du solche Klammern blitzschnell auf, vorwärts und rückwärts.</div>
+  <div class="cols">
+    <div class="box full">
+      <h2>Die drei Formeln</h2>
+      <table>
+        <tr><th>1. Formel (Plus)</th><th>2. Formel (Minus)</th><th>3. Formel (Plus-Minus)</th></tr>
+        <tr><td class="big"><span class="math">(<i class="ca">a</i> + <i class="cb">b</i>)<sup>2</sup> = <i>a</i><sup>2</sup> + <span class="cab">2<i>ab</i></span> + <i>b</i><sup>2</sup></span></td>
+            <td class="big"><span class="math">(<i class="ca">a</i> − <i class="cb">b</i>)<sup>2</sup> = <i>a</i><sup>2</sup> − <span class="cab">2<i>ab</i></span> + <i>b</i><sup>2</sup></span></td>
+            <td class="big"><span class="math">(<i class="ca">a</i> + <i class="cb">b</i>)(<i class="ca">a</i> − <i class="cb">b</i>) = <i>a</i><sup>2</sup> − <i>b</i><sup>2</sup></span></td></tr>
+        <tr><td><span class="math">(<i>x</i> + 3)<sup>2</sup> = <i>x</i><sup>2</sup> + 6<i>x</i> + 9</span></td><td><span class="math">(<i>x</i> − 5)<sup>2</sup> = <i>x</i><sup>2</sup> − 10<i>x</i> + 25</span></td><td><span class="math">(<i>x</i> + 4)(<i>x</i> − 4) = <i>x</i><sup>2</sup> − 16</span></td></tr>
+      </table>
+    </div>
+    <div class="box">
+      <h2>Merkschema</h2>
+      <ol>
+        <li><strong>Erster Teil hoch 2</strong>: <span class="math"><i>a</i><sup>2</sup></span></li>
+        <li><strong>2 · erster · zweiter</strong>: <span class="math">2<i>ab</i></span> (Mittelglied, Vorzeichen wie in der Klammer)</li>
+        <li><strong>Zweiter Teil hoch 2</strong>: <span class="math"><i>b</i><sup>2</sup></span>, immer mit Plus</li>
+      </ol>
+      <p class="small">Bei der 3. Formel heben sich <span class="math">+<i>ab</i></span> und <span class="math">−<i>ab</i></span> auf.</p>
+    </div>
+    <div class="box">
+      <h2>Warum? Das Flächenmodell</h2>
+      <p><svg viewBox="0 0 120 120" width="30mm" height="30mm" style="float:right; margin-left:3mm">
+  <rect x="2" y="2" width="76" height="76" fill="rgba(47,95,179,.18)" stroke="#2f5fb3"/>
+  <rect x="78" y="2" width="40" height="76" fill="rgba(61,138,76,.18)" stroke="#3d8a4c"/>
+  <rect x="2" y="78" width="76" height="40" fill="rgba(61,138,76,.18)" stroke="#3d8a4c"/>
+  <rect x="78" y="78" width="40" height="40" fill="rgba(196,86,28,.2)" stroke="#c4561c"/>
+  <g font-family="STIX Two Text, serif" font-style="italic" text-anchor="middle">
+    <text x="40" y="45" font-size="18" fill="#2f5fb3">a²</text><text x="98" y="45" font-size="13" fill="#3d8a4c">ab</text>
+    <text x="40" y="103" font-size="13" fill="#3d8a4c">ab</text><text x="98" y="103" font-size="13" fill="#c4561c">b²</text>
+  </g></svg>Ein Quadrat mit Seite <span class="math"><i>a</i> + <i>b</i></span> besteht aus <span class="math"><i>a</i><sup>2</sup></span>, zwei Rechtecken <span class="math"><i>ab</i></span> und <span class="math"><i>b</i><sup>2</sup></span>. Darum ist <span class="math">(<i>a</i> + <i>b</i>)<sup>2</sup> = <i>a</i><sup>2</sup> + 2<i>ab</i> + <i>b</i><sup>2</sup></span>.</p>
+      <p class="small">Oder „jeder mit jedem“: <span class="math">(<i>a</i>+<i>b</i>)(<i>a</i>+<i>b</i>) = <i>a</i><sup>2</sup> + <i>ab</i> + <i>ba</i> + <i>b</i><sup>2</sup></span></p>
+    </div>
+    <div class="box">
+      <h2>Beispiel Schritt für Schritt</h2>
+      <p><span class="math">(2<i>x</i> + 5)<sup>2</sup></span> mit <span class="math"><i>a</i> = 2<i>x</i></span>, <span class="math"><i>b</i> = 5</span>:</p>
+      <ol>
+        <li><span class="math"><i>a</i><sup>2</sup> = (2<i>x</i>)<sup>2</sup> = 4<i>x</i><sup>2</sup></span></li>
+        <li><span class="math">2<i>ab</i> = 2 · 2<i>x</i> · 5 = 20<i>x</i></span></li>
+        <li><span class="math"><i>b</i><sup>2</sup> = 25</span></li>
+      </ol>
+      <p>Ergebnis: <span class="math">4<i>x</i><sup>2</sup> + 20<i>x</i> + 25</span></p>
+    </div>
+    <div class="box">
+      <h2>Rückwärts (faktorisieren)</h2>
+      <ol>
+        <li>Suche zwei Quadrate: <span class="math"><i>x</i><sup>2</sup></span> und <span class="math">9</span>, also <span class="math"><i>a</i> = <i>x</i></span>, <span class="math"><i>b</i> = 3</span>.</li>
+        <li>Prüfe das Mittelglied: <span class="math">2 · <i>x</i> · 3 = 6<i>x</i></span>.</li>
+        <li>Vorzeichen entscheidet: <span class="math"><i>x</i><sup>2</sup> − 6<i>x</i> + 9 = (<i>x</i> − 3)<sup>2</sup></span></li>
+        <li>Kein Mittelglied, Minus dazwischen: 3. Formel, <span class="math"><i>x</i><sup>2</sup> − 9 = (<i>x</i>+3)(<i>x</i>−3)</span></li>
+      </ol>
+    </div>
+    <div class="box">
+      <h2>Kopfrechen-Trick</h2>
+      <ul>
+        <li><span class="math">21<sup>2</sup> = (20 + 1)<sup>2</sup> = 400 + 40 + 1 = 441</span></li>
+        <li><span class="math">49<sup>2</sup> = (50 − 1)<sup>2</sup> = 2500 − 100 + 1 = 2401</span></li>
+        <li><span class="math">32 · 28 = (30 + 2)(30 − 2) = 900 − 4 = 896</span></li>
+      </ul>
+    </div>
+    <div class="box warn">
+      <h2>Typische Fehler</h2>
+      <ul>
+        <li><span class="math">(<i>x</i> + 3)<sup>2</sup> = <i>x</i><sup>2</sup> + 9</span> <span class="no">falsch</span>: Das Mittelglied <span class="math">6<i>x</i></span> fehlt!</li>
+        <li><span class="math">(<i>x</i> − 5)<sup>2</sup> = … − 25</span> <span class="no">falsch</span>: am Ende immer <strong>+</strong> 25.</li>
+        <li><span class="math">(3<i>x</i>)<sup>2</sup> = 3<i>x</i><sup>2</sup></span> <span class="no">falsch</span>: richtig ist <span class="math">9<i>x</i><sup>2</sup></span>.</li>
+        <li>Die <strong>2</strong> im Mittelglied vergessen.</li>
+      </ul>
+    </div>
+  </div>
+  <footer><span>LearningDesk · Factsheet</span><span>Interaktiv üben: schlechtweg.github.io/LearningDesk/binomische-formeln.html</span></footer>
+</div>
+</body>
+</html>

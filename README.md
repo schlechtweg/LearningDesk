@@ -45,6 +45,10 @@ Lernhilfe zur Differentialrechnung für Mathematik, Klasse 11:
 5. **Tangente**: Tangentengleichung Schritt für Schritt, dazu Übungsaufgaben
 6. **Quiz**: 12 zufällige Fragen aus 19
 
+## Factsheets (PDF)
+
+Zu jedem Thema gibt es ein einseitiges A4-Factsheet in `docs/factsheets/`. Die Quellen liegen in `tools/factsheets/`: `make_sources.py` erzeugt die HTML-Dateien, `node tools/build-factsheets.js` rendert sie zu PDFs und prüft, dass jedes Blatt auf eine Seite passt.
+
 ## Ohne Claude öffnen
 
 `docs/` enthält eigenständige Versionen aller Apps und eine Startseite (`docs/index.html`). Diese Dateien lassen sich direkt im Browser öffnen oder über GitHub Pages veröffentlichen (Quelle: Standard-Branch, Ordner `/docs`).
