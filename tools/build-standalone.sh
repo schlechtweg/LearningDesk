@@ -10,6 +10,7 @@ APPS=(
   "ableiten:klasse-11.html"
   "natrium-kalium-pumpe:klasse-11.html"
   "binomische-formeln:klasse-8.html"
+  "bruchterme:klasse-8.html"
 )
 for entry in "${APPS[@]}"; do
   app="${entry%%:*}"; back="${entry##*:}"

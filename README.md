@@ -8,6 +8,10 @@ Interaktive Lern-Apps, sortiert nach Klassenstufe. Startseite: `docs/index.html`
 
 Die drei Formeln mit Merkschema und typischen Fehlern, Erklärung am Flächenmodell und durch Ausmultiplizieren, Trainer (Lücken füllen, ausmultiplizieren, faktorisieren) mit Prüfung der Eingabe, Kopfrechen-Trick, Quiz.
 
+## Bruchterme (`bruchterme.html`)
+
+Was ist ein Bruchterm, Definitionsmenge mit Wertetabelle, Kürzen und Erweitern („nur Faktoren kürzen“, Kürzen mit binomischen Formeln), die vier Grundrechenarten mit Hauptnenner, Trainer (Definitionsmenge, Kürzen, Rechnen) mit Prüfung der Eingabe, Quiz.
+
 # Klassenstufe 11
 
 ## Osmose verstehen (`osmose.html`)
