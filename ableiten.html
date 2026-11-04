@@ -57,6 +57,12 @@
 
 * { box-sizing: border-box; }
 [hidden] { display: none !important; }
+.einfach { background: var(--surface-2); border-radius: var(--radius); padding: 16px 20px; display: grid; gap: 8px; }
+.einfach p { font-size: var(--step-0); }
+details.profi { border: 1px dashed var(--line); border-radius: var(--radius); padding: 12px 16px; background: var(--surface); }
+details.profi summary { cursor: pointer; font-weight: 700; font-size: var(--step--1); }
+details.profi[open] summary { margin-bottom: 8px; }
+details.profi p, details.profi li { font-size: var(--step--1); }
 body {
   background: var(--bg); color: var(--ink);
   font-family: var(--font-body); font-size: var(--step-0); line-height: 1.6;
@@ -185,7 +191,7 @@ table.rules th { font-family: var(--font-display); font-size: var(--step-0); }
 
 <div class="wrap">
   <header class="top">
-    <span class="eyebrow">Mathematik · Klasse 11 · Differentialrechnung</span>
+    <span class="eyebrow">Mathematik · Klasse 10/11 · Differentialrechnung</span>
     <h1>Ableiten lernen</h1>
     <p>Von der Sekante zur Tangente, vom Graphen zum Ableitungsgraphen, von den Regeln zur Tangentengleichung. Mit Rechentrainer, der deine Lösungen prüft.</p>
   </header>
@@ -204,7 +210,12 @@ table.rules th { font-family: var(--font-display); font-size: var(--step-0); }
     <div class="stack">
       <span class="eyebrow">Grundidee</span>
       <h2>Von der Sekante zur Tangente</h2>
-      <p class="muted">Die Ableitung <span class="math"><i>f</i>′(<i>x</i><sub>0</sub>)</span> ist die Steigung des Graphen an einer Stelle. Man bekommt sie, indem man eine Sekante durch zwei Punkte legt und den zweiten Punkt immer näher an den ersten heranschiebt.</p>
+      <p class="muted">Die Ableitung sagt dir, <strong>wie steil</strong> ein Graph an einer bestimmten Stelle ist. Man schreibt dafür <span class="math"><i>f</i>′(<i>x</i><sub>0</sub>)</span> und liest „f Strich von x null“.</p>
+    </div>
+    <div class="einfach">
+      <span class="eyebrow">Einfach erklärt</span>
+      <p>Stell dir vor, du fährst mit dem Fahrrad über einen Hügel. Die Ableitung ist wie ein Schild, das dir an jeder Stelle sagt, wie steil es gerade ist: <strong>positiv</strong> heißt bergauf, <strong>negativ</strong> heißt bergab. Oben auf dem Gipfel ist es einen Moment lang ganz flach, die Steigung ist <strong>0</strong>.</p>
+      <p>Bei einer Geraden ist die Steigung überall gleich. Bei einer Kurve ändert sie sich ständig. Deshalb benutzt man einen Trick: Man legt eine Gerade durch zwei Punkte der Kurve (<strong>Sekante</strong>) und schiebt die Punkte immer näher zusammen. Am Ende berührt die Gerade die Kurve nur noch in einem Punkt. Diese Gerade heißt <strong>Tangente</strong>, und ihre Steigung ist die Ableitung.</p>
     </div>
     <div class="plot-layout">
       <div class="plot-box">
@@ -238,18 +249,18 @@ table.rules th { font-family: var(--font-display); font-size: var(--step-0); }
     <div class="grid-2">
       <div class="panel stack">
         <h3>Differenzenquotient</h3>
-        <p class="small">Steigung der Sekante durch <span class="math">(<i>x</i><sub>0</sub> | <i>f</i>(<i>x</i><sub>0</sub>))</span> und <span class="math">(<i>x</i><sub>0</sub>+<i>h</i> | <i>f</i>(<i>x</i><sub>0</sub>+<i>h</i>))</span>. Das ist die <strong>mittlere Änderungsrate</strong>.</p>
+        <p class="small">So berechnest du die Steigung der Sekante, wie beim Steigungsdreieck: <strong>Höhenunterschied geteilt durch Abstand</strong>. <i>h</i> ist der Abstand zwischen den beiden Punkten. Fachbegriff: <strong>mittlere Änderungsrate</strong>.</p>
         <span class="math block"><i>m</i><sub>s</sub> = <span class="frac"><span><i>f</i>(<i>x</i><sub>0</sub>+<i>h</i>) − <i>f</i>(<i>x</i><sub>0</sub>)</span><span><i>h</i></span></span></span>
       </div>
       <div class="panel stack">
         <h3>Differentialquotient</h3>
-        <p class="small">Lässt man <i>h</i> gegen 0 gehen, wird aus der Sekante die Tangente. Das ist die <strong>momentane (lokale) Änderungsrate</strong>.</p>
+        <p class="small">Jetzt macht man <i>h</i> immer kleiner, fast 0. Dann wird aus der Sekante die Tangente. „lim“ heißt <strong>Grenzwert</strong>: Was kommt heraus, wenn <i>h</i> immer näher an 0 rückt? Fachbegriff: <strong>momentane Änderungsrate</strong>.</p>
         <span class="math block"><i>f</i>′(<i>x</i><sub>0</sub>) = lim<sub><i>h</i>→0</sub> <span class="frac"><span><i>f</i>(<i>x</i><sub>0</sub>+<i>h</i>) − <i>f</i>(<i>x</i><sub>0</sub>)</span><span><i>h</i></span></span></span>
       </div>
     </div>
     <div class="merksatz">
       <span class="eyebrow">Merke</span>
-      <p><span class="math"><i>f</i>′(<i>x</i><sub>0</sub>)</span> ist die Steigung der Tangente an den Graphen von <i>f</i> im Punkt <span class="math">(<i>x</i><sub>0</sub> | <i>f</i>(<i>x</i><sub>0</sub>))</span>. Die Funktion <span class="math"><i>f</i>′</span>, die jeder Stelle <i>x</i> diese Steigung zuordnet, heißt <strong>Ableitungsfunktion</strong>.</p>
+      <p><span class="math"><i>f</i>′(<i>x</i><sub>0</sub>)</span> = Steigung der Tangente an der Stelle <span class="math"><i>x</i><sub>0</sub></span>. Die Funktion <span class="math"><i>f</i>′</span>, die dir für <strong>jede</strong> Stelle die Steigung liefert, heißt <strong>Ableitungsfunktion</strong>.</p>
     </div>
   </section>
 
@@ -258,7 +269,13 @@ table.rules th { font-family: var(--font-display); font-size: var(--step-0); }
     <div class="stack">
       <span class="eyebrow">Grafisches Ableiten</span>
       <h2>Vom Graphen zum Ableitungsgraphen</h2>
-      <p class="muted">Fahre mit dem Regler oder direkt mit Finger bzw. Maus über den oberen Graphen. An jeder Stelle wird die Tangentensteigung gemessen und unten als Punkt eingetragen. So entsteht Punkt für Punkt der Graph von <i>f</i>′.</p>
+      <p class="muted">Beim grafischen Ableiten zeichnest du den Graphen von <i>f</i>′, ohne zu rechnen. Du schaust nur, wie steil <i>f</i> an jeder Stelle ist. Fahre mit dem Regler oder mit Finger bzw. Maus über den oberen Graphen. Die gemessene Steigung wird unten als Punkt eingetragen.</p>
+    </div>
+    <div class="einfach">
+      <span class="eyebrow">Faustregel in drei Schritten</span>
+      <p><strong>1.</strong> Suche die Hoch- und Tiefpunkte von <i>f</i>. Dort ist die Steigung 0, also hat <i>f</i>′ dort eine <strong>Nullstelle</strong>.</p>
+      <p><strong>2.</strong> Wo <i>f</i> <strong>bergauf</strong> geht, liegt <i>f</i>′ <strong>über</strong> der x-Achse. Wo <i>f</i> <strong>bergab</strong> geht, liegt <i>f</i>′ <strong>unter</strong> der x-Achse.</p>
+      <p><strong>3.</strong> Wo <i>f</i> am steilsten ist, ist <i>f</i>′ am weitesten von der x-Achse entfernt.</p>
     </div>
     <div class="plot-layout">
       <div class="plot-box">
@@ -321,7 +338,13 @@ table.rules th { font-family: var(--font-display); font-size: var(--step-0); }
     <div class="stack">
       <span class="eyebrow">Ableitungsregeln</span>
       <h2>Die Regeln im Überblick</h2>
-      <p class="muted">Mit diesen Regeln musst du nicht jedes Mal den Grenzwert berechnen. Bei ganzrationalen Funktionen leitest du jeden Summanden einzeln ab.</p>
+      <p class="muted">Mit diesen Regeln kannst du Ableitungen schnell ausrechnen, ohne jedes Mal Sekanten zu zeichnen. Das Wichtigste: Jeden Teil, der mit + oder − verbunden ist, leitest du einzeln ab.</p>
+    </div>
+    <div class="einfach">
+      <span class="eyebrow">Das Kochrezept für x hoch n</span>
+      <p><strong>1.</strong> Hochzahl nach vorne holen und mit der Zahl davor malnehmen. <strong>2.</strong> Hochzahl um 1 kleiner machen.</p>
+      <p class="math">3<i>x</i><sup>4</sup> → 3 · 4 · <i>x</i><sup>3</sup> = 12<i>x</i><sup>3</sup></p>
+      <p>Eine Zahl ohne <i>x</i> fällt beim Ableiten weg. Bei einer Zahl mal <i>x</i> bleibt nur die Zahl übrig: <span class="math">5<i>x</i> → 5</span>.</p>
     </div>
     <div class="rule-cards">
       <div class="panel rule">
@@ -414,7 +437,7 @@ table.rules th { font-family: var(--font-display); font-size: var(--step-0); }
     <div class="stack">
       <span class="eyebrow">Tangentengleichung</span>
       <h2>Die Tangente an einer Stelle aufstellen</h2>
-      <p class="muted">Die Tangente ist eine Gerade <span class="math"><i>t</i>(<i>x</i>) = <i>m</i><i>x</i> + <i>b</i></span>. Sie geht durch den Punkt <span class="math"><i>P</i>(<i>x</i><sub>0</sub> | <i>f</i>(<i>x</i><sub>0</sub>))</span> und hat dort dieselbe Steigung wie der Graph.</p>
+      <p class="muted">Die Tangente ist eine ganz normale Gerade <span class="math"><i>t</i>(<i>x</i>) = <i>m</i><i>x</i> + <i>b</i></span>, die den Graphen an einer Stelle berührt. Du brauchst also nur zwei Dinge: einen <strong>Punkt</strong>, durch den sie geht, und ihre <strong>Steigung</strong> <i>m</i>. Den Punkt bekommst du mit <i>f</i>(<i>x</i><sub>0</sub>), die Steigung mit <i>f</i>′(<i>x</i><sub>0</sub>).</p>
     </div>
     <div class="merksatz">
       <span class="eyebrow">Formel</span>

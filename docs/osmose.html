@@ -69,6 +69,12 @@
 
 * { box-sizing: border-box; }
 [hidden] { display: none !important; }
+.einfach { background: var(--surface-2); border-radius: var(--radius); padding: 16px 20px; display: grid; gap: 8px; }
+.einfach p { font-size: var(--step-0); }
+details.profi { border: 1px dashed var(--line); border-radius: var(--radius); padding: 12px 16px; background: var(--surface); }
+details.profi summary { cursor: pointer; font-weight: 700; font-size: var(--step--1); }
+details.profi[open] summary { margin-bottom: 8px; }
+details.profi p, details.profi li { font-size: var(--step--1); }
 body {
   background: var(--bg); color: var(--ink);
   font-family: var(--font-body); font-size: var(--step-0); line-height: 1.6;
@@ -207,7 +213,7 @@ canvas#sim { width: 100%; height: 380px; display: block; }
 
 <div class="wrap">
   <header class="top">
-    <span class="eyebrow">Biologie · Klasse 11 · Stofftransport</span>
+    <span class="eyebrow">Biologie · Klasse 10/11 · Stofftransport</span>
     <h1>Osmose verstehen</h1>
     <p>Lies die Grundlagen, probiere die Simulation aus, beobachte Zellen in verschiedenen Lösungen, erkläre Alltagsbeispiele und teste dich am Ende im Quiz.</p>
   </header>
@@ -223,8 +229,15 @@ canvas#sim { width: 100%; height: 380px; display: block; }
   <!-- ===================== 1 VERSTEHEN ===================== -->
   <section class="view" id="view-verstehen">
     <div class="merksatz">
-      <span class="eyebrow">Definition</span>
-      <p>Osmose ist die Diffusion von <span class="t-water">Wasser</span> durch eine <span class="t-membrane">selektiv permeable Membran</span> von der Lösung mit der niedrigeren zur Lösung mit der höheren Konzentration gelöster Teilchen.</p>
+      <span class="eyebrow">Das Wichtigste in einem Satz</span>
+      <p><span class="t-water">Wasser</span> wandert durch eine <span class="t-membrane">Membran</span> immer dorthin, wo <strong>mehr gelöste Teilchen</strong> sind, zum Beispiel mehr Salz oder Zucker. Das nennt man Osmose.</p>
+    </div>
+
+    <div class="einfach">
+      <span class="eyebrow">Einfach erklärt</span>
+      <p>Stell dir ein Sieb mit winzigen Löchern vor. Wasserteilchen sind klein und passen durch. Zucker- oder Salzteilchen sind zu groß und bleiben hängen.</p>
+      <p>Auf beiden Seiten flitzen Wasserteilchen durch die Löcher, hin und her. Auf der Seite mit viel Zucker sind aber viele Wasserteilchen am Zucker „festgehalten“. Deshalb kommen von dort weniger zurück, als hinüberwandern. Unterm Strich sammelt sich das Wasser auf der Zuckerseite.</p>
+      <p><strong>Merksatz:</strong> Das Wasser folgt dem Salz (und dem Zucker).</p>
     </div>
 
     <div class="grid-2">
@@ -267,85 +280,88 @@ canvas#sim { width: 100%; height: 380px; display: block; }
           <text x="10" y="196" font-size="11" fill="var(--muted)" font-family="var(--font-mono)">niedrig konzentriert</text>
           <text x="208" y="196" font-size="11" fill="var(--muted)" font-family="var(--font-mono)">hoch konzentriert</text>
         </svg>
-        <p class="muted" style="font-size: var(--step--1)">Wasser bewegt sich in <strong>beide</strong> Richtungen. Auf der linken Seite sind aber mehr „freie“ Wassermoleküle, deshalb gehen mehr von links nach rechts als umgekehrt. Dieser <strong>Nettostrom</strong> ist die Osmose. Die gelösten Teilchen (orange) sind zu groß für die Poren.</p>
+        <p class="muted" style="font-size: var(--step--1)">Wasser (blau) wandert in <strong>beide</strong> Richtungen. Von links nach rechts gehen aber mehr Wasserteilchen als zurück. Diesen Überschuss nennt man <strong>Nettostrom</strong>. Die gelösten Teilchen (orange) sind zu groß und kommen nicht durch.</p>
       </div>
 
       <div class="panel stack">
-        <h3>Drei Bedingungen für Osmose</h3>
+        <h3>Was braucht man für Osmose?</h3>
         <ol style="margin:0; padding-left:1.2em; display:grid; gap:8px">
-          <li>Zwei Lösungen mit <strong>unterschiedlicher Konzentration</strong> gelöster Teilchen.</li>
-          <li>Eine <strong>selektiv permeable</strong> (halbdurchlässige) Membran dazwischen: durchlässig für Wasser, nicht für die gelösten Teilchen.</li>
-          <li>Die Teilchen bewegen sich ungerichtet durch die <strong>Brownsche Molekularbewegung</strong>. Die Zelle muss dafür keine Energie (ATP) aufwenden. Osmose ist ein <strong>passiver</strong> Transport.</li>
+          <li>Zwei Flüssigkeiten mit <strong>unterschiedlich vielen gelösten Teilchen</strong>, zum Beispiel Leitungswasser und Salzwasser.</li>
+          <li>Eine Trennwand dazwischen, die <strong>nur Wasser durchlässt</strong>. Fachbegriff: <em>selektiv permeable</em> (= halbdurchlässige) Membran. Die Zellmembran ist so eine Trennwand.</li>
+          <li>Sonst nichts. Die Teilchen bewegen sich von ganz allein, weil sie ständig herumzappeln. Die Zelle braucht keine Energie dafür. Fachbegriff: <strong>passiver Transport</strong>.</li>
         </ol>
-        <p class="muted" style="font-size: var(--step--1)">In Zellmembranen gelangt Wasser vor allem durch spezielle Kanalproteine, die <strong>Aquaporine</strong>. Ein kleiner Teil geht auch direkt durch die Lipiddoppelschicht.</p>
-        <p class="muted" style="font-size: var(--step--1)">Der Druck, der nötig wäre, um den Wassereinstrom genau zu stoppen, heißt <strong>osmotischer Druck</strong>. Er ist umso größer, je größer der Konzentrationsunterschied ist.</p>
+        <p class="muted" style="font-size: var(--step--1)">Je größer der Unterschied zwischen den beiden Seiten ist, desto stärker zieht die „salzigere“ Seite das Wasser an. Diesen Sog nennt man <strong>osmotischen Druck</strong>.</p>
       </div>
     </div>
 
     <div class="stack">
       <h2>Hypotonisch, isotonisch, hypertonisch</h2>
-      <p class="muted">Diese Begriffe sind immer <strong>relativ</strong>. Eine Lösung ist nur hypertonisch <em>im Vergleich zu</em> einer anderen Lösung, meist zum Zellinneren.</p>
+      <p class="muted">Diese drei Wörter <strong>vergleichen</strong> zwei Flüssigkeiten, meistens die Flüssigkeit außen mit dem Inneren der Zelle. Eselsbrücke: <strong>hypo</strong> = weniger, <strong>iso</strong> = gleich, <strong>hyper</strong> = mehr (wie in „hyperaktiv“).</p>
       <div class="grid-3">
         <div class="panel tonic-card">
-          <span class="tag">außen &lt; innen</span>
+          <span class="tag">außen weniger Teilchen</span>
           <h3>hypotonisch</h3>
-          <p style="font-size: var(--step--1)">Die Außenlösung hat <strong>weniger</strong> gelöste Teilchen als die Zelle. Netto strömt <span class="t-water">Wasser in die Zelle</span>.</p>
+          <p style="font-size: var(--step--1)">Außen sind <strong>weniger</strong> gelöste Teilchen als in der Zelle. <span class="t-water">Wasser strömt in die Zelle hinein.</span></p>
           <p class="muted" style="font-size: var(--step--1)">Beispiel: destilliertes Wasser, Regenwasser</p>
         </div>
         <div class="panel tonic-card">
-          <span class="tag">außen = innen</span>
+          <span class="tag">außen gleich viele</span>
           <h3>isotonisch</h3>
-          <p style="font-size: var(--step--1)">Gleiche Konzentration. Wasser bewegt sich in beide Richtungen gleich stark, es gibt <strong>keinen Nettostrom</strong>.</p>
+          <p style="font-size: var(--step--1)">Innen und außen sind <strong>gleich viele</strong> gelöste Teilchen. Es strömt gleich viel Wasser hinein wie heraus. Die Zelle bleibt, wie sie ist.</p>
           <p class="muted" style="font-size: var(--step--1)">Beispiel: 0,9 % Kochsalzlösung für Blutzellen</p>
         </div>
         <div class="panel tonic-card">
-          <span class="tag">außen &gt; innen</span>
+          <span class="tag">außen mehr Teilchen</span>
           <h3>hypertonisch</h3>
-          <p style="font-size: var(--step--1)">Die Außenlösung hat <strong>mehr</strong> gelöste Teilchen. Netto strömt <span class="t-water">Wasser aus der Zelle</span>.</p>
-          <p class="muted" style="font-size: var(--step--1)">Beispiel: Salzwasser, konzentrierte Zuckerlösung</p>
+          <p style="font-size: var(--step--1)">Außen sind <strong>mehr</strong> gelöste Teilchen als in der Zelle. <span class="t-water">Wasser strömt aus der Zelle heraus.</span></p>
+          <p class="muted" style="font-size: var(--step--1)">Beispiel: Salzwasser, sehr süße Zuckerlösung</p>
         </div>
       </div>
     </div>
 
     <div class="stack">
-      <h2>Diffusion und Osmose im Vergleich</h2>
+      <h2>Diffusion und Osmose: Was ist der Unterschied?</h2>
       <div class="panel table-scroll" style="padding: 8px 12px">
         <table class="compare">
           <thead><tr><th></th><th>Diffusion</th><th>Osmose</th></tr></thead>
           <tbody>
-            <tr><td><strong>Was bewegt sich?</strong></td><td>Beliebige Teilchen (gelöste Stoffe, Gase …)</td><td>Nur das Lösungsmittel Wasser (netto)</td></tr>
-            <tr><td><strong>Membran nötig?</strong></td><td>Nein, auch ohne Membran</td><td>Ja, eine selektiv permeable Membran</td></tr>
-            <tr><td><strong>Richtung</strong></td><td>Von hoher zu niedriger Konzentration <em>des Stoffes</em></td><td>Zur Lösung mit der höheren Konzentration <em>gelöster Teilchen</em></td></tr>
-            <tr><td><strong>Ende</strong></td><td>Wenn die Konzentrationen ausgeglichen sind</td><td>Bei Konzentrationsausgleich oder wenn ein Gegendruck (z.&nbsp;B. Zellwand, Wassersäule) den Einstrom stoppt</td></tr>
-            <tr><td><strong>Energie</strong></td><td colspan="2">Beides ist passiv, die Zelle braucht kein ATP</td></tr>
+            <tr><td><strong>Was wandert?</strong></td><td>Alle möglichen Teilchen, z.&nbsp;B. Duftstoffe in der Luft oder Zucker im Tee</td><td>Nur das Wasser</td></tr>
+            <tr><td><strong>Braucht man eine Membran?</strong></td><td>Nein</td><td>Ja, eine, die nur Wasser durchlässt</td></tr>
+            <tr><td><strong>Wohin?</strong></td><td>Von „viel“ nach „wenig“, bis alles gleichmäßig verteilt ist</td><td>Zu der Seite mit mehr gelösten Teilchen</td></tr>
+            <tr><td><strong>Energie nötig?</strong></td><td colspan="2">Nein, beides läuft von allein (passiv)</td></tr>
           </tbody>
         </table>
       </div>
+      <p class="small muted">Osmose ist also eine besondere Form der Diffusion: die Diffusion von Wasser durch eine Membran.</p>
     </div>
 
     <div class="grid-2">
       <div class="panel stack">
-        <h3>Typische Fehler in Klausuren</h3>
+        <h3>Typische Fehler</h3>
         <ul class="pitfalls">
-          <li>„Das Salz wandert in die Zelle.“ <strong>Falsch.</strong> Bei Osmose bewegt sich das <em>Wasser</em>. Die gelösten Teilchen bleiben, wo sie sind.</li>
-          <li>„In isotonischer Lösung bewegt sich kein Wasser.“ <strong>Falsch.</strong> Es bewegt sich gleich viel in beide Richtungen.</li>
-          <li>„Hypertonisch“ ohne Bezug. Nenne immer, <em>womit</em> du vergleichst.</li>
-          <li>Es zählt die <strong>Teilchenzahl</strong>, nicht die Masse: NaCl zerfällt in Na⁺ und Cl⁻. 0,1 mol/L NaCl wirkt also etwa doppelt so stark wie 0,1 mol/L Glucose.</li>
-          <li>Pflanzenzellen platzen nicht, weil die <strong>Zellwand</strong> dem Turgordruck standhält. Tierzellen haben keine Zellwand.</li>
+          <li>„Das Salz wandert in die Zelle.“ <strong>Falsch.</strong> Bei Osmose wandert nur das <em>Wasser</em>.</li>
+          <li>„Bei isotonisch bewegt sich gar kein Wasser.“ <strong>Falsch.</strong> Es wandert gleich viel hinein wie heraus, deshalb ändert sich nichts.</li>
+          <li>„Die Lösung ist hypertonisch.“ Das reicht nicht. Sag immer, <em>womit</em> du vergleichst, z.&nbsp;B. „hypertonisch zum Zellinneren“.</li>
+          <li>Pflanzenzellen platzen nicht, weil sie eine feste <strong>Zellwand</strong> haben. Tierzellen haben keine.</li>
         </ul>
       </div>
       <div class="panel stack">
         <h3>Wichtige Begriffe</h3>
         <dl class="glossary">
-          <div><dt>Turgor</dt><dd>Innendruck der Pflanzenzelle gegen die Zellwand. Er macht Pflanzen straff und knackig.</dd></div>
-          <div><dt>Plasmolyse</dt><dd>In hypertonischer Lösung verliert die Vakuole Wasser. Der Protoplast löst sich von der Zellwand.</dd></div>
-          <div><dt>Deplasmolyse</dt><dd>Die Plasmolyse wird rückgängig gemacht: In hypotonischer Lösung nimmt die Zelle wieder Wasser auf.</dd></div>
-          <div><dt>Hämolyse</dt><dd>Rote Blutzellen schwellen in hypotonischer Lösung an und platzen.</dd></div>
-          <div><dt>Stechapfelform</dt><dd>Rote Blutzellen schrumpfen in hypertonischer Lösung und bekommen eine zackige Oberfläche.</dd></div>
-          <div><dt>Osmoregulation</dt><dd>Lebewesen regulieren aktiv ihren Wasser- und Salzhaushalt, z.&nbsp;B. mit der pulsierenden Vakuole oder den Nieren.</dd></div>
+          <div><dt>Turgor</dt><dd>Der Druck, mit dem das Zellinnere gegen die Zellwand drückt. Er macht Pflanzen straff und Salat knackig.</dd></div>
+          <div><dt>Plasmolyse</dt><dd>Die Pflanzenzelle verliert Wasser. Ihr Inneres schrumpft und löst sich von der Zellwand.</dd></div>
+          <div><dt>Deplasmolyse</dt><dd>Das Gegenteil: Die Zelle nimmt wieder Wasser auf und füllt die Zellwand wieder aus.</dd></div>
+          <div><dt>Hämolyse</dt><dd>Rote Blutzellen nehmen so viel Wasser auf, dass sie platzen.</dd></div>
+          <div><dt>Vakuole</dt><dd>Großer Wasserspeicher in der Pflanzenzelle. Ist er voll, ist die Zelle prall.</dd></div>
+          <div><dt>Osmoregulation</dt><dd>Lebewesen steuern ihren Wasser- und Salzhaushalt, z.&nbsp;B. mit den Nieren.</dd></div>
         </dl>
       </div>
     </div>
+
+    <details class="profi">
+      <summary>Für Profis: Wasserkanäle und Teilchenzahl</summary>
+      <p>In Zellmembranen gelangt Wasser vor allem durch spezielle Kanalproteine, die <strong>Aquaporine</strong>. Für die Stärke der Osmose zählt die <strong>Anzahl</strong> der gelösten Teilchen, nicht ihr Gewicht. Kochsalz (NaCl) zerfällt im Wasser in zwei Teilchen, Na⁺ und Cl⁻. Deshalb wirkt 0,1 mol/L Kochsalz etwa doppelt so stark wie 0,1 mol/L Traubenzucker.</p>
+    </details>
 
     <div class="row"><a class="btn primary" href="#simulation" style="text-decoration:none">Weiter zur Simulation →</a></div>
   </section>
@@ -354,8 +370,8 @@ canvas#sim { width: 100%; height: 380px; display: block; }
   <section class="view" id="view-simulation" hidden>
     <div class="stack">
       <span class="eyebrow">Modellversuch</span>
-      <h2>Das Osmometer: zwei Lösungen, eine Membran</h2>
-      <p class="muted">Stelle die Konzentration der gelösten Teilchen auf beiden Seiten ein und starte. Achte darauf, auf welcher Seite der Wasserspiegel steigt und wann er stehen bleibt.</p>
+      <h2>Versuch: zwei Lösungen, eine Membran</h2>
+      <p class="muted">Ein Gefäß ist durch eine Membran in zwei Hälften geteilt. Stelle mit den Reglern ein, wie viel Zucker auf jeder Seite gelöst ist, und drücke auf Start. Beobachte, auf welcher Seite der Wasserspiegel steigt.</p>
     </div>
     <div class="sim-layout">
       <div class="canvas-box">
@@ -407,9 +423,12 @@ canvas#sim { width: 100%; height: 380px; display: block; }
         </ul>
       </div>
       <div class="panel stack">
-        <h3>Warum stoppt der Anstieg?</h3>
-        <p style="font-size: var(--step--1)">Die steigende Wassersäule drückt mit ihrem Gewicht (<strong>hydrostatischer Druck</strong>) zurück. Gleichzeitig wird die rechte Lösung verdünnt. Sobald der Gegendruck so groß ist wie der osmotische Druck, ist der Nettostrom null.</p>
-        <p class="muted" style="font-size: var(--step--1)">Zum Vergleich mit der echten Welt: Nach der Formel von van ’t Hoff (π = c · R · T) erzeugt schon ein Unterschied von 0,1 mol/L bei 20 °C etwa <span class="mono">2,4 bar</span>. Das entspricht einer Wassersäule von rund 25 m! In der Simulation ist das stark verkleinert dargestellt.</p>
+        <h3>Warum hört der Spiegel auf zu steigen?</h3>
+        <p style="font-size: var(--step--1)">Je höher das Wasser auf einer Seite steht, desto schwerer ist es und desto stärker drückt es zurück. Außerdem wird die Zuckerseite durch das zusätzliche Wasser verdünnt. Irgendwann sind Sog und Gegendruck gleich stark. Dann bleibt der Spiegel stehen.</p>
+        <details class="profi">
+          <summary>Für Profis: Wie stark ist der osmotische Druck wirklich?</summary>
+          <p>Nach der Formel von van ’t Hoff (π = c · R · T) erzeugt schon ein Unterschied von 0,1 mol/L bei 20 °C etwa 2,4 bar. Das entspricht einer Wassersäule von rund 25 m. In der Simulation ist das stark verkleinert.</p>
+        </details>
       </div>
     </div>
   </section>
@@ -419,7 +438,7 @@ canvas#sim { width: 100%; height: 380px; display: block; }
     <div class="stack">
       <span class="eyebrow">Mikroskopie</span>
       <h2>Zellen in verschiedenen Lösungen</h2>
-      <p class="muted">Wähle eine Außenlösung. Beobachte, wie eine rote Blutzelle (Tierzelle, ohne Zellwand) und eine Zelle aus der Zwiebelhaut (Pflanzenzelle, mit Zellwand und Vakuole) reagieren.</p>
+      <p class="muted">Wähle aus, in welcher Flüssigkeit die Zellen liegen. Vergleiche eine rote Blutzelle (Tierzelle, <strong>ohne</strong> Zellwand) mit einer Zelle aus der Zwiebelhaut (Pflanzenzelle, <strong>mit</strong> Zellwand).</p>
     </div>
     <div class="medium-btns" role="group" aria-label="Außenlösung wählen">
       <button type="button" data-medium="hypo" aria-pressed="false">hypotonische Lösung<small>z.&nbsp;B. destilliertes Wasser</small></button>
@@ -463,7 +482,7 @@ canvas#sim { width: 100%; height: 380px; display: block; }
     </div>
     <div class="panel stack">
       <h3>Einzeller: die pulsierende Vakuole</h3>
-      <p style="font-size: var(--step--1)">Ein Pantoffeltierchen lebt in Süßwasser. Das Wasser ist hypotonisch zum Zellinneren, deshalb strömt ständig Wasser in die Zelle. Damit die Zelle nicht platzt, sammelt die <strong>pulsierende (kontraktile) Vakuole</strong> das Wasser und pumpt es unter <strong>Energieaufwand</strong> regelmäßig nach außen. Das ist Osmoregulation. Je hypotonischer das Wasser ist, desto schneller pulsiert die Vakuole.</p>
+      <p style="font-size: var(--step--1)">Das Pantoffeltierchen ist ein Einzeller, der im Süßwasser lebt. In seiner Zelle sind mehr gelöste Teilchen als im Teichwasser. Deshalb strömt ständig Wasser hinein. Damit es nicht platzt, hat es eine kleine Pumpblase, die <strong>pulsierende Vakuole</strong>. Sie sammelt das Wasser und drückt es regelmäßig wieder hinaus. Dafür braucht die Zelle Energie.</p>
     </div>
   </section>
 
@@ -812,27 +831,27 @@ canvas#sim { width: 100%; height: 380px; display: block; }
         rbc: { R: 80, spike: 0, center: 0, burst: 1 },
         plant: { inset: 6, vac: 1 },
         rbcState: "angeschwollen, platzt (Hämolyse)",
-        rbcText: "Die Außenlösung ist hypotonisch. Netto strömt Wasser in die Zelle. Die Blutzelle wird kugelig, und weil keine Zellwand sie hält, reißt die Membran. Der rote Blutfarbstoff (Hämoglobin) tritt aus.",
+        rbcText: "Außen sind weniger gelöste Teilchen als in der Zelle. Deshalb strömt Wasser in die Blutzelle. Sie wird kugelrund und platzt schließlich, weil keine Zellwand sie schützt. Das nennt man Hämolyse.",
         plantState: "prall (hoher Turgor)",
-        plantText: "Wasser strömt in die Vakuole, sie wird größer. Der Protoplast drückt fest gegen die Zellwand (Turgor). Die Zellwand hält dagegen, deshalb platzt die Zelle nicht. So bleiben Pflanzen straff.",
+        plantText: "Wasser strömt in die Vakuole, den Wasserspeicher der Zelle. Die Zelle wird prall und drückt gegen die Zellwand (Turgor). Die feste Zellwand hält dagegen, deshalb platzt die Zelle nicht. So bleiben Pflanzen straff.",
         dir: "in"
       },
       iso: {
         rbc: { R: 62, spike: 0, center: 1, burst: 0 },
         plant: { inset: 9, vac: 0.8 },
         rbcState: "normal (bikonkav)",
-        rbcText: "Die Außenlösung ist isotonisch. Wassermoleküle bewegen sich gleich stark in beide Richtungen, es gibt keinen Nettostrom. Die Zelle behält ihre typische Scheibenform mit der Delle in der Mitte.",
+        rbcText: "Innen und außen sind gleich viele gelöste Teilchen. Es strömt gleich viel Wasser hinein wie heraus. Die Zelle behält ihre normale Form: eine flache Scheibe mit einer Delle in der Mitte.",
         plantState: "Grenzplasmolyse",
-        plantText: "Kein Nettostrom. Der Protoplast liegt gerade noch an der Zellwand an, drückt aber nicht mehr. Diesen Zustand nennt man Grenzplasmolyse. Mit ihm kann man die Konzentration des Zellsafts bestimmen.",
+        plantText: "Es strömt gleich viel Wasser hinein wie heraus. Das Zellinnere liegt gerade noch an der Zellwand an, drückt aber nicht dagegen. Diesen Zustand nennt man Grenzplasmolyse.",
         dir: "both"
       },
       hyper: {
         rbc: { R: 50, spike: 1, center: 0.4, burst: 0 },
         plant: { inset: 40, vac: 0.35 },
         rbcState: "geschrumpft (Stechapfelform)",
-        rbcText: "Die Außenlösung ist hypertonisch. Netto strömt Wasser aus der Zelle. Sie schrumpft, und die Membran legt sich in Zacken.",
+        rbcText: "Außen sind mehr gelöste Teilchen als in der Zelle. Deshalb strömt Wasser aus der Blutzelle heraus. Sie schrumpft und bekommt Zacken (Stechapfelform).",
         plantState: "Plasmolyse",
-        plantText: "Die Vakuole gibt Wasser ab und schrumpft. Der Protoplast löst sich von der Zellwand. Zwischen Wand und Protoplast dringt die Außenlösung ein, denn die Zellwand ist durchlässig. Gibt man die Zelle in Wasser, wird das rückgängig gemacht (Deplasmolyse).",
+        plantText: "Die Vakuole, der Wasserspeicher, gibt Wasser ab und schrumpft. Das Zellinnere löst sich von der Zellwand. Das nennt man Plasmolyse. Legt man die Zelle danach in Wasser, füllt sie sich wieder (Deplasmolyse).",
         dir: "out"
       }
     };

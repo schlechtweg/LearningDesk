@@ -63,6 +63,12 @@
 
 * { box-sizing: border-box; }
 [hidden] { display: none !important; }
+.einfach { background: var(--surface-2); border-radius: var(--radius); padding: 16px 20px; display: grid; gap: 8px; }
+.einfach p { font-size: var(--step-0); }
+details.profi { border: 1px dashed var(--line); border-radius: var(--radius); padding: 12px 16px; background: var(--surface); }
+details.profi summary { cursor: pointer; font-weight: 700; font-size: var(--step--1); }
+details.profi[open] summary { margin-bottom: 8px; }
+details.profi p, details.profi li { font-size: var(--step--1); }
 body {
   background: var(--bg); color: var(--ink);
   font-family: var(--font-body); font-size: var(--step-0); line-height: 1.6;
@@ -182,9 +188,9 @@ b.ok { color: var(--good); } b.no { color: var(--bad); }
 
 <div class="wrap">
   <header class="top">
-    <span class="eyebrow">Biologie · Klasse 11 · Membrantransport &amp; Neurobiologie</span>
+    <span class="eyebrow">Biologie · Klasse 10/11 · Stofftransport &amp; Nerven</span>
     <h1>Natrium-Kalium-Pumpe</h1>
-    <p>Wie eine Zelle unter ATP-Verbrauch Ionen gegen ihr Konzentrationsgefälle transportiert und warum das für Nerven, Muskeln und das Zellvolumen so wichtig ist.</p>
+    <p>Wie eine winzige Pumpe in der Zellmembran geladene Teilchen hinein- und hinausbefördert und warum deine Nerven ohne sie nicht funktionieren würden.</p>
   </header>
 
   <nav class="tabs" aria-label="Bereiche">
@@ -199,73 +205,83 @@ b.ok { color: var(--good); } b.no { color: var(--bad); }
   <!-- ===================== 1 GRUNDLAGEN ===================== -->
   <section class="view" id="view-grundlagen">
     <div class="merksatz">
-      <span class="eyebrow">Kernaussage</span>
-      <p>Die Natrium-Kalium-Pumpe (Na⁺/K⁺-ATPase) ist ein Membranprotein. Pro Zyklus spaltet sie ein <span class="atp">ATP</span>, transportiert <span class="na">3 Na⁺ hinaus</span> und <span class="k">2 K⁺ hinein</span>, jeweils <strong>gegen</strong> das Konzentrationsgefälle.</p>
+      <span class="eyebrow">Das Wichtigste in einem Satz</span>
+      <p>Die Natrium-Kalium-Pumpe sitzt in der Zellmembran. Bei jeder Runde befördert sie <span class="na">3 Natrium-Ionen hinaus</span> und <span class="k">2 Kalium-Ionen hinein</span>. Die Energie dafür liefert ein <span class="atp">ATP</span>.</p>
+    </div>
+
+    <div class="einfach">
+      <span class="eyebrow">Einfach erklärt</span>
+      <p>Stell dir eine Drehtür mit Motor vor. Bei jeder Umdrehung schiebt sie 3 Natrium-Teilchen nach draußen und 2 Kalium-Teilchen nach drinnen.</p>
+      <p>Das Besondere: Draußen ist schon <strong>viel</strong> Natrium und drinnen schon <strong>viel</strong> Kalium. Die Pumpe schiebt die Teilchen also dorthin, wo schon viele sind. Das ist wie Wasser bergauf pumpen und klappt nur mit Energie. Von allein würden die Teilchen in die andere Richtung fließen.</p>
+      <p>Die Energie kommt aus <strong>ATP</strong>. ATP ist so etwas wie die aufgeladene Batterie der Zelle.</p>
     </div>
 
     <div class="panel">
       <div class="bignum">
-        <span><span class="na">3 Na⁺</span> <small>nach außen</small></span>
-        <span><span class="k">2 K⁺</span> <small>nach innen</small></span>
-        <span><span class="atp">1 ATP</span> <small>pro Zyklus</small></span>
-        <span>+1 <small>Ladung netto nach außen</small></span>
+        <span><span class="na">3 Na⁺</span> <small>raus</small></span>
+        <span><span class="k">2 K⁺</span> <small>rein</small></span>
+        <span><span class="atp">1 ATP</span> <small>pro Runde</small></span>
       </div>
+      <p class="small muted" style="margin-top:8px">Eselsbrücke: „<strong>Drei Natrium raus, zwei Kalium rein</strong>.“ Na⁺ und K⁺ sind <strong>Ionen</strong>, also elektrisch geladene Teilchen. Beide sind positiv geladen (das ⁺).</p>
     </div>
 
     <div class="grid-2">
       <div class="panel stack">
-        <h3>Ionenverteilung an einer Nervenzelle</h3>
+        <h3>Wo ist wie viel?</h3>
         <div class="table-scroll">
           <table class="data">
-            <thead><tr><th>Ion</th><th class="num">innen</th><th class="num">außen</th></tr></thead>
+            <thead><tr><th>Ion</th><th class="num">in der Zelle</th><th class="num">außerhalb</th></tr></thead>
             <tbody>
-              <tr><td><span class="na">Na⁺</span></td><td class="num">≈ 12 mmol/L</td><td class="num">≈ 145 mmol/L</td></tr>
-              <tr><td><span class="k">K⁺</span></td><td class="num">≈ 140 mmol/L</td><td class="num">≈ 4 mmol/L</td></tr>
-              <tr><td>Cl⁻</td><td class="num">≈ 10 mmol/L</td><td class="num">≈ 110 mmol/L</td></tr>
-              <tr><td>organische Anionen (A⁻)</td><td class="num">hoch</td><td class="num">sehr gering</td></tr>
+              <tr><td><span class="na">Natrium Na⁺</span></td><td class="num">wenig (≈ 12)</td><td class="num">viel (≈ 145)</td></tr>
+              <tr><td><span class="k">Kalium K⁺</span></td><td class="num">viel (≈ 140)</td><td class="num">wenig (≈ 4)</td></tr>
             </tbody>
           </table>
         </div>
-        <p class="small muted">Typische Werte für Säugetierzellen, sie schwanken je nach Lehrbuch leicht. Die Pumpe erzeugt und erhält die Gradienten von Na⁺ und K⁺.</p>
+        <p class="small muted">Zahlen in mmol/L, typische Werte einer Nervenzelle. Merke: <strong>Natrium draußen, Kalium drinnen.</strong> Die Pumpe sorgt dafür, dass das so bleibt.</p>
       </div>
       <div class="panel stack">
         <h3>Steckbrief</h3>
         <ul class="list small">
-          <li><strong>Primär aktiver Transport:</strong> Die Energie kommt direkt aus der Spaltung von ATP. Die Pumpe ist selbst ein Enzym, eine ATPase.</li>
-          <li><strong>Antiport:</strong> Zwei Ionensorten werden gleichzeitig in entgegengesetzte Richtungen transportiert.</li>
-          <li><strong>Elektrogen:</strong> 3 positive Ladungen gehen hinaus, 2 kommen herein. Netto entsteht ein kleiner Strom nach außen.</li>
-          <li><strong>Arbeitsweise:</strong> Sie ist ein Carrier, kein offener Kanal. Sie ändert ihre Form (Konformation) und ist immer nur zu einer Seite hin offen.</li>
-          <li><strong>Vorkommen:</strong> in der Zellmembran fast aller tierischen Zellen. Sie läuft ständig, nicht nur nach einem Aktionspotential.</li>
-          <li><strong>Entdeckung:</strong> Jens Christian Skou, 1957 (Nobelpreis für Chemie 1997).</li>
+          <li><strong>Aktiver Transport:</strong> Die Pumpe braucht Energie (ATP), weil sie gegen das Gefälle arbeitet, also von „wenig“ nach „viel“.</li>
+          <li><strong>Antiport:</strong> Zwei Teilchensorten werden in entgegengesetzte Richtungen befördert („anti“ = gegen).</li>
+          <li><strong>Kein Kanal:</strong> Ein Kanal ist wie ein offenes Tor. Die Pumpe ist eher wie eine Schleuse: Sie ist immer nur zu einer Seite hin offen.</li>
+          <li><strong>Immer im Einsatz:</strong> Sie arbeitet ständig, in fast allen tierischen Zellen.</li>
         </ul>
       </div>
     </div>
 
     <div class="stack">
-      <h2>Einordnung: Arten des Membrantransports</h2>
+      <h2>Passiver und aktiver Transport</h2>
       <div class="panel table-scroll" style="padding: 8px 12px">
         <table class="data">
-          <thead><tr><th>Transportart</th><th>Richtung</th><th>Energie</th><th>Beispiel</th></tr></thead>
+          <thead><tr><th>Art</th><th>Wie?</th><th>Energie?</th><th>Beispiel</th></tr></thead>
           <tbody>
-            <tr><td><strong>Einfache Diffusion</strong></td><td>mit dem Gefälle</td><td>passiv</td><td>O₂, CO₂ durch die Lipiddoppelschicht</td></tr>
-            <tr><td><strong>Erleichterte Diffusion</strong> (Kanal oder Carrier)</td><td>mit dem Gefälle</td><td>passiv</td><td>K⁺-Leckkanäle, Aquaporine, Glucose-Carrier GLUT</td></tr>
-            <tr><td><strong>Primär aktiver Transport</strong></td><td>gegen das Gefälle</td><td>ATP direkt</td><td><strong>Na⁺/K⁺-Pumpe</strong>, Ca²⁺-Pumpe</td></tr>
-            <tr><td><strong>Sekundär aktiver Transport</strong></td><td>ein Stoff gegen sein Gefälle</td><td>nutzt den Na⁺-Gradienten</td><td>Na⁺-Glucose-Symporter (SGLT) im Darm und in der Niere</td></tr>
+            <tr><td><strong>Passiver Transport</strong></td><td>von „viel“ nach „wenig“, wie einen Berg hinunterrollen</td><td>nein</td><td>Sauerstoff, Wasser (Osmose), Ionen durch offene Kanäle</td></tr>
+            <tr><td><strong>Aktiver Transport</strong></td><td>von „wenig“ nach „viel“, wie einen Berg hinaufschieben</td><td>ja, ATP</td><td><strong>Natrium-Kalium-Pumpe</strong></td></tr>
           </tbody>
         </table>
       </div>
-      <p class="small muted"><strong>Uniport</strong>: ein Stoff, eine Richtung. <strong>Symport</strong>: zwei Stoffe, gleiche Richtung. <strong>Antiport</strong>: zwei Stoffe, entgegengesetzte Richtungen.</p>
     </div>
 
     <div class="panel stack">
-      <h3>Typische Fehler in Klausuren</h3>
+      <h3>Typische Fehler</h3>
       <ul class="list small">
-        <li>„Die Pumpe tauscht Na⁺ und K⁺ 1 : 1.“ <strong>Falsch</strong>, das Verhältnis ist 3 : 2.</li>
-        <li>„Die Pumpe sorgt für die Repolarisation beim Aktionspotential.“ <strong>Falsch.</strong> Dafür sind spannungsgesteuerte K⁺-Kanäle zuständig. Die Pumpe ist dafür viel zu langsam und stellt nur langfristig die Gradienten wieder her.</li>
-        <li>„Das Ruhepotential entsteht direkt durch die Pumpe.“ <strong>Nur zu einem kleinen Teil</strong> (wenige mV, elektrogener Anteil). Es entsteht vor allem durch den K⁺-Ausstrom durch Leckkanäle. Dafür braucht es aber den K⁺-Gradienten, den die Pumpe aufbaut.</li>
-        <li>„Die Na⁺/K⁺-Pumpe ist ein Ionenkanal.“ <strong>Falsch.</strong> Ein Kanal ist offen und lässt Ionen nur mit dem Gefälle durch. Die Pumpe transportiert schrittweise mit Formänderung und gegen das Gefälle.</li>
+        <li>„Die Pumpe tauscht 1 Natrium gegen 1 Kalium.“ <strong>Falsch</strong>, es sind <strong>3 gegen 2</strong>.</li>
+        <li>„Die Pumpe ist ein Kanal.“ <strong>Falsch.</strong> Durch einen Kanal fließen Ionen von allein. Die Pumpe muss sie aktiv und mit Energie hinüberschieben.</li>
+        <li>„Die Pumpe läuft nur nach einem Nervenimpuls.“ <strong>Falsch.</strong> Sie läuft ständig.</li>
       </ul>
     </div>
+
+    <details class="profi">
+      <summary>Für Profis: Fachbegriffe für die Oberstufe</summary>
+      <ul class="list">
+        <li><strong>Primär aktiver Transport:</strong> Die Pumpe spaltet das ATP selbst. Sie ist also gleichzeitig ein Enzym, eine <strong>ATPase</strong> (Na⁺/K⁺-ATPase).</li>
+        <li><strong>Sekundär aktiver Transport:</strong> Andere Transporter nutzen das Natrium-Gefälle, das die Pumpe aufgebaut hat, als Antrieb. Ein Beispiel ist der Na⁺-Glucose-Symporter im Darm.</li>
+        <li><strong>Elektrogen:</strong> 3 positive Ladungen gehen hinaus, 2 kommen herein. Netto geht pro Runde eine positive Ladung nach außen.</li>
+        <li><strong>Ruhepotential und Repolarisation:</strong> Das Ruhepotential entsteht vor allem durch Kalium, das durch offene Kanäle aus der Zelle sickert. Die Pumpe sorgt nur dafür, dass innen genug Kalium vorhanden ist. Für die Repolarisation beim Aktionspotential sind ebenfalls Kaliumkanäle zuständig. Die Pumpe ist dafür zu langsam.</li>
+        <li>Entdeckt hat sie Jens Christian Skou 1957 (Nobelpreis für Chemie 1997).</li>
+      </ul>
+    </details>
     <div class="row"><a class="btn primary" href="#zyklus">Weiter zum Pumpzyklus →</a></div>
   </section>
 
@@ -273,8 +289,8 @@ b.ok { color: var(--good); } b.no { color: var(--bad); }
   <section class="view" id="view-zyklus" hidden>
     <div class="stack">
       <span class="eyebrow">Mechanismus</span>
-      <h2>Der Pumpzyklus in sechs Schritten</h2>
-      <p class="muted">Die Pumpe wechselt zwischen zwei Formen: <strong>E1</strong> ist zum Zellinneren offen und bindet Na⁺ gut. <strong>E2</strong> ist nach außen offen und bindet K⁺ gut. Den Wechsel steuern die Phosphorylierung durch ATP und die Dephosphorylierung.</p>
+      <h2>So arbeitet die Pumpe, Schritt für Schritt</h2>
+      <p class="muted">Die Pumpe hat zwei Stellungen: Mal ist sie <strong>nach innen offen</strong> und schnappt sich Natrium, mal ist sie <strong>nach außen offen</strong> und schnappt sich Kalium. Umgeschaltet wird mit Energie aus ATP. Klicke dich mit „Weiter“ durch die Schritte.</p>
     </div>
     <div class="cycle-layout">
       <div class="svg-box">
@@ -333,7 +349,8 @@ b.ok { color: var(--good); } b.no { color: var(--bad); }
       </div>
       <div class="panel stack">
         <h3>Warum lässt die Pumpe die Ionen wieder los?</h3>
-        <p class="small">Mit der Form ändert sich auch die <strong>Affinität</strong> der Bindungsstellen, also wie fest sie ein Ion binden. In E1 binden sie Na⁺ fest und K⁺ kaum. In E2 ist es umgekehrt. Deshalb nimmt die Pumpe Na⁺ innen auf und gibt es außen ab, bei K⁺ läuft es genau andersherum.</p>
+        <p class="small">Wenn die Pumpe umklappt, ändern sich ihre „Greifer“. Nach innen offen hält sie Natrium gut fest. Nach außen offen hält sie Natrium kaum noch, dafür aber Kalium. Deshalb lässt sie das Natrium draußen los und das Kalium drinnen.</p>
+        <p class="small muted">Fachbegriffe: Die innen offene Form heißt <strong>E1</strong>, die außen offene <strong>E2</strong>. Wie fest ein Ion gebunden wird, nennt man <strong>Affinität</strong>.</p>
       </div>
     </div>
   </section>
@@ -342,8 +359,12 @@ b.ok { color: var(--good); } b.no { color: var(--bad); }
   <section class="view" id="view-simulation" hidden>
     <div class="stack">
       <span class="eyebrow">Modell</span>
-      <h2>Gradienten und Membranpotential</h2>
-      <p class="muted">Durch Leckkanäle fließen ständig Na⁺ hinein und K⁺ hinaus. Die Pumpe arbeitet dagegen. Hemme die Pumpe oder entziehe ATP und beobachte, wie die Gradienten zerfallen und die Zelle depolarisiert. Die Zeit ist stark gerafft: In echten Zellen dauert das Minuten bis Stunden.</p>
+      <h2>Was passiert ohne Pumpe?</h2>
+      <p class="muted">Die Membran hat kleine Lecks (offene Kanäle). Durch sie sickert ständig Natrium hinein und Kalium hinaus. Die Pumpe bringt die Ionen immer wieder zurück. Schalte die Pumpe aus und beobachte, was passiert. Die Zeit läuft hier stark beschleunigt.</p>
+    </div>
+    <div class="einfach">
+      <span class="eyebrow">Was zeigt die Kurve?</span>
+      <p>Die Kurve zeigt die <strong>elektrische Spannung</strong> zwischen dem Zellinneren und außen, das <strong>Membranpotential</strong>. Normalerweise ist die Zelle innen negativ geladen, etwa −70 mV. Das ist das <strong>Ruhepotential</strong>. Nervenzellen brauchen es, um Signale weiterzuleiten. Wird der Wert positiver (Richtung 0), spricht man von <strong>Depolarisation</strong>.</p>
     </div>
     <div class="sim-layout">
       <div class="stack">
@@ -375,8 +396,8 @@ b.ok { color: var(--good); } b.no { color: var(--bad); }
         </div>
         <dl class="readout">
           <dt>Membranpotential</dt><dd id="roV">–</dd>
-          <dt>Gleichgewichtspot. E<sub>K</sub></dt><dd id="roEK">–</dd>
-          <dt>Gleichgewichtspot. E<sub>Na</sub></dt><dd id="roENa">–</dd>
+          <dt>Kalium-Grenzwert E<sub>K</sub></dt><dd id="roEK">–</dd>
+          <dt>Natrium-Grenzwert E<sub>Na</sub></dt><dd id="roENa">–</dd>
           <dt>Pumpleistung</dt><dd id="roPump">–</dd>
         </dl>
         <div class="status-box" id="simStatus" aria-live="polite"></div>
@@ -392,9 +413,15 @@ b.ok { color: var(--good); } b.no { color: var(--bad); }
         </ul>
       </div>
       <div class="panel stack">
-        <h3>So rechnet das Modell</h3>
-        <p class="small">Das Membranpotential wird mit der Goldman-Gleichung aus den Konzentrationen berechnet. Dabei ist die Membran in Ruhe etwa 25-mal durchlässiger für K⁺ als für Na⁺. Die Pumpe arbeitet schneller, wenn innen mehr Na⁺ ist. Das ist eine eingebaute Rückkopplung.</p>
-        <p class="small muted">Gleichgewichtspotential (Nernst, 37 °C): E = 61,5 mV · log(c<sub>außen</sub> / c<sub>innen</sub>)</p>
+        <h3>Was du hier lernen kannst</h3>
+        <ul class="list small">
+          <li>Ohne Pumpe gleichen sich die Konzentrationen langsam aus. Die Zelle verliert ihr Ruhepotential und kann keine Signale mehr weiterleiten.</li>
+          <li>Ist mehr Natrium in der Zelle, arbeitet die Pumpe automatisch schneller.</li>
+        </ul>
+        <details class="profi">
+          <summary>Für Profis: So rechnet das Modell</summary>
+          <p>Das Membranpotential wird mit der Goldman-Gleichung aus den Konzentrationen berechnet. Die Membran ist in Ruhe etwa 25-mal durchlässiger für K⁺ als für Na⁺. Gleichgewichtspotential (Nernst, 37 °C): E = 61,5 mV · log(c<sub>außen</sub> / c<sub>innen</sub>).</p>
+        </details>
       </div>
     </div>
   </section>
@@ -402,41 +429,35 @@ b.ok { color: var(--good); } b.no { color: var(--bad); }
   <!-- ===================== 4 BEDEUTUNG ===================== -->
   <section class="view" id="view-bedeutung" hidden>
     <div class="stack">
-      <span class="eyebrow">Funktion im Körper</span>
-      <h2>Wofür braucht die Zelle die Pumpe?</h2>
+      <span class="eyebrow">Wozu das Ganze?</span>
+      <h2>Warum braucht die Zelle die Pumpe?</h2>
     </div>
     <div class="grid-2">
       <div class="panel stack">
         <span class="eyebrow">Nerven und Muskeln</span>
-        <h3>Ruhepotential und Erregbarkeit</h3>
-        <p class="small">Die Pumpe baut den K⁺-Gradienten auf. K⁺ strömt durch Leckkanäle hinaus, und dabei entsteht das Ruhepotential von etwa −70 mV. Ohne den Na⁺-Gradienten gäbe es außerdem keinen schnellen Na⁺-Einstrom und damit kein Aktionspotential.</p>
-      </div>
-      <div class="panel stack">
-        <span class="eyebrow">Nach Aktionspotentialen</span>
-        <h3>Gradienten wiederherstellen</h3>
-        <p class="small">Bei einem Aktionspotential fließt nur ein winziger Bruchteil der Ionen. Erst nach Tausenden Aktionspotentialen würden die Gradienten merklich abnehmen. Die Pumpe gleicht das ständig aus. Steigt Na⁺ innen an, arbeitet sie automatisch schneller.</p>
+        <h3>Ohne Pumpe keine Nervensignale</h3>
+        <p class="small">Nervenzellen leiten Signale mit Hilfe von Natrium und Kalium weiter. Das funktioniert nur, wenn draußen viel Natrium und drinnen viel Kalium ist. Die Pumpe hält diesen Unterschied aufrecht, wie ein Akku, der immer wieder aufgeladen wird.</p>
       </div>
       <div class="panel stack">
         <span class="eyebrow">Verbindung zur Osmose</span>
-        <h3>Zellvolumen regulieren</h3>
-        <p class="small">In der Zelle liegen viele gelöste Teilchen vor (Proteine, organische Anionen). Ohne Pumpe würde Na⁺ einströmen, Cl⁻ und Wasser würden folgen und die Zelle würde anschwellen. Weil die Pumpe mehr Ionen hinaus- als hineinbefördert, hält sie die Teilchenkonzentration innen niedrig und verhindert so das Platzen.</p>
+        <h3>Die Zelle platzt nicht</h3>
+        <p class="small">Die Pumpe befördert mehr Teilchen hinaus (3) als hinein (2). Dadurch bleiben in der Zelle nicht zu viele gelöste Teilchen. Ohne Pumpe würde Natrium in die Zelle strömen, Wasser würde durch Osmose folgen, und die Zelle würde anschwellen.</p>
       </div>
       <div class="panel stack">
-        <span class="eyebrow">Darm und Niere</span>
-        <h3>Antrieb für sekundär aktiven Transport</h3>
-        <p class="small">Der Na⁺-Gradient ist ein Energiespeicher. Der Na⁺-Glucose-Symporter (SGLT) nutzt den Na⁺-Einstrom, um Glucose <em>gegen</em> ihr Gefälle in die Darm- oder Nierenzellen zu holen. Deshalb enthalten Trinklösungen gegen Durchfall Salz <strong>und</strong> Zucker.</p>
+        <span class="eyebrow">Energie</span>
+        <h3>Ein echter Energiefresser</h3>
+        <p class="small">In Ruhe verbraucht dein Körper etwa ein Viertel bis ein Drittel seiner Energie (ATP) nur für diese Pumpe, im Gehirn sogar noch mehr. Deshalb ist Sauerstoffmangel für das Gehirn so gefährlich: Ohne Sauerstoff entsteht kaum ATP, und die Pumpe bleibt stehen.</p>
       </div>
       <div class="panel stack">
-        <span class="eyebrow">Energiebedarf</span>
-        <h3>Ein großer ATP-Verbraucher</h3>
-        <p class="small">Im Ruhezustand verbraucht der Körper ungefähr ein Viertel bis ein Drittel seines ATP für die Na⁺/K⁺-Pumpe, in Nervenzellen sogar deutlich mehr. Deshalb reagiert das Gehirn so empfindlich auf Sauerstoff- oder Zuckermangel.</p>
-      </div>
-      <div class="panel stack">
-        <span class="eyebrow">Medizin</span>
-        <h3>Hemmstoffe</h3>
-        <p class="small"><strong>Ouabain</strong> (früher als Pfeilgift genutzt) und <strong>Digitalis</strong>-Wirkstoffe aus dem Fingerhut hemmen die Pumpe. In niedriger Dosis werden Digitalis-Präparate bei Herzschwäche eingesetzt, weil der Herzmuskel dann stärker kontrahiert. In höherer Dosis sind sie giftig.</p>
+        <span class="eyebrow">Darm</span>
+        <h3>Hilft bei der Aufnahme von Zucker</h3>
+        <p class="small">Im Darm wird Traubenzucker zusammen mit Natrium in die Zellen aufgenommen. Das klappt nur, weil die Pumpe innen wenig Natrium hält. Deshalb enthalten Trinklösungen gegen Durchfall Salz <strong>und</strong> Zucker.</p>
       </div>
     </div>
+    <details class="profi">
+      <summary>Für Profis: Medikamente und Gifte</summary>
+      <p><strong>Ouabain</strong> (früher ein Pfeilgift) und <strong>Digitalis</strong> aus dem Fingerhut hemmen die Pumpe. In kleiner Dosis wird Digitalis bei Herzschwäche eingesetzt, weil der Herzmuskel dann kräftiger schlägt. In größerer Dosis ist es giftig.</p>
+    </details>
   </section>
 
   <!-- ===================== 5 FÄLLE ===================== -->
@@ -533,25 +554,25 @@ b.ok { color: var(--good); } b.no { color: var(--bad); }
 
     const STEPS = [
       { conf: "in", label: "E1", chip: "E1 · offen nach innen", title: "Ausgangszustand",
-        text: "Die Pumpe ist zum Cytoplasma hin offen (Konformation E1). Ihre Bindungsstellen haben eine hohe Affinität für Na⁺. Innen ist die Na⁺-Konzentration niedrig, außen die K⁺-Konzentration.",
+        text: "Die Pumpe ist zum Zellinneren hin offen. In dieser Stellung (E1) kann sie Natrium gut festhalten.",
         na: "naIn", k: "kOut", atp: "start", p: false },
       { conf: "in", label: "E1", chip: "E1 · 3 Na⁺ gebunden", title: "1 · Drei Na⁺ binden von innen",
-        text: "Drei Na⁺-Ionen aus dem Cytoplasma binden an die Bindungsstellen der Pumpe.",
+        text: "Drei Natrium-Ionen aus dem Zellinneren setzen sich in die Pumpe.",
         na: "naBound", k: "kOut", atp: "start", p: false },
       { conf: "closed", label: "E1–P", chip: "E1–P · phosphoryliert", title: "2 · ATP phosphoryliert die Pumpe",
-        text: "ATP bindet und wird gespalten. Die Phosphatgruppe bleibt an der Pumpe hängen (Phosphorylierung), ADP wird abgegeben. Die Na⁺-Ionen sind jetzt eingeschlossen.",
+        text: "ATP gibt seine Energie ab. Dabei wird ein Stück vom ATP, das Phosphat (P), an die Pumpe gehängt. Fachbegriff: Phosphorylierung. Übrig bleibt ADP, die „leere Batterie“.",
         na: "naBound", k: "kOut", atp: "split", p: true },
       { conf: "out", label: "E2–P", chip: "E2–P · offen nach außen", title: "3 · Umklappen, Na⁺ wird außen frei",
-        text: "Durch die Phosphorylierung ändert die Pumpe ihre Form (E2) und öffnet sich nach außen. Ihre Affinität für Na⁺ sinkt, die drei Na⁺ lösen sich und gelangen in den Extrazellulärraum, gegen ihr Konzentrationsgefälle.",
+        text: "Durch das angehängte Phosphat klappt die Pumpe um und ist jetzt nach außen offen (E2). In dieser Stellung kann sie Natrium nicht mehr festhalten. Die drei Natrium-Ionen werden nach draußen abgegeben.",
         na: "naOut", k: "kOut", atp: "split", p: true },
       { conf: "out", label: "E2–P", chip: "E2–P · 2 K⁺ gebunden", title: "4 · Zwei K⁺ binden von außen",
-        text: "In der E2-Form haben die Bindungsstellen eine hohe Affinität für K⁺. Zwei K⁺-Ionen aus dem Extrazellulärraum binden.",
+        text: "Nach außen offen kann die Pumpe Kalium gut festhalten. Zwei Kalium-Ionen von draußen setzen sich hinein.",
         na: "naOut", k: "kBound", atp: "split", p: true },
       { conf: "closed", label: "E2", chip: "E2 · dephosphoryliert", title: "5 · Phosphat wird abgespalten",
-        text: "Die Bindung von K⁺ löst die Dephosphorylierung aus. Das Phosphat wird als Pᵢ freigesetzt. Die K⁺-Ionen sind eingeschlossen.",
+        text: "Sobald das Kalium sitzt, fällt das Phosphat wieder ab. Fachbegriff: Dephosphorylierung.",
         na: "naOut", k: "kBound", atp: "gone", p: false },
       { conf: "in", label: "E1", chip: "E1 · offen nach innen", title: "6 · Zurückklappen, K⁺ wird innen frei",
-        text: "Ohne Phosphat kehrt die Pumpe in die E1-Form zurück und öffnet sich nach innen. Die Affinität für K⁺ sinkt, und die zwei K⁺ werden ins Cytoplasma abgegeben. Der Zyklus kann von vorn beginnen.",
+        text: "Ohne Phosphat klappt die Pumpe zurück und ist wieder nach innen offen. Jetzt kann sie Kalium nicht mehr festhalten. Die zwei Kalium-Ionen gelangen in die Zelle. Die nächste Runde kann beginnen.",
         na: "naOut", k: "kIn", atp: "gone", p: false }
     ];
     let step = 0, cycles = 0, timer = null;
@@ -761,13 +782,13 @@ b.ok { color: var(--good); } b.no { color: var(--bad); }
       e: "Die Repolarisation dauert nur etwa eine Millisekunde. Sie entsteht durch das Öffnen spannungsgesteuerter K⁺-Kanäle. Die Pumpe ist dafür viel zu langsam. Sie gleicht die geringen Ionenverschiebungen langfristig aus." },
     { ctx: "Medizin", title: "Zu viel Kalium im Blut", text: "Bei Nierenversagen steigt die K⁺-Konzentration im Blut (Hyperkaliämie). Was passiert mit dem Ruhepotential der Herzmuskelzellen?",
       o: ["Es wird negativer (Hyperpolarisation)", "Es wird positiver (Depolarisation), weil der K⁺-Gradient kleiner wird", "Es bleibt gleich, weil die Pumpe alles ausgleicht"], a: 1,
-      e: "Das Ruhepotential liegt nahe am K⁺-Gleichgewichtspotential. Ist außen mehr K⁺, wird E_K positiver. Das kann zu gefährlichen Herzrhythmusstörungen führen. Probiere es in der Simulation aus." },
+      e: "Das Ruhepotential hängt vor allem vom Kalium-Unterschied zwischen innen und außen ab. Ist außen mehr Kalium, wird der Unterschied kleiner und das Ruhepotential positiver. Das kann zu gefährlichen Herzrhythmusstörungen führen. Probiere es in der Simulation aus (Regler „K⁺ außen“)." },
     { ctx: "Durchfall", title: "Trinklösung mit Salz und Zucker", text: "Bei starkem Durchfall empfiehlt die WHO Trinklösungen, die Kochsalz und Glucose enthalten. Warum beides?",
       o: ["Glucose wird über den Na⁺-Glucose-Symporter zusammen mit Na⁺ aufgenommen. Der Na⁺-Gradient dafür stammt von der Pumpe, und Wasser folgt osmotisch.", "Zucker macht die Lösung nur süßer", "Salz tötet die Durchfallerreger ab"], a: 0,
-      e: "Die Darmzellen nehmen Na⁺ und Glucose gemeinsam auf (sekundär aktiver Transport). Die Pumpe auf der anderen Zellseite hält Na⁺ innen niedrig. Mit den aufgenommenen Teilchen folgt Wasser durch Osmose." },
+      e: "Die Darmzellen nehmen Natrium und Zucker gemeinsam auf. Das funktioniert, weil die Pumpe innen wenig Natrium hält. Mit den aufgenommenen Teilchen strömt Wasser durch Osmose in den Körper." },
     { ctx: "Herzmedikament", title: "Digitalis aus dem Fingerhut", text: "Digitalis hemmt die Na⁺/K⁺-Pumpe im Herzmuskel teilweise. Was passiert zuerst in den Herzmuskelzellen?",
       o: ["Na⁺ innen steigt leicht an", "K⁺ innen steigt an", "ATP-Konzentration sinkt stark"], a: 0,
-      e: "Weniger Pumpleistung bedeutet etwas mehr Na⁺ innen. Ein Na⁺/Ca²⁺-Austauscher kann dann weniger Ca²⁺ hinausbefördern. Es bleibt mehr Ca²⁺ in der Zelle, und der Herzmuskel kontrahiert kräftiger. In zu hoher Dosis ist Digitalis giftig." },
+      e: "Arbeitet die Pumpe langsamer, bleibt etwas mehr Natrium in der Zelle. Über einen Umweg bleibt dadurch auch mehr Calcium in der Herzmuskelzelle, und Calcium lässt den Muskel kräftiger zusammenziehen. In zu hoher Dosis ist Digitalis giftig." },
     { ctx: "Rechnen", title: "300 Pumpzyklen", text: "Eine Pumpe durchläuft 300 Zyklen. Wie viele Ionen transportiert sie, und wie viele positive Ladungen gelangen netto nach außen?",
       o: ["300 Na⁺ hinaus, 300 K⁺ hinein, netto 0", "900 Na⁺ hinaus, 600 K⁺ hinein, netto 300 positive Ladungen nach außen", "600 Na⁺ hinaus, 900 K⁺ hinein, netto 300 nach innen"], a: 1,
       e: "Pro Zyklus: 3 Na⁺ hinaus, 2 K⁺ hinein, also netto +1 Ladung nach außen. Bei 300 Zyklen ergibt das 900, 600 und netto 300. Außerdem werden 300 ATP verbraucht." }
@@ -824,7 +845,7 @@ b.ok { color: var(--good); } b.no { color: var(--bad); }
     { q: "Wo sind die Konzentrationen von Na⁺ und K⁺ jeweils hoch?", o: ["Na⁺ innen, K⁺ außen", "Na⁺ außen, K⁺ innen", "Beide innen", "Beide außen"], a: 1, e: "Na⁺ ≈ 145 mmol/L außen, K⁺ ≈ 140 mmol/L innen." },
     { q: "Was bewirkt die Phosphorylierung der Pumpe durch ATP?", o: ["Die Pumpe öffnet sich nach innen und bindet K⁺", "Eine Konformationsänderung: Die Pumpe öffnet sich nach außen, und die Affinität für Na⁺ sinkt", "Die Pumpe wird abgebaut", "Na⁺ wird chemisch verändert"], a: 1, e: "Phosphorylierung führt von E1 zu E2. Die Pumpe ist dann nach außen offen und gibt Na⁺ ab." },
     { q: "Was löst die Rückkehr der Pumpe in die nach innen offene Form aus?", o: ["Die Bindung von Na⁺", "Die Dephosphorylierung nach der Bindung von K⁺", "Ein Aktionspotential", "Die Bindung von ATP"], a: 1, e: "K⁺-Bindung führt zur Abspaltung des Phosphats. Ohne Phosphat klappt die Pumpe zurück in E1 und gibt K⁺ innen frei." },
-    { q: "Welche Aussage zum Ruhepotential ist richtig?", o: ["Es entsteht ausschließlich durch die Pumpe", "Es entsteht vor allem durch K⁺-Ausstrom durch Leckkanäle. Die Pumpe baut den nötigen Gradienten auf und trägt direkt nur wenige mV bei", "Es entsteht durch Na⁺-Einstrom", "Es hat mit Ionen nichts zu tun"], a: 1, e: "Ohne den K⁺-Gradienten gäbe es kein Ruhepotential. Der direkte elektrogene Beitrag der Pumpe ist aber klein." },
+    { q: "Was passiert mit einer Nervenzelle, wenn die Pumpe lange ausfällt?", o: ["Sie wird innen immer negativer", "Natrium und Kalium verteilen sich langsam gleichmäßig, die Zelle verliert ihr Ruhepotential und kann keine Signale mehr leiten", "Nichts, die Pumpe ist unwichtig", "Die Zelle bildet sofort eine neue Pumpe"], a: 1, e: "Ohne Pumpe sickern die Ionen durch die Lecks, bis der Unterschied zwischen innen und außen verschwunden ist. Dann funktioniert die Nervenzelle nicht mehr." },
     { q: "Wer ist für die Repolarisation beim Aktionspotential hauptsächlich verantwortlich?", o: ["Die Na⁺/K⁺-Pumpe", "Spannungsgesteuerte K⁺-Kanäle", "Ligandengesteuerte Na⁺-Kanäle", "Aquaporine"], a: 1, e: "K⁺ strömt durch spannungsgesteuerte K⁺-Kanäle aus. Die Pumpe ist zu langsam und stellt nur langfristig die Gradienten wieder her." },
     { q: "Was passiert, wenn man die Pumpe mit Ouabain hemmt?", o: ["Die Zelle hyperpolarisiert", "Die Gradienten werden langsam abgebaut, die Zelle depolarisiert allmählich und schwillt an", "Die Zelle verliert sofort alle Ionen", "Es passiert nichts"], a: 1, e: "Die Leckströme laufen weiter. Na⁺ sammelt sich innen, Wasser folgt osmotisch." },
     { q: "Der Na⁺-Glucose-Symporter (SGLT) transportiert Glucose gegen ihr Konzentrationsgefälle. Woher stammt die Energie?", o: ["Direkt aus ATP-Spaltung durch den Symporter", "Aus dem Na⁺-Gradienten, den die Na⁺/K⁺-Pumpe aufbaut", "Aus dem Licht", "Aus der Glucose selbst"], a: 1, e: "Das ist sekundär aktiver Transport. Indirekt bezahlt die Pumpe mit ATP." },
@@ -832,7 +853,7 @@ b.ok { color: var(--good); } b.no { color: var(--bad); }
     { q: "Ein Neuron hat viele Aktionspotentiale gebildet. Wie verändert sich die Pumpaktivität?", o: ["Sie nimmt ab", "Sie nimmt zu, weil mehr Na⁺ innen vorliegt", "Sie bleibt immer gleich", "Die Pumpe läuft rückwärts"], a: 1, e: "Mehr Na⁺ innen heißt mehr besetzte Bindungsstellen und damit mehr Pumpzyklen pro Zeit." },
     { q: "Wie unterscheidet sich die Pumpe von einem Ionenkanal?", o: ["Kanäle verbrauchen ATP, die Pumpe nicht", "Die Pumpe transportiert gegen das Gefälle mit Konformationsänderungen und ist viel langsamer. Kanäle lassen Ionen schnell mit dem Gefälle passieren", "Es gibt keinen Unterschied", "Die Pumpe ist immer geöffnet"], a: 1, e: "Ein Kanal leitet bis zu Millionen Ionen pro Sekunde. Eine Pumpe schafft nur etwa einhundert Zyklen pro Sekunde." },
     { q: "Eine Pumpe durchläuft 100 Zyklen. Wie viel ATP wird verbraucht, und wie viele Na⁺ werden transportiert?", o: ["100 ATP, 300 Na⁺", "300 ATP, 100 Na⁺", "100 ATP, 200 Na⁺", "50 ATP, 300 Na⁺"], a: 0, e: "1 ATP pro Zyklus, 3 Na⁺ pro Zyklus." },
-    { q: "In welcher Form (E1) bindet die Pumpe Na⁺ mit hoher Affinität?", o: ["Nach außen offen, phosphoryliert", "Nach innen offen, nicht phosphoryliert", "Geschlossen, mit ADP", "Nach außen offen, nicht phosphoryliert"], a: 1, e: "E1 ist zum Cytoplasma offen. Dort ist Na⁺ zwar niedrig konzentriert, wird aber trotzdem fest gebunden." },
+    { q: "In welcher Stellung schnappt sich die Pumpe das Natrium?", o: ["Wenn sie nach außen offen ist", "Wenn sie nach innen offen ist", "Wenn sie geschlossen ist", "Das Natrium kommt von allein hinein"], a: 1, e: "Nach innen offen (E1) hält die Pumpe Natrium gut fest. Nach dem Umklappen nach außen lässt sie es los." },
     { q: "Warum sind Nervenzellen besonders empfindlich gegenüber Sauerstoffmangel?", o: ["Sie haben keine Mitochondrien", "Sie verbrauchen sehr viel ATP, vor allem für die Na⁺/K⁺-Pumpe. Ohne ATP brechen Gradienten und Erregbarkeit zusammen", "Sauerstoff ist direkt für die Pumpe nötig", "Sie können nur Fett verwerten"], a: 1, e: "ATP stammt vor allem aus der Zellatmung, die O₂ braucht. Fällt die Pumpe aus, folgen Depolarisation und Zellschwellung." }
   ];
   (function () {
