@@ -1,5 +1,15 @@
 # LearningDesk
 
+Interaktive Lern-Apps, sortiert nach Klassenstufe. Startseite: `docs/index.html` (Menü Klassenstufe 8 / 11).
+
+# Klassenstufe 8
+
+## Binomische Formeln (`binomische-formeln.html`)
+
+Die drei Formeln mit Merkschema und typischen Fehlern, Erklärung am Flächenmodell und durch Ausmultiplizieren, Trainer (Lücken füllen, ausmultiplizieren, faktorisieren) mit Prüfung der Eingabe, Kopfrechen-Trick, Quiz.
+
+# Klassenstufe 11
+
 ## Osmose verstehen (`osmose.html`)
 
 Interaktive Lernhilfe zum Thema Osmose für Biologie, Klasse 11. Einfach `osmose.html` im Browser öffnen, eine Installation ist nicht nötig.

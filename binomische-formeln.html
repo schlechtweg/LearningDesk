@@ -1,0 +1,705 @@
+<title>Binomische Formeln</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Interaktive Lernhilfe zu den binomischen Formeln (Mathematik, Klasse 8)">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=JetBrains+Mono:wght@400;600&family=STIX+Two+Text:ital,wght@0,400;0,600;1,400&display=swap">
+<style>
+/* Layout: square-and-rectangle area model as the visual motif; tab bar, one view at a time, max 960px */
+:root {
+  --bg: #f1f5f4;
+  --surface: #ffffff;
+  --surface-2: #e3ecea;
+  --ink: #16262a;
+  --muted: #526569;
+  --line: #cddbd8;
+  --accent: #1f6e8c;
+  --accent-ink: #ffffff;
+  --a: #2f5fb3;
+  --a-soft: rgba(47, 95, 179, 0.18);
+  --b: #d0681a;
+  --b-soft: rgba(208, 104, 26, 0.20);
+  --ab: #3d8a4c;
+  --ab-soft: rgba(61, 138, 76, 0.18);
+  --good: #1f7f4b;
+  --good-soft: rgba(31, 127, 75, 0.12);
+  --bad: #b5372e;
+  --bad-soft: rgba(181, 55, 46, 0.10);
+
+  --font-display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --font-body: "Atkinson Hyperlegible", "Segoe UI", system-ui, sans-serif;
+  --font-math: "STIX Two Text", "Cambria Math", "Times New Roman", serif;
+  --font-mono: "JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
+  --step--1: 0.875rem;
+  --step-0: 1.0625rem;
+  --step-1: 1.25rem;
+  --step-2: 1.6rem;
+  --step-3: 2.3rem;
+  --radius: 10px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0e1617; --surface: #152022; --surface-2: #1c2a2c; --ink: #e3eeee; --muted: #94aaad; --line: #2a3c3f;
+    --accent: #5fb6d6; --accent-ink: #061a22; --a: #7ea6f0; --a-soft: rgba(126, 166, 240, 0.22);
+    --b: #f09a54; --b-soft: rgba(240, 154, 84, 0.22); --ab: #6fc47f; --ab-soft: rgba(111, 196, 127, 0.2);
+    --good: #5fd194; --good-soft: rgba(95, 209, 148, 0.14); --bad: #f07a70; --bad-soft: rgba(240, 122, 112, 0.14);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0e1617; --surface: #152022; --surface-2: #1c2a2c; --ink: #e3eeee; --muted: #94aaad; --line: #2a3c3f;
+  --accent: #5fb6d6; --accent-ink: #061a22; --a: #7ea6f0; --a-soft: rgba(126, 166, 240, 0.22);
+  --b: #f09a54; --b-soft: rgba(240, 154, 84, 0.22); --ab: #6fc47f; --ab-soft: rgba(111, 196, 127, 0.2);
+  --good: #5fd194; --good-soft: rgba(95, 209, 148, 0.14); --bad: #f07a70; --bad-soft: rgba(240, 122, 112, 0.14);
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+body {
+  background: var(--bg); color: var(--ink);
+  font-family: var(--font-body); font-size: var(--step-0); line-height: 1.6;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 0 48px;
+}
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--bg); }
+.wrap { max-width: 960px; margin: 0 auto; }
+h1, h2, h3 { font-family: var(--font-display); line-height: 1.15; text-wrap: balance; margin: 0; }
+h1 { font-size: var(--step-3); font-weight: 800; letter-spacing: -0.02em; }
+h2 { font-size: var(--step-2); font-weight: 700; }
+h3 { font-size: var(--step-1); font-weight: 700; }
+p { margin: 0; max-width: 68ch; }
+.muted { color: var(--muted); }
+.small { font-size: var(--step--1); }
+.eyebrow { font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); }
+.math { font-family: var(--font-math); font-size: 1.15em; }
+.math i { font-style: italic; }
+.math sup { font-size: 0.7em; line-height: 0; }
+.big-formula { font-family: var(--font-math); font-size: 1.7rem; line-height: 1.3; }
+.ca { color: var(--a); font-weight: 600; } .cb { color: var(--b); font-weight: 600; } .cab { color: var(--ab); font-weight: 600; }
+
+header.top { padding-block: 28px 8px; display: grid; gap: 6px; }
+header.top p { color: var(--muted); }
+nav.tabs {
+  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--bg);
+  display: flex; gap: 6px; overflow-x: auto; padding-block: 12px; margin-bottom: 8px; border-bottom: 1px solid var(--line);
+}
+nav.tabs a { flex: 0 0 auto; text-decoration: none; color: var(--ink); font-weight: 700; padding: 8px 14px; border-radius: 999px; border: 1px solid var(--line); background: var(--surface); font-size: var(--step--1); }
+nav.tabs a .n { font-family: var(--font-mono); color: var(--muted); margin-right: 6px; font-weight: 400; }
+nav.tabs a[aria-current="page"] { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+nav.tabs a[aria-current="page"] .n { color: var(--accent-ink); opacity: 0.75; }
+a:focus-visible, button:focus-visible, input:focus-visible { outline: 3px solid var(--b); outline-offset: 2px; }
+
+section.view { display: grid; gap: 28px; padding-top: 16px; }
+.stack { display: grid; gap: 12px; }
+.panel { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 20px; min-width: 0; }
+.grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; align-items: start; }
+.grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; align-items: start; }
+.einfach { background: var(--surface-2); border-radius: var(--radius); padding: 16px 20px; display: grid; gap: 8px; }
+.formula-card { display: grid; gap: 8px; align-content: start; }
+.formula-card .num { font-family: var(--font-mono); font-size: 0.75rem; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; }
+.formula-card .big-formula { font-size: 1.45rem; }
+ul.list, ol.list { margin: 0; padding-left: 1.2em; display: grid; gap: 8px; max-width: 68ch; }
+
+button, .btn { font: inherit; font-weight: 700; font-size: var(--step--1); cursor: pointer; text-decoration: none; display: inline-block; padding: 9px 16px; border-radius: 8px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); }
+button:hover { border-color: var(--accent); }
+button.primary, .btn.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+button[aria-pressed="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+button:disabled { opacity: 0.5; cursor: default; }
+.row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+input[type="range"] { width: 100%; accent-color: var(--accent); }
+input[type="text"] { font: inherit; font-family: var(--font-mono); padding: 8px 10px; border-radius: 8px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); min-width: 0; }
+label.lbl { display: flex; justify-content: space-between; gap: 8px; font-weight: 700; font-size: var(--step--1); }
+
+/* Area model */
+.area-layout { display: grid; grid-template-columns: minmax(0, 1fr) 280px; gap: 16px; align-items: start; }
+@media (max-width: 760px) { .area-layout { grid-template-columns: 1fr; } }
+.area-box { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 12px; min-width: 0; }
+.area-box svg { width: 100%; max-width: 440px; height: auto; display: block; margin: 0 auto; }
+.readout { display: grid; grid-template-columns: 1fr auto; gap: 4px 12px; font-size: var(--step--1); margin: 0; }
+.readout dt { color: var(--muted); }
+.readout dd { margin: 0; font-family: var(--font-mono); text-align: right; font-variant-numeric: tabular-nums; }
+
+/* FOIL steps */
+.foil { display: grid; gap: 10px; }
+.foil .line { font-family: var(--font-math); font-size: 1.3rem; }
+
+/* Trainer */
+.modes { display: flex; flex-wrap: wrap; gap: 6px; }
+.task { font-family: var(--font-math); font-size: 1.5rem; line-height: 1.8; }
+.task sup { font-size: 0.65em; }
+.task input { width: 6em; font-size: 1rem; margin: 0 4px; vertical-align: middle; }
+.answer-row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.answer-row input { flex: 1 1 220px; font-size: var(--step-0); }
+.hint { font-size: var(--step--1); color: var(--muted); }
+.hint code { font-family: var(--font-mono); background: var(--surface-2); padding: 1px 5px; border-radius: 4px; }
+.feedback { padding: 14px 16px; border-radius: 8px; background: var(--surface-2); display: grid; gap: 8px; }
+.feedback ol { margin: 0; padding-left: 1.3em; display: grid; gap: 4px; }
+b.ok { color: var(--good); } b.no { color: var(--bad); }
+.score-line { font-family: var(--font-mono); font-size: var(--step--1); color: var(--muted); }
+
+/* Quiz */
+.progress-line { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+.bar { flex: 1 1 200px; height: 8px; background: var(--surface-2); border-radius: 999px; overflow: hidden; }
+.bar i { display: block; height: 100%; background: var(--accent); width: 0; transition: width 0.3s; }
+.quiz { display: grid; gap: 16px; }
+.quiz .qtext { font-family: var(--font-display); font-size: var(--step-1); font-weight: 700; line-height: 1.3; }
+.quiz .opts { display: grid; gap: 8px; }
+.quiz .opts button { text-align: left; font-weight: 400; font-size: var(--step-0); padding: 12px 16px; display: flex; gap: 12px; align-items: center; }
+.quiz .opts button .k { font-family: var(--font-mono); color: var(--muted); }
+.quiz .opts button.right { border-color: var(--good); background: var(--good-soft); }
+.quiz .opts button.wrong { border-color: var(--bad); background: var(--bad-soft); }
+.score-big { font-family: var(--font-display); font-size: 3.2rem; font-weight: 800; line-height: 1; }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <span class="eyebrow">Mathematik · Klasse 8 · Terme</span>
+    <h1>Binomische Formeln</h1>
+    <p>Drei Formeln, mit denen du Klammern blitzschnell auflösen kannst. Hier lernst du, wie sie aussehen, warum sie stimmen und wie du sie anwendest.</p>
+  </header>
+
+  <nav class="tabs" aria-label="Bereiche">
+    <a href="#formeln" data-view="formeln"><span class="n">1</span>Die Formeln</a>
+    <a href="#warum" data-view="warum"><span class="n">2</span>Warum stimmt das?</a>
+    <a href="#ueben" data-view="ueben"><span class="n">3</span>Üben</a>
+    <a href="#tricks" data-view="tricks"><span class="n">4</span>Kopfrechen-Trick</a>
+    <a href="#quiz" data-view="quiz"><span class="n">5</span>Quiz</a>
+  </nav>
+
+  <!-- ===================== 1 FORMELN ===================== -->
+  <section class="view" id="view-formeln">
+    <div class="einfach">
+      <span class="eyebrow">Worum geht es?</span>
+      <p>Ein <strong>Binom</strong> ist eine Klammer mit zwei Teilen, zum Beispiel <span class="math">(<i>x</i> + 3)</span>. Wenn man so eine Klammer mit sich selbst malnimmt, kommt immer nach demselben Muster etwas heraus. Diese Muster sind die drei binomischen Formeln. Wer sie kennt, muss nicht mehr lange ausmultiplizieren.</p>
+    </div>
+
+    <div class="grid-3">
+      <div class="panel formula-card">
+        <span class="num">1. binomische Formel · Plus-Formel</span>
+        <div class="big-formula">(<i class="ca">a</i> + <i class="cb">b</i>)<sup>2</sup> = <i class="ca">a</i><sup>2</sup> + <span class="cab">2<i>ab</i></span> + <i class="cb">b</i><sup>2</sup></div>
+        <p class="small">Beispiel: <span class="math">(<i>x</i> + 3)<sup>2</sup> = <i>x</i><sup>2</sup> + 6<i>x</i> + 9</span></p>
+      </div>
+      <div class="panel formula-card">
+        <span class="num">2. binomische Formel · Minus-Formel</span>
+        <div class="big-formula">(<i class="ca">a</i> − <i class="cb">b</i>)<sup>2</sup> = <i class="ca">a</i><sup>2</sup> − <span class="cab">2<i>ab</i></span> + <i class="cb">b</i><sup>2</sup></div>
+        <p class="small">Beispiel: <span class="math">(<i>x</i> − 5)<sup>2</sup> = <i>x</i><sup>2</sup> − 10<i>x</i> + 25</span></p>
+      </div>
+      <div class="panel formula-card">
+        <span class="num">3. binomische Formel · Plus-Minus-Formel</span>
+        <div class="big-formula">(<i class="ca">a</i> + <i class="cb">b</i>)(<i class="ca">a</i> − <i class="cb">b</i>) = <i class="ca">a</i><sup>2</sup> − <i class="cb">b</i><sup>2</sup></div>
+        <p class="small">Beispiel: <span class="math">(<i>x</i> + 4)(<i>x</i> − 4) = <i>x</i><sup>2</sup> − 16</span></p>
+      </div>
+    </div>
+
+    <div class="grid-2">
+      <div class="panel stack">
+        <h3>So merkst du dir die Formeln</h3>
+        <ol class="list small">
+          <li><strong>Erster Teil hoch 2</strong>: <span class="math"><i>a</i><sup>2</sup></span></li>
+          <li><strong>Zwei mal erster mal zweiter</strong>: <span class="math">2<i>ab</i></span>. Das ist das <strong>Mittelglied</strong>. Es hat dasselbe Vorzeichen wie in der Klammer.</li>
+          <li><strong>Zweiter Teil hoch 2</strong>: <span class="math"><i>b</i><sup>2</sup></span>, immer mit Plus.</li>
+        </ol>
+        <p class="small muted">Bei der 3. Formel heben sich die Mittelglieder gegenseitig auf (+<i>ab</i> und −<i>ab</i>). Deshalb bleibt nur <span class="math"><i>a</i><sup>2</sup> − <i>b</i><sup>2</sup></span> übrig.</p>
+      </div>
+      <div class="panel stack">
+        <h3>Typische Fehler</h3>
+        <ul class="list small">
+          <li><span class="math">(<i>x</i> + 3)<sup>2</sup> = <i>x</i><sup>2</sup> + 9</span> ist <strong>falsch</strong>. Das Mittelglied <span class="math">6<i>x</i></span> fehlt. Das ist der häufigste Fehler überhaupt!</li>
+          <li><span class="math">(<i>x</i> − 5)<sup>2</sup> = <i>x</i><sup>2</sup> − 10<i>x</i> − 25</span> ist <strong>falsch</strong>. Am Ende steht immer <strong>+</strong> 25, denn (−5)·(−5) = +25.</li>
+          <li><span class="math">(3<i>x</i>)<sup>2</sup> = 3<i>x</i><sup>2</sup></span> ist <strong>falsch</strong>. Die Zahl wird mitquadriert: <span class="math">(3<i>x</i>)<sup>2</sup> = 9<i>x</i><sup>2</sup></span>.</li>
+          <li>Beim Mittelglied die <strong>2</strong> vergessen: Es heißt <span class="math">2·<i>a</i>·<i>b</i></span>, nicht <span class="math"><i>a</i>·<i>b</i></span>.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="panel stack">
+      <h3>Beispiel Schritt für Schritt</h3>
+      <p class="small">Aufgabe: <span class="math">(2<i>x</i> + 5)<sup>2</sup></span>. Das ist die 1. Formel mit <span class="math"><i class="ca">a</i> = 2<i>x</i></span> und <span class="math"><i class="cb">b</i> = 5</span>.</p>
+      <ol class="list small">
+        <li><span class="math"><i class="ca">a</i><sup>2</sup> = (2<i>x</i>)<sup>2</sup> = 4<i>x</i><sup>2</sup></span></li>
+        <li><span class="math"><span class="cab">2<i>ab</i></span> = 2 · 2<i>x</i> · 5 = 20<i>x</i></span></li>
+        <li><span class="math"><i class="cb">b</i><sup>2</sup> = 5<sup>2</sup> = 25</span></li>
+        <li>Ergebnis: <span class="math">(2<i>x</i> + 5)<sup>2</sup> = 4<i>x</i><sup>2</sup> + 20<i>x</i> + 25</span></li>
+      </ol>
+    </div>
+    <div class="row"><a class="btn primary" href="#warum">Warum stimmt das? →</a></div>
+  </section>
+
+  <!-- ===================== 2 WARUM ===================== -->
+  <section class="view" id="view-warum" hidden>
+    <div class="stack">
+      <span class="eyebrow">Mit Flächen erklärt</span>
+      <h2>Ein Quadrat aus vier Teilen</h2>
+      <p class="muted">Ein Quadrat mit der Seitenlänge <span class="math"><i class="ca">a</i> + <i class="cb">b</i></span> hat den Flächeninhalt <span class="math">(<i>a</i> + <i>b</i>)<sup>2</sup></span>. Zerschneide es in Stücke: ein großes Quadrat, ein kleines Quadrat und zwei gleiche Rechtecke. Verändere <i>a</i> und <i>b</i> mit den Reglern.</p>
+    </div>
+    <div class="area-layout">
+      <div class="area-box">
+        <svg id="areaSvg" viewBox="0 0 440 440" role="img" aria-label="Quadrat mit Seitenlänge a plus b, aufgeteilt in a², zwei Rechtecke ab und b²"></svg>
+      </div>
+      <div class="panel stack">
+        <div>
+          <label class="lbl" for="aSl"><span>a</span><span id="aOut" style="font-family:var(--font-mono)">6</span></label>
+          <input type="range" id="aSl" min="1" max="9" step="1" value="6">
+        </div>
+        <div>
+          <label class="lbl" for="bSl"><span>b</span><span id="bOut" style="font-family:var(--font-mono)">3</span></label>
+          <input type="range" id="bSl" min="1" max="6" step="1" value="3">
+        </div>
+        <dl class="readout" id="areaRo"></dl>
+      </div>
+    </div>
+    <div class="einfach">
+      <span class="eyebrow">Was man sieht</span>
+      <p>Das große Quadrat besteht aus <span class="ca">a²</span>, zwei Rechtecken <span class="cab">a · b</span> und <span class="cb">b²</span>. Deshalb ist <span class="math">(<i>a</i> + <i>b</i>)<sup>2</sup> = <i>a</i><sup>2</sup> + 2<i>ab</i> + <i>b</i><sup>2</sup></span>. Würde man nur <span class="math"><i>a</i><sup>2</sup> + <i>b</i><sup>2</sup></span> rechnen, fehlten die zwei grünen Rechtecke.</p>
+    </div>
+
+    <div class="stack">
+      <h2>Oder: Jeder mit jedem</h2>
+      <p class="muted">Du kannst jede binomische Formel auch durch normales Ausmultiplizieren herleiten. Dabei wird jeder Teil der ersten Klammer mit jedem Teil der zweiten Klammer malgenommen.</p>
+      <div class="grid-3">
+        <div class="panel foil">
+          <span class="eyebrow">1. Formel</span>
+          <div class="line">(<i>a</i> + <i>b</i>)<sup>2</sup> = (<i>a</i> + <i>b</i>)(<i>a</i> + <i>b</i>)</div>
+          <div class="line">= <i>a</i>·<i>a</i> + <i>a</i>·<i>b</i> + <i>b</i>·<i>a</i> + <i>b</i>·<i>b</i></div>
+          <div class="line">= <i>a</i><sup>2</sup> + <span class="cab">2<i>ab</i></span> + <i>b</i><sup>2</sup></div>
+        </div>
+        <div class="panel foil">
+          <span class="eyebrow">2. Formel</span>
+          <div class="line">(<i>a</i> − <i>b</i>)<sup>2</sup> = (<i>a</i> − <i>b</i>)(<i>a</i> − <i>b</i>)</div>
+          <div class="line">= <i>a</i>·<i>a</i> − <i>a</i>·<i>b</i> − <i>b</i>·<i>a</i> + <i>b</i>·<i>b</i></div>
+          <div class="line">= <i>a</i><sup>2</sup> − <span class="cab">2<i>ab</i></span> + <i>b</i><sup>2</sup></div>
+        </div>
+        <div class="panel foil">
+          <span class="eyebrow">3. Formel</span>
+          <div class="line">(<i>a</i> + <i>b</i>)(<i>a</i> − <i>b</i>)</div>
+          <div class="line">= <i>a</i>·<i>a</i> − <i>a</i>·<i>b</i> + <i>b</i>·<i>a</i> − <i>b</i>·<i>b</i></div>
+          <div class="line">= <i>a</i><sup>2</sup> − <i>b</i><sup>2</sup> <span class="small muted" style="font-family:var(--font-body)">(−<i>ab</i> und +<i>ab</i> heben sich auf)</span></div>
+        </div>
+      </div>
+      <p class="small muted">Vorzeichenregel: Minus mal Minus ergibt Plus. Deshalb ist bei der 2. Formel <span class="math">(−<i>b</i>)·(−<i>b</i>) = +<i>b</i><sup>2</sup></span>.</p>
+    </div>
+  </section>
+
+  <!-- ===================== 3 ÜBEN ===================== -->
+  <section class="view" id="view-ueben" hidden>
+    <div class="stack">
+      <span class="eyebrow">Trainer</span>
+      <h2>Üben mit Rückmeldung</h2>
+      <p class="muted">Wähle eine Übungsart. Der Trainer prüft deine Antwort und zeigt dir auf Wunsch den Lösungsweg.</p>
+      <div class="modes" role="group" aria-label="Übungsart">
+        <button type="button" data-mode="luecke" aria-pressed="true">Lücken füllen</button>
+        <button type="button" data-mode="aus" aria-pressed="false">Ausmultiplizieren</button>
+        <button type="button" data-mode="fakt" aria-pressed="false">Rückwärts (faktorisieren)</button>
+      </div>
+      <div class="modes" role="group" aria-label="Schwierigkeit">
+        <button type="button" data-level="1" aria-pressed="true">Leicht</button>
+        <button type="button" data-level="2" aria-pressed="false">Schwerer</button>
+      </div>
+    </div>
+    <div class="panel stack">
+      <p class="small muted" id="trInstr"></p>
+      <form class="stack" id="trForm" autocomplete="off">
+        <div class="task" id="trTask"></div>
+        <div class="answer-row" id="trFree">
+          <input type="text" id="trInput" spellcheck="false" aria-label="Deine Antwort">
+        </div>
+        <div class="row">
+          <button type="submit" class="primary">Prüfen</button>
+          <button type="button" id="trShow">Lösung zeigen</button>
+          <button type="button" id="trNext">Neue Aufgabe</button>
+        </div>
+      </form>
+      <p class="hint">Schreibweise: <code>x^2</code> oder <code>x²</code> für x², <code>6x</code> für 6·x, Klammern wie gewohnt, z.&nbsp;B. <code>(x+3)^2</code> oder <code>(x+4)(x-4)</code>.</p>
+      <div class="feedback" id="trFb" hidden aria-live="polite"></div>
+      <span class="score-line" id="trScore"></span>
+    </div>
+  </section>
+
+  <!-- ===================== 4 TRICKS ===================== -->
+  <section class="view" id="view-tricks" hidden>
+    <div class="stack">
+      <span class="eyebrow">Anwendung</span>
+      <h2>Kopfrechnen wie ein Profi</h2>
+      <p class="muted">Mit den binomischen Formeln kannst du schwierige Aufgaben im Kopf lösen. Der Trick: Zerlege die Zahl in eine runde Zahl und einen kleinen Rest.</p>
+    </div>
+    <div class="grid-3">
+      <div class="panel stack">
+        <span class="eyebrow">Mit der 1. Formel</span>
+        <p class="math">21<sup>2</sup> = (20 + 1)<sup>2</sup></p>
+        <p class="math">= 400 + 40 + 1 = 441</p>
+      </div>
+      <div class="panel stack">
+        <span class="eyebrow">Mit der 2. Formel</span>
+        <p class="math">49<sup>2</sup> = (50 − 1)<sup>2</sup></p>
+        <p class="math">= 2500 − 100 + 1 = 2401</p>
+      </div>
+      <div class="panel stack">
+        <span class="eyebrow">Mit der 3. Formel</span>
+        <p class="math">32 · 28 = (30 + 2)(30 − 2)</p>
+        <p class="math">= 900 − 4 = 896</p>
+      </div>
+    </div>
+    <div class="panel stack">
+      <h3>Probier es selbst</h3>
+      <form class="answer-row" id="kForm" autocomplete="off">
+        <span class="task" id="kTask"></span>
+        <span class="math">=</span>
+        <input type="text" id="kInput" inputmode="numeric" aria-label="Ergebnis" style="flex: 0 1 140px">
+        <button type="submit" class="primary">Prüfen</button>
+        <button type="button" id="kShow">Lösung zeigen</button>
+        <button type="button" id="kNext">Neue Aufgabe</button>
+      </form>
+      <div class="feedback" id="kFb" hidden aria-live="polite"></div>
+      <span class="score-line" id="kScore"></span>
+    </div>
+  </section>
+
+  <!-- ===================== 5 QUIZ ===================== -->
+  <section class="view" id="view-quiz" hidden>
+    <div class="stack">
+      <span class="eyebrow">Selbsttest</span>
+      <h2>Quiz zu den binomischen Formeln</h2>
+      <div class="progress-line"><div class="bar" aria-hidden="true"><i id="qBar"></i></div><span style="font-family:var(--font-mono)" id="qProgress"></span></div>
+    </div>
+    <div class="panel quiz" id="quizBox" aria-live="polite"></div>
+  </section>
+</div>
+
+<script>
+(function () {
+  "use strict";
+  const $ = (s, r = document) => r.querySelector(s);
+  const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
+  const rnd = (a, b) => a + Math.floor(Math.random() * (b - a + 1));
+  const pick = (a) => a[Math.floor(Math.random() * a.length)];
+  function shuffle(a) { const b = a.slice(); for (let i = b.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [b[i], b[j]] = [b[j], b[i]]; } return b; }
+  const store = {
+    get(k) { try { return JSON.parse(localStorage.getItem(k)); } catch (e) { return null; } },
+    set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) { /* storage unavailable */ } }
+  };
+
+  // ---------- Hash routing ----------
+  const VIEWS = ["formeln", "warum", "ueben", "tricks", "quiz"];
+  function showView() {
+    const name = location.hash.replace("#", "");
+    const v = VIEWS.includes(name) ? name : "formeln";
+    VIEWS.forEach((n) => { $("#view-" + n).hidden = n !== v; });
+    $$("nav.tabs a").forEach((a) => { if (a.dataset.view === v) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current"); });
+    window.scrollTo({ top: 0 });
+  }
+  window.addEventListener("hashchange", showView);
+
+  // =====================================================================
+  // Expression parser with several variables (a, b, x, y, z, m, n).
+  // Supports implicit multiplication, ^, ², ³, decimal comma, unicode minus.
+  // =====================================================================
+  const VARS = "abxyzmn";
+  function parseExpr(src) {
+    const s = src.toLowerCase().replace(/\s+/g, "").replace(/[−–]/g, "-").replace(/[·⋅×]/g, "*")
+      .replace(/²/g, "^2").replace(/³/g, "^3").replace(/(\d),(\d)/g, "$1.$2");
+    if (!s) throw new Error("leer");
+    const toks = [];
+    for (let i = 0; i < s.length;) {
+      const ch = s[i];
+      if (/[0-9.]/.test(ch)) { let j = i; while (j < s.length && /[0-9.]/.test(s[j])) j++; const n = parseFloat(s.slice(i, j)); if (isNaN(n)) throw new Error("Zahl"); toks.push({ t: "num", v: n }); i = j; continue; }
+      if ("+-*/^()".includes(ch)) { toks.push({ t: ch }); i++; continue; }
+      if (VARS.includes(ch)) { toks.push({ t: "var", v: ch }); i++; continue; }
+      throw new Error("Unbekanntes Zeichen „" + ch + "“");
+    }
+    let p = 0;
+    const peek = () => toks[p];
+    const starts = (tk) => tk && (tk.t === "num" || tk.t === "var" || tk.t === "(");
+    function expr() { let a = term(); while (peek() && (peek().t === "+" || peek().t === "-")) { const op = toks[p++].t, b = term(), l = a; a = op === "+" ? (e) => l(e) + b(e) : (e) => l(e) - b(e); } return a; }
+    function term() {
+      let a = unary();
+      for (;;) {
+        const tk = peek();
+        if (tk && (tk.t === "*" || tk.t === "/")) { p++; const b = unary(), l = a; a = tk.t === "*" ? (e) => l(e) * b(e) : (e) => l(e) / b(e); }
+        else if (starts(tk)) { const b = power(), l = a; a = (e) => l(e) * b(e); }
+        else break;
+      }
+      return a;
+    }
+    function unary() { const tk = peek(); if (tk && tk.t === "-") { p++; const a = unary(); return (e) => -a(e); } if (tk && tk.t === "+") { p++; return unary(); } return power(); }
+    function power() { const b = primary(); if (peek() && peek().t === "^") { p++; const ex = unary(); return (e) => Math.pow(b(e), ex(e)); } return b; }
+    function primary() {
+      const tk = toks[p++];
+      if (!tk) throw new Error("Term unvollständig");
+      if (tk.t === "num") { const v = tk.v; return () => v; }
+      if (tk.t === "var") { const v = tk.v; return (e) => e[v]; }
+      if (tk.t === "(") { const a = expr(); if (!peek() || peek().t !== ")") throw new Error("Klammer fehlt"); p++; return a; }
+      throw new Error("Unerwartetes Zeichen");
+    }
+    const f = expr();
+    if (p < toks.length) throw new Error("Unerwartetes Zeichen am Ende");
+    return f;
+  }
+  const SAMPLES = [
+    { a: 1.3, b: -0.7, x: 2.1, y: -1.4, z: 0.6, m: 1.7, n: -2.2 },
+    { a: -2.4, b: 1.9, x: -0.8, y: 2.6, z: -1.1, m: 0.4, n: 3.1 },
+    { a: 0.55, b: 2.35, x: 3.3, y: 0.45, z: 2.7, m: -1.3, n: 0.9 },
+    { a: 4.1, b: -3.2, x: -2.9, y: -0.35, z: -3.4, m: 2.8, n: -0.6 }
+  ];
+  function same(f, g) {
+    return SAMPLES.every((e) => { const u = f(e), v = g(e); return isFinite(u) && isFinite(v) && Math.abs(u - v) <= 1e-7 * Math.max(1, Math.abs(v)); });
+  }
+
+  // =====================================================================
+  // 2 Area model
+  // =====================================================================
+  (function () {
+    const svg = $("#areaSvg");
+    function draw() {
+      const a = +$("#aSl").value, b = +$("#bSl").value;
+      $("#aOut").textContent = a; $("#bOut").textContent = b;
+      const S = 380, u = S / (a + b), o = 40;     // the square always fills the drawing
+      const A = a * u, B = b * u;
+      const lab = (x, y, t, c, size = 18) => `<text x="${x}" y="${y}" text-anchor="middle" dominant-baseline="middle" font-family="var(--font-math)" font-style="italic" font-size="${size}" fill="${c}">${t}</text>`;
+      svg.innerHTML = `
+        <rect x="${o}" y="${o}" width="${A}" height="${A}" fill="var(--a-soft)" stroke="var(--a)" stroke-width="2"></rect>
+        <rect x="${o + A}" y="${o}" width="${B}" height="${A}" fill="var(--ab-soft)" stroke="var(--ab)" stroke-width="2"></rect>
+        <rect x="${o}" y="${o + A}" width="${A}" height="${B}" fill="var(--ab-soft)" stroke="var(--ab)" stroke-width="2"></rect>
+        <rect x="${o + A}" y="${o + A}" width="${B}" height="${B}" fill="var(--b-soft)" stroke="var(--b)" stroke-width="2"></rect>
+        ${lab(o + A / 2, o - 16, "a", "var(--a)")}${lab(o + A + B / 2, o - 16, "b", "var(--b)")}
+        ${lab(o - 16, o + A / 2, "a", "var(--a)")}${lab(o - 16, o + A + B / 2, "b", "var(--b)")}
+        ${lab(o + A / 2, o + A / 2, "a²", "var(--a)", 26)}
+        ${B > 40 ? lab(o + A + B / 2, o + A / 2, "ab", "var(--ab)", 20) : ""}
+        ${B > 40 ? lab(o + A / 2, o + A + B / 2, "ab", "var(--ab)", 20) : ""}
+        ${B > 40 ? lab(o + A + B / 2, o + A + B / 2, "b²", "var(--b)", 18) : ""}`;
+      $("#areaRo").innerHTML = `
+        <dt>(a + b)² = ${a + b}²</dt><dd>${(a + b) ** 2}</dd>
+        <dt><span class="ca">a²</span> = ${a}²</dt><dd>${a * a}</dd>
+        <dt><span class="cab">2ab</span> = 2·${a}·${b}</dt><dd>${2 * a * b}</dd>
+        <dt><span class="cb">b²</span> = ${b}²</dt><dd>${b * b}</dd>
+        <dt><strong>Summe</strong></dt><dd><strong>${a * a + 2 * a * b + b * b}</strong></dd>
+        <dt class="muted">nur a² + b² (falsch)</dt><dd class="muted">${a * a + b * b}</dd>`;
+    }
+    $("#aSl").addEventListener("input", draw);
+    $("#bSl").addEventListener("input", draw);
+    draw();
+  })();
+
+  // =====================================================================
+  // 3 Trainer
+  // A monomial is {c, v} meaning c·v (v is "" or one variable letter).
+  // =====================================================================
+  const I = (v) => `<i>${v}</i>`;
+  function monoHtml(c, vars) {
+    // vars: object {letter: exponent}
+    const keys = Object.keys(vars).filter((k) => vars[k] > 0).sort();
+    const vs = keys.map((k) => I(k) + (vars[k] > 1 ? `<sup>${vars[k]}</sup>` : "")).join("");
+    if (!vs) return String(c);
+    return (c === 1 ? "" : String(c)) + vs;
+  }
+  function monoText(c, vars) { // plain text for solutions in inputs
+    const keys = Object.keys(vars).filter((k) => vars[k] > 0).sort();
+    const vs = keys.map((k) => k + (vars[k] > 1 ? "^" + vars[k] : "")).join("");
+    return vs ? (c === 1 ? "" : String(c)) + vs : String(c);
+  }
+  (function () {
+    let mode = "luecke", level = 1, task = null, score = { right: 0, total: 0 };
+    function gen() {
+      const t = pick([1, 2, 3]);
+      const v1 = pick(["x", "a", "y"]);
+      const c1 = level === 1 ? pick([1, 1, 1, 2, 3]) : pick([1, 2, 3, 4, 5]);
+      let c2, v2 = "";
+      if (level === 1) c2 = rnd(1, 9);
+      else if (Math.random() < 0.5) c2 = rnd(2, 9);
+      else { c2 = pick([1, 2, 3, 4]); v2 = { x: "y", a: "b", y: "x" }[v1]; }
+      const pv = { [v1]: 1 }, qv = v2 ? { [v2]: 1 } : {};
+      const sq = (c, vars) => ({ c: c * c, v: Object.fromEntries(Object.entries(vars).map(([k, e]) => [k, e * 2])) });
+      const prodV = Object.assign({}, pv); if (v2) prodV[v2] = (prodV[v2] || 0) + 1;
+      const P = { c: c1, v: pv }, Q = { c: c2, v: qv };
+      const A = sq(c1, pv), B = { c: 2 * c1 * c2, v: prodV }, C = sq(c2, qv);
+      const val = (m) => (e) => m.c * Object.entries(m.v).reduce((s, [k, ex]) => s * Math.pow(e[k], ex), 1);
+      const pF = val(P), qF = val(Q);
+      const target = t === 1 ? (e) => (pF(e) + qF(e)) ** 2 : t === 2 ? (e) => (pF(e) - qF(e)) ** 2 : (e) => pF(e) ** 2 - qF(e) ** 2;
+      const h = (m) => monoHtml(m.c, m.v);
+      const factHtml = t === 1 ? `(${h(P)} + ${h(Q)})<sup>2</sup>` : t === 2 ? `(${h(P)} − ${h(Q)})<sup>2</sup>` : `(${h(P)} + ${h(Q)})(${h(P)} − ${h(Q)})`;
+      const parts = t === 3 ? [["A", A], ["−"], ["C", C]] : [["A", A], [t === 1 ? "+" : "−"], ["B", B], ["+"], ["C", C]];
+      return { t, P, Q, A, B, C, val, target, factHtml, parts, h };
+    }
+    function expandedHtml(T, blank) {
+      return T.parts.map(([k, m]) => (m ? (k === blank ? `<input type="text" id="gap" aria-label="Lücke" spellcheck="false">` : T.h(m)) : ` ${k} `)).join("");
+    }
+    function newTask() {
+      task = gen(); task.attempted = false;
+      const fb = $("#trFb"); fb.hidden = true;
+      const T = task;
+      $("#trInput").value = "";
+      if (mode === "luecke") {
+        const options = T.t === 3 ? ["A", "C"] : ["Q", "A", "B", "C", "B"];
+        T.blank = pick(options);
+        const fact = T.blank === "Q"
+          ? (T.t === 1 ? `(${T.h(T.P)} + <input type="text" id="gap" aria-label="Lücke" spellcheck="false">)<sup>2</sup>` : T.t === 2 ? `(${T.h(T.P)} − <input type="text" id="gap" aria-label="Lücke" spellcheck="false">)<sup>2</sup>` : `(${T.h(T.P)} + <input type="text" id="gap" aria-label="Lücke" spellcheck="false">)(${T.h(T.P)} − ${T.h(T.Q)})`)
+          : T.factHtml;
+        $("#trTask").innerHTML = `${fact} = ${expandedHtml(T, T.blank === "Q" ? null : T.blank)}`;
+        $("#trFree").hidden = true;
+        $("#trInstr").textContent = "Fülle die Lücke aus. Gib nur den Teil ein, der fehlt (ohne Vorzeichen davor).";
+      } else if (mode === "aus") {
+        $("#trTask").innerHTML = `${T.factHtml} =`;
+        $("#trFree").hidden = false;
+        $("#trInput").placeholder = "z. B. x^2 + 6x + 9";
+        $("#trInstr").textContent = "Löse die Klammer mit einer binomischen Formel auf. Schreibe das Ergebnis ohne Klammern.";
+      } else {
+        $("#trTask").innerHTML = `${expandedHtml(T, null)} =`;
+        $("#trFree").hidden = false;
+        $("#trInput").placeholder = "z. B. (x + 3)^2";
+        $("#trInstr").textContent = "Schreibe den Term als Klammer, also rückwärts mit einer binomischen Formel.";
+      }
+    }
+    function steps() {
+      const T = task, h = T.h;
+      const names = { 1: "1. binomische Formel", 2: "2. binomische Formel", 3: "3. binomische Formel" };
+      const exp = T.parts.map(([k, m]) => (m ? h(m) : ` ${k} `)).join("");
+      // brackets only where needed, e.g. (3x)² but x² and 9²
+      const sqr = (m) => (m.c !== 1 && Object.keys(m.v).length ? `(${h(m)})` : h(m)) + "<sup>2</sup>";
+      const lines = [`Das ist die <strong>${names[T.t]}</strong> mit <span class="math"><i class="ca">a</i> = ${h(T.P)}</span> und <span class="math"><i class="cb">b</i> = ${h(T.Q)}</span>.`,
+        `<span class="math"><i class="ca">a</i><sup>2</sup> = ${sqr(T.P)} = ${h(T.A)}</span>`];
+      if (T.t !== 3) lines.push(`<span class="math"><span class="cab">2<i>ab</i></span> = 2 · ${h(T.P)} · ${h(T.Q)} = ${h(T.B)}</span>`);
+      lines.push(`<span class="math"><i class="cb">b</i><sup>2</sup> = ${sqr(T.Q)} = ${h(T.C)}</span>`);
+      return `<ol>${lines.map((l) => `<li>${l}</li>`).join("")}</ol><span>Ergebnis: <span class="math">${T.factHtml} = ${exp}</span></span>`;
+    }
+    function updateScore() { $("#trScore").textContent = `${score.right} von ${score.total} Aufgaben auf Anhieb richtig`; }
+    $("#trForm").addEventListener("submit", (ev) => {
+      ev.preventDefault();
+      const T = task, fb = $("#trFb");
+      fb.hidden = false;
+      const raw = mode === "luecke" ? ($("#gap") ? $("#gap").value : "") : $("#trInput").value;
+      let g;
+      try { g = parseExpr(raw); } catch (e) { fb.innerHTML = `<span><b class="no">Das kann ich nicht lesen.</b> Prüfe deine Eingabe. Beispiel: <code>6x</code> oder <code>x^2 + 6x + 9</code></span>`; return; }
+      let ok = false, hint = "";
+      if (mode === "luecke") {
+        const m = T.blank === "Q" ? T.Q : T[T.blank];
+        ok = same(g, T.val(m));
+        if (!ok) {
+          if (T.blank === "B" && same(g, T.val({ c: m.c / 2, v: m.v }))) hint = "Fast! Beim Mittelglied fehlt der Faktor 2: Es heißt 2 · a · b.";
+          else if (same(g, (e) => -T.val(m)(e))) hint = "Das Vorzeichen steht schon vor der Lücke. Gib den Teil ohne Minus ein.";
+          else if ((T.blank === "A" || T.blank === "C") && Object.keys(m.v).length && same(g, T.val({ c: Math.sqrt(m.c), v: m.v }))) hint = "Denk daran, auch die Zahl zu quadrieren, zum Beispiel (3x)² = 9x².";
+          else hint = "Schau dir das Merkschema an: a², 2ab, b².";
+        }
+      } else if (mode === "aus") {
+        const hasParen = /[()]/.test(raw);
+        ok = same(g, T.target) && !hasParen;
+        if (!ok) {
+          if (same(g, T.target)) hint = "Das stimmt zwar, aber du sollst die Klammer auflösen. Schreibe das Ergebnis ohne Klammern.";
+          else if (T.t !== 3 && same(g, (e) => T.val(T.A)(e) + T.val(T.C)(e))) hint = "Das Mittelglied 2ab fehlt! Das ist der häufigste Fehler.";
+          else if (T.t === 2 && same(g, (e) => T.val(T.A)(e) - T.val(T.B)(e) - T.val(T.C)(e))) hint = "Am Ende muss + b² stehen, denn Minus mal Minus ergibt Plus.";
+          else hint = "Erkenne zuerst, welche Formel passt, und bestimme dann a und b.";
+        }
+      } else {
+        const looksFactored = /\)\s*(\^|²|\()/.test(raw.replace(/\s+/g, ""));
+        ok = same(g, T.target) && looksFactored;
+        if (!ok) hint = same(g, T.target) ? "Der Wert stimmt, aber schreibe den Term als Klammer, z. B. (x + 3)^2 oder (x + 4)(x − 4)." : "Suche zuerst a² und b², dann prüfe mit dem Mittelglied 2ab, welche Formel passt.";
+      }
+      if (!T.attempted) { T.attempted = true; score.total++; if (ok) score.right++; updateScore(); }
+      fb.innerHTML = ok ? `<span><b class="ok">Richtig!</b></span>${steps()}` : `<span><b class="no">Noch nicht richtig.</b> ${hint}</span>`;
+    });
+    $("#trShow").addEventListener("click", () => {
+      if (!task.attempted) { task.attempted = true; score.total++; updateScore(); }
+      const fb = $("#trFb"); fb.hidden = false; fb.innerHTML = steps();
+    });
+    $("#trNext").addEventListener("click", newTask);
+    $$("[data-mode]").forEach((b) => b.addEventListener("click", () => { mode = b.dataset.mode; $$("[data-mode]").forEach((x) => x.setAttribute("aria-pressed", String(x === b))); newTask(); }));
+    $$("[data-level]").forEach((b) => b.addEventListener("click", () => { level = +b.dataset.level; $$("[data-level]").forEach((x) => x.setAttribute("aria-pressed", String(x === b))); newTask(); }));
+    newTask();
+    window.__binom = { parseExpr, same };
+  })();
+
+  // =====================================================================
+  // 4 Mental arithmetic tricks
+  // =====================================================================
+  (function () {
+    let task = null, score = { right: 0, total: 0 };
+    function newTask() {
+      const kind = pick(["plus", "minus", "third"]);
+      const base = rnd(2, 9) * 10, d = kind === "third" ? rnd(1, 5) : rnd(1, 3);
+      if (kind === "plus") task = { html: `${base + d}<sup>2</sup>`, ans: (base + d) ** 2, sol: `(${base} + ${d})<sup>2</sup> = ${base * base} + ${2 * base * d} + ${d * d} = ${(base + d) ** 2}` };
+      else if (kind === "minus") task = { html: `${base - d}<sup>2</sup>`, ans: (base - d) ** 2, sol: `(${base} − ${d})<sup>2</sup> = ${base * base} − ${2 * base * d} + ${d * d} = ${(base - d) ** 2}` };
+      else task = { html: `${base + d} · ${base - d}`, ans: base * base - d * d, sol: `(${base} + ${d})(${base} − ${d}) = ${base * base} − ${d * d} = ${base * base - d * d}` };
+      task.attempted = false;
+      $("#kTask").innerHTML = task.html; $("#kInput").value = ""; $("#kFb").hidden = true;
+    }
+    $("#kForm").addEventListener("submit", (ev) => {
+      ev.preventDefault();
+      const v = parseInt($("#kInput").value.replace(/[.\s]/g, ""), 10);
+      const fb = $("#kFb"); fb.hidden = false;
+      if (isNaN(v)) { fb.innerHTML = "<span>Bitte gib eine Zahl ein.</span>"; return; }
+      const ok = v === task.ans;
+      if (!task.attempted) { task.attempted = true; score.total++; if (ok) score.right++; $("#kScore").textContent = `${score.right} von ${score.total} richtig`; }
+      fb.innerHTML = (ok ? '<span><b class="ok">Richtig!</b></span>' : '<span><b class="no">Noch nicht.</b> Zerlege die Zahl in eine Zehnerzahl und einen kleinen Rest.</span>') + (ok ? `<span class="math">${task.sol}</span>` : "");
+    });
+    $("#kShow").addEventListener("click", () => { if (!task.attempted) { task.attempted = true; score.total++; $("#kScore").textContent = `${score.right} von ${score.total} richtig`; } const fb = $("#kFb"); fb.hidden = false; fb.innerHTML = `<span class="math">${task.sol}</span>`; });
+    $("#kNext").addEventListener("click", newTask);
+    newTask();
+  })();
+
+  // =====================================================================
+  // 5 Quiz
+  // =====================================================================
+  const QUESTIONS = [
+    { q: "(x + 3)² = ?", o: ["x² + 9", "x² + 6x + 9", "x² + 3x + 9", "2x + 6"], a: 1, e: "1. Formel: a² + 2ab + b² = x² + 2·x·3 + 9 = x² + 6x + 9." },
+    { q: "(x − 4)² = ?", o: ["x² − 16", "x² − 8x − 16", "x² − 8x + 16", "x² + 16"], a: 2, e: "2. Formel: a² − 2ab + b². Am Ende steht immer + b², hier + 16." },
+    { q: "(x + 5)(x − 5) = ?", o: ["x² − 25", "x² + 25", "x² − 10x + 25", "x² − 10"], a: 0, e: "3. Formel: a² − b². Die Mittelglieder +5x und −5x heben sich auf." },
+    { q: "(3x)² = ?", o: ["3x²", "9x", "9x²", "6x²"], a: 2, e: "Die Zahl wird mitquadriert: 3² · x² = 9x²." },
+    { q: "Welcher Fehler ist der häufigste bei (a + b)²?", o: ["Man vergisst b²", "Man vergisst das Mittelglied 2ab", "Man schreibt a³", "Man vergisst die Klammer"], a: 1, e: "(a + b)² ist NICHT a² + b². Das Mittelglied 2ab gehört dazu, wie die grünen Rechtecke im Flächenbild." },
+    { q: "(2x + 1)² = ?", o: ["4x² + 4x + 1", "2x² + 4x + 1", "4x² + 2x + 1", "4x² + 1"], a: 0, e: "a = 2x, b = 1: (2x)² = 4x², 2·2x·1 = 4x, 1² = 1." },
+    { q: "Welche binomische Formel passt zu x² − 10x + 25?", o: ["(x + 5)²", "(x − 5)²", "(x + 5)(x − 5)", "(x − 25)²"], a: 1, e: "Minus vor dem Mittelglied, Plus am Ende: Das ist die 2. Formel mit a = x und b = 5." },
+    { q: "x² − 49 als Produkt geschrieben:", o: ["(x − 7)²", "(x + 7)²", "(x + 7)(x − 7)", "(x − 49)(x + 1)"], a: 2, e: "a² − b² = (a + b)(a − b) mit b = 7." },
+    { q: "Was ist das Mittelglied von (x + 6)²?", o: ["6x", "12x", "36", "x²"], a: 1, e: "Mittelglied = 2 · a · b = 2 · x · 6 = 12x." },
+    { q: "Wie rechnest du 31² am schnellsten im Kopf?", o: ["(30 + 1)² = 900 + 60 + 1 = 961", "30² + 1² = 901", "31 · 30 = 930", "(30 + 1)² = 900 + 1 = 901"], a: 0, e: "1. Formel mit a = 30 und b = 1. Das Mittelglied 2 · 30 · 1 = 60 nicht vergessen." },
+    { q: "48 · 52 = ?", o: ["2496", "2500", "2504", "2400"], a: 0, e: "(50 − 2)(50 + 2) = 2500 − 4 = 2496 (3. Formel)." },
+    { q: "(a − b)² und (b − a)² sind …", o: ["gleich", "verschieden", "nur gleich, wenn a = 0 ist", "immer negativ"], a: 0, e: "Ein Quadrat ist nie negativ, und (a − b) und (b − a) unterscheiden sich nur im Vorzeichen. Beide ergeben a² − 2ab + b²." },
+    { q: "Was ist ein Binom?", o: ["Eine Zahl mit zwei Stellen", "Ein Term aus zwei Teilen, die mit + oder − verbunden sind, z. B. (x + 3)", "Ein Quadrat", "Eine Gleichung"], a: 1, e: "„Bi“ heißt zwei: ein Term aus zwei Gliedern." },
+    { q: "(x + y)² = ?", o: ["x² + y²", "x² + xy + y²", "x² + 2xy + y²", "2x + 2y"], a: 2, e: "Auch mit zwei Variablen: a² + 2ab + b² = x² + 2xy + y²." }
+  ];
+  (function () {
+    const N = 10;
+    let order = [], idx = 0, score = 0, answered = false;
+    function start() {
+      order = shuffle(QUESTIONS).slice(0, N).map((q) => { const perm = shuffle(q.o.map((_, i) => i)); return { q: q.q, o: perm.map((i) => q.o[i]), a: perm.indexOf(q.a), e: q.e }; });
+      idx = 0; score = 0; render();
+    }
+    function render() {
+      const box = $("#quizBox");
+      $("#qBar").style.width = (idx / N) * 100 + "%";
+      if (idx >= N) {
+        const best = Math.max(score, store.get("binom.best") || 0); store.set("binom.best", best);
+        const msg = score >= 9 ? "Super! Du beherrschst die binomischen Formeln." : score >= 6 ? "Gut gemacht! Übe noch ein paar Aufgaben im Trainer." : "Schau dir die Formeln und das Flächenbild noch einmal an und versuche es dann erneut.";
+        $("#qProgress").textContent = `fertig · Bestwert ${best} / ${N}`;
+        box.innerHTML = `<span class="eyebrow">Ergebnis</span><div class="score-big">${score} / ${N}</div><p>${msg}</p><div class="row"><button type="button" class="primary" id="qAgain">Neue Runde</button></div>`;
+        $("#qAgain").addEventListener("click", start);
+        return;
+      }
+      const q = order[idx]; answered = false;
+      $("#qProgress").textContent = `Frage ${idx + 1} von ${N} · ${score} richtig`;
+      box.innerHTML = `<div class="qtext math"></div><div class="opts"></div><div class="feedback" hidden></div><div class="row"><button type="button" class="primary" id="qNext" hidden>${idx + 1 < N ? "Nächste Frage" : "Ergebnis anzeigen"}</button></div>`;
+      $(".qtext", box).textContent = q.q;
+      q.o.forEach((t, i) => {
+        const b = document.createElement("button"); b.type = "button";
+        b.innerHTML = `<span class="k">${"ABCD"[i]}</span><span class="math"></span>`; b.lastChild.textContent = t;
+        b.addEventListener("click", () => choose(i));
+        $(".opts", box).appendChild(b);
+      });
+      $("#qNext").addEventListener("click", () => { idx++; render(); });
+    }
+    function choose(i) {
+      if (answered) return; answered = true;
+      const q = order[idx], box = $("#quizBox");
+      $$(".opts button", box).forEach((b, j) => { b.disabled = true; if (j === q.a) b.classList.add("right"); else if (j === i) b.classList.add("wrong"); });
+      const ok = i === q.a; if (ok) score++;
+      const fb = $(".feedback", box); fb.hidden = false;
+      fb.innerHTML = ok ? '<b class="ok">Richtig!</b> ' : '<b class="no">Leider falsch.</b> ';
+      fb.appendChild(document.createTextNode(q.e));
+      $("#qNext").hidden = false; $("#qNext").focus();
+      $("#qProgress").textContent = `Frage ${idx + 1} von ${N} · ${score} richtig`;
+    }
+    start();
+  })();
+
+  showView();
+})();
+</script>
