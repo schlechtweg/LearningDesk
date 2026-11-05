@@ -237,7 +237,8 @@ header:not(.top) > .theme-toggle { top: 0; }
     <a href="#verstehen" data-view="verstehen"><span class="n">1</span>Verstehen</a>
     <a href="#tauchen" data-view="tauchen"><span class="n">2</span>Tauchbecken</a>
     <a href="#ueben" data-view="ueben"><span class="n">3</span>Üben</a>
-    <a href="#quiz" data-view="quiz"><span class="n">4</span>Quiz</a>
+    <a href="#alltag" data-view="alltag"><span class="n">4</span>Im Alltag</a>
+    <a href="#quiz" data-view="quiz"><span class="n">5</span>Quiz</a>
   </nav>
 
   <section class="view" id="view-verstehen">
@@ -280,15 +281,6 @@ header:not(.top) > .theme-toggle { top: 0; }
       <p class="small">In allen drei Gefäßen steht das Wasser gleich hoch. Am Boden herrscht deshalb überall <strong>derselbe Druck</strong>, obwohl unterschiedlich viel Wasser in den Gefäßen ist.</p>
     </div>
     <div class="grid-2">
-      <div class="panel stack">
-        <h3>Im Alltag</h3>
-        <ul class="list small">
-          <li><strong>Staudamm</strong>: unten viel dicker als oben, weil der Druck unten am größten ist.</li>
-          <li><strong>Taucher</strong>: müssen beim Abtauchen den Druck in den Ohren ausgleichen.</li>
-          <li><strong>U-Boote</strong>: brauchen dicke Wände, um in großer Tiefe nicht eingedrückt zu werden.</li>
-          <li><strong>Wasserturm</strong>: Das hoch gelegene Wasser erzeugt den Druck in der Wasserleitung.</li>
-        </ul>
-      </div>
       <div class="panel stack">
         <h3>Gesamtdruck</h3>
         <p class="small">Auf die Wasseroberfläche drückt zusätzlich die Luft mit etwa 1 bar. Der Gesamtdruck in der Tiefe ist:</p>
@@ -337,6 +329,36 @@ header:not(.top) > .theme-toggle { top: 0; }
       <p class="muted">Rechne mit <span class="math"><i>g</i> = 9,81 N/kg</span>. Gib nur die Zahl ein, die Einheit steht in der Aufgabe. Eine Abweichung von 1 % durch Runden wird akzeptiert.</p>
     </div>
     <div id="trainer" class="stack"></div>
+  </section>
+
+  <section class="view" id="view-alltag" hidden>
+    <div class="stack">
+      <span class="eyebrow">Im Alltag</span>
+      <h2>Schweredruck im Alltag</h2>
+      <p class="muted">Je tiefer es ins Wasser geht, desto stärker drückt es. Das muss man beim Tauchen und Bauen beachten.</p>
+    </div>
+    <div class="grid-2">
+        <div class="panel stack">
+          <span class="eyebrow">Bauwerk</span>
+          <h3>Staudamm</h3>
+          <p class="small">Eine Staumauer ist unten viel dicker als oben, weil der Wasserdruck unten am größten ist.</p>
+        </div>
+        <div class="panel stack">
+          <span class="eyebrow">Schwimmbad</span>
+          <h3>Druck in den Ohren</h3>
+          <p class="small">Schon in 3 m Tiefe drückt das Wasser deutlich auf das Trommelfell. Taucher gleichen den Druck aus, indem sie Luft in die Ohren pressen.</p>
+        </div>
+        <div class="panel stack">
+          <span class="eyebrow">Technik</span>
+          <h3>U-Boot</h3>
+          <p class="small">U-Boote brauchen dicke Wände. In 100 m Tiefe drückt das Wasser mit rund 10 bar, auf jeden Quadratzentimeter wie ein 10-kg-Gewicht.</p>
+        </div>
+        <div class="panel stack">
+          <span class="eyebrow">Wasserversorgung</span>
+          <h3>Wasserturm</h3>
+          <p class="small">Das hoch gelegene Wasser im Turm erzeugt den Druck in der Leitung. Darum kommt das Wasser auch im dritten Stock aus dem Hahn.</p>
+        </div>
+    </div>
   </section>
 
   <section class="view" id="view-quiz" hidden>
@@ -850,7 +872,7 @@ header:not(.top) > .theme-toggle { top: 0; }
     { q: "Wie hoch drückt eine Quecksilbersäule so stark wie die Luft?", o: ["etwa 10 m", "etwa 76 cm", "etwa 1 cm", "etwa 1 km"], a: 1, e: "Quecksilber ist 13,6-mal so dicht wie Wasser: 10,3 m : 13,6 ≈ 0,76 m." }
   ] });
 
-  LK.views(["verstehen", "tauchen", "ueben", "quiz"], { tauchen: draw });
+  LK.views(["verstehen", "tauchen", "ueben", "alltag", "quiz"], { tauchen: draw });
 })();
 </script>
 <script>

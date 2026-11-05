@@ -111,5 +111,5 @@
     { q: "Was entscheidet, ob etwas schwimmt?", o: ["Nur das Gewicht", "Nur die Größe", "Die Dichte im Vergleich zur Flüssigkeit", "Die Farbe"], a: 2, e: "Kleinere Dichte als die Flüssigkeit: schwimmt." }
   ] });
 
-  LK.views(["verstehen", "versuch", "vorhersagen", "ueben", "quiz"], { versuch: draw });
+  LK.views(["verstehen", "versuch", "vorhersagen", "ueben", "alltag", "quiz"], { versuch: draw });
 })();

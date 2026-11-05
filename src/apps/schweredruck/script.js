@@ -78,5 +78,5 @@
     { q: "Wie hoch drückt eine Quecksilbersäule so stark wie die Luft?", o: ["etwa 10 m", "etwa 76 cm", "etwa 1 cm", "etwa 1 km"], a: 1, e: "Quecksilber ist 13,6-mal so dicht wie Wasser: 10,3 m : 13,6 ≈ 0,76 m." }
   ] });
 
-  LK.views(["verstehen", "tauchen", "ueben", "quiz"], { tauchen: draw });
+  LK.views(["verstehen", "tauchen", "ueben", "alltag", "quiz"], { tauchen: draw });
 })();

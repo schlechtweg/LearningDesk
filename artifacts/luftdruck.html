@@ -229,7 +229,8 @@ header:not(.top) > .theme-toggle { top: 0; }
     <a href="#verstehen" data-view="verstehen"><span class="n">1</span>Verstehen</a>
     <a href="#hoehe" data-view="hoehe"><span class="n">2</span>Höhenreise</a>
     <a href="#ueben" data-view="ueben"><span class="n">3</span>Üben</a>
-    <a href="#quiz" data-view="quiz"><span class="n">4</span>Quiz</a>
+    <a href="#alltag" data-view="alltag"><span class="n">4</span>Im Alltag</a>
+    <a href="#quiz" data-view="quiz"><span class="n">5</span>Quiz</a>
   </nav>
 
   <section class="view" id="view-verstehen">
@@ -259,7 +260,6 @@ header:not(.top) > .theme-toggle { top: 0; }
       <div class="grid-3">
         <div class="panel stack"><h3>Magdeburger Halbkugeln</h3><p class="small">Otto von Guericke pumpte im 17. Jahrhundert die Luft aus zwei zusammengelegten Halbkugeln. Selbst Pferdegespanne konnten sie nicht auseinanderziehen. Der äußere Luftdruck presste sie zusammen.</p></div>
         <div class="panel stack"><h3>Wasserglas mit Postkarte</h3><p class="small">Ein volles Glas, mit einer Postkarte abgedeckt, wird umgedreht. Das Wasser bleibt drin: Der Luftdruck von unten drückt die Karte fest gegen das Glas.</p></div>
-        <div class="panel stack"><h3>Trinkhalm und Saugnapf</h3><p class="small">Die Luft „saugt“ nicht. Beim Trinken verringerst du den Druck im Mund, und der äußere Luftdruck <strong>drückt</strong> das Getränk nach oben. Beim Saugnapf drückt die Luft ihn an die Wand.</p></div>
       </div>
     </div>
     <div class="grid-2">
@@ -270,14 +270,6 @@ header:not(.top) > .theme-toggle { top: 0; }
           <li>Faustregel nahe am Boden: <strong>etwa 1 hPa weniger pro 8 m</strong> Höhe.</li>
           <li>In rund 5,5 km Höhe ist er nur noch <strong>halb so groß</strong>.</li>
           <li>Folgen: Die Ohren knacken im Aufzug oder Flugzeug, Bergsteiger bekommen weniger Sauerstoff, Wasser kocht schon unter 100 °C, und eine Chipstüte bläht sich auf dem Berg auf.</li>
-        </ul>
-      </div>
-      <div class="panel stack">
-        <h3>Luftdruck und Wetter</h3>
-        <ul class="list small">
-          <li><strong>Hochdruckgebiet (H)</strong>: Luftdruck über 1 013 hPa, meist schönes, trockenes Wetter.</li>
-          <li><strong>Tiefdruckgebiet (T)</strong>: Luftdruck unter 1 013 hPa, oft Wolken und Regen.</li>
-          <li><strong>Wind</strong> entsteht, weil Luft vom hohen zum tiefen Druck strömt.</li>
         </ul>
       </div>
     </div>
@@ -315,6 +307,46 @@ header:not(.top) > .theme-toggle { top: 0; }
       <p class="muted">Gib nur die Zahl ein, die Einheit steht in der Aufgabe. Eine Abweichung von 1 % durch Runden wird akzeptiert.</p>
     </div>
     <div id="trainer" class="stack"></div>
+  </section>
+
+  <section class="view" id="view-alltag" hidden>
+    <div class="stack">
+      <span class="eyebrow">Im Alltag</span>
+      <h2>Luftdruck im Alltag</h2>
+      <p class="muted">Der Luftdruck ist immer da, man merkt ihn nur, wenn er sich ändert oder auf einer Seite fehlt.</p>
+    </div>
+    <div class="grid-2">
+        <div class="panel stack">
+          <span class="eyebrow">Getränk</span>
+          <h3>Trinkhalm</h3>
+          <p class="small">Die Luft „saugt“ nicht. Beim Trinken verringerst du den Druck im Mund, und der äußere Luftdruck <strong>drückt</strong> das Getränk den Halm hinauf.</p>
+        </div>
+        <div class="panel stack">
+          <span class="eyebrow">Küche und Bad</span>
+          <h3>Saugnapf</h3>
+          <p class="small">Drückt man den Saugnapf an, entweicht Luft. Innen ist dann weniger Druck als außen, und der äußere Luftdruck presst ihn an die Wand.</p>
+        </div>
+        <div class="panel stack">
+          <span class="eyebrow">Reisen</span>
+          <h3>Ohren im Aufzug und Flugzeug</h3>
+          <p class="small">Ändert sich der Luftdruck schnell, ist er vor und hinter dem Trommelfell kurz unterschiedlich. Schlucken oder Gähnen gleicht ihn aus, die Ohren „knacken“.</p>
+        </div>
+        <div class="panel stack">
+          <span class="eyebrow">Wandern</span>
+          <h3>Chipstüte auf dem Berg</h3>
+          <p class="small">Eine im Tal verschlossene Tüte bläht sich oben auf, weil der äußere Luftdruck kleiner ist als der Druck der Luft in der Tüte.</p>
+        </div>
+        <div class="panel stack">
+          <span class="eyebrow">Kochen</span>
+          <h3>Nudeln auf dem Berg</h3>
+          <p class="small">Auf der Zugspitze kocht Wasser schon bei etwa 90 °C. Heißer wird es nicht, deshalb brauchen Nudeln dort länger.</p>
+        </div>
+        <div class="panel stack">
+          <span class="eyebrow">Wetterbericht</span>
+          <h3>Hoch und Tief</h3>
+          <p class="small">Ein Hoch (über 1 013 hPa) bringt meist schönes, trockenes Wetter, ein Tief oft Wolken und Regen. Wind entsteht, weil Luft vom Hoch zum Tief strömt.</p>
+        </div>
+    </div>
   </section>
 
   <section class="view" id="view-quiz" hidden>
@@ -836,7 +868,7 @@ header:not(.top) > .theme-toggle { top: 0; }
     { q: "Eine verschlossene Chipstüte nimmt man mit auf einen Berg. Was passiert?", o: ["Sie wird flach", "Sie bläht sich auf", "Nichts", "Sie platzt sofort"], a: 1, e: "Außen ist der Druck kleiner, die Luft in der Tüte dehnt sich aus." }
   ] });
 
-  LK.views(["verstehen", "hoehe", "ueben", "quiz"], { hoehe: draw });
+  LK.views(["verstehen", "hoehe", "ueben", "alltag", "quiz"], { hoehe: draw });
 })();
 </script>
 <script>

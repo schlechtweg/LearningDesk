@@ -77,5 +77,5 @@
     { q: "F₁ = 100 N auf A₁ = 2 cm². Wie groß ist der Druck?", o: ["200 N/cm²", "50 N/cm²", "0,02 N/cm²", "102 N/cm²"], a: 1, e: "100 N : 2 cm² = 50 N/cm² = 5 bar." }
   ] });
 
-  LK.views(["verstehen", "modell", "ueben", "quiz"], { modell: draw });
+  LK.views(["verstehen", "modell", "ueben", "alltag", "quiz"], { modell: draw });
 })();

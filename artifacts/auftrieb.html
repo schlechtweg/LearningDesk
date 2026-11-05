@@ -227,7 +227,8 @@ header:not(.top) > .theme-toggle { top: 0; }
     <a href="#versuch" data-view="versuch"><span class="n">2</span>Versuch</a>
     <a href="#vorhersagen" data-view="vorhersagen"><span class="n">3</span>Schwimmt es?</a>
     <a href="#ueben" data-view="ueben"><span class="n">4</span>Üben</a>
-    <a href="#quiz" data-view="quiz"><span class="n">5</span>Quiz</a>
+    <a href="#alltag" data-view="alltag"><span class="n">5</span>Im Alltag</a>
+    <a href="#quiz" data-view="quiz"><span class="n">6</span>Quiz</a>
   </nav>
 
   <section class="view" id="view-verstehen">
@@ -258,16 +259,6 @@ header:not(.top) > .theme-toggle { top: 0; }
       </div>
     </div>
     <div class="grid-2">
-      <div class="panel stack">
-        <h3>Beispiele</h3>
-        <ul class="list small">
-          <li><strong>Stahlschiff</strong>: Stahl sinkt, aber das Schiff ist innen hohl. Mit der Luft darin ist seine mittlere Dichte kleiner als die von Wasser.</li>
-          <li><strong>Eisberg</strong>: Eis ist nur etwas leichter als Meerwasser. Darum liegen rund 90 % unter Wasser.</li>
-          <li><strong>U-Boot</strong>: flutet Tanks mit Wasser zum Abtauchen und presst es mit Druckluft heraus zum Auftauchen.</li>
-          <li><strong>Fische</strong>: regeln mit der Schwimmblase ihre mittlere Dichte und schweben.</li>
-          <li><strong>Totes Meer</strong>: sehr salzig und dicht, man liegt fast von selbst auf dem Wasser.</li>
-        </ul>
-      </div>
       <div class="panel stack">
         <h3>Dichten (in kg/m³)</h3>
         <table class="data">
@@ -325,6 +316,46 @@ header:not(.top) > .theme-toggle { top: 0; }
       <p class="muted">Rechne mit <span class="math"><i>g</i> = 9,81 N/kg</span>. Gib nur die Zahl oder das Wort ein. Eine Abweichung von 1 % durch Runden wird akzeptiert.</p>
     </div>
     <div id="trainer" class="stack"></div>
+  </section>
+
+  <section class="view" id="view-alltag" hidden>
+    <div class="stack">
+      <span class="eyebrow">Im Alltag</span>
+      <h2>Auftrieb im Alltag</h2>
+      <p class="muted">Ob etwas schwimmt, schwebt oder sinkt, entscheidet überall der Vergleich der Dichten.</p>
+    </div>
+    <div class="grid-2">
+        <div class="panel stack">
+          <span class="eyebrow">Hafen</span>
+          <h3>Schiff aus Stahl</h3>
+          <p class="small">Stahl sinkt, aber ein Schiff ist innen hohl. Mit der Luft darin ist seine mittlere Dichte kleiner als die von Wasser, deshalb schwimmt es.</p>
+        </div>
+        <div class="panel stack">
+          <span class="eyebrow">Polarmeer</span>
+          <h3>Eisberg</h3>
+          <p class="small">Eis ist nur etwas leichter als Meerwasser. Darum liegen rund 90 % eines Eisbergs unter Wasser, man sieht nur die Spitze.</p>
+        </div>
+        <div class="panel stack">
+          <span class="eyebrow">Technik</span>
+          <h3>U-Boot</h3>
+          <p class="small">Es flutet Tanks mit Wasser, um abzutauchen, und presst das Wasser mit Druckluft wieder heraus, um aufzutauchen.</p>
+        </div>
+        <div class="panel stack">
+          <span class="eyebrow">Natur</span>
+          <h3>Fische</h3>
+          <p class="small">Mit der Schwimmblase regeln Fische ihre mittlere Dichte und können ohne Anstrengung im Wasser schweben.</p>
+        </div>
+        <div class="panel stack">
+          <span class="eyebrow">Urlaub</span>
+          <h3>Totes Meer</h3>
+          <p class="small">Das Wasser ist so salzig und dicht, dass man fast von selbst auf dem Wasser liegt.</p>
+        </div>
+        <div class="panel stack">
+          <span class="eyebrow">Schwimmbad</span>
+          <h3>Schwimmweste und Schwimmflügel</h3>
+          <p class="small">Sie enthalten viel Luft oder Schaumstoff. Damit wird die mittlere Dichte von Mensch und Weste kleiner als die von Wasser, und man treibt oben.</p>
+        </div>
+    </div>
   </section>
 
   <section class="view" id="view-quiz" hidden>
@@ -871,7 +902,7 @@ header:not(.top) > .theme-toggle { top: 0; }
     { q: "Was entscheidet, ob etwas schwimmt?", o: ["Nur das Gewicht", "Nur die Größe", "Die Dichte im Vergleich zur Flüssigkeit", "Die Farbe"], a: 2, e: "Kleinere Dichte als die Flüssigkeit: schwimmt." }
   ] });
 
-  LK.views(["verstehen", "versuch", "vorhersagen", "ueben", "quiz"], { versuch: draw });
+  LK.views(["verstehen", "versuch", "vorhersagen", "ueben", "alltag", "quiz"], { versuch: draw });
 })();
 </script>
 <script>

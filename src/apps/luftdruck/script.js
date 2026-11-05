@@ -86,5 +86,5 @@
     { q: "Eine verschlossene Chipstüte nimmt man mit auf einen Berg. Was passiert?", o: ["Sie wird flach", "Sie bläht sich auf", "Nichts", "Sie platzt sofort"], a: 1, e: "Außen ist der Druck kleiner, die Luft in der Tüte dehnt sich aus." }
   ] });
 
-  LK.views(["verstehen", "hoehe", "ueben", "quiz"], { hoehe: draw });
+  LK.views(["verstehen", "hoehe", "ueben", "alltag", "quiz"], { hoehe: draw });
 })();
