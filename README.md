@@ -61,6 +61,16 @@ python3 src/build.py --pdf          # zusätzlich Factsheet-PDFs (braucht Node.j
 
 Danach `docs/` committen und pushen; GitHub Pages veröffentlicht automatisch (Quelle: Standard-Branch, Ordner `/docs`).
 
+## Wenn die Veröffentlichung fehlschlägt
+
+GitHub Pages veröffentlicht `docs/` nach jedem Push automatisch (Actions → „pages build and deployment“). Schlägt das fehl, obwohl der Build-Schritt grün ist, liegt es meist an GitHub selbst:
+
+- **„Timeout reached“ beim Schritt deploy**: GitHub hing beim Freischalten. Kein Fehler im Code.
+- **„due to in progress deployment … Please cancel … first“**: Eine frühere Veröffentlichung gilt noch als laufend und blockiert die neue. Nach einigen Minuten löst sich das meist von selbst.
+- **Lauf hängt auf „Queued“ und lässt sich nicht abbrechen**: Einfach ignorieren. Der nächste Push startet einen neuen, unabhängigen Lauf mit dem kompletten aktuellen Stand.
+
+Ob die Seite aktuell ist, zeigt die Versionszeile unten auf jeder Seite.
+
 ## Neues Thema hinzufügen
 
 1. Ordner `src/apps/<thema>/` mit `style.css`, `body.html` (Tabs und Bereiche) und `script.js` anlegen. Am einfachsten mit dem LearnKit-Baukasten: Vorlage ist eine der Klasse-8-Apps (z. B. `src/apps/druck/`), in `config.py` dann `"kit": True` und eine Akzentfarbe setzen. `script.js` nutzt `LK.views`, `LK.trainer`, `LK.quiz` usw.
