@@ -6,7 +6,7 @@ const { chromium } = require("playwright");
 
 const SRC = path.join(__dirname, "factsheets");
 const OUT = path.join(__dirname, "..", "docs", "factsheets");
-const NAMES = ["osmose", "natrium-kalium-pumpe", "ableiten", "binomische-formeln", "bruchterme"];
+const NAMES = ["osmose", "natrium-kalium-pumpe", "ableiten", "binomische-formeln", "bruchterme", "classpad"];
 
 (async () => {
   fs.mkdirSync(OUT, { recursive: true });

@@ -342,6 +342,83 @@ SHEETS["bruchterme"] = dict(title="Bruchterme", eyebrow="Mathematik · Klasse 8 
     </div>
   </div>''')
 
+
+def kb(t): return f'<span class="key">{t}</span>'
+SHEETS["classpad"] = dict(title="ClassPad: Bedienung", eyebrow="Taschenrechner · Spickzettel · Klasse 8 bis 12", accent="#1f5f9e",
+  extra="body { font-size: 8.6pt; } .page { gap: 2.4mm; padding-top: 9mm; } .cols { gap: 2.4mm 4.5mm; } .box { padding: 2mm 3mm; gap: 1mm; } th, td { padding: 0.7mm 1.3mm; } .kern { font-size: 10.5pt; padding: 2mm 3mm; } header h1 { font-size: 22pt; } .key { font-family: var(--font-mono); font-size: 0.86em; border: 1px solid #9aa6b2; border-bottom-width: 2px; border-radius: 1.2mm; padding: 0 1.2mm; background: #f4f6f8; white-space: nowrap; } td:first-child { white-space: nowrap; font-weight: 700; }",
+  body=f"""
+  <div class="kern">Für normale Rechnungen nutzt du die Anwendung <strong>Main</strong>, für Funktionen <strong>Graph&amp;Tabelle</strong>, für Daten <strong>Statistik</strong>. Gewechselt wird über {kb("▦ Menü")}. Schreibweise unten: Menü ▸ Untermenü ▸ Befehl.</div>
+  <div class="cols">
+    <div class="box">
+      <h2>Wichtige Tasten</h2>
+      <table>
+        <tr><td>{kb("EXE")}</td><td>Rechnung ausführen, Eingabe bestätigen</td></tr>
+        <tr><td>{kb("Keyboard")}</td><td>Bildschirm-Tastatur ein/aus (Math1, Math2, Trig, abc)</td></tr>
+        <tr><td>{kb("⌫")}</td><td>ein Zeichen links vom Cursor löschen</td></tr>
+        <tr><td>{kb("Clear")}</td><td>ganze Eingabezeile löschen, Analyse beenden</td></tr>
+        <tr><td>{kb("◀")} {kb("▶")}</td><td>Cursor bewegen; im Graphen zur nächsten Lösung</td></tr>
+        <tr><td>{kb("▲")}</td><td>frühere Eingabe zurückholen</td></tr>
+        <tr><td>{kb("(−)")} / {kb("−")}</td><td>Vorzeichen / Minus-Rechenzeichen</td></tr>
+        <tr><td>{kb("ans")}</td><td>letztes Ergebnis weiterverwenden</td></tr>
+      </table>
+    </div>
+    <div class="box">
+      <h2>Statusleiste (unten) antippen</h2>
+      <table>
+        <tr><td>Standard / Dezimal</td><td>exakte Ergebnisse (19/12, 2√2) oder Dezimalzahlen</td></tr>
+        <tr><td>Deg / Rad</td><td>Grad oder Bogenmaß. <strong>Vor jeder Trigonometrie-Aufgabe prüfen!</strong></td></tr>
+      </table>
+      <p class="small">{kb("⇔")} in der Symbolleiste von Main wandelt nur das letzte Ergebnis um (exakt ↔ dezimal).</p>
+      <h2 style="margin-top:1.5mm">Bildschirm-Tastatur</h2>
+      <table>
+        <tr><td>Math1</td><td>□/□ (Bruch), √□, x², π, eˣ, ln, log, |x|, solve(</td></tr>
+        <tr><td>Math2</td><td>diff(, ∫(, expand(, factor(, simplify(</td></tr>
+        <tr><td>Trig</td><td>sin, cos, tan, sin⁻¹, cos⁻¹, tan⁻¹</td></tr>
+      </table>
+      <p class="small">Bruch: Zähler tippen, mit {kb("▶")} in den Nenner, mit {kb("▶")} wieder heraus.</p>
+    </div>
+    <div class="box full">
+      <h2>Main: typische Aufgaben</h2>
+      <table>
+        <tr><th>Aufgabe</th><th>Eingabe</th><th>Ergebnis</th><th>auch über</th></tr>
+        <tr><td>Klammern auflösen</td><td>{m("expand((x+3)^2)")}</td><td>{m("<i>x</i><sup>2</sup>+6<i>x</i>+9")}</td><td>Aktion ▸ Umformung ▸ expand</td></tr>
+        <tr><td>Faktorisieren</td><td>{m("factor(x^2−9)")}</td><td>{m("(<i>x</i>−3)(<i>x</i>+3)")}</td><td>Aktion ▸ Umformung ▸ factor</td></tr>
+        <tr><td>Gleichung lösen</td><td>{m("solve(x^2−5x+6=0, x)")}</td><td>{m("{<i>x</i>=2, <i>x</i>=3}")}</td><td>Aktion ▸ Gleichung/Ungl. ▸ solve</td></tr>
+        <tr><td>Ableiten</td><td>{m("diff(x^3−2x, x)")}</td><td>{m("3<i>x</i><sup>2</sup>−2")}</td><td>Aktion ▸ Berechnung ▸ diff</td></tr>
+        <tr><td>Stammfunktion</td><td>{m("∫(x^2, x)")}</td><td>{m(fr(1,3) + "<i>x</i><sup>3</sup>")}</td><td>Aktion ▸ Berechnung ▸ ∫</td></tr>
+        <tr><td>Bestimmtes Integral</td><td>{m("∫(x^2, x, 0, 3)")}</td><td>{m("9")}</td><td>Grenzen: untere, dann obere</td></tr>
+      </table>
+    </div>
+    <div class="box">
+      <h2>Graph&amp;Tabelle</h2>
+      <ol>
+        <li>{kb("▦ Menü")} ▸ Graph&amp;Tabelle, in <strong>y1</strong> tippen, Term eingeben, {kb("EXE")} (Häkchen = wird gezeichnet).</li>
+        <li>Symbol <strong>Zeichnen</strong>. Ausschnitt: <strong>Fenster</strong> (View-Window) oder Zoom.</li>
+        <li>Analyse ▸ Grafische Lösung (G-Solve) ▸ <strong>Nullstelle</strong> (Root), <strong>Max</strong>, <strong>Min</strong> oder <strong>Schnittpunkt</strong> (Intersect, braucht y1 und y2).</li>
+        <li>Mit {kb("▶")} zur nächsten Lösung, mit {kb("Clear")} beenden.</li>
+        <li>Wertetabelle: Symbol <strong>Tabelle</strong>, Start/Ende/Schritt unter <strong>Tab.-Einst.</strong></li>
+      </ol>
+    </div>
+    <div class="box">
+      <h2>Statistik</h2>
+      <ol>
+        <li>{kb("▦ Menü")} ▸ Statistik. Werte in <strong>list1</strong> (und list2), nach jeder Zahl {kb("EXE")}.</li>
+        <li>Kalk ▸ <strong>Statistik 1 Var.</strong> (One-Variable): <span class="math" style="text-decoration: overline">x</span> Mittelwert, Med Median, Q₁/Q₃ Quartile, σx bzw. sx Standardabweichung, n Anzahl.</li>
+        <li>Kalk ▸ <strong>Lineare Regression</strong>: Ausgleichsgerade {m("<i>y</i> = <i>a</i>·<i>x</i> + <i>b</i>")}, r nahe ±1 heißt: Punkte liegen fast auf einer Geraden.</li>
+      </ol>
+    </div>
+    <div class="box warn full">
+      <h2>Typische Fehler</h2>
+      <ul>
+        <li><strong>Falscher Winkelmodus:</strong> sin(30) ergibt nur im Modus Deg ½. Für Ableitungen und Integrale mit sin/cos auf Rad stellen.</li>
+        <li><strong>Vorzeichen:</strong> Für negative Zahlen {kb("(−)")} verwenden, für Rechnungen {kb("−")}.</li>
+        <li><strong>solve ohne Variable:</strong> immer „, x“ angeben: {m("solve(2x+1=7, x)")}.</li>
+        <li><strong>Klammern vergessen:</strong> {m("1÷2x")} ist etwas anderes als {m("1÷(2x)")}. Im Zweifel klammern.</li>
+      </ul>
+      <p class="small">Unabhängiger Spickzettel, nicht von CASIO. Menünamen hängen von der Spracheinstellung und Softwareversion des Geräts ab (englische Namen in Klammern).</p>
+    </div>
+  </div>""")
+
 for name, s in SHEETS.items():
     html = HEAD.format(**{"extra": "", **s}) + s["body"] + "\n" + FOOT.format(eyebrow=s["eyebrow"], app=name)
     open(f"{name}.html", "w").write(html)
