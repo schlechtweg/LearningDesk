@@ -30,6 +30,8 @@ SUBJECTS = [
 # Accent colours of LearnKit apps: (light, dark, soft background)
 ACCENT_MATH8 = ("#1f6e8c", "#5fb6d6", "rgba(31, 110, 140, 0.12)")
 ACCENT_PHYS = ("#b4531f", "#f0995a", "rgba(180, 83, 31, 0.12)")
+ACCENT_SYM = ("#2f7d5b", "#6cc79a", "rgba(47, 125, 91, 0.12)")
+ACCENT_ENDO = ("#7a3f8f", "#c995de", "rgba(122, 63, 143, 0.12)")
 
 # Tools appear on the start page under "Werkzeuge" instead of a grade.
 TOOLS_TITLE = "Werkzeuge"
@@ -50,6 +52,22 @@ TOPICS = [
         "description": "Interaktive Lernhilfe zur Natrium-Kalium-Pumpe (Biologie, Klasse 11)",
         "intro": "Wie eine winzige Pumpe in der Zellmembran geladene Teilchen hinein- und hinausbefördert und warum deine Nerven ohne sie nicht funktionieren würden.",
         "fonts": "base", "first_view": "grundlagen", "factsheet": "Factsheet als PDF ↓",
+    },
+    {
+        "slug": "symport-antiport", "grade": "11", "subject": "biologie", "kit": True, "accent": ACCENT_SYM,
+        "title": "Symport und Antiport", "short": "Symport und Antiport", "tag": "Stofftransport",
+        "card": "Uniport, Symport, Antiport, primär und sekundär aktiv, Transporter-Simulation, Trainer, Quiz",
+        "description": "Interaktive Lernhilfe zu Symport und Antiport (Biologie, Klasse 11)",
+        "intro": "Wie Transportproteine zwei Stoffe gemeinsam oder im Tausch durch die Membran befördern und woher sie die Energie dafür nehmen.",
+        "fonts": "base", "first_view": "verstehen", "factsheet": "Factsheet als PDF ↓",
+    },
+    {
+        "slug": "endocytose-exocytose", "grade": "11", "subject": "biologie", "kit": True, "accent": ACCENT_ENDO,
+        "title": "Endocytose und Exocytose", "short": "Endo- und Exocytose", "tag": "Stofftransport",
+        "card": "Phagocytose, Pinocytose, rezeptorvermittelte Endocytose, Exocytose Schritt für Schritt, Trainer, Quiz",
+        "description": "Interaktive Lernhilfe zu Endocytose und Exocytose (Biologie, Klasse 11)",
+        "intro": "Wie Zellen große Teilchen in Membranbläschen aufnehmen und abgeben: vom Fressen eines Bakteriums bis zur Ausschüttung von Insulin.",
+        "fonts": "base", "first_view": "verstehen", "factsheet": "Factsheet als PDF ↓",
     },
     {
         "slug": "ableiten", "grade": "11", "subject": "mathematik",

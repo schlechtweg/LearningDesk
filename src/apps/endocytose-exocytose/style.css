@@ -1,0 +1,27 @@
+/* Membrane drawings: a thick outer stroke with a light inner stroke looks like a lipid bilayer */
+.mini { width: 100%; max-width: 220px; height: auto; display: block; margin: 0 auto; }
+.mem { fill: none; stroke: var(--accent); stroke-width: 10; stroke-linejoin: round; }
+.mem2 { fill: none; stroke: var(--surface); stroke-width: 3.5; stroke-linejoin: round; }
+.mini .load { fill: #3d8a4c; }
+.mini .load2 { fill: #8e44ad; }
+.mini .arr, .esim .arr { fill: none; stroke: var(--muted); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+
+/* Step-by-step figure */
+.esim text { font-family: var(--font-body); font-size: 13px; fill: var(--ink); }
+.esim .side { font-weight: 700; fill: var(--muted); }
+.esim .out { fill: var(--accent-soft); opacity: 0.5; }
+.esim .cyto { fill: var(--surface); }
+.esim .bact { fill: #3d8a4c; stroke: #24602f; stroke-width: 2; }
+.esim .drop { fill: #2f7fb8; }
+.esim .ldl { fill: #d9a21b; stroke: #9a6f0a; stroke-width: 1.5; }
+.esim .rec { stroke: var(--c4); stroke-width: 3; fill: none; stroke-linecap: round; }
+.esim .clath { stroke: var(--c4); stroke-width: 3; stroke-linecap: round; }
+.esim .prot { fill: #8e44ad; }
+.esim .lyso { fill: var(--bad-soft); stroke: var(--bad); stroke-width: 2.5; }
+.esim .enz { fill: var(--bad); }
+.esim .golgi { fill: none; stroke: var(--c2); stroke-width: 7; stroke-linecap: round; }
+.esim .new { fill: none; stroke: var(--good); stroke-width: 10; stroke-linecap: round; opacity: 0.55; }
+.esim g.frame { animation: efade 0.35s ease-out; }
+@keyframes efade { from { opacity: 0.25; } to { opacity: 1; } }
+@media (prefers-reduced-motion: reduce) { .esim g.frame { animation: none; } }
+.state { font-family: var(--font-mono); font-size: 0.95rem; color: var(--muted); margin: 0; }

@@ -875,10 +875,107 @@ def nak():
     }
 
 
+
+def symport():
+    return {
+        1: [
+            ("Was ist ein Symport?", "Zwei Stoffe werden in <b>dieselbe Richtung</b> befördert."),
+            ("Was ist ein Antiport?", "Zwei Stoffe werden in <b>entgegengesetzte Richtungen</b> befördert."),
+            ("Was ist ein Uniport?", "<b>Ein</b> Stoff wird in <b>eine</b> Richtung befördert."),
+            ("Ordne zu: Die Na⁺/K⁺-Pumpe ist ein Uniport, Symport oder Antiport?", "<b>Antiport</b> (3 Na⁺ hinaus, 2 K⁺ hinein)."),
+            ("Ordne zu: 2 Na⁺ und 1 Glucose gelangen gemeinsam in die Darmzelle.", "<b>Symport</b>"),
+            ("Was ist ein Carrier?", "Ein <b>Transportprotein</b>, das Teilchen bindet, seine Form ändert und sie auf der anderen Seite abgibt."),
+            ("Was bedeutet „primär aktiv“?", "Die Energie kommt <b>direkt aus ATP</b>."),
+            ("Was bedeutet „sekundär aktiv“?", "Die Energie kommt aus dem <b>Gefälle eines anderen Stoffs</b> (meist Na⁺ oder H⁺)."),
+            ("Ist der Glucose-Transporter GLUT aktiv oder passiv?", "<b>Passiv</b> (erleichterte Diffusion, Uniport)."),
+            ("Woher kommen die Wörter „Symport“ und „Antiport“?", "griech. <b>syn = zusammen</b>, <b>anti = gegen</b>."),
+            ("Nenne einen Unterschied zwischen Carrier und Kanal.", "Kanal: <b>offener Tunnel</b>, schnell. Carrier: immer nur <b>zu einer Seite offen</b>, ändert seine Form."),
+            ("Der Na⁺/Ca²⁺-Austauscher befördert 3 Na⁺ hinein und 1 Ca²⁺ hinaus. Welche Transportart?", "<b>Antiport</b> (sekundär aktiv)."),
+            ("Welches Ion nutzen Pflanzen meist als Antrieb für sekundär aktiven Transport?", "<b>H⁺</b> (Protonen)."),
+            ("Verbraucht der Na⁺-Glucose-Symporter ATP?", "<b>Nein</b>, er nutzt das Na⁺-Gefälle."),
+        ],
+        2: [
+            ("Der Na⁺-Glucose-Symporter befördert 2 Na⁺ pro Glucose. Wie viele Na⁺ sind es bei 450 Glucose?", "450 · 2 = <b>900 Na⁺</b>"),
+            ("Der Na⁺/Ca²⁺-Austauscher hat 600 Na⁺ hineingelassen. Wie viele Ca²⁺ wurden hinausbefördert?", "600 : 3 = <b>200 Ca²⁺</b>"),
+            ("Die Na⁺/K⁺-Pumpe hat 240 K⁺ hineinbefördert. Wie viele Na⁺ und ATP?", "120 Runden: <b>360 Na⁺</b>, <b>120 ATP</b>"),
+            ("Erkläre, warum der Na⁺-Glucose-Symporter von der Na⁺/K⁺-Pumpe abhängt.", "Die Pumpe baut mit ATP das <b>Na⁺-Gefälle</b> auf. Ohne dieses Gefälle fehlt dem Symporter der Antrieb."),
+            ("Wie kann Glucose gegen ihr Gefälle in die Darmzelle gelangen?", "Sie wird an <b>Na⁺ gekoppelt</b>, das mit seinem Gefälle einströmt und die Energie liefert."),
+            ("Begründe: Der Cl⁻/HCO₃⁻-Austauscher ist ein Antiport, aber kein aktiver Transport.", "Zwei Stoffe in Gegenrichtung, aber <b>beide mit ihrem Gefälle</b>, ohne Energie."),
+            ("Ordne zu und begründe: Die Protonenpumpe im Magen tauscht H⁺ gegen K⁺ und spaltet ATP.", "<b>Primär aktiver Antiport</b>: Gegenrichtung, Energie direkt aus ATP."),
+            ("Warum enthalten Trinklösungen gegen Durchfall Salz <b>und</b> Zucker?", "Der <b>Na⁺-Glucose-Symporter</b> nimmt beides gemeinsam auf, Wasser folgt osmotisch."),
+            ("Was bedeutet „Sättigung“ bei einem Carrier?", "Sind <b>alle Carrier besetzt</b>, steigt die Transportrate nicht weiter."),
+            ("Erkläre, wie Pflanzen Zucker in die Leitbahnen laden.", "Eine <b>Protonenpumpe</b> schafft H⁺ hinaus (ATP). Ein <b>H⁺-Saccharose-Symporter</b> nutzt das Gefälle."),
+            ("Vergleiche primär und sekundär aktiven Transport in einer Tabelle (Energiequelle, Beispiel).", "Primär: <b>ATP</b>, Na⁺/K⁺-Pumpe. Sekundär: <b>Ionengefälle</b>, Na⁺-Glucose-Symporter."),
+            ("Ein Carrier befördert Na⁺ hinein und H⁺ hinaus. Bestimme Transportart und Energieform.", "<b>Antiport</b>, <b>sekundär aktiv</b> (Na⁺-Gefälle)."),
+        ],
+        3: [
+            ("Die Na⁺/K⁺-Pumpe wird mit Ouabain gehemmt. Beschreibe die Folgen für die Glucose-Aufnahme im Darm.", "Na⁺ innen steigt, das <b>Na⁺-Gefälle zerfällt</b>, der Symporter verliert seinen Antrieb: Glucose-Aufnahme <b>sinkt</b>."),
+            ("Digitalis hemmt die Na⁺/K⁺-Pumpe im Herzen teilweise. Erkläre, warum der Herzmuskel kräftiger kontrahiert.", "Kleineres Na⁺-Gefälle → der <b>Na⁺/Ca²⁺-Austauscher</b> schafft weniger Ca²⁺ hinaus → mehr Ca²⁺ in der Zelle → <b>stärkere Kontraktion</b>."),
+            ("Diabetes-Medikamente hemmen den Na⁺-Glucose-Symporter in der Niere. Erkläre die Wirkung.", "Glucose wird nicht aus dem Harn <b>zurückgeholt</b> und mit dem Urin ausgeschieden: Der Blutzucker sinkt."),
+            ("Glucose-Konzentration: außen 5 mmol/L, in der Darmzelle 20 mmol/L. Welcher Transporter kann sie aufnehmen? Begründe.", "Nur der <b>Na⁺-Glucose-Symporter</b>, denn Glucose muss <b>gegen</b> ihr Gefälle; GLUT arbeitet nur mit dem Gefälle."),
+            ("Protonenpumpenhemmer werden gegen Sodbrennen eingesetzt. Erkläre die Wirkung.", "Die <b>H⁺/K⁺-Pumpe</b> wird gehemmt, es gelangen weniger H⁺ in den Magen: <b>weniger Magensäure</b>."),
+            ("Pro Runde befördert die Na⁺/K⁺-Pumpe netto eine positive Ladung nach außen. Begründe und nenne die Folge.", "3 Na⁺ hinaus, 2 K⁺ hinein: <b>+1 Ladung</b> außen; die Pumpe ist <b>elektrogen</b> und trägt etwas zum negativen Ruhepotential bei."),
+            ("Plane einen Versuch, der zeigt, dass die Glucose-Aufnahme in Darmzellen von Na⁺ abhängt.", "Zellen in Lösung <b>mit und ohne Na⁺</b> (gleiche Glucose) geben, Glucose-Aufnahme messen. Ohne Na⁺: <b>kaum Aufnahme</b>."),
+            ("Warum sinkt die Transportrate eines Carriers bei sehr hohen Konzentrationen nicht weiter, sondern bleibt konstant?", "<b>Sättigung</b>: Alle Carrier sind besetzt, jeder braucht Zeit für das Umklappen."),
+            ("Rote Blutzellen nehmen im Gewebe CO₂ auf, es entsteht HCO₃⁻. Erkläre die Rolle des Cl⁻/HCO₃⁻-Austauschers.", "HCO₃⁻ verlässt die Zelle ins Plasma, <b>Cl⁻ kommt herein</b> (Ladungsausgleich). So wird CO₂ als HCO₃⁻ im Plasma transportiert."),
+            ("Bei Sauerstoffmangel sinkt der ATP-Gehalt einer Darmzelle. Welche Transporter sind sofort betroffen, welche erst später?", "<b>Sofort</b>: Na⁺/K⁺-Pumpe (primär aktiv). <b>Später</b>: Na⁺-Glucose-Symporter, wenn das Na⁺-Gefälle zerfallen ist."),
+        ],
+    }
+
+
+def endo():
+    return {
+        1: [
+            ("Was versteht man unter Endocytose?", "Die Membran stülpt sich ein und schnürt ein <b>Bläschen nach innen</b> ab."),
+            ("Was versteht man unter Exocytose?", "Ein Bläschen <b>verschmilzt mit der Membran</b> und gibt den Inhalt nach außen ab."),
+            ("Was ist ein Vesikel?", "Ein kleines, von <b>Membran umschlossenes Bläschen</b>."),
+            ("Was bedeutet Phagocytose?", "„<b>Zellfressen</b>“: Aufnahme großer Teilchen wie Bakterien."),
+            ("Was bedeutet Pinocytose?", "„<b>Zelltrinken</b>“: Aufnahme von Flüssigkeit mit gelösten Stoffen."),
+            ("Brauchen Endo- und Exocytose Energie?", "<b>Ja</b>, ATP."),
+            ("Welches Zellorganell enthält Verdauungsenzyme?", "Das <b>Lysosom</b>."),
+            ("Wo werden die Vesikel für die Exocytose gebildet?", "Am <b>Golgi-Apparat</b>."),
+            ("Welcher Vorgang: Eine Fresszelle nimmt ein Bakterium auf.", "<b>Phagocytose</b>"),
+            ("Welcher Vorgang: Eine Nervenzelle gibt Botenstoff in den synaptischen Spalt ab.", "<b>Exocytose</b>"),
+            ("Welches Protein bildet die Hülle bei der rezeptorvermittelten Endocytose?", "<b>Clathrin</b>"),
+            ("Was ist ein Phagosom?", "Das Bläschen mit dem <b>aufgenommenen Teilchen</b> nach der Phagocytose."),
+            ("Nenne ein Beispiel für einen Stoff, der per Exocytose abgegeben wird.", "z. B. <b>Insulin</b>, Botenstoffe, Schleim, Verdauungsenzyme."),
+            ("Was ist Transcytose?", "Aufnahme auf <b>einer</b> Seite der Zelle, Abgabe auf der <b>anderen</b>."),
+        ],
+        2: [
+            ("Beschreibe die Phagocytose eines Bakteriums in vier Schritten.", "<b>Anheften → Umfließen mit Scheinfüßchen → Phagosom abgeschnürt → Verschmelzen mit Lysosom, Verdauung</b>"),
+            ("Beschreibe die Exocytose in vier Schritten.", "<b>Vesikel am Golgi → Transport zur Membran → Verschmelzen → Inhalt draußen</b>"),
+            ("Vergleiche Pinocytose und rezeptorvermittelte Endocytose.", "Pinocytose: <b>unspezifisch</b>, alles Gelöste. Rezeptorvermittelt: <b>gezielt</b> über Rezeptoren und Clathrin."),
+            ("Wie verändert sich die Fläche der Zellmembran bei Endocytose und bei Exocytose?", "Endocytose: <b>kleiner</b>. Exocytose: <b>größer</b>."),
+            ("Erkläre den Begriff Membranfluss.", "Membranstücke wandern ständig: <b>ER → Golgi → Vesikel → Zellmembran</b> und per Endocytose zurück."),
+            ("Was passiert mit den Rezeptoren nach der rezeptorvermittelten Endocytose?", "Sie kehren in Bläschen zur Membran <b>zurück</b> und werden wiederverwendet."),
+            ("Warum wird ein Stoff bei der Endocytose nicht „durch“ die Membran transportiert?", "Er bleibt immer in einem <b>Vesikel</b>, von Membran umschlossen."),
+            ("Unterscheide ständige und signalgesteuerte Exocytose mit je einem Beispiel.", "Ständig: z. B. <b>Schleim</b>, Membranbausteine. Signal (Ca²⁺): z. B. <b>Insulin, Botenstoffe</b>."),
+            ("Welche Rolle spielt Ca²⁺ an der Synapse?", "Ca²⁺-Einstrom ist das <b>Signal</b> für das Verschmelzen der Vesikel (Exocytose)."),
+            ("Wofür braucht die Zelle bei Endo- und Exocytose ATP?", "Für das <b>Cytoskelett</b> (Membranbewegung) und den <b>Transport der Vesikel</b>."),
+            ("Was entsteht, wenn Phagosom und Lysosom verschmelzen, und was geschieht darin?", "Ein <b>Phagolysosom</b>; Enzyme <b>verdauen</b> den Inhalt."),
+            ("Warum hat eine Zelle der Bauchspeicheldrüse besonders viel Golgi-Apparat und ER?", "Sie bildet viele Proteine (Enzyme, Insulin) und gibt sie per <b>Exocytose</b> ab."),
+        ],
+        3: [
+            ("Bei familiärer Hypercholesterinämie fehlen LDL-Rezeptoren. Erkläre, warum der Cholesterinspiegel im Blut steigt.", "Ohne Rezeptoren keine <b>rezeptorvermittelte Endocytose</b> von LDL: Cholesterin bleibt im Blut."),
+            ("Botox spaltet Proteine, die für das Verschmelzen der Vesikel nötig sind. Erkläre die Wirkung auf Muskeln.", "Kein Botenstoff wird per <b>Exocytose</b> freigesetzt, der Muskel bekommt kein Signal und <b>erschlafft</b>."),
+            ("Eine Zelle gibt pro Minute 100 Vesikel ab, nimmt aber nur 60 auf. Was passiert mit ihrer Oberfläche? Wie gleicht sie aus?", "Die Oberfläche <b>wächst</b>; Ausgleich durch mehr <b>Endocytose</b> (Membranfluss)."),
+            ("Bei einer Erbkrankheit fehlen in Lysosomen Enzyme. Welche Folgen hat das für Fresszellen?", "Aufgenommenes Material wird <b>nicht abgebaut</b> und sammelt sich in den Zellen an."),
+            ("Warum können Viren über Endocytose in Zellen gelangen, obwohl sie die Membran nicht durchdringen können?", "Sie binden an <b>Rezeptoren</b> und werden wie ein normaler Stoff in einem Vesikel aufgenommen."),
+            ("Plane einen Versuch, mit dem man zeigt, dass Phagocytose Energie braucht.", "Fresszellen mit Bakterien <b>mit und ohne ATP-Hemmstoff</b> (oder bei Kälte) beobachten. Mit Hemmstoff: <b>keine Aufnahme</b>."),
+            ("Antikörper der Mutter gelangen in die Muttermilch. Erkläre den Weg durch die Milchdrüsenzelle.", "<b>Transcytose</b>: Endocytose an der Blutseite, Vesikeltransport, Exocytose an der Milchseite."),
+            ("Vergleiche Endocytose mit Carrier-Transport: Teilchengröße, Spezifität, Energie.", "Endocytose: <b>große Teilchen</b>, teils unspezifisch, immer ATP. Carrier: <b>kleine Teilchen</b>, spezifisch, aktiv oder passiv."),
+            ("Ein Hemmstoff blockiert den Ca²⁺-Einstrom in Nervenendigungen. Welche Folge hat das für die Signalübertragung?", "Keine <b>Exocytose</b> der Botenstoffe, das Signal wird <b>nicht übertragen</b>."),
+            ("Warum ist Eiter ein Zeichen dafür, dass das Immunsystem arbeitet?", "Er besteht aus <b>Fresszellen</b>, die Bakterien per <b>Phagocytose</b> aufgenommen haben und abgestorben sind."),
+        ],
+    }
+
+
 M8, PH = "#1f6e8c", "#b4531f"
 TOPICS = {
     "osmose": ({"title": "Osmose", "eyebrow": "Biologie · Klasse 11", "accent": "#0d6f74", "cols": 2, "sol_cols": 2}, osmose),
     "natrium-kalium-pumpe": ({"title": "Natrium-Kalium-Pumpe", "eyebrow": "Biologie · Klasse 11", "accent": "#8e2c5c", "cols": 2, "sol_cols": 2}, nak),
+    "symport-antiport": ({"title": "Symport und Antiport", "eyebrow": "Biologie · Klasse 11", "accent": "#2f7d5b", "cols": 2, "sol_cols": 2}, symport),
+    "endocytose-exocytose": ({"title": "Endocytose und Exocytose", "eyebrow": "Biologie · Klasse 11", "accent": "#7a3f8f", "cols": 2, "sol_cols": 2}, endo),
     "ableiten": ({"title": "Ableiten", "eyebrow": "Mathematik · Klasse 11", "accent": "#24539c", "cols": 2, "sol_cols": 2}, ableiten),
     "binomische-formeln": ({"title": "Binomische Formeln", "eyebrow": "Mathematik · Klasse 8", "accent": M8, "cols": 3, "sol_cols": 2}, binomische_formeln),
     "bruchterme": ({"title": "Bruchterme", "eyebrow": "Mathematik · Klasse 8", "accent": "#2d6a4f", "cols": 3, "sol_cols": 3}, bruchterme),

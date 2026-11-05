@@ -874,6 +874,129 @@ SHEETS["luftdruck"] = dict(title="Luftdruck", eyebrow="Physik · Klasse 8 · Dru
     </div>
   </div>''')
 
+SHEETS["symport-antiport"] = dict(title="Symport und Antiport", eyebrow="Biologie · Klasse 11 · Stofftransport", accent="#2f7d5b", body=f'''
+  <div class="kern">Carrier sind Transportproteine in der Zellmembran. Sie binden Teilchen, ändern ihre Form und geben sie auf der anderen Seite ab. <strong>Uniport</strong>: ein Stoff. <strong>Symport</strong>: zwei Stoffe in <strong>dieselbe</strong> Richtung. <strong>Antiport</strong>: zwei Stoffe in <strong>entgegengesetzte</strong> Richtungen.</div>
+  <div class="cols">
+    <div class="box">
+      <h2>Drei Transportrichtungen</h2>
+      <table>
+        <tr><th>Art</th><th>Stoffe</th><th>Beispiel</th></tr>
+        <tr><td><strong>Uniport</strong></td><td>1 Stoff, 1 Richtung</td><td>GLUT (Glucose)</td></tr>
+        <tr><td><strong>Symport</strong></td><td>2 Stoffe, gleiche Richtung</td><td>Na⁺-Glucose-Symporter: 2 Na⁺ + 1 Glucose hinein</td></tr>
+        <tr><td><strong>Antiport</strong></td><td>2 Stoffe, Gegenrichtung</td><td>Na⁺/K⁺-Pumpe: 3 Na⁺ hinaus, 2 K⁺ hinein</td></tr>
+      </table>
+      <p class="small">Merkhilfe: <em>syn</em> = zusammen, <em>anti</em> = gegen.</p>
+    </div>
+    <div class="box">
+      <h2>Woher kommt die Energie?</h2>
+      <table>
+        <tr><th>Art</th><th>Antrieb</th></tr>
+        <tr><td><strong>passiv</strong></td><td>mit dem Gefälle, keine Energie (GLUT, Cl⁻/HCO₃⁻-Austauscher)</td></tr>
+        <tr><td><strong>primär aktiv</strong></td><td>direkt <strong>ATP</strong> (Na⁺/K⁺-Pumpe, Protonenpumpe)</td></tr>
+        <tr><td><strong>sekundär aktiv</strong></td><td><strong>Gefälle eines anderen Stoffs</strong>, meist Na⁺ oder H⁺ (Na⁺-Glucose-Symporter, Na⁺/Ca²⁺-Austauscher)</td></tr>
+      </table>
+      <p class="small">Uni-, Sym- und Antiport beschreiben nur die <strong>Richtung</strong>. Die Energiefrage ist eine eigene Frage.</p>
+    </div>
+    <div class="box full">
+      <h2>Sekundär aktiver Transport am Beispiel Darm</h2>
+      <table>
+        <tr><th>1</th><td>Die <strong>Na⁺/K⁺-Pumpe</strong> verbraucht ATP und hält Na⁺ in der Zelle niedrig. Außen ist viel Na⁺: ein <strong>Na⁺-Gefälle</strong> nach innen.</td></tr>
+        <tr><th>2</th><td>Der <strong>Na⁺-Glucose-Symporter</strong> lässt 2 Na⁺ mit ihrem Gefälle hinein, aber nur zusammen mit 1 Glucose.</td></tr>
+        <tr><th>3</th><td>So gelangt Glucose auch <strong>gegen ihr Gefälle</strong> in die Zelle. Der Symporter selbst braucht kein ATP.</td></tr>
+        <tr><th>4</th><td>Fällt die Pumpe aus, zerfällt das Na⁺-Gefälle langsam, und der Symporter stoppt.</td></tr>
+      </table>
+    </div>
+    <div class="box">
+      <h2>Wichtige Transporter</h2>
+      <ul>
+        <li><strong>Na⁺/Ca²⁺-Austauscher</strong> (Herz): 3 Na⁺ hinein, 1 Ca²⁺ hinaus; sekundär aktiver Antiport.</li>
+        <li><strong>H⁺/K⁺-Pumpe</strong> (Magen): H⁺ hinaus, K⁺ hinein; primär aktiver Antiport, bildet Magensäure.</li>
+        <li><strong>H⁺-Saccharose-Symporter</strong> (Pflanze): lädt Zucker in die Leitbahnen; sekundär aktiv.</li>
+        <li><strong>Cl⁻/HCO₃⁻-Austauscher</strong> (rote Blutzellen): passiver Antiport.</li>
+      </ul>
+    </div>
+    <div class="box">
+      <h2>Carrier oder Kanal?</h2>
+      <ul>
+        <li><strong>Kanal</strong>: offener Tunnel, sehr schnell, nur mit dem Gefälle.</li>
+        <li><strong>Carrier</strong>: immer nur zu einer Seite offen, ändert seine Form, langsamer. Kann Stoffe koppeln und gegen das Gefälle befördern.</li>
+        <li>Carrier sind <strong>spezifisch</strong> und haben eine <strong>Sättigung</strong>.</li>
+      </ul>
+    </div>
+    <div class="box">
+      <h2>Im Alltag</h2>
+      <ul>
+        <li><strong>Trinklösung bei Durchfall</strong>: Salz + Zucker, damit der Na⁺-Glucose-Symporter Wasser mitzieht.</li>
+        <li><strong>Säureblocker</strong> hemmen die Protonenpumpe im Magen.</li>
+        <li><strong>Digitalis</strong> (Herzmittel) hemmt die Na⁺/K⁺-Pumpe: Herz schlägt kräftiger.</li>
+      </ul>
+    </div>
+    <div class="box warn">
+      <h2>Typische Fehler</h2>
+      <ul>
+        <li>„Antiport ist immer aktiv.“ <span class="no">Falsch</span>: Es gibt passive Antiporter.</li>
+        <li>„Der Na⁺-Glucose-Symporter spaltet ATP.“ <span class="no">Falsch</span>: Er nutzt das Na⁺-Gefälle.</li>
+        <li>Beim Symport fließt oft nur <strong>ein</strong> Stoff bergab und zieht den anderen bergauf.</li>
+      </ul>
+    </div>
+  </div>''')
+
+SHEETS["endocytose-exocytose"] = dict(title="Endocytose und Exocytose", eyebrow="Biologie · Klasse 11 · Stofftransport", accent="#7a3f8f", body=f'''
+  <div class="kern">Große Teilchen transportiert die Zelle in <strong>Membranbläschen (Vesikeln)</strong>. <strong>Endocytose</strong>: Die Membran stülpt sich ein und schnürt ein Bläschen nach <strong>innen</strong> ab. <strong>Exocytose</strong>: Ein Bläschen verschmilzt mit der Membran und gibt seinen Inhalt nach <strong>außen</strong> ab. Beides braucht Energie (<strong>ATP</strong>).</div>
+  <div class="cols">
+    <div class="box full">
+      <h2>Drei Arten der Endocytose</h2>
+      <table>
+        <tr><th>Art</th><th>Was?</th><th>Ablauf und Besonderheit</th></tr>
+        <tr><td><strong>Phagocytose</strong> („Zellfressen“)</td><td>große Teilchen: Bakterien, Zelltrümmer</td><td>Zelle umfließt das Teilchen mit Scheinfüßchen → <strong>Phagosom</strong> → verschmilzt mit <strong>Lysosom</strong> (Phagolysosom) → Enzyme verdauen den Inhalt. Beispiel: Fresszellen, Amöbe.</td></tr>
+        <tr><td><strong>Pinocytose</strong> („Zelltrinken“)</td><td>Flüssigkeit mit Gelöstem</td><td>Kleine Bläschen, <strong>nicht wählerisch</strong>.</td></tr>
+        <tr><td><strong>rezeptorvermittelt</strong></td><td>bestimmte Stoffe: LDL (Cholesterin), Eisen</td><td>Stoff bindet an <strong>Rezeptoren</strong> → <strong>Clathrin</strong>-Mulde → umhülltes Vesikel → Hülle löst sich → Rezeptoren kehren zur Membran zurück. Sehr <strong>gezielt</strong>.</td></tr>
+      </table>
+    </div>
+    <div class="box">
+      <h2>Exocytose in 4 Schritten</h2>
+      <table>
+        <tr><th>1</th><td>Vesikel schnürt sich am <strong>Golgi-Apparat</strong> ab.</td></tr>
+        <tr><th>2</th><td>Transport entlang des <strong>Cytoskeletts</strong> zur Membran (ATP).</td></tr>
+        <tr><th>3</th><td>Vesikel <strong>verschmilzt</strong> mit der Zellmembran, oft erst auf ein Signal (Ca²⁺-Einstrom).</td></tr>
+        <tr><th>4</th><td>Inhalt ist draußen, die Vesikelmembran ist Teil der Zellmembran.</td></tr>
+      </table>
+    </div>
+    <div class="box">
+      <h2>Wichtige Begriffe</h2>
+      <ul>
+        <li><strong>Vesikel</strong>: kleines Membranbläschen.</li>
+        <li><strong>Lysosom</strong>: Bläschen mit Verdauungsenzymen.</li>
+        <li><strong>Membranfluss</strong>: Membran wandert ständig: ER → Golgi → Vesikel → Zellmembran und zurück. Endocytose verkleinert, Exocytose vergrößert die Zellmembran.</li>
+        <li><strong>Transcytose</strong>: auf einer Seite aufnehmen, auf der anderen abgeben.</li>
+      </ul>
+    </div>
+    <div class="box">
+      <h2>Ständig oder auf Signal</h2>
+      <ul>
+        <li><strong>Ständig</strong>: Membranbausteine, Schleim.</li>
+        <li><strong>Auf ein Signal</strong> (Ca²⁺): Botenstoffe an der Synapse, Insulin, Verdauungsenzyme.</li>
+      </ul>
+    </div>
+    <div class="box">
+      <h2>Im Alltag</h2>
+      <ul>
+        <li><strong>Eiter</strong>: tote Fresszellen nach Phagocytose von Bakterien.</li>
+        <li><strong>Botox</strong> blockiert die Exocytose von Botenstoff: Muskeln erschlaffen.</li>
+        <li><strong>Viren</strong> lassen sich per Endocytose in Zellen aufnehmen.</li>
+        <li><strong>Muttermilch</strong>: Antikörper per Transcytose.</li>
+      </ul>
+    </div>
+    <div class="box warn full">
+      <h2>Typische Fehler</h2>
+      <ul>
+        <li>„Endocytose ist passiv.“ <span class="no">Falsch</span>: Membranbewegung und Vesikeltransport kosten ATP.</li>
+        <li>„Der Stoff wandert durch die Membran.“ <span class="no">Falsch</span>: Er bleibt immer in einem Bläschen, von Membran umgeben.</li>
+        <li>Endo und Exo verwechselt. Merkhilfe: <strong>En</strong>ter = hinein, <strong>Ex</strong>it = hinaus.</li>
+      </ul>
+    </div>
+  </div>''')
+
 OUT = sys.argv[1] if len(sys.argv) > 1 else os.path.join(os.path.dirname(__file__), "_build")
 os.makedirs(OUT, exist_ok=True)
 shutil.copyfile(os.path.join(os.path.dirname(os.path.abspath(__file__)), "factsheet.css"), os.path.join(OUT, "factsheet.css"))

@@ -1,0 +1,1089 @@
+<title>Symport und Antiport</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Interaktive Lernhilfe zu Symport und Antiport (Biologie, Klasse 11)">
+<script>try{var t=localStorage.getItem("learningdesk.theme");if(t==="dark"||t==="light")document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* LearnKit: shared layout for LearningDesk topic apps.
+   Colour tokens come in three blocks (light, dark via system, dark via switch);
+   each app sets its accent colours through config.py. */
+:root {
+  --bg: #f2f4f7;
+  --surface: #ffffff;
+  --surface-2: #e6ebf1;
+  --ink: #18222d;
+  --muted: #55626f;
+  --line: #d0d8e1;
+  --accent: #24539c;
+  --accent-ink: #ffffff;
+  --accent-soft: rgba(36, 83, 156, 0.12);
+  --c1: #2f5fb3;
+  --c2: #c4561c;
+  --c3: #3d8a4c;
+  --c4: #8e44ad;
+  --good: #1f7f4b;
+  --good-soft: rgba(31, 127, 75, 0.12);
+  --bad: #b5372e;
+  --bad-soft: rgba(181, 55, 46, 0.10);
+  --font-display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --font-body: "Atkinson Hyperlegible", "Segoe UI", system-ui, sans-serif;
+  --font-math: "STIX Two Text", "Cambria Math", "Times New Roman", serif;
+  --font-mono: "JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
+  --step--1: 0.875rem;
+  --step-0: 1.0625rem;
+  --step-1: 1.25rem;
+  --step-2: 1.6rem;
+  --step-3: 2.3rem;
+  --radius: 10px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0f1419; --surface: #161e26; --surface-2: #1e2832; --ink: #e4ebf1; --muted: #98a7b5; --line: #2b3946;
+    --accent-ink: #0b1220; --c1: #7ea6f0; --c2: #f09a5e; --c3: #6fc47f; --c4: #c39bdf;
+    --good: #5fd194; --good-soft: rgba(95, 209, 148, 0.14); --bad: #f07a70; --bad-soft: rgba(240, 122, 112, 0.14);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0f1419; --surface: #161e26; --surface-2: #1e2832; --ink: #e4ebf1; --muted: #98a7b5; --line: #2b3946;
+  --accent-ink: #0b1220; --c1: #7ea6f0; --c2: #f09a5e; --c3: #6fc47f; --c4: #c39bdf;
+  --good: #5fd194; --good-soft: rgba(95, 209, 148, 0.14); --bad: #f07a70; --bad-soft: rgba(240, 122, 112, 0.14);
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+body {
+  background: var(--bg); color: var(--ink);
+  font-family: var(--font-body); font-size: var(--step-0); line-height: 1.6;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 0 48px;
+}
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--bg); }
+.wrap { max-width: 980px; margin: 0 auto; }
+h1, h2, h3 { font-family: var(--font-display); line-height: 1.15; text-wrap: balance; margin: 0; }
+h1 { font-size: var(--step-3); font-weight: 800; letter-spacing: -0.02em; }
+h2 { font-size: var(--step-2); font-weight: 700; }
+h3 { font-size: var(--step-1); font-weight: 700; }
+p { margin: 0; max-width: 70ch; }
+.muted { color: var(--muted); }
+.small { font-size: var(--step--1); }
+.eyebrow { font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); }
+.c1 { color: var(--c1); font-weight: 700; } .c2 { color: var(--c2); font-weight: 700; } .c3 { color: var(--c3); font-weight: 700; } .c4 { color: var(--c4); font-weight: 700; }
+
+/* Header and tabs */
+header.top { padding-block: 28px 8px; display: grid; gap: 6px; }
+header.top p { color: var(--muted); }
+nav.tabs { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--bg); display: flex; gap: 6px; overflow-x: auto; padding-block: 12px; margin-bottom: 8px; border-bottom: 1px solid var(--line); }
+nav.tabs a { flex: 0 0 auto; text-decoration: none; color: var(--ink); font-weight: 700; padding: 8px 14px; border-radius: 999px; border: 1px solid var(--line); background: var(--surface); font-size: var(--step--1); }
+nav.tabs a .n { font-family: var(--font-mono); color: var(--muted); margin-right: 6px; font-weight: 400; }
+nav.tabs a[aria-current="page"] { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+nav.tabs a[aria-current="page"] .n { color: var(--accent-ink); opacity: 0.75; }
+a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible { outline: 3px solid var(--c2); outline-offset: 2px; }
+
+/* Layout blocks */
+section.view { display: grid; gap: 28px; padding-top: 16px; }
+.stack { display: grid; gap: 12px; }
+.panel { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 20px; min-width: 0; }
+.grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; align-items: start; }
+.grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 16px; align-items: start; }
+.merksatz { border-left: 4px solid var(--accent); background: var(--surface); padding: 16px 20px; border-radius: 0 var(--radius) var(--radius) 0; display: grid; gap: 4px; }
+.merksatz .eyebrow { display: block; margin-bottom: 4px; }
+.merksatz p { font-family: var(--font-display); font-size: var(--step-1); font-weight: 500; line-height: 1.35; }
+.einfach { background: var(--surface-2); border-radius: var(--radius); padding: 16px 20px; display: grid; gap: 8px; }
+.formel { font-family: var(--font-math); font-size: 1.5rem; line-height: 1.6; }
+ul.list, ol.list { margin: 0; padding-left: 1.2em; display: grid; gap: 8px; max-width: 70ch; }
+.sim-layout { display: grid; grid-template-columns: minmax(0, 1fr) 300px; gap: 16px; align-items: start; }
+@media (max-width: 800px) { .sim-layout { grid-template-columns: 1fr; } }
+.figure { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 10px; min-width: 0; }
+.figure svg { width: 100%; height: auto; display: block; }
+.table-scroll { overflow-x: auto; }
+table.data { width: 100%; border-collapse: collapse; font-size: var(--step--1); }
+table.data th, table.data td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--line); vertical-align: top; overflow-wrap: anywhere; hyphens: auto; }
+table.data th { font-family: var(--font-display); font-size: var(--step-0); }
+table.data td.num, table.data th.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+details.profi { border: 1px dashed var(--line); border-radius: var(--radius); padding: 12px 16px; background: var(--surface); }
+details.profi summary { cursor: pointer; font-weight: 700; font-size: var(--step--1); }
+details.profi[open] summary { margin-bottom: 8px; }
+details.profi p, details.profi li { font-size: var(--step--1); }
+
+/* Math typesetting */
+.math { font-family: var(--font-math); font-size: 1.12em; }
+.math i { font-style: italic; }
+.math sup { font-size: 0.7em; line-height: 0; }
+.frac { display: inline-flex; flex-direction: column; vertical-align: middle; text-align: center; margin: 0 2px; line-height: 1.2; font-size: 0.95em; }
+.frac > span { padding: 0 3px; }
+.frac > span:first-child { border-bottom: 1.5px solid currentColor; }
+.unit { font-family: var(--font-body); font-style: normal; font-size: 0.92em; }
+
+/* Controls */
+button, .btn { font: inherit; font-weight: 700; font-size: var(--step--1); cursor: pointer; text-decoration: none; display: inline-block; padding: 9px 16px; border-radius: 8px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); }
+button:hover, .btn:hover { border-color: var(--accent); }
+button.primary, .btn.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+button[aria-pressed="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+button:disabled { opacity: 0.5; cursor: default; }
+.row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+select, input[type="text"] { font: inherit; padding: 8px 10px; border-radius: 8px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); min-width: 0; max-width: 100%; }
+input[type="text"] { font-family: var(--font-mono); }
+input[type="range"] { width: 100%; accent-color: var(--accent); }
+label.lbl { display: flex; justify-content: space-between; gap: 8px; font-weight: 700; font-size: var(--step--1); }
+label.lbl output, label.lbl .val { font-family: var(--font-mono); font-weight: 400; }
+.controls { display: grid; gap: 14px; align-content: start; }
+.readout { display: grid; grid-template-columns: 1fr auto; gap: 4px 12px; font-size: var(--step--1); margin: 0; }
+.readout dt { color: var(--muted); }
+.readout dd { margin: 0; font-family: var(--font-mono); font-variant-numeric: tabular-nums; text-align: right; }
+.readout dd.big { font-size: 1.15rem; font-weight: 600; color: var(--accent); }
+.status-box { padding: 12px 14px; border-radius: 8px; background: var(--surface-2); font-size: var(--step--1); }
+
+/* Trainer */
+.modes { display: flex; flex-wrap: wrap; gap: 6px; }
+.task { font-size: var(--step-0); line-height: 1.7; }
+.task .math { font-size: 1.35em; }
+.answer-row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.answer-row input { flex: 1 1 220px; font-size: var(--step-0); }
+.answer-row label { white-space: nowrap; }
+.hint { font-size: var(--step--1); color: var(--muted); }
+.hint code, .feedback code { font-family: var(--font-mono); background: var(--surface-2); padding: 1px 5px; border-radius: 4px; }
+.feedback { padding: 14px 16px; border-radius: 8px; background: var(--surface-2); display: grid; gap: 8px; }
+.feedback ol { margin: 0; padding-left: 1.3em; display: grid; gap: 6px; }
+b.ok { color: var(--good); } b.no { color: var(--bad); }
+.score-line { font-family: var(--font-mono); font-size: var(--step--1); color: var(--muted); }
+
+/* Equation lab */
+.lab-eq { font-family: var(--font-math); font-size: 1.9rem; text-align: center; padding: 10px 4px; overflow-x: auto; }
+.lab-log { margin: 0; padding: 0; list-style: none; display: grid; gap: 2px; font-family: var(--font-math); font-size: 1.15rem; }
+.lab-log li { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 12px; padding: 4px 8px; border-bottom: 1px solid var(--line); }
+.lab-log li .op { font-family: var(--font-mono); font-size: 0.85rem; color: var(--accent); align-self: center; white-space: nowrap; }
+.lab-log li.flip .op { color: var(--bad); }
+.lab-msg.ok { color: var(--good); font-weight: 700; }
+.lab-msg.no { color: var(--bad); }
+
+/* Quiz */
+.progress-line { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+.bar { flex: 1 1 200px; height: 8px; background: var(--surface-2); border-radius: 999px; overflow: hidden; }
+.bar i { display: block; height: 100%; background: var(--accent); width: 0; transition: width 0.3s; }
+.quiz { display: grid; gap: 16px; }
+.quiz .qtext { font-family: var(--font-display); font-size: var(--step-1); font-weight: 700; line-height: 1.3; }
+.quiz .opts { display: grid; gap: 8px; }
+.quiz .opts button { text-align: left; font-weight: 400; font-size: var(--step-0); padding: 12px 16px; display: flex; gap: 12px; align-items: center; }
+.quiz .opts button .k { font-family: var(--font-mono); color: var(--muted); }
+.quiz .opts button.right { border-color: var(--good); background: var(--good-soft); }
+.quiz .opts button.wrong { border-color: var(--bad); background: var(--bad-soft); }
+.score-big { font-family: var(--font-display); font-size: 3.2rem; font-weight: 800; line-height: 1; }
+
+/* Prediction cards ("Was passiert, wenn ...") */
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
+.card { display: grid; gap: 10px; align-content: start; }
+.card .ctx { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+.card .opts { display: grid; gap: 6px; }
+.card .opts button { text-align: left; font-weight: 400; }
+.card .opts button.right { border-color: var(--good); background: var(--good-soft); font-weight: 700; }
+.card .opts button.wrong { border-color: var(--bad); background: var(--bad-soft); }
+.card .answer { font-size: var(--step--1); padding: 12px; border-radius: 8px; background: var(--surface-2); }
+
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+</style>
+<style>
+:root { --accent: #2f7d5b; --accent-soft: rgba(47, 125, 91, 0.12); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --accent: #6cc79a; } }
+:root[data-theme="dark"] { --accent: #6cc79a; }
+</style>
+<style>
+/* Mini diagrams for uniport, symport and antiport */
+.mini { width: 100%; max-width: 180px; height: auto; display: block; margin: 0 auto; }
+.mini .m { fill: var(--surface-2); stroke: var(--line); }
+.mini .p { fill: var(--accent-soft); stroke: var(--accent); stroke-width: 2; }
+.mini .a1, .mini .a2 { fill: none; stroke-width: 4; stroke-linecap: round; stroke-linejoin: round; }
+.mini .a1 { stroke: var(--c2); }
+.mini .a2 { stroke: var(--c1); }
+
+/* Transporter simulation */
+.tsim text { font-family: var(--font-mono); font-size: 12px; fill: var(--ink); }
+.tsim .side { font-family: var(--font-body); font-size: 13px; font-weight: 700; fill: var(--muted); }
+.tsim .lipid { fill: var(--surface-2); stroke: var(--line); }
+.tsim .head { fill: var(--line); }
+.tsim .carrier { fill: var(--accent-soft); stroke: var(--accent); stroke-width: 2.5; }
+.tsim .pt text { font-size: 9px; font-weight: 600; fill: #fff; text-anchor: middle; dominant-baseline: central; }
+.tsim .atp { font-family: var(--font-body); font-size: 13px; font-weight: 700; fill: var(--bad); }
+.state { font-family: var(--font-display); font-size: 1.3rem; font-weight: 800; }
+#tSel { width: 100%; }
+.controls > * { min-width: 0; }
+</style>
+<style>
+nav.crumbs ol { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 2px 6px; font-size: 0.85rem; line-height: 1.5; }
+nav.crumbs li { display: inline-flex; align-items: center; gap: 6px; min-width: 0; }
+nav.crumbs li + li::before { content: "›"; color: var(--muted); }
+nav.crumbs a { color: var(--accent); text-decoration: none; font-weight: 700; }
+nav.crumbs a:hover { text-decoration: underline; }
+nav.crumbs [aria-current] { color: var(--muted); }
+header.has-theme-toggle { position: relative; padding-right: 54px; }
+.theme-toggle { position: absolute; top: 18px; right: 0; width: 40px; height: 40px; border-radius: 999px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); font-size: 18px; line-height: 1; cursor: pointer; display: grid; place-items: center; padding: 0; }
+header:not(.top) > .theme-toggle { top: 0; }
+.theme-toggle:hover { border-color: var(--accent, currentColor); }
+.theme-toggle:focus-visible { outline: 3px solid var(--accent, currentColor); outline-offset: 2px; }
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <nav class="crumbs" aria-label="Brotkrümelnavigation"><ol><li><a href="https://schlechtweg.github.io/LearningDesk/index.html">LearningDesk</a></li><li><a href="https://schlechtweg.github.io/LearningDesk/klasse-11.html">Klasse 11</a></li><li><a href="https://schlechtweg.github.io/LearningDesk/klasse-11.html#biologie">Biologie</a></li><li><a href="#verstehen">Symport und Antiport</a></li><li data-crumb-section hidden><span aria-current="location"></span></li></ol></nav>
+    <h1>Symport und Antiport</h1>
+    <p>Wie Transportproteine zwei Stoffe gemeinsam oder im Tausch durch die Membran befördern und woher sie die Energie dafür nehmen.</p>
+    <p style="display:flex; flex-wrap:wrap; gap:8px"><a class="btn" href="https://schlechtweg.github.io/LearningDesk/factsheets/symport-antiport.pdf" target="_blank" rel="noopener">Factsheet als PDF ↓</a><a class="btn" href="https://schlechtweg.github.io/LearningDesk/aufgaben/symport-antiport.pdf" target="_blank" rel="noopener">Übungsaufgaben als PDF ↓</a></p>
+  </header>
+  <nav class="tabs" aria-label="Bereiche">
+    <a href="#verstehen" data-view="verstehen"><span class="n">1</span>Verstehen</a>
+    <a href="#transporter" data-view="transporter"><span class="n">2</span>Transporter</a>
+    <a href="#zuordnen" data-view="zuordnen"><span class="n">3</span>Zuordnen</a>
+    <a href="#ueben" data-view="ueben"><span class="n">4</span>Üben</a>
+    <a href="#alltag" data-view="alltag"><span class="n">5</span>Im Alltag</a>
+    <a href="#quiz" data-view="quiz"><span class="n">6</span>Quiz</a>
+  </nav>
+
+  <section class="view" id="view-verstehen">
+    <div class="einfach">
+      <span class="eyebrow">Einfach erklärt</span>
+      <p>Viele Stoffe kommen nicht einfach so durch die Zellmembran. Sie brauchen ein <strong>Transportprotein</strong>, einen sogenannten <strong>Carrier</strong>. Er bindet die Teilchen auf einer Seite, ändert seine Form und gibt sie auf der anderen Seite wieder ab.</p>
+      <p>Man unterscheidet Carrier danach, <strong>wie viele Teilchensorten</strong> sie befördern und <strong>in welche Richtung</strong>.</p>
+    </div>
+    <div class="grid-3">
+      <div class="panel stack">
+        <h3>Uniport</h3>
+        <svg class="mini" viewBox="0 0 120 90" aria-hidden="true"><rect class="m" x="0" y="35" width="120" height="20"/><rect class="p" x="45" y="25" width="30" height="40" rx="8"/><path class="a1" d="M60 8 V82 M53 74 L60 82 L67 74"/></svg>
+        <p class="small"><strong>Eine</strong> Teilchensorte in <strong>eine</strong> Richtung.</p>
+        <p class="small muted">Beispiel: Glucose-Transporter GLUT</p>
+      </div>
+      <div class="panel stack">
+        <h3>Symport</h3>
+        <svg class="mini" viewBox="0 0 120 90" aria-hidden="true"><rect class="m" x="0" y="35" width="120" height="20"/><rect class="p" x="35" y="25" width="50" height="40" rx="8"/><path class="a1" d="M50 8 V82 M43 74 L50 82 L57 74"/><path class="a2" d="M70 8 V82 M63 74 L70 82 L77 74"/></svg>
+        <p class="small"><strong>Zwei</strong> Teilchensorten in <strong>dieselbe</strong> Richtung (griechisch <em>syn</em> = zusammen).</p>
+        <p class="small muted">Beispiel: Na⁺ und Glucose im Darm</p>
+      </div>
+      <div class="panel stack">
+        <h3>Antiport</h3>
+        <svg class="mini" viewBox="0 0 120 90" aria-hidden="true"><rect class="m" x="0" y="35" width="120" height="20"/><rect class="p" x="35" y="25" width="50" height="40" rx="8"/><path class="a1" d="M50 8 V82 M43 74 L50 82 L57 74"/><path class="a2" d="M70 82 V8 M63 16 L70 8 L77 16"/></svg>
+        <p class="small"><strong>Zwei</strong> Teilchensorten in <strong>entgegengesetzte</strong> Richtungen (<em>anti</em> = gegen).</p>
+        <p class="small muted">Beispiel: Na⁺/K⁺-Pumpe</p>
+      </div>
+    </div>
+    <div class="merksatz">
+      <span class="eyebrow">Merke</span>
+      <p>Uniport, Symport und Antiport sagen nur etwas über die <strong>Richtung</strong> aus. Ob dabei Energie gebraucht wird, ist eine zweite Frage.</p>
+    </div>
+    <div class="panel stack">
+      <h3>Woher kommt die Energie?</h3>
+      <div class="table-scroll">
+      <table class="data">
+        <tr><th>Art</th><th>Richtung</th><th>Energie</th><th>Beispiel</th></tr>
+        <tr><td><strong>passiv</strong></td><td>mit dem Gefälle (von viel nach wenig)</td><td>keine</td><td>GLUT (Uniport), Cl⁻/HCO₃⁻-Austauscher (Antiport)</td></tr>
+        <tr><td><strong>primär aktiv</strong></td><td>gegen das Gefälle</td><td>direkt aus <strong>ATP</strong></td><td>Na⁺/K⁺-Pumpe (Antiport), Protonenpumpe</td></tr>
+        <tr><td><strong>sekundär aktiv</strong></td><td>ein Stoff gegen sein Gefälle</td><td>aus dem <strong>Gefälle eines anderen Stoffs</strong>, meist Na⁺ oder H⁺</td><td>Na⁺-Glucose-Symporter, Na⁺/Ca²⁺-Austauscher</td></tr>
+      </table>
+      </div>
+    </div>
+    <div class="grid-2">
+      <div class="panel stack">
+        <h3>Sekundär aktiv: das Wasserrad-Prinzip</h3>
+        <p class="small">Die Na⁺/K⁺-Pumpe verbraucht ATP und hält außen viel Na⁺, innen wenig. Na⁺ „will“ deshalb in die Zelle, wie Wasser, das bergab fließt.</p>
+        <p class="small">Ein Symporter lässt Na⁺ nur hinein, wenn es ein Glucose-Molekül <strong>mitnimmt</strong>. So gelangt Glucose sogar dann in die Zelle, wenn dort schon mehr Glucose ist als draußen. Der Carrier selbst braucht kein ATP. Die Energie steckt im <strong>Na⁺-Gefälle</strong>.</p>
+      </div>
+      <div class="panel stack">
+        <h3>Carrier oder Kanal?</h3>
+        <ul class="list small">
+          <li><strong>Kanal</strong>: ein Tunnel, der offen ist. Viele Ionen strömen sehr schnell hindurch, immer nur mit dem Gefälle.</li>
+          <li><strong>Carrier</strong>: immer nur zu <strong>einer</strong> Seite offen. Er bindet Teilchen, klappt um und gibt sie ab. Langsamer, dafür kann er Stoffe koppeln und gegen das Gefälle befördern.</li>
+          <li>Carrier sind <strong>spezifisch</strong> und haben eine <strong>Sättigung</strong>: Sind alle besetzt, geht es nicht schneller.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="panel stack">
+      <h3>Typische Fehler</h3>
+      <ul class="list small">
+        <li>„Antiport ist immer aktiv.“ <strong>Falsch.</strong> Der Cl⁻/HCO₃⁻-Austauscher der roten Blutzellen ist ein Antiport und arbeitet passiv.</li>
+        <li>„Der Na⁺-Glucose-Symporter verbraucht ATP.“ <strong>Falsch.</strong> Er nutzt das Na⁺-Gefälle. ATP verbraucht die Na⁺/K⁺-Pumpe, die dieses Gefälle aufbaut.</li>
+        <li>„Beim Symport bewegen sich beide Stoffe mit ihrem Gefälle.“ Oft nicht: Ein Stoff fließt bergab und <strong>zieht den anderen bergauf</strong> mit.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="view" id="view-transporter" hidden>
+    <div class="stack">
+      <span class="eyebrow">Ausprobieren</span>
+      <h2>Transporter bei der Arbeit</h2>
+      <p class="muted">Wähle einen Transporter und lass ihn arbeiten. Beobachte, wie sich die Teilchen auf beiden Seiten verteilen und wann der Transport stoppt.</p>
+    </div>
+    <div class="sim-layout">
+      <div class="figure"><svg class="tsim" id="tSvg" viewBox="0 0 420 330" role="img" aria-label="Zellmembran mit Transportprotein und Teilchen"></svg></div>
+      <div class="panel controls">
+        <div><label class="lbl" for="tSel"><span>Transporter</span></label><select id="tSel"></select></div>
+        <div class="row"><button type="button" class="primary" id="tGo">Transportieren</button><button type="button" id="tRegen" hidden></button><button type="button" id="tReset">Zurücksetzen</button></div>
+        <p class="state" id="tType"></p>
+        <dl class="readout" id="tRo"></dl>
+      </div>
+    </div>
+    <div class="einfach"><p id="tText"></p><p id="tMsg" class="small"></p></div>
+  </section>
+
+  <section class="view" id="view-zuordnen" hidden>
+    <div class="stack">
+      <span class="eyebrow">Zuordnen</span>
+      <h2>Uniport, Symport oder Antiport?</h2>
+      <p class="muted">Überlege zuerst selbst und tippe dann auf deine Antwort.</p>
+    </div>
+    <div class="cards" id="cards"></div>
+  </section>
+
+  <section class="view" id="view-ueben" hidden>
+    <div class="stack">
+      <span class="eyebrow">Trainer</span>
+      <h2>Transporter einordnen und Teilchen zählen</h2>
+      <p class="muted">Immer neue Aufgaben. Gib ein Wort oder eine Zahl ein.</p>
+    </div>
+    <div id="trainer" class="stack"></div>
+  </section>
+
+  <section class="view" id="view-alltag" hidden>
+    <div class="stack">
+      <span class="eyebrow">Im Alltag</span>
+      <h2>Symport und Antiport im Alltag</h2>
+      <p class="muted">Diese Transporter arbeiten ständig in deinem Körper. Manche Medikamente setzen genau hier an.</p>
+    </div>
+    <div class="grid-2">
+      <div class="panel stack">
+        <span class="eyebrow">Apotheke</span>
+        <h3>Trinklösung bei Durchfall</h3>
+        <p class="small">Sie enthält Salz <strong>und</strong> Traubenzucker. Der Na⁺-Glucose-Symporter im Darm nimmt beides gemeinsam auf, das Wasser folgt osmotisch. Reines Wasser oder nur Salz würde viel schlechter helfen.</p>
+      </div>
+      <div class="panel stack">
+        <span class="eyebrow">Sport</span>
+        <h3>Sportgetränke</h3>
+        <p class="small">Auch hier stecken Natrium und Zucker zusammen drin. So nimmt der Darm Flüssigkeit und Energie schneller auf als aus reinem Wasser.</p>
+      </div>
+      <div class="panel stack">
+        <span class="eyebrow">Sodbrennen</span>
+        <h3>Magensäure und Säureblocker</h3>
+        <p class="small">Die Protonenpumpe der Magenzellen tauscht H⁺ gegen K⁺ (primär aktiver Antiport) und macht so die Magensäure. „Protonenpumpenhemmer“ wie Pantoprazol bremsen sie gegen Sodbrennen.</p>
+      </div>
+      <div class="panel stack">
+        <span class="eyebrow">Herz</span>
+        <h3>Digitalis und der Herzschlag</h3>
+        <p class="small">Das Herzmittel aus dem Fingerhut hemmt die Na⁺/K⁺-Pumpe ein wenig. Das Na⁺-Gefälle wird kleiner, der Na⁺/Ca²⁺-Austauscher schafft weniger Ca²⁺ hinaus, und der Herzmuskel zieht sich kräftiger zusammen.</p>
+      </div>
+      <div class="panel stack">
+        <span class="eyebrow">Diabetes</span>
+        <h3>Zucker im Urin mit Absicht</h3>
+        <p class="small">In der Niere holt ein Na⁺-Glucose-Symporter den Zucker aus dem Harn zurück. Moderne Diabetes-Medikamente hemmen ihn. So wird überschüssiger Zucker mit dem Urin ausgeschieden.</p>
+      </div>
+      <div class="panel stack">
+        <span class="eyebrow">Obst</span>
+        <h3>Süße Früchte</h3>
+        <p class="small">Pflanzen pumpen mit ATP H⁺ aus ihren Zellen. Ein H⁺-Saccharose-Symporter nutzt dieses Gefälle und lädt Zucker in die Leitbahnen. So gelangt der Zucker aus den Blättern bis in Äpfel und Erdbeeren.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="view" id="view-quiz" hidden>
+    <div class="stack">
+      <span class="eyebrow">Selbsttest</span>
+      <h2>Quiz</h2>
+      <div class="progress-line"><div class="bar" aria-hidden="true"><i id="qBar"></i></div><span class="score-line" id="qProgress"></span></div>
+    </div>
+    <div class="panel quiz" id="quizBox" aria-live="polite"></div>
+  </section>
+</div>
+
+<script>
+/* LearnKit: shared building blocks for LearningDesk topic apps.
+   Exposes window.LK with: DOM helpers, number/expression parsing, rationals,
+   views (tab routing), quiz, trainer (task generators + checkers),
+   prediction cards and the equation lab for equations and inequalities. */
+(function () {
+  "use strict";
+  const $ = (s, r = document) => r.querySelector(s);
+  const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
+  const store = {
+    get(k) { try { return JSON.parse(localStorage.getItem(k)); } catch (e) { return null; } },
+    set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) { /* storage unavailable */ } }
+  };
+  const rnd = (a, b) => a + Math.floor(Math.random() * (b - a + 1));
+  const pick = (a) => a[Math.floor(Math.random() * a.length)];
+  const nz = (a, b) => { let v = 0; while (v === 0) v = rnd(a, b); return v; };
+  function shuffle(a) { const b = a.slice(); for (let i = b.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [b[i], b[j]] = [b[j], b[i]]; } return b; }
+  const gcd = (a, b) => { a = Math.abs(a); b = Math.abs(b); while (b) [a, b] = [b, a % b]; return a; };
+  const esc = (s) => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  const minus = (s) => String(s).replace(/-/g, "−");
+  const frac = (n, d) => `<span class="frac"><span>${n}</span><span>${d}</span></span>`;
+
+  // ---------- numbers ----------
+  // German formatting with at most d decimals
+  function fmt(v, d = 2) {
+    if (!isFinite(v)) return "–";
+    const r = Math.round(v * 10 ** d) / 10 ** d || 0;
+    return minus(r.toLocaleString("de-DE", { maximumFractionDigits: d }));
+  }
+  // accepts "3,5", "-2", "7/2", "x = 4", "1.013,25"
+  function parseNum(raw) {
+    let s = String(raw).trim().replace(/\s+/g, "").replace(/[−–]/g, "-").replace(/^[a-zA-Z]+=/, "");
+    if (s.includes(",") && s.includes(".")) s = s.replace(/\./g, "");
+    else if (/^-?\d{1,3}(\.\d{3})+$/.test(s)) s = s.replace(/\./g, ""); // German thousands separator: 1.013
+    s = s.replace(",", ".");
+    const m = s.match(/^(-?\d+(?:\.\d+)?)\/(-?\d+(?:\.\d+)?)$/);
+    if (m) return Number(m[1]) / Number(m[2]);
+    if (!/^-?(\d+\.?\d*|\.\d+)(e-?\d+)?$/i.test(s)) return NaN;
+    return Number(s);
+  }
+
+  // ---------- rationals ----------
+  class R {
+    constructor(n, d = 1) {
+      if (d === 0) throw new Error("Division durch 0");
+      if (d < 0) { n = -n; d = -d; }
+      const g = gcd(n, d) || 1; this.n = n / g; this.d = d / g;
+    }
+    static of(x) { if (x instanceof R) return x; if (Number.isInteger(x)) return new R(x); const k = 1e6; return new R(Math.round(x * k), k); }
+    add(o) { o = R.of(o); return new R(this.n * o.d + o.n * this.d, this.d * o.d); }
+    sub(o) { o = R.of(o); return new R(this.n * o.d - o.n * this.d, this.d * o.d); }
+    mul(o) { o = R.of(o); return new R(this.n * o.n, this.d * o.d); }
+    div(o) { o = R.of(o); return new R(this.n * o.d, this.d * o.n); }
+    neg() { return new R(-this.n, this.d); }
+    isZero() { return this.n === 0; }
+    eq(o) { o = R.of(o); return this.n === o.n && this.d === o.d; }
+    val() { return this.n / this.d; }
+    sign() { return Math.sign(this.n); }
+    abs() { return new R(Math.abs(this.n), this.d); }
+    text() { return this.d === 1 ? String(this.n) : `${this.n}/${this.d}`; }
+    html() { const a = Math.abs(this.n); const body = this.d === 1 ? String(a) : frac(a, this.d); return (this.n < 0 ? "−" : "") + body; }
+  }
+  // a·x + b as HTML, e.g. "3x − 2", "−x", "5"
+  function linHtml(x, c, v = "x") {
+    x = R.of(x); c = R.of(c);
+    const vx = `<i>${v}</i>`;
+    let s = "";
+    if (!x.isZero()) {
+      const a = x.abs();
+      s = (x.sign() < 0 ? "−" : "") + (a.eq(1) ? "" : a.html()) + vx;
+    }
+    if (!c.isZero() || !s) {
+      if (!s) s = c.html();
+      else s += (c.sign() < 0 ? " − " : " + ") + c.abs().html();
+    }
+    return s;
+  }
+
+  // ---------- polynomials: terms are {c: coefficient, v: {x: 2, y: 1}} ----------
+  function monoParts(v) {
+    const keys = Object.keys(v || {}).filter((k) => v[k] > 0).sort();
+    return { vh: keys.map((k) => `<i>${k}</i>` + (v[k] > 1 ? `<sup>${v[k]}</sup>` : "")).join(""), vt: keys.map((k) => k + (v[k] > 1 ? "^" + v[k] : "")).join("") };
+  }
+  function poly(terms) {
+    let h = "", t = "";
+    terms.filter((m) => m.c !== 0).forEach((m, i) => {
+      const { vh, vt } = monoParts(m.v), a = Math.abs(m.c);
+      const ch = a === 1 && vh ? "" : fmt(a, 4), ct = a === 1 && vt ? "" : String(a);
+      if (i === 0) { h += (m.c < 0 ? "−" : "") + ch + vh; t += (m.c < 0 ? "-" : "") + ct + vt; }
+      else { h += (m.c < 0 ? " − " : " + ") + ch + vh; t += (m.c < 0 ? "-" : "+") + ct + vt; }
+    });
+    return h ? { html: h, text: t } : { html: "0", text: "0" };
+  }
+  const polyFn = (terms) => (e) => terms.reduce((s, m) => s + m.c * Object.entries(m.v || {}).reduce((p, [k, ex]) => p * Math.pow(e[k], ex), 1), 0);
+  // collect like terms: returns new term list sorted by degree
+  function collect(terms) {
+    const map = new Map();
+    terms.forEach((m) => { const key = monoParts(m.v).vt; const cur = map.get(key); if (cur) cur.c += m.c; else map.set(key, { c: m.c, v: { ...(m.v || {}) } }); });
+    const deg = (m) => Object.values(m.v).reduce((a, b) => a + b, 0);
+    return [...map.values()].filter((m) => m.c !== 0).sort((a, b) => deg(b) - deg(a) || monoParts(a.v).vt.localeCompare(monoParts(b.v).vt));
+  }
+
+  // ---------- expressions ----------
+  // single-letter variables, implicit multiplication, ^, ², ³, ·, ×, :, ÷, decimal comma
+  function parse(src) {
+    const s = String(src).toLowerCase().replace(/\s+/g, "").replace(/[−–]/g, "-").replace(/[·⋅×]/g, "*").replace(/[:÷]/g, "/")
+      .replace(/²/g, "^2").replace(/³/g, "^3").replace(/(\d),(\d)/g, "$1.$2");
+    if (!s) throw new Error("leer");
+    const toks = [];
+    for (let i = 0; i < s.length;) {
+      const ch = s[i];
+      if (/[0-9.]/.test(ch)) { let j = i; while (j < s.length && /[0-9.]/.test(s[j])) j++; const n = parseFloat(s.slice(i, j)); if (isNaN(n)) throw new Error("Zahl"); toks.push({ t: "num", v: n }); i = j; continue; }
+      if ("+-*/^()".includes(ch)) { toks.push({ t: ch }); i++; continue; }
+      if (/[a-z]/.test(ch)) { toks.push({ t: "var", v: ch }); i++; continue; }
+      throw new Error("Zeichen");
+    }
+    let p = 0;
+    const peek = () => toks[p];
+    const starts = (tk) => tk && (tk.t === "num" || tk.t === "var" || tk.t === "(");
+    function expr() { let a = term(); while (peek() && (peek().t === "+" || peek().t === "-")) { const op = toks[p++].t, b = term(), l = a; a = op === "+" ? (e) => l(e) + b(e) : (e) => l(e) - b(e); } return a; }
+    function term() {
+      let a = unary();
+      for (;;) {
+        const tk = peek();
+        if (tk && (tk.t === "*" || tk.t === "/")) { p++; const b = unary(), l = a; a = tk.t === "*" ? (e) => l(e) * b(e) : (e) => l(e) / b(e); }
+        else if (starts(tk)) { const b = power(), l = a; a = (e) => l(e) * b(e); }
+        else break;
+      }
+      return a;
+    }
+    function unary() { const tk = peek(); if (tk && tk.t === "-") { p++; const a = unary(); return (e) => -a(e); } if (tk && tk.t === "+") { p++; return unary(); } return power(); }
+    function power() { const b = primary(); if (peek() && peek().t === "^") { p++; const ex = unary(); return (e) => Math.pow(b(e), ex(e)); } return b; }
+    function primary() {
+      const tk = toks[p++];
+      if (!tk) throw new Error("unvollständig");
+      if (tk.t === "num") { const v = tk.v; return () => v; }
+      if (tk.t === "var") { const v = tk.v; return (e) => (v in e ? e[v] : NaN); }
+      if (tk.t === "(") { const a = expr(); if (!peek() || peek().t !== ")") throw new Error("Klammer"); p++; return a; }
+      throw new Error("Syntax");
+    }
+    const f = expr();
+    if (p < toks.length) throw new Error("Syntax");
+    return f;
+  }
+  const SAMPLE = [1.37, -2.11, 0.73, 3.29, -0.58, 2.47, -1.63];
+  function sameFn(f, g, vars = "abcxyz") {
+    for (let k = 0; k < 6; k++) {
+      const env = {}; [...vars].forEach((v, i) => { env[v] = SAMPLE[(k + 2 * i) % SAMPLE.length] + 0.1 * i; });
+      const u = f(env), w = g(env);
+      if (!isFinite(u) || !isFinite(w) || Math.abs(u - w) > 1e-7 * Math.max(1, Math.abs(w))) return false;
+    }
+    return true;
+  }
+  // number of top-level summands of an input, e.g. "3a+2b-(a+b)" -> 3
+  function countSummands(raw) {
+    const s = String(raw).replace(/\s+/g, "").replace(/[−–]/g, "-");
+    let depth = 0, n = 1;
+    for (let i = 0; i < s.length; i++) {
+      const c = s[i];
+      if (c === "(") depth++; else if (c === ")") depth--;
+      else if ((c === "+" || c === "-") && depth === 0 && i > 0 && !"*/^(:·×÷+-".includes(s[i - 1])) n++;
+    }
+    return n;
+  }
+
+  // ---------- checkers for the trainer ----------
+  const check = {
+    // numeric answer with relative tolerance (default 1 %)
+    num(value, { tol = 0.01, abs = null, unit = "" } = {}) {
+      return (raw) => {
+        const v = parseNum(String(raw).replace(new RegExp(unit.replace(/[.*+?^${}()|[\]\\]/g, "\\$&") + "$"), ""));
+        if (isNaN(v)) return { ok: false, msg: "Bitte gib eine Zahl ein, z. B. <code>12,5</code>." };
+        const lim = abs !== null ? abs : Math.max(Math.abs(value) * tol, 1e-9);
+        return Math.abs(v - value) <= lim ? { ok: true } : { ok: false, msg: "Der Wert stimmt noch nicht. Prüfe Formel, Einheiten und Rechnung." };
+      };
+    },
+    // algebraic expression, equivalent to f; optional form check and hints for typical mistakes
+    expr(f, { vars = "abcxyz", form = null, hints = [], fallback = "Der Term ist noch nicht gleichwertig. Rechne Schritt für Schritt nach." } = {}) {
+      return (raw) => {
+        let g;
+        try { g = parse(raw); } catch (e) { return { ok: false, msg: "Das kann ich nicht lesen. Prüfe Klammern und Zeichen, z. B. <code>3a+2b</code> oder <code>2x(x-3)</code>." }; }
+        const eq = sameFn(g, f, vars);
+        if (eq && form) { const m = form(raw); if (m) return { ok: false, msg: m }; }
+        if (eq) return { ok: true };
+        for (const h of hints) if (h.f && sameFn(g, h.f, vars)) return { ok: false, msg: h.msg };
+        return { ok: false, msg: fallback };
+      };
+    }
+  };
+
+  // ---------- views (tab routing) ----------
+  function views(names, onShow = {}) {
+    function show() {
+      const h = location.hash.slice(1);
+      const v = names.includes(h) ? h : names[0];
+      names.forEach((n) => { const el = $("#view-" + n); if (el) el.hidden = n !== v; });
+      $$("nav.tabs a").forEach((a) => { if (a.dataset.view === v) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current"); });
+      window.scrollTo({ top: 0 });
+      if (onShow[v]) requestAnimationFrame(onShow[v]);
+    }
+    window.addEventListener("hashchange", show);
+    show();
+    return show;
+  }
+
+  // ---------- quiz ----------
+  function quiz({ box, bar, progress, questions, n = 10, key, mathOptions = false }) {
+    const B = $(box), BAR = $(bar), P = $(progress);
+    const N = Math.min(n, questions.length);
+    let order = [], idx = 0, score = 0, answered = false;
+    function start() {
+      order = shuffle(questions).slice(0, N).map((q) => { const perm = shuffle(q.o.map((_, i) => i)); return { q: q.q, o: perm.map((i) => q.o[i]), a: perm.indexOf(q.a), e: q.e }; });
+      idx = 0; score = 0; render();
+    }
+    function render() {
+      BAR.style.width = (idx / N) * 100 + "%";
+      if (idx >= N) {
+        const best = Math.max(score, store.get(key) || 0); store.set(key, best);
+        const msg = score >= N - 1 ? "Super! Du hast das Thema sicher drauf." : score >= Math.ceil(N * 0.6) ? "Gut gemacht! Schau dir die Erklärungen zu deinen Fehlern noch einmal an." : "Wiederhole die Erklärungen und übe im Trainer. Dann klappt es beim nächsten Mal besser.";
+        P.textContent = `fertig · Bestwert ${best} / ${N}`;
+        B.innerHTML = `<span class="eyebrow">Ergebnis</span><div class="score-big">${score} / ${N}</div><p>${msg}</p><div class="row"><button type="button" class="primary lk-again">Neue Runde</button></div>`;
+        $(".lk-again", B).addEventListener("click", start);
+        return;
+      }
+      const q = order[idx]; answered = false;
+      P.textContent = `Frage ${idx + 1} von ${N} · ${score} richtig`;
+      B.innerHTML = `<div class="qtext"></div><div class="opts"></div><div class="feedback" hidden></div><div class="row"><button type="button" class="primary lk-next" hidden>${idx + 1 < N ? "Nächste Frage" : "Ergebnis anzeigen"}</button></div>`;
+      $(".qtext", B).textContent = q.q;
+      q.o.forEach((t, i) => {
+        const b = document.createElement("button"); b.type = "button";
+        b.innerHTML = `<span class="k">${"ABCD"[i]}</span><span${mathOptions ? ' class="math"' : ""}></span>`; b.lastChild.textContent = t;
+        b.addEventListener("click", () => choose(i));
+        $(".opts", B).appendChild(b);
+      });
+      $(".lk-next", B).addEventListener("click", () => { idx++; render(); });
+    }
+    function choose(i) {
+      if (answered) return; answered = true;
+      const q = order[idx];
+      $$(".opts button", B).forEach((b, j) => { b.disabled = true; if (j === q.a) b.classList.add("right"); else if (j === i) b.classList.add("wrong"); });
+      const ok = i === q.a; if (ok) score++;
+      const fb = $(".feedback", B); fb.hidden = false;
+      fb.innerHTML = ok ? '<span><b class="ok">Richtig!</b> </span>' : '<span><b class="no">Leider falsch.</b> </span>';
+      fb.firstChild.appendChild(document.createTextNode(q.e));
+      const nb = $(".lk-next", B); nb.hidden = false; nb.focus();
+      P.textContent = `Frage ${idx + 1} von ${N} · ${score} richtig`;
+    }
+    start();
+  }
+
+  // ---------- trainer ----------
+  const trainers = [];
+  function trainer({ el, modes, id = "tr" }) {
+    const root = $(el);
+    root.innerHTML = `
+      ${modes.length > 1 ? `<div class="modes" role="group" aria-label="Übungsart">${modes.map((m, i) => `<button type="button" data-mode="${m.id}" aria-pressed="${i === 0}">${m.label}</button>`).join("")}</div>` : ""}
+      <div class="panel stack">
+        <p class="small muted lk-instr"></p>
+        <form class="stack lk-form" autocomplete="off">
+          <div class="task lk-task"></div>
+          <div class="answer-row"><label class="math lk-label" for="${id}-in"></label><input type="text" id="${id}-in" class="lk-in" spellcheck="false"></div>
+          <div class="row"><button type="submit" class="primary">Prüfen</button><button type="button" class="lk-show">Lösung zeigen</button><button type="button" class="lk-new">Neue Aufgabe</button></div>
+        </form>
+        <p class="hint lk-hint"></p>
+        <div class="feedback lk-fb" hidden aria-live="polite"></div>
+        <span class="score-line lk-score"></span>
+      </div>`;
+    let mode = modes[0], task = null;
+    const score = { right: 0, total: 0 };
+    const fb = $(".lk-fb", root), input = $(".lk-in", root);
+    function updateScore() { $(".lk-score", root).textContent = `${score.right} von ${score.total} Aufgaben auf Anhieb richtig`; }
+    function next() {
+      task = mode.gen(); task.attempted = false;
+      $(".lk-instr", root).innerHTML = task.instr || mode.instr || "";
+      $(".lk-task", root).innerHTML = task.html;
+      $(".lk-label", root).innerHTML = task.label || "";
+      input.placeholder = task.placeholder || "";
+      $(".lk-hint", root).innerHTML = task.hint || mode.hint || "";
+      input.value = ""; fb.hidden = true;
+      return task;
+    }
+    function solutionHtml() { return task.solution ? `<div>${task.solution}</div>` : ""; }
+    function submit(raw) {
+      const r = task.check(raw);
+      if (!task.attempted) { task.attempted = true; score.total++; if (r.ok) score.right++; updateScore(); }
+      fb.hidden = false;
+      fb.innerHTML = r.ok ? `<span><b class="ok">Richtig!</b></span>${solutionHtml()}` : `<span><b class="no">Noch nicht richtig.</b> ${r.msg || ""}</span>`;
+      return r;
+    }
+    $(".lk-form", root).addEventListener("submit", (ev) => { ev.preventDefault(); submit(input.value); });
+    $(".lk-show", root).addEventListener("click", () => {
+      if (!task.attempted) { task.attempted = true; score.total++; updateScore(); }
+      fb.hidden = false; fb.innerHTML = `<span>Eine mögliche Lösung: <code>${esc(task.answer)}</code></span>${solutionHtml()}`;
+    });
+    $(".lk-new", root).addEventListener("click", () => { next(); input.focus(); });
+    $$("[data-mode]", root).forEach((b) => b.addEventListener("click", () => {
+      mode = modes.find((m) => m.id === b.dataset.mode);
+      $$("[data-mode]", root).forEach((x) => x.setAttribute("aria-pressed", String(x === b)));
+      next();
+    }));
+    next();
+    const api = { modes, next, submit, get task() { return task; }, setMode(i) { mode = modes[i]; return next(); } };
+    trainers.push(api);
+    return api;
+  }
+
+  // ---------- prediction cards ----------
+  function cards({ el, items, key }) {
+    const root = $(el);
+    let answers = store.get(key) || {};
+    function renderAll() {
+      root.innerHTML = "";
+      items.forEach((c, idx) => {
+        const card = document.createElement("article");
+        card.className = "panel card";
+        card.innerHTML = `<span class="ctx"></span><h3></h3><p class="small"></p><div class="opts"></div><div class="answer" hidden></div>`;
+        $(".ctx", card).textContent = c.ctx; $("h3", card).textContent = c.title; $("p", card).textContent = c.text;
+        const opts = $(".opts", card), ans = $(".answer", card);
+        c.o.forEach((t, i) => {
+          const b = document.createElement("button"); b.type = "button"; b.textContent = t;
+          b.addEventListener("click", () => { answers[idx] = i; store.set(key, answers); paint(); });
+          opts.appendChild(b);
+        });
+        function paint() {
+          const ch = answers[idx];
+          $$("button", opts).forEach((b, i) => { b.classList.remove("right", "wrong"); b.disabled = ch !== undefined; if (ch !== undefined) { if (i === c.a) b.classList.add("right"); else if (i === ch) b.classList.add("wrong"); } });
+          if (ch !== undefined) { ans.hidden = false; ans.innerHTML = ch === c.a ? '<b class="ok">Richtig.</b> ' : '<b class="no">Nicht ganz.</b> '; ans.appendChild(document.createTextNode(c.e)); }
+          else ans.hidden = true;
+        }
+        root.appendChild(card); paint();
+      });
+    }
+    renderAll();
+    return { reset() { answers = {}; store.set(key, answers); renderAll(); } };
+  }
+
+  // ---------- equation lab (equations and inequalities) ----------
+  const REL_FLIP = { "<": ">", ">": "<", "≤": "≥", "≥": "≤", "=": "=" };
+  function equationLab({ el, gen, inequality = false }) {
+    const root = $(el);
+    root.innerHTML = `
+      <div class="panel stack">
+        <div class="lab-eq lk-eq" aria-live="polite"></div>
+        <ol class="lab-log lk-log"></ol>
+        <form class="answer-row lk-form" autocomplete="off">
+          <label for="${el.slice(1)}-op" class="small"><strong>Umformung für beide Seiten:</strong></label>
+          <input type="text" id="${el.slice(1)}-op" class="lk-op" placeholder="z. B. −3 oder −2x oder :4" spellcheck="false">
+          <button type="submit" class="primary">Ausführen</button>
+        </form>
+        <p class="hint">Schreibweise: <code>-3</code>, <code>+5</code>, <code>-2x</code>, <code>+x</code>, <code>:4</code>, <code>*2</code>, <code>:(-3)</code>. Brüche als <code>1/2</code>.</p>
+        <p class="lab-msg lk-msg" aria-live="polite"></p>
+        <div class="row"><button type="button" class="lk-undo">Rückgängig</button><button type="button" class="lk-new">Neue ${inequality ? "Ungleichung" : "Gleichung"}</button></div>
+      </div>`;
+    let hist = [], st = null;
+    const eqHtml = (s) => `${linHtml(s.L.x, s.L.c)} ${s.rel} ${linHtml(s.R.x, s.R.c)}`;
+    function setMsg(t, cls = "") { const m = $(".lk-msg", root); m.className = "lab-msg lk-msg " + cls; m.innerHTML = t; }
+    function render() {
+      $(".lk-eq", root).innerHTML = eqHtml(st);
+      // the operation is written next to the line it is applied to (school notation)
+      $(".lk-log", root).innerHTML = hist.map((h, i) => { const nx = hist[i + 1]; return `<li class="${nx && nx.flip ? "flip" : ""}"><span>${eqHtml(h.s)}</span><span class="op">${nx ? "| " + esc(nx.op) : ""}</span></li>`; }).join("");
+      const s = st, xL = !s.L.x.isZero(), xR = !s.R.x.isZero();
+      if (!xL && !xR) {
+        const l = s.L.c.val(), r = s.R.c.val();
+        const truth = { "=": l === r, "<": l < r, ">": l > r, "≤": l <= r, "≥": l >= r }[s.rel];
+        setMsg(truth ? "Die Variable ist verschwunden und die Aussage ist immer wahr: Jede Zahl ist eine Lösung (L = ℚ)." : "Die Variable ist verschwunden und die Aussage ist falsch: Es gibt keine Lösung (L = { }).", "ok");
+        return;
+      }
+      const solvedL = s.L.x.eq(1) && s.L.c.isZero() && !xR, solvedR = s.R.x.eq(1) && s.R.c.isZero() && !xL;
+      if (solvedL || solvedR) {
+        const v = solvedL ? s.R.c : s.L.c, rel = solvedL ? s.rel : REL_FLIP[s.rel];
+        setMsg(inequality && rel !== "=" ? `Gelöst! Alle Zahlen mit <span class="math"><i>x</i> ${rel} ${v.html()}</span> erfüllen die Ungleichung: <span class="math">L = {<i>x</i> | <i>x</i> ${rel} ${v.html()}}</span>` : `Gelöst! <span class="math"><i>x</i> = ${v.html()}</span>, also <span class="math">L = {${v.html()}}</span>. Mach zur Sicherheit die Probe.`, "ok");
+      } else setMsg("Forme weiter um, bis <i>x</i> allein auf einer Seite steht.");
+    }
+    function start(s) { st = s || gen(); hist = [{ s: st, op: "" }]; render(); }
+    function apply(raw) {
+      let s = String(raw).replace(/\s+/g, "").replace(/[−–]/g, "-").replace(/[·⋅×]/g, "*").replace(/[÷/]/g, (m, i) => (i === 0 ? ":" : m)).replace(/^\//, ":");
+      const m = s.match(/^([+\-*:])\(?(-?)(\d*(?:[.,]\d+)?(?:\/\d+)?)(x?)\)?$/);
+      if (!m || (m[3] === "" && m[4] === "")) { setMsg("Das verstehe ich nicht. Beginne mit + − * oder :, z. B. <code>-3</code> oder <code>:2</code>.", "no"); return false; }
+      const [, op, sg, numTxt, hasX] = m;
+      let k; try { k = R.of(numTxt === "" ? 1 : parseNum(numTxt)); if (numTxt.includes("/")) { const [a, b] = numTxt.split("/").map(Number); k = new R(a, b); } } catch (e) { setMsg("Ungültige Zahl.", "no"); return false; }
+      if (sg) k = k.neg();
+      const next = { L: { ...st.L }, R: { ...st.R }, rel: st.rel };
+      let flip = false;
+      const label = `${op === "*" ? "·" : op === ":" ? ":" : op === "-" ? "−" : "+"}${op === "*" || op === ":" ? (k.sign() < 0 ? `(${k.text().replace("-", "−")})` : k.text()) : (k.sign() < 0 ? `(${k.text().replace("-", "−")})` : k.text())}${hasX ? "x" : ""}`.replace(/^([+−])1x$/, "$1x");
+      if (op === "+" || op === "-") {
+        const kk = op === "-" ? k.neg() : k;
+        for (const side of ["L", "R"]) { if (hasX) next[side].x = next[side].x.add(kk); else next[side].c = next[side].c.add(kk); }
+      } else {
+        if (hasX) { setMsg("Mit <i>x</i> malnehmen oder durch <i>x</i> teilen ist keine erlaubte Umformung, weil <i>x</i> null sein könnte.", "no"); return false; }
+        if (k.isZero()) { setMsg(op === ":" ? "Durch 0 darf man nicht teilen." : "Mal 0 macht beide Seiten zu 0. Dabei geht die Information verloren, das ist keine Äquivalenzumformung.", "no"); return false; }
+        for (const side of ["L", "R"]) {
+          next[side].x = op === "*" ? next[side].x.mul(k) : next[side].x.div(k);
+          next[side].c = op === "*" ? next[side].c.mul(k) : next[side].c.div(k);
+        }
+        if (inequality && k.sign() < 0 && next.rel !== "=") { next.rel = REL_FLIP[next.rel]; flip = true; }
+      }
+      st = next; hist.push({ s: st, op: label + (flip ? "  Zeichen umdrehen!" : ""), flip }); render();
+      if (flip) setMsg("Achtung: Du hast mit einer negativen Zahl multipliziert oder durch sie geteilt. Deshalb dreht sich das Ungleichheitszeichen um! " + $(".lk-msg", root).innerHTML, "no");
+      return true;
+    }
+    $(".lk-form", root).addEventListener("submit", (ev) => { ev.preventDefault(); const i = $(".lk-op", root); if (apply(i.value)) i.value = ""; i.focus(); });
+    $(".lk-undo", root).addEventListener("click", () => { if (hist.length > 1) { hist.pop(); st = hist[hist.length - 1].s; render(); } });
+    $(".lk-new", root).addEventListener("click", () => start());
+    start();
+    return { apply, start, get state() { return st; } };
+  }
+  // random linear equation a x + b (rel) c x + d with a "nice" solution
+  function genLinear({ rel = "=", fractions = false } = {}) {
+    let a, c; do { a = nz(-6, 7); c = rnd(-4, 4); } while (a === c);
+    const x0 = fractions ? new R(nz(-9, 9), pick([1, 2, 3])) : new R(nz(-6, 6));
+    const b = R.of(rnd(-9, 9)), d = x0.mul(a - c).add(b);
+    return { L: { x: R.of(a), c: b }, R: { x: R.of(c), c: d }, rel, x0 };
+  }
+
+  // number as plain answer text with decimal comma, e.g. 1013,25
+  const numText = (v, d = 2) => String(Math.round(v * 10 ** d) / 10 ** d || 0).replace(".", ",");
+
+  window.LK = { $, $$, store, rnd, pick, nz, shuffle, gcd, esc, minus, frac, fmt, parseNum, numText, R, linHtml, poly, polyFn, collect, monoParts, parse, sameFn, countSummands, check, views, quiz, trainer, trainers, cards, equationLab, genLinear, REL_FLIP };
+})();
+</script>
+<script>
+(function () {
+  "use strict";
+  const { $, pick } = LK;
+
+  // ---------- transporter simulation ----------
+  // Species: label and colour (fixed colours, white text works in both themes)
+  const SP = {
+    na: ["Na⁺", "#d0782a"], k: ["K⁺", "#7b4bb0"], glc: ["Glc", "#2f7fb8"], ca: ["Ca²⁺", "#2e8a57"],
+    h: ["H⁺", "#c0392b"], sac: ["Sac", "#9a6b1f"], cl: ["Cl⁻", "#3f8f8f"], hco: ["HCO₃⁻", "#5a6b7d"]
+  };
+  // dir: +1 = into the cell, -1 = out of the cell
+  // drive: "self" = passive, needs a gradient of the first species; "atp" = primary active;
+  // "grad" = secondary active, needs a gradient of species `by` (outside > inside)
+  const T = [
+    { name: "GLUT: Glucose-Transporter", type: "Uniport", energy: "passiv (erleichterte Diffusion)", drive: "self",
+      start: { glc: [10, 3] }, parts: [["glc", 1, 1]],
+      text: "GLUT lässt Glucose nur <strong>mit ihrem Gefälle</strong> in die Zelle. Sind innen und außen gleich viele Glucose-Teilchen, kommt netto nichts mehr hinein. Energie braucht der Carrier nicht." },
+    { name: "SGLT1: Na⁺-Glucose-Symporter (Darm)", type: "Symport", energy: "sekundär aktiv (Na⁺-Gefälle)", drive: "grad", by: "na",
+      start: { na: [16, 2], glc: [6, 4] }, parts: [["na", 2, 1], ["glc", 1, 1]], regen: { sp: "na", n: 3, label: "Na⁺/K⁺-Pumpe: 3 Na⁺ hinaus (1 ATP)" },
+      text: "Je <strong>2 Na⁺</strong> strömen mit ihrem Gefälle hinein und nehmen <strong>1 Glucose</strong> mit, sogar <strong>gegen</strong> deren Gefälle. Der Symporter verbraucht kein ATP. Wird das Na⁺-Gefälle aufgebraucht, stoppt er. Dann muss die Na⁺/K⁺-Pumpe Na⁺ wieder hinausschaffen." },
+    { name: "Na⁺/K⁺-Pumpe", type: "Antiport", energy: "primär aktiv (ATP)", drive: "atp",
+      start: { na: [10, 6], k: [5, 10] }, parts: [["na", 3, -1], ["k", 2, 1]],
+      text: "Pro Runde <strong>3 Na⁺ hinaus</strong> und <strong>2 K⁺ hinein</strong>, beide <strong>gegen</strong> ihr Gefälle. Die Energie kommt direkt aus der Spaltung von <strong>1 ATP</strong>." },
+    { name: "NCX: Na⁺/Ca²⁺-Austauscher (Herz)", type: "Antiport", energy: "sekundär aktiv (Na⁺-Gefälle)", drive: "grad", by: "na",
+      start: { na: [14, 3], ca: [6, 5] }, parts: [["na", 3, 1], ["ca", 1, -1]], regen: { sp: "na", n: 3, label: "Na⁺/K⁺-Pumpe: 3 Na⁺ hinaus (1 ATP)" },
+      text: "<strong>3 Na⁺</strong> strömen hinein, dafür wird <strong>1 Ca²⁺</strong> hinausbefördert, gegen sein Gefälle. So sinkt nach jedem Herzschlag das Ca²⁺ in der Muskelzelle, und der Muskel entspannt sich." },
+    { name: "H⁺-Saccharose-Symporter (Pflanze)", type: "Symport", energy: "sekundär aktiv (H⁺-Gefälle)", drive: "grad", by: "h",
+      start: { h: [12, 3], sac: [3, 7] }, parts: [["h", 1, 1], ["sac", 1, 1]], regen: { sp: "h", n: 1, label: "Protonenpumpe: 1 H⁺ hinaus (1 ATP)" },
+      text: "Pflanzen nutzen statt Na⁺ meist <strong>H⁺</strong>. Eine Protonenpumpe schafft H⁺ mit ATP hinaus. Strömt ein H⁺ zurück, nimmt es ein Saccharose-Molekül mit. So wird Zucker in die Leitbahnen geladen." },
+    { name: "Cl⁻/HCO₃⁻-Austauscher (rote Blutzelle)", type: "Antiport", energy: "passiv", drive: "self",
+      start: { hco: [3, 10], cl: [10, 3] }, parts: [["hco", 1, -1], ["cl", 1, 1]],
+      text: "Ein <strong>passiver</strong> Antiport: HCO₃⁻ verlässt die Zelle mit seinem Gefälle, im Tausch kommt Cl⁻ herein. Ohne ATP. So transportiert das Blut CO₂ als HCO₃⁻ zur Lunge." }
+  ];
+  $("#tSel").innerHTML = T.map((t, i) => `<option value="${i}">${t.name}</option>`).join("");
+
+  const OUT = [30, 400, 30, 112], IN = [30, 400, 196, 300], CX = 215, CY = 154;
+  let cur, parts = [], atp = 0, rounds = 0, busy = false, flash = 0;
+  // random free spot in a compartment: keeps a column around the carrier clear and avoids overlaps
+  const rndIn = ([x0, x1, y0, y1]) => {
+    let best = null, bestD = -1;
+    for (let k = 0; k < 60; k++) {
+      const x = x0 + Math.random() * (x1 - x0), y = y0 + Math.random() * (y1 - y0);
+      if (Math.abs(x - CX) < 46) continue;
+      const d = parts.reduce((m, p) => Math.min(m, Math.hypot(p.x - x, p.y - y)), 1e9);
+      if (d > 34) return [x, y];
+      if (d > bestD) { bestD = d; best = [x, y]; }
+    }
+    return best || [x0, y0];
+  };
+  function count(sp, side) { return parts.filter((p) => p.sp === sp && p.side === side).length; }
+  function reset() {
+    cur = T[+$("#tSel").value]; parts = []; atp = 0; rounds = 0; busy = false;
+    Object.entries(cur.start).forEach(([sp, [o, i]]) => {
+      for (let n = 0; n < o; n++) { const [x, y] = rndIn(OUT); parts.push({ sp, side: "out", x, y }); }
+      for (let n = 0; n < i; n++) { const [x, y] = rndIn(IN); parts.push({ sp, side: "in", x, y }); }
+    });
+    $("#tType").textContent = `${cur.type} · ${cur.energy}`;
+    $("#tText").innerHTML = cur.text;
+    $("#tMsg").textContent = "";
+    const rb = $("#tRegen"); rb.hidden = !cur.regen; if (cur.regen) rb.textContent = cur.regen.label;
+    draw();
+  }
+  function draw() {
+    let s = `<rect x="0" y="0" width="420" height="124" fill="var(--accent-soft)" opacity="0.5"/>`;
+    s += `<text class="side" x="10" y="20">außen</text><text class="side" x="10" y="318">innen (Cytoplasma)</text>`;
+    s += `<rect class="lipid" x="0" y="130" width="420" height="48"/>`;
+    for (let x = 6; x < 420; x += 12) s += `<circle class="head" cx="${x}" cy="132" r="5"/><circle class="head" cx="${x}" cy="176" r="5"/>`;
+    s += `<rect class="carrier" x="${CX - 34}" y="118" width="68" height="72" rx="18"/>`;
+    if (flash > 0) s += `<text class="atp" x="${CX + 42}" y="${CY + 50}">ATP → ADP + P</text>`;
+    parts.forEach((p) => {
+      const [lab, col] = SP[p.sp], r = lab.length > 3 ? 15 : 12;
+      s += `<g class="pt"><circle cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="${r}" fill="${col}"/><text x="${p.x.toFixed(1)}" y="${p.y.toFixed(1)}">${lab}</text></g>`;
+    });
+    $("#tSvg").innerHTML = s;
+    const sps = Object.keys(cur.start);
+    $("#tRo").innerHTML = sps.map((sp) => `<dt>${SP[sp][0]} außen / innen</dt><dd class="big">${count(sp, "out")} / ${count(sp, "in")}</dd>`).join("")
+      + `<dt>Transportrunden</dt><dd>${rounds}</dd><dt>ATP verbraucht</dt><dd>${atp}</dd>`;
+  }
+  // animate a set of particles along paths [from, carrier, to]
+  function animate(moves, done) {
+    busy = true;
+    const t0 = performance.now(), D = 1100;
+    moves.forEach((m) => { m.from = [m.p.x, m.p.y]; m.to = rndIn(m.toSide === "out" ? OUT : IN); });
+    function step(now) {
+      const t = Math.min(1, (now - t0) / D);
+      moves.forEach((m, i) => {
+        const mid = [CX - 14 + (i % 3) * 14, CY + (m.toSide === "in" ? -8 : 8) + Math.floor(i / 3) * 16 * (m.toSide === "in" ? 1 : -1)];
+        const [a, b, u] = t < 0.5 ? [m.from, mid, t * 2] : [mid, m.to, (t - 0.5) * 2];
+        const e = u * u * (3 - 2 * u);
+        m.p.x = a[0] + (b[0] - a[0]) * e; m.p.y = a[1] + (b[1] - a[1]) * e;
+      });
+      if (flash > 0) flash = t < 1 ? 1 : 0;
+      draw();
+      if (t < 1) requestAnimationFrame(step);
+      else { moves.forEach((m) => { m.p.side = m.toSide; }); busy = false; draw(); done && done(); }
+    }
+    requestAnimationFrame(step);
+  }
+  function msg(t) { $("#tMsg").innerHTML = t; }
+  $("#tGo").addEventListener("click", () => {
+    if (busy) return;
+    // enough particles on the source side?
+    for (const [sp, n, dir] of cur.parts) {
+      const src = dir > 0 ? "out" : "in";
+      if (count(sp, src) < n) { msg(`<strong>Stopp:</strong> Auf der ${src === "out" ? "Außenseite" : "Innenseite"} ist nicht mehr genug ${SP[sp][0]} zum Binden.`); return; }
+    }
+    if (cur.drive === "self") {
+      const [sp, , dir] = cur.parts[0];
+      const src = dir > 0 ? "out" : "in", dst = dir > 0 ? "in" : "out";
+      if (count(sp, src) <= count(sp, dst)) { msg(`<strong>Stopp:</strong> Für ${SP[sp][0]} gibt es kein Gefälle mehr. Ein passiver Transporter befördert netto nichts mehr.`); return; }
+    }
+    if (cur.drive === "grad" && count(cur.by, "out") <= count(cur.by, "in")) {
+      msg(`<strong>Stopp:</strong> Das ${SP[cur.by][0]}-Gefälle ist aufgebraucht. Ohne Antrieb arbeitet der Transporter nicht. Lass die Pumpe laufen.`); return;
+    }
+    const moves = [];
+    cur.parts.forEach(([sp, n, dir]) => {
+      const src = dir > 0 ? "out" : "in";
+      const cand = parts.filter((p) => p.sp === sp && p.side === src).sort((a, b) => Math.abs(a.x - CX) - Math.abs(b.x - CX)).slice(0, n);
+      cand.forEach((p) => moves.push({ p, toSide: dir > 0 ? "in" : "out" }));
+    });
+    if (cur.drive === "atp") { atp++; flash = 1; }
+    rounds++;
+    msg(cur.drive === "grad" && count(cur.by, "out") - count(cur.by, "in") <= 4 ? `Das ${SP[cur.by][0]}-Gefälle wird kleiner.` : "");
+    animate(moves);
+  });
+  $("#tRegen").addEventListener("click", () => {
+    if (busy || !cur.regen) return;
+    const { sp, n } = cur.regen;
+    const cand = parts.filter((p) => p.sp === sp && p.side === "in").slice(0, n);
+    if (cand.length < n) { msg(`Innen ist kein ${SP[sp][0]} mehr, das hinausgepumpt werden könnte.`); return; }
+    atp++; flash = 1; msg("Die Pumpe baut das Gefälle mit ATP wieder auf.");
+    animate(cand.map((p) => ({ p, toSide: "out" })));
+  });
+  $("#tReset").addEventListener("click", () => { if (!busy) reset(); });
+  $("#tSel").addEventListener("change", () => { if (!busy) reset(); });
+  reset();
+
+  // ---------- classification cards ----------
+  LK.cards({ el: "#cards", key: "symport.cards", items: [
+    { ctx: "Darm", title: "Na⁺ und Glucose", text: "Ein Carrier befördert 2 Na⁺ und 1 Glucose gemeinsam in die Darmzelle.", o: ["Uniport", "Symport", "Antiport"], a: 1, e: "Zwei Stoffe, gleiche Richtung: Symport." },
+    { ctx: "Nervenzelle", title: "Na⁺/K⁺-Pumpe", text: "3 Na⁺ werden hinaus-, 2 K⁺ hineinbefördert.", o: ["Uniport", "Symport", "Antiport"], a: 2, e: "Entgegengesetzte Richtungen: Antiport (primär aktiv, ATP)." },
+    { ctx: "Fettgewebe", title: "GLUT4", text: "Ein Carrier lässt nur Glucose mit ihrem Gefälle in die Zelle.", o: ["Uniport", "Symport", "Antiport"], a: 0, e: "Eine Teilchensorte, eine Richtung: Uniport, passiv." },
+    { ctx: "Herz", title: "Na⁺/Ca²⁺-Austauscher", text: "3 Na⁺ strömen hinein, 1 Ca²⁺ wird dafür hinausbefördert.", o: ["Symport", "Antiport", "Kanal"], a: 1, e: "Ein Austausch in Gegenrichtung ist ein Antiport, angetrieben vom Na⁺-Gefälle." },
+    { ctx: "Energie", title: "Woher die Energie?", text: "Der Na⁺-Glucose-Symporter transportiert Glucose gegen ihr Gefälle. Woher stammt die Energie?", o: ["Direkt aus ATP", "Aus dem Na⁺-Gefälle", "Aus der Wärme"], a: 1, e: "Sekundär aktiv: Das Na⁺-Gefälle baut die Na⁺/K⁺-Pumpe mit ATP auf." },
+    { ctx: "Blut", title: "Cl⁻ gegen HCO₃⁻", text: "Rote Blutzellen tauschen HCO₃⁻ gegen Cl⁻, beide mit ihrem Gefälle. Welche Transportart?", o: ["passiver Antiport", "primär aktiver Antiport", "Symport"], a: 0, e: "Antiport muss nicht aktiv sein. Hier laufen beide Stoffe bergab." },
+    { ctx: "Pflanze", title: "Zucker in die Leitbahn", text: "H⁺ strömt in die Zelle und nimmt Saccharose mit.", o: ["Uniport", "Symport", "Antiport"], a: 1, e: "Gleiche Richtung: H⁺-Saccharose-Symport, sekundär aktiv." },
+    { ctx: "Magen", title: "Protonenpumpe", text: "H⁺ werden mit ATP in den Magen gepumpt, dafür kommt K⁺ in die Zelle.", o: ["Symport, sekundär aktiv", "Antiport, primär aktiv", "Uniport, passiv"], a: 1, e: "Entgegengesetzte Richtungen und ATP direkt: primär aktiver Antiport." }
+  ] });
+
+  // ---------- trainer ----------
+  // Each scenario: description, transport type, energy type
+  const SC = [
+    ["Ein Carrier bringt 2 Na⁺ und 1 Glucose zusammen in die Zelle.", "Symport", "sekundär aktiv"],
+    ["Ein Carrier befördert 3 Na⁺ hinaus und 2 K⁺ hinein und spaltet dabei ATP.", "Antiport", "primär aktiv"],
+    ["Glucose gelangt über einen Carrier mit ihrem Gefälle in eine Muskelzelle.", "Uniport", "passiv"],
+    ["3 Na⁺ strömen hinein, gleichzeitig wird 1 Ca²⁺ hinausbefördert.", "Antiport", "sekundär aktiv"],
+    ["Ein Na⁺ strömt in die Zelle, im Austausch wird ein H⁺ hinausbefördert.", "Antiport", "sekundär aktiv"],
+    ["H⁺ und Saccharose gelangen gemeinsam in eine Pflanzenzelle.", "Symport", "sekundär aktiv"],
+    ["Eine Pumpe befördert nur H⁺ mit ATP aus der Pflanzenzelle hinaus.", "Uniport", "primär aktiv"],
+    ["HCO₃⁻ verlässt die Blutzelle mit seinem Gefälle, Cl⁻ kommt im Tausch herein.", "Antiport", "passiv"],
+    ["Na⁺ und Aminosäuren werden gemeinsam in eine Darmzelle aufgenommen.", "Symport", "sekundär aktiv"],
+    ["Fructose gelangt über einen Carrier ohne Energie und mit ihrem Gefälle in die Darmzelle.", "Uniport", "passiv"],
+    ["Die Magenzelle pumpt H⁺ mit ATP hinaus und nimmt dafür K⁺ auf.", "Antiport", "primär aktiv"],
+    ["Na⁺, K⁺ und 2 Cl⁻ werden zusammen in eine Nierenzelle befördert.", "Symport", "sekundär aktiv"]
+  ];
+  const norm = (s) => s.trim().toLowerCase().replace(/[-\s]+/g, " ");
+  function typeOf(raw) { const t = norm(raw); return /^sym/.test(t) ? "Symport" : /^anti/.test(t) ? "Antiport" : /^uni/.test(t) ? "Uniport" : null; }
+  function energyOf(raw) { const t = norm(raw); return /prim/.test(t) ? "primär aktiv" : /sek|sec/.test(t) ? "sekundär aktiv" : /pass/.test(t) ? "passiv" : null; }
+  function genType() {
+    const [d, ty] = pick(SC);
+    return { html: d, label: "Typ:", placeholder: "Uniport, Symport oder Antiport", answer: ty,
+      check: (raw) => { const v = typeOf(raw); if (!v) return { ok: false, msg: "Antworte mit <code>Uniport</code>, <code>Symport</code> oder <code>Antiport</code>." };
+        return v === ty ? { ok: true } : { ok: false, msg: "Zähle die Teilchensorten und vergleiche ihre Richtungen." }; },
+      solution: `<b>${ty}</b>: ${ty === "Uniport" ? "eine Teilchensorte" : ty === "Symport" ? "zwei Sorten, gleiche Richtung" : "zwei Sorten, entgegengesetzte Richtungen"}.` };
+  }
+  function genEnergy() {
+    const [d, ty, en] = pick(SC);
+    return { html: d, label: "Energie:", placeholder: "passiv, primär aktiv oder sekundär aktiv", answer: en,
+      check: (raw) => { const v = energyOf(raw); if (!v) return { ok: false, msg: "Antworte mit <code>passiv</code>, <code>primär aktiv</code> oder <code>sekundär aktiv</code>." };
+        return v === en ? { ok: true } : { ok: false, msg: "Wird ATP direkt gespalten? Oder treibt das Gefälle eines anderen Stoffs den Transport an?" }; },
+      solution: `<b>${ty}, ${en}</b>. ${en === "passiv" ? "Alles läuft mit dem Gefälle, ohne Energie." : en === "primär aktiv" ? "Die Energie kommt direkt aus ATP." : "Die Energie kommt aus dem Gefälle von Na⁺ oder H⁺."}` };
+  }
+  const RATIOS = [
+    { name: "Na⁺-Glucose-Symporter", a: "Na⁺", na: 2, b: "Glucose", nb: 1 },
+    { name: "Na⁺/Ca²⁺-Austauscher", a: "Na⁺", na: 3, b: "Ca²⁺", nb: 1 },
+    { name: "Na⁺/K⁺-Pumpe", a: "Na⁺", na: 3, b: "K⁺", nb: 2 }
+  ];
+  function genCount() {
+    const r = pick(RATIOS), rounds = pick([20, 50, 100, 150, 200, 300, 500, 1000]);
+    const askA = Math.random() < 0.5, val = askA ? r.na * rounds : r.nb * rounds;
+    const given = askA ? `${r.nb * rounds} ${r.b}` : `${r.na * rounds} ${r.a}`;
+    const asked = askA ? r.a : r.b;
+    const sol = `Verhältnis ${r.na} ${r.a} : ${r.nb} ${r.b}. ${given} bedeutet ${rounds} Runden, also ${rounds} · ${askA ? r.na : r.nb} = <b>${val} ${asked}</b>.`;
+    return { html: `Der <b>${r.name}</b> befördert pro Runde ${r.na} ${r.a} und ${r.nb} ${r.b}. Er hat gerade <b>${given}</b> befördert. Wie viele ${asked} waren es?`,
+      label: `${asked}:`, placeholder: "Anzahl", answer: String(val), check: LK.check.num(val, { abs: 0.5 }), solution: sol + (r.name === "Na⁺/K⁺-Pumpe" ? ` Dabei wurden ${rounds} ATP verbraucht.` : "") };
+  }
+  LK.trainer({ el: "#trainer", modes: [
+    { id: "typ", label: "Uni, Sym oder Anti?", gen: genType },
+    { id: "energie", label: "Woher kommt die Energie?", gen: genEnergy },
+    { id: "zaehlen", label: "Teilchen zählen", gen: genCount }
+  ] });
+
+  // ---------- quiz ----------
+  LK.quiz({ box: "#quizBox", bar: "#qBar", progress: "#qProgress", key: "symport.best", n: 10, questions: [
+    { q: "Was ist ein Symport?", o: ["Zwei Stoffe in dieselbe Richtung", "Zwei Stoffe in entgegengesetzte Richtungen", "Ein Stoff in eine Richtung", "Transport durch einen offenen Kanal"], a: 0, e: "syn = zusammen." },
+    { q: "Was ist ein Antiport?", o: ["Zwei Stoffe in dieselbe Richtung", "Zwei Stoffe in entgegengesetzte Richtungen", "Transport ohne Protein", "Ein Stoff ohne Energie"], a: 1, e: "anti = gegen." },
+    { q: "Welcher Transporter ist ein Uniport?", o: ["Na⁺/K⁺-Pumpe", "GLUT (Glucose-Transporter)", "Na⁺-Glucose-Symporter", "Na⁺/Ca²⁺-Austauscher"], a: 1, e: "GLUT befördert nur Glucose, mit dem Gefälle." },
+    { q: "Woher bekommt der Na⁺-Glucose-Symporter seine Energie?", o: ["Direkt aus ATP", "Aus dem Na⁺-Gefälle", "Aus Licht", "Er braucht keine, Glucose fließt immer bergab"], a: 1, e: "Sekundär aktiver Transport." },
+    { q: "Was bedeutet „primär aktiv“?", o: ["Energie direkt aus ATP", "Energie aus einem Ionengefälle", "Transport mit dem Gefälle", "Transport durch Kanäle"], a: 0, e: "Zum Beispiel die Na⁺/K⁺-Pumpe." },
+    { q: "Welche Aussage stimmt?", o: ["Antiport ist immer aktiv", "Symport ist immer passiv", "Die Begriffe sagen nur etwas über die Richtung aus", "Uniport braucht immer ATP"], a: 2, e: "Ob Energie nötig ist, ist eine eigene Frage." },
+    { q: "Was passiert mit dem Na⁺-Glucose-Symporter, wenn die Na⁺/K⁺-Pumpe ausfällt?", o: ["Er arbeitet schneller", "Er kommt allmählich zum Stillstand", "Er verbraucht dann selbst ATP", "Nichts"], a: 1, e: "Ohne Pumpe zerfällt das Na⁺-Gefälle, der Antrieb fehlt." },
+    { q: "Wie viele Na⁺ nimmt der Darm-Symporter (SGLT1) pro Glucose mit?", o: ["1", "2", "3", "keine"], a: 1, e: "2 Na⁺ : 1 Glucose." },
+    { q: "Der Na⁺/Ca²⁺-Austauscher im Herzen …", o: ["pumpt Ca²⁺ mit ATP hinein", "befördert 3 Na⁺ hinein und 1 Ca²⁺ hinaus", "ist ein Symport", "ist ein Kanal"], a: 1, e: "Ein sekundär aktiver Antiport." },
+    { q: "Worin unterscheidet sich ein Carrier von einem Kanal?", o: ["Der Carrier ist immer nur zu einer Seite offen und ändert seine Form", "Der Carrier ist schneller", "Kanäle transportieren gegen das Gefälle", "Es gibt keinen Unterschied"], a: 0, e: "Kanäle sind durchgehend offen und sehr schnell." },
+    { q: "Was nutzen Pflanzen meist statt Na⁺ als Antrieb für sekundär aktiven Transport?", o: ["K⁺", "H⁺ (Protonen)", "Cl⁻", "Glucose"], a: 1, e: "Eine Protonenpumpe baut das H⁺-Gefälle mit ATP auf." },
+    { q: "Warum enthält eine Trinklösung gegen Durchfall Salz und Zucker?", o: ["Für den Geschmack", "Na⁺ und Glucose werden gemeinsam aufgenommen, Wasser folgt", "Zucker tötet Bakterien", "Salz verhindert Erbrechen"], a: 1, e: "Der Na⁺-Glucose-Symporter nimmt beides auf, das Wasser folgt osmotisch." }
+  ] });
+
+  LK.views(["verstehen", "transporter", "zuordnen", "ueben", "alltag", "quiz"], { transporter: draw });
+})();
+</script>
+<script>
+(function () {
+  "use strict";
+  // Light/dark switch shared by all LearningDesk pages; the choice is remembered in this browser
+  var KEY = "learningdesk.theme", root = document.documentElement;
+  var header = document.querySelector("header");
+  if (!header) return;
+  function effective() {
+    var t = root.getAttribute("data-theme");
+    if (t === "dark" || t === "light") return t;
+    return window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+  }
+  var btn = document.createElement("button");
+  btn.type = "button"; btn.className = "theme-toggle";
+  function paint() {
+    var dark = effective() === "dark";
+    var label = dark ? "Helles Design einschalten" : "Dunkles Design einschalten";
+    btn.textContent = dark ? "\u2600" : "\u263E";
+    btn.setAttribute("aria-label", label); btn.title = label;
+  }
+  btn.addEventListener("click", function () {
+    var next = effective() === "dark" ? "light" : "dark";
+    root.setAttribute("data-theme", next);
+    try { localStorage.setItem(KEY, next); } catch (e) { /* storage unavailable */ }
+    paint();
+    // canvases read the colour tokens when they draw, so ask them to redraw
+    window.dispatchEvent(new Event("resize"));
+  });
+  header.classList.add("has-theme-toggle");
+  header.appendChild(btn);
+  paint();
+  try { window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", paint); } catch (e) { /* old browsers */ }
+})();
+</script>
+<script>
+(function () {
+  "use strict";
+  // keep the last breadcrumb in sync with the active section tab
+  var last = document.querySelector("nav.crumbs [data-crumb-section]");
+  if (!last) return;
+  function update() {
+    var a = document.querySelector('nav.tabs a[aria-current="page"]');
+    if (!a) { last.hidden = true; return; }
+    var t = a.cloneNode(true); var n = t.querySelector(".n"); if (n) n.remove();
+    last.querySelector("span").textContent = t.textContent.trim();
+    last.hidden = false;
+  }
+  window.addEventListener("hashchange", function () { setTimeout(update, 0); });
+  setTimeout(update, 0);
+})();
+</script>
