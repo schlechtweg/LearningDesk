@@ -25,7 +25,9 @@ SRC = ROOT / "src"
 DOCS = ROOT / "docs"
 ARTIFACTS = ROOT / "artifacts"
 sys.path.insert(0, str(SRC))
+sys.path.insert(0, str(SRC / "worksheets"))
 import config  # noqa: E402
+import tasks as worksheet_tasks  # noqa: E402
 
 MENU_FONTS = "https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=JetBrains+Mono&display=swap"
 
@@ -88,7 +90,7 @@ def topic_crumbs(t, base):
 def render_app(t, base, sh):
     app = {name: read(f"apps/{t['slug']}/{file}") for name, file in
            [("css", "style.css"), ("body", "body.html"), ("js", "script.js")]}
-    t = {"scripts": [], "kit": False, **t}
+    t = {"scripts": [], "kit": False, "worksheet": t["slug"] in worksheet_tasks.TOPICS, **t}
     return env.get_template("app.html").render(
         t=t, app=app, shared=sh, base=base, fonts=config.FONTS[t["fonts"]], crumbs=topic_crumbs(t, base))
 
@@ -147,6 +149,10 @@ def build_pdfs():
     out = SRC / "factsheets" / "_build"
     subprocess.run([sys.executable, str(SRC / "factsheets" / "sources.py"), str(out)], check=True)
     subprocess.run(["node", str(SRC / "factsheets" / "render-pdf.js"), str(out), str(DOCS / "factsheets")], check=True)
+    # worksheets: page 1 tasks, page 2 solutions
+    wout = SRC / "worksheets" / "_build"
+    subprocess.run([sys.executable, str(SRC / "worksheets" / "sources.py"), str(wout)], check=True)
+    subprocess.run(["node", str(SRC / "factsheets" / "render-pdf.js"), str(wout), str(DOCS / "aufgaben")], check=True)
 
 
 def main():
@@ -172,6 +178,7 @@ def main():
     if args.pdf:
         build_pdfs()
     missing = [t["slug"] for t in config.TOPICS if not (DOCS / "factsheets" / f"{t['slug']}.pdf").exists()]
+    missing += [f"{s} (Aufgaben)" for s in worksheet_tasks.TOPICS if not (DOCS / "aufgaben" / f"{s}.pdf").exists()]
     print(f"Built {len(config.TOPICS)} apps and {len(config.GRADES) + 1} menu pages.")
     if missing:
         print("Warning: factsheet PDF missing for", ", ".join(missing), "(run with --pdf)")

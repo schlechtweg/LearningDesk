@@ -1,0 +1,39 @@
+/* Two-page A4 worksheets: page 1 tasks, page 2 solutions */
+@page { size: A4; margin: 0; }
+:root {
+  --ink: #1b2228; --muted: #56626d; --line: #d5dce2; --soft: #eef2f5; --accent: #24539c;
+  --font-display: "Bricolage Grotesque", "Inter", sans-serif;
+  --font-body: "Atkinson Hyperlegible", "Inter", sans-serif;
+  --font-math: "STIX Two Text", "DejaVu Serif", serif;
+  --font-mono: "JetBrains Mono", monospace;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body { font-family: var(--font-body); color: var(--ink); font-size: 9.2pt; line-height: 1.32; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+.page { width: 210mm; height: 297mm; padding: 10mm 11mm 8mm; display: flex; flex-direction: column; gap: 2.4mm; overflow: hidden; counter-reset: task; break-after: page; }
+.page:last-of-type { break-after: auto; }
+header { display: flex; justify-content: space-between; align-items: flex-end; border-bottom: 2.5px solid var(--accent); padding-bottom: 2mm; }
+header .eyebrow { font-family: var(--font-mono); font-size: 7.2pt; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); }
+header h1 { font-family: var(--font-display); font-weight: 800; font-size: 19pt; line-height: 1.05; margin: 1mm 0 0; letter-spacing: -0.01em; }
+header .tag { font-family: var(--font-display); font-weight: 700; font-size: 9pt; color: #fff; background: var(--accent); padding: 1.3mm 3mm; border-radius: 2mm; white-space: nowrap; }
+.intro { margin: 0; font-size: 8.4pt; color: var(--muted); display: flex; justify-content: space-between; gap: 6mm; }
+.intro .name { white-space: nowrap; }
+.content { flex: 1; overflow: hidden; display: flex; flex-direction: column; gap: 2.2mm; min-height: 0; }
+section.lvl { border: 1px solid var(--line); border-radius: 2mm; padding: 1.8mm 3mm 2mm; }
+section.lvl h2 { font-family: var(--font-display); font-weight: 700; font-size: 10.5pt; margin: 0 0 1.2mm; color: var(--accent); display: flex; gap: 2.5mm; align-items: baseline; }
+.stars { font-family: "DejaVu Sans", sans-serif; }
+section.lvl h2 .stars { font-family: "DejaVu Sans", sans-serif; letter-spacing: 0.5mm; font-size: 10pt; }
+section.lvl h2 .hint { font-family: var(--font-body); font-weight: 400; font-size: 8pt; color: var(--muted); }
+ol.items { list-style: none; margin: 0; padding: 0; column-count: var(--cols, 2); column-gap: 6mm; }
+ol.items li { counter-increment: task; break-inside: avoid; padding: 0.7mm 0 0.7mm 6mm; position: relative; }
+ol.items li::before { content: counter(task) "."; position: absolute; left: 0; font-weight: 700; color: var(--accent); font-variant-numeric: tabular-nums; }
+.m { font-family: var(--font-math); font-size: 1.1em; white-space: nowrap; }
+.m i { font-style: italic; }
+.m sup { font-size: 0.7em; line-height: 0; }
+.fr { display: inline-flex; flex-direction: column; vertical-align: middle; text-align: center; line-height: 1.12; font-size: 0.92em; margin: 0 1px; }
+.fr > span { padding: 0 2px; }
+.fr > span:first-child { border-bottom: 1px solid currentColor; }
+.sol { color: var(--ink); }
+.sol .res { font-weight: 700; }
+.small { font-size: 8pt; color: var(--muted); }
+footer { display: flex; justify-content: space-between; gap: 4mm; white-space: nowrap; font-family: var(--font-mono); font-size: 6.8pt; color: var(--muted); border-top: 1px solid var(--line); padding-top: 1.3mm; }

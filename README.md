@@ -22,7 +22,7 @@ Interaktive Lern-Apps für die Schule, sortiert nach Klassenstufe. Alles läuft 
 | Klasse 11 · Mathematik | Ableiten | Sekante/Tangente, grafisches Ableiten, Regeln mit Trainer, Tangentengleichung, Quiz |
 | Werkzeuge | ClassPad-Simulator | Übungsrechner nach dem Vorbild des CASIO fx-CP400 mit 16 Lektionen (unabhängiges Lernprojekt) |
 
-Zu jedem Thema gibt es ein einseitiges Factsheet als PDF. Jede Seite hat Breadcrumbs und einen Hell/Dunkel-Schalter.
+Zu jedem Thema gibt es ein einseitiges Factsheet als PDF und ein zweiseitiges Übungsblatt (Seite 1 Aufgaben, Seite 2 Lösungen, gestuft nach ★☆☆ einfach, ★★☆ mittel, ★★★ schwer). Jede Seite hat Breadcrumbs und einen Hell/Dunkel-Schalter.
 
 ## Aufbau
 
@@ -35,6 +35,7 @@ src/
                        learnkit.css/.js: Baukasten für neue Themen (Layout, Bereiche, Quiz, Trainer, Umformungs-Werkstatt)
   templates/           Jinja2-Vorlagen (App, Seitenhülle, Menüseiten)
   factsheets/          Factsheet-Inhalte (sources.py), Stylesheet, PDF-Renderer
+  worksheets/          Übungsblätter: Aufgabenvorräte (tasks.py), Generator (sources.py), Stylesheet
 vendor/                Algebrite (Rechenkern des ClassPad-Simulators, MIT-Lizenz)
 docs/                  ERZEUGT: Website für GitHub Pages
 artifacts/             ERZEUGT: Einzeldateien je App für Claude-Artefakte
@@ -56,7 +57,7 @@ Danach `docs/` committen und pushen; GitHub Pages veröffentlicht automatisch (Q
 
 1. Ordner `src/apps/<thema>/` mit `style.css`, `body.html` (Tabs und Bereiche) und `script.js` anlegen. Am einfachsten mit dem LearnKit-Baukasten: Vorlage ist eine der Klasse-8-Apps (z. B. `src/apps/druck/`), in `config.py` dann `"kit": True` und eine Akzentfarbe setzen. `script.js` nutzt `LK.views`, `LK.trainer`, `LK.quiz` usw.
 2. Eintrag in `TOPICS` in `src/config.py` ergänzen (Klassenstufe, Fach, Titel, Einleitung, Kartentext, erster Bereich).
-3. Factsheet in `src/factsheets/sources.py` ergänzen.
+3. Factsheet in `src/factsheets/sources.py` ergänzen, Aufgabenvorrat in `src/worksheets/tasks.py` (Eintrag in `TOPICS`). Die Blätter starten mit einem großen Vorrat; beim Erzeugen der PDF werden so viele Aufgaben entfernt, bis Aufgaben- und Lösungsseite je auf eine A4-Seite passen.
 4. `python3 src/build.py --pdf` ausführen. Menüseite, Breadcrumbs, Factsheet-Link und Hell/Dunkel-Schalter entstehen automatisch.
 
 Eine neue Klassenstufe oder ein neues Fach wird in `GRADES` bzw. `SUBJECTS` in `src/config.py` eingetragen.

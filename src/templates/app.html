@@ -23,7 +23,7 @@
     {{ crumbs }}
     <h1>{{ t.title }}</h1>
     <p>{{ t.intro }}</p>
-    <p><a class="btn" href="{{ base }}factsheets/{{ t.slug }}.pdf" target="_blank" rel="noopener">{{ t.factsheet }}</a></p>
+    <p{% if t.worksheet %} style="display:flex; flex-wrap:wrap; gap:8px"{% endif %}><a class="btn" href="{{ base }}factsheets/{{ t.slug }}.pdf" target="_blank" rel="noopener">{{ t.factsheet }}</a>{% if t.worksheet %}<a class="btn" href="{{ base }}aufgaben/{{ t.slug }}.pdf" target="_blank" rel="noopener">Übungsaufgaben als PDF ↓</a>{% endif %}</p>
   </header>
 {{ app.body }}</div>
 
