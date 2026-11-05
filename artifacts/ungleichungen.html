@@ -231,7 +231,8 @@ header:not(.top) > .theme-toggle { top: 0; }
     <a href="#zahlenstrahl" data-view="zahlenstrahl"><span class="n">2</span>Zahlenstrahl</a>
     <a href="#werkstatt" data-view="werkstatt"><span class="n">3</span>Umformungs-Werkstatt</a>
     <a href="#ueben" data-view="ueben"><span class="n">4</span>Üben</a>
-    <a href="#quiz" data-view="quiz"><span class="n">5</span>Quiz</a>
+    <a href="#alltag" data-view="alltag"><span class="n">5</span>Im Alltag</a>
+    <a href="#quiz" data-view="quiz"><span class="n">6</span>Quiz</a>
   </nav>
 
   <section class="view" id="view-verstehen">
@@ -286,32 +287,6 @@ header:not(.top) > .theme-toggle { top: 0; }
         <li>Nur eine Zahl als Lösung angegeben statt der ganzen Lösungsmenge.</li>
       </ul>
     </div>
-    <div class="stack" id="alltag-beispiele">
-      <h2>Im Alltag</h2>
-      <p class="muted">Ungleichungen beantworten Fragen wie „Wie viel höchstens?“ oder „Ab wann lohnt es sich?“.</p>
-      <div class="grid-2">
-        <div class="panel stack">
-          <span class="eyebrow">Kino</span>
-          <h3>Wie viel Popcorn ist drin?</h3>
-          <p class="small">Du hast 30 €, die Karte kostet 8 €, eine Tüte Popcorn 4 €: <span class="math">8 + 4<i>x</i> ≤ 30</span> ⇒ <span class="math"><i>x</i> ≤ 5,5</span>. Du kannst <strong>höchstens 5</strong> Tüten kaufen, halbe gibt es nicht.</p>
-        </div>
-        <div class="panel stack">
-          <span class="eyebrow">Aufzug</span>
-          <h3>Wie viele Personen dürfen mit?</h3>
-          <p class="small">Höchstlast 630 kg, eine Person wiegt im Schnitt 75 kg: <span class="math">75<i>x</i> ≤ 630</span> ⇒ <span class="math"><i>x</i> ≤ 8,4</span>. Es dürfen höchstens <strong>8 Personen</strong> einsteigen.</p>
-        </div>
-        <div class="panel stack">
-          <span class="eyebrow">Strom</span>
-          <h3>Ab wann lohnt sich ein Tarif?</h3>
-          <p class="small">Tarif A: 15 € + 0,10 € pro kWh, Tarif B: 5 € + 0,20 € pro kWh. A ist günstiger, wenn <span class="math">15 + 0,1<i>x</i> &lt; 5 + 0,2<i>x</i></span>, also <span class="math"><i>x</i> &gt; 100</span> kWh.</p>
-        </div>
-        <div class="panel stack">
-          <span class="eyebrow">Schule</span>
-          <h3>Welche Note brauche ich?</h3>
-          <p class="small">Für einen Schnitt von höchstens 2,5 aus drei Arbeiten (2, 3 und eine noch offene) gilt <span class="math">(2 + 3 + <i>x</i>) : 3 ≤ 2,5</span> ⇒ <span class="math"><i>x</i> ≤ 2,5</span>. Mit ganzen Noten heißt das: Du brauchst eine <strong>1 oder 2</strong>.</p>
-        </div>
-      </div>
-    </div>
   </section>
 
   <section class="view" id="view-zahlenstrahl" hidden>
@@ -353,6 +328,36 @@ header:not(.top) > .theme-toggle { top: 0; }
       <p class="muted">Gib die Lösung als Ungleichung ein, zum Beispiel <code>x &lt; 3</code>, <code>x &gt;= -2</code> oder <code>x ≤ 7/2</code>.</p>
     </div>
     <div id="trainer" class="stack"></div>
+  </section>
+
+  <section class="view" id="view-alltag" hidden>
+    <div class="stack">
+      <span class="eyebrow">Im Alltag</span>
+      <h2>Ungleichungen im Alltag</h2>
+      <p class="muted">Ungleichungen beantworten Fragen wie „Wie viel höchstens?“ oder „Ab wann lohnt es sich?“.</p>
+    </div>
+    <div class="grid-2">
+        <div class="panel stack">
+          <span class="eyebrow">Kino</span>
+          <h3>Wie viel Popcorn ist drin?</h3>
+          <p class="small">Du hast 30 €, die Karte kostet 8 €, eine Tüte Popcorn 4 €: <span class="math">8 + 4<i>x</i> ≤ 30</span> ⇒ <span class="math"><i>x</i> ≤ 5,5</span>. Du kannst <strong>höchstens 5</strong> Tüten kaufen, halbe gibt es nicht.</p>
+        </div>
+        <div class="panel stack">
+          <span class="eyebrow">Aufzug</span>
+          <h3>Wie viele Personen dürfen mit?</h3>
+          <p class="small">Höchstlast 630 kg, eine Person wiegt im Schnitt 75 kg: <span class="math">75<i>x</i> ≤ 630</span> ⇒ <span class="math"><i>x</i> ≤ 8,4</span>. Es dürfen höchstens <strong>8 Personen</strong> einsteigen.</p>
+        </div>
+        <div class="panel stack">
+          <span class="eyebrow">Strom</span>
+          <h3>Ab wann lohnt sich ein Tarif?</h3>
+          <p class="small">Tarif A: 15 € + 0,10 € pro kWh, Tarif B: 5 € + 0,20 € pro kWh. A ist günstiger, wenn <span class="math">15 + 0,1<i>x</i> &lt; 5 + 0,2<i>x</i></span>, also <span class="math"><i>x</i> &gt; 100</span> kWh.</p>
+        </div>
+        <div class="panel stack">
+          <span class="eyebrow">Schule</span>
+          <h3>Welche Note brauche ich?</h3>
+          <p class="small">Für einen Schnitt von höchstens 2,5 aus drei Arbeiten (2, 3 und eine noch offene) gilt <span class="math">(2 + 3 + <i>x</i>) : 3 ≤ 2,5</span> ⇒ <span class="math"><i>x</i> ≤ 2,5</span>. Mit ganzen Noten heißt das: Du brauchst eine <strong>1 oder 2</strong>.</p>
+        </div>
+      </div>
   </section>
 
   <section class="view" id="view-quiz" hidden>
@@ -891,7 +896,7 @@ header:not(.top) > .theme-toggle { top: 0; }
     { q: "Lösung von 4 − x < 1?", o: ["x < 3", "x > 3", "x > −3", "x < 5"], a: 1, e: "| −4: −x < −3, | ·(−1) umdrehen: x > 3." }
   ] });
 
-  LK.views(["verstehen", "zahlenstrahl", "werkstatt", "ueben", "quiz"], { zahlenstrahl: drawLine });
+  LK.views(["verstehen", "zahlenstrahl", "werkstatt", "ueben", "alltag", "quiz"], { zahlenstrahl: drawLine });
 })();
 </script>
 <script>

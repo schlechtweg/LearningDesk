@@ -13,7 +13,7 @@
   const el = (tag, attrs, parent) => { const e = document.createElementNS(SVGNS, tag); Object.entries(attrs || {}).forEach(([k, v]) => e.setAttribute(k, v)); if (parent) parent.appendChild(e); return e; };
 
   // ---------- Hash routing ----------
-  const VIEWS = ["grundlagen", "zyklus", "simulation", "bedeutung", "faelle", "quiz"];
+  const VIEWS = ["grundlagen", "zyklus", "simulation", "bedeutung", "faelle", "alltag", "quiz"];
   const onShow = {};
   function showView() {
     const name = location.hash.replace("#", "");

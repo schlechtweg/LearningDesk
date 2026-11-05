@@ -79,5 +79,5 @@
     { q: "Was ist die Lösung von 2x + 3 = 6?", o: ["1,5", "4,5", "3", "9"], a: 0, e: "2x = 3, x = 3/2 = 1,5. Lösungen müssen nicht ganzzahlig sein." }
   ] });
 
-  LK.views(["verstehen", "werkstatt", "ueben", "quiz"]);
+  LK.views(["verstehen", "werkstatt", "ueben", "alltag", "quiz"]);
 })();

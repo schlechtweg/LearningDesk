@@ -234,7 +234,8 @@ header:not(.top) > .theme-toggle { top: 0; }
     <a href="#verstehen" data-view="verstehen"><span class="n">1</span>Verstehen</a>
     <a href="#werkstatt" data-view="werkstatt"><span class="n">2</span>Umformungs-Werkstatt</a>
     <a href="#ueben" data-view="ueben"><span class="n">3</span>Üben</a>
-    <a href="#quiz" data-view="quiz"><span class="n">4</span>Quiz</a>
+    <a href="#alltag" data-view="alltag"><span class="n">4</span>Im Alltag</a>
+    <a href="#quiz" data-view="quiz"><span class="n">5</span>Quiz</a>
   </nav>
 
   <section class="view" id="view-verstehen">
@@ -313,10 +314,33 @@ header:not(.top) > .theme-toggle { top: 0; }
         </ul>
       </div>
     </div>
-    <div class="stack" id="alltag-beispiele">
-      <h2>Im Alltag</h2>
+  </section>
+
+  <section class="view" id="view-werkstatt" hidden>
+    <div class="stack">
+      <span class="eyebrow">Umformungs-Werkstatt</span>
+      <h2>Forme selbst um</h2>
+      <p class="muted">Gib eine Umformung ein, zum Beispiel <code>-3</code>, <code>-2x</code> oder <code>:4</code>. Sie wird auf <strong>beide</strong> Seiten angewendet. Löse die Gleichung so, dass <i>x</i> allein steht. Du kannst auch Umwege gehen. Mit „Rückgängig“ nimmst du einen Schritt zurück.</p>
+    </div>
+    <div id="lab"></div>
+  </section>
+
+  <section class="view" id="view-ueben" hidden>
+    <div class="stack">
+      <span class="eyebrow">Trainer</span>
+      <h2>Gleichungen lösen</h2>
+      <p class="muted">Gib die Lösung ein, zum Beispiel <code>x = 4</code>, <code>-7</code> oder <code>7/2</code>. Unter „Lösung zeigen“ findest du den Rechenweg mit Probe.</p>
+    </div>
+    <div id="trainer" class="stack"></div>
+  </section>
+
+  <section class="view" id="view-alltag" hidden>
+    <div class="stack">
+      <span class="eyebrow">Im Alltag</span>
+      <h2>Gleichungen im Alltag</h2>
       <p class="muted">Mit Gleichungen findest du eine unbekannte Zahl, wenn du ihren Zusammenhang mit bekannten Zahlen kennst.</p>
-      <div class="grid-2">
+    </div>
+    <div class="grid-2">
         <div class="panel stack">
           <span class="eyebrow">Handy</span>
           <h3>Wie viel Datenvolumen?</h3>
@@ -338,25 +362,6 @@ header:not(.top) > .theme-toggle { top: 0; }
           <p class="small">Eine Mutter ist dreimal so alt wie ihre Tochter, zusammen sind sie 48 Jahre: <span class="math"><i>x</i> + 3<i>x</i> = 48</span> ⇒ <span class="math"><i>x</i> = 12</span>. Die Tochter ist 12, die Mutter 36.</p>
         </div>
       </div>
-    </div>
-  </section>
-
-  <section class="view" id="view-werkstatt" hidden>
-    <div class="stack">
-      <span class="eyebrow">Umformungs-Werkstatt</span>
-      <h2>Forme selbst um</h2>
-      <p class="muted">Gib eine Umformung ein, zum Beispiel <code>-3</code>, <code>-2x</code> oder <code>:4</code>. Sie wird auf <strong>beide</strong> Seiten angewendet. Löse die Gleichung so, dass <i>x</i> allein steht. Du kannst auch Umwege gehen. Mit „Rückgängig“ nimmst du einen Schritt zurück.</p>
-    </div>
-    <div id="lab"></div>
-  </section>
-
-  <section class="view" id="view-ueben" hidden>
-    <div class="stack">
-      <span class="eyebrow">Trainer</span>
-      <h2>Gleichungen lösen</h2>
-      <p class="muted">Gib die Lösung ein, zum Beispiel <code>x = 4</code>, <code>-7</code> oder <code>7/2</code>. Unter „Lösung zeigen“ findest du den Rechenweg mit Probe.</p>
-    </div>
-    <div id="trainer" class="stack"></div>
   </section>
 
   <section class="view" id="view-quiz" hidden>
@@ -871,7 +876,7 @@ header:not(.top) > .theme-toggle { top: 0; }
     { q: "Was ist die Lösung von 2x + 3 = 6?", o: ["1,5", "4,5", "3", "9"], a: 0, e: "2x = 3, x = 3/2 = 1,5. Lösungen müssen nicht ganzzahlig sein." }
   ] });
 
-  LK.views(["verstehen", "werkstatt", "ueben", "quiz"]);
+  LK.views(["verstehen", "werkstatt", "ueben", "alltag", "quiz"]);
 })();
 </script>
 <script>

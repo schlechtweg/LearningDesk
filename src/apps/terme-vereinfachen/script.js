@@ -104,5 +104,5 @@
   ] });
 
   newSort();
-  LK.views(["verstehen", "sortieren", "ueben", "quiz"]);
+  LK.views(["verstehen", "sortieren", "ueben", "alltag", "quiz"]);
 })();

@@ -246,7 +246,7 @@
   }
 
   // ---------- Hash routing ----------
-  const VIEWS = ["idee", "grafisch", "regeln", "trainer", "tangente", "quiz"];
+  const VIEWS = ["idee", "grafisch", "regeln", "trainer", "tangente", "alltag", "quiz"];
   const onShow = {};
   function showView() {
     const name = location.hash.replace("#", "");

@@ -100,5 +100,5 @@
     { q: "1 N/cm² sind …", o: ["1 Pa", "100 Pa", "10 000 Pa", "1 bar"], a: 2, e: "1 N auf 1 cm² = 10 000 N auf 1 m² = 10 000 Pa." }
   ] });
 
-  LK.views(["verstehen", "versuch", "ueben", "quiz"], { versuch: draw });
+  LK.views(["verstehen", "versuch", "ueben", "alltag", "quiz"], { versuch: draw });
 })();

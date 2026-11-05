@@ -11,7 +11,7 @@
   };
 
   // ---------- Hash routing ----------
-  const VIEWS = ["formeln", "warum", "ueben", "tricks", "quiz"];
+  const VIEWS = ["formeln", "warum", "ueben", "tricks", "alltag", "quiz"];
   function showView() {
     const name = location.hash.replace("#", "");
     const v = VIEWS.includes(name) ? name : "formeln";

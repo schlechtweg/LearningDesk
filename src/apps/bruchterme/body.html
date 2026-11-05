@@ -4,7 +4,8 @@
     <a href="#kuerzen" data-view="kuerzen"><span class="n">2</span>Kürzen und Erweitern</a>
     <a href="#rechnen" data-view="rechnen"><span class="n">3</span>Rechnen</a>
     <a href="#ueben" data-view="ueben"><span class="n">4</span>Üben</a>
-    <a href="#quiz" data-view="quiz"><span class="n">5</span>Quiz</a>
+    <a href="#alltag" data-view="alltag"><span class="n">5</span>Im Alltag</a>
+    <a href="#quiz" data-view="quiz"><span class="n">6</span>Quiz</a>
   </nav>
 
   <!-- ===================== 1 GRUNDLAGEN ===================== -->
@@ -43,32 +44,6 @@
       <div class="big" id="vtTerm"></div>
       <div class="table-scroll"><table class="values" id="vtTable"></table></div>
       <p class="small" id="vtD"></p>
-    </div>
-    <div class="stack" id="alltag-beispiele">
-      <h2>Im Alltag</h2>
-      <p class="muted">Bruchterme entstehen, wenn man durch eine Größe teilt, die sich ändern kann.</p>
-      <div class="grid-2">
-        <div class="panel stack">
-          <span class="eyebrow">Ausflug</span>
-          <h3>Kosten pro Person</h3>
-          <p class="small">Ein Bus kostet 600 €. Fahren <i>x</i> Personen mit, zahlt jede <span class="math"><span class="frac"><span>600</span><span><i>x</i></span></span></span> €. Bei 20 Personen 30 €, bei 40 Personen nur 15 €. Für <i>x</i> = 0 ist der Term nicht definiert: Ohne Mitfahrer gibt es nichts zu teilen.</p>
-        </div>
-        <div class="panel stack">
-          <span class="eyebrow">Unterwegs</span>
-          <h3>Fahrzeit</h3>
-          <p class="small">Für 120 km braucht man bei der Geschwindigkeit <i>v</i> die Zeit <span class="math"><i>t</i> = <span class="frac"><span>120</span><span><i>v</i></span></span></span> Stunden. Bei 60 km/h sind es 2 h, bei 80 km/h 1,5 h. <i>v</i> = 0 ist ausgeschlossen.</p>
-        </div>
-        <div class="panel stack">
-          <span class="eyebrow">Party</span>
-          <h3>Pizza teilen</h3>
-          <p class="small">3 Pizzen für <i>x</i> Gäste: Jeder bekommt <span class="math"><span class="frac"><span>3</span><span><i>x</i></span></span></span> Pizza. Kommen 2 Gäste dazu, sind es <span class="math"><span class="frac"><span>3</span><span><i>x</i> + 2</span></span></span>, also weniger pro Person.</p>
-        </div>
-        <div class="panel stack">
-          <span class="eyebrow">Rezept</span>
-          <h3>Zutaten umrechnen</h3>
-          <p class="small">Ein Rezept für 4 Personen braucht 500 g Mehl. Für <i>x</i> Personen braucht man <span class="math"><span class="frac"><span>500</span><span>4</span></span> · <i>x</i> = 125<i>x</i></span> Gramm. Brüche mit Variablen tauchen beim Umrechnen ständig auf.</p>
-        </div>
-      </div>
     </div>
   </section>
 
@@ -193,6 +168,36 @@
       <div class="feedback" id="trFb" hidden aria-live="polite"></div>
       <span class="score-line" id="trScore"></span>
     </div>
+  </section>
+
+  <section class="view" id="view-alltag" hidden>
+    <div class="stack">
+      <span class="eyebrow">Im Alltag</span>
+      <h2>Bruchterme im Alltag</h2>
+      <p class="muted">Bruchterme entstehen, wenn man durch eine Größe teilt, die sich ändern kann.</p>
+    </div>
+    <div class="grid-2">
+        <div class="panel stack">
+          <span class="eyebrow">Ausflug</span>
+          <h3>Kosten pro Person</h3>
+          <p class="small">Ein Bus kostet 600 €. Fahren <i>x</i> Personen mit, zahlt jede <span class="math"><span class="frac"><span>600</span><span><i>x</i></span></span></span> €. Bei 20 Personen 30 €, bei 40 Personen nur 15 €. Für <i>x</i> = 0 ist der Term nicht definiert: Ohne Mitfahrer gibt es nichts zu teilen.</p>
+        </div>
+        <div class="panel stack">
+          <span class="eyebrow">Unterwegs</span>
+          <h3>Fahrzeit</h3>
+          <p class="small">Für 120 km braucht man bei der Geschwindigkeit <i>v</i> die Zeit <span class="math"><i>t</i> = <span class="frac"><span>120</span><span><i>v</i></span></span></span> Stunden. Bei 60 km/h sind es 2 h, bei 80 km/h 1,5 h. <i>v</i> = 0 ist ausgeschlossen.</p>
+        </div>
+        <div class="panel stack">
+          <span class="eyebrow">Party</span>
+          <h3>Pizza teilen</h3>
+          <p class="small">3 Pizzen für <i>x</i> Gäste: Jeder bekommt <span class="math"><span class="frac"><span>3</span><span><i>x</i></span></span></span> Pizza. Kommen 2 Gäste dazu, sind es <span class="math"><span class="frac"><span>3</span><span><i>x</i> + 2</span></span></span>, also weniger pro Person.</p>
+        </div>
+        <div class="panel stack">
+          <span class="eyebrow">Rezept</span>
+          <h3>Zutaten umrechnen</h3>
+          <p class="small">Ein Rezept für 4 Personen braucht 500 g Mehl. Für <i>x</i> Personen braucht man <span class="math"><span class="frac"><span>500</span><span>4</span></span> · <i>x</i> = 125<i>x</i></span> Gramm. Brüche mit Variablen tauchen beim Umrechnen ständig auf.</p>
+        </div>
+      </div>
   </section>
 
   <!-- ===================== 5 QUIZ ===================== -->

@@ -103,5 +103,5 @@
     { q: "Lösung von 4 − x < 1?", o: ["x < 3", "x > 3", "x > −3", "x < 5"], a: 1, e: "| −4: −x < −3, | ·(−1) umdrehen: x > 3." }
   ] });
 
-  LK.views(["verstehen", "zahlenstrahl", "werkstatt", "ueben", "quiz"], { zahlenstrahl: drawLine });
+  LK.views(["verstehen", "zahlenstrahl", "werkstatt", "ueben", "alltag", "quiz"], { zahlenstrahl: drawLine });
 })();

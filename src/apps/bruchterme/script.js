@@ -24,7 +24,7 @@
   }
 
   // ---------- Hash routing ----------
-  const VIEWS = ["grundlagen", "kuerzen", "rechnen", "ueben", "quiz"];
+  const VIEWS = ["grundlagen", "kuerzen", "rechnen", "ueben", "alltag", "quiz"];
   function showView() {
     const name = location.hash.replace("#", "");
     const v = VIEWS.includes(name) ? name : "grundlagen";

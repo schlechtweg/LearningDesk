@@ -111,5 +111,5 @@
     { q: "Wie heißt das Gesetz a(b + c) = ab + ac?", o: ["Kommutativgesetz", "Assoziativgesetz", "Distributivgesetz", "Potenzgesetz"], a: 2, e: "Distributivgesetz: Der Faktor wird auf alle Summanden „verteilt“." }
   ] });
 
-  LK.views(["verstehen", "modell", "ueben", "quiz"], { modell: () => { controls(); draw(); } });
+  LK.views(["verstehen", "modell", "ueben", "alltag", "quiz"], { modell: () => { controls(); draw(); } });
 })();
