@@ -1014,13 +1014,15 @@ SHEETS["auge"] = dict(extra="body { font-size: 9pt; } .page { gap: 2.6mm; } .col
       <p class="small">Weg des Lichts: <strong>Hornhaut → Kammerwasser → Pupille → Linse → Glaskörper → Netzhaut</strong>. Das Bild ist verkleinert, steht auf dem Kopf und ist seitenverkehrt. Das Gehirn dreht es um.</p>
     </div>
     <div class="box">
-      <h2>Nah und fern (Akkommodation)</h2>
+      <h2>Nahsicht und Fernsicht (Akkommodation)</h2>
       <table>
-        <tr><th></th><th>nah</th><th>fern</th></tr>
+        <tr><th></th><th>Nahsicht</th><th>Fernsicht</th></tr>
         <tr><td>Ziliarmuskel</td><td>angespannt</td><td>entspannt</td></tr>
-        <tr><td>Linsenbänder</td><td>locker</td><td>gespannt</td></tr>
-        <tr><td>Linse</td><td><strong>stark gewölbt</strong></td><td><strong>flach</strong></td></tr>
+        <tr><td>Linsenbänder (Zonulafasern)</td><td>locker</td><td>gespannt</td></tr>
+        <tr><td>Linse</td><td><strong>stark gewölbt</strong> (Eigenelastizität)</td><td><strong>flach</strong></td></tr>
+        <tr><td>Brechkraft</td><td>groß</td><td>klein</td></tr>
       </table>
+      <p class="small"><strong>Akkommodation</strong>: Anpassung der Linse an die Entfernung. <strong>Brechkraft</strong> in Dioptrien (dpt). <strong>Nahpunkt</strong>: kleinste Entfernung, die scharf gesehen wird (mit 20 J. ≈ 10 cm, mit 60 J. ≈ 1 m). <strong>Fernpunkt</strong>: größte (normal: unendlich).</p>
     </div>
     <div class="box">
       <h2>Pupillenreflex</h2>
@@ -1034,6 +1036,7 @@ SHEETS["auge"] = dict(extra="body { font-size: 9pt; } .page { gap: 2.6mm; } .col
         <li><strong>Stäbchen</strong> (≈ 120 Mio.): hell/dunkel, Dämmerung</li>
         <li><strong>Zapfen</strong> (≈ 6 Mio.): Farben, viel Licht</li>
       </ul>
+      <p class="small"><strong>Schutz</strong>: Augenhöhle, Brauen, Wimpern, Lidschlag, Tränen.</p>
     </div>
     <div class="box">
       <h2>Fehlsichtigkeiten</h2>
@@ -1046,21 +1049,85 @@ SHEETS["auge"] = dict(extra="body { font-size: 9pt; } .page { gap: 2.6mm; } .col
       </table>
       <p class="small"><strong>Alterssichtigkeit</strong>: Die Linse wird unelastisch, Nahes wird unscharf. Hilfe: Lesebrille (+).</p>
     </div>
-    <div class="box">
-      <h2>Schutz und Alltag</h2>
-      <ul>
-        <li>Schutz: Augenhöhle, Brauen, Wimpern, Lidschlag, Tränen.</li>
-        <li>Im Kino: Augen brauchen bis zu 30 min, um sich an Dunkelheit anzupassen.</li>
-        <li>Rote Augen auf Fotos: Blitz trifft die weite Pupille.</li>
-        <li>Zwei Augen: räumliches Sehen.</li>
-      </ul>
-    </div>
-    <div class="box warn full">
+    <div class="box warn">
       <h2>Typische Fehler</h2>
       <ul>
         <li>„Die Linse bricht am stärksten.“ <span class="no">Falsch</span>: Das ist die <strong>Hornhaut</strong>.</li>
         <li>„Für die Ferne spannt sich der Ziliarmuskel an.“ <span class="no">Falsch</span>: Er ist dann <strong>entspannt</strong>, die Linse flach.</li>
         <li>„Kurzsichtige sehen nah schlecht.“ <span class="no">Falsch</span>: Sie sehen <strong>fern</strong> unscharf.</li>
+      </ul>
+    </div>
+  </div>''')
+
+SHEETS["nervensystem"] = dict(extra="body { font-size: 9pt; } .page { gap: 2.6mm; } .cols { gap: 2.6mm 5mm; }", title="Das Nervensystem", eyebrow="Biologie · Klasse 8 · Nervensystem", accent="#4a7a1e", body='''
+  <div class="kern">Das Nervensystem ist die Nachrichtenzentrale des Körpers: <strong>Reiz → Sinneszelle → sensorischer Nerv → Gehirn / Rückenmark → motorischer Nerv → Muskel → Reaktion</strong>.</div>
+  <div class="cols">
+    <div class="box">
+      <h2>Aufbau</h2>
+      <ul>
+        <li><strong>ZNS</strong> (zentrales Nervensystem): Gehirn und Rückenmark, verarbeitet Informationen.</li>
+        <li><strong>Peripheres Nervensystem</strong>: alle übrigen Nerven.</li>
+        <li><strong>sensorische Nerven</strong>: von den Sinnesorganen <strong>zum</strong> ZNS.</li>
+        <li><strong>motorische Nerven</strong>: <strong>vom</strong> ZNS zu den Muskeln.</li>
+        <li><strong>willkürlich</strong>: bewusste Bewegungen. <strong>vegetativ</strong>: Herz, Atmung, Verdauung.</li>
+        <li><strong>Sympathikus</strong>: Leistung, Gefahr (Herz schneller, Pupillen weit). <strong>Parasympathikus</strong>: Ruhe, Verdauung.</li>
+      </ul>
+    </div>
+    <div class="box">
+      <h2>Die Nervenzelle (Neuron)</h2>
+      <table>
+        <tr><td><strong>Dendriten</strong></td><td>empfangen Signale</td></tr>
+        <tr><td><strong>Zellkörper</strong> mit Zellkern</td><td>verarbeitet, hält die Zelle am Leben</td></tr>
+        <tr><td><strong>Axon</strong> (Nervenfaser)</td><td>leitet das Signal weiter, bis über 1 m lang</td></tr>
+        <tr><td><strong>Myelinscheide</strong></td><td>isoliert, Signal springt von <strong>Schnürring</strong> zu Schnürring: schneller</td></tr>
+        <tr><td><strong>Endknöpfchen</strong></td><td>übertragen das Signal an der <strong>Synapse</strong> mit Botenstoff</td></tr>
+      </table>
+      <p class="small">Tempo: mit Myelin bis 120 m/s, ohne etwa 1 m/s. Im Gehirn: etwa 86 Milliarden Nervenzellen.</p>
+    </div>
+    <div class="box full">
+      <h2>Das Gehirn</h2>
+      <table>
+        <tr><th>Teil</th><th>Aufgaben</th><th>Teil</th><th>Aufgaben</th></tr>
+        <tr><td><strong>Großhirn</strong></td><td>Denken, Lernen, Gedächtnis, Sprache, bewusste Wahrnehmung und Bewegung</td><td><strong>Zwischenhirn</strong></td><td>Körpertemperatur, Hunger, Durst, Schlaf; Weiterleitung zum Großhirn</td></tr>
+        <tr><td><strong>Kleinhirn</strong></td><td>Gleichgewicht, fein abgestimmte Bewegungen</td><td><strong>Hirnstamm</strong> (Mittelhirn, Brücke, Nachhirn)</td><td>Atmung, Herzschlag, Schlucken, Husten</td></tr>
+      </table>
+    </div>
+    <div class="box">
+      <h2>Reflex und bewusste Reaktion</h2>
+      <table>
+        <tr><th></th><th>Reflex</th><th>bewusste Reaktion</th></tr>
+        <tr><td>Umschaltung</td><td>oft im <strong>Rückenmark</strong></td><td>im <strong>Großhirn</strong></td></tr>
+        <tr><td>Tempo</td><td>sehr schnell</td><td>ca. 0,2 bis 0,3 s</td></tr>
+        <tr><td>Eigenschaften</td><td>angeboren, immer gleich, nicht bewusst</td><td>geplant, veränderbar</td></tr>
+        <tr><td>Beispiel</td><td>Kniesehnen-, Lidschluss-, Rückziehreflex</td><td>Ball fangen, schreiben</td></tr>
+      </table>
+    </div>
+    <div class="box">
+      <h2>Reflexbogen: heiße Herdplatte</h2>
+      <ol>
+        <li>Sinneszellen der Haut melden Hitze.</li>
+        <li><strong>Sensorischer Nerv</strong> → Rückenmark.</li>
+        <li><strong>Umschaltung im Rückenmark</strong>.</li>
+        <li><strong>Motorischer Nerv</strong> → Armmuskel: Hand zuckt zurück.</li>
+        <li>Erst danach erreicht das Signal das Gehirn: Schmerz wird bewusst.</li>
+      </ol>
+    </div>
+    <div class="box">
+      <h2>Im Alltag</h2>
+      <ul>
+        <li><strong>Helm</strong> schützt Gehirn und Rückenmark (Gehirnerschütterung, Querschnittslähmung).</li>
+        <li>Handy, Müdigkeit, Alkohol: <strong>längere Reaktionszeit</strong>.</li>
+        <li>Prüfungsangst: Sympathikus, Herzklopfen.</li>
+        <li>Schlaf festigt Gelerntes.</li>
+      </ul>
+    </div>
+    <div class="box warn">
+      <h2>Typische Fehler</h2>
+      <ul>
+        <li>„Das Rückenmark gehört nicht zum ZNS.“ <span class="no">Falsch</span>.</li>
+        <li>„Bei Reflexen entscheidet das Gehirn.“ <span class="no">Falsch</span>: oft das Rückenmark.</li>
+        <li>„Das Kleinhirn denkt.“ <span class="no">Falsch</span>: Denken = Großhirn.</li>
+        <li><strong>s</strong>ensorisch = von den <strong>S</strong>innen, <strong>m</strong>otorisch = zu den <strong>M</strong>uskeln.</li>
       </ul>
     </div>
   </div>''')

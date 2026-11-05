@@ -26,3 +26,13 @@
 .state.no { color: var(--bad); }
 #rType { width: 100%; }
 .controls > * { min-width: 0; }
+
+/* Near and far vision diagrams */
+.akko { margin: 0; display: grid; gap: 4px; justify-items: center; }
+.akko svg { width: 100%; max-width: 260px; height: auto; }
+.akko figcaption { font-size: var(--step--1); }
+.akko .cm { fill: #b5554d; stroke: #7a2f29; stroke-width: 1; }
+.akko .zf { fill: none; stroke: var(--muted); stroke-width: 1.8; }
+.akko .ln { fill: rgba(200, 225, 245, 0.95); stroke: #2f7fb8; stroke-width: 1.5; }
+.akko .lr { fill: none; stroke: #e0a400; stroke-width: 1.6; }
+.akko .obj { fill: var(--ink); }

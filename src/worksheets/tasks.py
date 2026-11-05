@@ -982,6 +982,8 @@ def auge():
             ("Welche Sinneszellen arbeiten in der Dämmerung?", "Die <b>Stäbchen</b>."),
             ("Was passiert mit der Pupille bei grellem Licht?", "Sie wird <b>eng</b>."),
             ("Welcher Teil bricht das Licht am stärksten?", "Die <b>Hornhaut</b>."),
+            ("Was versteht man unter Akkommodation?", "Die Anpassung der <b>Linsenwölbung</b> an die Entfernung."),
+            ("In welcher Einheit wird die Brechkraft einer Linse angegeben?", "In <b>Dioptrien (dpt)</b>."),
             ("Was ist der gelbe Fleck?", "Die Stelle des <b>schärfsten Sehens</b>."),
             ("Was ist der blinde Fleck?", "Die Stelle, an der der Sehnerv das Auge verlässt; dort gibt es <b>keine Sinneszellen</b>."),
             ("Nenne drei Schutzeinrichtungen des Auges.", "z. B. <b>Augenhöhle, Wimpern, Lidschlag, Tränen, Augenbrauen</b>."),
@@ -1002,6 +1004,8 @@ def auge():
             ("Erkläre Weitsichtigkeit: Ursache, Wirkung, Brille.", "Augapfel <b>zu kurz</b>, Bild <b>hinter</b> der Netzhaut, Nähe unscharf; <b>Sammellinse</b>."),
             ("Warum sieht man im Kino am Anfang kaum etwas?", "Die Augen müssen sich an die <b>Dunkelheit anpassen</b>; das dauert bis zu 30 min."),
             ("Auf einem Brillenpass steht −2,0. Was bedeutet das?", "<b>Zerstreuungslinse</b>: Die Person ist <b>kurzsichtig</b>."),
+            ("Erkläre die Begriffe Nahpunkt und Fernpunkt.", "Nahpunkt: <b>kleinste</b>, Fernpunkt: <b>größte</b> Entfernung, in der man scharf sieht."),
+            ("Ordne zu: Nahakkommodation oder Fernakkommodation? Ziliarmuskel entspannt, Zonulafasern gespannt.", "<b>Fernakkommodation</b>"),
         ],
         3: [
             ("Warum brauchen viele Menschen ab etwa 45 Jahren eine Lesebrille?", "Die Linse wird <b>weniger elastisch</b> und kann sich nicht mehr stark wölben: Alterssichtigkeit."),
@@ -1012,8 +1016,61 @@ def auge():
             ("Warum ist räumliches Sehen mit einem Auge schwieriger?", "Das Gehirn vergleicht die <b>zwei leicht verschiedenen Bilder</b> beider Augen, um Entfernungen zu schätzen."),
             ("Warum werden die Augen bei langer Bildschirmarbeit trocken und müde?", "Man <b>blinzelt seltener</b>, und der <b>Ziliarmuskel</b> bleibt lange angespannt."),
             ("Eine Person sieht ihr Handy scharf, die Tafel aber nicht. Erkläre mit Fachbegriffen und nenne eine Lösung.", "Sie ist <b>kurzsichtig</b>: Augapfel zu lang, Bild ferner Dinge vor der Netzhaut. Lösung: <b>Zerstreuungslinse</b>."),
+            ("Beschreibe die Nahakkommodation in der richtigen Reihenfolge mit den Fachbegriffen.", "Ziliarmuskel <b>spannt sich an</b> → Muskelring enger → Zonulafasern <b>erschlaffen</b> → Linse rundet sich durch <b>Eigenelastizität</b> → <b>Brechkraft steigt</b>."),
+            ("Der Nahpunkt eines 10-Jährigen liegt bei 7 cm, der eines 60-Jährigen bei 1 m. Erkläre.", "Die Linse verliert mit dem Alter ihre <b>Eigenelastizität</b>, sie kann sich kaum noch wölben: <b>Alterssichtigkeit</b>."),
             ("Warum sollte man beim Lesen ab und zu in die Ferne schauen?", "Dabei <b>entspannt</b> sich der Ziliarmuskel, die Augen ermüden weniger."),
             ("Erkläre, warum ein Mensch mit Rot-Grün-Schwäche Rot und Grün schlecht unterscheiden kann.", "Eine Sorte <b>Zapfen</b> arbeitet nicht richtig, die Farbsignale fehlen."),
+        ],
+    }
+
+
+
+def nerven():
+    # signal times: t = s / v, verified by computing
+    def tms(s_, v): return s_ / v * 1000
+    assert abs(tms(1.2, 60) - 20) < 1e-9 and abs(tms(0.5, 1) - 500) < 1e-9
+    return {
+        1: [
+            ("Welche Organe bilden das zentrale Nervensystem?", "<b>Gehirn</b> und <b>Rückenmark</b>."),
+            ("Welche Aufgabe haben die Dendriten?", "Sie <b>empfangen</b> Signale."),
+            ("Welche Aufgabe hat das Axon?", "Es <b>leitet</b> das Signal weiter."),
+            ("Wozu dient die Myelinscheide?", "Sie <b>isoliert</b> das Axon und macht die Leitung <b>schneller</b>."),
+            ("Was ist eine Synapse?", "Die <b>Kontaktstelle</b>, an der das Signal mit einem Botenstoff auf die nächste Zelle übertragen wird."),
+            ("Wohin leiten sensorische Nerven?", "Von den Sinnesorganen <b>zum ZNS</b>."),
+            ("Wohin leiten motorische Nerven?", "Vom ZNS <b>zu den Muskeln</b>."),
+            ("Welcher Hirnteil ist für das Gleichgewicht zuständig?", "Das <b>Kleinhirn</b>."),
+            ("Welcher Hirnteil steuert Atmung und Herzschlag?", "Der <b>Hirnstamm</b> (Nachhirn)."),
+            ("Wo entstehen Denken und Gedächtnis?", "Im <b>Großhirn</b>."),
+            ("Nenne drei Reflexe.", "z. B. <b>Kniesehnenreflex, Lidschlussreflex, Rückziehreflex</b>, Husten, Niesen."),
+            ("Wie heißt das Fachwort für Nervenzelle?", "<b>Neuron</b>"),
+            ("Was bewirkt der Sympathikus?", "Er stellt den Körper auf <b>Leistung</b> ein: Herz schneller, Pupillen weit."),
+            ("Was bewirkt der Parasympathikus?", "<b>Ruhe und Erholung</b>: Herz langsamer, Verdauung aktiv."),
+        ],
+        2: [
+            ("Beschreibe die Reiz-Reaktions-Kette.", "<b>Reiz → Sinneszelle → sensorischer Nerv → ZNS → motorischer Nerv → Muskel → Reaktion</b>"),
+            ("Beschreibe den Reflexbogen an der heißen Herdplatte.", "Hautsinneszellen → <b>sensorischer Nerv</b> → <b>Umschaltung im Rückenmark</b> → <b>motorischer Nerv</b> → Muskel zieht die Hand zurück."),
+            ("Nenne drei Merkmale eines Reflexes.", "<b>angeboren</b>, <b>sehr schnell</b>, läuft <b>immer gleich</b> und <b>unbewusst</b> ab."),
+            ("Warum spürt man den Schmerz an der Herdplatte erst, wenn die Hand schon zurückgezogen ist?", "Der Reflex wird im <b>Rückenmark</b> umgeschaltet; das Signal erreicht das <b>Gehirn erst danach</b>."),
+            ("Vergleiche Reflex und bewusste Reaktion (Ort der Umschaltung, Tempo).", "Reflex: <b>Rückenmark</b>, sehr schnell. Bewusst: <b>Großhirn</b>, ca. 0,2–0,3 s."),
+            ("Ein Signal läuft 1,2 m mit 60 m/s. Wie lange braucht es?", "1,2 : 60 = 0,02 s = <b>20 ms</b>"),
+            ("Ein Signal läuft 0,5 m in einer Faser ohne Myelin (1 m/s). Wie lange braucht es?", "0,5 : 1 = <b>0,5 s</b> = 500 ms"),
+            ("Ordne zu: Du balancierst auf einem Bein. Welcher Hirnteil arbeitet vor allem?", "Das <b>Kleinhirn</b>."),
+            ("Ordne zu: Dir wird heiß, du beginnst zu schwitzen. Welcher Hirnteil steuert das?", "Das <b>Zwischenhirn</b> (Körpertemperatur)."),
+            ("Erkläre, warum Fasern mit Myelinscheide schneller leiten.", "Das Signal <b>springt von Schnürring zu Schnürring</b>, statt die ganze Faser entlangzulaufen."),
+            ("Wie wirkt der Sympathikus vor einer Klassenarbeit auf Herz, Pupillen und Verdauung?", "Herz <b>schneller</b>, Pupillen <b>weit</b>, Verdauung <b>gebremst</b>."),
+            ("Unterscheide willkürliches und vegetatives Nervensystem mit je einem Beispiel.", "Willkürlich: <b>bewusst</b>, z. B. schreiben. Vegetativ: <b>unbewusst</b>, z. B. Herzschlag."),
+        ],
+        3: [
+            ("Beim Lineal-Test fällt das Lineal 20 cm, bevor es gefangen wird. Das entspricht etwa 0,2 s. Erkläre, warum die Reaktion so lange dauert, obwohl Nerven sehr schnell leiten.", "Die Leitung selbst dauert nur wenige ms; den Großteil braucht das <b>Gehirn</b> zum Erkennen und Entscheiden, dazu kommen <b>Synapsen</b>."),
+            ("Bei einer Verletzung des Rückenmarks im Nackenbereich können Arme und Beine gelähmt sein. Erkläre.", "Die Befehle des Gehirns erreichen die <b>motorischen Nerven</b> unterhalb der Verletzung nicht mehr: <b>Querschnittslähmung</b>."),
+            ("Die Ärztin prüft den Kniesehnenreflex. Welche Teile des Nervensystems testet sie damit?", "<b>Sinneszellen im Muskel, sensorischen Nerv, Rückenmark, motorischen Nerv</b> und den Muskel."),
+            ("Warum ist Radfahren mit dem Handy gefährlich? Rechne: Bei 20 km/h (≈ 5,6 m/s) und 1 s Ablenkung …", "In 1 s fährt man etwa <b>5,6 m</b> „blind“; die Reaktion beginnt viel später."),
+            ("Alkohol verlangsamt die Signalübertragung an Synapsen. Welche Folgen hat das im Straßenverkehr?", "<b>Längere Reaktionszeit</b>, schlechtere Koordination (Kleinhirn), Fehleinschätzungen."),
+            ("Bei Multipler Sklerose wird die Myelinscheide geschädigt. Welche Folgen erwartest du?", "Signale werden <b>langsamer</b> oder gar nicht mehr weitergeleitet: z. B. Lähmungen, Sehstörungen."),
+            ("Warum kann man den Lidschlussreflex kaum unterdrücken, das Heben der Hand aber schon?", "Der Reflex läuft <b>unbewusst</b> über tiefere Teile des ZNS; das Heben der Hand plant das <b>Großhirn</b> bewusst."),
+            ("Berechne, wie lange ein Signal vom Fuß zum Rückenmark braucht: Strecke 1 m, Tempo 100 m/s.", "1 : 100 = 0,01 s = <b>10 ms</b>"),
+            ("Erkläre, warum man nach dem Gleichgewichtsorgan im Ohr auch das Kleinhirn braucht, um auf einem Bein zu stehen.", "Das <b>Kleinhirn</b> verarbeitet die Meldungen aus Ohr, Augen und Muskeln und <b>korrigiert</b> die Muskelspannung."),
+            ("Warum lernt man besser, wenn man vor einer Arbeit ausreichend schläft?", "Im Schlaf <b>festigt</b> das Gehirn Gelerntes; Verbindungen zwischen Nervenzellen werden verstärkt."),
         ],
     }
 
@@ -1025,6 +1082,7 @@ TOPICS = {
     "symport-antiport": ({"title": "Symport und Antiport", "eyebrow": "Biologie · Klasse 11", "accent": "#2f7d5b", "cols": 2, "sol_cols": 2}, symport),
     "endocytose-exocytose": ({"title": "Endocytose und Exocytose", "eyebrow": "Biologie · Klasse 11", "accent": "#7a3f8f", "cols": 2, "sol_cols": 2}, endo),
     "ableiten": ({"title": "Ableiten", "eyebrow": "Mathematik · Klasse 11", "accent": "#24539c", "cols": 2, "sol_cols": 2}, ableiten),
+    "nervensystem": ({"title": "Das Nervensystem", "eyebrow": "Biologie · Klasse 8", "accent": "#4a7a1e", "cols": 2, "sol_cols": 2}, nerven),
     "auge": ({"title": "Das Auge", "eyebrow": "Biologie · Klasse 8", "accent": "#4a7a1e", "cols": 2, "sol_cols": 2}, auge),
     "binomische-formeln": ({"title": "Binomische Formeln", "eyebrow": "Mathematik · Klasse 8", "accent": M8, "cols": 3, "sol_cols": 2}, binomische_formeln),
     "bruchterme": ({"title": "Bruchterme", "eyebrow": "Mathematik · Klasse 8", "accent": "#2d6a4f", "cols": 3, "sol_cols": 3}, bruchterme),

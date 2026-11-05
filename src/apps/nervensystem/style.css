@@ -1,0 +1,30 @@
+/* Clickable figures (neuron and brain) */
+.fig text { font-family: var(--font-body); font-size: 12.5px; fill: var(--ink); }
+.fig .part { cursor: pointer; }
+.fig .hit { fill: none; stroke: transparent; stroke-width: 14; pointer-events: stroke; }
+.fig .hitfill { fill: transparent; stroke: none; }
+.fig .sel .shape { stroke: var(--accent) !important; stroke-width: 3.5 !important; }
+.fig .wrong .shape { stroke: var(--bad) !important; stroke-width: 3.5 !important; }
+.fig .lead { stroke: var(--muted); stroke-width: 1; }
+.fig .lab { font-weight: 700; }
+.fig .deco { fill: none; stroke: rgba(0, 0, 0, 0.18); stroke-width: 1.5; pointer-events: none; }
+
+/* Signal path */
+.path text { font-family: var(--font-body); font-size: 12.5px; fill: var(--ink); }
+.path .box { fill: var(--surface); stroke: var(--line); stroke-width: 2; }
+.path .box.on { stroke: var(--accent); fill: var(--accent-soft); }
+.path .nerve { fill: none; stroke: var(--line); stroke-width: 5; stroke-linecap: round; }
+.path .nerve.on { stroke: var(--accent); }
+.path .nerve.sens { stroke-dasharray: 1 0; }
+.path .tag { font-size: 11px; fill: var(--muted); }
+.path .dot { fill: #e0a400; stroke: #8a6400; stroke-width: 1.5; }
+.path .bold { font-weight: 700; }
+
+/* Reaction test */
+.rt { display: grid; place-items: center; width: 100%; min-height: 200px; font-family: var(--font-display); font-size: 1.5rem; font-weight: 800; border-radius: var(--radius); border: 2px solid var(--line); cursor: pointer; text-align: center; padding: 16px; touch-action: manipulation; -webkit-user-select: none; user-select: none; }
+.rt[data-state="idle"] { background: var(--surface); color: var(--ink); }
+.rt[data-state="wait"] { background: #b5372e; color: #fff; border-color: #b5372e; }
+.rt[data-state="go"] { background: #1f7f4b; color: #fff; border-color: #1f7f4b; }
+.rt[data-state="early"], .rt[data-state="done"] { background: var(--surface-2); color: var(--ink); }
+.controls > * { min-width: 0; }
+.row .modes { margin: 0; }

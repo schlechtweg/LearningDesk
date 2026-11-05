@@ -1,0 +1,1225 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<title>Das Nervensystem</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Interaktive Lernhilfe zum Nervensystem (Biologie, Klasse 8)">
+<script>try{var t=localStorage.getItem("learningdesk.theme");if(t==="dark"||t==="light")document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* LearnKit: shared layout for LearningDesk topic apps.
+   Colour tokens come in three blocks (light, dark via system, dark via switch);
+   each app sets its accent colours through config.py. */
+:root {
+  --bg: #f2f4f7;
+  --surface: #ffffff;
+  --surface-2: #e6ebf1;
+  --ink: #18222d;
+  --muted: #55626f;
+  --line: #d0d8e1;
+  --accent: #24539c;
+  --accent-ink: #ffffff;
+  --accent-soft: rgba(36, 83, 156, 0.12);
+  --c1: #2f5fb3;
+  --c2: #c4561c;
+  --c3: #3d8a4c;
+  --c4: #8e44ad;
+  --good: #1f7f4b;
+  --good-soft: rgba(31, 127, 75, 0.12);
+  --bad: #b5372e;
+  --bad-soft: rgba(181, 55, 46, 0.10);
+  --font-display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --font-body: "Atkinson Hyperlegible", "Segoe UI", system-ui, sans-serif;
+  --font-math: "STIX Two Text", "Cambria Math", "Times New Roman", serif;
+  --font-mono: "JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
+  --step--1: 0.875rem;
+  --step-0: 1.0625rem;
+  --step-1: 1.25rem;
+  --step-2: 1.6rem;
+  --step-3: 2.3rem;
+  --radius: 10px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0f1419; --surface: #161e26; --surface-2: #1e2832; --ink: #e4ebf1; --muted: #98a7b5; --line: #2b3946;
+    --accent-ink: #0b1220; --c1: #7ea6f0; --c2: #f09a5e; --c3: #6fc47f; --c4: #c39bdf;
+    --good: #5fd194; --good-soft: rgba(95, 209, 148, 0.14); --bad: #f07a70; --bad-soft: rgba(240, 122, 112, 0.14);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0f1419; --surface: #161e26; --surface-2: #1e2832; --ink: #e4ebf1; --muted: #98a7b5; --line: #2b3946;
+  --accent-ink: #0b1220; --c1: #7ea6f0; --c2: #f09a5e; --c3: #6fc47f; --c4: #c39bdf;
+  --good: #5fd194; --good-soft: rgba(95, 209, 148, 0.14); --bad: #f07a70; --bad-soft: rgba(240, 122, 112, 0.14);
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+body {
+  background: var(--bg); color: var(--ink);
+  font-family: var(--font-body); font-size: var(--step-0); line-height: 1.6;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 0 48px;
+}
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--bg); }
+.wrap { max-width: 980px; margin: 0 auto; }
+h1, h2, h3 { font-family: var(--font-display); line-height: 1.15; text-wrap: balance; margin: 0; }
+h1 { font-size: var(--step-3); font-weight: 800; letter-spacing: -0.02em; }
+h2 { font-size: var(--step-2); font-weight: 700; }
+h3 { font-size: var(--step-1); font-weight: 700; }
+p { margin: 0; max-width: 70ch; }
+.muted { color: var(--muted); }
+.small { font-size: var(--step--1); }
+.eyebrow { font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); }
+.c1 { color: var(--c1); font-weight: 700; } .c2 { color: var(--c2); font-weight: 700; } .c3 { color: var(--c3); font-weight: 700; } .c4 { color: var(--c4); font-weight: 700; }
+
+/* Header and tabs */
+header.top { padding-block: 28px 8px; display: grid; gap: 6px; }
+header.top p { color: var(--muted); }
+nav.tabs { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--bg); display: flex; gap: 6px; overflow-x: auto; padding-block: 12px; margin-bottom: 8px; border-bottom: 1px solid var(--line); }
+nav.tabs a { flex: 0 0 auto; text-decoration: none; color: var(--ink); font-weight: 700; padding: 8px 14px; border-radius: 999px; border: 1px solid var(--line); background: var(--surface); font-size: var(--step--1); }
+nav.tabs a .n { font-family: var(--font-mono); color: var(--muted); margin-right: 6px; font-weight: 400; }
+nav.tabs a[aria-current="page"] { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+nav.tabs a[aria-current="page"] .n { color: var(--accent-ink); opacity: 0.75; }
+a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible { outline: 3px solid var(--c2); outline-offset: 2px; }
+
+/* Layout blocks */
+section.view { display: grid; gap: 28px; padding-top: 16px; }
+.stack { display: grid; gap: 12px; }
+.panel { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 20px; min-width: 0; }
+.grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; align-items: start; }
+.grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 16px; align-items: start; }
+.merksatz { border-left: 4px solid var(--accent); background: var(--surface); padding: 16px 20px; border-radius: 0 var(--radius) var(--radius) 0; display: grid; gap: 4px; }
+.merksatz .eyebrow { display: block; margin-bottom: 4px; }
+.merksatz p { font-family: var(--font-display); font-size: var(--step-1); font-weight: 500; line-height: 1.35; }
+.einfach { background: var(--surface-2); border-radius: var(--radius); padding: 16px 20px; display: grid; gap: 8px; }
+.formel { font-family: var(--font-math); font-size: 1.5rem; line-height: 1.6; }
+ul.list, ol.list { margin: 0; padding-left: 1.2em; display: grid; gap: 8px; max-width: 70ch; }
+.sim-layout { display: grid; grid-template-columns: minmax(0, 1fr) 300px; gap: 16px; align-items: start; }
+@media (max-width: 800px) { .sim-layout { grid-template-columns: 1fr; } }
+.figure { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 10px; min-width: 0; }
+.figure svg { width: 100%; height: auto; display: block; }
+.table-scroll { overflow-x: auto; }
+table.data { width: 100%; border-collapse: collapse; font-size: var(--step--1); }
+table.data th, table.data td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--line); vertical-align: top; overflow-wrap: anywhere; hyphens: auto; }
+table.data th { font-family: var(--font-display); font-size: var(--step-0); }
+table.data td.num, table.data th.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+details.profi { border: 1px dashed var(--line); border-radius: var(--radius); padding: 12px 16px; background: var(--surface); }
+details.profi summary { cursor: pointer; font-weight: 700; font-size: var(--step--1); }
+details.profi[open] summary { margin-bottom: 8px; }
+details.profi p, details.profi li { font-size: var(--step--1); }
+
+/* Math typesetting */
+.math { font-family: var(--font-math); font-size: 1.12em; }
+.math i { font-style: italic; }
+.math sup { font-size: 0.7em; line-height: 0; }
+.frac { display: inline-flex; flex-direction: column; vertical-align: middle; text-align: center; margin: 0 2px; line-height: 1.2; font-size: 0.95em; }
+.frac > span { padding: 0 3px; }
+.frac > span:first-child { border-bottom: 1.5px solid currentColor; }
+.unit { font-family: var(--font-body); font-style: normal; font-size: 0.92em; }
+
+/* Controls */
+button, .btn { font: inherit; font-weight: 700; font-size: var(--step--1); cursor: pointer; text-decoration: none; display: inline-block; padding: 9px 16px; border-radius: 8px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); }
+button:hover, .btn:hover { border-color: var(--accent); }
+button.primary, .btn.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+button[aria-pressed="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+button:disabled { opacity: 0.5; cursor: default; }
+.row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+select, input[type="text"] { font: inherit; padding: 8px 10px; border-radius: 8px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); min-width: 0; max-width: 100%; }
+input[type="text"] { font-family: var(--font-mono); }
+input[type="range"] { width: 100%; accent-color: var(--accent); }
+label.lbl { display: flex; justify-content: space-between; gap: 8px; font-weight: 700; font-size: var(--step--1); }
+label.lbl output, label.lbl .val { font-family: var(--font-mono); font-weight: 400; }
+.controls { display: grid; gap: 14px; align-content: start; }
+.readout { display: grid; grid-template-columns: 1fr auto; gap: 4px 12px; font-size: var(--step--1); margin: 0; }
+.readout dt { color: var(--muted); }
+.readout dd { margin: 0; font-family: var(--font-mono); font-variant-numeric: tabular-nums; text-align: right; }
+.readout dd.big { font-size: 1.15rem; font-weight: 600; color: var(--accent); }
+.status-box { padding: 12px 14px; border-radius: 8px; background: var(--surface-2); font-size: var(--step--1); }
+
+/* Trainer */
+.modes { display: flex; flex-wrap: wrap; gap: 6px; }
+.task { font-size: var(--step-0); line-height: 1.7; }
+.task .math { font-size: 1.35em; }
+.answer-row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.answer-row input { flex: 1 1 220px; font-size: var(--step-0); }
+.answer-row label { white-space: nowrap; }
+.hint { font-size: var(--step--1); color: var(--muted); }
+.hint code, .feedback code { font-family: var(--font-mono); background: var(--surface-2); padding: 1px 5px; border-radius: 4px; }
+.feedback { padding: 14px 16px; border-radius: 8px; background: var(--surface-2); display: grid; gap: 8px; }
+.feedback ol { margin: 0; padding-left: 1.3em; display: grid; gap: 6px; }
+b.ok { color: var(--good); } b.no { color: var(--bad); }
+.score-line { font-family: var(--font-mono); font-size: var(--step--1); color: var(--muted); }
+
+/* Equation lab */
+.lab-eq { font-family: var(--font-math); font-size: 1.9rem; text-align: center; padding: 10px 4px; overflow-x: auto; }
+.lab-log { margin: 0; padding: 0; list-style: none; display: grid; gap: 2px; font-family: var(--font-math); font-size: 1.15rem; }
+.lab-log li { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 12px; padding: 4px 8px; border-bottom: 1px solid var(--line); }
+.lab-log li .op { font-family: var(--font-mono); font-size: 0.85rem; color: var(--accent); align-self: center; white-space: nowrap; }
+.lab-log li.flip .op { color: var(--bad); }
+.lab-msg.ok { color: var(--good); font-weight: 700; }
+.lab-msg.no { color: var(--bad); }
+
+/* Quiz */
+.progress-line { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+.bar { flex: 1 1 200px; height: 8px; background: var(--surface-2); border-radius: 999px; overflow: hidden; }
+.bar i { display: block; height: 100%; background: var(--accent); width: 0; transition: width 0.3s; }
+.quiz { display: grid; gap: 16px; }
+.quiz .qtext { font-family: var(--font-display); font-size: var(--step-1); font-weight: 700; line-height: 1.3; }
+.quiz .opts { display: grid; gap: 8px; }
+.quiz .opts button { text-align: left; font-weight: 400; font-size: var(--step-0); padding: 12px 16px; display: flex; gap: 12px; align-items: center; }
+.quiz .opts button .k { font-family: var(--font-mono); color: var(--muted); }
+.quiz .opts button.right { border-color: var(--good); background: var(--good-soft); }
+.quiz .opts button.wrong { border-color: var(--bad); background: var(--bad-soft); }
+.score-big { font-family: var(--font-display); font-size: 3.2rem; font-weight: 800; line-height: 1; }
+
+/* Prediction cards ("Was passiert, wenn ...") */
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
+.card { display: grid; gap: 10px; align-content: start; }
+.card .ctx { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+.card .opts { display: grid; gap: 6px; }
+.card .opts button { text-align: left; font-weight: 400; }
+.card .opts button.right { border-color: var(--good); background: var(--good-soft); font-weight: 700; }
+.card .opts button.wrong { border-color: var(--bad); background: var(--bad-soft); }
+.card .answer { font-size: var(--step--1); padding: 12px; border-radius: 8px; background: var(--surface-2); }
+
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+</style>
+<style>
+:root { --accent: #4a7a1e; --accent-soft: rgba(74, 122, 30, 0.12); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --accent: #9ccc65; } }
+:root[data-theme="dark"] { --accent: #9ccc65; }
+</style>
+<style>
+/* Clickable figures (neuron and brain) */
+.fig text { font-family: var(--font-body); font-size: 12.5px; fill: var(--ink); }
+.fig .part { cursor: pointer; }
+.fig .hit { fill: none; stroke: transparent; stroke-width: 14; pointer-events: stroke; }
+.fig .hitfill { fill: transparent; stroke: none; }
+.fig .sel .shape { stroke: var(--accent) !important; stroke-width: 3.5 !important; }
+.fig .wrong .shape { stroke: var(--bad) !important; stroke-width: 3.5 !important; }
+.fig .lead { stroke: var(--muted); stroke-width: 1; }
+.fig .lab { font-weight: 700; }
+.fig .deco { fill: none; stroke: rgba(0, 0, 0, 0.18); stroke-width: 1.5; pointer-events: none; }
+
+/* Signal path */
+.path text { font-family: var(--font-body); font-size: 12.5px; fill: var(--ink); }
+.path .box { fill: var(--surface); stroke: var(--line); stroke-width: 2; }
+.path .box.on { stroke: var(--accent); fill: var(--accent-soft); }
+.path .nerve { fill: none; stroke: var(--line); stroke-width: 5; stroke-linecap: round; }
+.path .nerve.on { stroke: var(--accent); }
+.path .nerve.sens { stroke-dasharray: 1 0; }
+.path .tag { font-size: 11px; fill: var(--muted); }
+.path .dot { fill: #e0a400; stroke: #8a6400; stroke-width: 1.5; }
+.path .bold { font-weight: 700; }
+
+/* Reaction test */
+.rt { display: grid; place-items: center; width: 100%; min-height: 200px; font-family: var(--font-display); font-size: 1.5rem; font-weight: 800; border-radius: var(--radius); border: 2px solid var(--line); cursor: pointer; text-align: center; padding: 16px; touch-action: manipulation; -webkit-user-select: none; user-select: none; }
+.rt[data-state="idle"] { background: var(--surface); color: var(--ink); }
+.rt[data-state="wait"] { background: #b5372e; color: #fff; border-color: #b5372e; }
+.rt[data-state="go"] { background: #1f7f4b; color: #fff; border-color: #1f7f4b; }
+.rt[data-state="early"], .rt[data-state="done"] { background: var(--surface-2); color: var(--ink); }
+.controls > * { min-width: 0; }
+.row .modes { margin: 0; }
+</style>
+<style>
+nav.crumbs ol { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 2px 6px; font-size: 0.85rem; line-height: 1.5; }
+nav.crumbs li { display: inline-flex; align-items: center; gap: 6px; min-width: 0; }
+nav.crumbs li + li::before { content: "›"; color: var(--muted); }
+nav.crumbs a { color: var(--accent); text-decoration: none; font-weight: 700; }
+nav.crumbs a:hover { text-decoration: underline; }
+nav.crumbs [aria-current] { color: var(--muted); }
+header.has-theme-toggle { position: relative; padding-right: 54px; }
+.theme-toggle { position: absolute; top: 18px; right: 0; width: 40px; height: 40px; border-radius: 999px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); font-size: 18px; line-height: 1; cursor: pointer; display: grid; place-items: center; padding: 0; }
+header:not(.top) > .theme-toggle { top: 0; }
+.theme-toggle:hover { border-color: var(--accent, currentColor); }
+.theme-toggle:focus-visible { outline: 3px solid var(--accent, currentColor); outline-offset: 2px; }
+/* Version line at the bottom of every page: plain and unobtrusive */
+.ld-version { margin: 40px 0 16px; text-align: center; font-size: 12px; line-height: 1.4; opacity: 0.6; }
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <nav class="crumbs" aria-label="Brotkrümelnavigation"><ol><li><a href="index.html">LearningDesk</a></li><li><a href="klasse-8.html">Klasse 8</a></li><li><a href="klasse-8.html#biologie">Biologie</a></li><li><a href="#verstehen">Das Nervensystem</a></li><li data-crumb-section hidden><span aria-current="location"></span></li></ol></nav>
+    <h1>Das Nervensystem</h1>
+    <p>Wie Reize zu Reaktionen werden: Nervenzellen, Gehirn und Rückenmark, Reflexe und ein Test, wie schnell du reagierst.</p>
+    <p style="display:flex; flex-wrap:wrap; gap:8px"><a class="btn" href="factsheets/nervensystem.pdf" target="_blank" rel="noopener">Factsheet als PDF ↓</a><a class="btn" href="aufgaben/nervensystem.pdf" target="_blank" rel="noopener">Übungsaufgaben als PDF ↓</a></p>
+  </header>
+  <nav class="tabs" aria-label="Bereiche">
+    <a href="#verstehen" data-view="verstehen"><span class="n">1</span>Verstehen</a>
+    <a href="#bauteile" data-view="bauteile"><span class="n">2</span>Nervenzelle und Gehirn</a>
+    <a href="#signalweg" data-view="signalweg"><span class="n">3</span>Signalweg</a>
+    <a href="#reaktion" data-view="reaktion"><span class="n">4</span>Reaktionstest</a>
+    <a href="#ueben" data-view="ueben"><span class="n">5</span>Üben</a>
+    <a href="#alltag" data-view="alltag"><span class="n">6</span>Im Alltag</a>
+    <a href="#quiz" data-view="quiz"><span class="n">7</span>Quiz</a>
+  </nav>
+
+  <section class="view" id="view-verstehen">
+    <div class="einfach">
+      <span class="eyebrow">Einfach erklärt</span>
+      <p>Das Nervensystem ist die <strong>Nachrichtenzentrale</strong> deines Körpers. Sinnesorgane nehmen <strong>Reize</strong> auf, zum Beispiel Licht, Schall oder Hitze. Nerven leiten die Informationen als elektrische Signale zum <strong>Gehirn</strong> oder <strong>Rückenmark</strong>. Dort wird entschieden, was zu tun ist. Andere Nerven leiten den Befehl zu den <strong>Muskeln</strong>: Du reagierst.</p>
+    </div>
+    <div class="merksatz">
+      <span class="eyebrow">Reiz-Reaktions-Kette</span>
+      <p>Reiz → Sinneszelle → sensorischer Nerv → Gehirn / Rückenmark → motorischer Nerv → Muskel → Reaktion</p>
+    </div>
+    <div class="grid-2">
+      <div class="panel stack">
+        <h3>Aufbau des Nervensystems</h3>
+        <ul class="list small">
+          <li><strong>Zentrales Nervensystem (ZNS)</strong>: Gehirn und Rückenmark. Hier werden Informationen verarbeitet.</li>
+          <li><strong>Peripheres Nervensystem</strong>: alle Nerven im übrigen Körper. Sie verbinden das ZNS mit Sinnesorganen und Muskeln.</li>
+          <li><strong>Sensorische Nerven</strong> leiten <strong>zum</strong> ZNS hin (von den Sinnesorganen).</li>
+          <li><strong>Motorische Nerven</strong> leiten <strong>vom</strong> ZNS weg (zu den Muskeln).</li>
+        </ul>
+      </div>
+      <div class="panel stack">
+        <h3>Willkürlich und unwillkürlich</h3>
+        <ul class="list small">
+          <li>Das <strong>willkürliche</strong> (somatische) Nervensystem steuert, was du bewusst tust: laufen, sprechen, schreiben.</li>
+          <li>Das <strong>vegetative</strong> Nervensystem arbeitet ohne deinen Willen: Herzschlag, Atmung, Verdauung.</li>
+          <li><strong>Sympathikus</strong>: macht den Körper bereit für Leistung und Gefahr. Das Herz schlägt schneller, die Pupillen werden weit, die Verdauung wird gebremst.</li>
+          <li><strong>Parasympathikus</strong>: sorgt für Ruhe und Erholung. Das Herz schlägt langsamer, die Verdauung arbeitet.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="grid-2">
+      <div class="panel stack">
+        <h3>Die Nervenzelle</h3>
+        <p class="small">Das Nervensystem besteht aus Milliarden <strong>Nervenzellen</strong> (Neuronen), allein im Gehirn etwa 86 Milliarden.</p>
+        <ul class="list small">
+          <li><strong>Dendriten</strong> empfangen Signale von anderen Zellen.</li>
+          <li>Der <strong>Zellkörper</strong> mit dem Zellkern verarbeitet sie.</li>
+          <li>Das <strong>Axon</strong> (Nervenfaser) leitet das Signal weiter, manchmal über einen Meter weit.</li>
+          <li>Die <strong>Myelinscheide</strong> isoliert das Axon wie die Hülle eines Kabels. Das Signal springt von Schnürring zu Schnürring und ist dadurch viel schneller.</li>
+          <li>An den <strong>Endknöpfchen</strong> wird das Signal an der <strong>Synapse</strong> mit einem Botenstoff an die nächste Zelle übergeben.</li>
+        </ul>
+      </div>
+      <div class="panel stack">
+        <h3>Das Gehirn</h3>
+        <table class="data">
+          <tr><th>Teil</th><th>Aufgabe</th></tr>
+          <tr><td><strong>Großhirn</strong></td><td>Denken, Lernen, Gedächtnis, Sprache, bewusste Wahrnehmung, bewusste Bewegungen</td></tr>
+          <tr><td><strong>Kleinhirn</strong></td><td>Gleichgewicht, fein abgestimmte Bewegungen</td></tr>
+          <tr><td><strong>Zwischenhirn</strong></td><td>Körpertemperatur, Hunger, Durst, Schlaf; leitet Sinneseindrücke zum Großhirn</td></tr>
+          <tr><td><strong>Hirnstamm</strong> (Mittelhirn, Brücke, Nachhirn)</td><td>lebenswichtige Vorgänge: Atmung, Herzschlag, Schlucken, Husten</td></tr>
+        </table>
+      </div>
+    </div>
+    <div class="grid-2">
+      <div class="panel stack">
+        <h3>Reflexe</h3>
+        <p class="small">Ein <strong>Reflex</strong> ist eine schnelle, angeborene Reaktion, die immer gleich abläuft und <strong>nicht bewusst</strong> gesteuert wird. Bei vielen Reflexen wird das Signal schon im <strong>Rückenmark</strong> umgeschaltet. Das spart Zeit. Den Schmerz spürst du erst, wenn die Hand schon zurückgezuckt ist.</p>
+        <p class="small muted">Beispiele: Kniesehnenreflex, Lidschlussreflex, Rückziehreflex an der heißen Herdplatte, Husten- und Niesreflex.</p>
+      </div>
+      <div class="panel stack">
+        <h3>Wie schnell sind Nerven?</h3>
+        <ul class="list small">
+          <li>Mit Myelinscheide: bis zu <strong>120 m/s</strong>, also über 400 km/h.</li>
+          <li>Ohne Myelinscheide: oft nur etwa <strong>1 m/s</strong>.</li>
+          <li>Eine bewusste Reaktion dauert trotzdem etwa <strong>0,2 bis 0,3 Sekunden</strong>, weil das Gehirn die Information verarbeiten muss.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="panel stack">
+      <h3>Typische Fehler</h3>
+      <ul class="list small">
+        <li>„Das Rückenmark gehört nicht zum Zentralnervensystem.“ <strong>Doch</strong>: ZNS = Gehirn und Rückenmark.</li>
+        <li>„Bei einem Reflex entscheidet das Gehirn.“ Bei vielen Reflexen wird schon im <strong>Rückenmark</strong> umgeschaltet. Das Gehirn erfährt es erst danach.</li>
+        <li>Sensorisch und motorisch verwechselt. Merkhilfe: <strong>s</strong>ensorisch = von den <strong>S</strong>innen; <strong>m</strong>otorisch = zu den <strong>M</strong>uskeln.</li>
+        <li>„Das Kleinhirn ist für das Denken da.“ Nein, das macht das <strong>Großhirn</strong>. Das Kleinhirn sorgt für Gleichgewicht und Bewegungsabläufe.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="view" id="view-bauteile" hidden>
+    <div class="stack">
+      <span class="eyebrow">Bauteile</span>
+      <h2>Nervenzelle und Gehirn</h2>
+      <p class="muted">Tippe auf einen Teil. Im Modus „Abfragen“ nennt dir die App einen Teil, und du suchst ihn.</p>
+    </div>
+    <div class="row">
+      <div class="modes" role="group" aria-label="Bild"><button type="button" data-fig="neuron" aria-pressed="true">Nervenzelle</button><button type="button" data-fig="brain" aria-pressed="false">Gehirn</button></div>
+      <div class="modes" role="group" aria-label="Modus"><button type="button" data-mode="explore" aria-pressed="true">Erkunden</button><button type="button" data-mode="quiz" aria-pressed="false">Abfragen</button></div>
+    </div>
+    <div class="sim-layout">
+      <div class="figure"><svg class="fig" id="figSvg" viewBox="0 0 460 300" role="img" aria-label="Schematische Abbildung"></svg></div>
+      <div class="panel controls"><div id="figInfo" class="stack"></div></div>
+    </div>
+  </section>
+
+  <section class="view" id="view-signalweg" hidden>
+    <div class="stack">
+      <span class="eyebrow">Schritt für Schritt</span>
+      <h2>Vom Reiz zur Reaktion</h2>
+      <p class="muted">Vergleiche einen Reflex mit einer bewussten Reaktion. Achte darauf, ob das Signal über das Gehirn läuft.</p>
+    </div>
+    <div class="modes" role="group" aria-label="Beispiel" id="sModes"></div>
+    <div class="sim-layout">
+      <div class="figure"><svg class="path" id="sSvg" viewBox="0 0 460 300" role="img" aria-label="Signalweg im Nervensystem"></svg></div>
+      <div class="panel controls">
+        <p class="small muted" id="sStep"></p>
+        <h3 id="sTitle"></h3>
+        <p class="small" id="sText"></p>
+        <div class="row"><button type="button" id="sPrev">◀ Zurück</button><button type="button" class="primary" id="sNext">Weiter ▶</button><button type="button" id="sPlay">Abspielen</button></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="view" id="view-reaktion" hidden>
+    <div class="stack">
+      <span class="eyebrow">Selbstversuch</span>
+      <h2>Wie schnell reagierst du?</h2>
+      <p class="muted">Tippe auf das Feld, sobald es grün wird. Am Computer geht auch die Leertaste. Wer zu früh tippt, muss neu starten.</p>
+    </div>
+    <button type="button" class="rt" id="rtBox" data-state="idle">Hier tippen zum Starten</button>
+    <div class="grid-2">
+      <div class="panel stack">
+        <h3>Deine Zeiten</h3>
+        <ol class="list small" id="rtList"></ol>
+        <p id="rtAvg" class="small"></p>
+        <div class="row"><button type="button" id="rtReset">Zeiten löschen</button></div>
+      </div>
+      <div class="panel stack">
+        <h3>Was passiert in dieser Zeit?</h3>
+        <ol class="list small">
+          <li>Die <strong>Lichtsinneszellen</strong> im Auge bemerken die grüne Farbe.</li>
+          <li>Der <strong>Sehnerv</strong> leitet das Signal zum Gehirn.</li>
+          <li>Das <strong>Großhirn</strong> erkennt „grün“ und entscheidet: tippen!</li>
+          <li>Das Signal läuft über das <strong>Rückenmark</strong> und einen <strong>motorischen Nerv</strong> zum Fingermuskel.</li>
+        </ol>
+        <p class="small muted">Die Strecke ist insgesamt etwa 1,5 m lang. Bei 60 m/s braucht das Signal dafür nur etwa 25 ms. Den größten Teil der Zeit braucht das <strong>Gehirn</strong> zum Erkennen und Entscheiden, dazu kommen viele Synapsen.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="view" id="view-ueben" hidden>
+    <div class="stack">
+      <span class="eyebrow">Trainer</span>
+      <h2>Fachbegriffe, Gehirn, Reflexe und Signalzeiten</h2>
+      <p class="muted">Immer neue Aufgaben. Gib einen Fachbegriff oder eine Zahl ein.</p>
+    </div>
+    <div id="trainer" class="stack"></div>
+  </section>
+
+  <section class="view" id="view-alltag" hidden>
+    <div class="stack">
+      <span class="eyebrow">Im Alltag</span>
+      <h2>Das Nervensystem im Alltag</h2>
+      <p class="muted">Ob beim Sport, im Straßenverkehr oder vor einer Klassenarbeit: Dein Nervensystem arbeitet immer mit.</p>
+    </div>
+    <div class="grid-2">
+      <div class="panel stack">
+        <span class="eyebrow">Küche</span>
+        <h3>Die heiße Herdplatte</h3>
+        <p class="small">Die Hand zuckt zurück, bevor du „heiß!“ denkst. Der Rückziehreflex wird im Rückenmark umgeschaltet. Den Schmerz spürst du erst einen Moment später.</p>
+      </div>
+      <div class="panel stack">
+        <span class="eyebrow">Arztpraxis</span>
+        <h3>Der Hammer am Knie</h3>
+        <p class="small">Ein Schlag unter die Kniescheibe, und das Bein schnellt nach vorn. Mit dem Kniesehnenreflex prüft die Ärztin, ob Nerven und Rückenmark richtig arbeiten.</p>
+      </div>
+      <div class="panel stack">
+        <span class="eyebrow">Klassenarbeit</span>
+        <h3>Herzklopfen und flaues Gefühl</h3>
+        <p class="small">Vor einer Prüfung wird der <strong>Sympathikus</strong> aktiv: Das Herz schlägt schneller, die Hände schwitzen, der Magen arbeitet weniger. Nach der Arbeit übernimmt der Parasympathikus wieder.</p>
+      </div>
+      <div class="panel stack">
+        <span class="eyebrow">Straßenverkehr</span>
+        <h3>Handy beim Radfahren</h3>
+        <p class="small">Bei 20 km/h fährst du in 1 Sekunde über 5 m. Wer aufs Handy schaut, reagiert viel später. Auch Müdigkeit und Alkohol verlängern die Reaktionszeit deutlich.</p>
+      </div>
+      <div class="panel stack">
+        <span class="eyebrow">Sport</span>
+        <h3>Helm auf!</h3>
+        <p class="small">Gehirn und Rückenmark heilen schlecht. Ein Sturz auf den Kopf kann eine Gehirnerschütterung auslösen. Ist das Rückenmark verletzt, kann eine Querschnittslähmung entstehen. Helme schützen.</p>
+      </div>
+      <div class="panel stack">
+        <span class="eyebrow">Gleichgewicht</span>
+        <h3>Auf einem Bein stehen</h3>
+        <p class="small">Das Kleinhirn verarbeitet ständig Signale aus Gleichgewichtsorgan, Augen und Muskeln und korrigiert deine Haltung. Schließe die Augen, und es wird viel schwieriger.</p>
+      </div>
+      <div class="panel stack">
+        <span class="eyebrow">Versuch</span>
+        <h3>Der Lineal-Test</h3>
+        <p class="small">Jemand hält ein Lineal senkrecht und lässt es ohne Ankündigung fallen. Du fängst es mit Daumen und Zeigefinger. Je weniger Zentimeter es fällt, desto schneller hast du reagiert. 20 cm entsprechen etwa 0,2 Sekunden.</p>
+      </div>
+      <div class="panel stack">
+        <span class="eyebrow">Schlaf</span>
+        <h3>Warum Schlaf beim Lernen hilft</h3>
+        <p class="small">Im Schlaf festigt das Gehirn, was du am Tag gelernt hast. Verbindungen zwischen Nervenzellen werden verstärkt. Wer vor einer Arbeit gut schläft, kann sich besser erinnern.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="view" id="view-quiz" hidden>
+    <div class="stack">
+      <span class="eyebrow">Selbsttest</span>
+      <h2>Quiz</h2>
+      <div class="progress-line"><div class="bar" aria-hidden="true"><i id="qBar"></i></div><span class="score-line" id="qProgress"></span></div>
+    </div>
+    <div class="panel quiz" id="quizBox" aria-live="polite"></div>
+  </section>
+</div>
+
+<script>
+/* LearnKit: shared building blocks for LearningDesk topic apps.
+   Exposes window.LK with: DOM helpers, number/expression parsing, rationals,
+   views (tab routing), quiz, trainer (task generators + checkers),
+   prediction cards and the equation lab for equations and inequalities. */
+(function () {
+  "use strict";
+  const $ = (s, r = document) => r.querySelector(s);
+  const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
+  const store = {
+    get(k) { try { return JSON.parse(localStorage.getItem(k)); } catch (e) { return null; } },
+    set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) { /* storage unavailable */ } }
+  };
+  const rnd = (a, b) => a + Math.floor(Math.random() * (b - a + 1));
+  const pick = (a) => a[Math.floor(Math.random() * a.length)];
+  const nz = (a, b) => { let v = 0; while (v === 0) v = rnd(a, b); return v; };
+  function shuffle(a) { const b = a.slice(); for (let i = b.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [b[i], b[j]] = [b[j], b[i]]; } return b; }
+  const gcd = (a, b) => { a = Math.abs(a); b = Math.abs(b); while (b) [a, b] = [b, a % b]; return a; };
+  const esc = (s) => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  const minus = (s) => String(s).replace(/-/g, "−");
+  const frac = (n, d) => `<span class="frac"><span>${n}</span><span>${d}</span></span>`;
+
+  // ---------- numbers ----------
+  // German formatting with at most d decimals
+  function fmt(v, d = 2) {
+    if (!isFinite(v)) return "–";
+    const r = Math.round(v * 10 ** d) / 10 ** d || 0;
+    return minus(r.toLocaleString("de-DE", { maximumFractionDigits: d }));
+  }
+  // accepts "3,5", "-2", "7/2", "x = 4", "1.013,25"
+  function parseNum(raw) {
+    let s = String(raw).trim().replace(/\s+/g, "").replace(/[−–]/g, "-").replace(/^[a-zA-Z]+=/, "");
+    if (s.includes(",") && s.includes(".")) s = s.replace(/\./g, "");
+    else if (/^-?\d{1,3}(\.\d{3})+$/.test(s)) s = s.replace(/\./g, ""); // German thousands separator: 1.013
+    s = s.replace(",", ".");
+    const m = s.match(/^(-?\d+(?:\.\d+)?)\/(-?\d+(?:\.\d+)?)$/);
+    if (m) return Number(m[1]) / Number(m[2]);
+    if (!/^-?(\d+\.?\d*|\.\d+)(e-?\d+)?$/i.test(s)) return NaN;
+    return Number(s);
+  }
+
+  // ---------- rationals ----------
+  class R {
+    constructor(n, d = 1) {
+      if (d === 0) throw new Error("Division durch 0");
+      if (d < 0) { n = -n; d = -d; }
+      const g = gcd(n, d) || 1; this.n = n / g; this.d = d / g;
+    }
+    static of(x) { if (x instanceof R) return x; if (Number.isInteger(x)) return new R(x); const k = 1e6; return new R(Math.round(x * k), k); }
+    add(o) { o = R.of(o); return new R(this.n * o.d + o.n * this.d, this.d * o.d); }
+    sub(o) { o = R.of(o); return new R(this.n * o.d - o.n * this.d, this.d * o.d); }
+    mul(o) { o = R.of(o); return new R(this.n * o.n, this.d * o.d); }
+    div(o) { o = R.of(o); return new R(this.n * o.d, this.d * o.n); }
+    neg() { return new R(-this.n, this.d); }
+    isZero() { return this.n === 0; }
+    eq(o) { o = R.of(o); return this.n === o.n && this.d === o.d; }
+    val() { return this.n / this.d; }
+    sign() { return Math.sign(this.n); }
+    abs() { return new R(Math.abs(this.n), this.d); }
+    text() { return this.d === 1 ? String(this.n) : `${this.n}/${this.d}`; }
+    html() { const a = Math.abs(this.n); const body = this.d === 1 ? String(a) : frac(a, this.d); return (this.n < 0 ? "−" : "") + body; }
+  }
+  // a·x + b as HTML, e.g. "3x − 2", "−x", "5"
+  function linHtml(x, c, v = "x") {
+    x = R.of(x); c = R.of(c);
+    const vx = `<i>${v}</i>`;
+    let s = "";
+    if (!x.isZero()) {
+      const a = x.abs();
+      s = (x.sign() < 0 ? "−" : "") + (a.eq(1) ? "" : a.html()) + vx;
+    }
+    if (!c.isZero() || !s) {
+      if (!s) s = c.html();
+      else s += (c.sign() < 0 ? " − " : " + ") + c.abs().html();
+    }
+    return s;
+  }
+
+  // ---------- polynomials: terms are {c: coefficient, v: {x: 2, y: 1}} ----------
+  function monoParts(v) {
+    const keys = Object.keys(v || {}).filter((k) => v[k] > 0).sort();
+    return { vh: keys.map((k) => `<i>${k}</i>` + (v[k] > 1 ? `<sup>${v[k]}</sup>` : "")).join(""), vt: keys.map((k) => k + (v[k] > 1 ? "^" + v[k] : "")).join("") };
+  }
+  function poly(terms) {
+    let h = "", t = "";
+    terms.filter((m) => m.c !== 0).forEach((m, i) => {
+      const { vh, vt } = monoParts(m.v), a = Math.abs(m.c);
+      const ch = a === 1 && vh ? "" : fmt(a, 4), ct = a === 1 && vt ? "" : String(a);
+      if (i === 0) { h += (m.c < 0 ? "−" : "") + ch + vh; t += (m.c < 0 ? "-" : "") + ct + vt; }
+      else { h += (m.c < 0 ? " − " : " + ") + ch + vh; t += (m.c < 0 ? "-" : "+") + ct + vt; }
+    });
+    return h ? { html: h, text: t } : { html: "0", text: "0" };
+  }
+  const polyFn = (terms) => (e) => terms.reduce((s, m) => s + m.c * Object.entries(m.v || {}).reduce((p, [k, ex]) => p * Math.pow(e[k], ex), 1), 0);
+  // collect like terms: returns new term list sorted by degree
+  function collect(terms) {
+    const map = new Map();
+    terms.forEach((m) => { const key = monoParts(m.v).vt; const cur = map.get(key); if (cur) cur.c += m.c; else map.set(key, { c: m.c, v: { ...(m.v || {}) } }); });
+    const deg = (m) => Object.values(m.v).reduce((a, b) => a + b, 0);
+    return [...map.values()].filter((m) => m.c !== 0).sort((a, b) => deg(b) - deg(a) || monoParts(a.v).vt.localeCompare(monoParts(b.v).vt));
+  }
+
+  // ---------- expressions ----------
+  // single-letter variables, implicit multiplication, ^, ², ³, ·, ×, :, ÷, decimal comma
+  function parse(src) {
+    const s = String(src).toLowerCase().replace(/\s+/g, "").replace(/[−–]/g, "-").replace(/[·⋅×]/g, "*").replace(/[:÷]/g, "/")
+      .replace(/²/g, "^2").replace(/³/g, "^3").replace(/(\d),(\d)/g, "$1.$2");
+    if (!s) throw new Error("leer");
+    const toks = [];
+    for (let i = 0; i < s.length;) {
+      const ch = s[i];
+      if (/[0-9.]/.test(ch)) { let j = i; while (j < s.length && /[0-9.]/.test(s[j])) j++; const n = parseFloat(s.slice(i, j)); if (isNaN(n)) throw new Error("Zahl"); toks.push({ t: "num", v: n }); i = j; continue; }
+      if ("+-*/^()".includes(ch)) { toks.push({ t: ch }); i++; continue; }
+      if (/[a-z]/.test(ch)) { toks.push({ t: "var", v: ch }); i++; continue; }
+      throw new Error("Zeichen");
+    }
+    let p = 0;
+    const peek = () => toks[p];
+    const starts = (tk) => tk && (tk.t === "num" || tk.t === "var" || tk.t === "(");
+    function expr() { let a = term(); while (peek() && (peek().t === "+" || peek().t === "-")) { const op = toks[p++].t, b = term(), l = a; a = op === "+" ? (e) => l(e) + b(e) : (e) => l(e) - b(e); } return a; }
+    function term() {
+      let a = unary();
+      for (;;) {
+        const tk = peek();
+        if (tk && (tk.t === "*" || tk.t === "/")) { p++; const b = unary(), l = a; a = tk.t === "*" ? (e) => l(e) * b(e) : (e) => l(e) / b(e); }
+        else if (starts(tk)) { const b = power(), l = a; a = (e) => l(e) * b(e); }
+        else break;
+      }
+      return a;
+    }
+    function unary() { const tk = peek(); if (tk && tk.t === "-") { p++; const a = unary(); return (e) => -a(e); } if (tk && tk.t === "+") { p++; return unary(); } return power(); }
+    function power() { const b = primary(); if (peek() && peek().t === "^") { p++; const ex = unary(); return (e) => Math.pow(b(e), ex(e)); } return b; }
+    function primary() {
+      const tk = toks[p++];
+      if (!tk) throw new Error("unvollständig");
+      if (tk.t === "num") { const v = tk.v; return () => v; }
+      if (tk.t === "var") { const v = tk.v; return (e) => (v in e ? e[v] : NaN); }
+      if (tk.t === "(") { const a = expr(); if (!peek() || peek().t !== ")") throw new Error("Klammer"); p++; return a; }
+      throw new Error("Syntax");
+    }
+    const f = expr();
+    if (p < toks.length) throw new Error("Syntax");
+    return f;
+  }
+  const SAMPLE = [1.37, -2.11, 0.73, 3.29, -0.58, 2.47, -1.63];
+  function sameFn(f, g, vars = "abcxyz") {
+    for (let k = 0; k < 6; k++) {
+      const env = {}; [...vars].forEach((v, i) => { env[v] = SAMPLE[(k + 2 * i) % SAMPLE.length] + 0.1 * i; });
+      const u = f(env), w = g(env);
+      if (!isFinite(u) || !isFinite(w) || Math.abs(u - w) > 1e-7 * Math.max(1, Math.abs(w))) return false;
+    }
+    return true;
+  }
+  // number of top-level summands of an input, e.g. "3a+2b-(a+b)" -> 3
+  function countSummands(raw) {
+    const s = String(raw).replace(/\s+/g, "").replace(/[−–]/g, "-");
+    let depth = 0, n = 1;
+    for (let i = 0; i < s.length; i++) {
+      const c = s[i];
+      if (c === "(") depth++; else if (c === ")") depth--;
+      else if ((c === "+" || c === "-") && depth === 0 && i > 0 && !"*/^(:·×÷+-".includes(s[i - 1])) n++;
+    }
+    return n;
+  }
+
+  // ---------- checkers for the trainer ----------
+  const check = {
+    // numeric answer with relative tolerance (default 1 %)
+    num(value, { tol = 0.01, abs = null, unit = "" } = {}) {
+      return (raw) => {
+        const v = parseNum(String(raw).replace(new RegExp(unit.replace(/[.*+?^${}()|[\]\\]/g, "\\$&") + "$"), ""));
+        if (isNaN(v)) return { ok: false, msg: "Bitte gib eine Zahl ein, z. B. <code>12,5</code>." };
+        const lim = abs !== null ? abs : Math.max(Math.abs(value) * tol, 1e-9);
+        return Math.abs(v - value) <= lim ? { ok: true } : { ok: false, msg: "Der Wert stimmt noch nicht. Prüfe Formel, Einheiten und Rechnung." };
+      };
+    },
+    // algebraic expression, equivalent to f; optional form check and hints for typical mistakes
+    expr(f, { vars = "abcxyz", form = null, hints = [], fallback = "Der Term ist noch nicht gleichwertig. Rechne Schritt für Schritt nach." } = {}) {
+      return (raw) => {
+        let g;
+        try { g = parse(raw); } catch (e) { return { ok: false, msg: "Das kann ich nicht lesen. Prüfe Klammern und Zeichen, z. B. <code>3a+2b</code> oder <code>2x(x-3)</code>." }; }
+        const eq = sameFn(g, f, vars);
+        if (eq && form) { const m = form(raw); if (m) return { ok: false, msg: m }; }
+        if (eq) return { ok: true };
+        for (const h of hints) if (h.f && sameFn(g, h.f, vars)) return { ok: false, msg: h.msg };
+        return { ok: false, msg: fallback };
+      };
+    }
+  };
+
+  // ---------- views (tab routing) ----------
+  function views(names, onShow = {}) {
+    function show() {
+      const h = location.hash.slice(1);
+      const v = names.includes(h) ? h : names[0];
+      names.forEach((n) => { const el = $("#view-" + n); if (el) el.hidden = n !== v; });
+      $$("nav.tabs a").forEach((a) => { if (a.dataset.view === v) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current"); });
+      window.scrollTo({ top: 0 });
+      if (onShow[v]) requestAnimationFrame(onShow[v]);
+    }
+    window.addEventListener("hashchange", show);
+    show();
+    return show;
+  }
+
+  // ---------- quiz ----------
+  function quiz({ box, bar, progress, questions, n = 10, key, mathOptions = false }) {
+    const B = $(box), BAR = $(bar), P = $(progress);
+    const N = Math.min(n, questions.length);
+    let order = [], idx = 0, score = 0, answered = false;
+    function start() {
+      order = shuffle(questions).slice(0, N).map((q) => { const perm = shuffle(q.o.map((_, i) => i)); return { q: q.q, o: perm.map((i) => q.o[i]), a: perm.indexOf(q.a), e: q.e }; });
+      idx = 0; score = 0; render();
+    }
+    function render() {
+      BAR.style.width = (idx / N) * 100 + "%";
+      if (idx >= N) {
+        const best = Math.max(score, store.get(key) || 0); store.set(key, best);
+        const msg = score >= N - 1 ? "Super! Du hast das Thema sicher drauf." : score >= Math.ceil(N * 0.6) ? "Gut gemacht! Schau dir die Erklärungen zu deinen Fehlern noch einmal an." : "Wiederhole die Erklärungen und übe im Trainer. Dann klappt es beim nächsten Mal besser.";
+        P.textContent = `fertig · Bestwert ${best} / ${N}`;
+        B.innerHTML = `<span class="eyebrow">Ergebnis</span><div class="score-big">${score} / ${N}</div><p>${msg}</p><div class="row"><button type="button" class="primary lk-again">Neue Runde</button></div>`;
+        $(".lk-again", B).addEventListener("click", start);
+        return;
+      }
+      const q = order[idx]; answered = false;
+      P.textContent = `Frage ${idx + 1} von ${N} · ${score} richtig`;
+      B.innerHTML = `<div class="qtext"></div><div class="opts"></div><div class="feedback" hidden></div><div class="row"><button type="button" class="primary lk-next" hidden>${idx + 1 < N ? "Nächste Frage" : "Ergebnis anzeigen"}</button></div>`;
+      $(".qtext", B).textContent = q.q;
+      q.o.forEach((t, i) => {
+        const b = document.createElement("button"); b.type = "button";
+        b.innerHTML = `<span class="k">${"ABCD"[i]}</span><span${mathOptions ? ' class="math"' : ""}></span>`; b.lastChild.textContent = t;
+        b.addEventListener("click", () => choose(i));
+        $(".opts", B).appendChild(b);
+      });
+      $(".lk-next", B).addEventListener("click", () => { idx++; render(); });
+    }
+    function choose(i) {
+      if (answered) return; answered = true;
+      const q = order[idx];
+      $$(".opts button", B).forEach((b, j) => { b.disabled = true; if (j === q.a) b.classList.add("right"); else if (j === i) b.classList.add("wrong"); });
+      const ok = i === q.a; if (ok) score++;
+      const fb = $(".feedback", B); fb.hidden = false;
+      fb.innerHTML = ok ? '<span><b class="ok">Richtig!</b> </span>' : '<span><b class="no">Leider falsch.</b> </span>';
+      fb.firstChild.appendChild(document.createTextNode(q.e));
+      const nb = $(".lk-next", B); nb.hidden = false; nb.focus();
+      P.textContent = `Frage ${idx + 1} von ${N} · ${score} richtig`;
+    }
+    start();
+  }
+
+  // ---------- trainer ----------
+  const trainers = [];
+  function trainer({ el, modes, id = "tr" }) {
+    const root = $(el);
+    root.innerHTML = `
+      ${modes.length > 1 ? `<div class="modes" role="group" aria-label="Übungsart">${modes.map((m, i) => `<button type="button" data-mode="${m.id}" aria-pressed="${i === 0}">${m.label}</button>`).join("")}</div>` : ""}
+      <div class="panel stack">
+        <p class="small muted lk-instr"></p>
+        <form class="stack lk-form" autocomplete="off">
+          <div class="task lk-task"></div>
+          <div class="answer-row"><label class="math lk-label" for="${id}-in"></label><input type="text" id="${id}-in" class="lk-in" spellcheck="false"></div>
+          <div class="row"><button type="submit" class="primary">Prüfen</button><button type="button" class="lk-show">Lösung zeigen</button><button type="button" class="lk-new">Neue Aufgabe</button></div>
+        </form>
+        <p class="hint lk-hint"></p>
+        <div class="feedback lk-fb" hidden aria-live="polite"></div>
+        <span class="score-line lk-score"></span>
+      </div>`;
+    let mode = modes[0], task = null;
+    const score = { right: 0, total: 0 };
+    const fb = $(".lk-fb", root), input = $(".lk-in", root);
+    function updateScore() { $(".lk-score", root).textContent = `${score.right} von ${score.total} Aufgaben auf Anhieb richtig`; }
+    function next() {
+      task = mode.gen(); task.attempted = false;
+      $(".lk-instr", root).innerHTML = task.instr || mode.instr || "";
+      $(".lk-task", root).innerHTML = task.html;
+      $(".lk-label", root).innerHTML = task.label || "";
+      input.placeholder = task.placeholder || "";
+      $(".lk-hint", root).innerHTML = task.hint || mode.hint || "";
+      input.value = ""; fb.hidden = true;
+      return task;
+    }
+    function solutionHtml() { return task.solution ? `<div>${task.solution}</div>` : ""; }
+    function submit(raw) {
+      const r = task.check(raw);
+      if (!task.attempted) { task.attempted = true; score.total++; if (r.ok) score.right++; updateScore(); }
+      fb.hidden = false;
+      fb.innerHTML = r.ok ? `<span><b class="ok">Richtig!</b></span>${solutionHtml()}` : `<span><b class="no">Noch nicht richtig.</b> ${r.msg || ""}</span>`;
+      return r;
+    }
+    $(".lk-form", root).addEventListener("submit", (ev) => { ev.preventDefault(); submit(input.value); });
+    $(".lk-show", root).addEventListener("click", () => {
+      if (!task.attempted) { task.attempted = true; score.total++; updateScore(); }
+      fb.hidden = false; fb.innerHTML = `<span>Eine mögliche Lösung: <code>${esc(task.answer)}</code></span>${solutionHtml()}`;
+    });
+    $(".lk-new", root).addEventListener("click", () => { next(); input.focus(); });
+    $$("[data-mode]", root).forEach((b) => b.addEventListener("click", () => {
+      mode = modes.find((m) => m.id === b.dataset.mode);
+      $$("[data-mode]", root).forEach((x) => x.setAttribute("aria-pressed", String(x === b)));
+      next();
+    }));
+    next();
+    const api = { modes, next, submit, get task() { return task; }, setMode(i) { mode = modes[i]; return next(); } };
+    trainers.push(api);
+    return api;
+  }
+
+  // ---------- prediction cards ----------
+  function cards({ el, items, key }) {
+    const root = $(el);
+    let answers = store.get(key) || {};
+    function renderAll() {
+      root.innerHTML = "";
+      items.forEach((c, idx) => {
+        const card = document.createElement("article");
+        card.className = "panel card";
+        card.innerHTML = `<span class="ctx"></span><h3></h3><p class="small"></p><div class="opts"></div><div class="answer" hidden></div>`;
+        $(".ctx", card).textContent = c.ctx; $("h3", card).textContent = c.title; $("p", card).textContent = c.text;
+        const opts = $(".opts", card), ans = $(".answer", card);
+        c.o.forEach((t, i) => {
+          const b = document.createElement("button"); b.type = "button"; b.textContent = t;
+          b.addEventListener("click", () => { answers[idx] = i; store.set(key, answers); paint(); });
+          opts.appendChild(b);
+        });
+        function paint() {
+          const ch = answers[idx];
+          $$("button", opts).forEach((b, i) => { b.classList.remove("right", "wrong"); b.disabled = ch !== undefined; if (ch !== undefined) { if (i === c.a) b.classList.add("right"); else if (i === ch) b.classList.add("wrong"); } });
+          if (ch !== undefined) { ans.hidden = false; ans.innerHTML = ch === c.a ? '<b class="ok">Richtig.</b> ' : '<b class="no">Nicht ganz.</b> '; ans.appendChild(document.createTextNode(c.e)); }
+          else ans.hidden = true;
+        }
+        root.appendChild(card); paint();
+      });
+    }
+    renderAll();
+    return { reset() { answers = {}; store.set(key, answers); renderAll(); } };
+  }
+
+  // ---------- equation lab (equations and inequalities) ----------
+  const REL_FLIP = { "<": ">", ">": "<", "≤": "≥", "≥": "≤", "=": "=" };
+  function equationLab({ el, gen, inequality = false }) {
+    const root = $(el);
+    root.innerHTML = `
+      <div class="panel stack">
+        <div class="lab-eq lk-eq" aria-live="polite"></div>
+        <ol class="lab-log lk-log"></ol>
+        <form class="answer-row lk-form" autocomplete="off">
+          <label for="${el.slice(1)}-op" class="small"><strong>Umformung für beide Seiten:</strong></label>
+          <input type="text" id="${el.slice(1)}-op" class="lk-op" placeholder="z. B. −3 oder −2x oder :4" spellcheck="false">
+          <button type="submit" class="primary">Ausführen</button>
+        </form>
+        <p class="hint">Schreibweise: <code>-3</code>, <code>+5</code>, <code>-2x</code>, <code>+x</code>, <code>:4</code>, <code>*2</code>, <code>:(-3)</code>. Brüche als <code>1/2</code>.</p>
+        <p class="lab-msg lk-msg" aria-live="polite"></p>
+        <div class="row"><button type="button" class="lk-undo">Rückgängig</button><button type="button" class="lk-new">Neue ${inequality ? "Ungleichung" : "Gleichung"}</button></div>
+      </div>`;
+    let hist = [], st = null;
+    const eqHtml = (s) => `${linHtml(s.L.x, s.L.c)} ${s.rel} ${linHtml(s.R.x, s.R.c)}`;
+    function setMsg(t, cls = "") { const m = $(".lk-msg", root); m.className = "lab-msg lk-msg " + cls; m.innerHTML = t; }
+    function render() {
+      $(".lk-eq", root).innerHTML = eqHtml(st);
+      // the operation is written next to the line it is applied to (school notation)
+      $(".lk-log", root).innerHTML = hist.map((h, i) => { const nx = hist[i + 1]; return `<li class="${nx && nx.flip ? "flip" : ""}"><span>${eqHtml(h.s)}</span><span class="op">${nx ? "| " + esc(nx.op) : ""}</span></li>`; }).join("");
+      const s = st, xL = !s.L.x.isZero(), xR = !s.R.x.isZero();
+      if (!xL && !xR) {
+        const l = s.L.c.val(), r = s.R.c.val();
+        const truth = { "=": l === r, "<": l < r, ">": l > r, "≤": l <= r, "≥": l >= r }[s.rel];
+        setMsg(truth ? "Die Variable ist verschwunden und die Aussage ist immer wahr: Jede Zahl ist eine Lösung (L = ℚ)." : "Die Variable ist verschwunden und die Aussage ist falsch: Es gibt keine Lösung (L = { }).", "ok");
+        return;
+      }
+      const solvedL = s.L.x.eq(1) && s.L.c.isZero() && !xR, solvedR = s.R.x.eq(1) && s.R.c.isZero() && !xL;
+      if (solvedL || solvedR) {
+        const v = solvedL ? s.R.c : s.L.c, rel = solvedL ? s.rel : REL_FLIP[s.rel];
+        setMsg(inequality && rel !== "=" ? `Gelöst! Alle Zahlen mit <span class="math"><i>x</i> ${rel} ${v.html()}</span> erfüllen die Ungleichung: <span class="math">L = {<i>x</i> | <i>x</i> ${rel} ${v.html()}}</span>` : `Gelöst! <span class="math"><i>x</i> = ${v.html()}</span>, also <span class="math">L = {${v.html()}}</span>. Mach zur Sicherheit die Probe.`, "ok");
+      } else setMsg("Forme weiter um, bis <i>x</i> allein auf einer Seite steht.");
+    }
+    function start(s) { st = s || gen(); hist = [{ s: st, op: "" }]; render(); }
+    function apply(raw) {
+      let s = String(raw).replace(/\s+/g, "").replace(/[−–]/g, "-").replace(/[·⋅×]/g, "*").replace(/[÷/]/g, (m, i) => (i === 0 ? ":" : m)).replace(/^\//, ":");
+      const m = s.match(/^([+\-*:])\(?(-?)(\d*(?:[.,]\d+)?(?:\/\d+)?)(x?)\)?$/);
+      if (!m || (m[3] === "" && m[4] === "")) { setMsg("Das verstehe ich nicht. Beginne mit + − * oder :, z. B. <code>-3</code> oder <code>:2</code>.", "no"); return false; }
+      const [, op, sg, numTxt, hasX] = m;
+      let k; try { k = R.of(numTxt === "" ? 1 : parseNum(numTxt)); if (numTxt.includes("/")) { const [a, b] = numTxt.split("/").map(Number); k = new R(a, b); } } catch (e) { setMsg("Ungültige Zahl.", "no"); return false; }
+      if (sg) k = k.neg();
+      const next = { L: { ...st.L }, R: { ...st.R }, rel: st.rel };
+      let flip = false;
+      const label = `${op === "*" ? "·" : op === ":" ? ":" : op === "-" ? "−" : "+"}${op === "*" || op === ":" ? (k.sign() < 0 ? `(${k.text().replace("-", "−")})` : k.text()) : (k.sign() < 0 ? `(${k.text().replace("-", "−")})` : k.text())}${hasX ? "x" : ""}`.replace(/^([+−])1x$/, "$1x");
+      if (op === "+" || op === "-") {
+        const kk = op === "-" ? k.neg() : k;
+        for (const side of ["L", "R"]) { if (hasX) next[side].x = next[side].x.add(kk); else next[side].c = next[side].c.add(kk); }
+      } else {
+        if (hasX) { setMsg("Mit <i>x</i> malnehmen oder durch <i>x</i> teilen ist keine erlaubte Umformung, weil <i>x</i> null sein könnte.", "no"); return false; }
+        if (k.isZero()) { setMsg(op === ":" ? "Durch 0 darf man nicht teilen." : "Mal 0 macht beide Seiten zu 0. Dabei geht die Information verloren, das ist keine Äquivalenzumformung.", "no"); return false; }
+        for (const side of ["L", "R"]) {
+          next[side].x = op === "*" ? next[side].x.mul(k) : next[side].x.div(k);
+          next[side].c = op === "*" ? next[side].c.mul(k) : next[side].c.div(k);
+        }
+        if (inequality && k.sign() < 0 && next.rel !== "=") { next.rel = REL_FLIP[next.rel]; flip = true; }
+      }
+      st = next; hist.push({ s: st, op: label + (flip ? "  Zeichen umdrehen!" : ""), flip }); render();
+      if (flip) setMsg("Achtung: Du hast mit einer negativen Zahl multipliziert oder durch sie geteilt. Deshalb dreht sich das Ungleichheitszeichen um! " + $(".lk-msg", root).innerHTML, "no");
+      return true;
+    }
+    $(".lk-form", root).addEventListener("submit", (ev) => { ev.preventDefault(); const i = $(".lk-op", root); if (apply(i.value)) i.value = ""; i.focus(); });
+    $(".lk-undo", root).addEventListener("click", () => { if (hist.length > 1) { hist.pop(); st = hist[hist.length - 1].s; render(); } });
+    $(".lk-new", root).addEventListener("click", () => start());
+    start();
+    return { apply, start, get state() { return st; } };
+  }
+  // random linear equation a x + b (rel) c x + d with a "nice" solution
+  function genLinear({ rel = "=", fractions = false } = {}) {
+    let a, c; do { a = nz(-6, 7); c = rnd(-4, 4); } while (a === c);
+    const x0 = fractions ? new R(nz(-9, 9), pick([1, 2, 3])) : new R(nz(-6, 6));
+    const b = R.of(rnd(-9, 9)), d = x0.mul(a - c).add(b);
+    return { L: { x: R.of(a), c: b }, R: { x: R.of(c), c: d }, rel, x0 };
+  }
+
+  // number as plain answer text with decimal comma, e.g. 1013,25
+  const numText = (v, d = 2) => String(Math.round(v * 10 ** d) / 10 ** d || 0).replace(".", ",");
+
+  window.LK = { $, $$, store, rnd, pick, nz, shuffle, gcd, esc, minus, frac, fmt, parseNum, numText, R, linHtml, poly, polyFn, collect, monoParts, parse, sameFn, countSummands, check, views, quiz, trainer, trainers, cards, equationLab, genLinear, REL_FLIP };
+})();
+</script>
+<script>
+(function () {
+  "use strict";
+  const { $, $$, pick, fmt, numText } = LK;
+
+  // ---------- clickable figures ----------
+  const NC = { soma: "#e6c6ee", line: "#8e5aa0", myelin: "#f3e2a8", myelinLine: "#b8962e" };
+  const SEG = [140, 192, 244, 296, 348]; // myelin segments (width 44)
+  const GAPS = [188, 240, 292, 344];
+  const NEURON = [
+    { id: "dendriten", name: "Dendriten", info: "Kurze, verzweigte Fortsätze. Sie empfangen Signale von Sinneszellen oder anderen Nervenzellen und leiten sie zum Zellkörper.",
+      svg: () => { const d = "M52 132 L28 100 L12 92 M28 100 L22 78 M50 166 L24 196 L10 200 M24 196 L20 220 M70 122 L60 88 L46 70 M60 88 L70 66 M72 178 L62 214 L50 232 M62 214 L76 236"; return `<path class="shape" d="${d}" fill="none" stroke="${NC.line}" stroke-width="4" stroke-linecap="round"/><path class="hit" d="${d}"/>`; }, lab: [40, 40, "middle", 50, 68] },
+    { id: "zellkoerper", name: "Zellkörper", info: "Hier laufen die Signale der Dendriten zusammen. Er enthält den Zellkern und hält die Zelle am Leben.",
+      svg: () => `<ellipse class="shape" cx="80" cy="150" rx="34" ry="30" fill="${NC.soma}" stroke="${NC.line}" stroke-width="2"/>`, lab: [150, 96, "start", 104, 132] },
+    { id: "zellkern", name: "Zellkern", info: "Er enthält die Erbinformation und steuert die Zelle.",
+      svg: () => `<circle class="shape" cx="78" cy="148" r="12" fill="${NC.line}" stroke="#5c3470" stroke-width="1.5"/>`, lab: [86, 262, "middle", 78, 162] },
+    { id: "axon", name: "Axon (Nervenfaser)", info: "Ein langer Fortsatz, der das Signal vom Zellkörper weiterleitet. Bei manchen Nervenzellen ist er über einen Meter lang, zum Beispiel vom Rückenmark bis in den Fuß.",
+      svg: () => `<path class="shape" d="M112 150 H402" stroke="${NC.line}" stroke-width="5" fill="none"/><path class="hit" d="M112 150 H140"/>`, lab: [128, 222, "middle", 126, 153] },
+    { id: "myelin", name: "Myelinscheide (Markscheide)", info: "Eine fetthaltige Hülle um das Axon. Sie isoliert es wie die Hülle eines Kabels. So springt das Signal von Schnürring zu Schnürring und ist viel schneller.",
+      svg: () => SEG.map((x) => `<rect class="shape" x="${x}" y="139" width="44" height="22" rx="10" fill="${NC.myelin}" stroke="${NC.myelinLine}" stroke-width="1.5"/>`).join(""), lab: [318, 100, "middle", 318, 138] },
+    { id: "schnuerring", name: "Schnürring", info: "Eine kleine Lücke zwischen zwei Abschnitten der Myelinscheide. Das Signal springt von einem Schnürring zum nächsten.",
+      svg: () => GAPS.map((x) => `<circle class="shape" cx="${x}" cy="150" r="5" fill="none" stroke="${NC.line}" stroke-width="1.5"/><circle class="hitfill" cx="${x}" cy="150" r="9"/>`).join(""), lab: [300, 222, "middle", 292, 157] },
+    { id: "endknoepfchen", name: "Endknöpfchen (Synapse)", info: "Die verdickten Enden des Axons. Hier wird das Signal an der Synapse mit einem Botenstoff auf die nächste Zelle übertragen, zum Beispiel auf eine Muskelzelle.",
+      svg: () => { const d = "M402 150 L432 114 M402 150 L444 150 M402 150 L432 186"; return `<path class="shape" d="${d}" stroke="${NC.line}" stroke-width="4" fill="none"/>` + [[432, 114], [444, 150], [432, 186]].map(([x, y]) => `<circle class="shape" cx="${x}" cy="${y}" r="7" fill="${NC.soma}" stroke="${NC.line}" stroke-width="2"/>`).join(""); }, lab: [412, 70, "middle", 430, 104] }
+  ];
+  const stemL = (y) => 236 + ((y - 166) * 26) / 80, stemR = (y) => 262 + ((y - 166) * 22) / 80;
+  const stemPart = (y1, y2, bulge = 0) => `M${stemL(y1)} ${y1} ${bulge ? `Q${stemL((y1 + y2) / 2) - bulge} ${(y1 + y2) / 2} ` : "L"}${stemL(y2)} ${y2} L${stemR(y2)} ${y2} L${stemR(y1)} ${y1} Z`;
+  const BRAIN = [
+    { id: "grosshirn", name: "Großhirn", info: "Der größte Teil des Gehirns mit der gefalteten Großhirnrinde. Hier entstehen Denken, Lernen, Gedächtnis, Sprache und bewusste Wahrnehmung. Es startet auch bewusste Bewegungen.",
+      svg: () => `<path class="shape" d="M70 160 C60 90 120 40 210 38 C310 36 392 80 395 150 C397 182 372 196 335 192 C300 189 282 176 252 174 C204 172 152 198 110 195 C82 193 72 181 70 160 Z" fill="#f2b8b0" stroke="#b5554d" stroke-width="2"/>
+        <path class="deco" d="M110 120 C130 100 150 130 170 105 C190 82 210 115 230 90 M150 160 C170 140 190 165 210 140 C230 118 255 150 275 125 C295 102 315 130 335 110 M260 70 C280 90 300 65 320 85 C340 105 355 90 372 112 M95 150 C110 135 125 150 140 135"/>`, lab: [120, 24, "middle", 150, 60] },
+    { id: "zwischenhirn", name: "Zwischenhirn", info: "Liegt tief im Inneren. Es regelt Körpertemperatur, Hunger, Durst und Schlaf und leitet Sinneseindrücke an das Großhirn weiter.",
+      svg: () => `<ellipse class="shape" cx="246" cy="150" rx="26" ry="15" fill="#f7d79a" stroke="#b8962e" stroke-width="1.8"/>`, lab: [95, 236, "middle", 224, 157] },
+    { id: "kleinhirn", name: "Kleinhirn", info: "Sitzt hinten unter dem Großhirn. Es sorgt für das Gleichgewicht und dafür, dass Bewegungen fein abgestimmt und flüssig ablaufen.",
+      svg: () => `<path class="shape" d="M285 205 C290 182 330 178 360 186 C388 194 392 222 372 236 C350 250 300 246 288 230 C283 223 283 213 285 205 Z" fill="#c9a0dc" stroke="#7b4bb0" stroke-width="2"/><path class="deco" d="M298 205 C320 196 350 198 378 210 M296 220 C320 212 352 214 380 224 M302 234 C324 228 348 230 368 238"/>`, lab: [420, 268, "middle", 372, 238] },
+    { id: "mittelhirn", name: "Mittelhirn", info: "Teil des Hirnstamms. Es ist an Reflexen von Auge und Ohr beteiligt, zum Beispiel am Pupillenreflex.",
+      svg: () => `<path class="shape" d="${stemPart(166, 192)}" fill="#e8b97a" stroke="#a0702c" stroke-width="1.5"/>`, lab: [225, 214, "end", 243, 184] },
+    { id: "bruecke", name: "Brücke", info: "Teil des Hirnstamms. Sie verbindet Großhirn, Kleinhirn und Rückenmark und hilft bei der Steuerung der Atmung.",
+      svg: () => `<path class="shape" d="${stemPart(192, 218, 9)}" fill="#ddb06e" stroke="#a0702c" stroke-width="1.5"/>`, lab: [220, 242, "end", 238, 206] },
+    { id: "nachhirn", name: "Nachhirn (verlängertes Mark)", info: "Der unterste Teil des Hirnstamms. Hier werden lebenswichtige Vorgänge gesteuert: Atmung, Herzschlag, Blutdruck, Schlucken, Husten und Niesen.",
+      svg: () => `<path class="shape" d="${stemPart(218, 246)}" fill="#e8c287" stroke="#a0702c" stroke-width="1.5"/>`, lab: [228, 272, "end", 256, 236] },
+    { id: "rueckenmark", name: "Rückenmark", info: "Verbindet das Gehirn mit dem Körper. Es leitet Signale hinauf und hinab und schaltet viele Reflexe selbst um. Es liegt geschützt in der Wirbelsäule.",
+      svg: () => `<path class="shape" d="M${stemL(246)} 246 L267 298 L281 298 L${stemR(246)} 246 Z" fill="#f2d27a" stroke="#b8962e" stroke-width="1.5"/>`, lab: [338, 292, "middle", 280, 286] }
+  ];
+  const FIGS = { neuron: { parts: NEURON, extra: '<path class="lead" d="M150 282 H330 M322 276 L330 282 L322 288"/><text x="240" y="276" text-anchor="middle" style="fill: var(--muted)">Richtung des Signals</text>' },
+    brain: { parts: BRAIN, extra: '<text x="62" y="110" text-anchor="end" style="fill: var(--muted)">Stirn</text>' } };
+  let fig = "neuron", mode = "explore", sel = null, wrong = null, target = null, score = [0, 0];
+  function drawFig() {
+    const F = FIGS[fig];
+    let s = F.extra;
+    F.parts.forEach((p) => { s += `<g class="part${sel === p.id ? " sel" : ""}${wrong === p.id ? " wrong" : ""}" data-part="${p.id}">${p.svg()}</g>`; });
+    if (mode === "explore") F.parts.forEach((p) => {
+      const [x, y, a, lx, ly] = p.lab;
+      // end-anchored labels get their leader from the right end of the text
+      const [x1, y1] = a === "end" ? [x + 3, y - 4] : [x, y + (ly > y ? 4 : -12)];
+      s += `<line class="lead" x1="${x1}" y1="${y1}" x2="${lx}" y2="${ly}"/><text class="lab" x="${x}" y="${y}" text-anchor="${a}"${sel === p.id ? ' style="fill: var(--accent)"' : ""}>${p.name.replace(/ \(.*\)/, "")}</text>`;
+    });
+    $("#figSvg").innerHTML = s;
+    $$("#figSvg .part").forEach((g) => g.addEventListener("click", () => clickPart(g.dataset.part)));
+    figInfo();
+  }
+  function figInfo(msg = "") {
+    const F = FIGS[fig];
+    if (mode === "explore") {
+      const p = F.parts.find((q) => q.id === sel);
+      $("#figInfo").innerHTML = p ? `<span class="eyebrow">Ausgewählt</span><h3>${p.name}</h3><p class="small">${p.info}</p>` : `<span class="eyebrow">Erkunden</span><p class="small">Tippe auf einen Teil der ${fig === "neuron" ? "Nervenzelle" : "Abbildung"}, um mehr darüber zu erfahren.</p>`;
+    } else {
+      const t = F.parts.find((q) => q.id === target);
+      $("#figInfo").innerHTML = `<span class="eyebrow">Abfragen · ${score[0]} von ${score[1]} richtig</span><h3>Wo ist: ${t.name}?</h3><p class="small">${msg || "Tippe auf den Teil im Bild."}</p>`;
+    }
+  }
+  function newTarget() { const ps = FIGS[fig].parts; let t; do { t = pick(ps).id; } while (t === target); target = t; sel = null; wrong = null; drawFig(); }
+  function clickPart(id) {
+    if (mode === "explore") { sel = id; drawFig(); return; }
+    if (sel === target) return;
+    const p = FIGS[fig].parts.find((q) => q.id === id);
+    score[1]++;
+    if (id === target) { score[0]++; sel = id; wrong = null; drawFig(); figInfo('<b class="ok">Richtig!</b>'); setTimeout(newTarget, 1100); }
+    else { wrong = id; drawFig(); figInfo(`<b class="no">Nicht ganz.</b> Das ist: ${p.name}. Versuch es noch einmal.`); }
+  }
+  function reset() { sel = null; wrong = null; target = null; if (mode === "quiz") { score = [0, 0]; newTarget(); } else drawFig(); }
+  $$("[data-fig]").forEach((b) => b.addEventListener("click", () => { fig = b.dataset.fig; $$("[data-fig]").forEach((x) => x.setAttribute("aria-pressed", String(x === b))); reset(); }));
+  $$("[data-mode]").forEach((b) => b.addEventListener("click", () => { mode = b.dataset.mode; $$("[data-mode]").forEach((x) => x.setAttribute("aria-pressed", String(x === b))); reset(); }));
+
+  // ---------- signal path ----------
+  const BOX = { gehirn: [230, 45, 150, 44, "Gehirn"], rm: [230, 160, 150, 40, "Rückenmark"], muskel: [390, 255, 120, 40, "Muskel"] };
+  const NERVES = {
+    sens: ["M70 235 V160 H155", "sensorischer Nerv", 78, 205],
+    motor: ["M305 160 H390 V235", "motorischer Nerv", 330, 150],
+    up: ["M212 140 V67", "zum Gehirn", 150, 108],
+    down: ["M248 67 V140", "vom Gehirn", 256, 108],
+    seh: ["M130 45 H155", "Sehnerv", 120, 15]
+  };
+  const SC = {
+    herd: { label: "Heiße Herdplatte (Reflex)", rec: [70, 255, "Haut der Hand"], steps: [
+      { t: "Reiz", x: "Die Hand berührt die heiße Herdplatte. Sinneszellen in der Haut melden Hitze und Schmerz.", on: ["rec"] },
+      { t: "Sensorischer Nerv", x: "Ein sensorischer Nerv leitet das Signal zum Rückenmark.", on: ["rec", "sens"], move: "sens" },
+      { t: "Umschaltung im Rückenmark", x: "Das Rückenmark schaltet das Signal direkt auf einen motorischen Nerv um. Das Gehirn wird nicht gefragt. Das spart Zeit: Reflexbogen.", on: ["rm"] },
+      { t: "Motorischer Nerv", x: "Der motorische Nerv leitet den Befehl zum Armmuskel.", on: ["rm", "motor"], move: "motor" },
+      { t: "Reaktion", x: "Der Muskel zieht sich zusammen, die Hand zuckt zurück, nach weniger als einer Zehntelsekunde.", on: ["muskel"] },
+      { t: "Erst jetzt: Schmerz", x: "Gleichzeitig läuft ein Signal zum Gehirn. Erst dort wird der Schmerz bewusst. Da ist die Hand schon in Sicherheit.", on: ["rm", "up", "gehirn"], move: "up" }
+    ] },
+    knie: { label: "Kniesehnenreflex", rec: [70, 255, "Sinneszellen im Muskel"], steps: [
+      { t: "Reiz", x: "Der Hammer trifft die Sehne unter der Kniescheibe. Der Oberschenkelmuskel wird kurz gedehnt. Sinneszellen im Muskel melden das.", on: ["rec"] },
+      { t: "Sensorischer Nerv", x: "Das Signal läuft über einen sensorischen Nerv zum Rückenmark.", on: ["rec", "sens"], move: "sens" },
+      { t: "Umschaltung im Rückenmark", x: "Im Rückenmark wird direkt auf den motorischen Nerv umgeschaltet. Das Gehirn ist nicht beteiligt.", on: ["rm"] },
+      { t: "Motorischer Nerv", x: "Der motorische Nerv leitet den Befehl zum Oberschenkelmuskel zurück.", on: ["rm", "motor"], move: "motor" },
+      { t: "Reaktion", x: "Der Muskel zieht sich zusammen, der Unterschenkel schnellt nach vorn. Du kannst das kaum verhindern.", on: ["muskel"] }
+    ] },
+    ball: { label: "Ball fangen (bewusst)", rec: [70, 45, "Auge"], steps: [
+      { t: "Reiz", x: "Ein Ball fliegt auf dich zu. Die Lichtsinneszellen im Auge nehmen ihn wahr.", on: ["rec"] },
+      { t: "Sehnerv", x: "Der Sehnerv leitet die Signale zum Gehirn.", on: ["rec", "seh"], move: "seh" },
+      { t: "Verarbeitung im Großhirn", x: "Das Großhirn erkennt den Ball, schätzt Richtung und Tempo und plant die Bewegung. Das Kleinhirn stimmt sie fein ab. Das braucht Zeit.", on: ["gehirn"] },
+      { t: "Durch das Rückenmark", x: "Der Befehl läuft vom Gehirn durch das Rückenmark nach unten.", on: ["gehirn", "down", "rm"], move: "down" },
+      { t: "Motorischer Nerv", x: "Ein motorischer Nerv leitet den Befehl zu den Arm- und Handmuskeln.", on: ["rm", "motor"], move: "motor" },
+      { t: "Reaktion", x: "Die Muskeln ziehen sich zusammen, du fängst den Ball. Eine bewusste Reaktion dauert etwa 0,2 bis 0,3 Sekunden.", on: ["muskel"] }
+    ] }
+  };
+  let sc = "herd", step = 0, timer = null, anim = 0;
+  $("#sModes").innerHTML = Object.entries(SC).map(([k, v], i) => `<button type="button" data-sc="${k}" aria-pressed="${i === 0}">${v.label}</button>`).join("");
+  const boxSvg = ([x, y, w, h, t], on, cls = "") => `<rect class="box${on ? " on" : ""}" x="${x - w / 2}" y="${y - h / 2}" width="${w}" height="${h}" rx="10"/><text class="bold ${cls}" x="${x}" y="${y + 4}" text-anchor="middle">${t}</text>`;
+  function drawPath() {
+    const S = SC[sc], st = S.steps[step], on = new Set(st.on);
+    const used = sc === "ball" ? ["seh", "down", "motor"] : ["sens", "motor", "up"];
+    let s = "";
+    used.forEach((k) => { const [d, lab, lx, ly] = NERVES[k]; s += `<path id="nv-${k}" class="nerve${on.has(k) ? " on" : ""}" d="${d}"/><text class="tag" x="${lx}" y="${ly}">${lab}</text>`; });
+    s += boxSvg(BOX.gehirn, on.has("gehirn")) + boxSvg(BOX.rm, on.has("rm")) + boxSvg(BOX.muskel, on.has("muskel"));
+    const [rx, ry, rl] = S.rec;
+    const words = rl.split(" "), lines = rl.length > 16 ? [words.slice(0, Math.ceil(words.length / 2)).join(" "), words.slice(Math.ceil(words.length / 2)).join(" ")] : [rl];
+    s += `<rect class="box${on.has("rec") ? " on" : ""}" x="${rx - 60}" y="${ry - 20 - (lines.length - 1) * 8}" width="120" height="${40 + (lines.length - 1) * 16}" rx="10"/>`;
+    lines.forEach((l, i) => { s += `<text class="bold" x="${rx}" y="${ry + 4 - (lines.length - 1) * 8 + i * 16}" text-anchor="middle" style="font-size:${lines.length > 1 ? 11 : 12.5}px">${l}</text>`; });
+    s += `<circle class="dot" id="sDot" r="7" cx="-20" cy="-20"/>`;
+    $("#sSvg").innerHTML = s;
+    $("#sStep").textContent = `${S.label} · Schritt ${step + 1} von ${S.steps.length}`;
+    $("#sTitle").textContent = st.t; $("#sText").textContent = st.x;
+    $("#sPrev").disabled = step === 0; $("#sNext").disabled = step === S.steps.length - 1;
+    cancelAnimationFrame(anim);
+    if (st.move) {
+      const p = $("#nv-" + st.move), L = p.getTotalLength(), dot = $("#sDot"), t0 = performance.now();
+      const reduce = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+      const f = (now) => { const u = reduce ? 1 : Math.min(1, (now - t0) / 1200); const q = p.getPointAtLength(u * L); dot.setAttribute("cx", q.x); dot.setAttribute("cy", q.y); if (u < 1) anim = requestAnimationFrame(f); };
+      anim = requestAnimationFrame(f);
+    }
+  }
+  function stop() { if (timer) { clearInterval(timer); timer = null; $("#sPlay").textContent = "Abspielen"; } }
+  $$("[data-sc]").forEach((b) => b.addEventListener("click", () => { stop(); sc = b.dataset.sc; step = 0; $$("[data-sc]").forEach((x) => x.setAttribute("aria-pressed", String(x === b))); drawPath(); }));
+  $("#sPrev").addEventListener("click", () => { stop(); if (step > 0) { step--; drawPath(); } });
+  $("#sNext").addEventListener("click", () => { stop(); if (step < SC[sc].steps.length - 1) { step++; drawPath(); } });
+  $("#sPlay").addEventListener("click", () => {
+    if (timer) { stop(); return; }
+    step = 0; drawPath(); $("#sPlay").textContent = "Stopp";
+    timer = setInterval(() => { if (step < SC[sc].steps.length - 1) { step++; drawPath(); } else stop(); }, 2400);
+  });
+
+  // ---------- reaction test ----------
+  const box = $("#rtBox"); let rtState = "idle", rtTimer = null, t0 = 0, times = [];
+  function setRt(state, text) { rtState = state; box.dataset.state = state; box.textContent = text; }
+  function rtShow() {
+    $("#rtList").innerHTML = times.map((t) => `<li>${t} ms</li>`).join("") || "<li>noch keine</li>";
+    if (!times.length) { $("#rtAvg").textContent = ""; return; }
+    const avg = Math.round(times.reduce((a, b) => a + b, 0) / times.length), best = Math.min(...times);
+    const rate = avg < 250 ? "Sehr schnell!" : avg < 350 ? "Gut, das ist ein typischer Wert." : "Probier es noch ein paar Mal. Die ersten Versuche sind oft langsamer.";
+    $("#rtAvg").innerHTML = `Durchschnitt: <strong>${avg} ms</strong> · Bestwert: <strong>${best} ms</strong>. ${rate}`;
+  }
+  function rtPress() {
+    if (rtState === "idle" || rtState === "done" || rtState === "early") {
+      setRt("wait", "Warte auf Grün …");
+      rtTimer = setTimeout(() => { setRt("go", "Jetzt tippen!"); t0 = performance.now(); }, 1500 + Math.random() * 2500);
+    } else if (rtState === "wait") {
+      clearTimeout(rtTimer); setRt("early", "Zu früh! Tippe zum Neustart.");
+    } else if (rtState === "go") {
+      const t = Math.round(performance.now() - t0);
+      times = [t, ...times].slice(0, 5); rtShow();
+      setRt("done", `${t} ms · Tippe für den nächsten Versuch`);
+    }
+  }
+  box.addEventListener("pointerdown", (e) => { e.preventDefault(); rtPress(); });
+  box.addEventListener("keydown", (e) => { if (e.key === " " || e.key === "Enter") { e.preventDefault(); rtPress(); } });
+  document.addEventListener("keydown", (e) => { if (e.key === " " && location.hash === "#reaktion" && document.activeElement !== box) { e.preventDefault(); rtPress(); } });
+  $("#rtReset").addEventListener("click", () => { times = []; rtShow(); });
+  rtShow();
+
+  // ---------- trainer ----------
+  const TERMS = [
+    ["Fortsätze einer Nervenzelle, die Signale empfangen", "Dendriten", /dendrit/],
+    ["Langer Fortsatz einer Nervenzelle, der das Signal weiterleitet", "Axon", /axon|nervenfaser|neurit/],
+    ["Isolierende Hülle um das Axon, die die Leitung beschleunigt", "Myelinscheide", /myelin|markscheide/],
+    ["Kontaktstelle, an der ein Signal mit Botenstoff auf die nächste Zelle übertragen wird", "Synapse", /synap/],
+    ["Fachwort für Nervenzelle", "Neuron", /neuron/],
+    ["Gehirn und Rückenmark zusammen", "Zentrales Nervensystem (ZNS)", /zns|zentral/],
+    ["Schnelle, angeborene Reaktion, die nicht bewusst gesteuert wird", "Reflex", /reflex/],
+    ["Nerven, die Signale von den Sinnesorganen zum ZNS leiten", "sensorische Nerven", /sensor|sensib|afferen/],
+    ["Nerven, die Befehle vom ZNS zu den Muskeln leiten", "motorische Nerven", /motor|efferen/],
+    ["Teil des vegetativen Nervensystems, der den Körper auf Leistung und Gefahr einstellt", "Sympathikus", /sympath/],
+    ["Teil des vegetativen Nervensystems, der für Ruhe und Verdauung sorgt", "Parasympathikus", /parasymp/],
+    ["Liegt in der Wirbelsäule und schaltet viele Reflexe um", "Rückenmark", /r(ü|ue|u)ckenmark/],
+    ["Eine Veränderung in der Umwelt oder im Körper, die Sinneszellen wahrnehmen", "Reiz", /^reiz/],
+    ["Lücke in der Myelinscheide, an der das Signal „springt“", "Schnürring", /schn(ü|ue|u)rring/]
+  ];
+  function genTerm() {
+    const [d, a, re] = pick(TERMS);
+    return { html: `Wie heißt das? <b>${d}</b>`, label: "Begriff:", placeholder: "Fachbegriff", answer: a,
+      check: (raw) => { const t = raw.trim().toLowerCase(); if (a === "Sympathikus" && /parasymp/.test(t)) return { ok: false, msg: "Das ist das Gegenstück. Gesucht ist der Teil für Leistung und Gefahr." }; return re.test(t) ? { ok: true } : { ok: false, msg: "Noch nicht. Schau unter „Verstehen“ nach." }; },
+      solution: `<b>${a}</b>` };
+  }
+  const BR = [
+    ["Du lernst Vokabeln und erinnerst dich am nächsten Tag daran.", "Großhirn"], ["Du verstehst einen Satz und antwortest.", "Großhirn"],
+    ["Du siehst bewusst eine rote Ampel.", "Großhirn"], ["Du entscheidest, die Hand zu heben.", "Großhirn"],
+    ["Du balancierst auf einem Baumstamm.", "Kleinhirn"], ["Beim Radfahren hältst du das Gleichgewicht.", "Kleinhirn"],
+    ["Eine geübte Bewegung, etwa Klavierspielen, läuft flüssig ab.", "Kleinhirn"],
+    ["Dir ist kalt, der Körper beginnt zu zittern, um die Temperatur zu halten.", "Zwischenhirn"], ["Du bekommst Durst.", "Zwischenhirn"],
+    ["Du atmest im Schlaf weiter, ohne daran zu denken.", "Hirnstamm"], ["Das Herz schlägt ohne dein Zutun.", "Hirnstamm"], ["Du musst husten, weil dir etwas in die Luftröhre geraten ist.", "Hirnstamm"]
+  ];
+  const brainOf = (raw) => { const t = raw.trim().toLowerCase(); return /gro(ß|ss)hirn|gro(ß|ss)hirnrinde/.test(t) ? "Großhirn" : /kleinhirn/.test(t) ? "Kleinhirn" : /zwischenhirn|hypothal/.test(t) ? "Zwischenhirn" : /stamm|nachhirn|verl(ä|ae)ngert|br(ü|ue)cke|mittelhirn/.test(t) ? "Hirnstamm" : null; };
+  function genBrain() {
+    const [d, a] = pick(BR);
+    return { html: `${d} Welcher Teil des Gehirns ist vor allem beteiligt?`, label: "Hirnteil:", placeholder: "Großhirn, Kleinhirn, Zwischenhirn oder Hirnstamm", answer: a,
+      check: (raw) => { const v = brainOf(raw); if (!v) return { ok: false, msg: "Antworte mit Großhirn, Kleinhirn, Zwischenhirn oder Hirnstamm." }; return v === a ? { ok: true } : { ok: false, msg: "Bewusst und gelernt: Großhirn. Gleichgewicht: Kleinhirn. Temperatur, Hunger, Durst: Zwischenhirn. Atmung, Herzschlag: Hirnstamm." }; },
+      solution: `<b>${a}</b>${a === "Hirnstamm" ? " (Nachhirn / verlängertes Mark)" : ""}` };
+  }
+  const RX = [
+    ["Du ziehst die Hand von einer heißen Tasse weg, bevor du nachdenkst.", "Reflex"], ["Ein Insekt fliegt auf dein Auge zu, du schließt das Lid.", "Reflex"],
+    ["Der Arzt klopft unter die Kniescheibe, das Bein schnellt vor.", "Reflex"], ["Staub in der Nase: Du musst niesen.", "Reflex"],
+    ["Helles Licht: Die Pupille wird eng.", "Reflex"], ["Du schreibst deinen Namen.", "willkürlich"], ["Du fängst einen Ball, der dir zugeworfen wird.", "willkürlich"],
+    ["Du hebst die Hand, um dich zu melden.", "willkürlich"], ["Du drückst beim Videospiel eine Taste.", "willkürlich"]
+  ];
+  function genRx() {
+    const [d, a] = pick(RX);
+    return { html: `${d} Reflex oder willkürliche (bewusste) Handlung?`, label: "Antwort:", placeholder: "Reflex oder willkürlich", answer: a,
+      check: (raw) => { const t = raw.trim().toLowerCase(); const v = /reflex|unwill/.test(t) ? "Reflex" : /will|bewusst/.test(t) ? "willkürlich" : null;
+        if (!v) return { ok: false, msg: "Antworte mit <code>Reflex</code> oder <code>willkürlich</code>." }; return v === a ? { ok: true } : { ok: false, msg: "Reflexe sind angeboren, schnell, laufen immer gleich ab und werden nicht bewusst gesteuert." }; },
+      solution: a === "Reflex" ? "<b>Reflex</b>: angeboren, schnell, nicht bewusst gesteuert." : "<b>willkürlich</b>: bewusst geplant, das Großhirn entscheidet." };
+  }
+  function genTime() {
+    const s = pick([0.5, 0.8, 1, 1.2, 1.5, 2]), v = pick([1, 2, 10, 20, 50, 60, 100, 120]);
+    if (Math.random() < 0.6) {
+      const t = (s / v) * 1000;
+      return { html: `Ein Nervensignal läuft <b>${fmt(s, 1)} m</b> weit mit <b>${v} m/s</b>. Wie lange braucht es?`, label: "<i>t</i> =", placeholder: "in ms", answer: numText(t, 1),
+        check: LK.check.num(t), hint: "Einheit: ms (Millisekunden). 1 s = 1 000 ms.",
+        solution: `<span class="math"><i>t</i> = <i>s</i> : <i>v</i> = ${fmt(s, 1)} m : ${v} m/s = ${fmt(s / v, 4)} s = ${fmt(t, 1)} ms</span>` };
+    }
+    const t = pick([5, 10, 20, 25, 50]), sv = (v * t) / 1000;
+    return { html: `Ein Signal braucht <b>${t} ms</b> bei <b>${v} m/s</b>. Wie lang ist die Nervenstrecke?`, label: "<i>s</i> =", placeholder: "in m", answer: numText(sv, 3),
+      check: LK.check.num(sv), hint: "Einheit: m. Rechne ms zuerst in s um.",
+      solution: `<span class="math"><i>s</i> = <i>v</i> · <i>t</i> = ${v} m/s · ${fmt(t / 1000, 3)} s = ${fmt(sv, 3)} m</span>` };
+  }
+  LK.trainer({ el: "#trainer", modes: [
+    { id: "begriffe", label: "Fachbegriffe", gen: genTerm },
+    { id: "hirn", label: "Welcher Hirnteil?", gen: genBrain },
+    { id: "reflex", label: "Reflex oder willkürlich?", gen: genRx },
+    { id: "zeit", label: "Signalzeit rechnen", gen: genTime }
+  ] });
+
+  // ---------- quiz ----------
+  LK.quiz({ box: "#quizBox", bar: "#qBar", progress: "#qProgress", key: "nerven.best", n: 10, questions: [
+    { q: "Was gehört zum zentralen Nervensystem (ZNS)?", o: ["Gehirn und Rückenmark", "Nur das Gehirn", "Alle Nerven in Armen und Beinen", "Herz und Gehirn"], a: 0, e: "Alle übrigen Nerven bilden das periphere Nervensystem." },
+    { q: "Welche Nerven leiten Signale von den Sinnesorganen zum ZNS?", o: ["motorische", "sensorische", "vegetative", "keine"], a: 1, e: "Sensorisch = von den Sinnen." },
+    { q: "Welcher Teil der Nervenzelle empfängt Signale?", o: ["Axon", "Dendriten", "Endknöpfchen", "Myelinscheide"], a: 1, e: "Das Axon leitet weiter, die Endknöpfchen geben ab." },
+    { q: "Wozu dient die Myelinscheide?", o: ["Sie ernährt die Zelle", "Sie isoliert das Axon und macht die Leitung schneller", "Sie bildet Botenstoffe", "Sie empfängt Reize"], a: 1, e: "Das Signal springt von Schnürring zu Schnürring." },
+    { q: "Was passiert an einer Synapse?", o: ["Das Signal wird mit einem Botenstoff übertragen", "Die Zelle teilt sich", "Ein Reiz entsteht", "Blut wird gefiltert"], a: 0, e: "So gelangt das Signal zur nächsten Zelle." },
+    { q: "Wo wird der Rückziehreflex an der heißen Herdplatte umgeschaltet?", o: ["Im Großhirn", "Im Rückenmark", "Im Kleinhirn", "In der Hand"], a: 1, e: "Darum ist er so schnell. Das Gehirn erfährt es erst danach." },
+    { q: "Welcher Hirnteil sorgt für das Gleichgewicht?", o: ["Großhirn", "Kleinhirn", "Zwischenhirn", "Rückenmark"], a: 1, e: "Es stimmt Bewegungen fein ab." },
+    { q: "Welcher Hirnteil steuert Atmung und Herzschlag?", o: ["Großhirn", "Kleinhirn", "Hirnstamm (Nachhirn)", "Zwischenhirn"], a: 2, e: "Lebenswichtige Vorgänge laufen dort ohne Nachdenken." },
+    { q: "Wo entstehen Denken und Gedächtnis?", o: ["Im Großhirn", "Im Rückenmark", "Im Kleinhirn", "In den Nerven"], a: 0, e: "In der Großhirnrinde." },
+    { q: "Was bewirkt der Sympathikus?", o: ["Ruhe und Verdauung", "Leistung: schneller Herzschlag, weite Pupillen", "Schlaf", "Er senkt den Blutdruck"], a: 1, e: "Der Parasympathikus ist das Gegenstück für Ruhe und Erholung." },
+    { q: "Wie lange dauert eine bewusste Reaktion ungefähr?", o: ["0,002 Sekunden", "0,2 bis 0,3 Sekunden", "2 bis 3 Sekunden", "20 Sekunden"], a: 1, e: "Den größten Teil der Zeit braucht das Gehirn." },
+    { q: "Welche Aussage über Reflexe stimmt?", o: ["Sie werden gelernt", "Sie sind angeboren, schnell und laufen immer gleich ab", "Sie laufen immer über das Großhirn", "Sie sind langsamer als bewusste Reaktionen"], a: 1, e: "Zum Beispiel Lidschluss, Niesen, Kniesehnenreflex." }
+  ] });
+
+  LK.views(["verstehen", "bauteile", "signalweg", "reaktion", "ueben", "alltag", "quiz"], { bauteile: drawFig, signalweg: drawPath });
+})();
+</script>
+<script>
+(function () {
+  "use strict";
+  // Light/dark switch shared by all LearningDesk pages; the choice is remembered in this browser
+  var KEY = "learningdesk.theme", root = document.documentElement;
+  var header = document.querySelector("header");
+  if (!header) return;
+  function effective() {
+    var t = root.getAttribute("data-theme");
+    if (t === "dark" || t === "light") return t;
+    return window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+  }
+  var btn = document.createElement("button");
+  btn.type = "button"; btn.className = "theme-toggle";
+  function paint() {
+    var dark = effective() === "dark";
+    var label = dark ? "Helles Design einschalten" : "Dunkles Design einschalten";
+    btn.textContent = dark ? "\u2600" : "\u263E";
+    btn.setAttribute("aria-label", label); btn.title = label;
+  }
+  btn.addEventListener("click", function () {
+    var next = effective() === "dark" ? "light" : "dark";
+    root.setAttribute("data-theme", next);
+    try { localStorage.setItem(KEY, next); } catch (e) { /* storage unavailable */ }
+    paint();
+    // canvases read the colour tokens when they draw, so ask them to redraw
+    window.dispatchEvent(new Event("resize"));
+  });
+  header.classList.add("has-theme-toggle");
+  header.appendChild(btn);
+  paint();
+  try { window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", paint); } catch (e) { /* old browsers */ }
+})();
+</script>
+<script>
+(function () {
+  "use strict";
+  // keep the last breadcrumb in sync with the active section tab
+  var last = document.querySelector("nav.crumbs [data-crumb-section]");
+  if (!last) return;
+  function update() {
+    var a = document.querySelector('nav.tabs a[aria-current="page"]');
+    if (!a) { last.hidden = true; return; }
+    var t = a.cloneNode(true); var n = t.querySelector(".n"); if (n) n.remove();
+    last.querySelector("span").textContent = t.textContent.trim();
+    last.hidden = false;
+  }
+  window.addEventListener("hashchange", function () { setTimeout(update, 0); });
+  setTimeout(update, 0);
+})();
+</script>
+
+<p style="text-align:center;margin-top:32px"><a href="klasse-8.html" style="color:inherit">← Zurück zur Themenübersicht</a></p>
+<style>/* Version line at the bottom of every page: plain and unobtrusive */
+.ld-version { margin: 40px 0 16px; text-align: center; font-size: 12px; line-height: 1.4; opacity: 0.6; }
+</style>
+<footer class="ld-version">LearningDesk · Version 1.2.0 · Stand 05.11.2026</footer>
+</body>
+</html>

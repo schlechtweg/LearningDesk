@@ -87,6 +87,14 @@ TOPICS = [
         "fonts": "base", "first_view": "verstehen", "factsheet": "Factsheet als PDF ↓",
     },
     {
+        "slug": "nervensystem", "grade": "8", "subject": "biologie", "kit": True, "accent": ACCENT_BIO8,
+        "title": "Das Nervensystem", "short": "Nervensystem", "tag": "Nervensystem",
+        "card": "Nervenzelle und Gehirn zum Antippen, Signalweg und Reflexbogen, Reaktionstest, Trainer, Quiz",
+        "description": "Interaktive Lernhilfe zum Nervensystem (Biologie, Klasse 8)",
+        "intro": "Wie Reize zu Reaktionen werden: Nervenzellen, Gehirn und Rückenmark, Reflexe und ein Test, wie schnell du reagierst.",
+        "fonts": "base", "first_view": "verstehen", "factsheet": "Factsheet als PDF ↓",
+    },
+    {
         "slug": "binomische-formeln", "grade": "8", "subject": "mathematik",
         "title": "Binomische Formeln", "short": "Binomische Formeln", "tag": "Terme",
         "card": "Die drei Formeln, Erklärung mit Flächen, Trainer mit Lückenaufgaben, Kopfrechen-Trick, Quiz",

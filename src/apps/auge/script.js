@@ -87,9 +87,9 @@
   // ---------- sharp vision (simplified thin-lens model in dioptres) ----------
   // R: power needed for an image on the retina; P0: power of the relaxed eye; Amax: accommodation range; G: matching glasses
   const EYES = {
-    normal: { R: 60, Amax: 4, G: 0, name: "normalsichtig" },
-    kurz: { R: 58, Amax: 4, G: -2, name: "kurzsichtig" },
-    weit: { R: 62, Amax: 4, G: 2, name: "weitsichtig" },
+    normal: { R: 60, Amax: 8, G: 0, name: "normalsichtig" },
+    kurz: { R: 58, Amax: 8, G: -2, name: "kurzsichtig" },
+    weit: { R: 64, Amax: 8, G: 4, name: "weitsichtig" },
     alt: { R: 60, Amax: 1, G: 2, name: "alterssichtig" }
   };
   const P0 = 60, LX = 190, AY = 130;
@@ -120,7 +120,7 @@
       const gx = LX - 62, sh = gl > 0 ? `M${gx} ${AY - 40} Q${gx - 9} ${AY} ${gx} ${AY + 40} Q${gx + 9} ${AY} ${gx} ${AY - 40}Z` : `M${gx - 6} ${AY - 40} Q${gx + 1} ${AY} ${gx - 6} ${AY + 40} L${gx + 6} ${AY + 40} Q${gx - 1} ${AY} ${gx + 6} ${AY - 40}Z`;
       s += `<path class="glass" d="${sh}"/><text x="${gx}" y="${AY + 58}" text-anchor="middle">Brille ${gl > 0 ? "+" : "−"}${fmt(Math.abs(gl), 1)}</text>`;
     }
-    const rx = 7 + A * 3;
+    const rx = 7 + A * 1.6;
     s += `<ellipse class="lensE" cx="${LX}" cy="${AY}" rx="${rx}" ry="34"/>`;
     if (!sharp) {
       const spot = Math.abs(22 * (1 - R / V));
@@ -132,11 +132,16 @@
     $("#rState").textContent = sharp ? "scharf" : "unscharf";
     $("#rState").className = "state " + (sharp ? "ok" : "no");
     const lensWord = A < 0.3 ? "flach" : A < E.Amax * 0.6 ? "etwas gewölbt" : "stark gewölbt";
-    $("#rRo").innerHTML = `<dt>Ziliarmuskel</dt><dd>${A < 0.3 ? "entspannt" : "angespannt"}</dd><dt>Linse</dt><dd>${lensWord}</dd><dt>Bild entsteht</dt><dd>${where}</dd>`;
+    // near and far point of this eye (with glasses if worn): sharp while 1/d lies in [lo, hi]
+    const lo = P0 + gl - E.R, hi = lo + E.Amax;
+    const farP = lo <= 0 ? "unendlich" : distText(1 / lo), nearP = hi <= 0 ? "keiner" : distText(1 / hi);
+    // a hyperopic eye has to accommodate even for distant objects
+    const akk = A < 0.3 ? "Fernakkommodation" : inv < 0.1 ? "akkommodiert trotz Ferne" : "Nahakkommodation";
+    $("#rRo").innerHTML = `<dt>Einstellung</dt><dd>${akk}</dd><dt>Ziliarmuskel</dt><dd>${A < 0.3 ? "entspannt" : "angespannt"}</dd><dt>Linsenbänder</dt><dd>${A < 0.3 ? "gespannt" : "locker"}</dd><dt>Linse</dt><dd>${lensWord}</dd><dt>Bild entsteht</dt><dd>${where}</dd><dt>Nahpunkt</dt><dd>${nearP}</dd><dt>Fernpunkt</dt><dd>${farP}</dd>`;
     let t;
-    if (sharp) t = gl ? "Mit der passenden Brille entsteht das Bild genau auf der Netzhaut." : A < 0.3 ? "Der Gegenstand ist weit genug weg: Die Linse bleibt flach, der Ziliarmuskel ist entspannt. Das Bild ist scharf." : "Der Ziliarmuskel spannt sich an, die Linse wölbt sich stärker. So entsteht das Bild auf der Netzhaut.";
+    if (sharp) t = gl ? "Mit der passenden Brille entsteht das Bild genau auf der Netzhaut." : A < 0.3 ? "<strong>Fernakkommodation</strong>: Der Ziliarmuskel ist entspannt, die Linsenbänder sind gespannt und ziehen die Linse flach. Das Bild ist scharf." : "<strong>Nahakkommodation</strong>: Der Ziliarmuskel spannt sich an, die Linsenbänder werden locker, und die Linse wölbt sich durch ihre Eigenelastizität. Die Brechkraft steigt, das Bild entsteht auf der Netzhaut.";
     else if (V < R) t = gl ? "Die Lesebrille ist nur für die Nähe gedacht. Für weiter entfernte Dinge bricht sie das Licht zu stark: Dann muss sie abgesetzt werden." : $("#rType").value === "kurz" ? "Kurzsichtig: Der Augapfel ist zu lang. Selbst mit flacher Linse entsteht das Bild <strong>vor</strong> der Netzhaut. Eine <strong>Zerstreuungslinse</strong> (−) hilft." : "Das Bild entsteht vor der Netzhaut.";
-    else t = need > E.Amax && $("#rType").value === "alt" && !gl ? "Alterssichtig: Die Linse ist nicht mehr elastisch und kann sich kaum wölben. Für die Nähe hilft eine <strong>Lesebrille</strong> mit Sammellinsen (+)." : $("#rType").value === "weit" && !gl ? "Weitsichtig: Der Augapfel ist zu kurz. Für nahe Dinge reicht die Wölbung der Linse nicht, das Bild entsteht <strong>hinter</strong> der Netzhaut. Eine <strong>Sammellinse</strong> (+) hilft." : "Der Gegenstand ist zu nah. Auch mit stark gewölbter Linse entsteht das Bild hinter der Netzhaut. Halte ihn etwas weiter weg.";
+    else t = need > E.Amax && $("#rType").value === "alt" && !gl ? "Alterssichtig: Die Linse ist nicht mehr elastisch und kann sich kaum wölben. Für die Nähe hilft eine <strong>Lesebrille</strong> mit Sammellinsen (+)." : $("#rType").value === "weit" && !gl ? "Weitsichtig: Der Augapfel ist zu kurz. Schon für die Ferne muss das Auge akkommodieren. Für nahe Dinge reicht die Wölbung der Linse dann nicht mehr, das Bild entsteht <strong>hinter</strong> der Netzhaut. Eine <strong>Sammellinse</strong> (+) hilft." : "Der Gegenstand liegt näher als der <strong>Nahpunkt</strong>. Auch mit stark gewölbter Linse entsteht das Bild hinter der Netzhaut. Halte ihn etwas weiter weg.";
     $("#rText").innerHTML = t;
   }
   ["rType", "rGlasses"].forEach((id) => $("#" + id).addEventListener("change", drawRays));
@@ -199,10 +204,28 @@
         return v === a ? { ok: true } : { ok: false, msg: "Für die Nähe: Muskel angespannt, Bänder locker, Linse gewölbt." }; },
       solution: a === "nah" ? "<b>nah</b>: Ziliarmuskel angespannt, Linsenbänder locker, Linse stark gewölbt." : "<b>fern</b>: Ziliarmuskel entspannt, Linsenbänder gespannt, Linse flach." };
   }
+  const T_TERMS = [
+    ["Wie heißt die Anpassung der Linse an verschiedene Entfernungen?", "Akkommodation", /akk?om/],
+    ["Wie heißt die kleinste Entfernung, in der man noch scharf sieht?", "Nahpunkt", /nahpunkt/],
+    ["Wie heißt die größte Entfernung, in der man noch scharf sieht?", "Fernpunkt", /fernpunkt/],
+    ["Wie heißt das Fachwort für die Linsenbänder?", "Zonulafasern", /zonula/],
+    ["Wie nennt man, wie stark eine Linse das Licht bündelt?", "Brechkraft", /brechkraft/],
+    ["In welcher Einheit gibt man die Brechkraft an?", "Dioptrie (dpt)", /dioptr|dpt/],
+    ["Durch welche Eigenschaft rundet sich die Linse von selbst, wenn die Bänder locker sind?", "Eigenelastizität", /elasti/],
+    ["Wie heißt die Einstellung des Auges auf nahe Gegenstände?", "Nahakkommodation", /nahakk?om/],
+    ["Wie heißt die Einstellung des Auges auf ferne Gegenstände?", "Fernakkommodation", /fernakk?om/],
+    ["Welcher Muskel ist bei Nahsicht angespannt?", "Ziliarmuskel", /ziliar|ciliar/]
+  ];
+  function genTerm() {
+    const [q, a, re] = pick(T_TERMS);
+    return { html: q, label: "Begriff:", placeholder: "Fachbegriff", answer: a,
+      check: (raw) => re.test(raw.trim().toLowerCase()) ? { ok: true } : { ok: false, msg: "Noch nicht. Schau unter „Verstehen“ im Abschnitt Fernsicht und Nahsicht nach." }, solution: `<b>${a}</b>` };
+  }
   LK.trainer({ el: "#trainer", modes: [
     { id: "teile", label: "Teile des Auges", gen: genPart },
     { id: "brille", label: "Welche Brille?", gen: genGlass },
-    { id: "nahfern", label: "Nah oder fern?", gen: genNF }
+    { id: "nahfern", label: "Nah oder fern?", gen: genNF },
+    { id: "begriffe", label: "Fachbegriffe nah/fern", gen: genTerm }
   ] });
 
   // ---------- quiz ----------
@@ -218,6 +241,10 @@
     { q: "Welcher Teil bricht das Licht am stärksten?", o: ["Hornhaut", "Linse", "Glaskörper", "Pupille"], a: 0, e: "Die Linse ist für das Feinstellen auf nah und fern zuständig." },
     { q: "Was ist die Pupille?", o: ["Ein Muskel", "Eine Öffnung in der Iris", "Ein Teil der Netzhaut", "Eine Flüssigkeit"], a: 1, e: "Durch das Sehloch fällt Licht ins Auge." },
     { q: "Warum sieht man in der Dämmerung kaum Farben?", o: ["Weil es dann keine Farben gibt", "Weil nur noch die Stäbchen arbeiten", "Weil die Pupille eng ist", "Weil die Linse flach ist"], a: 1, e: "Zapfen brauchen viel Licht." },
+    { q: "Was versteht man unter Akkommodation?", o: ["Die Anpassung der Pupille an die Helligkeit", "Die Anpassung der Linsenwölbung an die Entfernung", "Das Umdrehen des Bildes im Gehirn", "Das Blinzeln"], a: 1, e: "Nah: Linse gewölbt. Fern: Linse flach." },
+    { q: "Was ist der Nahpunkt?", o: ["Die kleinste Entfernung, in der man scharf sieht", "Der gelbe Fleck", "Die Mitte der Linse", "Die größte Entfernung, in der man scharf sieht"], a: 0, e: "Er rückt mit dem Alter weiter weg." },
+    { q: "Was passiert mit den Linsenbändern (Zonulafasern) bei Nahsicht?", o: ["Sie spannen sich", "Sie werden locker", "Sie reißen", "Nichts"], a: 1, e: "Der Ziliarmuskel zieht sich zusammen, der Ring wird enger, die Bänder erschlaffen." },
+    { q: "Warum wird die Linse bei Nahsicht rund?", o: ["Der Ziliarmuskel drückt sie zusammen", "Durch ihre Eigenelastizität, wenn die Bänder locker sind", "Weil Kammerwasser hineinläuft", "Weil die Pupille enger wird"], a: 1, e: "Nur die gespannten Bänder ziehen sie flach." },
     { q: "Warum brauchen ältere Menschen oft eine Lesebrille?", o: ["Der Augapfel wird länger", "Die Linse wird weniger elastisch", "Die Netzhaut wird dicker", "Die Pupille wird größer"], a: 1, e: "Die Linse kann sich nicht mehr stark wölben: Alterssichtigkeit." }
   ] });
 

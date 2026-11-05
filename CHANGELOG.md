@@ -9,6 +9,10 @@ Schema **MAJOR.MINOR.PATCH**:
 
 Neue Version: oben einen Eintrag `## [x.y.z] – JJJJ-MM-TT` ergänzen und `python3 src/build.py` ausführen.
 
+## [1.2.0] – 2026-11-05
+- Neues Thema Klasse 8 Biologie: Das Nervensystem (Nervenzelle und Gehirn zum Antippen, Signalweg und Reflexbogen, Reaktionstest, Trainer, Quiz, Factsheet, Übungsblatt).
+- Das Auge: neuer Abschnitt Fernsicht und Nahsicht mit Fachbegriffen (Akkommodation, Zonulafasern, Eigenelastizität, Brechkraft, Dioptrie, Nahpunkt, Fernpunkt); Simulation zeigt Nah-/Fernakkommodation, Nahpunkt und Fernpunkt; neuer Trainer-Modus.
+
 ## [1.1.0] – 2026-11-05
 - Neues Thema Klasse 8 Biologie: Das Auge (Aufbau zum Antippen, Scharf sehen mit Brillen-Simulation, Trainer, Quiz, Factsheet, Übungsblatt).
 

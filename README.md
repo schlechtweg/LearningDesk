@@ -6,7 +6,8 @@ Interaktive Lern-Apps für die Schule, sortiert nach Klassenstufe. Alles läuft 
 
 | Bereich | Thema | Inhalt |
 |---|---|---|
-| Klasse 8 · Biologie | Das Auge | Aufbau zum Antippen und Abfragen, Pupillenreflex, Akkommodation, Fehlsichtigkeiten mit Brillen-Simulation, Trainer, Quiz |
+| Klasse 8 · Biologie | Das Auge | Aufbau zum Antippen und Abfragen, Pupillenreflex, Nah- und Fernsicht mit Fachbegriffen, Fehlsichtigkeiten mit Brillen-Simulation, Trainer, Quiz |
+| Klasse 8 · Biologie | Das Nervensystem | Nervenzelle und Gehirn zum Antippen, Signalweg und Reflexbogen, Reaktionstest, Trainer, Quiz |
 | Klasse 8 · Mathematik | Binomische Formeln | Formeln, Flächenmodell, Trainer (Lücken, ausmultiplizieren, faktorisieren), Kopfrechen-Trick, Quiz |
 | Klasse 8 · Mathematik | Bruchterme | Definitionsmenge, Kürzen und Erweitern, Rechenregeln, Trainer, Quiz |
 | Klasse 8 · Mathematik | Ausmultiplizieren und Faktorisieren | Distributivgesetz, Klammer mal Klammer, Ausklammern, Flächenmodell, Trainer, Quiz |
