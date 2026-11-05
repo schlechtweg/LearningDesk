@@ -13,6 +13,7 @@ Sources:
   src/factsheets/          factsheet sources and PDF renderer
 """
 import argparse
+import re
 import shutil
 import subprocess
 import sys
@@ -39,9 +40,22 @@ def read(path):
     return (SRC / path).read_text(encoding="utf-8")
 
 
+def version():
+    """Version and date of the newest CHANGELOG.md entry, e.g. ("1.0.0", "05.11.2026")."""
+    text = (ROOT / "CHANGELOG.md").read_text(encoding="utf-8")
+    m = re.search(r"^## \[(\d+\.\d+\.\d+)\] – (\d{4})-(\d{2})-(\d{2})", text, re.M)
+    if not m:
+        raise SystemExit("CHANGELOG.md: no entry of the form '## [x.y.z] – YYYY-MM-DD' found")
+    return m.group(1), f"{m.group(4)}.{m.group(3)}.{m.group(2)}"
+
+
 def shared():
     crumbs_css = read("shared/crumbs.css")
+    ver, date = version()
     return {
+        "version": ver,
+        "version_line": f'<footer class="ld-version">{config.SITE_NAME} · Version {ver} · Stand {date}</footer>',
+        "version_css": read("shared/version.css"),
         "theme_early": read("shared/theme-early.js").strip(),
         "crumbs_css": crumbs_css,
         # menu pages have no accent colour; their breadcrumb links use the text colour
@@ -87,12 +101,12 @@ def topic_crumbs(t, base):
     return crumbs_html(items, section=True)
 
 
-def render_app(t, base, sh):
+def render_app(t, base, sh, footer=True):
     app = {name: read(f"apps/{t['slug']}/{file}") for name, file in
            [("css", "style.css"), ("body", "body.html"), ("js", "script.js")]}
     t = {"scripts": [], "kit": False, "worksheet": t["slug"] in worksheet_tasks.TOPICS, **t}
     return env.get_template("app.html").render(
-        t=t, app=app, shared=sh, base=base, fonts=config.FONTS[t["fonts"]], crumbs=topic_crumbs(t, base))
+        t=t, app=app, shared=sh, base=base, footer=footer, fonts=config.FONTS[t["fonts"]], crumbs=topic_crumbs(t, base))
 
 
 def topics_of(gid):
@@ -115,8 +129,8 @@ def build_menus(sh):
                    "title": t["card_title"], "text": t["card"], "go": "Öffnen →"} for t in config.TOPICS if t.get("tool")]
     blocks = [{"cards": grade_cards}]
     index = menu.render(title=config.SITE_NAME, intro=config.INDEX_INTRO, crumbs=None, shared=sh, fonts=MENU_FONTS, blocks=blocks)
-    # the tools section follows the grade cards
-    index = index.replace("</div>\n<script>", tools_block(tool_cards) + "</div>\n<script>", 1)
+    # the tools section follows the grade cards, above the version line
+    index = index.replace(sh["version_line"], tools_block(tool_cards) + sh["version_line"], 1)
     (DOCS / "index.html").write_text(index, encoding="utf-8")
     # one page per grade
     for g in config.GRADES:
@@ -168,7 +182,7 @@ def main():
         (ARTIFACTS / f"{t['slug']}.html").write_text(render_app(t, config.BASE_URL, sh), encoding="utf-8")
         # standalone page for GitHub Pages: relative links
         back = "index.html" if t.get("tool") else grade(t["grade"])["page"]
-        (DOCS / f"{t['slug']}.html").write_text(page.render(fragment=render_app(t, "", sh), back=back), encoding="utf-8")
+        (DOCS / f"{t['slug']}.html").write_text(page.render(fragment=render_app(t, "", sh, footer=False), back=back, shared=sh), encoding="utf-8")
         for asset in t.get("assets", []):
             for target in (DOCS / asset, ARTIFACTS / asset):
                 target.parent.mkdir(parents=True, exist_ok=True)
@@ -179,7 +193,7 @@ def main():
         build_pdfs()
     missing = [t["slug"] for t in config.TOPICS if not (DOCS / "factsheets" / f"{t['slug']}.pdf").exists()]
     missing += [f"{s} (Aufgaben)" for s in worksheet_tasks.TOPICS if not (DOCS / "aufgaben" / f"{s}.pdf").exists()]
-    print(f"Built {len(config.TOPICS)} apps and {len(config.GRADES) + 1} menu pages.")
+    print(f"Version {sh['version']}: built {len(config.TOPICS)} apps and {len(config.GRADES) + 1} menu pages.")
     if missing:
         print("Warning: factsheet PDF missing for", ", ".join(missing), "(run with --pdf)")
 

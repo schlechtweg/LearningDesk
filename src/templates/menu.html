@@ -9,7 +9,7 @@
 <style>
 {{ shared.menu_css }}</style>
 <style>
-{{ shared.crumbs_css_menu }}{{ shared.toggle_css }}</style>
+{{ shared.crumbs_css_menu }}{{ shared.toggle_css }}{{ shared.version_css }}</style>
 </head>
 <body>
 <div class="wrap">
@@ -31,7 +31,8 @@
     </a>
 {% endfor %}    </div>
 {% if block.get('heading') %}  </div>
-{% endif %}{% endfor %}</div>
+{% endif %}{% endfor %}{{ shared.version_line }}
+</div>
 <script>
 {{ shared.toggle_js }}</script>
 </body>

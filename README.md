@@ -19,10 +19,16 @@ Interaktive Lern-Apps für die Schule, sortiert nach Klassenstufe. Alles läuft 
 | Klasse 8 · Physik | Luftdruck | Versuche, Barometer, Höhenreise mit Siedetemperatur, Wetter, Trainer, Quiz |
 | Klasse 11 · Biologie | Osmose | Grundlagen, Osmometer-Simulation, Zellen in Lösungen, Alltagsbeispiele, Quiz |
 | Klasse 11 · Biologie | Natrium-Kalium-Pumpe | Pumpzyklus, Simulation von Gradienten und Membranpotential, Fallbeispiele, Quiz |
+| Klasse 11 · Biologie | Symport und Antiport | Uni-, Sym-, Antiport, primär/sekundär aktiv, Transporter-Simulation, Trainer, Quiz |
+| Klasse 11 · Biologie | Endocytose und Exocytose | Phagocytose, Pinocytose, rezeptorvermittelte Endocytose, Exocytose Schritt für Schritt, Trainer, Quiz |
 | Klasse 11 · Mathematik | Ableiten | Sekante/Tangente, grafisches Ableiten, Regeln mit Trainer, Tangentengleichung, Quiz |
 | Werkzeuge | ClassPad-Simulator | Übungsrechner nach dem Vorbild des CASIO fx-CP400 mit 16 Lektionen (unabhängiges Lernprojekt) |
 
 Zu jedem Thema gibt es ein einseitiges Factsheet als PDF und ein zweiseitiges Übungsblatt (Seite 1 Aufgaben, Seite 2 Lösungen, gestuft nach ★☆☆ einfach, ★★☆ mittel, ★★★ schwer). Jede Seite hat Breadcrumbs und einen Hell/Dunkel-Schalter.
+
+## Version
+
+Unten auf jeder Seite steht die aktuelle Version mit Datum, z. B. „Version 1.0.0 · Stand 05.11.2026“. Sie wird beim Bauen aus dem obersten Eintrag in [`CHANGELOG.md`](CHANGELOG.md) gelesen. Für eine neue Version dort oben einen Eintrag `## [x.y.z] – JJJJ-MM-TT` ergänzen und `python3 src/build.py` ausführen. Neue Themen erhöhen die mittlere Zahl, Korrekturen die letzte.
 
 ## Aufbau
 
