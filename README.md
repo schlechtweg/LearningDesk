@@ -2,6 +2,15 @@
 
 Interaktive Lern-Apps, sortiert nach Klassenstufe. Startseite: `docs/index.html` (Menü Klassenstufe 8 / 11).
 
+# Werkzeuge
+
+## ClassPad-Simulator (`classpad.html`)
+
+Übungsrechner, der sich an der Bedienung des CASIO fx-CP400 (ClassPad II) orientiert. Unabhängiges Lernprojekt, kein Abbild der Original-Software.
+- Anwendungen: Main (exakt/dezimal, Brüche, Wurzeln, expand, factor, solve, diff, ∫), Graph&Tabelle (Zeichnen, View-Window, Wertetabelle, Nullstelle, Max, Min, Schnittpunkt, Trace), Statistik (Listen, 1-Var-Statistik, lineare Regression)
+- Lernmodus mit 16 Lektionen von Klasse 8 bis 12: Die nächste Taste wird markiert, „Zeig’s mir“ führt den Schritt vor
+- Rechenkern: [Algebrite](https://github.com/davidedc/Algebrite) (MIT-Lizenz), liegt in `vendor/`
+
 # Klassenstufe 8
 
 ## Binomische Formeln (`binomische-formeln.html`)

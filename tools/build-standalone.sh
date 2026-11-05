@@ -11,7 +11,11 @@ APPS=(
   "natrium-kalium-pumpe:klasse-11.html"
   "binomische-formeln:klasse-8.html"
   "bruchterme:klasse-8.html"
+  "classpad:index.html"
 )
+# the calculator simulator needs its maths library next to the page
+mkdir -p docs/vendor
+cp vendor/algebrite.js vendor/algebrite-LICENSE.txt docs/vendor/
 for entry in "${APPS[@]}"; do
   app="${entry%%:*}"; back="${entry##*:}"
   {
