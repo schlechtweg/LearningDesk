@@ -31,8 +31,8 @@
     </a>
 {% endfor %}    </div>
 {% if block.get('heading') %}  </div>
-{% endif %}{% endfor %}{{ shared.version_line }}
-</div>
+{% endif %}{% endfor %}{% if show_version %}{{ shared.version_line }}
+{% endif %}</div>
 <script>
 {{ shared.toggle_js }}</script>
 </body>

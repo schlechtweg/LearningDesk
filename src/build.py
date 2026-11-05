@@ -101,12 +101,12 @@ def topic_crumbs(t, base):
     return crumbs_html(items, section=True)
 
 
-def render_app(t, base, sh, footer=True):
+def render_app(t, base, sh):
     app = {name: read(f"apps/{t['slug']}/{file}") for name, file in
            [("css", "style.css"), ("body", "body.html"), ("js", "script.js")]}
     t = {"scripts": [], "kit": False, "worksheet": t["slug"] in worksheet_tasks.TOPICS, **t}
     return env.get_template("app.html").render(
-        t=t, app=app, shared=sh, base=base, footer=footer, fonts=config.FONTS[t["fonts"]], crumbs=topic_crumbs(t, base))
+        t=t, app=app, shared=sh, base=base, fonts=config.FONTS[t["fonts"]], crumbs=topic_crumbs(t, base))
 
 
 def topics_of(gid):
@@ -128,7 +128,7 @@ def build_menus(sh):
     tool_cards = [{"href": t["slug"] + ".html", "color": "--math", "big": t["icon"], "big_style": "font-size:2.2rem",
                    "title": t["card_title"], "text": t["card"], "go": "Öffnen →"} for t in config.TOPICS if t.get("tool")]
     blocks = [{"cards": grade_cards}]
-    index = menu.render(title=config.SITE_NAME, intro=config.INDEX_INTRO, crumbs=None, shared=sh, fonts=MENU_FONTS, blocks=blocks)
+    index = menu.render(title=config.SITE_NAME, intro=config.INDEX_INTRO, crumbs=None, shared=sh, fonts=MENU_FONTS, blocks=blocks, show_version=True)
     # the tools section follows the grade cards, above the version line
     index = index.replace(sh["version_line"], tools_block(tool_cards) + sh["version_line"], 1)
     (DOCS / "index.html").write_text(index, encoding="utf-8")
@@ -142,7 +142,7 @@ def build_menus(sh):
                     {"href": t["slug"] + ".html", "color": s["color"], "tag": t["tag"], "title": t["title"],
                      "text": t["card"], "go": "Öffnen →"} for t in ts]})
         crumbs = crumbs_html([(config.SITE_NAME, "index.html"), (g["crumb"], None)])
-        page = menu.render(title=g["title"], intro="Wähle ein Thema.", crumbs=crumbs, shared=sh, fonts=MENU_FONTS, blocks=blocks)
+        page = menu.render(title=g["title"], intro="Wähle ein Thema.", crumbs=crumbs, shared=sh, fonts=MENU_FONTS, blocks=blocks, show_version=False)
         (DOCS / g["page"]).write_text(page, encoding="utf-8")
 
 
@@ -182,7 +182,7 @@ def main():
         (ARTIFACTS / f"{t['slug']}.html").write_text(render_app(t, config.BASE_URL, sh), encoding="utf-8")
         # standalone page for GitHub Pages: relative links
         back = "index.html" if t.get("tool") else grade(t["grade"])["page"]
-        (DOCS / f"{t['slug']}.html").write_text(page.render(fragment=render_app(t, "", sh, footer=False), back=back, shared=sh), encoding="utf-8")
+        (DOCS / f"{t['slug']}.html").write_text(page.render(fragment=render_app(t, "", sh), back=back), encoding="utf-8")
         for asset in t.get("assets", []):
             for target in (DOCS / asset, ARTIFACTS / asset):
                 target.parent.mkdir(parents=True, exist_ok=True)

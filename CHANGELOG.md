@@ -1,6 +1,6 @@
 # Änderungen
 
-Die Versionsnummer steht unten auf jeder Seite. Sie wird beim Bauen aus dem obersten Eintrag dieser Datei gelesen.
+Die Versionsnummer steht unten auf der Startseite. Sie wird beim Bauen aus dem obersten Eintrag dieser Datei gelesen.
 
 Schema **MAJOR.MINOR.PATCH**:
 - **MINOR** (1.**1**.0): neue Themen oder neue Funktionen.
@@ -8,6 +8,9 @@ Schema **MAJOR.MINOR.PATCH**:
 - **MAJOR** (**2**.0.0): grundlegender Umbau.
 
 Neue Version: oben einen Eintrag `## [x.y.z] – JJJJ-MM-TT` ergänzen und `python3 src/build.py` ausführen.
+
+## [1.3.1] – 2026-11-05
+- Die Versionsnummer wird nur noch auf der Startseite angezeigt.
 
 ## [1.3.0] – 2026-11-05
 - Jedes Übungsblatt enthält jetzt eine Grafik-Aufgabe: beschriften (z. B. Auge, Nervenzelle, Pflanzenzelle, Hebebühne), einzeichnen (Ableitungsgraph, Lösungsmengen, Kraftpfeile, Wasserstrahlen) oder ausfüllen (Flächenmodelle, Waage). Die Lösungsseite zeigt die fertige Grafik.

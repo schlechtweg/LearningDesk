@@ -30,7 +30,7 @@ Zu jedem Thema gibt es ein einseitiges Factsheet als PDF und ein zweiseitiges Ü
 
 ## Version
 
-Unten auf jeder Seite steht die aktuelle Version mit Datum, z. B. „Version 1.0.0 · Stand 05.11.2026“. Sie wird beim Bauen aus dem obersten Eintrag in [`CHANGELOG.md`](CHANGELOG.md) gelesen. Für eine neue Version dort oben einen Eintrag `## [x.y.z] – JJJJ-MM-TT` ergänzen und `python3 src/build.py` ausführen. Neue Themen erhöhen die mittlere Zahl, Korrekturen die letzte.
+Unten auf der Startseite steht die aktuelle Version mit Datum, z. B. „Version 1.0.0 · Stand 05.11.2026“. Sie wird beim Bauen aus dem obersten Eintrag in [`CHANGELOG.md`](CHANGELOG.md) gelesen. Für eine neue Version dort oben einen Eintrag `## [x.y.z] – JJJJ-MM-TT` ergänzen und `python3 src/build.py` ausführen. Neue Themen erhöhen die mittlere Zahl, Korrekturen die letzte.
 
 ## Aufbau
 
@@ -69,7 +69,7 @@ GitHub Pages veröffentlicht `docs/` nach jedem Push automatisch (Actions → �
 - **„due to in progress deployment … Please cancel … first“**: Eine frühere Veröffentlichung gilt noch als laufend und blockiert die neue. Nach einigen Minuten löst sich das meist von selbst.
 - **Lauf hängt auf „Queued“ und lässt sich nicht abbrechen**: Einfach ignorieren. Der nächste Push startet einen neuen, unabhängigen Lauf mit dem kompletten aktuellen Stand.
 
-Ob die Seite aktuell ist, zeigt die Versionszeile unten auf jeder Seite.
+Ob die Seite aktuell ist, zeigt die Versionszeile unten auf der Startseite.
 
 ## Neues Thema hinzufügen
 
