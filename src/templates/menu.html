@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ title }}</title>
+<script>{{ shared.theme_early }}</script>
+<link rel="stylesheet" href="{{ fonts }}">
+<style>
+{{ shared.menu_css }}</style>
+<style>
+{{ shared.crumbs_css_menu }}{{ shared.toggle_css }}</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+{% if crumbs %}    {{ crumbs }}
+    <h1 style="margin-top:12px">{{ title }}</h1>
+{% else %}    <h1>{{ title }}</h1>
+{% endif %}    <p class="muted">{{ intro }}</p>
+  </header>
+{% for block in blocks %}{% if block.get('heading') %}  <div class="subject"{% if block.get('id') %} id="{{ block.id }}"{% endif %}>
+    <h2>{{ block.heading }}</h2>
+{% endif %}    <div class="cards">
+{% for c in block.cards %}    <a class="card" href="{{ c.href }}" style="--c: var({{ c.color }})">
+{% if c.get('big') %}      <span class="grade"{% if c.get('big_style') %} style="{{ c.big_style }}"{% endif %}>{{ c.big }}</span>
+{% else %}      <span class="tag">{{ c.tag }}</span>
+{% endif %}      <h2>{{ c.title }}</h2>
+      <span class="muted">{{ c.text }}</span>
+      <span class="go">{{ c.go }}</span>
+    </a>
+{% endfor %}    </div>
+{% if block.get('heading') %}  </div>
+{% endif %}{% endfor %}</div>
+<script>
+{{ shared.toggle_js }}</script>
+</body>
+</html>

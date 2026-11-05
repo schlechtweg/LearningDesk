@@ -1,0 +1,304 @@
+
+  <nav class="tabs" aria-label="Bereiche">
+    <a href="#idee" data-view="idee"><span class="n">1</span>Idee</a>
+    <a href="#grafisch" data-view="grafisch"><span class="n">2</span>Grafisch ableiten</a>
+    <a href="#regeln" data-view="regeln"><span class="n">3</span>Regeln</a>
+    <a href="#trainer" data-view="trainer"><span class="n">4</span>Trainer</a>
+    <a href="#tangente" data-view="tangente"><span class="n">5</span>Tangente</a>
+    <a href="#quiz" data-view="quiz"><span class="n">6</span>Quiz</a>
+  </nav>
+
+  <!-- ===================== 1 IDEE ===================== -->
+  <section class="view" id="view-idee">
+    <div class="stack">
+      <span class="eyebrow">Grundidee</span>
+      <h2>Von der Sekante zur Tangente</h2>
+      <p class="muted">Die Ableitung sagt dir, <strong>wie steil</strong> ein Graph an einer bestimmten Stelle ist. Man schreibt dafür <span class="math"><i>f</i>′(<i>x</i><sub>0</sub>)</span> und liest „f Strich von x null“.</p>
+    </div>
+    <div class="einfach">
+      <span class="eyebrow">Einfach erklärt</span>
+      <p>Stell dir vor, du fährst mit dem Fahrrad über einen Hügel. Die Ableitung ist wie ein Schild, das dir an jeder Stelle sagt, wie steil es gerade ist: <strong>positiv</strong> heißt bergauf, <strong>negativ</strong> heißt bergab. Oben auf dem Gipfel ist es einen Moment lang ganz flach, die Steigung ist <strong>0</strong>.</p>
+      <p>Bei einer Geraden ist die Steigung überall gleich. Bei einer Kurve ändert sie sich ständig. Deshalb benutzt man einen Trick: Man legt eine Gerade durch zwei Punkte der Kurve (<strong>Sekante</strong>) und schiebt die Punkte immer näher zusammen. Am Ende berührt die Gerade die Kurve nur noch in einem Punkt. Diese Gerade heißt <strong>Tangente</strong>, und ihre Steigung ist die Ableitung.</p>
+    </div>
+    <div class="plot-layout">
+      <div class="plot-box">
+        <canvas class="plot tall" id="pSec" aria-label="Graph mit Sekante und Tangente"></canvas>
+        <div class="plot-cap"><span class="c-f">●</span> Graph von <i>f</i> &nbsp; <span class="c-sec">●</span> Sekante &nbsp; <span class="c-tan">●</span> Tangente</div>
+      </div>
+      <div class="panel stack">
+        <label class="lbl" for="secFn">Funktion</label>
+        <select id="secFn">
+          <option value="0">f(x) = 0,5x²</option>
+          <option value="1">f(x) = 0,25x³ − x</option>
+          <option value="2">f(x) = √x</option>
+        </select>
+        <div>
+          <label class="lbl" for="secX0"><span>Stelle x₀</span><span class="mono" id="secX0Out">1</span></label>
+          <input type="range" id="secX0" min="-3" max="3" step="0.5" value="1">
+        </div>
+        <div>
+          <label class="lbl" for="secH"><span>Abstand h</span><span class="mono" id="secHOut">2</span></label>
+          <input type="range" id="secH" min="0" max="9" step="1" value="0">
+        </div>
+        <dl class="readout">
+          <dt>Sekantensteigung</dt><dd id="secMs">–</dd>
+          <dt>Tangentensteigung f′(x₀)</dt><dd id="secMt">–</dd>
+          <dt>Unterschied</dt><dd id="secDiff">–</dd>
+        </dl>
+        <div class="status-box" id="secStatus">Schiebe h nach rechts. Dann wird h kleiner.</div>
+      </div>
+    </div>
+
+    <div class="grid-2">
+      <div class="panel stack">
+        <h3>Differenzenquotient</h3>
+        <p class="small">So berechnest du die Steigung der Sekante, wie beim Steigungsdreieck: <strong>Höhenunterschied geteilt durch Abstand</strong>. <i>h</i> ist der Abstand zwischen den beiden Punkten. Fachbegriff: <strong>mittlere Änderungsrate</strong>.</p>
+        <span class="math block"><i>m</i><sub>s</sub> = <span class="frac"><span><i>f</i>(<i>x</i><sub>0</sub>+<i>h</i>) − <i>f</i>(<i>x</i><sub>0</sub>)</span><span><i>h</i></span></span></span>
+      </div>
+      <div class="panel stack">
+        <h3>Differentialquotient</h3>
+        <p class="small">Jetzt macht man <i>h</i> immer kleiner, fast 0. Dann wird aus der Sekante die Tangente. „lim“ heißt <strong>Grenzwert</strong>: Was kommt heraus, wenn <i>h</i> immer näher an 0 rückt? Fachbegriff: <strong>momentane Änderungsrate</strong>.</p>
+        <span class="math block"><i>f</i>′(<i>x</i><sub>0</sub>) = lim<sub><i>h</i>→0</sub> <span class="frac"><span><i>f</i>(<i>x</i><sub>0</sub>+<i>h</i>) − <i>f</i>(<i>x</i><sub>0</sub>)</span><span><i>h</i></span></span></span>
+      </div>
+    </div>
+    <div class="merksatz">
+      <span class="eyebrow">Merke</span>
+      <p><span class="math"><i>f</i>′(<i>x</i><sub>0</sub>)</span> = Steigung der Tangente an der Stelle <span class="math"><i>x</i><sub>0</sub></span>. Die Funktion <span class="math"><i>f</i>′</span>, die dir für <strong>jede</strong> Stelle die Steigung liefert, heißt <strong>Ableitungsfunktion</strong>.</p>
+    </div>
+  </section>
+
+  <!-- ===================== 2 GRAFISCH ===================== -->
+  <section class="view" id="view-grafisch" hidden>
+    <div class="stack">
+      <span class="eyebrow">Grafisches Ableiten</span>
+      <h2>Vom Graphen zum Ableitungsgraphen</h2>
+      <p class="muted">Beim grafischen Ableiten zeichnest du den Graphen von <i>f</i>′, ohne zu rechnen. Du schaust nur, wie steil <i>f</i> an jeder Stelle ist. Fahre mit dem Regler oder mit Finger bzw. Maus über den oberen Graphen. Die gemessene Steigung wird unten als Punkt eingetragen.</p>
+    </div>
+    <div class="einfach">
+      <span class="eyebrow">Faustregel in drei Schritten</span>
+      <p><strong>1.</strong> Suche die Hoch- und Tiefpunkte von <i>f</i>. Dort ist die Steigung 0, also hat <i>f</i>′ dort eine <strong>Nullstelle</strong>.</p>
+      <p><strong>2.</strong> Wo <i>f</i> <strong>bergauf</strong> geht, liegt <i>f</i>′ <strong>über</strong> der x-Achse. Wo <i>f</i> <strong>bergab</strong> geht, liegt <i>f</i>′ <strong>unter</strong> der x-Achse.</p>
+      <p><strong>3.</strong> Wo <i>f</i> am steilsten ist, ist <i>f</i>′ am weitesten von der x-Achse entfernt.</p>
+    </div>
+    <div class="plot-layout">
+      <div class="plot-box">
+        <canvas class="plot mid" id="pGf" aria-label="Graph von f mit Tangente"></canvas>
+        <div class="plot-cap"><span class="c-f">●</span> <i>f</i> &nbsp; <span class="c-tan">●</span> Tangente</div>
+        <canvas class="plot mid" id="pGdf" aria-label="Graph von f Strich"></canvas>
+        <div class="plot-cap"><span class="c-df">●</span> <i>f</i>′, gemessene Steigungen</div>
+      </div>
+      <div class="panel stack">
+        <label class="lbl" for="gFn">Funktion</label>
+        <select id="gFn"></select>
+        <div>
+          <label class="lbl" for="gX0"><span>Stelle x₀</span><span class="mono" id="gX0Out">0</span></label>
+          <input type="range" id="gX0" min="-4.5" max="4.5" step="0.05" value="-4">
+        </div>
+        <div class="row">
+          <button type="button" id="gFull" aria-pressed="false">f′ ganz zeigen</button>
+          <button type="button" id="gClear">Spur löschen</button>
+        </div>
+        <dl class="readout">
+          <dt>f(x₀)</dt><dd id="gFx">–</dd>
+          <dt>Steigung f′(x₀)</dt><dd id="gDfx">–</dd>
+        </dl>
+        <div class="status-box" id="gStatus" aria-live="polite"></div>
+      </div>
+    </div>
+
+    <div class="panel table-scroll" style="padding: 8px 12px">
+      <table class="rules">
+        <thead><tr><th>Am Graphen von <i>f</i> …</th><th>… sieht man beim Graphen von <i>f</i>′</th></tr></thead>
+        <tbody>
+          <tr><td><i>f</i> steigt</td><td><i>f</i>′ liegt <strong>oberhalb</strong> der x-Achse (<i>f</i>′ &gt; 0)</td></tr>
+          <tr><td><i>f</i> fällt</td><td><i>f</i>′ liegt <strong>unterhalb</strong> der x-Achse (<i>f</i>′ &lt; 0)</td></tr>
+          <tr><td>Hochpunkt oder Tiefpunkt (waagerechte Tangente)</td><td><strong>Nullstelle</strong> von <i>f</i>′ <strong>mit</strong> Vorzeichenwechsel</td></tr>
+          <tr><td>Sattelpunkt (waagerechte Tangente, aber kein Extremum)</td><td>Nullstelle <strong>ohne</strong> Vorzeichenwechsel: <i>f</i>′ berührt die x-Achse</td></tr>
+          <tr><td>Wendepunkt (stärkste Steigung oder stärkstes Gefälle)</td><td><strong>Hoch- oder Tiefpunkt</strong> von <i>f</i>′</td></tr>
+          <tr><td><i>f</i> ist eine Gerade</td><td><i>f</i>′ ist konstant (waagerechte Linie)</td></tr>
+          <tr><td>Grad von <i>f</i> ist <i>n</i> (ganzrational)</td><td>Grad von <i>f</i>′ ist <i>n</i> − 1</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="stack">
+      <h2>Übung: Welcher Graph ist <i>f</i>′?</h2>
+      <p class="muted">Oben siehst du den Graphen von <i>f</i>. Wähle den passenden Ableitungsgraphen. Achte zuerst auf die Extrempunkte von <i>f</i>, dort muss <i>f</i>′ eine Nullstelle haben.</p>
+      <div class="plot-box">
+        <canvas class="plot mid" id="pMatch" aria-label="Graph von f für die Übung"></canvas>
+      </div>
+      <div class="choices" id="matchChoices"></div>
+      <div class="feedback" id="matchFb" hidden></div>
+      <div class="row">
+        <button type="button" class="primary" id="matchNext">Neue Aufgabe</button>
+        <span class="score-line" id="matchScore"></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== 3 REGELN ===================== -->
+  <section class="view" id="view-regeln" hidden>
+    <div class="stack">
+      <span class="eyebrow">Ableitungsregeln</span>
+      <h2>Die Regeln im Überblick</h2>
+      <p class="muted">Mit diesen Regeln kannst du Ableitungen schnell ausrechnen, ohne jedes Mal Sekanten zu zeichnen. Das Wichtigste: Jeden Teil, der mit + oder − verbunden ist, leitest du einzeln ab.</p>
+    </div>
+    <div class="einfach">
+      <span class="eyebrow">Das Kochrezept für x hoch n</span>
+      <p><strong>1.</strong> Hochzahl nach vorne holen und mit der Zahl davor malnehmen. <strong>2.</strong> Hochzahl um 1 kleiner machen.</p>
+      <p class="math">3<i>x</i><sup>4</sup> → 3 · 4 · <i>x</i><sup>3</sup> = 12<i>x</i><sup>3</sup></p>
+      <p>Eine Zahl ohne <i>x</i> fällt beim Ableiten weg. Bei einer Zahl mal <i>x</i> bleibt nur die Zahl übrig: <span class="math">5<i>x</i> → 5</span>.</p>
+    </div>
+    <div class="rule-cards">
+      <div class="panel rule">
+        <span class="eyebrow">Konstantenregel</span>
+        <span class="math block"><i>f</i>(<i>x</i>) = <i>c</i> &nbsp;⇒&nbsp; <i>f</i>′(<i>x</i>) = 0</span>
+        <p class="small">Eine Konstante hat keine Steigung, ihr Graph ist waagerecht.</p>
+        <p class="ex">Beispiel: <span class="math"><i>f</i>(<i>x</i>) = 7 ⇒ <i>f</i>′(<i>x</i>) = 0</span></p>
+      </div>
+      <div class="panel rule">
+        <span class="eyebrow">Potenzregel</span>
+        <span class="math block"><i>f</i>(<i>x</i>) = <i>x</i><sup><i>n</i></sup> &nbsp;⇒&nbsp; <i>f</i>′(<i>x</i>) = <i>n</i>·<i>x</i><sup><i>n</i>−1</sup></span>
+        <p class="small">Den Exponenten nach vorne holen, dann den Exponenten um 1 verringern.</p>
+        <p class="ex">Beispiel: <span class="math"><i>f</i>(<i>x</i>) = <i>x</i><sup>5</sup> ⇒ <i>f</i>′(<i>x</i>) = 5<i>x</i><sup>4</sup></span></p>
+      </div>
+      <div class="panel rule">
+        <span class="eyebrow">Faktorregel</span>
+        <span class="math block"><i>f</i>(<i>x</i>) = <i>c</i>·<i>g</i>(<i>x</i>) &nbsp;⇒&nbsp; <i>f</i>′(<i>x</i>) = <i>c</i>·<i>g</i>′(<i>x</i>)</span>
+        <p class="small">Ein konstanter Faktor bleibt beim Ableiten einfach stehen.</p>
+        <p class="ex">Beispiel: <span class="math"><i>f</i>(<i>x</i>) = 3<i>x</i><sup>4</sup> ⇒ <i>f</i>′(<i>x</i>) = 3·4<i>x</i><sup>3</sup> = 12<i>x</i><sup>3</sup></span></p>
+      </div>
+      <div class="panel rule">
+        <span class="eyebrow">Summenregel</span>
+        <span class="math block"><i>f</i>(<i>x</i>) = <i>g</i>(<i>x</i>) + <i>h</i>(<i>x</i>) &nbsp;⇒&nbsp; <i>f</i>′(<i>x</i>) = <i>g</i>′(<i>x</i>) + <i>h</i>′(<i>x</i>)</span>
+        <p class="small">Jeder Summand wird einzeln abgeleitet. Das gilt genauso für Differenzen.</p>
+        <p class="ex">Beispiel: <span class="math"><i>f</i>(<i>x</i>) = <i>x</i><sup>3</sup> − 4<i>x</i> + 2 ⇒ <i>f</i>′(<i>x</i>) = 3<i>x</i><sup>2</sup> − 4</span></p>
+      </div>
+      <div class="panel rule">
+        <span class="eyebrow">Potenzregel mit Brüchen und Wurzeln</span>
+        <p class="small">Erst als Potenz umschreiben, dann die Potenzregel anwenden.</p>
+        <p class="ex"><span class="math"><span class="frac"><span>1</span><span><i>x</i></span></span> = <i>x</i><sup>−1</sup> ⇒ −1·<i>x</i><sup>−2</sup> = −<span class="frac"><span>1</span><span><i>x</i><sup>2</sup></span></span></span></p>
+        <p class="ex"><span class="math">√<i>x</i> = <i>x</i><sup>1/2</sup> ⇒ <span class="frac"><span>1</span><span>2</span></span><i>x</i><sup>−1/2</sup> = <span class="frac"><span>1</span><span>2√<i>x</i></span></span></span></p>
+      </div>
+      <div class="panel rule">
+        <span class="eyebrow">Sinus und Kosinus</span>
+        <span class="math block">sin′(<i>x</i>) = cos(<i>x</i>) &nbsp;·&nbsp; cos′(<i>x</i>) = −sin(<i>x</i>)</span>
+        <p class="small">Falls ihr das schon behandelt habt. Merkhilfe: Beim Ableiten von cos kommt ein Minus dazu.</p>
+        <p class="ex">Beispiel: <span class="math"><i>f</i>(<i>x</i>) = 2 sin(<i>x</i>) ⇒ <i>f</i>′(<i>x</i>) = 2 cos(<i>x</i>)</span></p>
+      </div>
+    </div>
+    <div class="grid-2">
+      <div class="panel stack">
+        <h3>Typische Fehler</h3>
+        <ul class="steps small">
+          <li><span class="math">(<i>x</i><sup>3</sup>)′ = 3<i>x</i><sup>3</sup></span> ist falsch. Der Exponent wird um 1 kleiner: <span class="math">3<i>x</i><sup>2</sup></span>.</li>
+          <li>Die Konstante „vergessen“: <span class="math">(<i>x</i><sup>2</sup> + 5)′ = 2<i>x</i></span>, die 5 fällt weg, sie wird nicht zu 1.</li>
+          <li><span class="math">(5<i>x</i>)′ = 5</span>, nicht <span class="math">5<i>x</i></span> und nicht 1.</li>
+          <li><span class="math"><span class="frac"><span>1</span><span><i>x</i><sup>2</sup></span></span></span> nicht als <span class="math"><i>x</i><sup>2</sup></span> ableiten, sondern zuerst als <span class="math"><i>x</i><sup>−2</sup></span> schreiben. Bei negativen Exponenten wird der Exponent beim Ableiten noch kleiner: −2 − 1 = −3.</li>
+          <li>Produkte wie <span class="math">(<i>x</i>+1)<sup>2</sup></span> zuerst ausmultiplizieren, wenn ihr die Kettenregel noch nicht hattet.</li>
+        </ul>
+      </div>
+      <div class="panel stack">
+        <h3>Schreibweisen</h3>
+        <p class="small">Alle bedeuten dasselbe:</p>
+        <p class="math"><i>f</i>′(<i>x</i>) &nbsp;=&nbsp; <i>y</i>′ &nbsp;=&nbsp; <span class="frac"><span>d<i>f</i></span><span>d<i>x</i></span></span></p>
+        <p class="small muted">Die zweite Ableitung <span class="math"><i>f</i>″(<i>x</i>)</span> ist die Ableitung der Ableitung. Sie beschreibt die Krümmung des Graphen.</p>
+        <a class="btn primary" href="#trainer">Zum Trainer →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== 4 TRAINER ===================== -->
+  <section class="view" id="view-trainer" hidden>
+    <div class="stack">
+      <span class="eyebrow">Rechentrainer</span>
+      <h2>Bilde die Ableitung</h2>
+      <p class="muted">Tippe <span class="math"><i>f</i>′(<i>x</i>)</span> ein. Der Trainer prüft, ob dein Term mathematisch gleichwertig ist. Wie du ihn schreibst oder sortierst, ist also egal.</p>
+      <div class="levels" role="group" aria-label="Schwierigkeit">
+        <button type="button" data-level="1" aria-pressed="true">Stufe 1: Polynome</button>
+        <button type="button" data-level="2" aria-pressed="false">Stufe 2: Brüche und Wurzeln</button>
+        <button type="button" data-level="3" aria-pressed="false">Stufe 3: mit sin und cos</button>
+      </div>
+    </div>
+    <div class="panel stack">
+      <div class="task" id="trTask"></div>
+      <form class="answer-row" id="trForm" autocomplete="off">
+        <label for="trInput" class="math"><i>f</i>′(<i>x</i>) =</label>
+        <input type="text" id="trInput" inputmode="text" spellcheck="false" placeholder="z. B. 6x^2 - 4x + 1">
+        <button type="submit" class="primary">Prüfen</button>
+        <button type="button" id="trShow">Lösung zeigen</button>
+        <button type="button" id="trNext">Neue Aufgabe</button>
+      </form>
+      <p class="hint">Schreibweise: <code>3x^2</code> für 3x², <code>1/x^2</code> oder <code>x^-2</code>, <code>sqrt(x)</code> für √x, <code>sin(x)</code>, <code>cos(x)</code>. Dezimalkomma ist erlaubt.</p>
+      <div class="feedback" id="trFb" hidden aria-live="polite"></div>
+      <span class="score-line" id="trScore"></span>
+    </div>
+  </section>
+
+  <!-- ===================== 5 TANGENTE ===================== -->
+  <section class="view" id="view-tangente" hidden>
+    <div class="stack">
+      <span class="eyebrow">Tangentengleichung</span>
+      <h2>Die Tangente an einer Stelle aufstellen</h2>
+      <p class="muted">Die Tangente ist eine ganz normale Gerade <span class="math"><i>t</i>(<i>x</i>) = <i>m</i><i>x</i> + <i>b</i></span>, die den Graphen an einer Stelle berührt. Du brauchst also nur zwei Dinge: einen <strong>Punkt</strong>, durch den sie geht, und ihre <strong>Steigung</strong> <i>m</i>. Den Punkt bekommst du mit <i>f</i>(<i>x</i><sub>0</sub>), die Steigung mit <i>f</i>′(<i>x</i><sub>0</sub>).</p>
+    </div>
+    <div class="merksatz">
+      <span class="eyebrow">Formel</span>
+      <span class="math block"><i>t</i>(<i>x</i>) = <i>f</i>′(<i>x</i><sub>0</sub>) · (<i>x</i> − <i>x</i><sub>0</sub>) + <i>f</i>(<i>x</i><sub>0</sub>)</span>
+    </div>
+    <div class="plot-layout">
+      <div class="plot-box">
+        <canvas class="plot tall" id="pTan" aria-label="Graph mit Tangente"></canvas>
+        <div class="plot-cap"><span class="c-f">●</span> <i>f</i> &nbsp; <span class="c-tan">●</span> Tangente <i>t</i></div>
+      </div>
+      <div class="panel stack">
+        <label class="lbl" for="tFn">Funktion</label>
+        <select id="tFn">
+          <option value="0">f(x) = x² − 2x</option>
+          <option value="1">f(x) = 0,5x³ − 2x</option>
+          <option value="2">f(x) = −x² + 4</option>
+          <option value="3">f(x) = 1/x</option>
+        </select>
+        <div>
+          <label class="lbl" for="tX0"><span>Stelle x₀</span><span class="mono" id="tX0Out">1</span></label>
+          <input type="range" id="tX0" min="-3" max="3" step="0.5" value="1">
+        </div>
+      </div>
+    </div>
+    <div class="panel stack">
+      <h3>Schritt für Schritt</h3>
+      <ol class="steps" id="tSteps"></ol>
+    </div>
+
+    <div class="stack">
+      <h2>Übung: Tangente bestimmen</h2>
+      <div class="panel stack">
+        <div class="task" id="tpTask"></div>
+        <form class="answer-row" id="tpForm" autocomplete="off">
+          <span class="math"><i>t</i>(<i>x</i>) =</span>
+          <input type="text" id="tpM" aria-label="Steigung m" placeholder="m" style="flex: 0 1 90px">
+          <span class="math"><i>x</i> +</span>
+          <input type="text" id="tpB" aria-label="y-Achsenabschnitt b" placeholder="b" style="flex: 0 1 90px">
+          <button type="submit" class="primary">Prüfen</button>
+          <button type="button" id="tpShow">Lösung zeigen</button>
+          <button type="button" id="tpNext">Neue Aufgabe</button>
+        </form>
+        <p class="hint">Trage <i>m</i> und <i>b</i> ein. Wenn <i>b</i> negativ ist, schreibst du ein Minus davor, z.&nbsp;B. <code>-3</code>.</p>
+        <div class="feedback" id="tpFb" hidden aria-live="polite"></div>
+        <span class="score-line" id="tpScore"></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== 6 QUIZ ===================== -->
+  <section class="view" id="view-quiz" hidden>
+    <div class="stack">
+      <span class="eyebrow">Selbsttest</span>
+      <h2>Quiz zum Ableiten</h2>
+      <div class="progress-line">
+        <div class="bar" aria-hidden="true"><i id="qBar"></i></div>
+        <span class="mono" id="qProgress"></span>
+      </div>
+    </div>
+    <div class="panel quiz" id="quizBox" aria-live="polite"></div>
+  </section>

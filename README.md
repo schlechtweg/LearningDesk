@@ -1,72 +1,58 @@
 # LearningDesk
 
-Interaktive Lern-Apps, sortiert nach Klassenstufe. Startseite: `docs/index.html` (Menü Klassenstufe 8 / 11).
+Interaktive Lern-Apps für die Schule, sortiert nach Klassenstufe. Alles läuft im Browser und wird über GitHub Pages veröffentlicht: **https://schlechtweg.github.io/LearningDesk/**
 
-# Werkzeuge
+## Inhalte
 
-## ClassPad-Simulator (`classpad.html`)
+| Bereich | Thema | Inhalt |
+|---|---|---|
+| Klasse 8 · Mathematik | Binomische Formeln | Formeln, Flächenmodell, Trainer (Lücken, ausmultiplizieren, faktorisieren), Kopfrechen-Trick, Quiz |
+| Klasse 8 · Mathematik | Bruchterme | Definitionsmenge, Kürzen und Erweitern, Rechenregeln, Trainer, Quiz |
+| Klasse 11 · Biologie | Osmose | Grundlagen, Osmometer-Simulation, Zellen in Lösungen, Alltagsbeispiele, Quiz |
+| Klasse 11 · Biologie | Natrium-Kalium-Pumpe | Pumpzyklus, Simulation von Gradienten und Membranpotential, Fallbeispiele, Quiz |
+| Klasse 11 · Mathematik | Ableiten | Sekante/Tangente, grafisches Ableiten, Regeln mit Trainer, Tangentengleichung, Quiz |
+| Werkzeuge | ClassPad-Simulator | Übungsrechner nach dem Vorbild des CASIO fx-CP400 mit 16 Lektionen (unabhängiges Lernprojekt) |
 
-Übungsrechner, der sich an der Bedienung des CASIO fx-CP400 (ClassPad II) orientiert. Unabhängiges Lernprojekt, kein Abbild der Original-Software.
-- Anwendungen: Main (exakt/dezimal, Brüche, Wurzeln, expand, factor, solve, diff, ∫), Graph&Tabelle (Zeichnen, View-Window, Wertetabelle, Nullstelle, Max, Min, Schnittpunkt, Trace), Statistik (Listen, 1-Var-Statistik, lineare Regression)
-- Lernmodus mit 16 Lektionen von Klasse 8 bis 12: Die nächste Taste wird markiert, „Zeig’s mir“ führt den Schritt vor
-- Rechenkern: [Algebrite](https://github.com/davidedc/Algebrite) (MIT-Lizenz), liegt in `vendor/`
+Zu jedem Thema gibt es ein einseitiges Factsheet als PDF. Jede Seite hat Breadcrumbs und einen Hell/Dunkel-Schalter.
 
-# Klassenstufe 8
+## Aufbau
 
-## Binomische Formeln (`binomische-formeln.html`)
+```
+src/
+  config.py            Themenliste: Klassenstufen, Fächer, Themen (Menüs und Breadcrumbs entstehen daraus)
+  build.py             Generator
+  apps/<thema>/        style.css, body.html, script.js einer App
+  shared/              Bausteine für alle Seiten: Breadcrumbs, Hell/Dunkel-Schalter, Menü-Stil
+  templates/           Jinja2-Vorlagen (App, Seitenhülle, Menüseiten)
+  factsheets/          Factsheet-Inhalte (sources.py), Stylesheet, PDF-Renderer
+vendor/                Algebrite (Rechenkern des ClassPad-Simulators, MIT-Lizenz)
+docs/                  ERZEUGT: Website für GitHub Pages
+artifacts/             ERZEUGT: Einzeldateien je App für Claude-Artefakte
+```
 
-Die drei Formeln mit Merkschema und typischen Fehlern, Erklärung am Flächenmodell und durch Ausmultiplizieren, Trainer (Lücken füllen, ausmultiplizieren, faktorisieren) mit Prüfung der Eingabe, Kopfrechen-Trick, Quiz.
+Dateien in `docs/` und `artifacts/` nicht von Hand ändern, sie werden beim Build überschrieben.
 
-## Bruchterme (`bruchterme.html`)
+## Bauen
 
-Was ist ein Bruchterm, Definitionsmenge mit Wertetabelle, Kürzen und Erweitern („nur Faktoren kürzen“, Kürzen mit binomischen Formeln), die vier Grundrechenarten mit Hauptnenner, Trainer (Definitionsmenge, Kürzen, Rechnen) mit Prüfung der Eingabe, Quiz.
+```bash
+pip install -r requirements.txt     # einmalig: Jinja2
+python3 src/build.py                # docs/ und artifacts/ erzeugen
+python3 src/build.py --pdf          # zusätzlich Factsheet-PDFs (braucht Node.js + Playwright)
+```
 
-# Klassenstufe 11
+Danach `docs/` committen und pushen; GitHub Pages veröffentlicht automatisch (Quelle: Standard-Branch, Ordner `/docs`).
 
-## Osmose verstehen (`osmose.html`)
+## Neues Thema hinzufügen
 
-Interaktive Lernhilfe zum Thema Osmose für Biologie, Klasse 11. Einfach `osmose.html` im Browser öffnen, eine Installation ist nicht nötig.
+1. Ordner `src/apps/<thema>/` mit `style.css`, `body.html` (Tabs und Bereiche) und `script.js` anlegen. Vorlage: eine bestehende App kopieren.
+2. Eintrag in `TOPICS` in `src/config.py` ergänzen (Klassenstufe, Fach, Titel, Einleitung, Kartentext, erster Bereich).
+3. Factsheet in `src/factsheets/sources.py` ergänzen.
+4. `python3 src/build.py --pdf` ausführen. Menüseite, Breadcrumbs, Factsheet-Link und Hell/Dunkel-Schalter entstehen automatisch.
 
-Bereiche:
-1. **Verstehen**: Definition, Bedingungen, hypo-/iso-/hypertonisch, Diffusion und Osmose im Vergleich, typische Klausurfehler, Begriffe
-2. **Simulation**: Osmometer mit einstellbaren Konzentrationen und umschaltbarer Membran
-3. **Zellen**: rote Blutzelle und Zwiebelzelle in verschiedenen Lösungen (Hämolyse, Plasmolyse, Turgor), dazu die pulsierende Vakuole
-4. **Alltag**: 13 Alltagsbeispiele zum Vorhersagen und Erklären
-5. **Quiz**: 12 zufällige Fragen aus 18, jeweils mit Erklärung
+Eine neue Klassenstufe oder ein neues Fach wird in `GRADES` bzw. `SUBJECTS` in `src/config.py` eingetragen.
 
-## Natrium-Kalium-Pumpe (`natrium-kalium-pumpe.html`)
+## Technische Hinweise
 
-Lernhilfe zur Na⁺/K⁺-ATPase für Biologie, Klasse 11:
-1. **Grundlagen**: Stöchiometrie 3 Na⁺ / 2 K⁺ / 1 ATP, Ionenverteilung, Einordnung der Transportarten, typische Fehler
-2. **Pumpzyklus**: animierter Zyklus in sechs Schritten (E1/E2, Phosphorylierung, Affinitätswechsel)
-3. **Simulation**: Gradienten und Membranpotential mit Leckströmen. Pumpe hemmen, ATP entziehen, K⁺ außen ändern, Aktionspotentiale auslösen
-4. **Bedeutung**: Ruhepotential, Zellvolumen, sekundär aktiver Transport, Energiebedarf, Hemmstoffe
-5. **Was passiert, wenn …**: 8 Fallbeispiele zum Vorhersagen
-6. **Quiz**: 12 zufällige Fragen aus 17
-
-## Ableiten lernen (`ableiten.html`)
-
-Lernhilfe zur Differentialrechnung für Mathematik, Klasse 11:
-1. **Idee**: Wie aus der Sekante die Tangente wird (Differenzen- und Differentialquotient)
-2. **Grafisch ableiten**: f′ entsteht Punkt für Punkt, dazu eine Übersicht der Zusammenhänge und die Übung „Welcher Graph ist f′?“
-3. **Regeln**: Konstanten-, Potenz-, Faktor- und Summenregel, Brüche und Wurzeln, sin/cos, typische Fehler
-4. **Trainer**: zufällige Funktionen in drei Stufen. Die Eingabe wird auf mathematische Gleichwertigkeit geprüft, mit Lösungsweg.
-5. **Tangente**: Tangentengleichung Schritt für Schritt, dazu Übungsaufgaben
-6. **Quiz**: 12 zufällige Fragen aus 19
-
-## Factsheets (PDF)
-
-Zu jedem Thema gibt es ein einseitiges A4-Factsheet in `docs/factsheets/`. Die Quellen liegen in `tools/factsheets/`: `make_sources.py` erzeugt die HTML-Dateien, `node tools/build-factsheets.js` rendert sie zu PDFs und prüft, dass jedes Blatt auf eine Seite passt.
-
-## Hell/Dunkel-Schalter
-
-Jede Seite hat oben rechts einen Schalter für helles und dunkles Design. Die Wahl wird im Browser gespeichert (`learningdesk.theme`) und gilt für alle Seiten. Ohne Wahl folgt die Seite der Systemeinstellung. Neue Seiten bekommen den Schalter mit `python3 tools/theme_toggle.py <datei.html>`.
-
-## Breadcrumbs
-
-Jede Seite zeigt oben einen klickbaren Pfad, z. B. „LearningDesk › Klasse 11 › Biologie › Osmose verstehen › Simulation“. Das letzte Glied folgt dem aktiven Bereich. Die Links zeigen in den App-Dateien auf GitHub Pages (damit sie auch in Claude-Artefakten funktionieren); `tools/build-standalone.sh` macht daraus relative Links für `docs/`. Neue Seiten werden in `tools/breadcrumbs.py` eingetragen.
-
-## Ohne Claude öffnen
-
-`docs/` enthält eigenständige Versionen aller Apps und eine Startseite (`docs/index.html`). Diese Dateien lassen sich direkt im Browser öffnen oder über GitHub Pages veröffentlichen (Quelle: Standard-Branch, Ordner `/docs`).
-Nach Änderungen an einer App erzeugst du die Dateien mit `tools/build-standalone.sh` neu.
+- Die Links in `artifacts/` zeigen auf GitHub Pages (absolut), damit sie auch in Claude-Artefakten funktionieren; in `docs/` sind sie relativ und funktionieren auch offline.
+- Der Hell/Dunkel-Schalter speichert die Wahl im Browser (`learningdesk.theme`) und gilt für alle Seiten.
+- Der ClassPad-Simulator ist nicht mit CASIO verbunden. CASIO und ClassPad sind Marken der CASIO Computer Co., Ltd.

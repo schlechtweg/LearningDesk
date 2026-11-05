@@ -7,19 +7,9 @@
 </head>
 <body>
 <title>Ableiten lernen</title>
-<!-- breadcrumbs -->
-<style>
-nav.crumbs ol { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 2px 6px; font-size: 0.85rem; line-height: 1.5; }
-nav.crumbs li { display: inline-flex; align-items: center; gap: 6px; min-width: 0; }
-nav.crumbs li + li::before { content: "›"; color: var(--muted); }
-nav.crumbs a { color: var(--accent); text-decoration: none; font-weight: 700; }
-nav.crumbs a:hover { text-decoration: underline; }
-nav.crumbs [aria-current] { color: var(--muted); }
-</style>
-
-<script>try{var t=localStorage.getItem("learningdesk.theme");if(t==="dark"||t==="light")document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
 <meta name="claude:viewport-fit-sides" content="cover">
 <meta name="description" content="Interaktive Lernhilfe zum Ableiten: grafisches Ableiten, Ableitungsregeln, Tangentengleichung (Mathematik, Klasse 11)">
+<script>try{var t=localStorage.getItem("learningdesk.theme");if(t==="dark"||t==="light")document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=JetBrains+Mono:wght@400;600&family=STIX+Two+Text:ital,wght@0,400;0,600;1,400&display=swap">
@@ -206,6 +196,19 @@ table.rules th { font-family: var(--font-display); font-size: var(--step-0); }
 .score-big { font-family: var(--font-display); font-size: 3.2rem; font-weight: 800; line-height: 1; }
 
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+</style>
+<style>
+nav.crumbs ol { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 2px 6px; font-size: 0.85rem; line-height: 1.5; }
+nav.crumbs li { display: inline-flex; align-items: center; gap: 6px; min-width: 0; }
+nav.crumbs li + li::before { content: "›"; color: var(--muted); }
+nav.crumbs a { color: var(--accent); text-decoration: none; font-weight: 700; }
+nav.crumbs a:hover { text-decoration: underline; }
+nav.crumbs [aria-current] { color: var(--muted); }
+header.has-theme-toggle { position: relative; padding-right: 54px; }
+.theme-toggle { position: absolute; top: 18px; right: 0; width: 40px; height: 40px; border-radius: 999px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); font-size: 18px; line-height: 1; cursor: pointer; display: grid; place-items: center; padding: 0; }
+header:not(.top) > .theme-toggle { top: 0; }
+.theme-toggle:hover { border-color: var(--accent, currentColor); }
+.theme-toggle:focus-visible { outline: 3px solid var(--accent, currentColor); outline-offset: 2px; }
 </style>
 
 <div class="wrap">
@@ -1207,14 +1210,6 @@ table.rules th { font-family: var(--font-display); font-size: var(--step-0); }
   showView();
 })();
 </script>
-<!-- theme-toggle -->
-<style>
-header.has-theme-toggle { position: relative; padding-right: 54px; }
-.theme-toggle { position: absolute; top: 18px; right: 0; width: 40px; height: 40px; border-radius: 999px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); font-size: 18px; line-height: 1; cursor: pointer; display: grid; place-items: center; padding: 0; }
-header:not(.top) > .theme-toggle { top: 0; }
-.theme-toggle:hover { border-color: var(--accent, currentColor); }
-.theme-toggle:focus-visible { outline: 3px solid var(--accent, currentColor); outline-offset: 2px; }
-</style>
 <script>
 (function () {
   "use strict";

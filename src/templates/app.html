@@ -1,0 +1,28 @@
+<title>{{ t.title }}</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="{{ t.description }}">
+<script>{{ shared.theme_early }}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="{{ fonts }}">
+{% for src in t.scripts %}<script src="{{ src }}"></script>
+{% endfor %}<style>
+{{ app.css }}</style>
+<style>
+{{ shared.crumbs_css }}{{ shared.toggle_css }}</style>
+
+<div class="wrap">
+  <header class="top">
+    {{ crumbs }}
+    <h1>{{ t.title }}</h1>
+    <p>{{ t.intro }}</p>
+    <p><a class="btn" href="{{ base }}factsheets/{{ t.slug }}.pdf" target="_blank" rel="noopener">{{ t.factsheet }}</a></p>
+  </header>
+{{ app.body }}</div>
+
+<script>
+{{ app.js }}</script>
+<script>
+{{ shared.toggle_js }}</script>
+<script>
+{{ shared.crumbs_js }}</script>

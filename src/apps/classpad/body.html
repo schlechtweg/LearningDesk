@@ -1,0 +1,59 @@
+  <nav class="tabs" aria-label="Bereiche">
+    <a href="#lernen" data-view="lernen">Bedienung lernen</a>
+    <a href="#rechner" data-view="rechner">Frei rechnen</a>
+  </nav>
+
+  <div class="layout">
+    <div class="device" id="device" aria-label="Simulierter Taschenrechner">
+      <div class="brand">CLASSPAD-SIMULATOR</div>
+      <div class="screen" id="screen"></div>
+      <div class="iconpanel">
+        <div class="ip" data-id="isettings"><b>⚙</b>Einstell.</div>
+        <div class="ip" data-id="imenu"><b>▦</b>Menü</div>
+      </div>
+      <div class="keypad">
+        <div class="krow top">
+          <div class="key fn" data-id="kkeyboard">Keyboard</div>
+          <div class="dpad">
+            <div class="key fn" data-id="kleft">◀</div><div class="key fn" data-id="kup">▲</div><div class="key fn" data-id="kright">▶</div>
+            <div class="key fn" data-id="kdel">⌫</div><div class="key fn" data-id="kdown">▼</div><div class="key fn" data-id="kans">ans</div>
+          </div>
+          <div class="key clr" data-id="kclear">Clear</div>
+        </div>
+        <div class="krow"><div class="key var" data-id="kx">x</div><div class="key var" data-id="ky">y</div><div class="key var" data-id="kz">z</div><div class="key" data-id="kpow">^</div><div class="key" data-id="kdiv">÷</div></div>
+        <div class="krow"><div class="key" data-id="klp">(</div><div class="key" data-id="krp">)</div><div class="key" data-id="kcomma">,</div><div class="key" data-id="kneg">(−)</div><div class="key" data-id="kmul">×</div></div>
+        <div class="krow"><div class="key" data-id="k7">7</div><div class="key" data-id="k8">8</div><div class="key" data-id="k9">9</div><div class="key" data-id="keq">=</div><div class="key" data-id="kminus">−</div></div>
+        <div class="krow"><div class="key" data-id="k4">4</div><div class="key" data-id="k5">5</div><div class="key" data-id="k6">6</div><div class="key" data-id="kexp">EXP</div><div class="key" data-id="kplus">+</div></div>
+        <div class="krow"><div class="key" data-id="k1">1</div><div class="key" data-id="k2">2</div><div class="key" data-id="k3">3</div><div class="key" data-id="k0">0</div><div class="key" data-id="kdot">.</div></div>
+        <div class="krow"><div class="key exe wide" data-id="kexe" style="grid-column: span 5">EXE</div></div>
+      </div>
+    </div>
+
+    <div class="side">
+      <section class="panel" id="lessonPanel"></section>
+      <section class="panel" id="freePanel" hidden>
+        <h2>Frei rechnen</h2>
+        <p class="small muted">Tippe auf die Tasten des Simulators. Mit <kbd>Keyboard</kbd> öffnest du die Bildschirm-Tastatur mit Brüchen, Wurzeln, π, solve, Ableitung und Integral. Über <kbd>▦ Menü</kbd> wechselst du zwischen den Anwendungen.</p>
+        <div class="row"><button class="btn" type="button" id="resetBtn">Rechner zurücksetzen</button></div>
+        <h3>Wo finde ich was?</h3>
+        <div class="table-scroll">
+          <table class="ref">
+            <tr><th>Aufgabe</th><th>So geht’s im Simulator</th></tr>
+            <tr><td>Bruch eingeben</td><td>Main · Keyboard · Math1 · <kbd>□/□</kbd>, mit <kbd>▶</kbd> in den Nenner</td></tr>
+            <tr><td>Exakt ↔ Dezimal</td><td>Statusleiste <kbd>Standard</kbd>/<kbd>Dezimal</kbd> antippen oder <kbd>⇔</kbd> in der Symbolleiste</td></tr>
+            <tr><td>Klammern auflösen</td><td>Aktion ▸ Umformung ▸ expand</td></tr>
+            <tr><td>Faktorisieren</td><td>Aktion ▸ Umformung ▸ factor</td></tr>
+            <tr><td>Gleichung lösen</td><td><kbd>solve(</kbd> aus Math1 oder Aktion ▸ Gleichung ▸ solve, z.&nbsp;B. <kbd>solve(2x+1=7,x)</kbd></td></tr>
+            <tr><td>Grad ↔ Bogenmaß</td><td>Statusleiste <kbd>Deg</kbd>/<kbd>Rad</kbd> antippen</td></tr>
+            <tr><td>Graph zeichnen</td><td>Menü ▸ Graph&amp;Tabelle, Term bei y1 eingeben, <kbd>EXE</kbd>, Symbol <kbd>Zeichnen</kbd></td></tr>
+            <tr><td>Nullstellen, Hoch-/Tiefpunkte, Schnittpunkte</td><td>Im Graphen: Analyse ▸ Grafische Lösung ▸ Nullstelle / Max / Min / Schnittpunkt; mit <kbd>▶</kbd> zur nächsten Lösung</td></tr>
+            <tr><td>Wertetabelle</td><td>Graph&amp;Tabelle · Symbol <kbd>Tabelle</kbd></td></tr>
+            <tr><td>Ableitung, Integral</td><td>Keyboard · Math2 · <kbd>diff(</kbd> bzw. <kbd>∫(</kbd>: <kbd>diff(x^3,x)</kbd>, <kbd>∫(x^2,x,0,3)</kbd></td></tr>
+            <tr><td>Mittelwert, Regression</td><td>Menü ▸ Statistik, Werte in list1/list2, Kalk ▸ Statistik 1 Var. / Lineare Regression</td></tr>
+          </table>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <p class="disclaimer">Unabhängiges Lernprojekt, nicht mit CASIO verbunden. CASIO und ClassPad sind Marken der CASIO Computer Co., Ltd. Der Simulator bildet die wichtigsten Anwendungen und die Bedienlogik nach (Main, Graph&amp;Tabelle, Statistik). Er ist kein Abbild der Original-Software: Aussehen, Menünamen und einzelne Tastenwege können vom echten Gerät abweichen. Brüche werden hier zum Beispiel einzeilig als ( )/( ) eingegeben. Rechenkern: Algebrite (MIT-Lizenz).</p>

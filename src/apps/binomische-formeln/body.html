@@ -1,0 +1,206 @@
+
+  <nav class="tabs" aria-label="Bereiche">
+    <a href="#formeln" data-view="formeln"><span class="n">1</span>Die Formeln</a>
+    <a href="#warum" data-view="warum"><span class="n">2</span>Warum stimmt das?</a>
+    <a href="#ueben" data-view="ueben"><span class="n">3</span>Üben</a>
+    <a href="#tricks" data-view="tricks"><span class="n">4</span>Kopfrechen-Trick</a>
+    <a href="#quiz" data-view="quiz"><span class="n">5</span>Quiz</a>
+  </nav>
+
+  <!-- ===================== 1 FORMELN ===================== -->
+  <section class="view" id="view-formeln">
+    <div class="einfach">
+      <span class="eyebrow">Worum geht es?</span>
+      <p>Ein <strong>Binom</strong> ist eine Klammer mit zwei Teilen, zum Beispiel <span class="math">(<i>x</i> + 3)</span>. Wenn man so eine Klammer mit sich selbst malnimmt, kommt immer nach demselben Muster etwas heraus. Diese Muster sind die drei binomischen Formeln. Wer sie kennt, muss nicht mehr lange ausmultiplizieren.</p>
+    </div>
+
+    <div class="grid-3">
+      <div class="panel formula-card">
+        <span class="num">1. binomische Formel · Plus-Formel</span>
+        <div class="big-formula">(<i class="ca">a</i> + <i class="cb">b</i>)<sup>2</sup> = <i class="ca">a</i><sup>2</sup> + <span class="cab">2<i>ab</i></span> + <i class="cb">b</i><sup>2</sup></div>
+        <p class="small">Beispiel: <span class="math">(<i>x</i> + 3)<sup>2</sup> = <i>x</i><sup>2</sup> + 6<i>x</i> + 9</span></p>
+      </div>
+      <div class="panel formula-card">
+        <span class="num">2. binomische Formel · Minus-Formel</span>
+        <div class="big-formula">(<i class="ca">a</i> − <i class="cb">b</i>)<sup>2</sup> = <i class="ca">a</i><sup>2</sup> − <span class="cab">2<i>ab</i></span> + <i class="cb">b</i><sup>2</sup></div>
+        <p class="small">Beispiel: <span class="math">(<i>x</i> − 5)<sup>2</sup> = <i>x</i><sup>2</sup> − 10<i>x</i> + 25</span></p>
+      </div>
+      <div class="panel formula-card">
+        <span class="num">3. binomische Formel · Plus-Minus-Formel</span>
+        <div class="big-formula">(<i class="ca">a</i> + <i class="cb">b</i>)(<i class="ca">a</i> − <i class="cb">b</i>) = <i class="ca">a</i><sup>2</sup> − <i class="cb">b</i><sup>2</sup></div>
+        <p class="small">Beispiel: <span class="math">(<i>x</i> + 4)(<i>x</i> − 4) = <i>x</i><sup>2</sup> − 16</span></p>
+      </div>
+    </div>
+
+    <div class="grid-2">
+      <div class="panel stack">
+        <h3>So merkst du dir die Formeln</h3>
+        <ol class="list small">
+          <li><strong>Erster Teil hoch 2</strong>: <span class="math"><i>a</i><sup>2</sup></span></li>
+          <li><strong>Zwei mal erster mal zweiter</strong>: <span class="math">2<i>ab</i></span>. Das ist das <strong>Mittelglied</strong>. Es hat dasselbe Vorzeichen wie in der Klammer.</li>
+          <li><strong>Zweiter Teil hoch 2</strong>: <span class="math"><i>b</i><sup>2</sup></span>, immer mit Plus.</li>
+        </ol>
+        <p class="small muted">Bei der 3. Formel heben sich die Mittelglieder gegenseitig auf (+<i>ab</i> und −<i>ab</i>). Deshalb bleibt nur <span class="math"><i>a</i><sup>2</sup> − <i>b</i><sup>2</sup></span> übrig.</p>
+      </div>
+      <div class="panel stack">
+        <h3>Typische Fehler</h3>
+        <ul class="list small">
+          <li><span class="math">(<i>x</i> + 3)<sup>2</sup> = <i>x</i><sup>2</sup> + 9</span> ist <strong>falsch</strong>. Das Mittelglied <span class="math">6<i>x</i></span> fehlt. Das ist der häufigste Fehler überhaupt!</li>
+          <li><span class="math">(<i>x</i> − 5)<sup>2</sup> = <i>x</i><sup>2</sup> − 10<i>x</i> − 25</span> ist <strong>falsch</strong>. Am Ende steht immer <strong>+</strong> 25, denn (−5)·(−5) = +25.</li>
+          <li><span class="math">(3<i>x</i>)<sup>2</sup> = 3<i>x</i><sup>2</sup></span> ist <strong>falsch</strong>. Die Zahl wird mitquadriert: <span class="math">(3<i>x</i>)<sup>2</sup> = 9<i>x</i><sup>2</sup></span>.</li>
+          <li>Beim Mittelglied die <strong>2</strong> vergessen: Es heißt <span class="math">2·<i>a</i>·<i>b</i></span>, nicht <span class="math"><i>a</i>·<i>b</i></span>.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="panel stack">
+      <h3>Beispiel Schritt für Schritt</h3>
+      <p class="small">Aufgabe: <span class="math">(2<i>x</i> + 5)<sup>2</sup></span>. Das ist die 1. Formel mit <span class="math"><i class="ca">a</i> = 2<i>x</i></span> und <span class="math"><i class="cb">b</i> = 5</span>.</p>
+      <ol class="list small">
+        <li><span class="math"><i class="ca">a</i><sup>2</sup> = (2<i>x</i>)<sup>2</sup> = 4<i>x</i><sup>2</sup></span></li>
+        <li><span class="math"><span class="cab">2<i>ab</i></span> = 2 · 2<i>x</i> · 5 = 20<i>x</i></span></li>
+        <li><span class="math"><i class="cb">b</i><sup>2</sup> = 5<sup>2</sup> = 25</span></li>
+        <li>Ergebnis: <span class="math">(2<i>x</i> + 5)<sup>2</sup> = 4<i>x</i><sup>2</sup> + 20<i>x</i> + 25</span></li>
+      </ol>
+    </div>
+    <div class="row"><a class="btn primary" href="#warum">Warum stimmt das? →</a></div>
+  </section>
+
+  <!-- ===================== 2 WARUM ===================== -->
+  <section class="view" id="view-warum" hidden>
+    <div class="stack">
+      <span class="eyebrow">Mit Flächen erklärt</span>
+      <h2>Ein Quadrat aus vier Teilen</h2>
+      <p class="muted">Ein Quadrat mit der Seitenlänge <span class="math"><i class="ca">a</i> + <i class="cb">b</i></span> hat den Flächeninhalt <span class="math">(<i>a</i> + <i>b</i>)<sup>2</sup></span>. Zerschneide es in Stücke: ein großes Quadrat, ein kleines Quadrat und zwei gleiche Rechtecke. Verändere <i>a</i> und <i>b</i> mit den Reglern.</p>
+    </div>
+    <div class="area-layout">
+      <div class="area-box">
+        <svg id="areaSvg" viewBox="0 0 440 440" role="img" aria-label="Quadrat mit Seitenlänge a plus b, aufgeteilt in a², zwei Rechtecke ab und b²"></svg>
+      </div>
+      <div class="panel stack">
+        <div>
+          <label class="lbl" for="aSl"><span>a</span><span id="aOut" style="font-family:var(--font-mono)">6</span></label>
+          <input type="range" id="aSl" min="1" max="9" step="1" value="6">
+        </div>
+        <div>
+          <label class="lbl" for="bSl"><span>b</span><span id="bOut" style="font-family:var(--font-mono)">3</span></label>
+          <input type="range" id="bSl" min="1" max="6" step="1" value="3">
+        </div>
+        <dl class="readout" id="areaRo"></dl>
+      </div>
+    </div>
+    <div class="einfach">
+      <span class="eyebrow">Was man sieht</span>
+      <p>Das große Quadrat besteht aus <span class="ca">a²</span>, zwei Rechtecken <span class="cab">a · b</span> und <span class="cb">b²</span>. Deshalb ist <span class="math">(<i>a</i> + <i>b</i>)<sup>2</sup> = <i>a</i><sup>2</sup> + 2<i>ab</i> + <i>b</i><sup>2</sup></span>. Würde man nur <span class="math"><i>a</i><sup>2</sup> + <i>b</i><sup>2</sup></span> rechnen, fehlten die zwei grünen Rechtecke.</p>
+    </div>
+
+    <div class="stack">
+      <h2>Oder: Jeder mit jedem</h2>
+      <p class="muted">Du kannst jede binomische Formel auch durch normales Ausmultiplizieren herleiten. Dabei wird jeder Teil der ersten Klammer mit jedem Teil der zweiten Klammer malgenommen.</p>
+      <div class="grid-3">
+        <div class="panel foil">
+          <span class="eyebrow">1. Formel</span>
+          <div class="line">(<i>a</i> + <i>b</i>)<sup>2</sup> = (<i>a</i> + <i>b</i>)(<i>a</i> + <i>b</i>)</div>
+          <div class="line">= <i>a</i>·<i>a</i> + <i>a</i>·<i>b</i> + <i>b</i>·<i>a</i> + <i>b</i>·<i>b</i></div>
+          <div class="line">= <i>a</i><sup>2</sup> + <span class="cab">2<i>ab</i></span> + <i>b</i><sup>2</sup></div>
+        </div>
+        <div class="panel foil">
+          <span class="eyebrow">2. Formel</span>
+          <div class="line">(<i>a</i> − <i>b</i>)<sup>2</sup> = (<i>a</i> − <i>b</i>)(<i>a</i> − <i>b</i>)</div>
+          <div class="line">= <i>a</i>·<i>a</i> − <i>a</i>·<i>b</i> − <i>b</i>·<i>a</i> + <i>b</i>·<i>b</i></div>
+          <div class="line">= <i>a</i><sup>2</sup> − <span class="cab">2<i>ab</i></span> + <i>b</i><sup>2</sup></div>
+        </div>
+        <div class="panel foil">
+          <span class="eyebrow">3. Formel</span>
+          <div class="line">(<i>a</i> + <i>b</i>)(<i>a</i> − <i>b</i>)</div>
+          <div class="line">= <i>a</i>·<i>a</i> − <i>a</i>·<i>b</i> + <i>b</i>·<i>a</i> − <i>b</i>·<i>b</i></div>
+          <div class="line">= <i>a</i><sup>2</sup> − <i>b</i><sup>2</sup> <span class="small muted" style="font-family:var(--font-body)">(−<i>ab</i> und +<i>ab</i> heben sich auf)</span></div>
+        </div>
+      </div>
+      <p class="small muted">Vorzeichenregel: Minus mal Minus ergibt Plus. Deshalb ist bei der 2. Formel <span class="math">(−<i>b</i>)·(−<i>b</i>) = +<i>b</i><sup>2</sup></span>.</p>
+    </div>
+  </section>
+
+  <!-- ===================== 3 ÜBEN ===================== -->
+  <section class="view" id="view-ueben" hidden>
+    <div class="stack">
+      <span class="eyebrow">Trainer</span>
+      <h2>Üben mit Rückmeldung</h2>
+      <p class="muted">Wähle eine Übungsart. Der Trainer prüft deine Antwort und zeigt dir auf Wunsch den Lösungsweg.</p>
+      <div class="modes" role="group" aria-label="Übungsart">
+        <button type="button" data-mode="luecke" aria-pressed="true">Lücken füllen</button>
+        <button type="button" data-mode="aus" aria-pressed="false">Ausmultiplizieren</button>
+        <button type="button" data-mode="fakt" aria-pressed="false">Rückwärts (faktorisieren)</button>
+      </div>
+      <div class="modes" role="group" aria-label="Schwierigkeit">
+        <button type="button" data-level="1" aria-pressed="true">Leicht</button>
+        <button type="button" data-level="2" aria-pressed="false">Schwerer</button>
+      </div>
+    </div>
+    <div class="panel stack">
+      <p class="small muted" id="trInstr"></p>
+      <form class="stack" id="trForm" autocomplete="off">
+        <div class="task" id="trTask"></div>
+        <div class="answer-row" id="trFree">
+          <input type="text" id="trInput" spellcheck="false" aria-label="Deine Antwort">
+        </div>
+        <div class="row">
+          <button type="submit" class="primary">Prüfen</button>
+          <button type="button" id="trShow">Lösung zeigen</button>
+          <button type="button" id="trNext">Neue Aufgabe</button>
+        </div>
+      </form>
+      <p class="hint">Schreibweise: <code>x^2</code> oder <code>x²</code> für x², <code>6x</code> für 6·x, Klammern wie gewohnt, z.&nbsp;B. <code>(x+3)^2</code> oder <code>(x+4)(x-4)</code>.</p>
+      <div class="feedback" id="trFb" hidden aria-live="polite"></div>
+      <span class="score-line" id="trScore"></span>
+    </div>
+  </section>
+
+  <!-- ===================== 4 TRICKS ===================== -->
+  <section class="view" id="view-tricks" hidden>
+    <div class="stack">
+      <span class="eyebrow">Anwendung</span>
+      <h2>Kopfrechnen wie ein Profi</h2>
+      <p class="muted">Mit den binomischen Formeln kannst du schwierige Aufgaben im Kopf lösen. Der Trick: Zerlege die Zahl in eine runde Zahl und einen kleinen Rest.</p>
+    </div>
+    <div class="grid-3">
+      <div class="panel stack">
+        <span class="eyebrow">Mit der 1. Formel</span>
+        <p class="math">21<sup>2</sup> = (20 + 1)<sup>2</sup></p>
+        <p class="math">= 400 + 40 + 1 = 441</p>
+      </div>
+      <div class="panel stack">
+        <span class="eyebrow">Mit der 2. Formel</span>
+        <p class="math">49<sup>2</sup> = (50 − 1)<sup>2</sup></p>
+        <p class="math">= 2500 − 100 + 1 = 2401</p>
+      </div>
+      <div class="panel stack">
+        <span class="eyebrow">Mit der 3. Formel</span>
+        <p class="math">32 · 28 = (30 + 2)(30 − 2)</p>
+        <p class="math">= 900 − 4 = 896</p>
+      </div>
+    </div>
+    <div class="panel stack">
+      <h3>Probier es selbst</h3>
+      <form class="answer-row" id="kForm" autocomplete="off">
+        <span class="task" id="kTask"></span>
+        <span class="math">=</span>
+        <input type="text" id="kInput" inputmode="numeric" aria-label="Ergebnis" style="flex: 0 1 140px">
+        <button type="submit" class="primary">Prüfen</button>
+        <button type="button" id="kShow">Lösung zeigen</button>
+        <button type="button" id="kNext">Neue Aufgabe</button>
+      </form>
+      <div class="feedback" id="kFb" hidden aria-live="polite"></div>
+      <span class="score-line" id="kScore"></span>
+    </div>
+  </section>
+
+  <!-- ===================== 5 QUIZ ===================== -->
+  <section class="view" id="view-quiz" hidden>
+    <div class="stack">
+      <span class="eyebrow">Selbsttest</span>
+      <h2>Quiz zu den binomischen Formeln</h2>
+      <div class="progress-line"><div class="bar" aria-hidden="true"><i id="qBar"></i></div><span style="font-family:var(--font-mono)" id="qProgress"></span></div>
+    </div>
+    <div class="panel quiz" id="quizBox" aria-live="polite"></div>
+  </section>

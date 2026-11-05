@@ -1,0 +1,296 @@
+
+  <nav class="tabs" aria-label="Bereiche">
+    <a href="#verstehen" data-view="verstehen"><span class="n">1</span>Verstehen</a>
+    <a href="#simulation" data-view="simulation"><span class="n">2</span>Simulation</a>
+    <a href="#zellen" data-view="zellen"><span class="n">3</span>Zellen</a>
+    <a href="#alltag" data-view="alltag"><span class="n">4</span>Alltag</a>
+    <a href="#ueben" data-view="ueben"><span class="n">5</span>Quiz</a>
+  </nav>
+
+  <!-- ===================== 1 VERSTEHEN ===================== -->
+  <section class="view" id="view-verstehen">
+    <div class="merksatz">
+      <span class="eyebrow">Das Wichtigste in einem Satz</span>
+      <p><span class="t-water">Wasser</span> wandert durch eine <span class="t-membrane">Membran</span> immer dorthin, wo <strong>mehr gelöste Teilchen</strong> sind, zum Beispiel mehr Salz oder Zucker. Das nennt man Osmose.</p>
+    </div>
+
+    <div class="einfach">
+      <span class="eyebrow">Einfach erklärt</span>
+      <p>Stell dir ein Sieb mit winzigen Löchern vor. Wasserteilchen sind klein und passen durch. Zucker- oder Salzteilchen sind zu groß und bleiben hängen.</p>
+      <p>Auf beiden Seiten flitzen Wasserteilchen durch die Löcher, hin und her. Auf der Seite mit viel Zucker sind aber viele Wasserteilchen am Zucker „festgehalten“. Deshalb kommen von dort weniger zurück, als hinüberwandern. Unterm Strich sammelt sich das Wasser auf der Zuckerseite.</p>
+      <p><strong>Merksatz:</strong> Das Wasser folgt dem Salz (und dem Zucker).</p>
+    </div>
+
+    <div class="grid-2">
+      <div class="panel stack">
+        <h3>Was passiert an der Membran?</h3>
+        <svg viewBox="0 0 320 200" role="img" aria-label="Membran mit Poren: Wassermoleküle passen hindurch, größere gelöste Teilchen nicht">
+          <rect x="0" y="0" width="320" height="200" fill="var(--water-soft)" rx="8"></rect>
+          <g fill="var(--membrane)">
+            <rect x="154" y="0" width="12" height="30"></rect>
+            <rect x="154" y="44" width="12" height="40"></rect>
+            <rect x="154" y="98" width="12" height="40"></rect>
+            <rect x="154" y="152" width="12" height="48"></rect>
+          </g>
+          <!-- water left (more) -->
+          <g fill="var(--water)">
+            <circle cx="30" cy="30" r="4"></circle><circle cx="70" cy="22" r="4"></circle><circle cx="115" cy="40" r="4"></circle>
+            <circle cx="45" cy="75" r="4"></circle><circle cx="95" cy="90" r="4"></circle><circle cx="130" cy="70" r="4"></circle>
+            <circle cx="25" cy="130" r="4"></circle><circle cx="70" cy="150" r="4"></circle><circle cx="120" cy="125" r="4"></circle>
+            <circle cx="55" cy="180" r="4"></circle><circle cx="110" cy="175" r="4"></circle><circle cx="140" cy="155" r="4"></circle>
+            <!-- right -->
+            <circle cx="205" cy="25" r="4"></circle><circle cx="290" cy="60" r="4"></circle>
+            <circle cx="230" cy="130" r="4"></circle><circle cx="300" cy="165" r="4"></circle><circle cx="250" cy="185" r="4"></circle>
+          </g>
+          <g fill="var(--solute)">
+            <circle cx="90" cy="125" r="11"></circle>
+            <circle cx="240" cy="50" r="11"></circle><circle cx="280" cy="110" r="11"></circle>
+            <circle cx="205" cy="95" r="11"></circle><circle cx="200" cy="160" r="11"></circle><circle cx="285" cy="20" r="11"></circle>
+          </g>
+          <!-- arrows -->
+          <g stroke="var(--water)" stroke-width="3" fill="none" stroke-linecap="round">
+            <path d="M128 37 H190"></path><path d="M182 30 L190 37 L182 44"></path>
+            <path d="M128 91 H190"></path><path d="M182 84 L190 91 L182 98"></path>
+          </g>
+          <g stroke="var(--water)" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.55">
+            <path d="M190 145 H140"></path><path d="M148 138 L140 145 L148 152"></path>
+          </g>
+          <g stroke="var(--solute)" stroke-width="3" fill="none" stroke-linecap="round">
+            <path d="M190 95 L172 95"></path><path d="M176 86 L168 104 M168 86 L176 104"></path>
+          </g>
+          <text x="10" y="196" font-size="11" fill="var(--muted)" font-family="var(--font-mono)">niedrig konzentriert</text>
+          <text x="208" y="196" font-size="11" fill="var(--muted)" font-family="var(--font-mono)">hoch konzentriert</text>
+        </svg>
+        <p class="muted" style="font-size: var(--step--1)">Wasser (blau) wandert in <strong>beide</strong> Richtungen. Von links nach rechts gehen aber mehr Wasserteilchen als zurück. Diesen Überschuss nennt man <strong>Nettostrom</strong>. Die gelösten Teilchen (orange) sind zu groß und kommen nicht durch.</p>
+      </div>
+
+      <div class="panel stack">
+        <h3>Was braucht man für Osmose?</h3>
+        <ol style="margin:0; padding-left:1.2em; display:grid; gap:8px">
+          <li>Zwei Flüssigkeiten mit <strong>unterschiedlich vielen gelösten Teilchen</strong>, zum Beispiel Leitungswasser und Salzwasser.</li>
+          <li>Eine Trennwand dazwischen, die <strong>nur Wasser durchlässt</strong>. Fachbegriff: <em>selektiv permeable</em> (= halbdurchlässige) Membran. Die Zellmembran ist so eine Trennwand.</li>
+          <li>Sonst nichts. Die Teilchen bewegen sich von ganz allein, weil sie ständig herumzappeln. Die Zelle braucht keine Energie dafür. Fachbegriff: <strong>passiver Transport</strong>.</li>
+        </ol>
+        <p class="muted" style="font-size: var(--step--1)">Je größer der Unterschied zwischen den beiden Seiten ist, desto stärker zieht die „salzigere“ Seite das Wasser an. Diesen Sog nennt man <strong>osmotischen Druck</strong>.</p>
+      </div>
+    </div>
+
+    <div class="stack">
+      <h2>Hypotonisch, isotonisch, hypertonisch</h2>
+      <p class="muted">Diese drei Wörter <strong>vergleichen</strong> zwei Flüssigkeiten, meistens die Flüssigkeit außen mit dem Inneren der Zelle. Eselsbrücke: <strong>hypo</strong> = weniger, <strong>iso</strong> = gleich, <strong>hyper</strong> = mehr (wie in „hyperaktiv“).</p>
+      <div class="grid-3">
+        <div class="panel tonic-card">
+          <span class="tag">außen weniger Teilchen</span>
+          <h3>hypotonisch</h3>
+          <p style="font-size: var(--step--1)">Außen sind <strong>weniger</strong> gelöste Teilchen als in der Zelle. <span class="t-water">Wasser strömt in die Zelle hinein.</span></p>
+          <p class="muted" style="font-size: var(--step--1)">Beispiel: destilliertes Wasser, Regenwasser</p>
+        </div>
+        <div class="panel tonic-card">
+          <span class="tag">außen gleich viele</span>
+          <h3>isotonisch</h3>
+          <p style="font-size: var(--step--1)">Innen und außen sind <strong>gleich viele</strong> gelöste Teilchen. Es strömt gleich viel Wasser hinein wie heraus. Die Zelle bleibt, wie sie ist.</p>
+          <p class="muted" style="font-size: var(--step--1)">Beispiel: 0,9 % Kochsalzlösung für Blutzellen</p>
+        </div>
+        <div class="panel tonic-card">
+          <span class="tag">außen mehr Teilchen</span>
+          <h3>hypertonisch</h3>
+          <p style="font-size: var(--step--1)">Außen sind <strong>mehr</strong> gelöste Teilchen als in der Zelle. <span class="t-water">Wasser strömt aus der Zelle heraus.</span></p>
+          <p class="muted" style="font-size: var(--step--1)">Beispiel: Salzwasser, sehr süße Zuckerlösung</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="stack">
+      <h2>Diffusion und Osmose: Was ist der Unterschied?</h2>
+      <div class="panel table-scroll" style="padding: 8px 12px">
+        <table class="compare">
+          <thead><tr><th></th><th>Diffusion</th><th>Osmose</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Was wandert?</strong></td><td>Alle möglichen Teilchen, z.&nbsp;B. Duftstoffe in der Luft oder Zucker im Tee</td><td>Nur das Wasser</td></tr>
+            <tr><td><strong>Braucht man eine Membran?</strong></td><td>Nein</td><td>Ja, eine, die nur Wasser durchlässt</td></tr>
+            <tr><td><strong>Wohin?</strong></td><td>Von „viel“ nach „wenig“, bis alles gleichmäßig verteilt ist</td><td>Zu der Seite mit mehr gelösten Teilchen</td></tr>
+            <tr><td><strong>Energie nötig?</strong></td><td colspan="2">Nein, beides läuft von allein (passiv)</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="small muted">Osmose ist also eine besondere Form der Diffusion: die Diffusion von Wasser durch eine Membran.</p>
+    </div>
+
+    <div class="grid-2">
+      <div class="panel stack">
+        <h3>Typische Fehler</h3>
+        <ul class="pitfalls">
+          <li>„Das Salz wandert in die Zelle.“ <strong>Falsch.</strong> Bei Osmose wandert nur das <em>Wasser</em>.</li>
+          <li>„Bei isotonisch bewegt sich gar kein Wasser.“ <strong>Falsch.</strong> Es wandert gleich viel hinein wie heraus, deshalb ändert sich nichts.</li>
+          <li>„Die Lösung ist hypertonisch.“ Das reicht nicht. Sag immer, <em>womit</em> du vergleichst, z.&nbsp;B. „hypertonisch zum Zellinneren“.</li>
+          <li>Pflanzenzellen platzen nicht, weil sie eine feste <strong>Zellwand</strong> haben. Tierzellen haben keine.</li>
+        </ul>
+      </div>
+      <div class="panel stack">
+        <h3>Wichtige Begriffe</h3>
+        <dl class="glossary">
+          <div><dt>Turgor</dt><dd>Der Druck, mit dem das Zellinnere gegen die Zellwand drückt. Er macht Pflanzen straff und Salat knackig.</dd></div>
+          <div><dt>Plasmolyse</dt><dd>Die Pflanzenzelle verliert Wasser. Ihr Inneres schrumpft und löst sich von der Zellwand.</dd></div>
+          <div><dt>Deplasmolyse</dt><dd>Das Gegenteil: Die Zelle nimmt wieder Wasser auf und füllt die Zellwand wieder aus.</dd></div>
+          <div><dt>Hämolyse</dt><dd>Rote Blutzellen nehmen so viel Wasser auf, dass sie platzen.</dd></div>
+          <div><dt>Vakuole</dt><dd>Großer Wasserspeicher in der Pflanzenzelle. Ist er voll, ist die Zelle prall.</dd></div>
+          <div><dt>Osmoregulation</dt><dd>Lebewesen steuern ihren Wasser- und Salzhaushalt, z.&nbsp;B. mit den Nieren.</dd></div>
+        </dl>
+      </div>
+    </div>
+
+    <details class="profi">
+      <summary>Für Profis: Wasserkanäle und Teilchenzahl</summary>
+      <p>In Zellmembranen gelangt Wasser vor allem durch spezielle Kanalproteine, die <strong>Aquaporine</strong>. Für die Stärke der Osmose zählt die <strong>Anzahl</strong> der gelösten Teilchen, nicht ihr Gewicht. Kochsalz (NaCl) zerfällt im Wasser in zwei Teilchen, Na⁺ und Cl⁻. Deshalb wirkt 0,1 mol/L Kochsalz etwa doppelt so stark wie 0,1 mol/L Traubenzucker.</p>
+    </details>
+
+    <div class="row"><a class="btn primary" href="#simulation" style="text-decoration:none">Weiter zur Simulation →</a></div>
+  </section>
+
+  <!-- ===================== 2 SIMULATION ===================== -->
+  <section class="view" id="view-simulation" hidden>
+    <div class="stack">
+      <span class="eyebrow">Modellversuch</span>
+      <h2>Versuch: zwei Lösungen, eine Membran</h2>
+      <p class="muted">Ein Gefäß ist durch eine Membran in zwei Hälften geteilt. Stelle mit den Reglern ein, wie viel Zucker auf jeder Seite gelöst ist, und drücke auf Start. Beobachte, auf welcher Seite der Wasserspiegel steigt.</p>
+    </div>
+    <div class="sim-layout">
+      <div class="canvas-box">
+        <canvas id="sim" aria-label="Simulation eines Gefäßes, das durch eine Membran geteilt ist"></canvas>
+        <div class="legend">
+          <span><i class="dot" style="background:var(--water)"></i>Wasser</span>
+          <span><i class="dot" style="background:var(--solute); width:13px; height:13px"></i>gelöster Stoff (z.&nbsp;B. Zucker)</span>
+          <span><i class="dot" style="background:var(--membrane); border-radius:2px"></i>Membran</span>
+        </div>
+      </div>
+      <div class="controls panel">
+        <div class="slider">
+          <label for="cLeft"><span>Links</span><span class="mono" id="cLeftOut">0,1 mol/L</span></label>
+          <input type="range" id="cLeft" min="0" max="1" step="0.1" value="0.1">
+        </div>
+        <div class="slider">
+          <label for="cRight"><span>Rechts</span><span class="mono" id="cRightOut">0,6 mol/L</span></label>
+          <input type="range" id="cRight" min="0" max="1" step="0.1" value="0.6">
+        </div>
+        <div class="stack" style="gap:6px">
+          <span style="font-weight:700; font-size: var(--step--1)">Membran</span>
+          <div class="row">
+            <button type="button" id="memSemi" aria-pressed="true">selektiv permeabel</button>
+            <button type="button" id="memFull" aria-pressed="false">für alles durchlässig</button>
+          </div>
+        </div>
+        <div class="row">
+          <button type="button" class="primary" id="simRun">Start</button>
+          <button type="button" id="simReset">Zurücksetzen</button>
+        </div>
+        <dl class="readout">
+          <dt>Konzentration links (aktuell)</dt><dd id="roCL">–</dd>
+          <dt>Konzentration rechts (aktuell)</dt><dd id="roCR">–</dd>
+          <dt>Wasser → nach rechts</dt><dd id="roToR">0</dd>
+          <dt>Wasser ← nach links</dt><dd id="roToL">0</dd>
+          <dt>Höhenunterschied</dt><dd id="roDh">0 mm</dd>
+        </dl>
+        <div class="status-box" id="simStatus" aria-live="polite">Drücke auf Start.</div>
+      </div>
+    </div>
+
+    <div class="grid-2">
+      <div class="panel stack">
+        <h3>Probier das aus</h3>
+        <ul class="pitfalls">
+          <li>Stelle beide Seiten auf <strong>0,5 mol/L</strong>. Bewegt sich trotzdem Wasser? Schau auf die Zähler.</li>
+          <li>Setze links auf <strong>0</strong> (reines Wasser) und rechts auf <strong>1,0</strong>. Warum hört der Spiegel irgendwann auf zu steigen?</li>
+          <li>Wähle „für alles durchlässig“. Was passiert jetzt mit den orangen Teilchen und mit den Wasserspiegeln?</li>
+        </ul>
+      </div>
+      <div class="panel stack">
+        <h3>Warum hört der Spiegel auf zu steigen?</h3>
+        <p style="font-size: var(--step--1)">Je höher das Wasser auf einer Seite steht, desto schwerer ist es und desto stärker drückt es zurück. Außerdem wird die Zuckerseite durch das zusätzliche Wasser verdünnt. Irgendwann sind Sog und Gegendruck gleich stark. Dann bleibt der Spiegel stehen.</p>
+        <details class="profi">
+          <summary>Für Profis: Wie stark ist der osmotische Druck wirklich?</summary>
+          <p>Nach der Formel von van ’t Hoff (π = c · R · T) erzeugt schon ein Unterschied von 0,1 mol/L bei 20 °C etwa 2,4 bar. Das entspricht einer Wassersäule von rund 25 m. In der Simulation ist das stark verkleinert.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== 3 ZELLEN ===================== -->
+  <section class="view" id="view-zellen" hidden>
+    <div class="stack">
+      <span class="eyebrow">Mikroskopie</span>
+      <h2>Zellen in verschiedenen Lösungen</h2>
+      <p class="muted">Wähle aus, in welcher Flüssigkeit die Zellen liegen. Vergleiche eine rote Blutzelle (Tierzelle, <strong>ohne</strong> Zellwand) mit einer Zelle aus der Zwiebelhaut (Pflanzenzelle, <strong>mit</strong> Zellwand).</p>
+    </div>
+    <div class="medium-btns" role="group" aria-label="Außenlösung wählen">
+      <button type="button" data-medium="hypo" aria-pressed="false">hypotonische Lösung<small>z.&nbsp;B. destilliertes Wasser</small></button>
+      <button type="button" data-medium="iso" aria-pressed="true">isotonische Lösung<small>z.&nbsp;B. 0,9 % NaCl (Blut) bzw. ca. 0,3 mol/L Saccharose (Zwiebel)</small></button>
+      <button type="button" data-medium="hyper" aria-pressed="false">hypertonische Lösung<small>z.&nbsp;B. 10 % NaCl oder 1 mol/L Saccharose</small></button>
+    </div>
+    <div class="cell-layout">
+      <div class="panel cell-fig">
+        <span class="eyebrow">Tierzelle</span>
+        <h3>Rote Blutzelle (Erythrocyt)</h3>
+        <svg id="rbcSvg" viewBox="0 0 240 240" role="img" aria-label="Rote Blutzelle">
+          <rect x="0" y="0" width="240" height="240" rx="10" fill="var(--water-soft)"></rect>
+          <path id="rbcBody" fill="var(--cell)" stroke="var(--cell)" stroke-width="2"></path>
+          <ellipse id="rbcCenter" cx="120" cy="120" rx="26" ry="26" fill="var(--cell-pale)"></ellipse>
+          <g id="rbcBurst" opacity="0" stroke="var(--cell)" stroke-width="3" stroke-linecap="round">
+            <path d="M48 70 l-14 -12 M196 64 l14 -12 M40 170 l-16 8 M200 176 l16 8 M120 30 v-16 M120 210 v16"></path>
+          </g>
+          <g id="rbcArrows" stroke="var(--water)" stroke-width="3" fill="none" stroke-linecap="round"></g>
+        </svg>
+        <span class="state" id="rbcState">normal (bikonkav)</span>
+        <p id="rbcText" style="font-size: var(--step--1)"></p>
+      </div>
+      <div class="panel cell-fig">
+        <span class="eyebrow">Pflanzenzelle</span>
+        <h3>Zelle der Zwiebelhaut</h3>
+        <svg id="plantSvg" viewBox="0 0 240 240" role="img" aria-label="Pflanzenzelle">
+          <rect x="0" y="0" width="240" height="240" rx="10" fill="var(--water-soft)"></rect>
+          <rect x="30" y="40" width="180" height="160" rx="6" fill="none" stroke="var(--plant-wall)" stroke-width="8"></rect>
+          <rect id="plantProto" x="36" y="46" width="168" height="148" rx="10" fill="var(--plant-cyto)" stroke="var(--plant-wall)" stroke-width="1.5"></rect>
+          <rect id="plantVac" x="56" y="62" width="128" height="116" rx="30" fill="var(--vacuole)"></rect>
+          <circle id="plantNuc" cx="70" cy="70" r="11" fill="var(--plant-wall)" opacity="0.75"></circle>
+          <g id="plantArrows" stroke="var(--water)" stroke-width="3" fill="none" stroke-linecap="round"></g>
+        </svg>
+        <span class="state" id="plantState">Grenzplasmolyse</span>
+        <p id="plantText" style="font-size: var(--step--1)"></p>
+      </div>
+    </div>
+    <div class="merksatz">
+      <span class="eyebrow">Merke</span>
+      <p>Die Zellwand schützt die Pflanzenzelle vor dem Platzen. Die Tierzelle hat keine Zellwand und ist deshalb auf eine isotonische Umgebung angewiesen.</p>
+    </div>
+    <div class="panel stack">
+      <h3>Einzeller: die pulsierende Vakuole</h3>
+      <p style="font-size: var(--step--1)">Das Pantoffeltierchen ist ein Einzeller, der im Süßwasser lebt. In seiner Zelle sind mehr gelöste Teilchen als im Teichwasser. Deshalb strömt ständig Wasser hinein. Damit es nicht platzt, hat es eine kleine Pumpblase, die <strong>pulsierende Vakuole</strong>. Sie sammelt das Wasser und drückt es regelmäßig wieder hinaus. Dafür braucht die Zelle Energie.</p>
+    </div>
+  </section>
+
+  <!-- ===================== 4 ALLTAG ===================== -->
+  <section class="view" id="view-alltag" hidden>
+    <div class="stack">
+      <span class="eyebrow">Osmose im Alltag</span>
+      <h2>Wo begegnet dir Osmose?</h2>
+      <p class="muted">Lies jede Situation und sage voraus, in welche Richtung sich das Wasser bei den Zellen bewegt. Danach bekommst du die Erklärung.</p>
+      <div class="progress-line">
+        <div class="bar" aria-hidden="true"><i id="exBar"></i></div>
+        <span class="mono" id="exScore">0 von 0 beantwortet</span>
+        <button type="button" id="exReset">Alle zurücksetzen</button>
+      </div>
+    </div>
+    <div class="ex-grid" id="exGrid"></div>
+  </section>
+
+  <!-- ===================== 5 QUIZ ===================== -->
+  <section class="view" id="view-ueben" hidden>
+    <div class="stack">
+      <span class="eyebrow">Selbsttest</span>
+      <h2>Quiz zur Osmose</h2>
+      <div class="progress-line">
+        <div class="bar" aria-hidden="true"><i id="qBar"></i></div>
+        <span class="mono" id="qProgress"></span>
+      </div>
+    </div>
+    <div class="panel quiz" id="quizBox" aria-live="polite"></div>
+  </section>

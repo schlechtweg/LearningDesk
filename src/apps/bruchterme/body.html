@@ -1,0 +1,180 @@
+
+  <nav class="tabs" aria-label="Bereiche">
+    <a href="#grundlagen" data-view="grundlagen"><span class="n">1</span>Was ist ein Bruchterm?</a>
+    <a href="#kuerzen" data-view="kuerzen"><span class="n">2</span>Kürzen und Erweitern</a>
+    <a href="#rechnen" data-view="rechnen"><span class="n">3</span>Rechnen</a>
+    <a href="#ueben" data-view="ueben"><span class="n">4</span>Üben</a>
+    <a href="#quiz" data-view="quiz"><span class="n">5</span>Quiz</a>
+  </nav>
+
+  <!-- ===================== 1 GRUNDLAGEN ===================== -->
+  <section class="view" id="view-grundlagen">
+    <div class="einfach">
+      <span class="eyebrow">Einfach erklärt</span>
+      <p>Einen Bruch wie <span class="math"><span class="frac"><span>3</span><span>4</span></span></span> kennst du schon. Bei einem <strong>Bruchterm</strong> steht im <span class="cd">Nenner</span> (unten) eine <strong>Variable</strong>, zum Beispiel <span class="math"><span class="frac"><span>5</span><span><i>x</i></span></span></span> oder <span class="math"><span class="frac"><span><i>x</i> + 1</span><span><i>x</i> − 2</span></span></span>.</p>
+      <p>Für <i>x</i> kannst du Zahlen einsetzen, aber <strong>nicht jede</strong>. Durch 0 darf man nämlich nicht teilen!</p>
+    </div>
+
+    <div class="grid-2">
+      <div class="panel stack">
+        <h3>Die Definitionsmenge</h3>
+        <p class="small">Die <strong>Definitionsmenge D</strong> enthält alle Zahlen, die du einsetzen darfst. Verboten sind die Zahlen, bei denen der Nenner 0 wird.</p>
+        <p class="small"><strong>So findest du sie:</strong> Setze den Nenner gleich 0 und löse nach <i>x</i> auf. Diese Zahlen schließt du aus.</p>
+        <p class="math">Beispiel: <span class="frac"><span>5</span><span><i>x</i> − 2</span></span> &nbsp;→&nbsp; <i>x</i> − 2 = 0 &nbsp;→&nbsp; <i>x</i> = 2</p>
+        <p class="math">D = ℚ \ {2}</p>
+        <p class="small muted">Lies: „D ist gleich ℚ ohne 2“. ℚ sind alle rationalen Zahlen, also alle Brüche und ganzen Zahlen.</p>
+      </div>
+      <div class="panel stack">
+        <h3>Mehrere verbotene Zahlen</h3>
+        <p class="small">Steht im Nenner ein Produkt, wird er 0, sobald <strong>ein</strong> Faktor 0 ist.</p>
+        <p class="math"><span class="frac"><span>1</span><span><i>x</i>·(<i>x</i> + 3)</span></span> &nbsp;→&nbsp; <i>x</i> = 0 oder <i>x</i> = −3</p>
+        <p class="math">D = ℚ \ {−3; 0}</p>
+        <p class="small muted">Tipp: Nenner wie <span class="math"><i>x</i><sup>2</sup> − 9</span> zuerst mit der 3. binomischen Formel zerlegen: <span class="math">(<i>x</i> + 3)(<i>x</i> − 3)</span>. Verboten sind dann 3 und −3.</p>
+      </div>
+    </div>
+
+    <div class="panel stack">
+      <h3>Ausprobieren: Wertetabelle</h3>
+      <p class="small muted">Wähle einen Bruchterm. Die rot markierten Felder zeigen, wo der Nenner 0 wird. Dort ist der Term <strong>nicht definiert</strong>.</p>
+      <div class="row">
+        <label for="vtSel" class="small"><strong>Bruchterm</strong></label>
+        <select id="vtSel"></select>
+      </div>
+      <div class="big" id="vtTerm"></div>
+      <div class="table-scroll"><table class="values" id="vtTable"></table></div>
+      <p class="small" id="vtD"></p>
+    </div>
+  </section>
+
+  <!-- ===================== 2 KÜRZEN ===================== -->
+  <section class="view" id="view-kuerzen" hidden>
+    <div class="stack">
+      <span class="eyebrow">Kürzen und Erweitern</span>
+      <h2>Wie bei normalen Brüchen</h2>
+      <p class="muted">Kürzen heißt: Zähler und Nenner durch dasselbe teilen. Erweitern heißt: Zähler und Nenner mit demselben malnehmen. Der Wert des Bruchs bleibt dabei gleich.</p>
+    </div>
+    <div class="merksatz">
+      <span class="eyebrow">Die wichtigste Regel</span>
+      <p style="font-family:var(--font-display); font-size: var(--step-1); font-weight: 500">Du darfst nur <strong>Faktoren</strong> kürzen, also Teile, die mit <strong>mal</strong> verbunden sind. Teile, die mit <strong>plus oder minus</strong> verbunden sind, darfst du nicht kürzen.</p>
+      <p class="small muted">Merkspruch: „Aus Summen kürzen nur die Dummen.“</p>
+    </div>
+    <div class="grid-2">
+      <div class="panel stack">
+        <h3>Richtig</h3>
+        <p class="math"><span class="frac"><span>6<i>x</i><sup>2</sup></span><span>9<i>x</i></span></span> = <span class="frac"><span>2 · 3 · <i>x</i> · <i>x</i></span><span>3 · 3 · <i>x</i></span></span> = <span class="frac"><span>2<i>x</i></span><span>3</span></span></p>
+        <p class="small muted">Gemeinsame Faktoren: 3 und <i>x</i>. Die werden gekürzt.</p>
+        <p class="math"><span class="frac"><span>3<i>x</i> + 6</span><span>3</span></span> = <span class="frac"><span>3 · (<i>x</i> + 2)</span><span>3</span></span> = <i>x</i> + 2</p>
+        <p class="small muted">Erst <strong>ausklammern</strong>, dann ist die 3 ein Faktor und darf weg.</p>
+      </div>
+      <div class="panel stack">
+        <h3>Falsch</h3>
+        <p class="math"><span class="frac plain"><span><span class="strike"><i>x</i></span> + 3</span><span><span class="strike"><i>x</i></span></span></span> = 3 &nbsp;✗</p>
+        <p class="small muted">Das <i>x</i> oben ist mit + verbunden, also kein Faktor. Probe mit <i>x</i> = 1: <span class="math"><span class="frac plain"><span>1 + 3</span><span>1</span></span> = 4</span>, nicht 3.</p>
+        <p class="math"><span class="frac plain"><span><i>x</i> + <span class="strike">5</span></span><span><i>x</i> + <span class="strike">5</span></span></span>… das geht hier zufällig, weil Zähler und Nenner gleich sind (= 1). Aber <span class="frac plain"><span><i>x</i> + 5</span><span><i>x</i> + 2</span></span> kann man nicht kürzen.</p>
+      </div>
+    </div>
+    <div class="panel stack">
+      <h3>Kürzen mit binomischen Formeln</h3>
+      <p class="small">Oft muss man Zähler oder Nenner erst in Faktoren zerlegen. Dabei helfen die binomischen Formeln:</p>
+      <p class="math"><span class="frac"><span><i>x</i><sup>2</sup> − 9</span><span><i>x</i> + 3</span></span> = <span class="frac"><span>(<i>x</i> + 3)(<i>x</i> − 3)</span><span><i>x</i> + 3</span></span> = <i>x</i> − 3</p>
+      <p class="math"><span class="frac"><span><i>x</i><sup>2</sup> + 4<i>x</i> + 4</span><span><i>x</i> + 2</span></span> = <span class="frac"><span>(<i>x</i> + 2)<sup>2</sup></span><span><i>x</i> + 2</span></span> = <i>x</i> + 2</p>
+      <p class="small muted">Jetzt ist <span class="math">(<i>x</i> + 3)</span> bzw. <span class="math">(<i>x</i> + 2)</span> eine ganze Klammer, also ein Faktor. Den darf man kürzen.</p>
+    </div>
+    <div class="panel stack">
+      <h3>Erweitern</h3>
+      <p class="small">Erweitern brauchst du, um Bruchterme auf einen <strong>gemeinsamen Nenner</strong> zu bringen. Zähler und Nenner werden mit demselben Term malgenommen:</p>
+      <p class="math"><span class="frac"><span>3</span><span><i>x</i></span></span> = <span class="frac"><span>3 · 2</span><span><i>x</i> · 2</span></span> = <span class="frac"><span>6</span><span>2<i>x</i></span></span> &nbsp;&nbsp;&nbsp; <span class="frac"><span>5</span><span><i>x</i></span></span> = <span class="frac"><span>5 · <i>x</i></span><span><i>x</i> · <i>x</i></span></span> = <span class="frac"><span>5<i>x</i></span><span><i>x</i><sup>2</sup></span></span></p>
+    </div>
+  </section>
+
+  <!-- ===================== 3 RECHNEN ===================== -->
+  <section class="view" id="view-rechnen" hidden>
+    <div class="stack">
+      <span class="eyebrow">Die vier Grundrechenarten</span>
+      <h2>Rechnen mit Bruchtermen</h2>
+      <p class="muted">Es gelten dieselben Regeln wie bei Zahlenbrüchen. Wenn du mit normalen Brüchen rechnen kannst, kannst du es auch hier.</p>
+    </div>
+    <div class="rules">
+      <div class="panel rule">
+        <span class="eyebrow">Multiplizieren</span>
+        <p class="small"><strong>Zähler mal Zähler, Nenner mal Nenner.</strong> Am besten vorher kürzen.</p>
+        <p class="math"><span class="frac"><span>2<i>x</i></span><span>3</span></span> · <span class="frac"><span>9</span><span>4<i>x</i><sup>2</sup></span></span> = <span class="frac"><span>2<i>x</i> · 9</span><span>3 · 4<i>x</i><sup>2</sup></span></span> = <span class="frac"><span>18<i>x</i></span><span>12<i>x</i><sup>2</sup></span></span> = <span class="frac"><span>3</span><span>2<i>x</i></span></span></p>
+      </div>
+      <div class="panel rule">
+        <span class="eyebrow">Dividieren</span>
+        <p class="small"><strong>Mit dem Kehrwert malnehmen.</strong> Den zweiten Bruch umdrehen und dann multiplizieren.</p>
+        <p class="math"><span class="frac"><span>3</span><span><i>x</i></span></span> : <span class="frac"><span>6</span><span><i>x</i><sup>2</sup></span></span> = <span class="frac"><span>3</span><span><i>x</i></span></span> · <span class="frac"><span><i>x</i><sup>2</sup></span><span>6</span></span> = <span class="frac"><span>3<i>x</i><sup>2</sup></span><span>6<i>x</i></span></span> = <span class="frac"><span><i>x</i></span><span>2</span></span></p>
+      </div>
+      <div class="panel rule">
+        <span class="eyebrow">Addieren · gleicher Nenner</span>
+        <p class="small"><strong>Zähler addieren, Nenner bleibt.</strong></p>
+        <p class="math"><span class="frac"><span>3</span><span><i>x</i> + 1</span></span> + <span class="frac"><span>5</span><span><i>x</i> + 1</span></span> = <span class="frac"><span>8</span><span><i>x</i> + 1</span></span></p>
+        <p class="ex">Beim Subtrahieren genauso, aber Klammern setzen, wenn der zweite Zähler eine Summe ist!</p>
+      </div>
+      <div class="panel rule">
+        <span class="eyebrow">Addieren · verschiedene Nenner</span>
+        <p class="small"><strong>Erst auf einen gemeinsamen Nenner erweitern</strong> (Hauptnenner), dann die Zähler addieren.</p>
+        <p class="math"><span class="frac"><span>2</span><span><i>x</i></span></span> + <span class="frac"><span>3</span><span>2<i>x</i></span></span> = <span class="frac"><span>4</span><span>2<i>x</i></span></span> + <span class="frac"><span>3</span><span>2<i>x</i></span></span> = <span class="frac"><span>7</span><span>2<i>x</i></span></span></p>
+      </div>
+    </div>
+    <div class="panel stack">
+      <h3>Den Hauptnenner finden</h3>
+      <ol class="list small">
+        <li>Zerlege alle Nenner in Faktoren, zum Beispiel <span class="math">2<i>x</i> = 2 · <i>x</i></span> und <span class="math"><i>x</i><sup>2</sup> = <i>x</i> · <i>x</i></span>.</li>
+        <li>Nimm jeden Faktor so oft, wie er <strong>höchstens</strong> in einem Nenner vorkommt.</li>
+        <li>Beispiel: Nenner <span class="math">2<i>x</i></span> und <span class="math"><i>x</i><sup>2</sup></span>, also Hauptnenner <span class="math">2 · <i>x</i> · <i>x</i> = 2<i>x</i><sup>2</sup></span>.</li>
+        <li>Haben die Nenner nichts gemeinsam, nimmst du einfach ihr Produkt: <span class="math"><span class="frac"><span>1</span><span><i>x</i></span></span> + <span class="frac"><span>1</span><span><i>x</i> + 1</span></span> = <span class="frac"><span><i>x</i> + 1</span><span><i>x</i>(<i>x</i> + 1)</span></span> + <span class="frac"><span><i>x</i></span><span><i>x</i>(<i>x</i> + 1)</span></span> = <span class="frac"><span>2<i>x</i> + 1</span><span><i>x</i>(<i>x</i> + 1)</span></span></span></li>
+      </ol>
+    </div>
+    <div class="panel stack">
+      <h3>Typische Fehler</h3>
+      <ul class="list small">
+        <li><span class="math"><span class="frac plain"><span>1</span><span><i>x</i></span></span> + <span class="frac plain"><span>1</span><span>2</span></span> = <span class="frac plain"><span>2</span><span><i>x</i> + 2</span></span></span> ist <strong>falsch</strong>. Nenner werden beim Addieren nie addiert.</li>
+        <li>Beim Subtrahieren die Klammer vergessen: <span class="math"><span class="frac plain"><span>5</span><span><i>x</i></span></span> − <span class="frac plain"><span>2 + <i>x</i></span><span><i>x</i></span></span> = <span class="frac plain"><span>5 − (2 + <i>x</i>)</span><span><i>x</i></span></span> = <span class="frac plain"><span>3 − <i>x</i></span><span><i>x</i></span></span></span>, nicht <span class="math"><span class="frac plain"><span>7 + <i>x</i></span><span><i>x</i></span></span></span> oder <span class="math"><span class="frac plain"><span>3 + <i>x</i></span><span><i>x</i></span></span></span>.</li>
+        <li>Beim Dividieren den <strong>ersten</strong> statt den zweiten Bruch umdrehen.</li>
+        <li>Die Definitionsmenge vergessen. Sie gilt auch für das Ergebnis, selbst wenn ein Faktor weggekürzt wurde.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===================== 4 ÜBEN ===================== -->
+  <section class="view" id="view-ueben" hidden>
+    <div class="stack">
+      <span class="eyebrow">Trainer</span>
+      <h2>Üben mit Rückmeldung</h2>
+      <p class="muted">Wähle eine Übungsart. Der Trainer prüft deine Antwort und zeigt dir auf Wunsch den Lösungsweg.</p>
+      <div class="modes" role="group" aria-label="Übungsart">
+        <button type="button" data-mode="def" aria-pressed="true">Definitionsmenge</button>
+        <button type="button" data-mode="kuerzen" aria-pressed="false">Kürzen</button>
+        <button type="button" data-mode="rechnen" aria-pressed="false">Rechnen</button>
+      </div>
+    </div>
+    <div class="panel stack">
+      <p class="small muted" id="trInstr"></p>
+      <form class="stack" id="trForm" autocomplete="off">
+        <div class="task" id="trTask"></div>
+        <div class="answer-row">
+          <label for="trInput" class="math" id="trLabel"></label>
+          <input type="text" id="trInput" spellcheck="false">
+        </div>
+        <div class="row">
+          <button type="submit" class="primary">Prüfen</button>
+          <button type="button" id="trShow">Lösung zeigen</button>
+          <button type="button" id="trNext">Neue Aufgabe</button>
+        </div>
+      </form>
+      <p class="hint" id="trHint"></p>
+      <div class="feedback" id="trFb" hidden aria-live="polite"></div>
+      <span class="score-line" id="trScore"></span>
+    </div>
+  </section>
+
+  <!-- ===================== 5 QUIZ ===================== -->
+  <section class="view" id="view-quiz" hidden>
+    <div class="stack">
+      <span class="eyebrow">Selbsttest</span>
+      <h2>Quiz zu Bruchtermen</h2>
+      <div class="progress-line"><div class="bar" aria-hidden="true"><i id="qBar"></i></div><span style="font-family:var(--font-mono)" id="qProgress"></span></div>
+    </div>
+    <div class="panel quiz" id="quizBox" aria-live="polite"></div>
+  </section>
