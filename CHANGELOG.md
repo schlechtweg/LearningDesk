@@ -9,6 +9,9 @@ Schema **MAJOR.MINOR.PATCH**:
 
 Neue Version: oben einen Eintrag `## [x.y.z] – JJJJ-MM-TT` ergänzen und `python3 src/build.py` ausführen.
 
+## [1.3.0] – 2026-11-05
+- Jedes Übungsblatt enthält jetzt eine Grafik-Aufgabe: beschriften (z. B. Auge, Nervenzelle, Pflanzenzelle, Hebebühne), einzeichnen (Ableitungsgraph, Lösungsmengen, Kraftpfeile, Wasserstrahlen) oder ausfüllen (Flächenmodelle, Waage). Die Lösungsseite zeigt die fertige Grafik.
+
 ## [1.2.0] – 2026-11-05
 - Neues Thema Klasse 8 Biologie: Das Nervensystem (Nervenzelle und Gehirn zum Antippen, Signalweg und Reflexbogen, Reaktionstest, Trainer, Quiz, Factsheet, Übungsblatt).
 - Das Auge: neuer Abschnitt Fernsicht und Nahsicht mit Fachbegriffen (Akkommodation, Zonulafasern, Eigenelastizität, Brechkraft, Dioptrie, Nahpunkt, Fernpunkt); Simulation zeigt Nah-/Fernakkommodation, Nahpunkt und Fernpunkt; neuer Trainer-Modus.

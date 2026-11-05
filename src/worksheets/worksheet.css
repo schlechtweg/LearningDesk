@@ -37,3 +37,44 @@ ol.items li::before { content: counter(task) "."; position: absolute; left: 0; f
 .sol .res { font-weight: 700; }
 .small { font-size: 8pt; color: var(--muted); }
 footer { display: flex; justify-content: space-between; gap: 4mm; white-space: nowrap; font-family: var(--font-mono); font-size: 6.8pt; color: var(--muted); border-top: 1px solid var(--line); padding-top: 1.3mm; }
+
+/* Graphic task: drawing on the left, instructions and answer lines on the right */
+section.fig .figwrap { display: grid; grid-template-columns: 54% 1fr; gap: 4mm; align-items: center; }
+.fsvg { width: 100%; height: auto; max-height: 56mm; display: block; margin: 0 auto; }
+.figtext { display: flex; flex-direction: column; gap: 1.4mm; }
+.figtext p { margin: 0; }
+.figtext .q { line-height: 1.5; }
+ol.lab { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(var(--lc, 2), 1fr); gap: 1.3mm 4mm; }
+ol.lab li { display: flex; align-items: baseline; gap: 2mm; min-height: 5mm; }
+ol.lab li > b:first-child { color: var(--accent); min-width: 4mm; white-space: nowrap; }
+ol.lab li > .lt { flex: 1; }
+ol.lab li > .lt .blank { min-width: 18mm; width: 30mm; flex: none; }
+.blank { display: inline-block; flex: 1; min-width: 22mm; border-bottom: 1px solid #9aa4ad; height: 3.8mm; vertical-align: baseline; }
+.blank.wide { display: block; width: 100%; height: 5mm; }
+.fsvg .numc { fill: #fff; stroke: var(--accent); stroke-width: 1.6; }
+.fsvg .numt { font: 700 11px "Atkinson Hyperlegible", sans-serif; fill: var(--accent); text-anchor: middle; }
+.fsvg .lead { stroke: #6b7680; stroke-width: 0.9; }
+.fsvg .ft { font: 12px "Atkinson Hyperlegible", sans-serif; fill: #1b2228; }
+.fsvg .ft.small { font-size: 10px; fill: #56626d; }
+.fsvg .ft.tiny { font-size: 8.5px; fill: #56626d; }
+.fsvg .ft.big { font-size: 15px; font-weight: 700; }
+.fsvg .ft.it { font-family: "STIX Two Text", serif; font-style: italic; font-size: 14px; }
+.fsvg .ft.white { fill: #fff; font-weight: 700; }
+.fsvg .ft.na { fill: #d0782a; font-weight: 700; } .fsvg .ft.k { fill: #7b4bb0; font-weight: 700; }
+.fsvg .sol { fill: #c0392b; }
+.fsvg .o { stroke: #1b2228; stroke-width: 1.4; }
+.fsvg .o.thick { stroke-width: 3; }
+.fsvg .arr { fill: none; stroke: #1b2228; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.fsvg .arr.thin { stroke-width: 1.2; stroke: #56626d; }
+.fsvg .arr.na { stroke: #d0782a; stroke-width: 2.5; } .fsvg .arr.k { stroke: #7b4bb0; stroke-width: 2.5; }
+.fsvg .arr.force, .fsvg .arr.force2 { stroke: #c0392b; stroke-width: 2.8; }
+.fsvg .arr.fg { stroke: #c0392b; stroke-width: 2.8; } .fsvg .arr.fa { stroke: #1f7f4b; stroke-width: 2.8; }
+.fsvg .arr.sol { stroke: #c0392b; stroke-width: 2.4; }
+.fsvg .gl { stroke: #e3e8ed; stroke-width: 0.8; }
+.fsvg .fg { fill: none; stroke: #1b2228; stroke-width: 2; }
+.fsvg .fs { fill: none; stroke: #c0392b; stroke-width: 2.2; stroke-dasharray: 6 3; }
+.fsvg .pt { fill: #c0392b; }
+.fsvg .solline { stroke: #c0392b; stroke-width: 3.5; }
+.fsvg .dotc { fill: #c0392b; stroke: #c0392b; stroke-width: 2; } .fsvg .doto { fill: #fff; stroke: #c0392b; stroke-width: 2; }
+.fsvg .solx { stroke: #c0392b; stroke-width: 2.6; fill: none; }
+.fsvg .jet { fill: none; stroke: #2f7fb8; stroke-width: 3; stroke-linecap: round; }

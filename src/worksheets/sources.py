@@ -9,6 +9,7 @@ import shutil
 import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import figures  # noqa: E402
 import tasks  # noqa: E402
 
 LEVELS = [(1, "★☆☆", "Einfach", "Grundwissen"), (2, "★★☆", "Mittel", "Anwenden"), (3, "★★★", "Schwer", "Knobeln und Transfer")]
@@ -35,7 +36,13 @@ window.__fit = function () {
 </script>"""
 
 
-def page(meta, kind, pools):
+def fig_section(fig, is_sol):
+    pic, html = fig["sol" if is_sol else "task"]
+    return (f'<section class="lvl fig"><h2><span class="stars">{fig["stars"]}</span>Grafik<span class="hint">{fig["title"]}</span></h2>'
+            f'<div class="figwrap"><div class="figpic">{pic}</div><div class="figtext">{html}</div></div></section>')
+
+
+def page(meta, kind, pools, fig=None):
     is_sol = kind == "sol"
     title = "Lösungen" if is_sol else "Übungsaufgaben"
     secs = []
@@ -45,6 +52,9 @@ def page(meta, kind, pools):
             for i, (task, sol) in enumerate(pools[lvl]))
         secs.append(f'<section class="lvl"><h2><span class="stars">{stars}</span>{name}<span class="hint">{hint}</span></h2>'
                     f'<ol class="items" style="--cols:{meta["sol_cols"] if is_sol else meta["cols"]}">{items}</ol></section>')
+        # the graphic task follows the easy tasks
+        if lvl == 1 and fig:
+            secs.append(fig_section(fig, is_sol))
     intro = ('<p class="intro"><span>Vergleiche mit deinen Ergebnissen. Die Nummern entsprechen den Aufgaben auf Seite 1.</span></p>' if is_sol else
              '<p class="intro"><span>Löse die Aufgaben in deinem Heft. <span class="stars">★☆☆</span> einfach · <span class="stars">★★☆</span> mittel · <span class="stars">★★★</span> schwer. Die Lösungen stehen auf Seite 2.</span>'
              '<span class="name">Name: ____________________ Datum: __________</span></p>')
@@ -70,6 +80,7 @@ def build(out):
                     seen.add(pair[0]); unique.append(pair)
             pools[lvl] = unique
         meta = {"slug": slug, "cols": 2, "sol_cols": 2, **meta}
+        fig = figures.FIGS[slug]() if slug in figures.FIGS else None
         html = f'''<!doctype html>
 <html lang="de">
 <head>
@@ -81,8 +92,8 @@ def build(out):
 <style>:root {{ --accent: {meta["accent"]}; }}</style>
 </head>
 <body>
-{page(meta, "task", pools)}
-{page(meta, "sol", pools)}
+{page(meta, "task", pools, fig)}
+{page(meta, "sol", pools, fig)}
 {FIT}
 </body>
 </html>
