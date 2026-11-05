@@ -51,6 +51,10 @@ Danach `docs/` committen und pushen; GitHub Pages veröffentlicht automatisch (Q
 
 Eine neue Klassenstufe oder ein neues Fach wird in `GRADES` bzw. `SUBJECTS` in `src/config.py` eingetragen.
 
+## Offene Punkte
+
+Siehe [TODO.md](TODO.md).
+
 ## Technische Hinweise
 
 - Die Links in `artifacts/` zeigen auf GitHub Pages (absolut), damit sie auch in Claude-Artefakten funktionieren; in `docs/` sind sie relativ und funktionieren auch offline.
