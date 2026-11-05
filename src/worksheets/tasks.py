@@ -970,6 +970,54 @@ def endo():
     }
 
 
+
+def auge():
+    return {
+        1: [
+            ("Wo entsteht das Bild im Auge?", "Auf der <b>Netzhaut</b>."),
+            ("Welcher Teil gibt dem Auge seine Farbe?", "Die <b>Iris</b> (Regenbogenhaut)."),
+            ("Was ist die Pupille?", "Das <b>Sehloch</b> in der Iris, durch das Licht ins Auge fällt."),
+            ("Welche Aufgabe hat der Sehnerv?", "Er leitet die Signale der Netzhaut zum <b>Gehirn</b>."),
+            ("Welche Sinneszellen sehen Farben?", "Die <b>Zapfen</b>."),
+            ("Welche Sinneszellen arbeiten in der Dämmerung?", "Die <b>Stäbchen</b>."),
+            ("Was passiert mit der Pupille bei grellem Licht?", "Sie wird <b>eng</b>."),
+            ("Welcher Teil bricht das Licht am stärksten?", "Die <b>Hornhaut</b>."),
+            ("Was ist der gelbe Fleck?", "Die Stelle des <b>schärfsten Sehens</b>."),
+            ("Was ist der blinde Fleck?", "Die Stelle, an der der Sehnerv das Auge verlässt; dort gibt es <b>keine Sinneszellen</b>."),
+            ("Nenne drei Schutzeinrichtungen des Auges.", "z. B. <b>Augenhöhle, Wimpern, Lidschlag, Tränen, Augenbrauen</b>."),
+            ("Welche Aufgabe hat der Glaskörper?", "Er füllt den Augapfel und <b>hält ihn in Form</b>."),
+            ("Welche Aufgabe hat die Lederhaut?", "Sie <b>schützt</b> das Auge und gibt ihm seine <b>Form</b>."),
+            ("Welche Aufgabe hat die Aderhaut?", "Sie <b>versorgt die Netzhaut</b> mit Blut, Nährstoffen und Sauerstoff."),
+        ],
+        2: [
+            ("Beschreibe den Weg des Lichts durch das Auge bis zum Gehirn.", "<b>Hornhaut → Kammerwasser → Pupille → Linse → Glaskörper → Netzhaut → Sehnerv → Gehirn</b>"),
+            ("Wie verändern sich Ziliarmuskel und Linse beim Blick in die Nähe?", "Ziliarmuskel <b>angespannt</b>, Linsenbänder locker, Linse <b>stark gewölbt</b>."),
+            ("Wie verändern sich Ziliarmuskel und Linse beim Blick in die Ferne?", "Ziliarmuskel <b>entspannt</b>, Linsenbänder gespannt, Linse <b>flach</b>."),
+            ("Beschreibe das Bild auf der Netzhaut.", "<b>Verkleinert</b>, <b>auf dem Kopf</b> und <b>seitenverkehrt</b>."),
+            ("Erkläre den Pupillenreflex und seinen Nutzen.", "Hell: Pupille eng, <b>Netzhaut geschützt</b>. Dunkel: Pupille weit, <b>mehr Licht</b>."),
+            ("Vergleiche Stäbchen und Zapfen (Anzahl, Aufgabe).", "Stäbchen: ≈ 120 Mio., <b>hell/dunkel</b>. Zapfen: ≈ 6 Mio., <b>Farben</b>."),
+            ("Warum sehen wir nachts kaum Farben?", "Bei wenig Licht arbeiten nur die <b>Stäbchen</b>; Zapfen brauchen viel Licht."),
+            ("Vergleiche das Auge mit einer Kamera: Welche Teile entsprechen Blende, Objektiv und Bildsensor?", "Blende = <b>Iris</b>, Objektiv = <b>Linse</b> (mit Hornhaut), Bildsensor = <b>Netzhaut</b>."),
+            ("Erkläre Kurzsichtigkeit: Ursache, Wirkung, Brille.", "Augapfel <b>zu lang</b>, Bild <b>vor</b> der Netzhaut, Ferne unscharf; <b>Zerstreuungslinse</b>."),
+            ("Erkläre Weitsichtigkeit: Ursache, Wirkung, Brille.", "Augapfel <b>zu kurz</b>, Bild <b>hinter</b> der Netzhaut, Nähe unscharf; <b>Sammellinse</b>."),
+            ("Warum sieht man im Kino am Anfang kaum etwas?", "Die Augen müssen sich an die <b>Dunkelheit anpassen</b>; das dauert bis zu 30 min."),
+            ("Auf einem Brillenpass steht −2,0. Was bedeutet das?", "<b>Zerstreuungslinse</b>: Die Person ist <b>kurzsichtig</b>."),
+        ],
+        3: [
+            ("Warum brauchen viele Menschen ab etwa 45 Jahren eine Lesebrille?", "Die Linse wird <b>weniger elastisch</b> und kann sich nicht mehr stark wölben: Alterssichtigkeit."),
+            ("Warum merkt man den blinden Fleck im Alltag nicht?", "Das <b>andere Auge</b> sieht die Stelle, und das <b>Gehirn ergänzt</b> die Lücke."),
+            ("Beschreibe einen Versuch, mit dem man den blinden Fleck nachweisen kann.", "Kreuz und Punkt auf ein Blatt, ein Auge schließen, Kreuz fixieren, Abstand ändern: Der <b>Punkt verschwindet</b>."),
+            ("Warum entstehen auf Fotos mit Blitz oft rote Augen?", "Die Pupille ist im Dunkeln <b>weit</b>; das Licht wird vom <b>durchbluteten Augenhintergrund</b> rot zurückgeworfen."),
+            ("Warum ist eine dunkle Sonnenbrille ohne UV-Schutz schädlich?", "Hinter dem dunklen Glas wird die <b>Pupille weit</b>; es gelangt <b>mehr UV-Licht</b> ins Auge."),
+            ("Warum ist räumliches Sehen mit einem Auge schwieriger?", "Das Gehirn vergleicht die <b>zwei leicht verschiedenen Bilder</b> beider Augen, um Entfernungen zu schätzen."),
+            ("Warum werden die Augen bei langer Bildschirmarbeit trocken und müde?", "Man <b>blinzelt seltener</b>, und der <b>Ziliarmuskel</b> bleibt lange angespannt."),
+            ("Eine Person sieht ihr Handy scharf, die Tafel aber nicht. Erkläre mit Fachbegriffen und nenne eine Lösung.", "Sie ist <b>kurzsichtig</b>: Augapfel zu lang, Bild ferner Dinge vor der Netzhaut. Lösung: <b>Zerstreuungslinse</b>."),
+            ("Warum sollte man beim Lesen ab und zu in die Ferne schauen?", "Dabei <b>entspannt</b> sich der Ziliarmuskel, die Augen ermüden weniger."),
+            ("Erkläre, warum ein Mensch mit Rot-Grün-Schwäche Rot und Grün schlecht unterscheiden kann.", "Eine Sorte <b>Zapfen</b> arbeitet nicht richtig, die Farbsignale fehlen."),
+        ],
+    }
+
+
 M8, PH = "#1f6e8c", "#b4531f"
 TOPICS = {
     "osmose": ({"title": "Osmose", "eyebrow": "Biologie · Klasse 11", "accent": "#0d6f74", "cols": 2, "sol_cols": 2}, osmose),
@@ -977,6 +1025,7 @@ TOPICS = {
     "symport-antiport": ({"title": "Symport und Antiport", "eyebrow": "Biologie · Klasse 11", "accent": "#2f7d5b", "cols": 2, "sol_cols": 2}, symport),
     "endocytose-exocytose": ({"title": "Endocytose und Exocytose", "eyebrow": "Biologie · Klasse 11", "accent": "#7a3f8f", "cols": 2, "sol_cols": 2}, endo),
     "ableiten": ({"title": "Ableiten", "eyebrow": "Mathematik · Klasse 11", "accent": "#24539c", "cols": 2, "sol_cols": 2}, ableiten),
+    "auge": ({"title": "Das Auge", "eyebrow": "Biologie · Klasse 8", "accent": "#4a7a1e", "cols": 2, "sol_cols": 2}, auge),
     "binomische-formeln": ({"title": "Binomische Formeln", "eyebrow": "Mathematik · Klasse 8", "accent": M8, "cols": 3, "sol_cols": 2}, binomische_formeln),
     "bruchterme": ({"title": "Bruchterme", "eyebrow": "Mathematik · Klasse 8", "accent": "#2d6a4f", "cols": 3, "sol_cols": 3}, bruchterme),
     "ausmultiplizieren-faktorisieren": ({"title": "Ausmultiplizieren und Faktorisieren", "eyebrow": "Mathematik · Klasse 8", "accent": M8, "cols": 3, "sol_cols": 3}, ausmultiplizieren),

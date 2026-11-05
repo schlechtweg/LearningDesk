@@ -9,6 +9,9 @@ Schema **MAJOR.MINOR.PATCH**:
 
 Neue Version: oben einen Eintrag `## [x.y.z] – JJJJ-MM-TT` ergänzen und `python3 src/build.py` ausführen.
 
+## [1.1.0] – 2026-11-05
+- Neues Thema Klasse 8 Biologie: Das Auge (Aufbau zum Antippen, Scharf sehen mit Brillen-Simulation, Trainer, Quiz, Factsheet, Übungsblatt).
+
 ## [1.0.0] – 2026-11-05
 - Versionsnummer und Datum werden schlicht unten auf jeder Seite angezeigt.
 - Diese Änderungsliste eingeführt; frühere Stände sind unten nachgetragen.

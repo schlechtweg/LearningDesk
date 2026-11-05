@@ -1,0 +1,28 @@
+/* Eye cross-section */
+.eye text { font-family: var(--font-body); font-size: 12.5px; fill: var(--ink); }
+.eye .part { cursor: pointer; }
+.eye .part:hover .shape { filter: brightness(1.08); }
+.eye .hit { fill: none; stroke: transparent; stroke-width: 14; pointer-events: stroke; }
+.eye .hitfill { fill: transparent; stroke: none; }
+.eye .sel .shape { stroke: var(--accent) !important; stroke-width: 3.5 !important; }
+.eye .sel .fillsel { fill: var(--accent-soft); }
+.eye .lead { stroke: var(--muted); stroke-width: 1; }
+.eye .lab { font-weight: 700; }
+.eye .light { stroke: #e0a400; stroke-width: 2; stroke-dasharray: 5 4; fill: none; }
+.eye .wrong .shape { stroke: var(--bad) !important; stroke-width: 3.5 !important; }
+
+/* Ray diagram */
+.rays text { font-family: var(--font-body); font-size: 12px; fill: var(--ink); }
+.rays .ball { fill: var(--surface-2); stroke: var(--muted); stroke-width: 2; }
+.rays .retina { stroke: #c0392b; stroke-width: 4; fill: none; stroke-linecap: round; }
+.rays .lensE { fill: rgba(120, 180, 230, 0.45); stroke: #2f7fb8; stroke-width: 1.5; }
+.rays .ray { stroke: #e0a400; stroke-width: 1.8; fill: none; }
+.rays .ray.ok { stroke: var(--good); }
+.rays .glass { fill: rgba(150, 150, 160, 0.25); stroke: var(--ink); stroke-width: 1.5; }
+.rays .axis { stroke: var(--line); stroke-dasharray: 4 4; }
+.rays .spot { fill: #e0a400; opacity: 0.7; }
+.state { font-family: var(--font-display); font-size: 1.3rem; font-weight: 800; margin: 0; }
+.state.ok { color: var(--good); }
+.state.no { color: var(--bad); }
+#rType { width: 100%; }
+.controls > * { min-width: 0; }

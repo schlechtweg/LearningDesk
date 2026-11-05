@@ -32,6 +32,7 @@ ACCENT_MATH8 = ("#1f6e8c", "#5fb6d6", "rgba(31, 110, 140, 0.12)")
 ACCENT_PHYS = ("#b4531f", "#f0995a", "rgba(180, 83, 31, 0.12)")
 ACCENT_SYM = ("#2f7d5b", "#6cc79a", "rgba(47, 125, 91, 0.12)")
 ACCENT_ENDO = ("#7a3f8f", "#c995de", "rgba(122, 63, 143, 0.12)")
+ACCENT_BIO8 = ("#4a7a1e", "#9ccc65", "rgba(74, 122, 30, 0.12)")
 
 # Tools appear on the start page under "Werkzeuge" instead of a grade.
 TOOLS_TITLE = "Werkzeuge"
@@ -76,6 +77,14 @@ TOPICS = [
         "description": "Interaktive Lernhilfe zum Ableiten: grafisches Ableiten, Ableitungsregeln, Tangentengleichung (Mathematik, Klasse 11)",
         "intro": "Von der Sekante zur Tangente, vom Graphen zum Ableitungsgraphen, von den Regeln zur Tangentengleichung. Mit Rechentrainer, der deine Lösungen prüft.",
         "fonts": "math", "first_view": "idee", "factsheet": "Factsheet als PDF ↓",
+    },
+    {
+        "slug": "auge", "grade": "8", "subject": "biologie", "kit": True, "accent": ACCENT_BIO8,
+        "title": "Das Auge", "short": "Das Auge", "tag": "Sinnesorgane",
+        "card": "Aufbau zum Antippen, Weg des Lichts, Pupillenreflex, nah und fern sehen, Brillen-Simulation, Trainer, Quiz",
+        "description": "Interaktive Lernhilfe zum menschlichen Auge (Biologie, Klasse 8)",
+        "intro": "Wie das Auge aufgebaut ist, wie ein scharfes Bild entsteht und warum manche Menschen eine Brille brauchen.",
+        "fonts": "base", "first_view": "verstehen", "factsheet": "Factsheet als PDF ↓",
     },
     {
         "slug": "binomische-formeln", "grade": "8", "subject": "mathematik",

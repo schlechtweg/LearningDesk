@@ -997,6 +997,74 @@ SHEETS["endocytose-exocytose"] = dict(title="Endocytose und Exocytose", eyebrow=
     </div>
   </div>''')
 
+SHEETS["auge"] = dict(extra="body { font-size: 9pt; } .page { gap: 2.6mm; } .cols { gap: 2.6mm 5mm; }", title="Das Auge", eyebrow="Biologie · Klasse 8 · Sinnesorgane", accent="#4a7a1e", body='''
+  <div class="kern">Licht fällt durch Hornhaut und <strong>Pupille</strong>, die <strong>Linse</strong> bündelt es, und auf der <strong>Netzhaut</strong> entsteht ein Bild. Lichtsinneszellen wandeln das Licht in Signale um, der <strong>Sehnerv</strong> leitet sie zum <strong>Gehirn</strong>.</div>
+  <div class="cols">
+    <div class="box full">
+      <h2>Teile des Auges und ihre Aufgaben</h2>
+      <table>
+        <tr><th>Teil</th><th>Aufgabe</th><th>Teil</th><th>Aufgabe</th></tr>
+        <tr><td><strong>Hornhaut</strong></td><td>durchsichtiges Fenster, bricht das Licht am stärksten</td><td><strong>Glaskörper</strong></td><td>gallertartig, hält den Augapfel in Form</td></tr>
+        <tr><td><strong>Iris</strong></td><td>Blende, gibt die Augenfarbe; regelt die Pupillengröße</td><td><strong>Netzhaut</strong></td><td>Lichtsinneszellen: Stäbchen und Zapfen</td></tr>
+        <tr><td><strong>Pupille</strong></td><td>Sehloch, durch das Licht ins Auge fällt</td><td><strong>Gelber Fleck</strong></td><td>Stelle des schärfsten Sehens, viele Zapfen</td></tr>
+        <tr><td><strong>Linse</strong></td><td>elastisch, stellt auf nah und fern scharf</td><td><strong>Blinder Fleck</strong></td><td>Austritt des Sehnervs, keine Sinneszellen</td></tr>
+        <tr><td><strong>Ziliarmuskel</strong></td><td>ringförmiger Muskel, verändert die Linsenform</td><td><strong>Sehnerv</strong></td><td>leitet Signale zum Gehirn</td></tr>
+        <tr><td><strong>Linsenbänder</strong></td><td>halten die Linse</td><td><strong>Ader- / Lederhaut</strong></td><td>Versorgung mit Blut / Schutz und Form</td></tr>
+      </table>
+      <p class="small">Weg des Lichts: <strong>Hornhaut → Kammerwasser → Pupille → Linse → Glaskörper → Netzhaut</strong>. Das Bild ist verkleinert, steht auf dem Kopf und ist seitenverkehrt. Das Gehirn dreht es um.</p>
+    </div>
+    <div class="box">
+      <h2>Nah und fern (Akkommodation)</h2>
+      <table>
+        <tr><th></th><th>nah</th><th>fern</th></tr>
+        <tr><td>Ziliarmuskel</td><td>angespannt</td><td>entspannt</td></tr>
+        <tr><td>Linsenbänder</td><td>locker</td><td>gespannt</td></tr>
+        <tr><td>Linse</td><td><strong>stark gewölbt</strong></td><td><strong>flach</strong></td></tr>
+      </table>
+    </div>
+    <div class="box">
+      <h2>Pupillenreflex</h2>
+      <ul>
+        <li><strong>hell</strong>: Pupille eng, schützt die Netzhaut</li>
+        <li><strong>dunkel</strong>: Pupille weit, mehr Licht</li>
+        <li>läuft automatisch ab: ein <strong>Reflex</strong></li>
+      </ul>
+      <h2>Stäbchen und Zapfen</h2>
+      <ul>
+        <li><strong>Stäbchen</strong> (≈ 120 Mio.): hell/dunkel, Dämmerung</li>
+        <li><strong>Zapfen</strong> (≈ 6 Mio.): Farben, viel Licht</li>
+      </ul>
+    </div>
+    <div class="box">
+      <h2>Fehlsichtigkeiten</h2>
+      <table>
+        <tr><th></th><th>kurzsichtig</th><th>weitsichtig</th></tr>
+        <tr><td>Augapfel</td><td>zu lang</td><td>zu kurz</td></tr>
+        <tr><td>Bild</td><td>vor der Netzhaut</td><td>hinter der Netzhaut</td></tr>
+        <tr><td>unscharf</td><td>fern</td><td>nah</td></tr>
+        <tr><td>Brille</td><td>Zerstreuungslinse (−)</td><td>Sammellinse (+)</td></tr>
+      </table>
+      <p class="small"><strong>Alterssichtigkeit</strong>: Die Linse wird unelastisch, Nahes wird unscharf. Hilfe: Lesebrille (+).</p>
+    </div>
+    <div class="box">
+      <h2>Schutz und Alltag</h2>
+      <ul>
+        <li>Schutz: Augenhöhle, Brauen, Wimpern, Lidschlag, Tränen.</li>
+        <li>Im Kino: Augen brauchen bis zu 30 min, um sich an Dunkelheit anzupassen.</li>
+        <li>Rote Augen auf Fotos: Blitz trifft die weite Pupille.</li>
+        <li>Zwei Augen: räumliches Sehen.</li>
+      </ul>
+    </div>
+    <div class="box warn full">
+      <h2>Typische Fehler</h2>
+      <ul>
+        <li>„Die Linse bricht am stärksten.“ <span class="no">Falsch</span>: Das ist die <strong>Hornhaut</strong>.</li>
+        <li>„Für die Ferne spannt sich der Ziliarmuskel an.“ <span class="no">Falsch</span>: Er ist dann <strong>entspannt</strong>, die Linse flach.</li>
+        <li>„Kurzsichtige sehen nah schlecht.“ <span class="no">Falsch</span>: Sie sehen <strong>fern</strong> unscharf.</li>
+      </ul>
+    </div>
+  </div>''')
+
 OUT = sys.argv[1] if len(sys.argv) > 1 else os.path.join(os.path.dirname(__file__), "_build")
 os.makedirs(OUT, exist_ok=True)
 shutil.copyfile(os.path.join(os.path.dirname(os.path.abspath(__file__)), "factsheet.css"), os.path.join(OUT, "factsheet.css"))
