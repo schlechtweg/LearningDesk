@@ -1,0 +1,13 @@
+/* Piston experiment */
+.piston text { font-family: var(--font-mono); font-size: 12px; fill: var(--ink); }
+.piston .wall { fill: none; stroke: var(--ink); stroke-width: 4; }
+.piston .gas { fill: rgba(126, 166, 240, 0.15); }
+.piston .water { fill: rgba(47, 127, 184, 0.35); }
+.piston .rod { fill: var(--muted); }
+.piston .head { fill: var(--c2); }
+.piston .arrow { stroke: var(--c2); stroke-width: 4; fill: none; stroke-linecap: round; }
+.piston .parrow { stroke: var(--accent); stroke-width: 2.5; fill: none; stroke-linecap: round; }
+.piston .gauge { fill: var(--surface); stroke: var(--ink); stroke-width: 2; }
+.piston .needle { stroke: var(--bad); stroke-width: 2.5; stroke-linecap: round; }
+.piston .particle { fill: var(--c1); }
+.unit-table td { font-family: var(--font-mono); }

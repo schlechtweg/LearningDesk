@@ -1,0 +1,91 @@
+
+  <nav class="tabs" aria-label="Bereiche">
+    <a href="#verstehen" data-view="verstehen"><span class="n">1</span>Verstehen</a>
+    <a href="#modell" data-view="modell"><span class="n">2</span>Hebebühne</a>
+    <a href="#ueben" data-view="ueben"><span class="n">3</span>Üben</a>
+    <a href="#quiz" data-view="quiz"><span class="n">4</span>Quiz</a>
+  </nav>
+
+  <section class="view" id="view-verstehen">
+    <div class="einfach">
+      <span class="eyebrow">Einfach erklärt</span>
+      <p>Eine hydraulische Anlage besteht aus zwei Kolben, einem kleinen und einem großen, die durch ein Rohr mit Öl verbunden sind. Drückst du mit wenig Kraft auf den kleinen Kolben, hebt der große Kolben eine schwere Last, zum Beispiel ein Auto.</p>
+      <p>Der Trick: Im Öl herrscht überall <strong>derselbe Druck</strong>. Der große Kolben hat eine größere Fläche, also wirkt auf ihn eine größere Kraft.</p>
+    </div>
+    <div class="grid-2">
+      <div class="panel stack">
+        <span class="eyebrow">Kräfte</span>
+        <p class="formel"><span class="frac"><span><i>F</i><sub>1</sub></span><span><i>A</i><sub>1</sub></span></span> = <span class="frac"><span><i>F</i><sub>2</sub></span><span><i>A</i><sub>2</sub></span></span> = <i>p</i></p>
+        <p class="small">Umgestellt: <span class="math"><i>F</i><sub>2</sub> = <i>F</i><sub>1</sub> · <span class="frac"><span><i>A</i><sub>2</sub></span><span><i>A</i><sub>1</sub></span></span></span>. Ist die große Fläche 20-mal so groß, ist auch die Kraft 20-mal so groß.</p>
+      </div>
+      <div class="panel stack">
+        <span class="eyebrow">Wege</span>
+        <p class="formel"><i>A</i><sub>1</sub> · <i>s</i><sub>1</sub> = <i>A</i><sub>2</sub> · <i>s</i><sub>2</sub></p>
+        <p class="small">Das Öl, das der kleine Kolben wegdrückt, schiebt den großen Kolben nach oben. Das Volumen bleibt gleich. Darum bewegt sich der große Kolben nur ein kleines Stück: bei 20-facher Fläche nur ein Zwanzigstel des Weges.</p>
+      </div>
+    </div>
+    <div class="merksatz">
+      <span class="eyebrow">Goldene Regel der Mechanik</span>
+      <p>Was man an Kraft spart, muss man an Weg zusetzen: <span class="math"><i>F</i><sub>1</sub> · <i>s</i><sub>1</sub> = <i>F</i><sub>2</sub> · <i>s</i><sub>2</sub></span>. Die Hydraulik verstärkt die Kraft, aber nicht die Arbeit.</p>
+    </div>
+    <div class="stack">
+      <h2>Hydraulik im Alltag</h2>
+      <div class="examples">
+        <div class="panel stack"><h3>Hebebühne und Wagenheber</h3><p class="small">In der Werkstatt hebt man mit kleiner Kraft ganze Autos an.</p></div>
+        <div class="panel stack"><h3>Autobremse</h3><p class="small">Der Fuß drückt auf einen kleinen Kolben. Große Kolben an den Rädern pressen die Bremsbeläge an.</p></div>
+        <div class="panel stack"><h3>Bagger und Kran</h3><p class="small">Hydraulikzylinder bewegen Arm und Schaufel mit enormer Kraft.</p></div>
+        <div class="panel stack"><h3>Friseur- und Zahnarztstuhl</h3><p class="small">Mit einem Pedal pumpt man den Stuhl Stück für Stück nach oben.</p></div>
+      </div>
+    </div>
+    <div class="grid-2">
+      <div class="panel stack">
+        <h3>Warum Öl und keine Luft?</h3>
+        <p class="small">Öl lässt sich fast nicht zusammendrücken. So wird jede Bewegung des kleinen Kolbens sofort weitergegeben. Luft würde sich zusammendrücken lassen und federn. Deshalb müssen Autobremsen „entlüftet“ werden: Luftblasen in der Bremsflüssigkeit machen die Bremse schwammig.</p>
+      </div>
+      <div class="panel stack">
+        <h3>Typische Fehler</h3>
+        <ul class="list small">
+          <li>Gedacht, die Hydraulik erzeugt Energie. Nein: Die Kraft wird größer, der Weg kleiner.</li>
+          <li>Flächen in verschiedenen Einheiten eingesetzt. Beide Flächen müssen dieselbe Einheit haben.</li>
+          <li>Das Verhältnis falsch herum genommen: Der <strong>große</strong> Kolben hat die <strong>große</strong> Kraft und den <strong>kleinen</strong> Weg.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="view" id="view-modell" hidden>
+    <div class="stack">
+      <span class="eyebrow">Hebebühne</span>
+      <h2>Kraft und Weg bei der Hydraulik</h2>
+      <p class="muted">Stelle die Kraft am kleinen Kolben, die beiden Kolbenflächen und den Weg des kleinen Kolbens ein.</p>
+    </div>
+    <div class="sim-layout">
+      <div class="figure"><svg class="hyd" id="hSvg" viewBox="0 0 440 300" role="img" aria-label="Hydraulische Hebebühne mit kleinem und großem Kolben"></svg></div>
+      <div class="panel controls">
+        <div><label class="lbl" for="hF1"><span>Kraft <i>F</i><sub>1</sub></span><span class="val" id="hF1Out"></span></label><input type="range" id="hF1" min="10" max="500" step="10" value="100"></div>
+        <div><label class="lbl" for="hA1"><span>kleine Fläche <i>A</i><sub>1</sub></span><span class="val" id="hA1Out"></span></label><input type="range" id="hA1" min="1" max="20" step="1" value="5"></div>
+        <div><label class="lbl" for="hA2"><span>große Fläche <i>A</i><sub>2</sub></span><span class="val" id="hA2Out"></span></label><input type="range" id="hA2" min="20" max="500" step="10" value="200"></div>
+        <div><label class="lbl" for="hS1"><span>Weg <i>s</i><sub>1</sub></span><span class="val" id="hS1Out"></span></label><input type="range" id="hS1" min="0" max="40" step="1" value="20"></div>
+        <dl class="readout" id="hRo"></dl>
+      </div>
+    </div>
+    <div class="einfach"><p id="hText"></p></div>
+  </section>
+
+  <section class="view" id="view-ueben" hidden>
+    <div class="stack">
+      <span class="eyebrow">Trainer</span>
+      <h2>Rechnen mit Hydraulik</h2>
+      <p class="muted">Gib nur die Zahl ein, die Einheit steht in der Aufgabe. Runde auf zwei Nachkommastellen.</p>
+    </div>
+    <div id="trainer" class="stack"></div>
+  </section>
+
+  <section class="view" id="view-quiz" hidden>
+    <div class="stack">
+      <span class="eyebrow">Selbsttest</span>
+      <h2>Quiz</h2>
+      <div class="progress-line"><div class="bar" aria-hidden="true"><i id="qBar"></i></div><span class="score-line" id="qProgress"></span></div>
+    </div>
+    <div class="panel quiz" id="quizBox" aria-live="polite"></div>
+  </section>

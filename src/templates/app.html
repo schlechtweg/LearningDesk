@@ -6,7 +6,14 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="{{ fonts }}">
 {% for src in t.scripts %}<script src="{{ src }}"></script>
-{% endfor %}<style>
+{% endfor %}{% if t.kit %}<style>
+{{ shared.learnkit_css }}</style>
+<style>
+:root { --accent: {{ t.accent[0] }}; --accent-soft: {{ t.accent[2] }}; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --accent: {{ t.accent[1] }}; } }
+:root[data-theme="dark"] { --accent: {{ t.accent[1] }}; }
+</style>
+{% endif %}<style>
 {{ app.css }}</style>
 <style>
 {{ shared.crumbs_css }}{{ shared.toggle_css }}</style>
@@ -20,7 +27,9 @@
   </header>
 {{ app.body }}</div>
 
-<script>
+{% if t.kit %}<script>
+{{ shared.learnkit_js }}</script>
+{% endif %}<script>
 {{ app.js }}</script>
 <script>
 {{ shared.toggle_js }}</script>

@@ -1,0 +1,10 @@
+/* Hydraulic system */
+.hyd text { font-family: var(--font-mono); font-size: 12px; fill: var(--ink); }
+.hyd .wall { fill: none; stroke: var(--ink); stroke-width: 4; stroke-linejoin: round; }
+.hyd .oil { fill: rgba(196, 140, 28, 0.45); }
+.hyd .piston { fill: var(--c2); }
+.hyd .load { fill: var(--c1); }
+.hyd .arrow { stroke-width: 4; fill: none; stroke-linecap: round; }
+.hyd .a1 { stroke: var(--c2); } .hyd .a2 { stroke: var(--c1); }
+.hyd .dim { stroke: var(--muted); stroke-width: 1.5; stroke-dasharray: 4 3; }
+.examples { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; }

@@ -1,0 +1,97 @@
+
+  <nav class="tabs" aria-label="Bereiche">
+    <a href="#verstehen" data-view="verstehen"><span class="n">1</span>Verstehen</a>
+    <a href="#modell" data-view="modell"><span class="n">2</span>Flächenmodell</a>
+    <a href="#ueben" data-view="ueben"><span class="n">3</span>Üben</a>
+    <a href="#quiz" data-view="quiz"><span class="n">4</span>Quiz</a>
+  </nav>
+
+  <section class="view" id="view-verstehen">
+    <div class="einfach">
+      <span class="eyebrow">Einfach erklärt</span>
+      <p><strong>Ausmultiplizieren</strong> heißt: Eine Klammer auflösen. Aus einem Produkt wird eine Summe: <span class="math">3·(<i>x</i> + 4) → 3<i>x</i> + 12</span>.</p>
+      <p><strong>Faktorisieren</strong> (Ausklammern) ist der Rückweg. Aus einer Summe wird ein Produkt: <span class="math">3<i>x</i> + 12 → 3·(<i>x</i> + 4)</span>.</p>
+    </div>
+
+    <div class="grid-2">
+      <div class="panel stack">
+        <span class="eyebrow">Regel 1</span>
+        <h3>Zahl mal Klammer</h3>
+        <p class="formel"><i>a</i>·(<i>b</i> + <i>c</i>) = <i>a</i>·<i>b</i> + <i>a</i>·<i>c</i></p>
+        <p class="small">Der Faktor vor der Klammer wird mit <strong>jedem</strong> Teil in der Klammer malgenommen. Das nennt man <strong>Distributivgesetz</strong> (Verteilungsgesetz).</p>
+        <p class="math">4·(2<i>x</i> − 3) = 8<i>x</i> − 12</p>
+      </div>
+      <div class="panel stack">
+        <span class="eyebrow">Regel 2</span>
+        <h3>Minus vor der Klammer</h3>
+        <p class="small">Steht ein Minus vor der Klammer, drehen sich <strong>alle</strong> Vorzeichen in der Klammer um.</p>
+        <p class="math">−(<i>x</i> − 5) = −<i>x</i> + 5</p>
+        <p class="math">−2·(3<i>x</i> − 4) = −6<i>x</i> + 8</p>
+        <p class="small muted">Merke: Minus mal Minus ergibt Plus.</p>
+      </div>
+      <div class="panel stack">
+        <span class="eyebrow">Regel 3</span>
+        <h3>Klammer mal Klammer</h3>
+        <p class="formel">(<i>a</i> + <i>b</i>)(<i>c</i> + <i>d</i>) = <i>ac</i> + <i>ad</i> + <i>bc</i> + <i>bd</i></p>
+        <p class="small"><strong>Jeder mit jedem</strong>: Jeder Teil der ersten Klammer wird mit jedem Teil der zweiten Klammer malgenommen. Danach gleichartige Terme zusammenfassen.</p>
+        <p class="math">(<i>x</i> + 2)(<i>x</i> + 5) = <i>x</i><sup>2</sup> + 5<i>x</i> + 2<i>x</i> + 10 = <i>x</i><sup>2</sup> + 7<i>x</i> + 10</p>
+      </div>
+      <div class="panel stack">
+        <span class="eyebrow">Rückweg</span>
+        <h3>Ausklammern</h3>
+        <ol class="list small">
+          <li>Suche den <strong>größten gemeinsamen Faktor</strong> aller Summanden: die größte gemeinsame Zahl und gemeinsame Variablen.</li>
+          <li>Schreibe ihn vor die Klammer.</li>
+          <li>Teile jeden Summanden durch diesen Faktor, das Ergebnis kommt in die Klammer.</li>
+          <li>Probe: wieder ausmultiplizieren.</li>
+        </ol>
+        <p class="math">6<i>x</i> + 9 = 3·(2<i>x</i> + 3) &nbsp;&nbsp; 4<i>x</i><sup>2</sup> − 6<i>x</i> = 2<i>x</i>·(2<i>x</i> − 3)</p>
+      </div>
+    </div>
+
+    <div class="panel stack">
+      <h3>Typische Fehler</h3>
+      <ul class="list small">
+        <li><span class="math">3·(<i>x</i> + 4) = 3<i>x</i> + 4</span> ist <b class="no">falsch</b>. Die 3 muss mit <strong>beiden</strong> Summanden malgenommen werden: 3<i>x</i> + 12.</li>
+        <li><span class="math">−(<i>x</i> − 5) = −<i>x</i> − 5</span> ist <b class="no">falsch</b>. Auch das zweite Vorzeichen dreht sich um: −<i>x</i> + 5.</li>
+        <li><span class="math">(<i>x</i> + 2)(<i>x</i> + 5) = <i>x</i><sup>2</sup> + 10</span> ist <b class="no">falsch</b>. Es fehlen die gemischten Produkte 5<i>x</i> und 2<i>x</i>.</li>
+        <li>Beim Ausklammern die 1 vergessen: <span class="math">3<i>x</i> + 3 = 3·(<i>x</i> + 1)</span>, nicht 3·<i>x</i>.</li>
+      </ul>
+      <p class="small muted">Für Klammern wie (<i>a</i> + <i>b</i>)<sup>2</sup> gibt es Abkürzungen: die binomischen Formeln (eigenes Thema).</p>
+    </div>
+  </section>
+
+  <section class="view" id="view-modell" hidden>
+    <div class="stack">
+      <span class="eyebrow">Flächenmodell</span>
+      <h2>Warum „jeder mit jedem“?</h2>
+      <p class="muted">Ein Produkt ist die Fläche eines Rechtecks. Teilt man eine Seite auf, zerfällt die Fläche in Teilrechtecke. Die Summe der Teilflächen ist das ausmultiplizierte Ergebnis.</p>
+    </div>
+    <div class="row" role="group" aria-label="Modell wählen">
+      <button type="button" data-model="1" aria-pressed="true">a · (b + c)</button>
+      <button type="button" data-model="2" aria-pressed="false">(a + b) · (c + d)</button>
+    </div>
+    <div class="sim-layout">
+      <div class="figure"><svg id="areaSvg" viewBox="0 0 420 320" role="img" aria-label="Rechteck aus Teilflächen"></svg></div>
+      <div class="panel controls" id="areaControls"></div>
+    </div>
+    <div class="einfach"><p id="areaText"></p></div>
+  </section>
+
+  <section class="view" id="view-ueben" hidden>
+    <div class="stack">
+      <span class="eyebrow">Trainer</span>
+      <h2>Üben mit Rückmeldung</h2>
+      <p class="muted">Der Trainer prüft, ob dein Ergebnis mathematisch stimmt und in der richtigen Form steht.</p>
+    </div>
+    <div id="trainer" class="stack"></div>
+  </section>
+
+  <section class="view" id="view-quiz" hidden>
+    <div class="stack">
+      <span class="eyebrow">Selbsttest</span>
+      <h2>Quiz</h2>
+      <div class="progress-line"><div class="bar" aria-hidden="true"><i id="qBar"></i></div><span class="score-line" id="qProgress"></span></div>
+    </div>
+    <div class="panel quiz" id="quizBox" aria-live="polite"></div>
+  </section>

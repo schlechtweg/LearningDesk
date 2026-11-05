@@ -1,0 +1,11 @@
+/* Number line */
+.nl text { font-family: var(--font-mono); font-size: 11px; fill: var(--muted); }
+.nl .axis { stroke: var(--ink); stroke-width: 2; }
+.nl .tick { stroke: var(--ink); stroke-width: 1.5; }
+.nl .ray { stroke: var(--accent); stroke-width: 7; stroke-linecap: round; opacity: 0.85; }
+.nl .dot { stroke: var(--accent); stroke-width: 3; }
+.nl .probe-in { fill: var(--good); }
+.nl .probe-out { fill: var(--bad); }
+.steps-table td:last-child { font-family: var(--font-mono); color: var(--accent); white-space: nowrap; }
+.steps-table tr.flip td:last-child { color: var(--bad); font-weight: 700; }
+.relbtns button { font-family: var(--font-math); font-size: 1.2rem; min-width: 48px; }

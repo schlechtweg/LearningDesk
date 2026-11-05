@@ -1,0 +1,7 @@
+/* Area model colours */
+.area-a { fill: rgba(47, 95, 179, 0.18); stroke: var(--c1); stroke-width: 2; }
+.area-b { fill: rgba(196, 86, 28, 0.18); stroke: var(--c2); stroke-width: 2; }
+.area-c { fill: rgba(61, 138, 76, 0.18); stroke: var(--c3); stroke-width: 2; }
+.area-d { fill: rgba(142, 68, 173, 0.18); stroke: var(--c4); stroke-width: 2; }
+.area-label { font-family: var(--font-math); font-style: italic; fill: var(--ink); }
+.area-num { font-family: var(--font-mono); font-size: 13px; fill: var(--muted); }

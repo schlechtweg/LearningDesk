@@ -1,0 +1,7 @@
+/* Balance illustration */
+.balance text { font-family: var(--font-math); fill: var(--ink); }
+.balance .beam { stroke: var(--ink); stroke-width: 4; }
+.balance .pan { fill: var(--surface-2); stroke: var(--muted); stroke-width: 2; }
+.balance .box { fill: var(--c1); }
+.balance .weight { fill: var(--c2); }
+.steps-table td:last-child { font-family: var(--font-mono); color: var(--accent); white-space: nowrap; }

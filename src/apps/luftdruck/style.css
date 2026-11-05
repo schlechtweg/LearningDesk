@@ -1,0 +1,10 @@
+/* Altitude journey */
+.alt text { font-family: var(--font-mono); font-size: 11px; fill: var(--muted); }
+.alt .sky { fill: rgba(126, 166, 240, 0.12); }
+.alt .mountain { fill: rgba(61, 138, 76, 0.35); stroke: var(--c3); stroke-width: 2; }
+.alt .marker { stroke: var(--accent); stroke-width: 2; stroke-dasharray: 6 4; }
+.alt .dot { fill: var(--accent); }
+.alt .dial { fill: var(--surface); stroke: var(--ink); stroke-width: 2; }
+.alt .needle { stroke: var(--bad); stroke-width: 3; stroke-linecap: round; }
+.presets { display: flex; flex-wrap: wrap; gap: 6px; }
+.presets button { font-size: 0.8rem; padding: 6px 10px; }

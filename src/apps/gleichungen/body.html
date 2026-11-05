@@ -1,0 +1,112 @@
+
+  <nav class="tabs" aria-label="Bereiche">
+    <a href="#verstehen" data-view="verstehen"><span class="n">1</span>Verstehen</a>
+    <a href="#werkstatt" data-view="werkstatt"><span class="n">2</span>Umformungs-Werkstatt</a>
+    <a href="#ueben" data-view="ueben"><span class="n">3</span>Üben</a>
+    <a href="#quiz" data-view="quiz"><span class="n">4</span>Quiz</a>
+  </nav>
+
+  <section class="view" id="view-verstehen">
+    <div class="einfach">
+      <span class="eyebrow">Einfach erklärt</span>
+      <p>Eine Gleichung ist wie eine <strong>Waage im Gleichgewicht</strong>. Was du auf der einen Seite wegnimmst oder dazulegst, musst du auch auf der anderen Seite tun. Sonst kippt die Waage.</p>
+      <p>Ziel: Am Ende steht <i>x</i> allein auf einer Seite, zum Beispiel <span class="math"><i>x</i> = 5</span>. Diese Zahl ist die <strong>Lösung</strong>.</p>
+    </div>
+    <div class="grid-2">
+      <div class="panel stack">
+        <svg class="balance" viewBox="0 0 320 170" role="img" aria-label="Waage: drei x-Kisten und fünf Gewichte links, zwanzig Gewichte rechts">
+          <line class="beam" x1="40" y1="60" x2="280" y2="60"></line>
+          <polygon points="160,60 145,150 175,150" fill="var(--muted)"></polygon>
+          <rect class="pan" x="20" y="64" width="110" height="10" rx="3"></rect>
+          <rect class="pan" x="190" y="64" width="110" height="10" rx="3"></rect>
+          <rect class="box" x="28" y="34" width="22" height="26" rx="3"></rect><rect class="box" x="54" y="34" width="22" height="26" rx="3"></rect><rect class="box" x="80" y="34" width="22" height="26" rx="3"></rect>
+          <circle class="weight" cx="114" cy="50" r="9"></circle>
+          <text x="39" y="27" font-size="13" text-anchor="middle">x</text><text x="65" y="27" font-size="13" text-anchor="middle">x</text><text x="91" y="27" font-size="13" text-anchor="middle">x</text>
+          <text x="114" y="31" font-size="13" text-anchor="middle">5</text>
+          <circle class="weight" cx="245" cy="44" r="16"></circle><text x="245" y="20" font-size="13" text-anchor="middle">20</text>
+          <text x="160" y="166" font-size="16" text-anchor="middle">3x + 5 = 20</text>
+        </svg>
+        <p class="small muted">Links liegen 3 Kisten mit unbekanntem Gewicht <i>x</i> und 5 kg, rechts 20 kg. Nimm auf beiden Seiten 5 kg weg: 3 Kisten wiegen 15 kg, also wiegt eine Kiste 5 kg.</p>
+      </div>
+      <div class="panel stack">
+        <span class="eyebrow">Erlaubte Umformungen</span>
+        <h3>Äquivalenzumformungen</h3>
+        <ul class="list small">
+          <li>Auf <strong>beiden</strong> Seiten dieselbe Zahl oder denselben Term <strong>addieren oder subtrahieren</strong>.</li>
+          <li>Beide Seiten mit derselben Zahl <strong>multiplizieren</strong> oder durch dieselbe Zahl <strong>dividieren</strong>, aber <strong>nie mit 0</strong>.</li>
+        </ul>
+        <p class="small">Man schreibt die Umformung rechts hinter einen senkrechten Strich:</p>
+        <table class="data steps-table">
+          <tr><td class="math">3<i>x</i> + 5 = 20</td><td>| −5</td></tr>
+          <tr><td class="math">3<i>x</i> = 15</td><td>| :3</td></tr>
+          <tr><td class="math"><i>x</i> = 5</td><td></td></tr>
+        </table>
+      </div>
+    </div>
+    <div class="panel stack">
+      <span class="eyebrow">Fahrplan</span>
+      <h3>So löst du jede lineare Gleichung</h3>
+      <ol class="list small">
+        <li><strong>Klammern auflösen</strong> und auf jeder Seite <strong>zusammenfassen</strong>.</li>
+        <li>Alle <strong><i>x</i>-Terme auf eine Seite</strong> bringen (zum Beispiel | −2<i>x</i>).</li>
+        <li>Alle <strong>Zahlen auf die andere Seite</strong> bringen (zum Beispiel | +4).</li>
+        <li><strong>Durch die Zahl vor <i>x</i> teilen</strong> (zum Beispiel | :3).</li>
+        <li><strong>Probe</strong>: Lösung in die Ausgangsgleichung einsetzen. Beide Seiten müssen gleich sein.</li>
+      </ol>
+      <div class="table-scroll">
+        <table class="data steps-table">
+          <tr><td class="math">2(<i>x</i> + 3) = <i>x</i> − 1</td><td>Klammer auflösen</td></tr>
+          <tr><td class="math">2<i>x</i> + 6 = <i>x</i> − 1</td><td>| −<i>x</i></td></tr>
+          <tr><td class="math"><i>x</i> + 6 = −1</td><td>| −6</td></tr>
+          <tr><td class="math"><i>x</i> = −7</td><td></td></tr>
+          <tr><td class="math">Probe: 2(−7 + 3) = −8 und −7 − 1 = −8 ✓</td><td></td></tr>
+        </table>
+      </div>
+    </div>
+    <div class="grid-2">
+      <div class="panel stack">
+        <h3>Sonderfälle</h3>
+        <p class="small">Manchmal verschwindet <i>x</i> ganz:</p>
+        <ul class="list small">
+          <li><span class="math">0 = 5</span> ist falsch: <strong>keine Lösung</strong>, <span class="math">L = { }</span>.</li>
+          <li><span class="math">0 = 0</span> ist immer wahr: <strong>jede Zahl</strong> ist Lösung, <span class="math">L = ℚ</span>.</li>
+        </ul>
+      </div>
+      <div class="panel stack">
+        <h3>Typische Fehler</h3>
+        <ul class="list small">
+          <li>Nur <strong>eine</strong> Seite umgeformt. Jede Umformung gilt für beide Seiten!</li>
+          <li>Beim Subtrahieren das Vorzeichen falsch: Aus <span class="math"><i>x</i> + 6 = −1</span> wird <span class="math"><i>x</i> = −7</span>, nicht 5.</li>
+          <li>Durch <i>x</i> geteilt: verboten, denn <i>x</i> könnte 0 sein.</li>
+          <li>Die Probe vergessen. Sie zeigt sofort, ob die Lösung stimmt.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="view" id="view-werkstatt" hidden>
+    <div class="stack">
+      <span class="eyebrow">Umformungs-Werkstatt</span>
+      <h2>Forme selbst um</h2>
+      <p class="muted">Gib eine Umformung ein, zum Beispiel <code>-3</code>, <code>-2x</code> oder <code>:4</code>. Sie wird auf <strong>beide</strong> Seiten angewendet. Löse die Gleichung so, dass <i>x</i> allein steht. Du kannst auch Umwege gehen. Mit „Rückgängig“ nimmst du einen Schritt zurück.</p>
+    </div>
+    <div id="lab"></div>
+  </section>
+
+  <section class="view" id="view-ueben" hidden>
+    <div class="stack">
+      <span class="eyebrow">Trainer</span>
+      <h2>Gleichungen lösen</h2>
+      <p class="muted">Gib die Lösung ein, zum Beispiel <code>x = 4</code>, <code>-7</code> oder <code>7/2</code>. Unter „Lösung zeigen“ findest du den Rechenweg mit Probe.</p>
+    </div>
+    <div id="trainer" class="stack"></div>
+  </section>
+
+  <section class="view" id="view-quiz" hidden>
+    <div class="stack">
+      <span class="eyebrow">Selbsttest</span>
+      <h2>Quiz</h2>
+      <div class="progress-line"><div class="bar" aria-hidden="true"><i id="qBar"></i></div><span class="score-line" id="qProgress"></span></div>
+    </div>
+    <div class="panel quiz" id="quizBox" aria-live="polite"></div>
+  </section>

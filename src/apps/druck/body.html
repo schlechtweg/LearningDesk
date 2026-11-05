@@ -1,0 +1,118 @@
+
+  <nav class="tabs" aria-label="Bereiche">
+    <a href="#verstehen" data-view="verstehen"><span class="n">1</span>Verstehen</a>
+    <a href="#versuch" data-view="versuch"><span class="n">2</span>Kolben-Versuch</a>
+    <a href="#ueben" data-view="ueben"><span class="n">3</span>Üben</a>
+    <a href="#quiz" data-view="quiz"><span class="n">4</span>Quiz</a>
+  </nav>
+
+  <section class="view" id="view-verstehen">
+    <div class="einfach">
+      <span class="eyebrow">Einfach erklärt</span>
+      <p>Drückst du mit dem Daumen auf eine Reißzwecke, verteilt sich deine Kraft auf den breiten Kopf. Vorn wirkt dieselbe Kraft auf eine winzige Spitze. Dort ist der <strong>Druck</strong> riesig, deshalb dringt sie ins Holz ein.</p>
+      <p><strong>Druck</strong> sagt, wie stark eine Kraft auf eine Fläche drückt: gleiche Kraft auf kleine Fläche ergibt großen Druck, auf große Fläche kleinen Druck.</p>
+    </div>
+    <div class="grid-2">
+      <div class="panel stack">
+        <span class="eyebrow">Formel</span>
+        <p class="formel"><i>p</i> = <span class="frac"><span><i>F</i></span><span><i>A</i></span></span></p>
+        <table class="data">
+          <tr><td class="math"><i>p</i></td><td>Druck</td><td>in Pascal (Pa)</td></tr>
+          <tr><td class="math"><i>F</i></td><td>Kraft</td><td>in Newton (N)</td></tr>
+          <tr><td class="math"><i>A</i></td><td>Fläche</td><td>in m² (oder cm²)</td></tr>
+        </table>
+        <p class="small">Umgestellt: <span class="math"><i>F</i> = <i>p</i> · <i>A</i></span> und <span class="math"><i>A</i> = <i>F</i> : <i>p</i></span>.</p>
+      </div>
+      <div class="panel stack">
+        <span class="eyebrow">Einheiten</span>
+        <table class="data unit-table">
+          <tr><td>1 Pa</td><td>= 1 N/m²</td></tr>
+          <tr><td>1 hPa (Hektopascal)</td><td>= 100 Pa</td></tr>
+          <tr><td>1 bar</td><td>= 1 000 hPa = 100 000 Pa</td></tr>
+          <tr><td>1 N/cm²</td><td>= 10 000 Pa = 0,1 bar</td></tr>
+          <tr><td>1 m²</td><td>= 10 000 cm²</td></tr>
+        </table>
+        <p class="small muted">Ein Pascal ist sehr wenig: Ein Blatt Papier auf dem Tisch drückt mit etwa 1 Pa. Deshalb rechnet man oft in hPa oder bar.</p>
+      </div>
+    </div>
+    <div class="merksatz">
+      <span class="eyebrow">Kolbendruck</span>
+      <p>In einer <strong>eingeschlossenen</strong> Flüssigkeit oder einem eingeschlossenen Gas breitet sich der Druck <strong>in alle Richtungen gleichmäßig</strong> aus. An jeder Stelle herrscht derselbe Druck.</p>
+    </div>
+    <div class="grid-2">
+      <div class="panel stack">
+        <h3>Versuch: Spritzkugel</h3>
+        <p class="small">Eine Kugel mit vielen kleinen Löchern ist mit Wasser gefüllt. Drückt man auf den Kolben, spritzt das Wasser aus <strong>allen</strong> Löchern gleich weit heraus, auch nach oben und zur Seite. Der Druck wirkt also überall gleich, nicht nur in Druckrichtung.</p>
+      </div>
+      <div class="panel stack">
+        <h3>Gase und Flüssigkeiten</h3>
+        <table class="data">
+          <tr><th></th><th>Gas (Luft)</th><th>Flüssigkeit (Wasser)</th></tr>
+          <tr><td>zusammendrückbar?</td><td>ja, gut</td><td>fast gar nicht</td></tr>
+          <tr><td>Teilchen</td><td>weit auseinander</td><td>dicht beieinander</td></tr>
+          <tr><td>Beispiel</td><td>Luftpumpe, Reifen</td><td>Hydraulik, Bremse</td></tr>
+        </table>
+      </div>
+    </div>
+    <div class="grid-2">
+      <div class="panel stack">
+        <h3>Typische Werte</h3>
+        <table class="data">
+          <tr><td>Luftdruck auf Meereshöhe</td><td class="num">≈ 1 bar</td></tr>
+          <tr><td>Fahrradreifen</td><td class="num">2 bis 6 bar</td></tr>
+          <tr><td>Autoreifen</td><td class="num">≈ 2,5 bar</td></tr>
+          <tr><td>Sprudelflasche</td><td class="num">≈ 3 bis 4 bar</td></tr>
+          <tr><td>Fahrzeug-Hydraulik</td><td class="num">bis 200 bar</td></tr>
+        </table>
+        <p class="small muted">Beim Reifendruck ist meist der Überdruck gemeint, also der Druck zusätzlich zum Luftdruck.</p>
+      </div>
+      <div class="panel stack">
+        <h3>Typische Fehler</h3>
+        <ul class="list small">
+          <li>Fläche in cm² eingesetzt, Ergebnis aber in Pa angegeben. Entweder in N/cm² rechnen oder vorher in m² umrechnen.</li>
+          <li><span class="math">1 m² = 100 cm²</span> ist <b class="no">falsch</b>. Richtig: 1 m² = 100 cm · 100 cm = 10 000 cm².</li>
+          <li>Druck und Kraft verwechselt: Eine große Kraft bedeutet nicht automatisch großen Druck. Es kommt auf die Fläche an.</li>
+        </ul>
+      </div>
+    </div>
+    <details class="profi">
+      <summary>Für Profis: Gesetz von Boyle-Mariotte</summary>
+      <p>Bei gleichbleibender Temperatur gilt für eine eingeschlossene Gasmenge: <span class="math"><i>p</i> · <i>V</i> = konstant</span>. Doppelter Druck bedeutet halbes Volumen. Im Kolben-Versuch siehst du das, wenn du Luft wählst.</p>
+    </details>
+  </section>
+
+  <section class="view" id="view-versuch" hidden>
+    <div class="stack">
+      <span class="eyebrow">Kolben-Versuch</span>
+      <h2>Kraft, Fläche und Druck</h2>
+      <p class="muted">Drücke mit der Kraft <i>F</i> auf einen Kolben mit der Fläche <i>A</i>. Die Manometer an verschiedenen Stellen zeigen alle denselben Druck. Vergleiche Luft und Wasser.</p>
+    </div>
+    <div class="sim-layout">
+      <div class="figure"><svg class="piston" id="pSvg" viewBox="0 0 420 330" role="img" aria-label="Zylinder mit Kolben und Manometern"></svg></div>
+      <div class="panel controls">
+        <div class="row" role="group" aria-label="Füllung"><button type="button" data-medium="gas" aria-pressed="true">Luft</button><button type="button" data-medium="water" aria-pressed="false">Wasser</button></div>
+        <div><label class="lbl" for="pF"><span>Kraft <i>F</i></span><span class="val" id="pFOut"></span></label><input type="range" id="pF" min="0" max="500" step="10" value="200"></div>
+        <div><label class="lbl" for="pA"><span>Kolbenfläche <i>A</i></span><span class="val" id="pAOut"></span></label><input type="range" id="pA" min="2" max="50" step="1" value="10"></div>
+        <dl class="readout" id="pRo"></dl>
+        <div class="status-box" id="pStatus"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="view" id="view-ueben" hidden>
+    <div class="stack">
+      <span class="eyebrow">Trainer</span>
+      <h2>Rechnen mit Druck</h2>
+      <p class="muted">Gib nur die Zahl ein, die Einheit steht hinter dem Feld. Runde auf zwei Nachkommastellen. Dezimalkomma ist erlaubt.</p>
+    </div>
+    <div id="trainer" class="stack"></div>
+  </section>
+
+  <section class="view" id="view-quiz" hidden>
+    <div class="stack">
+      <span class="eyebrow">Selbsttest</span>
+      <h2>Quiz</h2>
+      <div class="progress-line"><div class="bar" aria-hidden="true"><i id="qBar"></i></div><span class="score-line" id="qProgress"></span></div>
+    </div>
+    <div class="panel quiz" id="quizBox" aria-live="polite"></div>
+  </section>

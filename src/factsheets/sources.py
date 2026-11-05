@@ -421,6 +421,459 @@ SHEETS["classpad"] = dict(title="ClassPad: Bedienung", eyebrow="Taschenrechner �
     </div>
   </div>""")
 
+# ---------------- grade 8 mathematics (LearnKit topics) ----------------
+M8 = "#1f6e8c"
+PH = "#b4531f"
+def sub(s): return f"<sub>{s}</sub>"
+
+SHEETS["ausmultiplizieren-faktorisieren"] = dict(title="Ausmultiplizieren und Faktorisieren", eyebrow="Mathematik · Klasse 8 · Terme", accent=M8, body=f'''
+  <div class="kern"><strong>Ausmultiplizieren</strong>: Klammer auflösen, aus einem Produkt wird eine Summe. <strong>Faktorisieren</strong> (Ausklammern): der Rückweg, aus einer Summe wird ein Produkt. {m(f"3·({X} + 4) ⇄ 3{X} + 12")}</div>
+  <div class="cols">
+    <div class="box">
+      <h2>Zahl mal Klammer (Distributivgesetz)</h2>
+      <p class="big">{m("<i>a</i>·(<i>b</i> + <i>c</i>) = <i>ab</i> + <i>ac</i>")}</p>
+      <p>Der Faktor vor der Klammer wird mit <strong>jedem</strong> Summanden malgenommen.</p>
+      <p>{m(f"4·(2{X} − 3) = 8{X} − 12")}</p>
+    </div>
+    <div class="box">
+      <h2>Minus vor der Klammer</h2>
+      <p>Alle Vorzeichen in der Klammer drehen sich um.</p>
+      <p>{m(f"−({X} − 5) = −{X} + 5")}</p>
+      <p>{m(f"−2·(3{X} − 4) = −6{X} + 8")}</p>
+      <p class="small">Minus mal Minus ergibt Plus.</p>
+    </div>
+    <div class="box">
+      <h2>Klammer mal Klammer</h2>
+      <p class="big">{m("(<i>a</i> + <i>b</i>)(<i>c</i> + <i>d</i>) = <i>ac</i> + <i>ad</i> + <i>bc</i> + <i>bd</i>")}</p>
+      <p><strong>Jeder mit jedem</strong>, danach zusammenfassen:</p>
+      <p>{m(f"({X} + 2)({X} + 5) = {X}<sup>2</sup> + 5{X} + 2{X} + 10 = {X}<sup>2</sup> + 7{X} + 10")}</p>
+    </div>
+    <div class="box">
+      <h2>Ausklammern in 4 Schritten</h2>
+      <ol>
+        <li>Größten gemeinsamen Faktor suchen (Zahl und Variablen).</li>
+        <li>Ihn vor die Klammer schreiben.</li>
+        <li>Jeden Summanden durch ihn teilen, das kommt in die Klammer.</li>
+        <li>Probe: wieder ausmultiplizieren.</li>
+      </ol>
+      <p>{m(f"6{X} + 9 = 3(2{X} + 3)")} &nbsp; {m(f"4{X}<sup>2</sup> − 6{X} = 2{X}(2{X} − 3)")}</p>
+    </div>
+    <div class="box full">
+      <h2>Flächenmodell</h2>
+      <p>Ein Rechteck mit den Seiten <i>a</i> und (<i>b</i> + <i>c</i>) besteht aus zwei Teilrechtecken mit den Flächen <i>ab</i> und <i>ac</i>. Bei (<i>a</i> + <i>b</i>)(<i>c</i> + <i>d</i>) sind es vier Teilrechtecke. Deshalb „jeder mit jedem“.</p>
+    </div>
+    <div class="box warn full">
+      <h2>Typische Fehler</h2>
+      <ul>
+        <li>{m(f"3({X} + 4) = 3{X} + 4")} <span class="no">falsch</span>: auch die 4 malnehmen, also {m(f"3{X} + 12")}.</li>
+        <li>{m(f"−({X} − 5) = −{X} − 5")} <span class="no">falsch</span>: richtig ist {m(f"−{X} + 5")}.</li>
+        <li>{m(f"({X} + 2)({X} + 5) = {X}<sup>2</sup> + 10")} <span class="no">falsch</span>: die gemischten Produkte fehlen.</li>
+        <li>Beim Ausklammern die 1 vergessen: {m(f"3{X} + 3 = 3({X} + 1)")}.</li>
+      </ul>
+    </div>
+  </div>''')
+
+SHEETS["terme-vereinfachen"] = dict(title="Terme vereinfachen", eyebrow="Mathematik · Klasse 8 · Terme", accent=M8, body=f'''
+  <div class="kern">Nur <strong>gleichartige Terme</strong> darf man addieren und subtrahieren. Beim <strong>Multiplizieren</strong> dürfen alle Faktoren zusammengefasst werden. Bild dazu: Äpfel und Birnen zählt man getrennt.</div>
+  <div class="cols">
+    <div class="box">
+      <h2>Gleichartige Terme</h2>
+      <p>Gleiche Variablen mit gleichen Hochzahlen, nur die Zahl davor (Koeffizient) ist verschieden.</p>
+      <table>
+        <tr><th>gleichartig</th><th>nicht gleichartig</th></tr>
+        <tr><td>{m("3<i>a</i> und −5<i>a</i>")}</td><td>{m("<i>a</i> und <i>b</i>")}</td></tr>
+        <tr><td>{m("2<i>ab</i> und 7<i>ba</i>")}</td><td>{m(f"{X} und {X}<sup>2</sup>")}</td></tr>
+        <tr><td>{m(f"4{X}<sup>2</sup> und {X}<sup>2</sup>")}</td><td>{m("<i>ab</i> und <i>a</i>")}</td></tr>
+      </table>
+    </div>
+    <div class="box">
+      <h2>Zusammenfassen (Plus und Minus)</h2>
+      <p>Koeffizienten addieren, Variablen bleiben:</p>
+      <p>{m(f"5{X} + 3<i>y</i> − 2{X} + <i>y</i> = 3{X} + 4<i>y</i>")}</p>
+      <p>{m("4<i>ab</i> − <i>a</i> + 2<i>ab</i> = 6<i>ab</i> − <i>a</i>")}</p>
+      <p class="small">Tipp: gleichartige Terme farbig markieren. Das Vorzeichen gehört zum Term dahinter.</p>
+    </div>
+    <div class="box">
+      <h2>Produkte vereinfachen</h2>
+      <p>Zahlen mal Zahlen, Variablen mal Variablen. Gleiche Variablen werden zur Potenz.</p>
+      <p>{m("3<i>a</i> · 4<i>b</i> = 12<i>ab</i>")}</p>
+      <p>{m(f"2{X} · 5{X} = 10{X}<sup>2</sup>")}</p>
+      <p>{m("(−2<i>a</i>) · 3<i>ab</i> = −6<i>a</i><sup>2</sup><i>b</i>")}</p>
+    </div>
+    <div class="box">
+      <h2>Ordentlich schreiben</h2>
+      <ul>
+        <li>Zahl zuerst, dann Variablen alphabetisch: {m("12<i>ab</i>")}.</li>
+        <li>{m("1<i>a</i>")} schreibt man {m("<i>a</i>")}, {m("−1<i>a</i>")} als {m("−<i>a</i>")}.</li>
+        <li>Höhere Potenzen zuerst: {m(f"3{X}<sup>2</sup> + 2{X} − 5")}.</li>
+      </ul>
+      <h2 style="margin-top:2mm">Mit Klammern</h2>
+      <p>Erst Klammer auflösen, dann zusammenfassen: {m("2(<i>a</i> + 3<i>b</i>) − <i>a</i> = <i>a</i> + 6<i>b</i>")}</p>
+    </div>
+    <div class="box warn full">
+      <h2>Typische Fehler</h2>
+      <ul>
+        <li>{m("3<i>a</i> + 2<i>b</i> = 5<i>ab</i>")} <span class="no">falsch</span>: nicht gleichartig, es bleibt {m("3<i>a</i> + 2<i>b</i>")}.</li>
+        <li>{m(f"{X} + {X} = {X}<sup>2</sup>")} <span class="no">falsch</span>: richtig ist {m(f"2{X}")}. Erst {m(f"{X} · {X} = {X}<sup>2</sup>")}.</li>
+        <li>{m("3<i>a</i> − <i>a</i> = 3")} <span class="no">falsch</span>: vor <i>a</i> steht unsichtbar eine 1, also {m("2<i>a</i>")}.</li>
+        <li>Vorzeichen verloren: In {m(f"5{X} − 2<i>y</i> + 3{X}")} gehört das Minus zu 2<i>y</i>.</li>
+      </ul>
+    </div>
+  </div>''')
+
+SHEETS["gleichungen"] = dict(title="Gleichungen lösen", eyebrow="Mathematik · Klasse 8 · Gleichungen", accent=M8, body=f'''
+  <div class="kern">Eine Gleichung ist wie eine <strong>Waage im Gleichgewicht</strong>: Was du auf einer Seite tust, musst du auch auf der anderen tun. Ziel: {X} steht allein, zum Beispiel {m(f"{X} = 5")}.</div>
+  <div class="cols">
+    <div class="box">
+      <h2>Erlaubte Umformungen</h2>
+      <ul>
+        <li>Auf <strong>beiden</strong> Seiten dasselbe addieren oder subtrahieren.</li>
+        <li>Beide Seiten mit derselben Zahl multiplizieren oder durch sie dividieren, <strong>nie mit 0</strong>.</li>
+        <li>Nie durch {X} teilen ({X} könnte 0 sein).</li>
+      </ul>
+      <p class="small">Die Umformung schreibt man hinter einen senkrechten Strich: | −5, | :3.</p>
+    </div>
+    <div class="box">
+      <h2>Fahrplan</h2>
+      <ol>
+        <li>Klammern auflösen, jede Seite zusammenfassen.</li>
+        <li>{X}-Terme auf eine Seite bringen.</li>
+        <li>Zahlen auf die andere Seite bringen.</li>
+        <li>Durch die Zahl vor {X} teilen.</li>
+        <li><strong>Probe</strong>: Lösung in die Ausgangsgleichung einsetzen.</li>
+      </ol>
+    </div>
+    <div class="box">
+      <h2>Beispiel 1</h2>
+      <table>
+        <tr><td>{m(f"3{X} + 5 = 20")}</td><td>| −5</td></tr>
+        <tr><td>{m(f"3{X} = 15")}</td><td>| :3</td></tr>
+        <tr><td>{m(f"{X} = 5")}</td><td></td></tr>
+      </table>
+      <p class="small">Probe: 3 · 5 + 5 = 20 ✓</p>
+    </div>
+    <div class="box">
+      <h2>Beispiel 2 (mit Klammer)</h2>
+      <table>
+        <tr><td>{m(f"2({X} + 3) = {X} − 1")}</td><td>Klammer auflösen</td></tr>
+        <tr><td>{m(f"2{X} + 6 = {X} − 1")}</td><td>| −{X}</td></tr>
+        <tr><td>{m(f"{X} + 6 = −1")}</td><td>| −6</td></tr>
+        <tr><td>{m(f"{X} = −7")}</td><td></td></tr>
+      </table>
+      <p class="small">Probe: 2(−7 + 3) = −8 und −7 − 1 = −8 ✓</p>
+    </div>
+    <div class="box">
+      <h2>Sonderfälle</h2>
+      <ul>
+        <li>{X} verschwindet und es bleibt eine falsche Aussage wie {m("0 = 5")}: <strong>keine Lösung</strong>, L = {{ }}.</li>
+        <li>Es bleibt eine wahre Aussage wie {m("0 = 0")}: <strong>jede Zahl</strong> ist Lösung, L = ℚ.</li>
+        <li>Lösungen dürfen Brüche sein: {m(f"2{X} = 3 ⇒ {X} = " + fr(3, 2))}.</li>
+      </ul>
+    </div>
+    <div class="box warn">
+      <h2>Typische Fehler</h2>
+      <ul>
+        <li>Nur <strong>eine</strong> Seite umgeformt.</li>
+        <li>Vorzeichenfehler beim Subtrahieren: aus {m(f"{X} + 6 = −1")} wird {m(f"{X} = −7")}, nicht 5.</li>
+        <li>Durch {X} geteilt oder mit 0 multipliziert.</li>
+        <li>Probe vergessen. Sie zeigt sofort, ob die Lösung stimmt.</li>
+      </ul>
+    </div>
+  </div>''')
+
+SHEETS["ungleichungen"] = dict(title="Ungleichungen lösen", eyebrow="Mathematik · Klasse 8 · Gleichungen", accent=M8, body=f'''
+  <div class="kern">Eine Ungleichung hat meist <strong>unendlich viele</strong> Lösungen. Man formt um wie bei Gleichungen, mit einer Ausnahme: Beim <strong>Multiplizieren oder Dividieren mit einer negativen Zahl</strong> wird das Zeichen umgedreht.</div>
+  <div class="cols">
+    <div class="box">
+      <h2>Die Zeichen</h2>
+      <table>
+        <tr><td>{m("&lt;")}</td><td>kleiner als</td><td>Grenze gehört <strong>nicht</strong> dazu</td></tr>
+        <tr><td>{m("≤")}</td><td>kleiner oder gleich</td><td>Grenze gehört dazu</td></tr>
+        <tr><td>{m("&gt;")}</td><td>größer als</td><td>Grenze gehört <strong>nicht</strong> dazu</td></tr>
+        <tr><td>{m("≥")}</td><td>größer oder gleich</td><td>Grenze gehört dazu</td></tr>
+      </table>
+      <p class="small">Die Spitze zeigt auf die kleinere Seite.</p>
+    </div>
+    <div class="box">
+      <h2>Lösungsmenge und Zahlenstrahl</h2>
+      <p>{m(f"L = {{{X} | {X} &lt; 3}}")}: alle Zahlen kleiner als 3.</p>
+      <p>Am Zahlenstrahl: <strong>leerer Kreis</strong> bei &lt; und &gt; (Grenze nicht dabei), <strong>voller Punkt</strong> bei ≤ und ≥ (Grenze dabei).</p>
+      <svg viewBox="0 0 300 40" width="70mm" height="9mm"><line x1="10" y1="20" x2="290" y2="20" stroke="#1b2228" stroke-width="2"/><line x1="12" y1="20" x2="190" y2="20" stroke="{M8}" stroke-width="6" stroke-linecap="round"/><circle cx="190" cy="20" r="6" fill="#fff" stroke="{M8}" stroke-width="2.5"/><text x="190" y="38" font-size="10" text-anchor="middle">3</text></svg>
+    </div>
+    <div class="box">
+      <h2>Beispiel mit Zeichen-Umdrehen</h2>
+      <table>
+        <tr><td>{m(f"−2{X} + 1 &lt; 7")}</td><td>| −1</td></tr>
+        <tr><td>{m(f"−2{X} &lt; 6")}</td><td>| :(−2) <span class="no">umdrehen!</span></td></tr>
+        <tr><td>{m(f"{X} &gt; −3")}</td><td></td></tr>
+      </table>
+      <p class="small">Probe mit {m(f"{X} = 0")}: −2 · 0 + 1 = 1 &lt; 7 ✓</p>
+    </div>
+    <div class="box">
+      <h2>Warum umdrehen?</h2>
+      <p>{m("2 &lt; 5")}, aber nach Multiplikation mit (−1): {m("−2 &gt; −5")}. Durch das Minus kehrt sich die Reihenfolge auf dem Zahlenstrahl um.</p>
+      <p class="small"><strong>Nicht</strong> umdrehen beim Addieren und Subtrahieren, auch wenn negative Zahlen vorkommen!</p>
+    </div>
+    <div class="box warn full">
+      <h2>Typische Fehler</h2>
+      <ul>
+        <li>Beim Teilen durch eine negative Zahl das Zeichen nicht umgedreht.</li>
+        <li>Das Zeichen umgedreht, obwohl nur eine negative Zahl abgezogen wurde.</li>
+        <li>&lt; und ≤ verwechselt: Gehört die Grenze dazu?</li>
+        <li>Nur eine einzelne Zahl als Lösung angegeben statt der Lösungsmenge.</li>
+      </ul>
+    </div>
+  </div>''')
+
+# ---------------- grade 8 physics ----------------
+SHEETS["druck"] = dict(title="Druck in Flüssigkeiten und Gasen", eyebrow="Physik · Klasse 8 · Druck", accent=PH, body=f'''
+  <div class="kern"><strong>Druck</strong> gibt an, wie stark eine Kraft auf eine Fläche drückt. Gleiche Kraft auf kleiner Fläche ergibt großen Druck (Reißzwecke), auf großer Fläche kleinen Druck (Schneeschuh).</div>
+  <div class="cols">
+    <div class="box">
+      <h2>Formel</h2>
+      <p class="big">{m("<i>p</i> = " + fr("<i>F</i>", "<i>A</i>"))} &nbsp; {m("<i>F</i> = <i>p</i> · <i>A</i>")} &nbsp; {m("<i>A</i> = <i>F</i> : <i>p</i>")}</p>
+      <table>
+        <tr><td>{m("<i>p</i>")}</td><td>Druck</td><td>Pascal (Pa)</td></tr>
+        <tr><td>{m("<i>F</i>")}</td><td>Kraft</td><td>Newton (N)</td></tr>
+        <tr><td>{m("<i>A</i>")}</td><td>Fläche</td><td>m² (oder cm²)</td></tr>
+      </table>
+    </div>
+    <div class="box">
+      <h2>Einheiten</h2>
+      <table>
+        <tr><td>1 Pa</td><td>= 1 N/m²</td></tr>
+        <tr><td>1 hPa</td><td>= 100 Pa</td></tr>
+        <tr><td>1 bar</td><td>= 1 000 hPa = 100 000 Pa</td></tr>
+        <tr><td>1 N/cm²</td><td>= 10 000 Pa = 0,1 bar</td></tr>
+        <tr><td>1 m²</td><td>= 10 000 cm²</td></tr>
+      </table>
+    </div>
+    <div class="box">
+      <h2>Kolbendruck</h2>
+      <p>In einer <strong>eingeschlossenen</strong> Flüssigkeit oder einem eingeschlossenen Gas breitet sich der Druck <strong>in alle Richtungen gleichmäßig</strong> aus. Versuch: Bei der Spritzkugel spritzt das Wasser aus allen Löchern gleich weit.</p>
+    </div>
+    <div class="box">
+      <h2>Gase und Flüssigkeiten</h2>
+      <table>
+        <tr><th></th><th>Gas</th><th>Flüssigkeit</th></tr>
+        <tr><td>zusammendrückbar</td><td>ja</td><td>fast nicht</td></tr>
+        <tr><td>Teilchen</td><td>weit auseinander</td><td>dicht</td></tr>
+      </table>
+      <p class="small">Für Profis (Boyle-Mariotte): {m("<i>p</i> · <i>V</i> = konstant")}, doppelter Druck heißt halbes Volumen.</p>
+    </div>
+    <div class="box">
+      <h2>Beispiel</h2>
+      <p>F = 200 N auf A = 10 cm²:</p>
+      <p>{m("<i>p</i> = 200 N : 10 cm² = 20 N/cm² = 2 bar")}</p>
+      <p class="small">Typische Werte: Luftdruck ≈ 1 bar, Fahrradreifen 2 bis 6 bar, Autoreifen ≈ 2,5 bar.</p>
+    </div>
+    <div class="box warn">
+      <h2>Typische Fehler</h2>
+      <ul>
+        <li>Fläche in cm² eingesetzt, Ergebnis aber in Pa angegeben.</li>
+        <li>{m("1 m² = 100 cm²")} <span class="no">falsch</span>: richtig sind 10 000 cm².</li>
+        <li>Kraft und Druck verwechselt. Es kommt auf die Fläche an.</li>
+      </ul>
+    </div>
+  </div>''')
+
+SHEETS["hydraulik"] = dict(title="Hydraulische Anlagen", eyebrow="Physik · Klasse 8 · Druck", accent=PH, body=f'''
+  <div class="kern">Zwei Kolben sind durch Öl verbunden. Im Öl herrscht überall <strong>derselbe Druck</strong>. Am großen Kolben wirkt deshalb eine große Kraft, er bewegt sich aber nur ein kleines Stück.</div>
+  <div class="cols">
+    <div class="box">
+      <h2>Kräfte</h2>
+      <p class="big">{m(fr("<i>F</i>" + sub(1), "<i>A</i>" + sub(1)) + " = " + fr("<i>F</i>" + sub(2), "<i>A</i>" + sub(2)) + " = <i>p</i>")}</p>
+      <p>{m("<i>F</i>" + sub(2) + " = <i>F</i>" + sub(1) + " · " + fr("<i>A</i>" + sub(2), "<i>A</i>" + sub(1)))}</p>
+      <p class="small">Große Fläche 20-mal so groß bedeutet Kraft 20-mal so groß.</p>
+    </div>
+    <div class="box">
+      <h2>Wege</h2>
+      <p class="big">{m("<i>A</i>" + sub(1) + " · <i>s</i>" + sub(1) + " = <i>A</i>" + sub(2) + " · <i>s</i>" + sub(2))}</p>
+      <p>Das verdrängte Ölvolumen ist auf beiden Seiten gleich. Der große Kolben bewegt sich nur einen Bruchteil des Weges.</p>
+    </div>
+    <div class="box full">
+      <h2>Goldene Regel der Mechanik</h2>
+      <p>Was man an Kraft spart, muss man an Weg zusetzen: {m("<i>F</i>" + sub(1) + " · <i>s</i>" + sub(1) + " = <i>F</i>" + sub(2) + " · <i>s</i>" + sub(2))}. Hydraulik verstärkt die Kraft, erzeugt aber keine Energie.</p>
+    </div>
+    <div class="box">
+      <h2>Beispiel</h2>
+      <p>A₁ = 5 cm², F₁ = 100 N, A₂ = 200 cm², s₁ = 20 cm:</p>
+      <ul>
+        <li>{m("<i>p</i> = 100 N : 5 cm² = 20 N/cm² = 2 bar")}</li>
+        <li>{m("<i>F</i>" + sub(2) + " = 20 N/cm² · 200 cm² = 4 000 N")}</li>
+        <li>{m("<i>s</i>" + sub(2) + " = 5 · 20 : 200 = 0,5 cm")}</li>
+      </ul>
+    </div>
+    <div class="box">
+      <h2>Anwendungen</h2>
+      <ul>
+        <li>Hebebühne und Wagenheber</li>
+        <li>Autobremse</li>
+        <li>Bagger, Kran, Presse</li>
+        <li>Friseur- und Zahnarztstuhl</li>
+      </ul>
+      <p class="small">Man nimmt Öl, weil es sich kaum zusammendrücken lässt. Luftblasen machen eine Bremse schwammig.</p>
+    </div>
+    <div class="box warn full">
+      <h2>Typische Fehler</h2>
+      <ul>
+        <li>Gedacht, Hydraulik erzeuge Energie: Die Kraft wird größer, der Weg kleiner.</li>
+        <li>Flächen in verschiedenen Einheiten eingesetzt.</li>
+        <li>Verhältnis vertauscht: Der <strong>große</strong> Kolben hat die <strong>große</strong> Kraft und den <strong>kleinen</strong> Weg.</li>
+      </ul>
+    </div>
+  </div>''')
+
+SHEETS["schweredruck"] = dict(title="Schweredruck in Flüssigkeiten", eyebrow="Physik · Klasse 8 · Druck", accent=PH, body=f'''
+  <div class="kern">Die Flüssigkeit über einem Körper hat Gewicht und drückt auf alles darunter. Je tiefer, desto größer der <strong>Schweredruck</strong>. Faustregel für Wasser: <strong>pro 10 m Tiefe etwa 1 bar mehr</strong>.</div>
+  <div class="cols">
+    <div class="box">
+      <h2>Formel</h2>
+      <p class="big">{m("<i>p</i> = <i>ρ</i> · <i>g</i> · <i>h</i>")}</p>
+      <table>
+        <tr><td>{m("<i>ρ</i>")}</td><td>Dichte der Flüssigkeit</td><td>kg/m³ (Wasser 1 000)</td></tr>
+        <tr><td>{m("<i>g</i>")}</td><td>Ortsfaktor</td><td>9,81 N/kg</td></tr>
+        <tr><td>{m("<i>h</i>")}</td><td>Tiefe</td><td>m</td></tr>
+      </table>
+      <p class="small">Ergebnis in Pa. 100 Pa = 1 hPa, 100 000 Pa = 1 bar.</p>
+    </div>
+    <div class="box">
+      <h2>Eigenschaften</h2>
+      <ul>
+        <li>wächst mit der <strong>Tiefe</strong> und der <strong>Dichte</strong>.</li>
+        <li>hängt <strong>nicht</strong> von Form und Größe des Gefäßes ab (hydrostatisches Paradoxon).</li>
+        <li>wirkt in einer Tiefe <strong>in alle Richtungen</strong> gleich.</li>
+      </ul>
+    </div>
+    <div class="box">
+      <h2>Beispiel</h2>
+      <p>Wasser, 10 m Tiefe:</p>
+      <p>{m("<i>p</i> = 1 000 · 9,81 · 10 = 98 100 Pa ≈ 981 hPa ≈ 1 bar")}</p>
+      <p>Gesamtdruck mit Luftdruck: {m("1 013 hPa + 981 hPa ≈ 2 bar")}</p>
+    </div>
+    <div class="box">
+      <h2>Im Alltag</h2>
+      <ul>
+        <li><strong>Staudamm</strong> unten dicker als oben.</li>
+        <li><strong>Taucher</strong>: Druckausgleich in den Ohren.</li>
+        <li><strong>U-Boot</strong>: dicke Wände für große Tiefen.</li>
+        <li><strong>Wasserturm</strong>: erzeugt den Druck in der Leitung.</li>
+        <li><strong>Quecksilber</strong> (13 600 kg/m³): 76 cm drücken so stark wie die Luft.</li>
+      </ul>
+    </div>
+    <div class="box warn full">
+      <h2>Typische Fehler</h2>
+      <ul>
+        <li>Tiefe in cm eingesetzt: erst in m umrechnen (50 cm = 0,5 m).</li>
+        <li>Gedacht, in einem breiten See sei der Druck größer als in einem schmalen Rohr gleicher Tiefe. Es zählt nur die Tiefe.</li>
+        <li>Pa, hPa und bar verwechselt.</li>
+      </ul>
+    </div>
+  </div>''')
+
+SHEETS["auftrieb"] = dict(title="Auftrieb", eyebrow="Physik · Klasse 8 · Druck", accent=PH, body=f'''
+  <div class="kern">Eine Flüssigkeit drückt jeden eingetauchten Körper nach oben: die <strong>Auftriebskraft</strong>. Ob er schwimmt oder sinkt, entscheidet der Vergleich von <strong>Gewichtskraft</strong> und Auftrieb, also der Vergleich der <strong>Dichten</strong>.</div>
+  <div class="cols">
+    <div class="box full">
+      <h2>Gesetz des Archimedes</h2>
+      <p>Die Auftriebskraft ist so groß wie die Gewichtskraft der verdrängten Flüssigkeit: {m("<i>F</i>" + sub("A") + " = <i>ρ</i>" + sub("Fl") + " · <i>g</i> · <i>V</i>" + sub("verdrängt"))}. Ursache: Der Schweredruck ist an der Unterseite größer als an der Oberseite.</p>
+    </div>
+    <div class="box">
+      <h2>Sinken, schweben, schwimmen</h2>
+      <table>
+        <tr><th>Kräfte</th><th>Dichten</th><th>Ergebnis</th></tr>
+        <tr><td>F<sub>G</sub> &gt; F<sub>A</sub></td><td>ρ<sub>K</sub> &gt; ρ<sub>Fl</sub></td><td>sinkt</td></tr>
+        <tr><td>F<sub>G</sub> = F<sub>A</sub></td><td>ρ<sub>K</sub> = ρ<sub>Fl</sub></td><td>schwebt</td></tr>
+        <tr><td>F<sub>G</sub> &lt; F<sub>A</sub></td><td>ρ<sub>K</sub> &lt; ρ<sub>Fl</sub></td><td>steigt, schwimmt</td></tr>
+      </table>
+      <p class="small">Schwimmend taucht ein Körper zum Anteil ρ<sub>K</sub> : ρ<sub>Fl</sub> ein.</p>
+    </div>
+    <div class="box">
+      <h2>Dichten (kg/m³)</h2>
+      <table>
+        <tr><td>Kork</td><td>≈ 240</td><td>Spiritus</td><td>790</td></tr>
+        <tr><td>Holz (Fichte)</td><td>≈ 470</td><td>Öl</td><td>920</td></tr>
+        <tr><td>Eis</td><td>920</td><td>Wasser</td><td>1 000</td></tr>
+        <tr><td>Aluminium</td><td>2 700</td><td>Meerwasser</td><td>1 025</td></tr>
+        <tr><td>Eisen</td><td>7 870</td><td>Quecksilber</td><td>13 600</td></tr>
+      </table>
+    </div>
+    <div class="box">
+      <h2>Beispiel</h2>
+      <p>V = 200 cm³ = 0,0002 m³ ganz in Wasser:</p>
+      <p>{m("<i>F</i>" + sub("A") + " = 1 000 · 9,81 · 0,0002 ≈ 1,96 N")}</p>
+      <p class="small">Kraftmesser im Wasser zeigt: Gewichtskraft minus Auftrieb.</p>
+    </div>
+    <div class="box">
+      <h2>Beispiele</h2>
+      <ul>
+        <li>Stahlschiff schwimmt: Hohlraum, mittlere Dichte kleiner als Wasser.</li>
+        <li>Eisberg: rund 90 % unter Wasser.</li>
+        <li>U-Boot: Tanks fluten zum Abtauchen.</li>
+        <li>Fisch: Schwimmblase zum Schweben.</li>
+      </ul>
+    </div>
+    <div class="box warn full">
+      <h2>Typische Fehler</h2>
+      <ul>
+        <li>„Schwere Dinge sinken.“ Es entscheidet die <strong>Dichte</strong>, nicht das Gewicht.</li>
+        <li>In die Auftriebsformel die Dichte des <strong>Körpers</strong> eingesetzt statt die der <strong>Flüssigkeit</strong>.</li>
+        <li>cm³ nicht in m³ umgerechnet: 1 cm³ = 0,000001 m³, 1 Liter = 0,001 m³.</li>
+      </ul>
+    </div>
+  </div>''')
+
+SHEETS["luftdruck"] = dict(title="Luftdruck", eyebrow="Physik · Klasse 8 · Druck", accent=PH, body=f'''
+  <div class="kern">Wir leben am Boden eines Luftmeeres. Die Luft über uns hat Gewicht und drückt: der <strong>Luftdruck</strong>. Auf Meereshöhe im Mittel <strong>1 013 hPa ≈ 1 bar</strong>. Mit der Höhe nimmt er ab.</div>
+  <div class="cols">
+    <div class="box">
+      <h2>Wie stark?</h2>
+      <p>{m("<i>F</i> = <i>p</i> · <i>A</i> = 101 300 Pa · 1 m² = 101 300 N")}</p>
+      <p>Das entspricht der Gewichtskraft von über 10 t. Wir werden nicht zerdrückt, weil der Druck <strong>von allen Seiten</strong> wirkt und im Körper derselbe Druck herrscht.</p>
+    </div>
+    <div class="box">
+      <h2>Messen</h2>
+      <ul>
+        <li><strong>Dosenbarometer</strong>: luftleere Metalldose wird eingedrückt, ein Zeiger zeigt den Druck.</li>
+        <li><strong>Quecksilberbarometer</strong> (Torricelli): etwa 760 mm Quecksilbersäule ≙ 1 013 hPa.</li>
+      </ul>
+    </div>
+    <div class="box">
+      <h2>Versuche</h2>
+      <ul>
+        <li><strong>Magdeburger Halbkugeln</strong>: Pferde konnten die luftleeren Kugeln nicht trennen.</li>
+        <li><strong>Glas mit Postkarte</strong>: Luftdruck hält das Wasser im umgedrehten Glas.</li>
+        <li><strong>Trinkhalm, Saugnapf</strong>: Die Luft „saugt“ nicht, der äußere Luftdruck <strong>drückt</strong>.</li>
+      </ul>
+    </div>
+    <div class="box">
+      <h2>Luftdruck und Höhe</h2>
+      <table>
+        <tr><td>Meer (0 m)</td><td>1 013 hPa</td><td>Wasser siedet bei 100 °C</td></tr>
+        <tr><td>Zugspitze (2 962 m)</td><td>≈ 705 hPa</td><td>≈ 90 °C</td></tr>
+        <tr><td>5 500 m</td><td>≈ 505 hPa (halb)</td><td>≈ 81 °C</td></tr>
+        <tr><td>Mount Everest (8 849 m)</td><td>≈ 314 hPa</td><td>≈ 69 °C</td></tr>
+      </table>
+      <p class="small">Faustregel nahe am Boden: etwa 1 hPa weniger pro 8 m Höhe.</p>
+    </div>
+    <div class="box">
+      <h2>Wetter</h2>
+      <ul>
+        <li><strong>Hoch (H)</strong>: über 1 013 hPa, meist schönes Wetter.</li>
+        <li><strong>Tief (T)</strong>: unter 1 013 hPa, oft Wolken und Regen.</li>
+        <li><strong>Wind</strong>: Luft strömt vom Hoch zum Tief.</li>
+      </ul>
+    </div>
+    <div class="box warn">
+      <h2>Typische Fehler</h2>
+      <ul>
+        <li>„Der Strohhalm saugt.“ Der äußere Luftdruck drückt das Getränk hoch.</li>
+        <li>„Luftdruck wirkt nur von oben.“ Er wirkt in alle Richtungen.</li>
+        <li>hPa und Pa verwechselt: 1 013 hPa = 101 300 Pa.</li>
+      </ul>
+    </div>
+  </div>''')
+
 OUT = sys.argv[1] if len(sys.argv) > 1 else os.path.join(os.path.dirname(__file__), "_build")
 os.makedirs(OUT, exist_ok=True)
 shutil.copyfile(os.path.join(os.path.dirname(os.path.abspath(__file__)), "factsheet.css"), os.path.join(OUT, "factsheet.css"))

@@ -1,0 +1,10 @@
+/* Diving tank */
+.tank text { font-family: var(--font-mono); font-size: 11px; fill: var(--muted); }
+.tank .liquid { transition: fill 0.3s; }
+.tank .wall { fill: none; stroke: var(--ink); stroke-width: 3; }
+.tank .diver { fill: var(--c2); }
+.tank .depth { stroke: var(--c2); stroke-width: 2; stroke-dasharray: 5 4; }
+.tank .parrow { stroke: var(--ink); stroke-width: 2.5; fill: none; stroke-linecap: round; }
+.vessels path { stroke: var(--ink); stroke-width: 3; fill: rgba(47, 127, 184, 0.3); stroke-linejoin: round; }
+.vessels text { font-family: var(--font-mono); font-size: 11px; fill: var(--muted); }
+.vessels line { stroke: var(--c2); stroke-width: 1.5; stroke-dasharray: 4 3; }

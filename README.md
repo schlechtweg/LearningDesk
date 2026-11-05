@@ -8,6 +8,15 @@ Interaktive Lern-Apps für die Schule, sortiert nach Klassenstufe. Alles läuft 
 |---|---|---|
 | Klasse 8 · Mathematik | Binomische Formeln | Formeln, Flächenmodell, Trainer (Lücken, ausmultiplizieren, faktorisieren), Kopfrechen-Trick, Quiz |
 | Klasse 8 · Mathematik | Bruchterme | Definitionsmenge, Kürzen und Erweitern, Rechenregeln, Trainer, Quiz |
+| Klasse 8 · Mathematik | Ausmultiplizieren und Faktorisieren | Distributivgesetz, Klammer mal Klammer, Ausklammern, Flächenmodell, Trainer, Quiz |
+| Klasse 8 · Mathematik | Terme vereinfachen | Gleichartige Terme, Produkte mit mehreren Variablen, Termsortierer, Trainer, Quiz |
+| Klasse 8 · Mathematik | Gleichungen lösen | Äquivalenzumformungen, Umformungs-Werkstatt, Trainer mit Rechenweg und Probe, Quiz |
+| Klasse 8 · Mathematik | Ungleichungen lösen | Zahlenstrahl, Zeichen umdrehen, Umformungs-Werkstatt, Trainer, Quiz |
+| Klasse 8 · Physik | Druck in Flüssigkeiten und Gasen | p = F/A, Einheiten, Kolbendruck, Kolben-Versuch, Trainer, Quiz |
+| Klasse 8 · Physik | Hydraulische Anlagen | Kraftübersetzung, Wege, Goldene Regel, Hebebühne, Trainer, Quiz |
+| Klasse 8 · Physik | Schweredruck | p = ρ·g·h, hydrostatisches Paradoxon, Tauchbecken, Trainer, Quiz |
+| Klasse 8 · Physik | Auftrieb | Archimedes, Dichtevergleich, Versuch, Vorhersagen, Trainer, Quiz |
+| Klasse 8 · Physik | Luftdruck | Versuche, Barometer, Höhenreise mit Siedetemperatur, Wetter, Trainer, Quiz |
 | Klasse 11 · Biologie | Osmose | Grundlagen, Osmometer-Simulation, Zellen in Lösungen, Alltagsbeispiele, Quiz |
 | Klasse 11 · Biologie | Natrium-Kalium-Pumpe | Pumpzyklus, Simulation von Gradienten und Membranpotential, Fallbeispiele, Quiz |
 | Klasse 11 · Mathematik | Ableiten | Sekante/Tangente, grafisches Ableiten, Regeln mit Trainer, Tangentengleichung, Quiz |
@@ -23,6 +32,7 @@ src/
   build.py             Generator
   apps/<thema>/        style.css, body.html, script.js einer App
   shared/              Bausteine für alle Seiten: Breadcrumbs, Hell/Dunkel-Schalter, Menü-Stil
+                       learnkit.css/.js: Baukasten für neue Themen (Layout, Bereiche, Quiz, Trainer, Umformungs-Werkstatt)
   templates/           Jinja2-Vorlagen (App, Seitenhülle, Menüseiten)
   factsheets/          Factsheet-Inhalte (sources.py), Stylesheet, PDF-Renderer
 vendor/                Algebrite (Rechenkern des ClassPad-Simulators, MIT-Lizenz)
@@ -44,7 +54,7 @@ Danach `docs/` committen und pushen; GitHub Pages veröffentlicht automatisch (Q
 
 ## Neues Thema hinzufügen
 
-1. Ordner `src/apps/<thema>/` mit `style.css`, `body.html` (Tabs und Bereiche) und `script.js` anlegen. Vorlage: eine bestehende App kopieren.
+1. Ordner `src/apps/<thema>/` mit `style.css`, `body.html` (Tabs und Bereiche) und `script.js` anlegen. Am einfachsten mit dem LearnKit-Baukasten: Vorlage ist eine der Klasse-8-Apps (z. B. `src/apps/druck/`), in `config.py` dann `"kit": True` und eine Akzentfarbe setzen. `script.js` nutzt `LK.views`, `LK.trainer`, `LK.quiz` usw.
 2. Eintrag in `TOPICS` in `src/config.py` ergänzen (Klassenstufe, Fach, Titel, Einleitung, Kartentext, erster Bereich).
 3. Factsheet in `src/factsheets/sources.py` ergänzen.
 4. `python3 src/build.py --pdf` ausführen. Menüseite, Breadcrumbs, Factsheet-Link und Hell/Dunkel-Schalter entstehen automatisch.

@@ -48,6 +48,8 @@ def shared():
         "toggle_js": read("shared/theme-toggle.js"),
         "crumbs_js": read("shared/crumbs.js"),
         "menu_css": read("shared/menu.css"),
+        "learnkit_css": read("shared/learnkit.css"),
+        "learnkit_js": read("shared/learnkit.js"),
     }
 
 
@@ -86,7 +88,7 @@ def topic_crumbs(t, base):
 def render_app(t, base, sh):
     app = {name: read(f"apps/{t['slug']}/{file}") for name, file in
            [("css", "style.css"), ("body", "body.html"), ("js", "script.js")]}
-    t = {"scripts": [], **t}
+    t = {"scripts": [], "kit": False, **t}
     return env.get_template("app.html").render(
         t=t, app=app, shared=sh, base=base, fonts=config.FONTS[t["fonts"]], crumbs=topic_crumbs(t, base))
 

@@ -1,0 +1,115 @@
+
+  <nav class="tabs" aria-label="Bereiche">
+    <a href="#verstehen" data-view="verstehen"><span class="n">1</span>Verstehen</a>
+    <a href="#tauchen" data-view="tauchen"><span class="n">2</span>Tauchbecken</a>
+    <a href="#ueben" data-view="ueben"><span class="n">3</span>Üben</a>
+    <a href="#quiz" data-view="quiz"><span class="n">4</span>Quiz</a>
+  </nav>
+
+  <section class="view" id="view-verstehen">
+    <div class="einfach">
+      <span class="eyebrow">Einfach erklärt</span>
+      <p>Wenn du im Schwimmbad tief tauchst, drückt es in den Ohren. Das liegt am Wasser über dir: Es hat ein Gewicht und drückt auf alles darunter. Je tiefer du tauchst, desto mehr Wasser ist über dir und desto größer ist der Druck. Diesen Druck nennt man <strong>Schweredruck</strong> (oder hydrostatischen Druck).</p>
+    </div>
+    <div class="grid-2">
+      <div class="panel stack">
+        <span class="eyebrow">Formel</span>
+        <p class="formel"><i>p</i> = <i>ρ</i> · <i>g</i> · <i>h</i></p>
+        <table class="data">
+          <tr><td class="math"><i>ρ</i></td><td>Dichte der Flüssigkeit</td><td>in kg/m³ (Wasser: 1 000)</td></tr>
+          <tr><td class="math"><i>g</i></td><td>Ortsfaktor</td><td>9,81 N/kg (gerundet 10)</td></tr>
+          <tr><td class="math"><i>h</i></td><td>Tiefe</td><td>in m</td></tr>
+        </table>
+        <p class="small">Ergebnis in Pa. Faustregel für Wasser: <strong>pro 10 m Tiefe etwa 1 bar mehr</strong>.</p>
+      </div>
+      <div class="panel stack">
+        <span class="eyebrow">Eigenschaften</span>
+        <h3>Wovon hängt der Schweredruck ab?</h3>
+        <ul class="list small">
+          <li>von der <strong>Tiefe</strong>: doppelt so tief, doppelt so viel Druck.</li>
+          <li>von der <strong>Dichte</strong> der Flüssigkeit: Salzwasser drückt etwas stärker als Süßwasser, Öl schwächer.</li>
+          <li><strong>nicht</strong> von der Form oder Größe des Gefäßes.</li>
+          <li><strong>nicht</strong> von der Richtung: In einer Tiefe drückt das Wasser von oben, unten und von der Seite gleich stark.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="panel stack">
+      <span class="eyebrow">Hydrostatisches Paradoxon</span>
+      <h3>Die Form des Gefäßes ist egal</h3>
+      <svg class="vessels" viewBox="0 0 520 170" role="img" aria-label="Drei unterschiedlich geformte Gefäße mit gleicher Füllhöhe">
+        <path d="M30 30 V150 H110 V30"></path>
+        <path d="M170 30 L210 150 H270 L310 30"></path>
+        <path d="M380 30 H400 V110 L370 150 H470 L440 110 V30 H460"></path>
+        <line x1="10" y1="40" x2="510" y2="40"></line><line x1="10" y1="140" x2="510" y2="140"></line>
+        <text x="70" y="165" text-anchor="middle">gleicher Druck</text><text x="240" y="165" text-anchor="middle">gleicher Druck</text><text x="420" y="165" text-anchor="middle">gleicher Druck</text>
+      </svg>
+      <p class="small">In allen drei Gefäßen steht das Wasser gleich hoch. Am Boden herrscht deshalb überall <strong>derselbe Druck</strong>, obwohl unterschiedlich viel Wasser in den Gefäßen ist.</p>
+    </div>
+    <div class="grid-2">
+      <div class="panel stack">
+        <h3>Im Alltag</h3>
+        <ul class="list small">
+          <li><strong>Staudamm</strong>: unten viel dicker als oben, weil der Druck unten am größten ist.</li>
+          <li><strong>Taucher</strong>: müssen beim Abtauchen den Druck in den Ohren ausgleichen.</li>
+          <li><strong>U-Boote</strong>: brauchen dicke Wände, um in großer Tiefe nicht eingedrückt zu werden.</li>
+          <li><strong>Wasserturm</strong>: Das hoch gelegene Wasser erzeugt den Druck in der Wasserleitung.</li>
+        </ul>
+      </div>
+      <div class="panel stack">
+        <h3>Gesamtdruck</h3>
+        <p class="small">Auf die Wasseroberfläche drückt zusätzlich die Luft mit etwa 1 bar. Der Gesamtdruck in der Tiefe ist:</p>
+        <p class="math">p<sub>gesamt</sub> = p<sub>Luft</sub> + <i>ρ</i> · <i>g</i> · <i>h</i></p>
+        <p class="small">In 10 m Wassertiefe sind das etwa 2 bar, in 30 m etwa 4 bar.</p>
+      </div>
+    </div>
+    <div class="panel stack">
+      <h3>Typische Fehler</h3>
+      <ul class="list small">
+        <li>Tiefe in cm eingesetzt statt in m. Erst umrechnen: 50 cm = 0,5 m.</li>
+        <li>Gedacht, in einem breiten See sei der Druck größer als in einem schmalen Rohr gleicher Tiefe. Es zählt nur die Tiefe!</li>
+        <li>Pa, hPa und bar verwechselt: 1 bar = 1 000 hPa = 100 000 Pa.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="view" id="view-tauchen" hidden>
+    <div class="stack">
+      <span class="eyebrow">Tauchbecken</span>
+      <h2>Wie stark drückt die Flüssigkeit?</h2>
+      <p class="muted">Lass den Taucher tiefer sinken und wechsle die Flüssigkeit. Die Pfeile zeigen: Der Druck wirkt von allen Seiten.</p>
+    </div>
+    <div class="sim-layout">
+      <div class="figure"><svg class="tank" id="tSvg" viewBox="0 0 420 360" role="img" aria-label="Becken mit Taucher in einstellbarer Tiefe"></svg></div>
+      <div class="panel controls">
+        <div><label class="lbl" for="tLiquid"><span>Flüssigkeit</span></label>
+          <select id="tLiquid">
+            <option value="1000">Süßwasser (1 000 kg/m³)</option>
+            <option value="1025">Meerwasser (1 025 kg/m³)</option>
+            <option value="920">Speiseöl (920 kg/m³)</option>
+            <option value="790">Spiritus (790 kg/m³)</option>
+            <option value="13600">Quecksilber (13 600 kg/m³)</option>
+          </select></div>
+        <div><label class="lbl" for="tH"><span>Tiefe <i>h</i></span><span class="val" id="tHOut"></span></label><input type="range" id="tH" min="0" max="50" step="0.5" value="10"></div>
+        <dl class="readout" id="tRo"></dl>
+        <div class="status-box" id="tStatus"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="view" id="view-ueben" hidden>
+    <div class="stack">
+      <span class="eyebrow">Trainer</span>
+      <h2>Rechnen mit dem Schweredruck</h2>
+      <p class="muted">Rechne mit <span class="math"><i>g</i> = 9,81 N/kg</span>. Gib nur die Zahl ein, die Einheit steht in der Aufgabe. Eine Abweichung von 1 % durch Runden wird akzeptiert.</p>
+    </div>
+    <div id="trainer" class="stack"></div>
+  </section>
+
+  <section class="view" id="view-quiz" hidden>
+    <div class="stack">
+      <span class="eyebrow">Selbsttest</span>
+      <h2>Quiz</h2>
+      <div class="progress-line"><div class="bar" aria-hidden="true"><i id="qBar"></i></div><span class="score-line" id="qProgress"></span></div>
+    </div>
+    <div class="panel quiz" id="quizBox" aria-live="polite"></div>
+  </section>

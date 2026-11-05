@@ -1,0 +1,101 @@
+
+  <nav class="tabs" aria-label="Bereiche">
+    <a href="#verstehen" data-view="verstehen"><span class="n">1</span>Verstehen</a>
+    <a href="#hoehe" data-view="hoehe"><span class="n">2</span>Höhenreise</a>
+    <a href="#ueben" data-view="ueben"><span class="n">3</span>Üben</a>
+    <a href="#quiz" data-view="quiz"><span class="n">4</span>Quiz</a>
+  </nav>
+
+  <section class="view" id="view-verstehen">
+    <div class="einfach">
+      <span class="eyebrow">Einfach erklärt</span>
+      <p>Wir leben am Boden eines riesigen „Luftmeeres“. Luft hat ein Gewicht: Ein Kubikmeter wiegt etwa 1,2 kg. Die ganze Luft über uns drückt auf alles, was am Boden ist. Das ist der <strong>Luftdruck</strong>.</p>
+      <p>Auf Meereshöhe beträgt er im Mittel <strong>1 013 hPa</strong>, also etwa 1 bar.</p>
+    </div>
+    <div class="grid-2">
+      <div class="panel stack">
+        <h3>Wie stark ist das?</h3>
+        <p class="small">Auf einen Quadratmeter drückt die Luft mit</p>
+        <p class="math"><i>F</i> = <i>p</i> · <i>A</i> = 101 300 Pa · 1 m² = 101 300 N</p>
+        <p class="small">Das ist so viel wie die Gewichtskraft von über 10 Tonnen! Trotzdem werden wir nicht zerdrückt: Der Luftdruck wirkt <strong>von allen Seiten</strong>, und in unserem Körper herrscht derselbe Druck.</p>
+      </div>
+      <div class="panel stack">
+        <h3>Luftdruck messen</h3>
+        <ul class="list small">
+          <li><strong>Dosenbarometer</strong>: Eine fast luftleere Metalldose wird je nach Luftdruck mehr oder weniger eingedrückt. Ein Zeiger zeigt das an.</li>
+          <li><strong>Quecksilberbarometer</strong> (Torricelli, 1643): Der Luftdruck hält eine Quecksilbersäule von etwa 760 mm Höhe.</li>
+        </ul>
+        <p class="small muted">Deshalb gibt man den Luftdruck manchmal in „mm Quecksilbersäule“ an: 760 mm ≈ 1 013 hPa.</p>
+      </div>
+    </div>
+    <div class="stack">
+      <h2>Versuche zum Luftdruck</h2>
+      <div class="grid-3">
+        <div class="panel stack"><h3>Magdeburger Halbkugeln</h3><p class="small">Otto von Guericke pumpte im 17. Jahrhundert die Luft aus zwei zusammengelegten Halbkugeln. Selbst Pferdegespanne konnten sie nicht auseinanderziehen. Der äußere Luftdruck presste sie zusammen.</p></div>
+        <div class="panel stack"><h3>Wasserglas mit Postkarte</h3><p class="small">Ein volles Glas, mit einer Postkarte abgedeckt, wird umgedreht. Das Wasser bleibt drin: Der Luftdruck von unten drückt die Karte fest gegen das Glas.</p></div>
+        <div class="panel stack"><h3>Trinkhalm und Saugnapf</h3><p class="small">Die Luft „saugt“ nicht. Beim Trinken verringerst du den Druck im Mund, und der äußere Luftdruck <strong>drückt</strong> das Getränk nach oben. Beim Saugnapf drückt die Luft ihn an die Wand.</p></div>
+      </div>
+    </div>
+    <div class="grid-2">
+      <div class="panel stack">
+        <h3>Luftdruck und Höhe</h3>
+        <p class="small">Je höher man steigt, desto weniger Luft ist darüber. Der Luftdruck nimmt ab:</p>
+        <ul class="list small">
+          <li>Faustregel nahe am Boden: <strong>etwa 1 hPa weniger pro 8 m</strong> Höhe.</li>
+          <li>In rund 5,5 km Höhe ist er nur noch <strong>halb so groß</strong>.</li>
+          <li>Folgen: Die Ohren knacken im Aufzug oder Flugzeug, Bergsteiger bekommen weniger Sauerstoff, Wasser kocht schon unter 100 °C, und eine Chipstüte bläht sich auf dem Berg auf.</li>
+        </ul>
+      </div>
+      <div class="panel stack">
+        <h3>Luftdruck und Wetter</h3>
+        <ul class="list small">
+          <li><strong>Hochdruckgebiet (H)</strong>: Luftdruck über 1 013 hPa, meist schönes, trockenes Wetter.</li>
+          <li><strong>Tiefdruckgebiet (T)</strong>: Luftdruck unter 1 013 hPa, oft Wolken und Regen.</li>
+          <li><strong>Wind</strong> entsteht, weil Luft vom hohen zum tiefen Druck strömt.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="panel stack">
+      <h3>Typische Fehler</h3>
+      <ul class="list small">
+        <li>„Der Strohhalm saugt das Getränk an.“ Physikalisch drückt der äußere Luftdruck das Getränk nach oben.</li>
+        <li>„Luftdruck wirkt nur von oben.“ Er wirkt in alle Richtungen, wie der Druck im Wasser.</li>
+        <li>hPa und Pa verwechselt: 1 013 hPa = 101 300 Pa.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="view" id="view-hoehe" hidden>
+    <div class="stack">
+      <span class="eyebrow">Höhenreise</span>
+      <h2>Wie ändert sich der Luftdruck mit der Höhe?</h2>
+      <p class="muted">Steige mit dem Regler auf oder wähle ein Ziel. Berechnet mit der internationalen Höhenformel für einen Normtag (15 °C am Boden).</p>
+    </div>
+    <div class="sim-layout">
+      <div class="figure"><svg class="alt" id="aSvg" viewBox="0 0 440 340" role="img" aria-label="Höhenprofil mit Markierung der gewählten Höhe und Barometer"></svg></div>
+      <div class="panel controls">
+        <div class="presets" id="aPresets"></div>
+        <div><label class="lbl" for="aH"><span>Höhe über dem Meer</span><span class="val" id="aHOut"></span></label><input type="range" id="aH" min="0" max="11000" step="50" value="0"></div>
+        <dl class="readout" id="aRo"></dl>
+        <div class="status-box" id="aStatus"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="view" id="view-ueben" hidden>
+    <div class="stack">
+      <span class="eyebrow">Trainer</span>
+      <h2>Rechnen mit dem Luftdruck</h2>
+      <p class="muted">Gib nur die Zahl ein, die Einheit steht in der Aufgabe. Eine Abweichung von 1 % durch Runden wird akzeptiert.</p>
+    </div>
+    <div id="trainer" class="stack"></div>
+  </section>
+
+  <section class="view" id="view-quiz" hidden>
+    <div class="stack">
+      <span class="eyebrow">Selbsttest</span>
+      <h2>Quiz</h2>
+      <div class="progress-line"><div class="bar" aria-hidden="true"><i id="qBar"></i></div><span class="score-line" id="qProgress"></span></div>
+    </div>
+    <div class="panel quiz" id="quizBox" aria-live="polite"></div>
+  </section>

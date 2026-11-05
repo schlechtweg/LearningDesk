@@ -1,0 +1,99 @@
+
+  <nav class="tabs" aria-label="Bereiche">
+    <a href="#verstehen" data-view="verstehen"><span class="n">1</span>Verstehen</a>
+    <a href="#sortieren" data-view="sortieren"><span class="n">2</span>Termsortierer</a>
+    <a href="#ueben" data-view="ueben"><span class="n">3</span>Üben</a>
+    <a href="#quiz" data-view="quiz"><span class="n">4</span>Quiz</a>
+  </nav>
+
+  <section class="view" id="view-verstehen">
+    <div class="einfach">
+      <span class="eyebrow">Einfach erklärt</span>
+      <p>Stell dir vor, <i>a</i> steht für Äpfel und <i>b</i> für Birnen. 3 Äpfel + 2 Birnen + 1 Apfel sind 4 Äpfel und 2 Birnen. Äpfel und Birnen kann man nicht zu „Apfelbirnen“ zusammenzählen.</p>
+      <p class="math">3<i>a</i> + 2<i>b</i> + <i>a</i> = 4<i>a</i> + 2<i>b</i></p>
+    </div>
+    <div class="grid-2">
+      <div class="panel stack">
+        <span class="eyebrow">Gleichartige Terme</span>
+        <h3>Was passt zusammen?</h3>
+        <p class="small">Gleichartig sind Terme mit <strong>genau denselben Variablen und Hochzahlen</strong>. Nur die Zahl davor (der <strong>Koeffizient</strong>) darf anders sein.</p>
+        <table class="data">
+          <tr><th>gleichartig</th><th>nicht gleichartig</th></tr>
+          <tr><td class="math">3<i>a</i> und −5<i>a</i></td><td class="math"><i>a</i> und <i>b</i></td></tr>
+          <tr><td class="math">2<i>ab</i> und 7<i>ba</i></td><td class="math"><i>x</i> und <i>x</i><sup>2</sup></td></tr>
+          <tr><td class="math">4<i>x</i><sup>2</sup> und <i>x</i><sup>2</sup></td><td class="math"><i>ab</i> und <i>a</i></td></tr>
+        </table>
+      </div>
+      <div class="panel stack">
+        <span class="eyebrow">Plus und Minus</span>
+        <h3>Zusammenfassen</h3>
+        <p class="small">Nur gleichartige Terme zusammenfassen: Die Koeffizienten werden addiert oder subtrahiert, die Variablen bleiben.</p>
+        <p class="math">5<i>x</i> + 3<i>y</i> − 2<i>x</i> + <i>y</i> = 3<i>x</i> + 4<i>y</i></p>
+        <p class="math">4<i>ab</i> − <i>a</i> + 2<i>ab</i> = 6<i>ab</i> − <i>a</i></p>
+        <p class="small muted">Tipp: Erst gleichartige Terme farbig unterstreichen, dann rechnen. Das Vorzeichen gehört immer zum Term dahinter.</p>
+      </div>
+      <div class="panel stack">
+        <span class="eyebrow">Mal</span>
+        <h3>Produkte vereinfachen</h3>
+        <p class="small">Zahlen mit Zahlen malnehmen, Variablen mit Variablen. Gleiche Variablen werden zur Potenz.</p>
+        <p class="math">3<i>a</i> · 4<i>b</i> = 12<i>ab</i></p>
+        <p class="math">2<i>x</i> · 5<i>x</i> = 10<i>x</i><sup>2</sup></p>
+        <p class="math">(−2<i>a</i>) · 3<i>ab</i> = −6<i>a</i><sup>2</sup><i>b</i></p>
+        <p class="small muted">Beim Malnehmen dürfen auch verschiedene Variablen zusammenkommen, beim Addieren nicht!</p>
+      </div>
+      <div class="panel stack">
+        <span class="eyebrow">Ordnung</span>
+        <h3>So schreibt man es ordentlich</h3>
+        <ul class="list small">
+          <li>Zahl zuerst, dann Variablen in alphabetischer Reihenfolge: <span class="math">12<i>ab</i></span> statt <span class="math"><i>b</i>·12<i>a</i></span>.</li>
+          <li>Statt <span class="math">1<i>a</i></span> schreibt man <span class="math"><i>a</i></span>, statt <span class="math">−1<i>a</i></span> schreibt man <span class="math">−<i>a</i></span>.</li>
+          <li>Höhere Potenzen zuerst: <span class="math">3<i>x</i><sup>2</sup> + 2<i>x</i> − 5</span>.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="panel stack">
+      <h3>Typische Fehler</h3>
+      <ul class="list small">
+        <li><span class="math">3<i>a</i> + 2<i>b</i> = 5<i>ab</i></span> ist <b class="no">falsch</b>. <i>a</i> und <i>b</i> sind nicht gleichartig, das bleibt <span class="math">3<i>a</i> + 2<i>b</i></span>.</li>
+        <li><span class="math"><i>x</i> + <i>x</i> = <i>x</i><sup>2</sup></span> ist <b class="no">falsch</b>. Richtig: <span class="math">2<i>x</i></span>. Erst <span class="math"><i>x</i> · <i>x</i> = <i>x</i><sup>2</sup></span>.</li>
+        <li><span class="math">3<i>a</i> − <i>a</i> = 3</span> ist <b class="no">falsch</b>. Vor <i>a</i> steht unsichtbar eine 1: <span class="math">3<i>a</i> − 1<i>a</i> = 2<i>a</i></span>.</li>
+        <li>Vorzeichen verloren: In <span class="math">5<i>x</i> − 2<i>y</i> + 3<i>x</i></span> gehört das Minus zu <span class="math">2<i>y</i></span>, nicht zu <span class="math">3<i>x</i></span>.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="view" id="view-sortieren" hidden>
+    <div class="stack">
+      <span class="eyebrow">Termsortierer</span>
+      <h2>Gleichartige Terme finden</h2>
+      <p class="muted">Schau dir den Term an: Welche Summanden passen zusammen? Markiere sie dann farbig und fasse zusammen.</p>
+    </div>
+    <div class="panel stack">
+      <div class="chips" id="sortTerm"></div>
+      <div class="legend" id="sortLegend" hidden></div>
+      <div class="row">
+        <button type="button" class="primary" id="sortMark">Gleichartige markieren</button>
+        <button type="button" id="sortSum" disabled>Zusammenfassen</button>
+        <button type="button" id="sortNew">Neuer Term</button>
+      </div>
+      <div class="einfach" id="sortResult" hidden></div>
+    </div>
+  </section>
+
+  <section class="view" id="view-ueben" hidden>
+    <div class="stack">
+      <span class="eyebrow">Trainer</span>
+      <h2>Üben mit Rückmeldung</h2>
+      <p class="muted">Der Trainer prüft, ob dein Ergebnis stimmt und vollständig vereinfacht ist.</p>
+    </div>
+    <div id="trainer" class="stack"></div>
+  </section>
+
+  <section class="view" id="view-quiz" hidden>
+    <div class="stack">
+      <span class="eyebrow">Selbsttest</span>
+      <h2>Quiz</h2>
+      <div class="progress-line"><div class="bar" aria-hidden="true"><i id="qBar"></i></div><span class="score-line" id="qProgress"></span></div>
+    </div>
+    <div class="panel quiz" id="quizBox" aria-live="polite"></div>
+  </section>

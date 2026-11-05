@@ -1,0 +1,112 @@
+
+  <nav class="tabs" aria-label="Bereiche">
+    <a href="#verstehen" data-view="verstehen"><span class="n">1</span>Verstehen</a>
+    <a href="#zahlenstrahl" data-view="zahlenstrahl"><span class="n">2</span>Zahlenstrahl</a>
+    <a href="#werkstatt" data-view="werkstatt"><span class="n">3</span>Umformungs-Werkstatt</a>
+    <a href="#ueben" data-view="ueben"><span class="n">4</span>Üben</a>
+    <a href="#quiz" data-view="quiz"><span class="n">5</span>Quiz</a>
+  </nav>
+
+  <section class="view" id="view-verstehen">
+    <div class="einfach">
+      <span class="eyebrow">Einfach erklärt</span>
+      <p>Bei einer Gleichung gibt es meist <strong>eine</strong> Lösung. Bei einer Ungleichung sind es meist <strong>unendlich viele</strong>: alle Zahlen, die kleiner (oder größer) als eine Grenze sind.</p>
+      <p>Beispiel: <span class="math"><i>x</i> + 2 &lt; 5</span> gilt für 2, für 0, für −10, für 2,9 … also für alle <span class="math"><i>x</i> &lt; 3</span>.</p>
+    </div>
+    <div class="grid-2">
+      <div class="panel stack">
+        <h3>Die Zeichen</h3>
+        <table class="data">
+          <tr><td class="math">&lt;</td><td>kleiner als</td><td class="math"><i>x</i> &lt; 3: 3 gehört <strong>nicht</strong> dazu</td></tr>
+          <tr><td class="math">≤</td><td>kleiner oder gleich</td><td class="math"><i>x</i> ≤ 3: 3 gehört dazu</td></tr>
+          <tr><td class="math">&gt;</td><td>größer als</td><td class="math"><i>x</i> &gt; 3: 3 gehört <strong>nicht</strong> dazu</td></tr>
+          <tr><td class="math">≥</td><td>größer oder gleich</td><td class="math"><i>x</i> ≥ 3: 3 gehört dazu</td></tr>
+        </table>
+        <p class="small muted">Eselsbrücke: Die Spitze zeigt immer auf die kleinere Seite.</p>
+      </div>
+      <div class="panel stack">
+        <h3>Lösungsmenge aufschreiben</h3>
+        <p class="small">Man schreibt alle Lösungen als Menge:</p>
+        <p class="math">L = {<i>x</i> | <i>x</i> &lt; 3}</p>
+        <p class="small">Gelesen: „Die Lösungsmenge sind alle <i>x</i>, für die gilt: <i>x</i> ist kleiner als 3.“ Auf dem Zahlenstrahl zeigt ein <strong>leerer Kreis</strong>, dass die Grenze nicht dazugehört, ein <strong>voller Punkt</strong>, dass sie dazugehört.</p>
+      </div>
+    </div>
+    <div class="merksatz">
+      <span class="eyebrow">Die wichtigste Regel</span>
+      <p>Umformen wie bei Gleichungen, mit einer Ausnahme: Multiplizierst oder dividierst du mit einer <strong>negativen</strong> Zahl, musst du das Zeichen <strong>umdrehen</strong>.</p>
+    </div>
+    <div class="grid-2">
+      <div class="panel stack">
+        <h3>Beispiel</h3>
+        <table class="data steps-table">
+          <tr><td class="math">−2<i>x</i> + 1 &lt; 7</td><td>| −1</td></tr>
+          <tr class="flip"><td class="math">−2<i>x</i> &lt; 6</td><td>| :(−2) Zeichen umdrehen!</td></tr>
+          <tr><td class="math"><i>x</i> &gt; −3</td><td></td></tr>
+        </table>
+        <p class="small">Probe mit <span class="math"><i>x</i> = 0</span> (liegt in der Lösung): <span class="math">−2·0 + 1 = 1 &lt; 7</span> ✓</p>
+      </div>
+      <div class="panel stack">
+        <h3>Warum umdrehen?</h3>
+        <p class="small">Es gilt <span class="math">2 &lt; 5</span>. Nimmt man beide Seiten mal (−1), erhält man −2 und −5. Und −2 ist <strong>größer</strong> als −5. Also: <span class="math">−2 &gt; −5</span>. Durch das Minus kehrt sich die Reihenfolge auf dem Zahlenstrahl um.</p>
+      </div>
+    </div>
+    <div class="panel stack">
+      <h3>Typische Fehler</h3>
+      <ul class="list small">
+        <li>Beim Teilen durch eine negative Zahl das Zeichen <strong>nicht</strong> umgedreht.</li>
+        <li>Das Zeichen umgedreht, obwohl nur eine negative Zahl <strong>abgezogen</strong> wurde. Beim Addieren und Subtrahieren bleibt das Zeichen immer gleich!</li>
+        <li>&lt; und ≤ verwechselt: Gehört die Grenze dazu oder nicht?</li>
+        <li>Nur eine Zahl als Lösung angegeben statt der ganzen Lösungsmenge.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="view" id="view-zahlenstrahl" hidden>
+    <div class="stack">
+      <span class="eyebrow">Zahlenstrahl</span>
+      <h2>Lösungsmengen sichtbar machen</h2>
+      <p class="muted">Wähle ein Zeichen und eine Grenze. Teste dann einzelne Zahlen: Gehören sie zur Lösungsmenge?</p>
+    </div>
+    <div class="panel stack">
+      <div class="row relbtns" role="group" aria-label="Zeichen wählen">
+        <button type="button" data-rel="<" aria-pressed="true">&lt;</button><button type="button" data-rel="≤" aria-pressed="false">≤</button>
+        <button type="button" data-rel=">" aria-pressed="false">&gt;</button><button type="button" data-rel="≥" aria-pressed="false">≥</button>
+      </div>
+      <div><label class="lbl" for="nlBound"><span>Grenze</span><span class="val" id="nlBoundOut">3</span></label><input type="range" id="nlBound" min="-8" max="8" step="0.5" value="3"></div>
+      <div class="figure"><svg class="nl" id="nlSvg" viewBox="0 0 640 110" role="img" aria-label="Zahlenstrahl mit Lösungsmenge"></svg></div>
+      <p class="math" id="nlSet" style="font-size:1.3rem"></p>
+      <form class="answer-row" id="nlForm" autocomplete="off">
+        <label for="nlTest" class="small"><strong>Zahl testen:</strong></label>
+        <input type="text" id="nlTest" placeholder="z. B. 2,5" style="flex: 0 1 140px">
+        <button type="submit" class="primary">Prüfen</button>
+      </form>
+      <p id="nlResult" class="small" aria-live="polite"></p>
+    </div>
+  </section>
+
+  <section class="view" id="view-werkstatt" hidden>
+    <div class="stack">
+      <span class="eyebrow">Umformungs-Werkstatt</span>
+      <h2>Forme selbst um</h2>
+      <p class="muted">Gib eine Umformung ein, zum Beispiel <code>-3</code>, <code>-2x</code> oder <code>:(-2)</code>. Wenn du mit einer negativen Zahl multiplizierst oder durch sie teilst, dreht die Werkstatt das Zeichen um und zeigt es dir rot an.</p>
+    </div>
+    <div id="lab"></div>
+  </section>
+
+  <section class="view" id="view-ueben" hidden>
+    <div class="stack">
+      <span class="eyebrow">Trainer</span>
+      <h2>Ungleichungen lösen</h2>
+      <p class="muted">Gib die Lösung als Ungleichung ein, zum Beispiel <code>x &lt; 3</code>, <code>x &gt;= -2</code> oder <code>x ≤ 7/2</code>.</p>
+    </div>
+    <div id="trainer" class="stack"></div>
+  </section>
+
+  <section class="view" id="view-quiz" hidden>
+    <div class="stack">
+      <span class="eyebrow">Selbsttest</span>
+      <h2>Quiz</h2>
+      <div class="progress-line"><div class="bar" aria-hidden="true"><i id="qBar"></i></div><span class="score-line" id="qProgress"></span></div>
+    </div>
+    <div class="panel quiz" id="quizBox" aria-live="polite"></div>
+  </section>
