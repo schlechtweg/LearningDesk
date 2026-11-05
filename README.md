@@ -58,6 +58,10 @@ Lernhilfe zur Differentialrechnung für Mathematik, Klasse 11:
 
 Zu jedem Thema gibt es ein einseitiges A4-Factsheet in `docs/factsheets/`. Die Quellen liegen in `tools/factsheets/`: `make_sources.py` erzeugt die HTML-Dateien, `node tools/build-factsheets.js` rendert sie zu PDFs und prüft, dass jedes Blatt auf eine Seite passt.
 
+## Hell/Dunkel-Schalter
+
+Jede Seite hat oben rechts einen Schalter für helles und dunkles Design. Die Wahl wird im Browser gespeichert (`learningdesk.theme`) und gilt für alle Seiten. Ohne Wahl folgt die Seite der Systemeinstellung. Neue Seiten bekommen den Schalter mit `python3 tools/theme_toggle.py <datei.html>`.
+
 ## Ohne Claude öffnen
 
 `docs/` enthält eigenständige Versionen aller Apps und eine Startseite (`docs/index.html`). Diese Dateien lassen sich direkt im Browser öffnen oder über GitHub Pages veröffentlichen (Quelle: Standard-Branch, Ordner `/docs`).
