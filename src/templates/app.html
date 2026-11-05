@@ -16,15 +16,23 @@
 {% endif %}<style>
 {{ app.css }}</style>
 <style>
-{{ shared.crumbs_css }}{{ shared.toggle_css }}</style>
+{{ shared.crumbs_css }}{{ shared.toggle_css }}
+/* compact row of worksheet downloads in the page header */
+.ws-links { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 8px; font-size: 0.875rem; }
+.ws-links span { color: var(--muted); margin-right: 2px; }
+.ws-links a { text-decoration: none; color: var(--ink); font-weight: 700; padding: 4px 11px; border: 1px solid var(--line); border-radius: 999px; background: var(--surface); white-space: nowrap; }
+.ws-links a:hover { border-color: var(--accent); }
+.ws-links a b { color: var(--accent); font-weight: 400; letter-spacing: -1px; margin-right: 3px; }
+</style>
 
 <div class="wrap">
   <header class="top">
     {{ crumbs }}
     <h1>{{ t.title }}</h1>
     <p>{{ t.intro }}</p>
-    <p{% if t.worksheet %} style="display:flex; flex-wrap:wrap; gap:8px"{% endif %}><a class="btn" href="{{ base }}factsheets/{{ t.slug }}.pdf" target="_blank" rel="noopener">{{ t.factsheet }}</a>{% if t.worksheet %}<a class="btn" href="{{ base }}aufgaben/{{ t.slug }}.pdf" target="_blank" rel="noopener">Übungsaufgaben als PDF ↓</a>{% endif %}</p>
-  </header>
+    <p><a class="btn" href="{{ base }}factsheets/{{ t.slug }}.pdf" target="_blank" rel="noopener">{{ t.factsheet }}</a></p>
+{% if t.worksheet %}    <p class="ws-links"><span>Übungsblätter als PDF:</span><a href="{{ base }}aufgaben/{{ t.slug }}.pdf" target="_blank" rel="noopener">gemischt</a><a href="{{ base }}aufgaben/{{ t.slug }}-leicht.pdf" target="_blank" rel="noopener"><b>★☆☆</b> leicht</a><a href="{{ base }}aufgaben/{{ t.slug }}-mittel.pdf" target="_blank" rel="noopener"><b>★★☆</b> mittel</a><a href="{{ base }}aufgaben/{{ t.slug }}-schwer.pdf" target="_blank" rel="noopener"><b>★★★</b> schwer</a></p>
+{% endif %}  </header>
 {{ app.body }}</div>
 
 {% if t.kit %}<script>

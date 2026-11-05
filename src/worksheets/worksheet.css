@@ -78,3 +78,8 @@ ol.lab li > .lt .blank { min-width: 18mm; width: 30mm; flex: none; }
 .fsvg .dotc { fill: #c0392b; stroke: #c0392b; stroke-width: 2; } .fsvg .doto { fill: #fff; stroke: #c0392b; stroke-width: 2; }
 .fsvg .solx { stroke: #c0392b; stroke-width: 2.6; fill: none; }
 .fsvg .jet { fill: none; stroke: #2f7fb8; stroke-width: 3; stroke-linecap: round; }
+
+/* Single-level sheets: ruled writing space below every task (height set by the fit step) */
+.tasks.write ol.items li { padding-bottom: calc(0.7mm + var(--gap, 0mm)); }
+.tasks.write ol.items li::after { content: ""; display: block; height: calc(var(--ans, 0) * 6.4mm); margin-top: 0.6mm;
+  background: repeating-linear-gradient(to bottom, transparent 0 6mm, #b9c2ca 6mm 6.4mm); }

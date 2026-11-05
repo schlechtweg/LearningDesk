@@ -216,6 +216,13 @@ header.has-theme-toggle { position: relative; padding-right: 54px; }
 header:not(.top) > .theme-toggle { top: 0; }
 .theme-toggle:hover { border-color: var(--accent, currentColor); }
 .theme-toggle:focus-visible { outline: 3px solid var(--accent, currentColor); outline-offset: 2px; }
+
+/* compact row of worksheet downloads in the page header */
+.ws-links { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 8px; font-size: 0.875rem; }
+.ws-links span { color: var(--muted); margin-right: 2px; }
+.ws-links a { text-decoration: none; color: var(--ink); font-weight: 700; padding: 4px 11px; border: 1px solid var(--line); border-radius: 999px; background: var(--surface); white-space: nowrap; }
+.ws-links a:hover { border-color: var(--accent); }
+.ws-links a b { color: var(--accent); font-weight: 400; letter-spacing: -1px; margin-right: 3px; }
 </style>
 
 <div class="wrap">
@@ -223,7 +230,8 @@ header:not(.top) > .theme-toggle { top: 0; }
     <nav class="crumbs" aria-label="Brotkrümelnavigation"><ol><li><a href="https://schlechtweg.github.io/LearningDesk/index.html">LearningDesk</a></li><li><a href="https://schlechtweg.github.io/LearningDesk/klasse-8.html">Klasse 8</a></li><li><a href="https://schlechtweg.github.io/LearningDesk/klasse-8.html#mathematik">Mathematik</a></li><li><a href="#verstehen">Ungleichungen lösen</a></li><li data-crumb-section hidden><span aria-current="location"></span></li></ol></nav>
     <h1>Ungleichungen lösen</h1>
     <p>Lineare Ungleichungen lösen und Lösungsmengen am Zahlenstrahl verstehen, mit der wichtigsten Regel: Zeichen umdrehen beim Teilen durch negative Zahlen.</p>
-    <p style="display:flex; flex-wrap:wrap; gap:8px"><a class="btn" href="https://schlechtweg.github.io/LearningDesk/factsheets/ungleichungen.pdf" target="_blank" rel="noopener">Factsheet als PDF ↓</a><a class="btn" href="https://schlechtweg.github.io/LearningDesk/aufgaben/ungleichungen.pdf" target="_blank" rel="noopener">Übungsaufgaben als PDF ↓</a></p>
+    <p><a class="btn" href="https://schlechtweg.github.io/LearningDesk/factsheets/ungleichungen.pdf" target="_blank" rel="noopener">Factsheet als PDF ↓</a></p>
+    <p class="ws-links"><span>Übungsblätter als PDF:</span><a href="https://schlechtweg.github.io/LearningDesk/aufgaben/ungleichungen.pdf" target="_blank" rel="noopener">gemischt</a><a href="https://schlechtweg.github.io/LearningDesk/aufgaben/ungleichungen-leicht.pdf" target="_blank" rel="noopener"><b>★☆☆</b> leicht</a><a href="https://schlechtweg.github.io/LearningDesk/aufgaben/ungleichungen-mittel.pdf" target="_blank" rel="noopener"><b>★★☆</b> mittel</a><a href="https://schlechtweg.github.io/LearningDesk/aufgaben/ungleichungen-schwer.pdf" target="_blank" rel="noopener"><b>★★★</b> schwer</a></p>
   </header>
 
   <nav class="tabs" aria-label="Bereiche">

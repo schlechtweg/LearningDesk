@@ -26,7 +26,7 @@ Interaktive Lern-Apps für die Schule, sortiert nach Klassenstufe. Alles läuft 
 | Klasse 11 · Mathematik | Ableiten | Sekante/Tangente, grafisches Ableiten, Regeln mit Trainer, Tangentengleichung, Quiz |
 | Werkzeuge | ClassPad-Simulator | Übungsrechner nach dem Vorbild des CASIO fx-CP400 mit 16 Lektionen (unabhängiges Lernprojekt) |
 
-Zu jedem Thema gibt es ein einseitiges Factsheet als PDF und ein zweiseitiges Übungsblatt (Seite 1 Aufgaben, Seite 2 Lösungen, gestuft nach ★☆☆ einfach, ★★☆ mittel, ★★★ schwer) mit je einer Grafik-Aufgabe zum Beschriften oder Einzeichnen (`src/worksheets/figures.py`). Jede Seite hat Breadcrumbs und einen Hell/Dunkel-Schalter.
+Zu jedem Thema gibt es ein einseitiges Factsheet als PDF und ein zweiseitiges Übungsblatt (Seite 1 Aufgaben, Seite 2 Lösungen, gestuft nach ★☆☆ einfach, ★★☆ mittel, ★★★ schwer) mit je einer Grafik-Aufgabe zum Beschriften oder Einzeichnen (`src/worksheets/figures.py`). Dazu kommen drei Einzelblätter pro Thema (`<thema>-leicht.pdf`, `-mittel.pdf`, `-schwer.pdf`) mit Schreiblinien zum direkten Ausfüllen. Jede Seite hat Breadcrumbs und einen Hell/Dunkel-Schalter.
 
 ## Version
 

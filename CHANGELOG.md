@@ -9,6 +9,9 @@ Schema **MAJOR.MINOR.PATCH**:
 
 Neue Version: oben einen Eintrag `## [x.y.z] – JJJJ-MM-TT` ergänzen und `python3 src/build.py` ausführen.
 
+## [1.4.0] – 2026-11-05
+- Zu jedem Thema gibt es zusätzlich drei Übungsblätter mit nur einer Schwierigkeitsstufe (leicht, mittel, schwer). Sie haben Schreiblinien unter jeder Aufgabe und füllen die A4-Seite automatisch. Seite 2 enthält die Lösungen. Download-Knöpfe auf jeder Themenseite.
+
 ## [1.3.1] – 2026-11-05
 - Die Versionsnummer wird nur noch auf der Startseite angezeigt.
 
