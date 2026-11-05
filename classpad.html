@@ -1,4 +1,14 @@
 <title>ClassPad-Simulator</title>
+<!-- breadcrumbs -->
+<style>
+nav.crumbs ol { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 2px 6px; font-size: 0.85rem; line-height: 1.5; }
+nav.crumbs li { display: inline-flex; align-items: center; gap: 6px; min-width: 0; }
+nav.crumbs li + li::before { content: "›"; color: var(--muted); }
+nav.crumbs a { color: var(--accent); text-decoration: none; font-weight: 700; }
+nav.crumbs a:hover { text-decoration: underline; }
+nav.crumbs [aria-current] { color: var(--muted); }
+</style>
+
 <script>try{var t=localStorage.getItem("learningdesk.theme");if(t==="dark"||t==="light")document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
 <meta name="claude:viewport-fit-sides" content="cover">
 <meta name="description" content="Simulator und Bedienungstrainer im Stil des CASIO fx-CP400 ClassPad II (unabhängiges Lernprojekt)">
@@ -189,7 +199,7 @@ kbd { font-family: var(--font-mono); font-size: 0.85em; background: var(--surfac
 
 <div class="wrap">
   <header class="top">
-    <span class="eyebrow">Taschenrechner · Klasse 8 bis 12</span>
+    <nav class="crumbs" aria-label="Brotkrümelnavigation"><ol><li><a href="https://schlechtweg.github.io/LearningDesk/index.html">LearningDesk</a></li><li><a href="https://schlechtweg.github.io/LearningDesk/index.html#werkzeuge">Werkzeuge</a></li><li><a href="#lernen">ClassPad-Simulator</a></li><li data-crumb-section hidden><span aria-current="location"></span></li></ol></nav>
     <h1>ClassPad-Simulator</h1>
     <p>Ein Übungsrechner, der sich an der Bedienung des CASIO fx-CP400 (ClassPad II) orientiert. Rechne frei oder lerne Schritt für Schritt, welche Tasten und Menüs du für typische Schulaufgaben brauchst.</p>
     <p><a class="btn" style="display:inline-block; text-decoration:none" href="https://schlechtweg.github.io/LearningDesk/factsheets/classpad.pdf" target="_blank" rel="noopener">Spickzettel als PDF ↓</a></p>
@@ -1169,5 +1179,22 @@ header:not(.top) > .theme-toggle { top: 0; }
   header.appendChild(btn);
   paint();
   try { window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", paint); } catch (e) { /* old browsers */ }
+})();
+</script>
+<script>
+(function () {
+  "use strict";
+  // keep the last breadcrumb in sync with the active section tab
+  var last = document.querySelector("nav.crumbs [data-crumb-section]");
+  if (!last) return;
+  function update() {
+    var a = document.querySelector('nav.tabs a[aria-current="page"]');
+    if (!a) { last.hidden = true; return; }
+    var t = a.cloneNode(true); var n = t.querySelector(".n"); if (n) n.remove();
+    last.querySelector("span").textContent = t.textContent.trim();
+    last.hidden = false;
+  }
+  window.addEventListener("hashchange", function () { setTimeout(update, 0); });
+  setTimeout(update, 0);
 })();
 </script>

@@ -4,6 +4,16 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Klassenstufe 11</title>
+<!-- breadcrumbs -->
+<style>
+nav.crumbs ol { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 2px 6px; font-size: 0.85rem; line-height: 1.5; }
+nav.crumbs li { display: inline-flex; align-items: center; gap: 6px; min-width: 0; }
+nav.crumbs li + li::before { content: "›"; color: var(--muted); }
+nav.crumbs a { color: var(--ink); text-decoration: none; font-weight: 700; }
+nav.crumbs a:hover { text-decoration: underline; }
+nav.crumbs [aria-current] { color: var(--muted); }
+</style>
+
 <script>try{var t=localStorage.getItem("learningdesk.theme");if(t==="dark"||t==="light")document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=JetBrains+Mono&display=swap">
 <style>
@@ -31,11 +41,11 @@ a.card:hover, a.card:focus-visible { border-color: var(--c); outline: none; }
 <body>
 <div class="wrap">
   <header>
-    <a class="back" href="index.html">← Alle Klassenstufen</a>
+    <nav class="crumbs" aria-label="Brotkrümelnavigation"><ol><li><a href="index.html">LearningDesk</a></li><li><span aria-current="page">Klasse 11</span></li></ol></nav>
     <h1 style="margin-top:12px">Klassenstufe 11</h1>
     <p class="muted">Wähle ein Thema.</p>
   </header>
-  <div class="subject">
+  <div class="subject" id="biologie">
     <h2>Biologie</h2>
     <div class="cards">
     <a class="card" href="osmose.html" style="--c: var(--bio)">
@@ -52,7 +62,7 @@ a.card:hover, a.card:focus-visible { border-color: var(--c); outline: none; }
     </a>
     </div>
   </div>
-  <div class="subject">
+  <div class="subject" id="mathematik">
     <h2>Mathematik</h2>
     <div class="cards">
     <a class="card" href="ableiten.html" style="--c: var(--math)">

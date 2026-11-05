@@ -23,7 +23,8 @@ for entry in "${APPS[@]}"; do
     printf '<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">\n'
     printf '<style>body{margin:0}img{max-width:100%%}[hidden]{display:none!important}</style>\n'
     printf '</head>\n<body>\n'
-    cat "$app.html"
+    # absolute GitHub Pages links (needed inside Claude artifacts) become relative here
+    sed "s#https://schlechtweg.github.io/LearningDesk/##g" "$app.html"
     printf '\n<p style="text-align:center;margin-top:32px"><a href="%s" style="color:inherit">← Zurück zur Themenübersicht</a></p>\n' "$back"
     printf '</body>\n</html>\n'
   } > "docs/$app.html"

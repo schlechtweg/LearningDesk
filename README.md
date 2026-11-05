@@ -62,6 +62,10 @@ Zu jedem Thema gibt es ein einseitiges A4-Factsheet in `docs/factsheets/`. Die Q
 
 Jede Seite hat oben rechts einen Schalter für helles und dunkles Design. Die Wahl wird im Browser gespeichert (`learningdesk.theme`) und gilt für alle Seiten. Ohne Wahl folgt die Seite der Systemeinstellung. Neue Seiten bekommen den Schalter mit `python3 tools/theme_toggle.py <datei.html>`.
 
+## Breadcrumbs
+
+Jede Seite zeigt oben einen klickbaren Pfad, z. B. „LearningDesk › Klasse 11 › Biologie › Osmose verstehen › Simulation“. Das letzte Glied folgt dem aktiven Bereich. Die Links zeigen in den App-Dateien auf GitHub Pages (damit sie auch in Claude-Artefakten funktionieren); `tools/build-standalone.sh` macht daraus relative Links für `docs/`. Neue Seiten werden in `tools/breadcrumbs.py` eingetragen.
+
 ## Ohne Claude öffnen
 
 `docs/` enthält eigenständige Versionen aller Apps und eine Startseite (`docs/index.html`). Diese Dateien lassen sich direkt im Browser öffnen oder über GitHub Pages veröffentlichen (Quelle: Standard-Branch, Ordner `/docs`).

@@ -7,6 +7,16 @@
 </head>
 <body>
 <title>Ableiten lernen</title>
+<!-- breadcrumbs -->
+<style>
+nav.crumbs ol { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 2px 6px; font-size: 0.85rem; line-height: 1.5; }
+nav.crumbs li { display: inline-flex; align-items: center; gap: 6px; min-width: 0; }
+nav.crumbs li + li::before { content: "›"; color: var(--muted); }
+nav.crumbs a { color: var(--accent); text-decoration: none; font-weight: 700; }
+nav.crumbs a:hover { text-decoration: underline; }
+nav.crumbs [aria-current] { color: var(--muted); }
+</style>
+
 <script>try{var t=localStorage.getItem("learningdesk.theme");if(t==="dark"||t==="light")document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
 <meta name="claude:viewport-fit-sides" content="cover">
 <meta name="description" content="Interaktive Lernhilfe zum Ableiten: grafisches Ableiten, Ableitungsregeln, Tangentengleichung (Mathematik, Klasse 11)">
@@ -200,10 +210,10 @@ table.rules th { font-family: var(--font-display); font-size: var(--step-0); }
 
 <div class="wrap">
   <header class="top">
-    <span class="eyebrow">Mathematik · Klasse 11 · Differentialrechnung</span>
+    <nav class="crumbs" aria-label="Brotkrümelnavigation"><ol><li><a href="index.html">LearningDesk</a></li><li><a href="klasse-11.html">Klasse 11</a></li><li><a href="klasse-11.html#mathematik">Mathematik</a></li><li><a href="#idee">Ableiten lernen</a></li><li data-crumb-section hidden><span aria-current="location"></span></li></ol></nav>
     <h1>Ableiten lernen</h1>
     <p>Von der Sekante zur Tangente, vom Graphen zum Ableitungsgraphen, von den Regeln zur Tangentengleichung. Mit Rechentrainer, der deine Lösungen prüft.</p>
-    <p><a class="btn" href="https://schlechtweg.github.io/LearningDesk/factsheets/ableiten.pdf" target="_blank" rel="noopener">Factsheet als PDF ↓</a></p>
+    <p><a class="btn" href="factsheets/ableiten.pdf" target="_blank" rel="noopener">Factsheet als PDF ↓</a></p>
   </header>
 
   <nav class="tabs" aria-label="Bereiche">
@@ -1237,6 +1247,23 @@ header:not(.top) > .theme-toggle { top: 0; }
   header.appendChild(btn);
   paint();
   try { window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", paint); } catch (e) { /* old browsers */ }
+})();
+</script>
+<script>
+(function () {
+  "use strict";
+  // keep the last breadcrumb in sync with the active section tab
+  var last = document.querySelector("nav.crumbs [data-crumb-section]");
+  if (!last) return;
+  function update() {
+    var a = document.querySelector('nav.tabs a[aria-current="page"]');
+    if (!a) { last.hidden = true; return; }
+    var t = a.cloneNode(true); var n = t.querySelector(".n"); if (n) n.remove();
+    last.querySelector("span").textContent = t.textContent.trim();
+    last.hidden = false;
+  }
+  window.addEventListener("hashchange", function () { setTimeout(update, 0); });
+  setTimeout(update, 0);
 })();
 </script>
 
