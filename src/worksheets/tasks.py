@@ -2088,6 +2088,104 @@ def lgs_anwendungen():
     return L
 
 
+def zentrische_streckung():
+    r = random.Random(104)
+    L = {1: [], 2: [], 3: []}
+    seen = set()
+    dec = lambda v: f"{float(v):g}".replace(".", ",").replace("-", MINUS)
+    def rd(v):
+        v = Fr(v)
+        return dec(v) if (v * 1000).denominator == 1 else "≈ " + f"{float(v):.2f}".replace(".", ",")
+    P = lambda x, y: f"({dec(x)} | {dec(y)})"
+
+    def add(lvl, q, a):
+        if q not in seen and len(L[lvl]) < 120:
+            seen.add(q)
+            L[lvl].append((q, a))
+    ks = [Fr(1, 2), Fr(3, 2), Fr(2), Fr(5, 2), Fr(3), Fr(1, 4), Fr(3, 4), Fr(4), Fr(5, 4)]
+    for i in range(800):
+        t = i % 5
+        k = r.choice(ks)
+        a = r.choice([2, 3, 4, 5, 6, 8, 10, 12])
+        if t == 0:
+            add(1, f"|<i>ZP</i>| = {a} cm, |<i>ZP</i>′| = {dec(a * k)} cm. Bestimme <i>k</i>.", f"<i>k</i> = {dec(a * k)} : {a} = <b>{dec(k)}</b>")
+        elif t == 1:
+            kk = k * r.choice([1, 1, -1])
+            add(1, f"Strecke mit {a} cm, <i>k</i> = {dec(kk)}. Länge der Bildstrecke?", f"|{dec(kk)}| · {a} cm = <b>{dec(abs(kk) * a)} cm</b>")
+        elif t == 2:
+            add(1, f"Bildstrecke {dec(a * k)} cm bei <i>k</i> = {dec(k)}. Länge des Originals?", f"{dec(a * k)} : {dec(k)} = <b>{a} cm</b>")
+        elif t == 3:
+            kk = k * r.choice([1, -1])
+            kind = "Vergrößerung" if abs(kk) > 1 else "Verkleinerung"
+            add(1, f"<i>k</i> = {dec(kk)}: Vergrößerung oder Verkleinerung? Auf welcher Seite von <i>Z</i> liegt das Bild?", f"<b>{kind}</b>, {'gleiche Seite' if kk > 0 else 'gegenüberliegende Seite'}")
+        else:
+            x, y = r.randint(2, 9), r.randint(2, 9)
+            sim = r.random() < 0.5
+            x2, y2 = x * k, y * k + (0 if sim else r.choice([1, -1]))
+            if y2 <= 0 or x == y:
+                continue
+            add(1, f"Rechtecke {x} cm × {y} cm und {dec(x2)} cm × {dec(y2)} cm: ähnlich?", f"{dec(x2)} : {x} = {dec(k)}, {dec(y2)} : {y} = {rd(Fr(y2) / y)}: <b>{'ja' if sim else 'nein'}</b>")
+    for i in range(800):
+        t = i % 6
+        k = r.choice([2, 3, Fr(1, 2), -1, -2, Fr(3, 2)])
+        if t == 4:
+            sc, cm = r.choice([10000, 20000, 25000, 50000]), r.choice([2, 3, 4, 5, 6, 8, 12])
+            add(2, f"Karte 1 : {sc}: {cm} cm auf der Karte. Wirkliche Länge?", f"{cm} cm · {sc} = {cm * sc} cm = {dec(Fr(cm * sc, 100))} m = <b>{dec(Fr(cm * sc, 100000))} km</b>")
+            continue
+        if t == 5:
+            sc, km = r.choice([10000, 25000, 50000]), r.choice([1, 2, 3, 5])
+            add(2, f"Wie lang sind {km} km auf einer Karte 1 : {sc}?", f"{km} km = {km * 100000} cm, : {sc} = <b>{dec(Fr(km * 100000, sc))} cm</b>")
+            continue
+        if t == 0:
+            x, y = r.randint(-4, 5), r.randint(-4, 5)
+            add(2, f"<i>Z</i>(0 | 0), <i>k</i> = {dec(k)}. Bild von <i>P</i>{P(x, y)}?", f"({dec(k)} · {dec(x)} | {dec(k)} · {dec(y)}) = <b><i>P</i>′{P(k * x, k * y)}</b>")
+        elif t == 1:
+            zx, zy, x, y = r.randint(-3, 3), r.randint(-3, 3), r.randint(-3, 5), r.randint(-3, 5)
+            if (zx, zy) == (x, y):
+                continue
+            bx, by = zx + k * (x - zx), zy + k * (y - zy)
+            add(2, f"<i>Z</i>{P(zx, zy)}, <i>P</i>{P(x, y)}, <i>k</i> = {dec(k)}. Berechne <i>P</i>′.", f"<i>ZP</i> = ({dec(x - zx)} | {dec(y - zy)}), · {dec(k)} = ({dec(k * (x - zx))} | {dec(k * (y - zy))}), + <i>Z</i>: <b><i>P</i>′{P(bx, by)}</b>")
+        elif t == 2:
+            zx, zy, dx, dy = r.randint(-3, 3), r.randint(-3, 3), r.choice([1, 2, -1, -2]), r.choice([1, 2, 3, -1])
+            add(2, f"<i>Z</i>{P(zx, zy)}, <i>P</i>{P(zx + dx, zy + dy)}, <i>P</i>′{P(zx + k * dx, zy + k * dy)}. Bestimme <i>k</i>.", f"<i>ZP</i> = ({dec(dx)} | {dec(dy)}), <i>ZP</i>′ = ({dec(k * dx)} | {dec(k * dy)}) ⇒ <b><i>k</i> = {dec(k)}</b>")
+        else:
+            a, b, c = r.randint(3, 9), r.randint(3, 9), r.randint(3, 9)
+            kk = r.choice([Fr(3, 2), Fr(2), Fr(5, 2), Fr(1, 2)])
+            add(2, f"Dreieck mit Seiten {a} cm, {b} cm, {c} cm wird mit <i>k</i> = {dec(kk)} gestreckt. Seiten und Umfang des Bildes?", f"<b>{dec(a * kk)} cm, {dec(b * kk)} cm, {dec(c * kk)} cm</b>, Umfang {dec((a + b + c) * kk)} cm = {dec(kk)} · {a + b + c} cm")
+    for i in range(800):
+        t = i % 5
+        if t == 0:
+            zx, zy, x, y = r.randint(-3, 3), r.randint(-3, 3), r.randint(-3, 4), r.randint(-3, 4)
+            k = r.choice([2, 3, -1, -2])
+            if (zx, zy) == (x, y):
+                continue
+            bx, by = zx + k * (x - zx), zy + k * (y - zy)
+            # Z = (P' - kP) / (1 - k)
+            assert Fr(bx - k * x, 1 - k) == zx and Fr(by - k * y, 1 - k) == zy
+            add(3, f"Bei einer Streckung mit <i>k</i> = {dec(k)} wird <i>P</i>{P(x, y)} auf <i>P</i>′{P(bx, by)} abgebildet. Bestimme das Streckzentrum <i>Z</i>.", f"<i>P</i>′ − <i>Z</i> = {dec(k)} · (<i>P</i> − <i>Z</i>) ⇒ <i>Z</i> = (<i>P</i>′ − {dec(k)}<i>P</i>) : {dec(1 - k)} = ({dec(bx - k * x)} | {dec(by - k * y)}) : {dec(1 - k)}: <b><i>Z</i>{P(zx, zy)}</b>")
+        elif t == 1:
+            dist, size, wall = r.choice([1, 2, 3]), r.choice([2, 3, 4, 5]), r.choice([2, 3, 4])
+            add(3, f"Eine Lampe steht {dist} m vor einer {size} cm großen Figur, die Wand ist {dist * wall} m von der Lampe entfernt. Wie groß ist der Schatten?", f"Die Lampe ist das Streckzentrum. <i>k</i> = Abstand Wand : Abstand Figur = {dist * wall} : {dist} = {wall} ⇒ Schatten {wall} · {size} cm = <b>{size * wall} cm</b>")
+        elif t == 2:
+            m_ = r.choice([18, 24, 43, 87, 50, 25])
+            L_ = r.choice([360, 432, 450, 480, 516, 540])
+            v = Fr(L_, m_)
+            if v.denominator not in (1, 2, 4, 5, 10):
+                continue
+            add(3, f"Ein Modellauto im Maßstab 1 : {m_} ist {dec(v)} cm lang. Wie lang ist das echte Auto? Welcher Streckfaktor führt vom Original zum Modell?", f"Jede Länge des Originals ist {m_}-mal so groß: {dec(v)} cm · {m_} = {dec(v * m_)} cm = <b>{dec(v * m_ / 100)} m</b>. Vom Original zum Modell: <b><i>k</i> = 1/{m_}</b> (Verkleinerung)")
+        elif t == 3:
+            a, b = r.choice([10, 13, 15, 20]), r.choice([15, 18, 20, 30])
+            c, d = r.choice([20, 26, 30, 40]), r.choice([30, 36, 40, 60])
+            if a >= b or c >= d:
+                continue
+            sim = Fr(c, a) == Fr(d, b)
+            add(3, f"Lässt sich ein Foto {a} × {b} ohne Abschneiden auf {c} × {d} vergrößern? Begründe.", f"Vergleiche die Faktoren beider Seiten: {c} : {a} = {rd(Fr(c, a))}, {d} : {b} = {rd(Fr(d, b))}: <b>{'ja, ähnlich' if sim else 'nein, nicht ähnlich: Es muss abgeschnitten werden'}</b>")
+        else:
+            a, b, k = r.randint(2, 8), r.randint(2, 8), r.choice([2, 3, Fr(1, 2), Fr(3, 2)])
+            add(3, f"Ein Rechteck {a} cm × {b} cm wird mit <i>k</i> = {dec(k)} gestreckt. Wie ändern sich Umfang und Flächeninhalt?", f"Umfang {2 * (a + b)} cm → {dec(2 * (a + b) * k)} cm (· {dec(k)}), Fläche {a * b} cm² → {dec(a * b * k * k)} cm² (<b>· {dec(k * k)} = {dec(k)}²</b>)")
+    return L
+
+
 M8, PH = "#1f6e8c", "#b4531f"
 TOPICS = {
     "osmose": ({"title": "Osmose", "eyebrow": "Biologie · Klasse 11", "accent": "#0d6f74", "cols": [1, 1, 1], "sol_cols": [1, 1, 1]}, osmose),
@@ -2110,6 +2208,7 @@ TOPICS = {
     "gleichsetzungsverfahren": ({"title": "Gleichsetzungs- und Einsetzungsverfahren", "eyebrow": "Mathematik · Klasse 8", "accent": M8, "cols": [2, 2, 1], "sol_cols": [2, 2, 1]}, gleichsetzungsverfahren),
     "additionsverfahren": ({"title": "Additionsverfahren", "eyebrow": "Mathematik · Klasse 8", "accent": M8, "cols": [2, 2, 1], "sol_cols": [2, 2, 1]}, additionsverfahren),
     "lgs-anwendungen": ({"title": "Anwendungen linearer Gleichungssysteme", "eyebrow": "Mathematik · Klasse 8", "accent": M8, "cols": [2, 1, 1], "sol_cols": [2, 1, 1]}, lgs_anwendungen),
+    "zentrische-streckung": ({"title": "Ähnliche Figuren und zentrische Streckung", "eyebrow": "Mathematik · Klasse 8", "accent": M8, "cols": [2, 2, 1], "sol_cols": [2, 2, 1]}, zentrische_streckung),
     "binomische-formeln": ({"title": "Binomische Formeln", "eyebrow": "Mathematik · Klasse 8", "accent": M8, "cols": 2, "sol_cols": 2}, binomische_formeln),
     "bruchterme": ({"title": "Bruchterme", "eyebrow": "Mathematik · Klasse 8", "accent": "#2d6a4f", "cols": 3, "sol_cols": 3}, bruchterme),
     "ausmultiplizieren-faktorisieren": ({"title": "Ausmultiplizieren und Faktorisieren", "eyebrow": "Mathematik · Klasse 8", "accent": M8, "cols": 3, "sol_cols": 3}, ausmultiplizieren),

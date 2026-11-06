@@ -1808,6 +1808,54 @@ SHEETS["lgs-anwendungen"] = dict(title="Anwendungen linearer Gleichungssysteme",
     </div>
   </div>''')
 
+SHEETS["zentrische-streckung"] = dict(title="Ähnliche Figuren und zentrische Streckung", eyebrow="Mathematik · Klasse 8 · Ähnlichkeit", accent=M8, body=f'''
+  <div class="kern">Ähnliche Figuren haben <strong>gleiche Winkel</strong>, und alle Längen stehen im selben <strong>Verhältnis</strong> {m("<i>k</i>")}. Die <strong>zentrische Streckung</strong> mit Zentrum {m("<i>Z</i>")} und Faktor {m("<i>k</i>")} erzeugt ähnliche Figuren.</div>
+  <div class="cols">
+    <div class="box">
+      <h2>Ähnlichkeit</h2>
+      <ul>
+        <li>Entsprechende Winkel gleich groß.</li>
+        <li>{m("<i>a</i>′ : <i>a</i> = <i>b</i>′ : <i>b</i> = <i>c</i>′ : <i>c</i> = <i>k</i>")}</li>
+        <li>{m("<i>k</i> > 1")} Vergrößerung, {m("0 < <i>k</i> < 1")} Verkleinerung, {m("<i>k</i> = 1")} kongruent.</li>
+        <li>Immer ähnlich: alle Kreise, Quadrate, gleichseitigen Dreiecke.</li>
+      </ul>
+    </div>
+    <div class="box">
+      <h2>Zentrische Streckung</h2>
+      <ul>
+        <li>{m("<i>P</i>′")} liegt auf dem Strahl {m("<i>ZP</i>")}, {m("|<i>ZP</i>′| = |<i>k</i>| · |<i>ZP</i>|")}.</li>
+        <li>{m("<i>k</i> < 0")}: Bild auf der anderen Seite von {m("<i>Z</i>")}.</li>
+        <li>Bildstrecken sind parallel zu den Originalstrecken.</li>
+        <li>Koordinaten: {m("<i>P</i>′ = <i>Z</i> + <i>k</i> · (<i>P</i> − <i>Z</i>)")}</li>
+      </ul>
+    </div>
+    <div class="box full">
+      <h2>Was ändert sich mit <i>k</i>?</h2>
+      <table>
+        <tr><th>Größe</th><th>Faktor</th><th>Beispiel <i>k</i> = 3</th></tr>
+        <tr><td>Winkel</td><td>bleiben gleich</td><td>60° → 60°</td></tr>
+        <tr><td>Längen, Umfang</td><td>{m("· |<i>k</i>|")}</td><td>4 cm → 12 cm</td></tr>
+        <tr><td>Flächen</td><td>{m("· <i>k</i>²")}</td><td>5 cm² → 45 cm²</td></tr>
+      </table>
+    </div>
+    <div class="box">
+      <h2>Im Alltag</h2>
+      <ul>
+        <li>Beamer, Schatten: Lampe als Zentrum.</li>
+        <li>Landkarten und Modelle: Maßstab.</li>
+        <li>Fotoformate und DIN-Papier.</li>
+      </ul>
+    </div>
+    <div class="box warn">
+      <h2>Typische Fehler</h2>
+      <ul>
+        <li>{m("<i>k</i>")} als Differenz statt Quotient.</li>
+        <li>Abstand nicht von {m("<i>Z</i>")} aus gemessen.</li>
+        <li>Alle Rechtecke für ähnlich gehalten.</li>
+      </ul>
+    </div>
+  </div>''')
+
 OUT = sys.argv[1] if len(sys.argv) > 1 else os.path.join(os.path.dirname(__file__), "_build")
 os.makedirs(OUT, exist_ok=True)
 shutil.copyfile(os.path.join(os.path.dirname(os.path.abspath(__file__)), "factsheet.css"), os.path.join(OUT, "factsheet.css"))

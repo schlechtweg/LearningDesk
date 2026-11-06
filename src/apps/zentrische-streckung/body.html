@@ -1,0 +1,99 @@
+  <nav class="tabs" aria-label="Bereiche">
+    <a href="#verstehen" data-view="verstehen"><span class="n">1</span>Verstehen</a>
+    <a href="#strecken" data-view="strecken"><span class="n">2</span>Strecken</a>
+    <a href="#ueben" data-view="ueben"><span class="n">3</span>Üben</a>
+    <a href="#alltag" data-view="alltag"><span class="n">4</span>Im Alltag</a>
+    <a href="#quiz" data-view="quiz"><span class="n">5</span>Quiz</a>
+  </nav>
+
+  <section class="view" id="view-verstehen">
+    <div class="einfach">
+      <span class="eyebrow">Einfach erklärt</span>
+      <p>Zwei Figuren sind <strong>ähnlich</strong>, wenn die eine eine maßstäbliche Vergrößerung oder Verkleinerung der anderen ist: Alle <strong>Winkel</strong> bleiben gleich, alle <strong>Längen</strong> werden mit demselben Faktor <span class="math"><i>k</i></span> multipliziert.</p>
+    </div>
+    <div class="grid-2">
+      <div class="panel stack">
+        <h3>Ähnliche Figuren</h3>
+        <ul class="list small">
+          <li>Entsprechende Winkel sind gleich groß.</li>
+          <li>Entsprechende Seiten haben dasselbe Verhältnis: <span class="math"><i>a</i>′ : <i>a</i> = <i>b</i>′ : <i>b</i> = <i>k</i></span></li>
+          <li><span class="math"><i>k</i> &gt; 1</span>: Vergrößerung, <span class="math">0 &lt; <i>k</i> &lt; 1</span>: Verkleinerung, <span class="math"><i>k</i> = 1</span>: kongruent.</li>
+          <li>Alle Kreise sind ähnlich, alle Quadrate auch. Rechtecke nicht immer!</li>
+        </ul>
+      </div>
+      <div class="panel stack">
+        <h3>Zentrische Streckung</h3>
+        <p class="small">Eine Abbildung mit <strong>Streckzentrum</strong> <span class="math"><i>Z</i></span> und <strong>Streckfaktor</strong> <span class="math"><i>k</i></span>:</p>
+        <ul class="list small">
+          <li>Der Bildpunkt <span class="math"><i>P</i>′</span> liegt auf der Geraden <span class="math"><i>ZP</i></span>.</li>
+          <li><span class="math">|<i>ZP</i>′| = |<i>k</i>| · |<i>ZP</i>|</span></li>
+          <li><span class="math"><i>k</i> &lt; 0</span>: <span class="math"><i>P</i>′</span> liegt auf der anderen Seite von <span class="math"><i>Z</i></span>.</li>
+          <li>Bildstrecken sind <strong>parallel</strong> zu den Originalstrecken.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="merksatz">
+      <span class="eyebrow">Merke</span>
+      <p>Bei einer zentrischen Streckung mit Faktor <span class="math"><i>k</i></span> sind Bild und Original <strong>ähnlich</strong>. Längen ändern sich mit <span class="math">|<i>k</i>|</span>, Flächen mit <span class="math"><i>k</i>²</span>.</p>
+    </div>
+    <div class="panel stack">
+      <h3>Typische Fehler</h3>
+      <ul class="list small">
+        <li><span class="math"><i>k</i></span> als Differenz statt als Verhältnis berechnet: 4 cm → 6 cm heißt <span class="math"><i>k</i> = 1,5</span>, nicht „+2“.</li>
+        <li>Vom falschen Punkt aus gemessen: Abstände immer von <span class="math"><i>Z</i></span> aus.</li>
+        <li>Rechtecke für ähnlich gehalten, nur weil beide Rechtecke sind.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="view" id="view-strecken" hidden>
+    <div class="stack">
+      <span class="eyebrow">Ausprobieren</span>
+      <h2>Zentrische Streckung</h2>
+      <p class="muted">Ziehe das Streckzentrum <span class="math"><i>Z</i></span> und verändere den Streckfaktor <span class="math"><i>k</i></span>. Achte auf die Strahlen durch <span class="math"><i>Z</i></span> und die Längen.</p>
+    </div>
+    <div class="sim-layout">
+      <div class="figure"><svg class="plot" id="zSvg" viewBox="0 0 460 340" role="img" aria-label="Dreieck und Bilddreieck bei zentrischer Streckung"></svg></div>
+      <div class="panel stack ctl">
+        <p class="kv" id="kVal"></p>
+        <label for="kR">Streckfaktor <i>k</i></label>
+        <input type="range" id="kR" min="-2" max="2.5" step="0.25" value="1.5">
+        <div class="row"><button type="button" data-k="2">k = 2</button><button type="button" data-k="0.5">k = 0,5</button><button type="button" data-k="-1">k = −1</button></div>
+        <table class="facts" id="zFacts"></table>
+      </div>
+    </div>
+    <div class="einfach"><p id="zText"></p></div>
+  </section>
+
+  <section class="view" id="view-ueben" hidden>
+    <div class="stack">
+      <span class="eyebrow">Trainer</span>
+      <h2>Streckfaktor und Längen</h2>
+      <p class="muted">Dezimalzahlen mit Komma oder Punkt, Brüche als <code>3/2</code>.</p>
+    </div>
+    <div id="trainer" class="stack"></div>
+  </section>
+
+  <section class="view" id="view-alltag" hidden>
+    <div class="stack">
+      <span class="eyebrow">Im Alltag</span>
+      <h2>Vergrößern und verkleinern</h2>
+    </div>
+    <div class="grid-2">
+      <div class="panel stack"><span class="eyebrow">Licht</span><h3>Beamer und Schattenwurf</h3><p class="small">Die Lampe ist das Streckzentrum: Doppelter Abstand zur Wand ergibt ein doppelt so großes Bild.</p></div>
+      <div class="panel stack"><span class="eyebrow">Karten</span><h3>Maßstab</h3><p class="small">Eine Karte im Maßstab 1 : 25 000 ist eine ähnliche Verkleinerung mit <span class="math"><i>k</i> = 1/25 000</span>.</p></div>
+      <div class="panel stack"><span class="eyebrow">Fotos</span><h3>Bildformate</h3><p class="small">10 × 15 und 20 × 30 sind ähnlich (k = 2), 10 × 15 und 13 × 18 nicht: Beim Vergrößern wird abgeschnitten.</p></div>
+      <div class="panel stack"><span class="eyebrow">Modellbau</span><h3>Modellautos</h3><p class="small">Maßstab 1 : 18: Ein 4,5 m langes Auto wird 25 cm lang. Alle Winkel stimmen.</p></div>
+      <div class="panel stack"><span class="eyebrow">Papier</span><h3>DIN-Formate</h3><p class="small">A4 und A5 sind ähnlich: Das Seitenverhältnis ist immer etwa 1 : 1,414.</p></div>
+      <div class="panel stack"><span class="eyebrow">Technik</span><h3>Lochkamera</h3><p class="small">Das Loch ist das Streckzentrum, das Bild steht auf dem Kopf: <span class="math"><i>k</i> &lt; 0</span>.</p></div>
+    </div>
+  </section>
+
+  <section class="view" id="view-quiz" hidden>
+    <div class="stack">
+      <span class="eyebrow">Selbsttest</span>
+      <h2>Quiz</h2>
+      <div class="progress-line"><div class="bar" aria-hidden="true"><i id="qBar"></i></div><span class="score-line" id="qProgress"></span></div>
+    </div>
+    <div class="panel quiz" id="quizBox" aria-live="polite"></div>
+  </section>

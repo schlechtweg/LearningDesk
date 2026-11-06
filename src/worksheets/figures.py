@@ -736,10 +736,30 @@ def lgs_anwendungen():
     return {"title": "Gewinnschwelle", "stars": "★★☆", "task": (svg("0 0 250 210", base), task), "sol": (svg("0 0 250 210", sol), soltxt)}
 
 
+def zentrische_streckung():
+    # Z(1|1), A(3|2), B(5|2), C(4|4), k = 2  ->  A'(5|3), B'(9|3), C'(7|7)
+    Z, T, k = (1, 1), [(3, 2), (5, 2), (4, 4)], 2
+    I = [(Z[0] + k * (x - Z[0]), Z[1] + k * (y - Z[1])) for x, y in T]
+    assert I == [(5, 3), (9, 3), (7, 7)]
+    ox, oy, u = 20, 185, 21
+    q = lambda p: (ox + p[0] * u, oy - p[1] * u)
+    poly = lambda pts, c: f'<polygon class="{c}" points="{" ".join(f"{q(p)[0]},{q(p)[1]}" for p in pts)}"/>'
+    base = grid(ox, oy, u, (0, 10), (0, 8)) + poly(T, "fg") + f'<circle cx="{q(Z)[0]}" cy="{q(Z)[1]}" r="3.5" fill="#1b2228"/>' + text(q(Z)[0] - 8, q(Z)[1] - 6, "Z", "ft")
+    base += "".join(text(q(p)[0] + dx, q(p)[1] + dy, n, "ft") for p, n, dx, dy in zip(T, "ABC", (-9, 9, -2), (12, 12, -7)))
+    sol = base + "".join(f'<line class="rays" x1="{q(Z)[0]}" y1="{q(Z)[1]}" x2="{q(p)[0]}" y2="{q(p)[1]}"/>' for p in I) + poly(I, "fs")
+    sol += "".join(text(q(p)[0] + dx, q(p)[1] + dy, n, "ft sol") for p, n, dx, dy in zip(I, ("A′", "B′", "C′"), (-6, 10, -2), (14, 12, -7)))
+    task = ('<p>Strecke das Dreieck <i>ABC</i> vom Zentrum <i>Z</i> aus mit <i>k</i> = 2. Zeichne die Strahlen ein.</p>'
+            '<p class="q"><i>A</i>′ <span class="blank"></span> <i>B</i>′ <span class="blank"></span> <i>C</i>′ <span class="blank"></span></p>'
+            '<p class="q">Vergleiche |<i>AB</i>| und |<i>A</i>′<i>B</i>′|: <span class="blank wide"></span></p>')
+    soltxt = ('<p class="q"><b><i>A</i>′(5 | 3), <i>B</i>′(9 | 3), <i>C</i>′(7 | 7)</b></p>'
+              '<p class="q">|<i>AB</i>| = 2, |<i>A</i>′<i>B</i>′| = 4: doppelt so lang und <b>parallel</b>.</p>')
+    return {"title": "Streckung zeichnen", "stars": "★☆☆", "task": (svg("0 0 260 200", base), task), "sol": (svg("0 0 260 200", sol), soltxt)}
+
+
 FIGS = {
     "osmose": osmose, "natrium-kalium-pumpe": nak, "symport-antiport": symport, "endocytose-exocytose": endo,
     "ableiten": ableiten, "nervensystem": nerven, "auge": auge,
-    "termstruktur": termstruktur, "zufallsexperimente": zufallsexperimente, "laplace": laplace, "baumdiagramme": baumdiagramme, "unabhaengige-ereignisse": unabhaengig, "funktionsbegriff": funktionsbegriff, "eigenschaften-funktionen": eigenschaften, "lineare-funktionen": lineare_funktionen, "funktionsgleichungen": funktionsgleichungen, "lgs-grafisch": lgs_grafisch, "gleichsetzungsverfahren": gleichsetzungsverfahren, "additionsverfahren": additionsverfahren, "lgs-anwendungen": lgs_anwendungen, "binomische-formeln": binom, "bruchterme": bruchterme, "ausmultiplizieren-faktorisieren": ausmult, "terme-vereinfachen": terme,
+    "termstruktur": termstruktur, "zufallsexperimente": zufallsexperimente, "laplace": laplace, "baumdiagramme": baumdiagramme, "unabhaengige-ereignisse": unabhaengig, "funktionsbegriff": funktionsbegriff, "eigenschaften-funktionen": eigenschaften, "lineare-funktionen": lineare_funktionen, "funktionsgleichungen": funktionsgleichungen, "lgs-grafisch": lgs_grafisch, "gleichsetzungsverfahren": gleichsetzungsverfahren, "additionsverfahren": additionsverfahren, "lgs-anwendungen": lgs_anwendungen, "zentrische-streckung": zentrische_streckung, "binomische-formeln": binom, "bruchterme": bruchterme, "ausmultiplizieren-faktorisieren": ausmult, "terme-vereinfachen": terme,
     "gleichungen": gleichungen, "ungleichungen": ungleichungen,
     "druck": druck, "hydraulik": hydraulik, "schweredruck": schweredruck, "auftrieb": auftrieb, "luftdruck": luftdruck,
 }

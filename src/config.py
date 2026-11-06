@@ -207,6 +207,14 @@ TOPICS = [
         "fonts": "math", "first_view": "verstehen", "factsheet": "Factsheet als PDF ↓",
     },
     {
+        "slug": "zentrische-streckung", "grade": "8", "subject": "mathematik", "chapter": "V", "order": 1, "kit": True, "accent": ACCENT_MATH8,
+        "title": "Ähnliche Figuren und zentrische Streckung", "short": "Zentrische Streckung", "tag": "Ähnlichkeit",
+        "card": "Ähnlichkeit, Streckzentrum und Streckfaktor, Streckung zum Ziehen, negative Faktoren, Trainer, Quiz",
+        "description": "Interaktive Lernhilfe zu ähnlichen Figuren und zur zentrischen Streckung (Mathematik, Klasse 8)",
+        "intro": "Was ähnliche Figuren gemeinsam haben und wie die zentrische Streckung vergrößert und verkleinert.",
+        "fonts": "math", "first_view": "verstehen", "factsheet": "Factsheet als PDF ↓",
+    },
+    {
         "slug": "binomische-formeln", "grade": "8", "subject": "mathematik", "chapter": "I", "order": 4,
         "title": "Binomische Formeln", "short": "Binomische Formeln", "tag": "Terme",
         "card": "Die drei Formeln, Erklärung mit Flächen, Trainer mit Lückenaufgaben, Kopfrechen-Trick, Quiz",

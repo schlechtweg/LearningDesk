@@ -79,6 +79,8 @@ ol.lab li > .lt .blank { min-width: 18mm; width: 30mm; flex: none; }
 .fsvg .dotc { fill: #c0392b; stroke: #c0392b; stroke-width: 2; } .fsvg .doto { fill: #fff; stroke: #c0392b; stroke-width: 2; }
 .fsvg .solx { stroke: #c0392b; stroke-width: 2.6; fill: none; }
 .fsvg .jet { fill: none; stroke: #2f7fb8; stroke-width: 3; stroke-linecap: round; }
+.fsvg .ray { stroke: #56626d; stroke-width: 0.9; stroke-dasharray: 4 3; fill: none; }
+.fsvg .rays { stroke: #c0392b; stroke-width: 0.9; stroke-dasharray: 4 3; fill: none; }
 
 /* Levels with written tasks in one column: larger type, more room */
 section.roomy ol.items li { font-size: 10pt; line-height: 1.4; padding: 1.5mm 0 1.5mm 7mm; border-bottom: 1px dotted var(--line); }
