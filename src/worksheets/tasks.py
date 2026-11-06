@@ -2365,6 +2365,83 @@ def flaeche_volumen_aehnlich():
     return L
 
 
+def strahlensaetze():
+    r = random.Random(107)
+    L = {1: [], 2: [], 3: []}
+    seen = set()
+    def dec(v):
+        return f"{float(Fr(v)):g}".replace(".", ",").replace("-", MINUS)
+    def eq(v):
+        v = Fr(v)
+        return "= " + dec(v) if (v * 100).denominator == 1 else "≈ " + f"{float(v):.2f}".replace(".", ",")
+    Z = lambda t: "|<i>" + t + "</i>|"
+
+    def add(lvl, q, a):
+        if q not in seen and len(L[lvl]) < 120:
+            seen.add(q)
+            L[lvl].append((q, a))
+    ks = [Fr(3, 2), Fr(2), Fr(5, 2), Fr(3), Fr(4)]
+    for i in range(900):
+        t = i % 4
+        za, zb, k = r.randint(2, 8), r.randint(2, 9), r.choice(ks)
+        if t == 0:
+            add(1, f"V-Figur: {Z('ZA')} = {za} cm, {Z('ZA′')} = {dec(za * k)} cm, {Z('ZB')} = {zb} cm. Berechne {Z('ZB′')}.", f"1. Strahlensatz: {Z('ZB′')} : {Z('ZB')} = {Z('ZA′')} : {Z('ZA')} ⇒ {Z('ZB′')} = {zb} · {dec(za * k)} : {za} = <b>{dec(zb * k)} cm</b>")
+        elif t == 1:
+            ab = r.randint(2, 7)
+            add(1, f"V-Figur: {Z('ZA')} = {za} cm, {Z('ZA′')} = {dec(za * k)} cm, {Z('AB')} = {ab} cm. Berechne {Z('A′B′')}.", f"2. Strahlensatz: {Z('A′B′')} : {Z('AB')} = {Z('ZA′')} : {Z('ZA')} ⇒ {Z('A′B′')} = {ab} · {dec(za * k)} : {za} = <b>{dec(ab * k)} cm</b>")
+        elif t == 2:
+            add(1, f"V-Figur: {Z('ZB')} = {zb} cm, {Z('ZB′')} = {dec(zb * k)} cm, {Z('ZA′')} = {dec(za * k)} cm. Berechne {Z('ZA')}.", f"1. Strahlensatz: {Z('ZA')} : {Z('ZA′')} = {Z('ZB')} : {Z('ZB′')} ⇒ {Z('ZA')} = {dec(za * k)} · {zb} : {dec(zb * k)} = <b>{za} cm</b>")
+        else:
+            wrong = r.random() < 0.5
+            if wrong:
+                add(1, f"Richtig oder falsch? {Z('AB')} : {Z('A′B′')} = {Z('ZA')} : {Z('AA′')}", "<b>falsch</b>: Beim 2. Strahlensatz immer vom Zentrum aus messen: " + Z('ZA') + " : " + Z('ZA′'))
+            else:
+                add(1, f"Richtig oder falsch? {Z('ZA')} : {Z('AA′')} = {Z('ZB')} : {Z('BB′')} (V-Figur)", "<b>richtig</b>: Beim 1. Strahlensatz dürfen auch die Teilstücke auf den Strahlen verglichen werden.")
+    for i in range(900):
+        t = i % 4
+        za, k = r.randint(2, 8), r.choice(ks)
+        if t == 0:
+            aa, ab = dec(za * k - za), r.randint(2, 7)
+            add(2, f"V-Figur: {Z('ZA')} = {za} cm, {Z('AA′')} = {aa} cm, {Z('AB')} = {ab} cm. Berechne {Z('A′B′')}.", f"{Z('ZA′')} = {za} + {aa} = {dec(za * k)} cm. 2. Strahlensatz: {Z('A′B′')} : {Z('AB')} = {Z('ZA′')} : {Z('ZA')} ⇒ {Z('A′B′')} = {ab} · {dec(za * k)} : {za} = <b>{dec(ab * k)} cm</b>")
+        elif t == 1:
+            za2, ab = r.randint(3, 9), r.randint(2, 6)
+            add(2, f"X-Figur: {Z('ZA')} = {za} cm, {Z('ZA′')} = {za2} cm, {Z('AB')} = {ab} cm. Berechne {Z('A′B′')}.", f"2. Strahlensatz (X-Figur): {Z('A′B′')} : {Z('AB')} = {Z('ZA′')} : {Z('ZA')} ⇒ {Z('A′B′')} = {ab} · {za2} : {za} <b>{eq(Fr(ab * za2, za))} cm</b>")
+        elif t == 2:
+            zb, ab = r.randint(2, 7), r.randint(2, 6)
+            add(2, f"V-Figur: {Z('ZA')} = {za} cm, {Z('ZA′')} = {dec(za * k)} cm, {Z('ZB')} = {zb} cm, {Z('AB')} = {ab} cm. Berechne {Z('ZB′')} und {Z('A′B′')}.", f"Faktor <i>k</i> = {dec(za * k)} : {za} = {dec(k)}. 1. Strahlensatz: {Z('ZB′')} = {dec(k)} · {zb}; 2. Strahlensatz: {Z('A′B′')} = {dec(k)} · {ab}. <b>{Z('ZB′')} = {dec(zb * k)} cm</b>, <b>{Z('A′B′')} = {dec(ab * k)} cm</b>")
+        else:
+            zb, bb = r.randint(2, 7), None
+            bb = zb * k - zb
+            add(2, f"V-Figur: {Z('ZB')} = {zb} cm, {Z('BB′')} = {dec(bb)} cm, {Z('ZA')} = {za} cm. Berechne {Z('AA′')}.", f"{Z('ZA')} : {Z('AA′')} = {Z('ZB')} : {Z('BB′')} ⇒ {Z('AA′')} = {za} · {dec(bb)} : {zb} = <b>{dec(za * bb / zb)} cm</b>")
+    for i in range(900):
+        t = i % 5
+        if t == 0:
+            a, b, c = r.choice([4, 5, 6, 8, 10]), r.choice([12, 15, 18, 20, 24, 30]), r.choice([3, 4, 5, 6])
+            if b <= a:
+                continue
+            x = Fr(c * b, a) - c
+            add(3, f"Flussbreite: Von einem Punkt <i>Z</i> peilt man über zwei Pflöcke. {Z('ZA')} = {a} m, {Z('AB')} = {c} m und {Z('ZA′')} = {b} m (bis zum anderen Ufer gemessen auf der Uferlinie). Wie lang ist {Z('A′B′')}? Wie viel davon ist breiter als {Z('AB')}?", f"2. Strahlensatz: {Z('A′B′')} = {c} · {b} : {a} <b>{eq(Fr(c * b, a))} m</b>, also {eq(x)} m länger als {Z('AB')}. Die Pflocklinien <i>AB</i> und <i>A</i>′<i>B</i>′ müssen parallel sein.")
+        elif t == 1:
+            G, g, b = r.choice([2, 3, 4, 5, 10]), r.choice([5, 8, 10, 20, 25]), r.choice([4, 5, 6, 8, 10])
+            B = Fr(G * 100 * b, g * 100)
+            add(3, f"Lochkamera: Ein {G} m hoher Gegenstand steht {g} m vor dem Loch, der Schirm ist {b} cm hinter dem Loch. Wie hoch ist das Bild? Warum steht es auf dem Kopf?", f"X-Figur, Loch = <i>Z</i>: Bild = {G * 100} cm · {b} : {g * 100} <b>{eq(B)} cm</b>. Die Strahlen kreuzen sich im Loch: Was oben ist, landet unten. Das Bild ist um den Faktor {b} : {g * 100} verkleinert.")
+        elif t == 2:
+            n = r.choice([3, 4, 5, 6, 7])
+            ln = r.choice([7, 8, 9, 10, 11, 13])
+            add(3, f"Teile eine {ln} cm lange Strecke ohne Messen in {n} gleiche Teile. Beschreibe die Konstruktion und gib die Länge eines Teils an.", f"Hilfsstrahl von <i>A</i>, {n} gleiche Abschnitte abtragen, letzten Punkt mit <i>B</i> verbinden, Parallelen durch die anderen Punkte: Strahlensatz. Teil <b>{eq(Fr(ln, n))} cm</b>")
+        elif t == 3:
+            za, aa, zb, bb = r.randint(2, 6), r.randint(2, 6), r.randint(2, 6), None
+            par = r.random() < 0.5
+            bb = Fr(zb * aa, za) if par else Fr(zb * aa, za) + r.choice([1, -1, Fr(1, 2)])
+            if bb <= 0:
+                continue
+            add(3, f"Prüfe, ob <i>AB</i> und <i>A</i>′<i>B</i>′ parallel sind: {Z('ZA')} = {za} cm, {Z('AA′')} = {aa} cm, {Z('ZB')} = {zb} cm, {Z('BB′')} = {dec(bb)} cm.", f"{za} : {aa} {eq(Fr(za, aa))}, {zb} : {dec(bb)} {eq(Fr(zb) / bb)}: <b>{'parallel' if par else 'nicht parallel'}</b> (Umkehrung des 1. Strahlensatzes: Nur bei gleichen Verhältnissen sind die Geraden parallel.)")
+        else:
+            arm, s_, bl = r.choice([60, 65, 70]), r.choice([2, 3, 4, 5]), r.choice([20, 25, 30, 40])
+            add(3, f"Ein Stab der Länge {s_} cm, mit gestrecktem Arm ({arm} cm vom Auge) gehalten, verdeckt genau einen {bl} m hohen Turm. Wie weit ist der Turm entfernt?", f"Das Auge ist <i>Z</i>, Stab und Turm sind parallel (V-Figur). 2. Strahlensatz: <i>e</i> : {arm} cm = {bl} m : {s_} cm ⇒ <i>e</i> = {arm} · {bl} : {s_} <b>{eq(Fr(arm * bl, s_))} m</b>")
+    return L
+
+
 M8, PH = "#1f6e8c", "#b4531f"
 TOPICS = {
     "osmose": ({"title": "Osmose", "eyebrow": "Biologie · Klasse 11", "accent": "#0d6f74", "cols": [1, 1, 1], "sol_cols": [1, 1, 1]}, osmose),
@@ -2390,6 +2467,7 @@ TOPICS = {
     "zentrische-streckung": ({"title": "Ähnliche Figuren und zentrische Streckung", "eyebrow": "Mathematik · Klasse 8", "accent": M8, "cols": [2, 2, 1], "sol_cols": [2, 2, 1]}, zentrische_streckung),
     "aehnliche-dreiecke": ({"title": "Ähnliche Dreiecke", "eyebrow": "Mathematik · Klasse 8", "accent": M8, "cols": [2, 1, 1], "sol_cols": [2, 1, 1]}, aehnliche_dreiecke),
     "flaeche-volumen-aehnlich": ({"title": "Flächen und Volumen ähnlicher Figuren", "eyebrow": "Mathematik · Klasse 8", "accent": M8, "cols": [2, 1, 1], "sol_cols": [2, 1, 1]}, flaeche_volumen_aehnlich),
+    "strahlensaetze": ({"title": "Strahlensätze", "eyebrow": "Mathematik · Klasse 8", "accent": M8, "cols": [2, 2, 1], "sol_cols": [2, 2, 1]}, strahlensaetze),
     "binomische-formeln": ({"title": "Binomische Formeln", "eyebrow": "Mathematik · Klasse 8", "accent": M8, "cols": 2, "sol_cols": 2}, binomische_formeln),
     "bruchterme": ({"title": "Bruchterme", "eyebrow": "Mathematik · Klasse 8", "accent": "#2d6a4f", "cols": 3, "sol_cols": 3}, bruchterme),
     "ausmultiplizieren-faktorisieren": ({"title": "Ausmultiplizieren und Faktorisieren", "eyebrow": "Mathematik · Klasse 8", "accent": M8, "cols": 3, "sol_cols": 3}, ausmultiplizieren),

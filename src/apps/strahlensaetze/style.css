@@ -1,0 +1,12 @@
+.plot text { font-family: var(--font-body); font-size: 12px; font-weight: 700; fill: var(--ink); }
+.plot .ray { stroke: var(--ink); stroke-width: 1.6; }
+.plot .p1 { stroke: var(--accent); stroke-width: 3; }
+.plot .p2 { stroke: #7b4bb0; stroke-width: 3; }
+.plot .seg1 { stroke: #e0a400; stroke-width: 6; stroke-opacity: .55; stroke-linecap: round; }
+.plot .seg2 { stroke: #2e9b6a; stroke-width: 6; stroke-opacity: .45; stroke-linecap: round; }
+.plot .z { fill: var(--ink); }
+.plot .lb { font-family: var(--font-mono); font-size: 11px; font-weight: 400; fill: var(--muted); }
+.ctl input[type=range] { width: 100%; }
+.facts { width: 100%; border-collapse: collapse; font-size: var(--step--1); }
+.facts td { padding: 4px 6px; border-bottom: 1px solid var(--line); }
+.facts td:last-child { text-align: right; font-family: var(--font-mono); }

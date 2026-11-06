@@ -1950,6 +1950,52 @@ SHEETS["flaeche-volumen-aehnlich"] = dict(title="Flächen und Volumen ähnlicher
     </div>
   </div>''')
 
+SHEETS["strahlensaetze"] = dict(title="Strahlensätze", eyebrow="Mathematik · Klasse 8 · Ähnlichkeit", accent=M8, body=f'''
+  <div class="kern">Zwei Strahlen mit Startpunkt {m("<i>Z</i>")} werden von zwei <strong>Parallelen</strong> geschnitten. Die entstehenden Dreiecke sind ähnlich, deshalb gelten feste Streckenverhältnisse. Das funktioniert in der V-Figur und in der X-Figur.</div>
+  <div class="cols">
+    <div class="box">
+      <h2>1. Strahlensatz</h2>
+      <p>Abschnitte auf den Strahlen:</p>
+      <ul>
+        <li>{m("|<i>ZA</i>| : |<i>ZA</i>′| = |<i>ZB</i>| : |<i>ZB</i>′|")}</li>
+        <li>auch mit Teilstücken: {m("|<i>ZA</i>| : |<i>AA</i>′| = |<i>ZB</i>| : |<i>BB</i>′|")}</li>
+      </ul>
+    </div>
+    <div class="box">
+      <h2>2. Strahlensatz</h2>
+      <p>Abschnitte auf den Parallelen:</p>
+      <ul>
+        <li>{m("|<i>AB</i>| : |<i>A</i>′<i>B</i>′| = |<i>ZA</i>| : |<i>ZA</i>′|")}</li>
+        <li><strong>nur vom Zentrum aus</strong>, nie mit {m("|<i>AA</i>′|")}!</li>
+      </ul>
+    </div>
+    <div class="box full">
+      <h2>Beispiel (V-Figur)</h2>
+      <table>
+        <tr><th>gegeben</th><th>gesucht</th><th>Rechnung</th></tr>
+        <tr><td>{m("|<i>ZA</i>| = 3, |<i>AA</i>′| = 2, |<i>AB</i>| = 2,4")}</td><td>{m("|<i>A</i>′<i>B</i>′|")}</td><td>{m("2,4 · 5 : 3 = 4")} (2. Satz)</td></tr>
+        <tr><td>{m("|<i>ZB</i>| = 4,5")}</td><td>{m("|<i>BB</i>′|")}</td><td>{m("4,5 · 2 : 3 = 3")} (1. Satz)</td></tr>
+        <tr><td colspan="3">Umkehrung: Stimmen die Verhältnisse auf den Strahlen, sind die Geraden parallel.</td></tr>
+      </table>
+    </div>
+    <div class="box">
+      <h2>Im Alltag</h2>
+      <ul>
+        <li>Flussbreite und Baumhöhe messen.</li>
+        <li>Lochkamera (X-Figur).</li>
+        <li>Strecke in gleiche Teile teilen.</li>
+      </ul>
+    </div>
+    <div class="box warn">
+      <h2>Typische Fehler</h2>
+      <ul>
+        <li>2. Strahlensatz mit Teilstück {m("|<i>AA</i>′|")}.</li>
+        <li>Geraden nicht parallel.</li>
+        <li>Verhältnisse vertauscht.</li>
+      </ul>
+    </div>
+  </div>''')
+
 OUT = sys.argv[1] if len(sys.argv) > 1 else os.path.join(os.path.dirname(__file__), "_build")
 os.makedirs(OUT, exist_ok=True)
 shutil.copyfile(os.path.join(os.path.dirname(os.path.abspath(__file__)), "factsheet.css"), os.path.join(OUT, "factsheet.css"))

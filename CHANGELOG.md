@@ -9,6 +9,16 @@ Schema **MAJOR.MINOR.PATCH**:
 
 Neue Version: oben einen Eintrag `## [x.y.z] – JJJJ-MM-TT` ergänzen und `python3 src/build.py` ausführen.
 
+## [1.10.0] – 2026-11-06
+
+- Mathematik Klasse 8, Kapitel V „Ähnlichkeit“ komplett:
+  - Ähnliche Figuren und zentrische Streckung (Streckung zum Ziehen, negative Faktoren)
+  - Ähnliche Dreiecke (Ähnlichkeitssätze, Entdecken, Prüfen, Höhen messen)
+  - Flächen und Volumen ähnlicher Figuren (Quadrate und Würfel zählen, Maßstäbe)
+  - Strahlensätze (V- und X-Figur zum Verschieben, Anwendungen)
+- Damit sind alle fünf Kapitel des Mathebuchs Klasse 8 abgedeckt.
+- Korrektur: Zahlen ab 1000 werden in den neuen Apps richtig formatiert.
+
 ## [1.9.0] – 2026-11-06
 
 - Mathematik Klasse 8, Kapitel IV „Lineare Gleichungssysteme“ komplett:

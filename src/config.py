@@ -231,6 +231,14 @@ TOPICS = [
         "fonts": "math", "first_view": "verstehen", "factsheet": "Factsheet als PDF ↓",
     },
     {
+        "slug": "strahlensaetze", "grade": "8", "subject": "mathematik", "chapter": "V", "order": 4, "kit": True, "accent": ACCENT_MATH8,
+        "title": "Strahlensätze", "short": "Strahlensätze", "tag": "Ähnlichkeit",
+        "card": "1. und 2. Strahlensatz, V-Figur und X-Figur zum Verschieben, Flussbreite und Lochkamera, Trainer, Quiz",
+        "description": "Interaktive Lernhilfe zu den Strahlensätzen (Mathematik, Klasse 8)",
+        "intro": "Mit parallelen Geraden unerreichbare Längen berechnen: die beiden Strahlensätze in V- und X-Figur.",
+        "fonts": "math", "first_view": "verstehen", "factsheet": "Factsheet als PDF ↓",
+    },
+    {
         "slug": "binomische-formeln", "grade": "8", "subject": "mathematik", "chapter": "I", "order": 4,
         "title": "Binomische Formeln", "short": "Binomische Formeln", "tag": "Terme",
         "card": "Die drei Formeln, Erklärung mit Flächen, Trainer mit Lückenaufgaben, Kopfrechen-Trick, Quiz",

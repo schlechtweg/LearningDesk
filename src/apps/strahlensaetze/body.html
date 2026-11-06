@@ -1,0 +1,89 @@
+  <nav class="tabs" aria-label="Bereiche">
+    <a href="#verstehen" data-view="verstehen"><span class="n">1</span>Verstehen</a>
+    <a href="#entdecken" data-view="entdecken"><span class="n">2</span>Entdecken</a>
+    <a href="#ueben" data-view="ueben"><span class="n">3</span>Üben</a>
+    <a href="#alltag" data-view="alltag"><span class="n">4</span>Im Alltag</a>
+    <a href="#quiz" data-view="quiz"><span class="n">5</span>Quiz</a>
+  </nav>
+
+  <section class="view" id="view-verstehen">
+    <div class="einfach">
+      <span class="eyebrow">Einfach erklärt</span>
+      <p>Zwei Strahlen mit gemeinsamem Startpunkt <span class="math"><i>Z</i></span> werden von zwei <strong>parallelen</strong> Geraden geschnitten. Dann entstehen ähnliche Dreiecke, und die Abschnitte stehen in festen Verhältnissen.</p>
+    </div>
+    <div class="grid-2">
+      <div class="panel stack">
+        <h3>1. Strahlensatz</h3>
+        <p class="small">Die Abschnitte auf <strong>einem</strong> Strahl verhalten sich wie die entsprechenden Abschnitte auf dem <strong>anderen</strong> Strahl:</p>
+        <p class="math">|<i>ZA</i>| : |<i>ZA</i>′| = |<i>ZB</i>| : |<i>ZB</i>′|</p>
+      </div>
+      <div class="panel stack">
+        <h3>2. Strahlensatz</h3>
+        <p class="small">Die Abschnitte auf den <strong>Parallelen</strong> verhalten sich wie die zugehörigen Abschnitte vom Zentrum aus:</p>
+        <p class="math">|<i>AB</i>| : |<i>A</i>′<i>B</i>′| = |<i>ZA</i>| : |<i>ZA</i>′|</p>
+      </div>
+    </div>
+    <div class="merksatz">
+      <span class="eyebrow">V-Figur und X-Figur</span>
+      <p>Die Sätze gelten, wenn die Parallelen auf derselben Seite von <span class="math"><i>Z</i></span> liegen (V-Figur) und auch, wenn <span class="math"><i>Z</i></span> zwischen ihnen liegt (X-Figur). Beim 2. Strahlensatz immer <strong>vom Zentrum aus</strong> messen, nie das Stück zwischen den Parallelen!</p>
+    </div>
+    <div class="panel stack">
+      <h3>Typische Fehler</h3>
+      <ul class="list small">
+        <li>Im 2. Strahlensatz das Teilstück <span class="math">|<i>AA</i>′|</span> statt <span class="math">|<i>ZA</i>′|</span> benutzt.</li>
+        <li>Strahlensätze angewendet, obwohl die Geraden nicht parallel sind.</li>
+        <li>Verhältnisse über Kreuz vertauscht: Immer „klein : groß = klein : groß“.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="view" id="view-entdecken" hidden>
+    <div class="stack">
+      <span class="eyebrow">Ausprobieren</span>
+      <h2>Strahlensatzfigur</h2>
+      <p class="muted">Verschiebe die Parallelen und ändere den Winkel. Die Verhältnisse in der Tabelle bleiben gleich.</p>
+    </div>
+    <div class="sim-layout">
+      <div class="figure"><svg class="plot" id="sSvg" viewBox="0 0 460 300" role="img" aria-label="Strahlensatzfigur"></svg></div>
+      <div class="panel stack ctl">
+        <div class="modes" role="group" aria-label="Figur"><button type="button" data-f="V" aria-pressed="true">V-Figur</button><button type="button" data-f="X" aria-pressed="false">X-Figur</button></div>
+        <label for="p1">erste Parallele: |<i>ZA</i>| = <b id="p1V"></b></label><input type="range" id="p1" min="1" max="4" step="0.5" value="2">
+        <label for="p2">zweite Parallele: |<i>ZA</i>′| = <b id="p2V"></b></label><input type="range" id="p2" min="2" max="7" step="0.5" value="5">
+        <label for="w">Winkel = <b id="wV"></b></label><input type="range" id="w" min="20" max="60" step="5" value="35">
+        <table class="facts" id="sFacts"></table>
+      </div>
+    </div>
+  </section>
+
+  <section class="view" id="view-ueben" hidden>
+    <div class="stack">
+      <span class="eyebrow">Trainer</span>
+      <h2>Strahlensätze anwenden</h2>
+      <p class="muted">Dezimalzahlen mit Komma oder Punkt, gerundet auf zwei Stellen.</p>
+    </div>
+    <div id="trainer" class="stack"></div>
+  </section>
+
+  <section class="view" id="view-alltag" hidden>
+    <div class="stack">
+      <span class="eyebrow">Im Alltag</span>
+      <h2>Unerreichbares messen</h2>
+    </div>
+    <div class="grid-2">
+      <div class="panel stack"><span class="eyebrow">Gelände</span><h3>Breite eines Flusses</h3><p class="small">Mit Pflöcken am Ufer und einer Peillinie entsteht eine X-Figur: Die Flussbreite lässt sich berechnen, ohne hinüberzuschwimmen.</p></div>
+      <div class="panel stack"><span class="eyebrow">Försterdreieck</span><h3>Baumhöhe</h3><p class="small">Ein gleichschenklig-rechtwinkliges Dreieck vor dem Auge: Wo die Spitze über der Hypotenuse erscheint, ist der Abstand zum Baum gleich seiner Höhe (plus Augenhöhe).</p></div>
+      <div class="panel stack"><span class="eyebrow">Fotografie</span><h3>Lochkamera</h3><p class="small">Das Loch ist <span class="math"><i>Z</i></span>, Gegenstand und Bild liegen parallel: eine X-Figur.</p></div>
+      <div class="panel stack"><span class="eyebrow">Licht</span><h3>Schattenbreite</h3><p class="small">Eine Lampe und zwei parallele Ebenen (Gegenstand, Wand): Die Schattenbreite wächst wie der Abstand zur Lampe.</p></div>
+      <div class="panel stack"><span class="eyebrow">Zeichnen</span><h3>Strecke teilen</h3><p class="small">Mit Parallelen lässt sich jede Strecke in gleiche Teile teilen, ganz ohne Messen.</p></div>
+      <div class="panel stack"><span class="eyebrow">Sehen</span><h3>Daumenpeilung</h3><p class="small">Arm und Augenabstand bilden mit dem Ziel eine Strahlensatzfigur.</p></div>
+    </div>
+  </section>
+
+  <section class="view" id="view-quiz" hidden>
+    <div class="stack">
+      <span class="eyebrow">Selbsttest</span>
+      <h2>Quiz</h2>
+      <div class="progress-line"><div class="bar" aria-hidden="true"><i id="qBar"></i></div><span class="score-line" id="qProgress"></span></div>
+    </div>
+    <div class="panel quiz" id="quizBox" aria-live="polite"></div>
+  </section>

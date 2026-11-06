@@ -794,10 +794,34 @@ def flaeche_volumen_aehnlich():
     return {"title": "Fläche verdoppeln?", "stars": "★☆☆", "task": (svg("0 0 265 200", base), task), "sol": (svg("0 0 265 200", sol), soltxt)}
 
 
+def strahlensaetze():
+    # V-figure: ZA = 3, AA' = 2 (ZA' = 5), AB = 2.4 -> A'B' = 4 ; ZB = 4.5 -> ZB' = 7.5
+    assert abs(2.4 * 5 / 3 - 4) < 1e-12 and abs(4.5 * 5 / 3 - 7.5) < 1e-12
+    import math as _m
+    u, Zp = 34, (20, 175)
+    w = _m.radians(32)
+    r1 = lambda t: (Zp[0] + t * u, Zp[1])
+    k2 = 4.5 / 3  # ZB : ZA
+    r2 = lambda t: (Zp[0] + t * k2 * u * _m.cos(w), Zp[1] - t * k2 * u * _m.sin(w))
+    A, A2, B, B2 = r1(3), r1(5), r2(3), r2(5)
+    ln = lambda p, q, c: f'<line class="{c}" x1="{p[0]:.1f}" y1="{p[1]:.1f}" x2="{q[0]:.1f}" y2="{q[1]:.1f}"/>'
+    base = ln(Zp, r1(6.6), "o") + ln(Zp, r2(5.6), "o") + ln(A, B, "o thick") + ln(A2, B2, "o thick")
+    base += f'<circle cx="{Zp[0]}" cy="{Zp[1]}" r="3.5" fill="#1b2228"/>' + text(Zp[0] - 4, Zp[1] + 14, "Z") + text(A[0], A[1] + 14, "A") + text(A2[0], A2[1] + 14, "A′") + text(B[0] - 4, B[1] - 6, "B") + text(B2[0] - 4, B2[1] - 6, "B′")
+    base += text((Zp[0] + A[0]) / 2, A[1] - 5, "3 cm", "ft small") + text((A[0] + A2[0]) / 2, A[1] - 5, "2 cm", "ft small") + text(A[0] + 14, (A[1] + B[1]) / 2 + 12, "2,4 cm", "ft small", "start")
+    base += text(A2[0] + 10, (A2[1] + B2[1]) / 2 + 10, "x", "ft it", "start") + text((Zp[0] + B[0]) / 2 - 6, (Zp[1] + B[1]) / 2 - 6, "4,5 cm", "ft small", "end") + text((B[0] + B2[0]) / 2 - 6, (B[1] + B2[1]) / 2 - 6, "y", "ft it", "end")
+    sol = base + text(A2[0] + 22, (A2[1] + B2[1]) / 2 + 10, "= 4 cm", "ft sol", "start") + text((B[0] + B2[0]) / 2 - 6, (B[1] + B2[1]) / 2 - 22, "y = 3 cm", "ft sol", "end")
+    task = ('<p><i>AB</i> ∥ <i>A</i>′<i>B</i>′. Berechne <i>x</i> = |<i>A</i>′<i>B</i>′| und <i>y</i> = |<i>BB</i>′|.</p>'
+            '<p class="q">Welcher Strahlensatz für <i>x</i>? <span class="blank"></span> <i>x</i> = <span class="blank"></span></p>'
+            '<p class="q">Welcher Strahlensatz für <i>y</i>? <span class="blank"></span> <i>y</i> = <span class="blank"></span></p>')
+    soltxt = ('<p class="q">2. Strahlensatz: <i>x</i> : 2,4 = 5 : 3 ⇒ <b><i>x</i> = 4 cm</b></p>'
+              '<p class="q">1. Strahlensatz: <i>y</i> : 4,5 = 2 : 3 ⇒ <b><i>y</i> = 3 cm</b></p>')
+    return {"title": "Strahlensatzfigur", "stars": "★★☆", "task": (svg("0 0 270 200", base), task), "sol": (svg("0 0 270 200", sol), soltxt)}
+
+
 FIGS = {
     "osmose": osmose, "natrium-kalium-pumpe": nak, "symport-antiport": symport, "endocytose-exocytose": endo,
     "ableiten": ableiten, "nervensystem": nerven, "auge": auge,
-    "termstruktur": termstruktur, "zufallsexperimente": zufallsexperimente, "laplace": laplace, "baumdiagramme": baumdiagramme, "unabhaengige-ereignisse": unabhaengig, "funktionsbegriff": funktionsbegriff, "eigenschaften-funktionen": eigenschaften, "lineare-funktionen": lineare_funktionen, "funktionsgleichungen": funktionsgleichungen, "lgs-grafisch": lgs_grafisch, "gleichsetzungsverfahren": gleichsetzungsverfahren, "additionsverfahren": additionsverfahren, "lgs-anwendungen": lgs_anwendungen, "zentrische-streckung": zentrische_streckung, "aehnliche-dreiecke": aehnliche_dreiecke, "flaeche-volumen-aehnlich": flaeche_volumen_aehnlich, "binomische-formeln": binom, "bruchterme": bruchterme, "ausmultiplizieren-faktorisieren": ausmult, "terme-vereinfachen": terme,
+    "termstruktur": termstruktur, "zufallsexperimente": zufallsexperimente, "laplace": laplace, "baumdiagramme": baumdiagramme, "unabhaengige-ereignisse": unabhaengig, "funktionsbegriff": funktionsbegriff, "eigenschaften-funktionen": eigenschaften, "lineare-funktionen": lineare_funktionen, "funktionsgleichungen": funktionsgleichungen, "lgs-grafisch": lgs_grafisch, "gleichsetzungsverfahren": gleichsetzungsverfahren, "additionsverfahren": additionsverfahren, "lgs-anwendungen": lgs_anwendungen, "zentrische-streckung": zentrische_streckung, "aehnliche-dreiecke": aehnliche_dreiecke, "flaeche-volumen-aehnlich": flaeche_volumen_aehnlich, "strahlensaetze": strahlensaetze, "binomische-formeln": binom, "bruchterme": bruchterme, "ausmultiplizieren-faktorisieren": ausmult, "terme-vereinfachen": terme,
     "gleichungen": gleichungen, "ungleichungen": ungleichungen,
     "druck": druck, "hydraulik": hydraulik, "schweredruck": schweredruck, "auftrieb": auftrieb, "luftdruck": luftdruck,
 }
