@@ -1,0 +1,8 @@
+.plan { counter-reset: s; display: grid; gap: 10px; margin: 0; padding: 0; list-style: none; }
+.plan li { counter-increment: s; display: grid; grid-template-columns: 34px 1fr; gap: 10px; align-items: start; }
+.plan li::before { content: counter(s); display: grid; place-items: center; width: 30px; height: 30px; border-radius: 50%; background: var(--accent); color: #fff; font-weight: 700; }
+.opts { display: grid; gap: 8px; }
+.opts button { text-align: left; font-family: var(--font-math); font-size: 1.05rem; padding: 10px 14px; }
+.opts button.right { border-color: var(--good, #2e7d32); background: color-mix(in srgb, var(--good, #2e7d32) 12%, transparent); }
+.opts button.wrong { border-color: var(--bad, #c62828); background: color-mix(in srgb, var(--bad, #c62828) 10%, transparent); }
+.story { font-size: var(--step-0); line-height: 1.55; }

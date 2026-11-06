@@ -713,10 +713,33 @@ def additionsverfahren():
     return {"title": "Rechnen und zeichnen", "stars": "★★☆", "task": (svg("0 0 240 210", base), task), "sol": (svg("0 0 240 210", sol), soltxt)}
 
 
+def lgs_anwendungen():
+    # break-even: costs y = x + 40, revenue y = 3x  ->  x = 20, y = 60
+    assert 20 + 40 == 3 * 20 == 60
+    ox, oy, ux, uy = 40, 190, 6.5, 1.8
+    g = "".join(f'<line class="gr" x1="{ox + i * ux}" y1="{oy}" x2="{ox + i * ux}" y2="{oy - 100 * uy}"/>' for i in range(0, 31, 5))
+    g += "".join(f'<line class="gr" x1="{ox}" y1="{oy - j * uy}" x2="{ox + 30 * ux}" y2="{oy - j * uy}"/>' for j in range(0, 101, 10))
+    g += f'<line class="ax" x1="{ox}" y1="{oy}" x2="{ox + 31 * ux}" y2="{oy}"/><line class="ax" x1="{ox}" y1="{oy}" x2="{ox}" y2="{oy - 102 * uy}"/>'
+    g += "".join(text(ox + i * ux, oy + 13, str(i), "ft") for i in range(5, 31, 5)) + "".join(text(ox - 6, oy - j * uy + 4, str(j), "ft", "end") for j in range(20, 101, 20))
+    g += text(ox + 31 * ux, oy - 6, "Stück", "ft", "end") + text(ox + 6, oy - 101 * uy, "€", "ft", "start")
+    lines = f'<line class="fg" x1="{ox}" y1="{oy - 40 * uy}" x2="{ox + 30 * ux}" y2="{oy - 70 * uy}"/><line class="fg" x1="{ox}" y1="{oy}" x2="{ox + 100 / 3 * ux:.1f}" y2="{oy - 100 * uy}"/>'
+    lines += text(ox + 29 * ux, oy - 74 * uy, "K", "ft it") + text(ox + 27 * ux, oy - 94 * uy, "E", "ft it")
+    base = g + lines
+    sol = base + f'<circle class="pt" cx="{ox + 20 * ux}" cy="{oy - 60 * uy}" r="4.5"/>' + text(ox + 20 * ux + 8, oy - 60 * uy + 15, "(20|60)", "ft sol", "start")
+    task = ('<p>Ein Schulkiosk hat 40 € feste Kosten und 1 € Kosten pro Sandwich (Gerade <i>K</i>). Ein Sandwich kostet 3 € (Gerade <i>E</i>).</p>'
+            '<p class="q">Kosten: <span class="blank"></span> &nbsp; Einnahmen: <span class="blank"></span></p>'
+            '<p class="q">Markiere die Gewinnschwelle und berechne sie: <span class="blank wide"></span></p>'
+            '<p class="q">Gewinn bei 30 Sandwiches: <span class="blank"></span></p>')
+    soltxt = ('<p class="q"><b><i>K</i>: <i>y</i> = <i>x</i> + 40</b>, <b><i>E</i>: <i>y</i> = 3<i>x</i></b></p>'
+              '<p class="q"><i>x</i> + 40 = 3<i>x</i> ⇒ <b><i>x</i> = 20</b>: Gewinnschwelle (20 | 60), ab 21 Sandwiches Gewinn.</p>'
+              '<p class="q">Bei 30: 90 € − 70 € = <b>20 € Gewinn</b></p>')
+    return {"title": "Gewinnschwelle", "stars": "★★☆", "task": (svg("0 0 250 210", base), task), "sol": (svg("0 0 250 210", sol), soltxt)}
+
+
 FIGS = {
     "osmose": osmose, "natrium-kalium-pumpe": nak, "symport-antiport": symport, "endocytose-exocytose": endo,
     "ableiten": ableiten, "nervensystem": nerven, "auge": auge,
-    "termstruktur": termstruktur, "zufallsexperimente": zufallsexperimente, "laplace": laplace, "baumdiagramme": baumdiagramme, "unabhaengige-ereignisse": unabhaengig, "funktionsbegriff": funktionsbegriff, "eigenschaften-funktionen": eigenschaften, "lineare-funktionen": lineare_funktionen, "funktionsgleichungen": funktionsgleichungen, "lgs-grafisch": lgs_grafisch, "gleichsetzungsverfahren": gleichsetzungsverfahren, "additionsverfahren": additionsverfahren, "binomische-formeln": binom, "bruchterme": bruchterme, "ausmultiplizieren-faktorisieren": ausmult, "terme-vereinfachen": terme,
+    "termstruktur": termstruktur, "zufallsexperimente": zufallsexperimente, "laplace": laplace, "baumdiagramme": baumdiagramme, "unabhaengige-ereignisse": unabhaengig, "funktionsbegriff": funktionsbegriff, "eigenschaften-funktionen": eigenschaften, "lineare-funktionen": lineare_funktionen, "funktionsgleichungen": funktionsgleichungen, "lgs-grafisch": lgs_grafisch, "gleichsetzungsverfahren": gleichsetzungsverfahren, "additionsverfahren": additionsverfahren, "lgs-anwendungen": lgs_anwendungen, "binomische-formeln": binom, "bruchterme": bruchterme, "ausmultiplizieren-faktorisieren": ausmult, "terme-vereinfachen": terme,
     "gleichungen": gleichungen, "ungleichungen": ungleichungen,
     "druck": druck, "hydraulik": hydraulik, "schweredruck": schweredruck, "auftrieb": auftrieb, "luftdruck": luftdruck,
 }

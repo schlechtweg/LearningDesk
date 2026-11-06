@@ -1995,6 +1995,99 @@ def additionsverfahren():
     return L
 
 
+def lgs_anwendungen():
+    r = random.Random(103)
+    L = {1: [], 2: [], 3: []}
+    seen = set()
+    dec = lambda v: f"{float(v):g}".replace(".", ",").replace("-", MINUS)
+    eur = lambda c: f"{c / 100:.2f}".replace(".", ",")
+    names = ["Anna", "Ben", "Cem", "Dana", "Emil", "Fiona", "Jonas", "Lina", "Mehmet", "Nele", "Paul", "Sara"]
+
+    def add(lvl, q, a):
+        if q not in seen:
+            seen.add(q)
+            L[lvl].append((q, a))
+    for i in range(600):
+        t = i % 6
+        p1, p2 = r.sample(names, 2)
+        k = r.randint(2, 15)
+        if t == 0:
+            add(1, f"Übersetze: „{p1} ist {k} Jahre älter als {p2}.“", f"<i>{p1[0].lower()}</i>, <i>{p2[0].lower()}</i>: Alter in Jahren. " + m(f"<b><i>{p1[0].lower()}</i> = <i>{p2[0].lower()}</i> + {k}</b>") + f": Zum Alter von {p2} kommen {k} Jahre dazu.")
+        elif t == 1:
+            f = r.choice([2, 3, 4])
+            word = {2: "doppelt", 3: "dreimal", 4: "viermal"}[f]
+            add(1, f"Übersetze: „{p1} hat {word} so viele Sticker wie {p2}.“", f"<i>{p1[0].lower()}</i>, <i>{p2[0].lower()}</i>: Anzahl der Sticker. " + m(f"<b><i>{p1[0].lower()}</i> = {f}<i>{p2[0].lower()}</i></b>") + f": Die Anzahl von {p2} wird mit {f} multipliziert.")
+        elif t == 2:
+            add(1, f"Übersetze: „{p1} und {p2} haben zusammen {k * 3} €.“", f"<i>{p1[0].lower()}</i>, <i>{p2[0].lower()}</i>: Geld in €. " + m(f"<b><i>{p1[0].lower()}</i> + <i>{p2[0].lower()}</i> = {k * 3}</b>"))
+        elif t == 3:
+            b = r.randint(3, 30)
+            add(1, f"Summe zweier Zahlen: {2 * b + k}, Differenz: {k}. Bestimme die Zahlen.", f"{m(f'<i>a</i> + <i>b</i> = {2 * b + k}')}, {m(f'<i>a</i> − <i>b</i> = {k}')} ⇒ addieren: {m(f'2<i>a</i> = {2 * b + 2 * k}')} ⇒ <b>{b + k} und {b}</b>")
+        elif t == 4:
+            b = r.randint(2, 20)
+            f = r.choice([2, 3, 4, 5])
+            add(1, f"Eine Zahl ist {f}-mal so groß wie eine andere, zusammen ergeben sie {b * (f + 1)}. Bestimme die Zahlen.", f"{m(f'<i>a</i> = {f}<i>b</i>')}, {m(f'<i>a</i> + <i>b</i> = {b * (f + 1)}')} ⇒ einsetzen: {m(f'{f + 1}<i>b</i> = {b * (f + 1)}')} ⇒ <b>{b * f} und {b}</b>")
+        else:
+            b = r.randint(2, 20)
+            add(1, f"{p1} hat {k} € mehr als {p2}, zusammen haben sie {2 * b + k} €. Wie viel hat jeder?", f"{m(f'<i>{p1[0].lower()}</i> = <i>{p2[0].lower()}</i> + {k}')} ⇒ {m(f'2<i>{p2[0].lower()}</i> + {k} = {2 * b + k}')}: <b>{p1} {b + k} €, {p2} {b} €</b>. Probe: {b + k} + {b} = {2 * b + k} ✓")
+    for i in range(600):
+        t = i % 5
+        if t == 0:
+            e, k_, pe, pk = r.randint(2, 9), r.randint(2, 12), r.choice([8, 9, 10, 12, 14]), r.choice([4, 5, 6, 7])
+            add(2, f"{e + k_} Personen zahlen im Zoo zusammen {e * pe + k_ * pk} €. Erwachsene zahlen {pe} €, Kinder {pk} €. Wie viele Erwachsene, wie viele Kinder?", f"{m(f'<i>e</i> + <i>k</i> = {e + k_}')}, {m(f'{pe}<i>e</i> + {pk}<i>k</i> = {e * pe + k_ * pk}')} ⇒ <b>{e} Erwachsene, {k_} Kinder</b>")
+        elif t == 1:
+            h, k_ = r.randint(4, 25), r.randint(3, 15)
+            add(2, f"Hühner und Ziegen: {h + k_} Köpfe, {2 * h + 4 * k_} Beine. Wie viele von jeder Art?", f"{m(f'<i>h</i> + <i>z</i> = {h + k_}')}, {m(f'2<i>h</i> + 4<i>z</i> = {2 * h + 4 * k_}')} ⇒ <b>{h} Hühner, {k_} Ziegen</b>")
+        elif t == 2:
+            a, b = r.choice([60, 80, 90, 120, 150]), r.choice([40, 50, 70, 110])
+            n1, m1, n2, m2 = r.randint(1, 4), r.randint(1, 4), r.randint(1, 4), r.randint(1, 4)
+            if n1 * m2 == n2 * m1:
+                continue
+            add(2, f"{n1} Brezeln und {m1} Brötchen kosten {eur(n1 * a + m1 * b)} €, {n2} Brezeln und {m2} Brötchen kosten {eur(n2 * a + m2 * b)} €. Einzelpreise?", f"In ct: {m(f'{n1}<i>z</i> + {m1}<i>b</i> = {n1 * a + m1 * b}')}, {m(f'{n2}<i>z</i> + {m2}<i>b</i> = {n2 * a + m2 * b}')} ⇒ <b>Brezel {eur(a)} €, Brötchen {eur(b)} €</b>")
+        elif t == 3:
+            b, d = r.randint(3, 15), r.randint(1, 9)
+            add(2, f"Ein Rechteck hat {2 * (2 * b + d)} cm Umfang, die Länge ist {d} cm größer als die Breite. Seitenlängen?", f"{m(f'2<i>l</i> + 2<i>b</i> = {2 * (2 * b + d)}')}, {m(f'<i>l</i> = <i>b</i> + {d}')} ⇒ <b><i>l</i> = {b + d} cm, <i>b</i> = {b} cm</b>")
+        else:
+            k_, diff, y = r.randint(5, 15), r.randint(22, 34), r.choice([3, 4, 5, 6, 8, 10])
+            add(2, f"Ein Vater ist {diff} Jahre älter als sein Sohn. In {y} Jahren sind beide zusammen {2 * k_ + diff + 2 * y} Jahre alt. Wie alt sind sie heute?", f"{m(f'<i>v</i> = <i>s</i> + {diff}')}, {m(f'<i>v</i> + <i>s</i> + {2 * y} = {2 * k_ + diff + 2 * y}')} ⇒ <b>Sohn {k_}, Vater {k_ + diff}</b>")
+    for i in range(600):
+        t = i % 5
+        if t == 0:
+            # mixing: x litres of p1 % plus y litres of p2 % give total at p %
+            p1, p2 = r.choice([10, 20, 30, 40]), r.choice([60, 70, 80, 100])
+            x, y = r.randint(1, 8), r.randint(1, 8)
+            tot = x + y
+            if (p1 * x + p2 * y) % tot:
+                continue
+            pm = (p1 * x + p2 * y) // tot
+            add(3, f"Schorle mit {p1} % Saft und Saft mit {p2} % Saftanteil sollen {tot} l Getränk mit {pm} % Saft ergeben. Wie viel Liter von jeder Sorte?", f"{m(f'<i>x</i> + <i>y</i> = {tot}')}, {m(f'{dec(Fr(p1, 100))}<i>x</i> + {dec(Fr(p2, 100))}<i>y</i> = {dec(Fr(pm * tot, 100))}')} ⇒ I · (−{dec(Fr(p1, 100))}) + II: {m(f'{dec(Fr(p2 - p1, 100))}<i>y</i> = {dec(Fr(pm * tot - p1 * tot, 100))}')} ⇒ <b>{x} l mit {p1} %, {y} l mit {p2} %</b>. Probe: {dec(Fr(p1 * x, 100))} + {dec(Fr(p2 * y, 100))} = {dec(Fr(pm * tot, 100))} l Saft ✓")
+        elif t == 1:
+            v1, v2 = r.choice([40, 50, 60, 80]), r.choice([60, 70, 90, 100])
+            tt = Fr(r.choice([1, 2, 3, 4, 5]), 2)
+            d = (v1 + v2) * tt
+            if d.denominator != 1:
+                continue
+            add(3, f"Zwei Orte liegen {d} km auseinander. Ein Auto startet in A ({v1} km/h), gleichzeitig ein zweites in B ({v2} km/h), beide fahren aufeinander zu. Wann und wo treffen sie sich?", f"{m(f'<i>s</i> = {v1}<i>t</i>')}, {m(f'<i>s</i> = {d} − {v2}<i>t</i>')} ⇒ {m(f'{v1 + v2}<i>t</i> = {d}')} ⇒ <b><i>t</i> = {dec(tt)} h, {dec(v1 * tt)} km von A</b>. Probe: {dec(v1 * tt)} + {dec(v2 * tt)} = {d} km ✓ Antwort: Nach {dec(tt * 60)} Minuten treffen sie sich {dec(v1 * tt)} km von A entfernt.")
+        elif t == 2:
+            g, p1 = r.choice([5, 8, 10, 12, 15]), r.choice([5, 8, 10])
+            p2 = p1 + r.choice([5, 10])
+            if (100 * g) % (p2 - p1):
+                continue
+            xx = 100 * g // (p2 - p1)
+            add(3, f"Stromtarif A: {g} € Grundpreis und {p1} ct pro kWh, Tarif B: {p2} ct pro kWh ohne Grundpreis. Ab welchem Verbrauch ist A günstiger? Wie hoch sind dann die Kosten?", f"{m(f'<i>y</i> = {eur(p1)}<i>x</i> + {g}')}, {m(f'<i>y</i> = {eur(p2)}<i>x</i>')} ⇒ {m(f'{eur(p2 - p1)}<i>x</i> = {g}')}: bei {xx} kWh kosten beide {eur(p2 * xx)} € ({g} + {eur(p1 * xx)} = {eur(p2 * xx)} ✓). <b>Ab mehr als {xx} kWh</b> ist A günstiger, weil A pro kWh weniger kostet.")
+        elif t == 3:
+            a, b = r.randint(1, 9), r.randint(1, 9)
+            if a <= b:
+                continue
+            add(3, f"Eine zweistellige Zahl hat die Quersumme {a + b}. Vertauscht man die Ziffern, wird die Zahl um {9 * (a - b)} kleiner. Wie heißt die Zahl?", f"{m(f'<i>z</i> + <i>e</i> = {a + b}')}, {m(f'(10<i>z</i> + <i>e</i>) − (10<i>e</i> + <i>z</i>) = {9 * (a - b)}')} ⇒ {m(f'<i>z</i> − <i>e</i> = {a - b}')} ⇒ addieren: {m(f'2<i>z</i> = {2 * a}')}, <i>z</i> = {a}, <i>e</i> = {b}: <b>{10 * a + b}</b>. Probe: {10 * a + b} − {10 * b + a} = {9 * (a - b)} ✓")
+        else:
+            fix, var, price = r.choice([60, 80, 90, 120, 150]), r.choice([1, 2]), r.choice([3, 4, 5])
+            if fix % (price - var):
+                continue
+            n_ = fix // (price - var)
+            add(3, f"Ein Waffelstand hat {fix} € feste Kosten und {var} € Kosten pro Waffel. Eine Waffel wird für {price} € verkauft. Ab wie vielen Waffeln macht der Stand Gewinn?", f"Kosten {m(f'<i>y</i> = {var}<i>x</i> + {fix}')}, Einnahmen {m(f'<i>y</i> = {price}<i>x</i>')} ⇒ {m(f'{price - var}<i>x</i> = {fix}')}: <i>x</i> = {n_}. Bei {n_} Waffeln Kosten = Einnahmen = {price * n_} €, <b>ab {n_ + 1} Waffeln</b> Gewinn ({price * (n_ + 1)} € > {var * (n_ + 1) + fix} €).")
+    return L
+
+
 M8, PH = "#1f6e8c", "#b4531f"
 TOPICS = {
     "osmose": ({"title": "Osmose", "eyebrow": "Biologie · Klasse 11", "accent": "#0d6f74", "cols": [1, 1, 1], "sol_cols": [1, 1, 1]}, osmose),
@@ -2016,6 +2109,7 @@ TOPICS = {
     "lgs-grafisch": ({"title": "Gleichungen mit zwei Variablen und LGS", "eyebrow": "Mathematik · Klasse 8", "accent": M8, "cols": [2, 2, 1], "sol_cols": [2, 2, 1]}, lgs_grafisch),
     "gleichsetzungsverfahren": ({"title": "Gleichsetzungs- und Einsetzungsverfahren", "eyebrow": "Mathematik · Klasse 8", "accent": M8, "cols": [2, 2, 1], "sol_cols": [2, 2, 1]}, gleichsetzungsverfahren),
     "additionsverfahren": ({"title": "Additionsverfahren", "eyebrow": "Mathematik · Klasse 8", "accent": M8, "cols": [2, 2, 1], "sol_cols": [2, 2, 1]}, additionsverfahren),
+    "lgs-anwendungen": ({"title": "Anwendungen linearer Gleichungssysteme", "eyebrow": "Mathematik · Klasse 8", "accent": M8, "cols": [2, 1, 1], "sol_cols": [2, 1, 1]}, lgs_anwendungen),
     "binomische-formeln": ({"title": "Binomische Formeln", "eyebrow": "Mathematik · Klasse 8", "accent": M8, "cols": 2, "sol_cols": 2}, binomische_formeln),
     "bruchterme": ({"title": "Bruchterme", "eyebrow": "Mathematik · Klasse 8", "accent": "#2d6a4f", "cols": 3, "sol_cols": 3}, bruchterme),
     "ausmultiplizieren-faktorisieren": ({"title": "Ausmultiplizieren und Faktorisieren", "eyebrow": "Mathematik · Klasse 8", "accent": M8, "cols": 3, "sol_cols": 3}, ausmultiplizieren),

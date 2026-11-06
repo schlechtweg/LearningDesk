@@ -199,6 +199,14 @@ TOPICS = [
         "fonts": "math", "first_view": "verstehen", "factsheet": "Factsheet als PDF ↓",
     },
     {
+        "slug": "lgs-anwendungen", "grade": "8", "subject": "mathematik", "chapter": "IV", "order": 4, "kit": True, "accent": ACCENT_MATH8,
+        "title": "Anwendungen linearer Gleichungssysteme", "short": "LGS anwenden", "tag": "Gleichungssysteme",
+        "card": "Textaufgaben in fünf Schritten, passendes Gleichungssystem wählen, Preise, Anzahlen, Alter, Geometrie, Trainer, Quiz",
+        "description": "Interaktive Lernhilfe zu Textaufgaben mit linearen Gleichungssystemen (Mathematik, Klasse 8)",
+        "intro": "Aus Texten Gleichungssysteme aufstellen, lösen und am Text prüfen.",
+        "fonts": "math", "first_view": "verstehen", "factsheet": "Factsheet als PDF ↓",
+    },
+    {
         "slug": "binomische-formeln", "grade": "8", "subject": "mathematik", "chapter": "I", "order": 4,
         "title": "Binomische Formeln", "short": "Binomische Formeln", "tag": "Terme",
         "card": "Die drei Formeln, Erklärung mit Flächen, Trainer mit Lückenaufgaben, Kopfrechen-Trick, Quiz",

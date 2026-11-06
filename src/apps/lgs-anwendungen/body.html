@@ -1,0 +1,92 @@
+  <nav class="tabs" aria-label="Bereiche">
+    <a href="#verstehen" data-view="verstehen"><span class="n">1</span>Verstehen</a>
+    <a href="#aufstellen" data-view="aufstellen"><span class="n">2</span>Aufstellen</a>
+    <a href="#ueben" data-view="ueben"><span class="n">3</span>Üben</a>
+    <a href="#alltag" data-view="alltag"><span class="n">4</span>Im Alltag</a>
+    <a href="#quiz" data-view="quiz"><span class="n">5</span>Quiz</a>
+  </nav>
+
+  <section class="view" id="view-verstehen">
+    <div class="einfach">
+      <span class="eyebrow">Einfach erklärt</span>
+      <p>Bei Textaufgaben mit <strong>zwei Unbekannten</strong> braucht man <strong>zwei Informationen</strong>. Jede Information wird zu einer Gleichung. Das Gleichungssystem löst man mit einem der drei Verfahren.</p>
+    </div>
+    <div class="panel stack">
+      <h3>Fünf Schritte</h3>
+      <ol class="plan">
+        <li><div><strong>Variablen festlegen</strong><br><span class="small muted">„<i>e</i>: Anzahl Erwachsene, <i>k</i>: Anzahl Kinder“</span></div></li>
+        <li><div><strong>Gleichungen aufstellen</strong><br><span class="small muted">Jede Information im Text liefert eine Gleichung.</span></div></li>
+        <li><div><strong>LGS lösen</strong><br><span class="small muted">Gleichsetzen, Einsetzen oder Addieren.</span></div></li>
+        <li><div><strong>Am Text prüfen</strong><br><span class="small muted">Passt die Lösung zu beiden Angaben? Ist sie sinnvoll (keine halben Personen, keine negativen Preise)?</span></div></li>
+        <li><div><strong>Antwortsatz</strong><br><span class="small muted">„Es waren 3 Erwachsene und 5 Kinder.“</span></div></li>
+      </ol>
+    </div>
+    <div class="grid-2">
+      <div class="panel stack">
+        <h3>Beispiel: Eintritt</h3>
+        <p class="small">8 Personen zahlen zusammen 52 €. Erwachsene zahlen 9 €, Kinder 5 €.</p>
+        <p class="small math">I: <i>e</i> + <i>k</i> = 8<br>II: 9<i>e</i> + 5<i>k</i> = 52</p>
+        <p class="small">I · (−5) + II: <span class="math">4<i>e</i> = 12 ⇒ <i>e</i> = 3, <i>k</i> = 5</span>. 3 Erwachsene, 5 Kinder.</p>
+      </div>
+      <div class="panel stack">
+        <h3>Typische Signalwörter</h3>
+        <ul class="list small">
+          <li>„zusammen“, „insgesamt“ → Summe</li>
+          <li>„… mehr als …“ → <span class="math"><i>a</i> = <i>b</i> + …</span></li>
+          <li>„doppelt so viele“ → <span class="math"><i>a</i> = 2<i>b</i></span></li>
+          <li>„Unterschied“ → Differenz</li>
+          <li>„pro Stück“, „je“ → Faktor vor der Variablen</li>
+        </ul>
+      </div>
+    </div>
+    <div class="panel stack">
+      <h3>Typische Fehler</h3>
+      <ul class="list small">
+        <li>Einheiten gemischt (ct und €, min und h).</li>
+        <li>„3 mehr als“ falsch herum aufgestellt.</li>
+        <li>Lösung nicht am Text geprüft, nur an den Gleichungen.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="view" id="view-aufstellen" hidden>
+    <div class="stack">
+      <span class="eyebrow">Modellieren</span>
+      <h2>Welches Gleichungssystem passt?</h2>
+      <p class="muted">Lies den Text und wähle das passende Gleichungssystem. Das ist der wichtigste Schritt.</p>
+    </div>
+    <div class="panel stack"><p class="story" id="aText"></p><div class="opts" id="aOpts"></div><p id="aFb" class="small" aria-live="polite"></p><div class="row"><button type="button" class="primary" id="aNext">Nächste Aufgabe</button><span class="score-line" id="aScore"></span></div></div>
+  </section>
+
+  <section class="view" id="view-ueben" hidden>
+    <div class="stack">
+      <span class="eyebrow">Trainer</span>
+      <h2>Textaufgaben lösen</h2>
+      <p class="muted">Gib die beiden gesuchten Zahlen in der gefragten Reihenfolge ein, z. B. <code>3; 5</code>.</p>
+    </div>
+    <div id="trainer" class="stack"></div>
+  </section>
+
+  <section class="view" id="view-alltag" hidden>
+    <div class="stack">
+      <span class="eyebrow">Im Alltag</span>
+      <h2>Wo Gleichungssysteme stecken</h2>
+    </div>
+    <div class="grid-2">
+      <div class="panel stack"><span class="eyebrow">Einkauf</span><h3>Einzelpreise aus Kassenbons</h3><p class="small">Zwei Bons mit denselben Artikeln in anderen Mengen verraten die Einzelpreise.</p></div>
+      <div class="panel stack"><span class="eyebrow">Küche</span><h3>Mischungen</h3><p class="small">Wie viel Saft (100 %) und Schorle (40 %) ergeben 2 l mit 70 % Saft? Menge und Saftmenge sind die zwei Gleichungen.</p></div>
+      <div class="panel stack"><span class="eyebrow">Verträge</span><h3>Tarife und Abos</h3><p class="small">Grundgebühr plus Preis pro Einheit: Der Schnittpunkt zeigt, ab wann sich ein Tarif lohnt.</p></div>
+      <div class="panel stack"><span class="eyebrow">Unterwegs</span><h3>Treffpunkte</h3><p class="small">Zwei Fahrzeuge fahren aufeinander zu: Wo und wann treffen sie sich?</p></div>
+      <div class="panel stack"><span class="eyebrow">Chemie</span><h3>Reaktionsgleichungen</h3><p class="small">Später im Chemieunterricht: Koeffizienten ausgleichen ist ein Gleichungssystem.</p></div>
+      <div class="panel stack"><span class="eyebrow">Wirtschaft</span><h3>Gewinnschwelle</h3><p class="small">Kosten und Einnahmen als Geraden: Ab dem Schnittpunkt macht ein Verkaufsstand Gewinn.</p></div>
+    </div>
+  </section>
+
+  <section class="view" id="view-quiz" hidden>
+    <div class="stack">
+      <span class="eyebrow">Selbsttest</span>
+      <h2>Quiz</h2>
+      <div class="progress-line"><div class="bar" aria-hidden="true"><i id="qBar"></i></div><span class="score-line" id="qProgress"></span></div>
+    </div>
+    <div class="panel quiz" id="quizBox" aria-live="polite"></div>
+  </section>

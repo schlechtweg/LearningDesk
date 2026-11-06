@@ -1758,6 +1758,56 @@ SHEETS["additionsverfahren"] = dict(title="Additionsverfahren", eyebrow="Mathema
     </div>
   </div>''')
 
+SHEETS["lgs-anwendungen"] = dict(title="Anwendungen linearer Gleichungssysteme", eyebrow="Mathematik · Klasse 8 · Lineare Gleichungssysteme", accent=M8, body=f'''
+  <div class="kern">Zwei Unbekannte brauchen <strong>zwei Informationen</strong>. Jede Information aus dem Text wird zu einer Gleichung. Die Lösung des LGS wird am <strong>Text</strong> geprüft und in einem <strong>Antwortsatz</strong> notiert.</div>
+  <div class="cols">
+    <div class="box">
+      <h2>Fünf Schritte</h2>
+      <ol>
+        <li>Variablen festlegen (mit Einheit).</li>
+        <li>Zwei Gleichungen aufstellen.</li>
+        <li>LGS lösen (Gleichsetzen, Einsetzen, Addieren).</li>
+        <li>Am Text prüfen: sinnvoll?</li>
+        <li>Antwortsatz schreiben.</li>
+      </ol>
+    </div>
+    <div class="box">
+      <h2>Vom Text zur Gleichung</h2>
+      <ul>
+        <li>„zusammen 12“: {m("<i>a</i> + <i>b</i> = 12")}</li>
+        <li>„3 mehr als“: {m("<i>a</i> = <i>b</i> + 3")}</li>
+        <li>„doppelt so viele“: {m("<i>a</i> = 2<i>b</i>")}</li>
+        <li>„je 5 €“: {m("5<i>a</i>")}</li>
+      </ul>
+    </div>
+    <div class="box full">
+      <h2>Typische Aufgabenarten</h2>
+      <table>
+        <tr><th>Art</th><th>Gleichung I</th><th>Gleichung II</th></tr>
+        <tr><td>Eintritt: 8 Personen, 52 €</td><td>{m("<i>e</i> + <i>k</i> = 8")}</td><td>{m("9<i>e</i> + 5<i>k</i> = 52")}</td></tr>
+        <tr><td>Köpfe und Beine</td><td>{m("<i>h</i> + <i>z</i> = 20")}</td><td>{m("2<i>h</i> + 4<i>z</i> = 56")}</td></tr>
+        <tr><td>Mischung: 10 l mit 40 %</td><td>{m("<i>x</i> + <i>y</i> = 10")}</td><td>{m("0,2<i>x</i> + 0,6<i>y</i> = 4")}</td></tr>
+        <tr><td>Tarif / Gewinnschwelle</td><td>{m("<i>y</i> = 0,1<i>x</i> + 8")}</td><td>{m("<i>y</i> = 0,3<i>x</i>")}</td></tr>
+      </table>
+    </div>
+    <div class="box">
+      <h2>Im Alltag</h2>
+      <ul>
+        <li>Einzelpreise aus zwei Kassenbons.</li>
+        <li>Welcher Handy- oder Stromtarif lohnt sich?</li>
+        <li>Wann trägt sich ein Verkaufsstand?</li>
+      </ul>
+    </div>
+    <div class="box warn">
+      <h2>Typische Fehler</h2>
+      <ul>
+        <li>„3 mehr als“ falsch herum.</li>
+        <li>Einheiten gemischt (€ und ct).</li>
+        <li>Unsinnige Lösung (3,5 Personen) nicht bemerkt.</li>
+      </ul>
+    </div>
+  </div>''')
+
 OUT = sys.argv[1] if len(sys.argv) > 1 else os.path.join(os.path.dirname(__file__), "_build")
 os.makedirs(OUT, exist_ok=True)
 shutil.copyfile(os.path.join(os.path.dirname(os.path.abspath(__file__)), "factsheet.css"), os.path.join(OUT, "factsheet.css"))
