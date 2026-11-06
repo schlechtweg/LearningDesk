@@ -1408,6 +1408,81 @@ def baumdiagramme():
     return L
 
 
+
+def unabhaengig():
+    r = random.Random(95)
+    L = {1: [], 2: [], 3: []}
+    for i in range(60):
+        pa, pb = r.choice([Fr(1, 2), Fr(1, 3), Fr(1, 4), Fr(3, 5), Fr(2, 3)]), r.choice([Fr(1, 2), Fr(1, 6), Fr(1, 5), Fr(3, 4), Fr(2, 5)])
+        L[1].append((f"A, B unabhängig, P(A) = {m(fnum(pa))}, P(B) = {m(fnum(pb))}. P(A und nicht B)?", m(f"{fnum(pa)} · {fnum(1 - pb)} = <b>{fnum(pa * (1 - pb))}</b>")))
+    for i in range(140):
+        t = i % 3
+        if t == 0:
+            a, b = r.choice([Fr(1, 2), Fr(1, 3), Fr(1, 4), Fr(2, 5), Fr(3, 10)]), r.choice([Fr(1, 2), Fr(1, 6), Fr(1, 5), Fr(3, 4), Fr(2, 3)])
+            L[1].append((f"A und B unabhängig, P(A) = {m(fnum(a))}, P(B) = {m(fnum(b))}. P(A und B)?", m(f"{fnum(a)} · {fnum(b)} = <b>{fnum(a * b)}</b>")))
+        elif t == 1:
+            pa, pb = r.choice([0.2, 0.3, 0.4, 0.5, 0.6, 0.7]), r.choice([0.1, 0.2, 0.25, 0.4, 0.5, 0.8])
+            L[1].append((f"Unabhängig: P(A) = {de(pa, 2)}, P(B) = {de(pb, 2)}. P(A und B)?", m(f"{de(pa, 2)} · {de(pb, 2)} = <b>{de(pa * pb, 4)}</b>")))
+        else:
+            e = r.choice([("zweimal würfeln", "unabhängig"), ("Münze und Würfel werfen", "unabhängig"), ("zwei Kugeln ohne Zurücklegen ziehen", "abhängig"),
+                          ("zwei Kugeln mit Zurücklegen ziehen", "unabhängig"), ("„Es regnet“ und „Schirm dabei“", "abhängig"), ("„viel geübt“ und „gute Note“", "abhängig")])
+            L[1].append((f"Abhängig oder unabhängig: {e[0]}?", f"<b>{e[1]}</b>"))
+    for i in range(140):
+        t = i % 3
+        n = r.choice([100, 200, 400, 500])
+        pa, pb = r.choice([0.2, 0.25, 0.3, 0.4, 0.5]), r.choice([0.2, 0.3, 0.4, 0.5, 0.6])
+        if t == 0:
+            k = n * pa * pb
+            if abs(k - round(k)) > 1e-9:
+                continue
+            L[2].append((f"{n} Personen, {de(n * pa, 0)} mit A, {de(n * pb, 0)} mit B. Wie viele haben beides, wenn A und B unabhängig sind?", m(f"{n} · {de(pa, 2)} · {de(pb, 2)} = <b>{de(k, 0)}</b>")))
+        elif t == 1:
+            dv = r.choice([0, 0, -0.04, 0.05, 0.06])
+            pab = round(pa * pb + dv, 3)
+            ans = "unabhängig" if dv == 0 else "abhängig"
+            L[2].append((f"P(A) = {de(pa, 2)}, P(B) = {de(pb, 2)}, P(A und B) = {de(pab, 3)}. Unabhängig?", f"{de(pa, 2)} · {de(pb, 2)} = {de(pa * pb, 3)} ⇒ <b>{ans}</b>"))
+        else:
+            na = int(n * pa)
+            a = r.randint(1, na - 1)
+            c = r.randint(1, n - na - 1)
+            L[2].append((f"Vierfeldertafel ({n} Personen): {na} mit A, davon {a} auch mit B; {c} haben B, aber nicht A. Ergänze: Wie viele haben weder A noch B?", f"{n} − {na} − {c} = <b>{n - na - c}</b>"))
+    for i in range(60):
+        t = i % 3
+        if t == 0:
+            ps = [r.choice([Fr(1, 2), Fr(2, 5), Fr(3, 5), Fr(7, 10), Fr(4, 5)]) for _ in range(3)]
+            q = ps[0] * ps[1] * ps[2]
+            L[3].append((f"Drei unabhängige Ampeln sind mit {', '.join(_pct(p_) for p_ in ps)} grün. Wie groß ist die Wahrscheinlichkeit, dass alle drei grün sind?", m(" · ".join(de(float(p_), 1) for p_ in ps) + f" = <b>{de(float(q), 3)}</b>")))
+        elif t == 1:
+            ev = r.choice([("„erster Wurf gerade“", "„Augensumme 7“", Fr(3, 36), Fr(1, 2), Fr(1, 6), "unabhängig"), ("„Pasch“", "„Augensumme 7“", Fr(0), Fr(1, 6), Fr(1, 6), "abhängig"),
+                           ("„erster Wurf 6“", "„Augensumme 12“", Fr(1, 36), Fr(1, 6), Fr(1, 36), "abhängig"), ("„erster Wurf 1“", "„zweiter Wurf 1“", Fr(1, 36), Fr(1, 6), Fr(1, 6), "unabhängig")])
+            assert (ev[2] == ev[3] * ev[4]) == (ev[5] == "unabhängig")
+            L[3].append((f"Zwei Würfel: Sind {ev[0]} und {ev[1]} unabhängig? Prüfe rechnerisch.", f"P(A und B) = {m(fnum(ev[2]))}, P(A) · P(B) = {m(fnum(ev[3] * ev[4]))} ⇒ <b>{ev[5]}</b>"))
+        else:
+            k = r.randint(2, 6)
+            L[3].append((f"Eine Münze wird {k}-mal geworfen. Wie groß ist die Wahrscheinlichkeit, dass jedes Mal Kopf kommt?", m(f"(½)<sup>{k}</sup> = <b>1/{2 ** k}</b>")))
+    for i in range(70):
+        t = i % 4
+        if t == 0:
+            a1, n1, a2, n2 = r.choice([(12, 30, 28, 70), (18, 60, 42, 140), (10, 40, 30, 120), (24, 80, 21, 70), (30, 50, 20, 100), (9, 30, 35, 70)])
+            s1, s2 = Fr(a1, n1), Fr(a2, n2)
+            ans = "unabhängig" if s1 == s2 else "abhängig"
+            L[3].append((f"Unter {n1} Personen mit A haben {a1} auch B, unter {n2} Personen ohne A haben {a2} B. Sind A und B unabhängig? Begründe mit Anteilen.", f"{a1}/{n1} = {_pct(s1)}, {a2}/{n2} = {_pct(s2)} ⇒ <b>{ans}</b>"))
+        elif t == 1:
+            p_ = r.choice([Fr(1, 100), Fr(2, 100), Fr(5, 100)])
+            L[3].append((f"Zwei unabhängige Rauchmelder fallen jeweils mit {_pct(p_)} aus. Wie groß ist die Wahrscheinlichkeit, dass mindestens einer funktioniert?", f"1 − {de(float(p_), 2)} · {de(float(p_), 2)} = <b>{de(float(1 - p_ * p_), 4)}</b>"))
+        elif t == 2:
+            L[3].append(("Begründe: Zwei unvereinbare Ereignisse A und B mit P(A) > 0 und P(B) > 0 sind nicht unabhängig.", "P(A und B) = 0, aber P(A) · P(B) > 0. Die Produktbedingung ist <b>nicht erfüllt</b>."))
+        else:
+            n = r.choice([200, 400])
+            pa, pb = r.choice([0.25, 0.5]), r.choice([0.2, 0.4])
+            ab, a_nb = int(n * pa * pb), int(n * pa * (1 - pb))
+            nab, nanb = int(n * (1 - pa) * pb), int(n * (1 - pa) * (1 - pb))
+            assert ab + a_nb + nab + nanb == n
+            L[3].append((f"Erstelle eine Vierfeldertafel für {n} Personen mit P(A) = {de(pa, 2)} und P(B) = {de(pb, 2)}, in der A und B unabhängig sind.",
+                         f"A und B: <b>{ab}</b>, A und nicht B: <b>{a_nb}</b>, nicht A und B: <b>{nab}</b>, weder noch: <b>{nanb}</b>"))
+    return L
+
+
 M8, PH = "#1f6e8c", "#b4531f"
 TOPICS = {
     "osmose": ({"title": "Osmose", "eyebrow": "Biologie · Klasse 11", "accent": "#0d6f74", "cols": [1, 1, 1], "sol_cols": [1, 1, 1]}, osmose),
@@ -1421,6 +1496,7 @@ TOPICS = {
     "zufallsexperimente": ({"title": "Zufallsexperimente und Häufigkeiten", "eyebrow": "Mathematik · Klasse 8", "accent": M8, "cols": [2, 2, 1], "sol_cols": [2, 2, 1]}, zufallsexperimente),
     "laplace": ({"title": "Laplace-Experimente und Anzahlen", "eyebrow": "Mathematik · Klasse 8", "accent": M8, "cols": [2, 2, 1], "sol_cols": [3, 2, 1]}, laplace),
     "baumdiagramme": ({"title": "Baumdiagramme und Pfadregeln", "eyebrow": "Mathematik · Klasse 8", "accent": M8, "cols": [2, 2, 1], "sol_cols": [3, 2, 2]}, baumdiagramme),
+    "unabhaengige-ereignisse": ({"title": "Unabhängige Ereignisse", "eyebrow": "Mathematik · Klasse 8", "accent": M8, "cols": [2, 2, 1], "sol_cols": [2, 2, 1]}, unabhaengig),
     "binomische-formeln": ({"title": "Binomische Formeln", "eyebrow": "Mathematik · Klasse 8", "accent": M8, "cols": 2, "sol_cols": 2}, binomische_formeln),
     "bruchterme": ({"title": "Bruchterme", "eyebrow": "Mathematik · Klasse 8", "accent": "#2d6a4f", "cols": 3, "sol_cols": 3}, bruchterme),
     "ausmultiplizieren-faktorisieren": ({"title": "Ausmultiplizieren und Faktorisieren", "eyebrow": "Mathematik · Klasse 8", "accent": M8, "cols": 3, "sol_cols": 3}, ausmultiplizieren),

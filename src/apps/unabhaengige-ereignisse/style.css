@@ -1,0 +1,8 @@
+/* Two-way table with editable inner cells */
+table.vt input { width: 5.2em; font-family: var(--font-mono); text-align: right; padding: 4px 6px; }
+table.vt td, table.vt th { text-align: center; }
+table.vt .sum { font-family: var(--font-mono); font-weight: 700; }
+.state { font-family: var(--font-display); font-size: 1.3rem; font-weight: 800; margin: 0; }
+.state.ok { color: var(--good); } .state.no { color: var(--bad); }
+#vSel { width: 100%; max-width: 420px; }
+table.vt th, table.vt td { overflow-wrap: normal; hyphens: manual; word-break: keep-all; }

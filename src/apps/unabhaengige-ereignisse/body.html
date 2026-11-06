@@ -1,0 +1,111 @@
+  <nav class="tabs" aria-label="Bereiche">
+    <a href="#verstehen" data-view="verstehen"><span class="n">1</span>Verstehen</a>
+    <a href="#tafel" data-view="tafel"><span class="n">2</span>Vierfeldertafel</a>
+    <a href="#ueben" data-view="ueben"><span class="n">3</span>Üben</a>
+    <a href="#alltag" data-view="alltag"><span class="n">4</span>Im Alltag</a>
+    <a href="#quiz" data-view="quiz"><span class="n">5</span>Quiz</a>
+  </nav>
+
+  <section class="view" id="view-verstehen">
+    <div class="einfach">
+      <span class="eyebrow">Einfach erklärt</span>
+      <p>Zwei Ereignisse <span class="math"><i>A</i></span> und <span class="math"><i>B</i></span> sind <strong>unabhängig</strong>, wenn das Eintreten von <span class="math"><i>A</i></span> nichts an der Wahrscheinlichkeit von <span class="math"><i>B</i></span> ändert. Beispiel: Ob eine Münze Kopf zeigt, hat keinen Einfluss darauf, was ein Würfel zeigt.</p>
+    </div>
+    <div class="merksatz">
+      <span class="eyebrow">Merke</span>
+      <p><span class="math"><i>A</i></span> und <span class="math"><i>B</i></span> sind unabhängig, wenn gilt: <span class="math"><i>P</i>(<i>A</i> und <i>B</i>) = <i>P</i>(<i>A</i>) · <i>P</i>(<i>B</i>)</span></p>
+    </div>
+    <div class="grid-2">
+      <div class="panel stack">
+        <h3>Unabhängig</h3>
+        <ul class="list small">
+          <li>Münze und Würfel gleichzeitig werfen</li>
+          <li>zweimal würfeln</li>
+          <li>Ziehen <strong>mit</strong> Zurücklegen</li>
+        </ul>
+        <p class="small math"><i>P</i>(Kopf und 6) = 1/2 · 1/6 = 1/12</p>
+      </div>
+      <div class="panel stack">
+        <h3>Abhängig</h3>
+        <ul class="list small">
+          <li>Ziehen <strong>ohne</strong> Zurücklegen: Die erste Kugel verändert die Urne.</li>
+          <li>„Es regnet“ und „Jemand trägt einen Schirm“.</li>
+          <li>„Viel lernen“ und „gute Note“.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="grid-2">
+      <div class="panel stack">
+        <h3>Die Vierfeldertafel</h3>
+        <p class="small">Sie sortiert Daten nach zwei Merkmalen. Die Randspalte und die Randzeile enthalten die Summen.</p>
+        <table class="data"><tr><th></th><th>B</th><th>nicht B</th><th>Summe</th></tr><tr><th>A</th><td>12</td><td>18</td><td>30</td></tr><tr><th>nicht A</th><td>28</td><td>42</td><td>70</td></tr><tr><th>Summe</th><td>40</td><td>60</td><td>100</td></tr></table>
+      </div>
+      <div class="panel stack">
+        <h3>Unabhängigkeit prüfen</h3>
+        <p class="small">Im Beispiel: <span class="math"><i>P</i>(<i>A</i>) = 0,3</span>, <span class="math"><i>P</i>(<i>B</i>) = 0,4</span>, <span class="math"><i>P</i>(<i>A</i> und <i>B</i>) = 0,12 = 0,3 · 0,4</span>: <strong>unabhängig</strong>.</p>
+        <p class="small">Anschaulich: Unter den <span class="math"><i>A</i></span>-Fällen ist der Anteil von <span class="math"><i>B</i></span> genauso groß (12 von 30 = 40 %) wie unter den anderen (28 von 70 = 40 %).</p>
+      </div>
+    </div>
+    <div class="panel stack">
+      <h3>Typische Fehler</h3>
+      <ul class="list small">
+        <li>„Unabhängig“ mit „unvereinbar“ verwechselt. Unvereinbare Ereignisse (können nicht zusammen eintreten) sind gerade <strong>nicht</strong> unabhängig.</li>
+        <li>Bei echten Umfragedaten ist die Gleichung selten <strong>ganz genau</strong> erfüllt. Kleine Abweichungen sind Zufall.</li>
+        <li>Unabhängigkeit heißt nicht „hat nichts miteinander zu tun“ im Alltagssinn, sondern ist eine Rechenbedingung.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="view" id="view-tafel" hidden>
+    <div class="stack">
+      <span class="eyebrow">Ausprobieren</span>
+      <h2>Vierfeldertafel auswerten</h2>
+      <p class="muted">Trage Anzahlen ein oder wähle ein Beispiel. Die App prüft, ob die beiden Merkmale unabhängig sind.</p>
+    </div>
+    <div class="row"><select id="vSel" aria-label="Beispiel"></select></div>
+    <div class="stack">
+      <div class="panel stack">
+        <div class="table-scroll"><table class="data vt" id="vTab"></table></div>
+        <p class="small muted" id="vLegend"></p>
+      </div>
+      <div class="panel stack">
+        <dl class="readout" id="vRo"></dl>
+        <p class="state" id="vState"></p>
+      </div>
+    </div>
+    <div class="einfach"><p id="vText"></p></div>
+  </section>
+
+  <section class="view" id="view-ueben" hidden>
+    <div class="stack">
+      <span class="eyebrow">Trainer</span>
+      <h2>Unabhängigkeit prüfen und nutzen</h2>
+      <p class="muted">Wahrscheinlichkeiten als Dezimalzahl, Bruch oder in Prozent eingeben.</p>
+    </div>
+    <div id="trainer" class="stack"></div>
+  </section>
+
+  <section class="view" id="view-alltag" hidden>
+    <div class="stack">
+      <span class="eyebrow">Im Alltag</span>
+      <h2>Abhängig oder unabhängig?</h2>
+      <p class="muted">Mit Vierfeldertafeln prüft man in Umfragen und Studien, ob zwei Merkmale zusammenhängen.</p>
+    </div>
+    <div class="grid-2">
+      <div class="panel stack"><span class="eyebrow">Umfrage</span><h3>Handy und Schlaf</h3><p class="small">Schlafen Jugendliche, die abends lange am Handy sind, öfter schlecht? Eine Vierfeldertafel zeigt, ob der Anteil „schlecht geschlafen“ in beiden Gruppen gleich ist.</p></div>
+      <div class="panel stack"><span class="eyebrow">Spiele</span><h3>Glück hat kein Gedächtnis</h3><p class="small">Würfe sind unabhängig: Eine 6 im letzten Wurf macht eine 6 im nächsten weder wahrscheinlicher noch unwahrscheinlicher.</p></div>
+      <div class="panel stack"><span class="eyebrow">Technik</span><h3>Zwei Rauchmelder</h3><p class="small">Fallen zwei unabhängige Rauchmelder je mit 2 % aus, fallen beide nur mit <span class="math">0,02 · 0,02 = 0,0004</span> gleichzeitig aus. Darum hängt man zwei auf.</p></div>
+      <div class="panel stack"><span class="eyebrow">Medizin</span><h3>Studien</h3><p class="small">Ob ein Medikament wirkt, prüft man so: Ist der Anteil der Gesunden in der Gruppe mit Medikament größer als ohne? Sind die Anteile gleich, ist „gesund werden“ unabhängig vom Medikament.</p></div>
+      <div class="panel stack"><span class="eyebrow">Wetter</span><h3>Regen und Schirm</h3><p class="small">An Regentagen tragen viel mehr Menschen einen Schirm. „Regen“ und „Schirm“ sind also klar abhängig.</p></div>
+      <div class="panel stack"><span class="eyebrow">Schule</span><h3>Linkshänder und Mathenote</h3><p class="small">Sind Linkshänder besser in Mathe? Wenn der Anteil guter Noten bei Links- und Rechtshändern gleich ist, sind die Merkmale unabhängig.</p></div>
+    </div>
+  </section>
+
+  <section class="view" id="view-quiz" hidden>
+    <div class="stack">
+      <span class="eyebrow">Selbsttest</span>
+      <h2>Quiz</h2>
+      <div class="progress-line"><div class="bar" aria-hidden="true"><i id="qBar"></i></div><span class="score-line" id="qProgress"></span></div>
+    </div>
+    <div class="panel quiz" id="quizBox" aria-live="polite"></div>
+  </section>

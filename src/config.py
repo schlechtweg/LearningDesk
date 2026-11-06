@@ -135,6 +135,14 @@ TOPICS = [
         "fonts": "math", "first_view": "verstehen", "factsheet": "Factsheet als PDF ↓",
     },
     {
+        "slug": "unabhaengige-ereignisse", "grade": "8", "subject": "mathematik", "chapter": "II", "order": 4, "kit": True, "accent": ACCENT_MATH8,
+        "title": "Unabhängige Ereignisse", "short": "Unabhängige Ereignisse", "tag": "Wahrscheinlichkeit",
+        "card": "Produktbedingung, Vierfeldertafel zum Ausfüllen und Prüfen, abhängig oder unabhängig, Trainer, Quiz",
+        "description": "Interaktive Lernhilfe zu unabhängigen Ereignissen und Vierfeldertafeln (Mathematik, Klasse 8)",
+        "intro": "Beeinflusst ein Ereignis das andere? Mit der Produktbedingung und der Vierfeldertafel findest du es heraus.",
+        "fonts": "math", "first_view": "verstehen", "factsheet": "Factsheet als PDF ↓",
+    },
+    {
         "slug": "binomische-formeln", "grade": "8", "subject": "mathematik", "chapter": "I", "order": 4,
         "title": "Binomische Formeln", "short": "Binomische Formeln", "tag": "Terme",
         "card": "Die drei Formeln, Erklärung mit Flächen, Trainer mit Lückenaufgaben, Kopfrechen-Trick, Quiz",

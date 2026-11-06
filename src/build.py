@@ -122,7 +122,8 @@ def build_menus(sh):
         for s in config.SUBJECTS:
             names = [t["short"] for t in topics_of(g["id"]) if t["subject"] == s["id"]]
             if names:
-                parts.append(f'{s["title"]}: {", ".join(names)}')
+                # long lists are summarised so the grade card stays short
+                parts.append(f'{s["title"]}: {", ".join(names)}' if len(names) <= 6 else f'{s["title"]}: {len(names)} Themen')
         grade_cards.append({"href": g["page"], "color": g["color"], "big": g["id"], "title": g["title"],
                             "text": " · ".join(parts), "go": "Zu den Themen →"})
     tool_cards = [{"href": t["slug"] + ".html", "color": "--math", "big": t["icon"], "big_style": "font-size:2.2rem",

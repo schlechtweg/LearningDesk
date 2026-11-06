@@ -9,6 +9,9 @@ Schema **MAJOR.MINOR.PATCH**:
 
 Neue Version: oben einen Eintrag `## [x.y.z] – JJJJ-MM-TT` ergänzen und `python3 src/build.py` ausführen.
 
+## [1.7.0] – 2026-11-06
+- Kapitel II Zufallsversuche (Klasse 8): Zufallsexperimente und Häufigkeiten, Laplace-Experimente und Anzahlen, Baumdiagramme und Pfadregeln, Unabhängige Ereignisse; jeweils mit App, Factsheet und Übungs-PDF.
+
 ## [1.6.0] – 2026-11-06
 - Klasse 8 Mathematik ist nach den Kapiteln des Schulbuchs gegliedert (I Terme und Gleichungen bis V Ähnlichkeit).
 - Neues Thema I.1 Termstruktur und Termwerte (Rechenbaum zum Ausprobieren, Trainer, Quiz, Factsheet, Übungs-PDF).

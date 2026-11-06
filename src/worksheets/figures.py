@@ -555,10 +555,43 @@ def baumdiagramme():
     return {"title": "Baumdiagramm ergänzen", "stars": "★★☆", "task": (fig(False), task), "sol": (fig(True), sol)}
 
 
+def unabhaengig():
+    # two-way table: 200 pupils, smartphone > 1 h (A) and sleeps badly (B)
+    v = {"ab": 30, "anb": 50, "nab": 20, "nanb": 100}
+    rows = [("Handy > 1 h", "ab", "anb"), ("nicht", "nab", "nanb")]
+    a = v["ab"] + v["anb"]; b = v["ab"] + v["nab"]; n = sum(v.values())
+    assert n == 200 and (a, b) == (80, 50)
+    hidden = {"anb", "nab"}
+
+    def cell(x, y, val, show, given):
+        box = f'<rect x="{x}" y="{y}" width="62" height="24" rx="3" fill="#fff" stroke="#9aa4ad"/>'
+        if given:
+            return box + text(x + 31, y + 16, str(val), "ft")
+        return box + (text(x + 31, y + 16, str(val), "ft sol") if show else "")
+
+    def fig(show):
+        d = text(110, 18, "schläft schlecht", "ft small") + text(178, 18, "nicht", "ft small") + text(246, 18, "Summe", "ft small")
+        y = 26
+        for name, k1, k2 in rows:
+            d += text(8, y + 16, name, "ft small", "start")
+            d += cell(80, y, v[k1], show, k1 not in hidden) + cell(148, y, v[k2], show, k2 not in hidden) + cell(216, y, v[k1] + v[k2], show, False)
+            y += 30
+        d += text(8, y + 16, "Summe", "ft small", "start")
+        d += cell(80, y, b, show, False) + cell(148, y, n - b, show, False) + cell(216, y, n, show, True)
+        return svg("0 0 285 120", d)
+    task = ('<p>Umfrage unter 200 Jugendlichen. Ergänze die Vierfeldertafel.</p>'
+            '<p class="q">Anteil „schläft schlecht“ bei Handy > 1 h: <span class="blank"></span> und bei den anderen: <span class="blank"></span></p>'
+            '<p class="q">Sind die Merkmale unabhängig? Begründe: <span class="blank wide"></span></p>')
+    sol = ('<p class="q">30/80 = <b>37,5 %</b>; 20/120 ≈ <b>16,7 %</b>.</p>'
+           '<p class="q"><b>Abhängig</b>: Die Anteile unterscheiden sich deutlich. Auch P(A und B) = 0,15 ≠ P(A) · P(B) = 0,4 · 0,25 = 0,1.</p>')
+    assert Fr(30, 200) != Fr(80, 200) * Fr(50, 200)
+    return {"title": "Vierfeldertafel ergänzen", "stars": "★★☆", "task": (fig(False), task), "sol": (fig(True), sol)}
+
+
 FIGS = {
     "osmose": osmose, "natrium-kalium-pumpe": nak, "symport-antiport": symport, "endocytose-exocytose": endo,
     "ableiten": ableiten, "nervensystem": nerven, "auge": auge,
-    "termstruktur": termstruktur, "zufallsexperimente": zufallsexperimente, "laplace": laplace, "baumdiagramme": baumdiagramme, "binomische-formeln": binom, "bruchterme": bruchterme, "ausmultiplizieren-faktorisieren": ausmult, "terme-vereinfachen": terme,
+    "termstruktur": termstruktur, "zufallsexperimente": zufallsexperimente, "laplace": laplace, "baumdiagramme": baumdiagramme, "unabhaengige-ereignisse": unabhaengig, "binomische-formeln": binom, "bruchterme": bruchterme, "ausmultiplizieren-faktorisieren": ausmult, "terme-vereinfachen": terme,
     "gleichungen": gleichungen, "ungleichungen": ungleichungen,
     "druck": druck, "hydraulik": hydraulik, "schweredruck": schweredruck, "auftrieb": auftrieb, "luftdruck": luftdruck,
 }

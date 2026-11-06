@@ -1344,6 +1344,60 @@ SHEETS["baumdiagramme"] = dict(title="Baumdiagramme und Pfadregeln", eyebrow="Ma
     </div>
   </div>''')
 
+SHEETS["unabhaengige-ereignisse"] = dict(title="Unabhängige Ereignisse", eyebrow="Mathematik · Klasse 8 · Zufallsversuche", accent=M8, body=f'''
+  <div class="kern">Zwei Ereignisse <i>A</i> und <i>B</i> sind <strong>unabhängig</strong>, wenn das Eintreten von <i>A</i> die Wahrscheinlichkeit von <i>B</i> nicht verändert. Rechnerisch: {m("<i>P</i>(<i>A</i> und <i>B</i>) = <i>P</i>(<i>A</i>) · <i>P</i>(<i>B</i>)")}.</div>
+  <div class="cols">
+    <div class="box">
+      <h2>Unabhängig</h2>
+      <ul>
+        <li>Münze und Würfel: {m("<i>P</i>(Kopf und 6) = 1/2 · 1/6 = 1/12")}</li>
+        <li>zweimal würfeln, Ziehen <strong>mit</strong> Zurücklegen</li>
+        <li>zwei getrennte Rauchmelder</li>
+      </ul>
+    </div>
+    <div class="box">
+      <h2>Abhängig</h2>
+      <ul>
+        <li>Ziehen <strong>ohne</strong> Zurücklegen</li>
+        <li>„Regen“ und „Schirm dabei“</li>
+        <li>„viel geübt“ und „gute Note“</li>
+      </ul>
+    </div>
+    <div class="box full">
+      <h2>Vierfeldertafel</h2>
+      <table>
+        <tr><th></th><th>B</th><th>nicht B</th><th>Summe</th></tr>
+        <tr><th>A</th><td>12</td><td>18</td><td>30</td></tr>
+        <tr><th>nicht A</th><td>28</td><td>42</td><td>70</td></tr>
+        <tr><th>Summe</th><td>40</td><td>60</td><td>100</td></tr>
+      </table>
+      <p class="small">Prüfen: {m("<i>P</i>(<i>A</i>) = 0,3")}, {m("<i>P</i>(<i>B</i>) = 0,4")}, {m("<i>P</i>(<i>A</i> und <i>B</i>) = 0,12 = 0,3 · 0,4")} ⇒ <strong>unabhängig</strong>. Anschaulich: Der Anteil von B ist unter A (12 von 30 = 40 %) genauso groß wie unter nicht A (28 von 70 = 40 %).</p>
+    </div>
+    <div class="box">
+      <h2>So gehst du vor</h2>
+      <ol>
+        <li>Vierfeldertafel mit Summen ausfüllen.</li>
+        <li>{m("<i>P</i>(<i>A</i>)")}, {m("<i>P</i>(<i>B</i>)")} und {m("<i>P</i>(<i>A</i> und <i>B</i>)")} als relative Häufigkeiten bestimmen.</li>
+        <li>{m("<i>P</i>(<i>A</i>) · <i>P</i>(<i>B</i>)")} mit {m("<i>P</i>(<i>A</i> und <i>B</i>)")} vergleichen.</li>
+      </ol>
+    </div>
+    <div class="box">
+      <h2>Im Alltag</h2>
+      <ul>
+        <li>Zwei Rauchmelder (je 2 % Ausfall): beide aus {m("0,0004")}.</li>
+        <li>Umfragen und Studien: Hängt ein Merkmal mit einem anderen zusammen?</li>
+      </ul>
+    </div>
+    <div class="box warn full">
+      <h2>Typische Fehler</h2>
+      <ul>
+        <li><strong>Unabhängig</strong> mit <strong>unvereinbar</strong> verwechselt: Unvereinbare Ereignisse (mit P > 0) sind abhängig.</li>
+        <li>Bei echten Daten ist die Gleichung selten exakt erfüllt; kleine Abweichungen sind Zufall.</li>
+        <li>Summen in der Vierfeldertafel vergessen.</li>
+      </ul>
+    </div>
+  </div>''')
+
 OUT = sys.argv[1] if len(sys.argv) > 1 else os.path.join(os.path.dirname(__file__), "_build")
 os.makedirs(OUT, exist_ok=True)
 shutil.copyfile(os.path.join(os.path.dirname(os.path.abspath(__file__)), "factsheet.css"), os.path.join(OUT, "factsheet.css"))

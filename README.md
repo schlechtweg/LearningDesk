@@ -9,6 +9,10 @@ Interaktive Lern-Apps für die Schule, sortiert nach Klassenstufe. Alles läuft 
 | Klasse 8 · Biologie | Das Auge | Aufbau zum Antippen und Abfragen, Pupillenreflex, Nah- und Fernsicht mit Fachbegriffen, Fehlsichtigkeiten mit Brillen-Simulation, Trainer, Quiz |
 | Klasse 8 · Biologie | Das Nervensystem | Nervenzelle und Gehirn zum Antippen, Signalweg und Reflexbogen, Reaktionstest, Trainer, Quiz |
 | Klasse 8 · Mathematik (I) | Termstruktur und Termwerte | Termarten, KlaPoPS, Rechenbaum, Termwerte, Wertetabellen, Terme aufstellen, Quiz |
+| Klasse 8 · Mathematik (II) | Zufallsexperimente und Häufigkeiten | Begriffe, relative Häufigkeit, Gesetz der großen Zahlen, Simulation, Trainer, Quiz |
+| Klasse 8 · Mathematik (II) | Laplace-Experimente und Anzahlen | Laplace-Regel, Gegenereignis, Produktregel, Ereignis-Labor, Zählen, Trainer, Quiz |
+| Klasse 8 · Mathematik (II) | Baumdiagramme und Pfadregeln | Pfadregeln, mit/ohne Zurücklegen, „mindestens einmal“, interaktiver Baum, Trainer, Quiz |
+| Klasse 8 · Mathematik (II) | Unabhängige Ereignisse | Produktbedingung, Vierfeldertafel, Trainer, Quiz |
 | Klasse 8 · Mathematik | Binomische Formeln | Formeln, Flächenmodell, Trainer (Lücken, ausmultiplizieren, faktorisieren), Kopfrechen-Trick, Quiz |
 | Klasse 8 · Mathematik | Bruchterme | Definitionsmenge, Kürzen und Erweitern, Rechenregeln, Trainer, Quiz |
 | Klasse 8 · Mathematik | Ausmultiplizieren und Faktorisieren | Distributivgesetz, Klammer mal Klammer, Ausklammern, Flächenmodell, Trainer, Quiz |
