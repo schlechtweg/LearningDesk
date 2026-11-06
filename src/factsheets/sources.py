@@ -1448,6 +1448,57 @@ SHEETS["funktionsbegriff"] = dict(title="Funktionsbegriff und Darstellungen", ey
     </div>
   </div>''')
 
+SHEETS["eigenschaften-funktionen"] = dict(title="Eigenschaften von Funktionen", eyebrow="Mathematik · Klasse 8 · Funktionen", accent=M8, body=f'''
+  <div class="kern">Am Graphen kann man ablesen: wo er die <strong>Achsen</strong> schneidet, wo er <strong>steigt</strong> oder <strong>fällt</strong>, wo er <strong>Hoch-</strong> und <strong>Tiefpunkte</strong> hat und ob er <strong>symmetrisch</strong> ist.</div>
+  <div class="cols">
+    <div class="box">
+      <h2>Achsenschnittpunkte</h2>
+      <ul>
+        <li><strong>Nullstelle</strong>: {m("<i>f</i>(<i>x</i>) = 0")} lösen. Schnittpunkt {m("(<i>x</i> | 0)")}.</li>
+        <li><strong><i>y</i>-Achse</strong>: {m("(0 | <i>f</i>(0))")}.</li>
+        <li>{m("<i>f</i>(<i>x</i>) = 2<i>x</i> − 6")}: Nullstelle 3, <i>y</i>-Achse bei −6.</li>
+        <li>{m("<i>x</i><sup>2</sup> − 9")}: Nullstellen −3 und 3.</li>
+      </ul>
+    </div>
+    <div class="box">
+      <h2>Steigen und Fallen</h2>
+      <ul>
+        <li><strong>steigend</strong>: größeres <i>x</i> → größeres <i>f</i>(<i>x</i>).</li>
+        <li><strong>fallend</strong>: größeres <i>x</i> → kleineres <i>f</i>(<i>x</i>).</li>
+        <li>Lineare Funktion {m("<i>mx</i> + <i>b</i>")}: steigend für {m("<i>m</i> > 0")}, fallend für {m("<i>m</i> < 0")}.</li>
+        <li>Immer von <strong>links nach rechts</strong> lesen.</li>
+      </ul>
+    </div>
+    <div class="box">
+      <h2>Hoch- und Tiefpunkte</h2>
+      <p><strong>Tiefpunkt</strong>: von fallend zu steigend. <strong>Hochpunkt</strong>: von steigend zu fallend.</p>
+      <p class="small">{m("(<i>x</i> − <i>d</i>)<sup>2</sup> + <i>e</i>")} hat den Tiefpunkt {m("T(<i>d</i> | <i>e</i>)")}, {m("−(<i>x</i> − <i>d</i>)<sup>2</sup> + <i>e</i>")} den Hochpunkt {m("H(<i>d</i> | <i>e</i>)")}.</p>
+    </div>
+    <div class="box">
+      <h2>Symmetrie</h2>
+      <ul>
+        <li><strong>achsensymmetrisch zur <i>y</i>-Achse</strong>: {m("<i>f</i>(−<i>x</i>) = <i>f</i>(<i>x</i>)")}, z. B. {m("<i>x</i><sup>2</sup>")}, {m("<i>x</i><sup>4</sup> + 1")}.</li>
+        <li><strong>punktsymmetrisch zum Ursprung</strong>: {m("<i>f</i>(−<i>x</i>) = −<i>f</i>(<i>x</i>)")}, z. B. {m("<i>x</i><sup>3</sup>")}, {m("2<i>x</i>")}.</li>
+      </ul>
+    </div>
+    <div class="box">
+      <h2>Im Alltag</h2>
+      <ul>
+        <li>Temperaturkurve: Tiefpunkt morgens, Hochpunkt nachmittags.</li>
+        <li>Wurfparabel: Hochpunkt = höchster Punkt, Nullstelle = Landepunkt.</li>
+        <li>Gewinn = Einnahmen − Kosten: Nullstelle = Gewinnschwelle.</li>
+      </ul>
+    </div>
+    <div class="box warn">
+      <h2>Typische Fehler</h2>
+      <ul>
+        <li>Nullstelle mit <i>y</i>-Achsenabschnitt verwechselt.</li>
+        <li>Nullstelle ist eine <strong>Zahl</strong> (3), der Schnittpunkt ein <strong>Punkt</strong> (3 | 0).</li>
+        <li>Steigen/Fallen von rechts nach links gelesen.</li>
+      </ul>
+    </div>
+  </div>''')
+
 OUT = sys.argv[1] if len(sys.argv) > 1 else os.path.join(os.path.dirname(__file__), "_build")
 os.makedirs(OUT, exist_ok=True)
 shutil.copyfile(os.path.join(os.path.dirname(os.path.abspath(__file__)), "factsheet.css"), os.path.join(OUT, "factsheet.css"))

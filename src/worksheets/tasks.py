@@ -1553,6 +1553,72 @@ def funktionsbegriff():
     return L
 
 
+
+def eigenschaften():
+    r = random.Random(97)
+    L = {1: [], 2: [], 3: []}
+    for i in range(160):
+        t = i % 3
+        mm = r.choice([-5, -4, -3, -2, -1, 1, 2, 3, 4, 5])
+        x0 = r.randint(-6, 6)
+        b = -mm * x0
+        if t == 0:
+            L[1].append((f"Nullstelle von {m(f'<i>f</i>(<i>x</i>) = {_lin_html(mm, b)}')}?", m(f"<b><i>x</i> = {_n(x0)}</b>")))
+        elif t == 1:
+            bb = r.randint(-9, 9)
+            L[1].append((f"Schnittpunkt von {m(f'<i>f</i>(<i>x</i>) = {_lin_html(mm, bb)}')} mit der <i>y</i>-Achse?", m(f"<b>(0 | {_n(bb)})</b>")))
+        else:
+            bb = r.randint(-9, 9)
+            L[1].append((f"Ist {m(f'<i>f</i>(<i>x</i>) = {_lin_html(mm, bb)}')} steigend oder fallend?", f"<b>{'steigend' if mm > 0 else 'fallend'}</b>"))
+    for i in range(140):
+        t = i % 4
+        if t == 0:
+            k = r.randint(1, 6)
+            L[2].append((f"Nullstellen von {m(f'<i>f</i>(<i>x</i>) = <i>x</i><sup>2</sup> − {k * k}')}?", m(f"<b><i>x</i> = −{k}</b> und <b><i>x</i> = {k}</b>")))
+        elif t == 1:
+            p_, q = r.randint(-4, 4), r.randint(-5, 5)
+            body = f"(<i>x</i> {'+ ' + str(-p_) if p_ < 0 else '− ' + str(p_)})<sup>2</sup>" if p_ else "<i>x</i><sup>2</sup>"
+            body += (f" + {q}" if q > 0 else f" − {-q}" if q < 0 else "")
+            L[2].append((f"Tiefpunkt von {m(f'<i>f</i>(<i>x</i>) = {body}')}?", m(f"<b>T({_n(p_)} | {_n(q)})</b>")))
+        elif t == 2:
+            e = r.choice([("<i>x</i><sup>2</sup>", "achsensymmetrisch zur <i>y</i>-Achse"), ("<i>x</i><sup>3</sup>", "punktsymmetrisch zum Ursprung"), ("3<i>x</i>", "punktsymmetrisch zum Ursprung"),
+                          ("<i>x</i><sup>2</sup> − 5", "achsensymmetrisch zur <i>y</i>-Achse"), ("<i>x</i> + 2", "keine Symmetrie"), ("(<i>x</i> − 1)<sup>2</sup>", "keine Symmetrie zum Koordinatensystem"),
+                          ("<i>x</i><sup>4</sup> + <i>x</i><sup>2</sup>", "achsensymmetrisch zur <i>y</i>-Achse"), ("<i>x</i><sup>3</sup> + <i>x</i>", "punktsymmetrisch zum Ursprung")])
+            L[2].append((f"Symmetrie von {m(f'<i>f</i>(<i>x</i>) = {e[0]}')}?", f"<b>{e[1]}</b>"))
+        else:
+            k = r.randint(1, 5)
+            L[2].append((f"Wo steigt, wo fällt {m(f'<i>f</i>(<i>x</i>) = <i>x</i><sup>2</sup> + {k}')}?", f"fallend für <b><i>x</i> ≤ 0</b>, steigend für <b><i>x</i> ≥ 0</b>"))
+    for i in range(120):
+        t = i % 3
+        if t == 0:
+            a_, b_ = r.randint(1, 6), r.randint(1, 6)
+            L[2].append((f"Nullstellen von {m(f'<i>f</i>(<i>x</i>) = (<i>x</i> − {a_})(<i>x</i> + {b_})')}?", m(f"<b><i>x</i> = {a_}</b> und <b><i>x</i> = −{b_}</b>")))
+        elif t == 1:
+            mm, b_ = r.choice([2, 3, 4, 5, -2, -3, -4]), r.randint(1, 9) * r.choice([1, -1])
+            if b_ % mm == 0:
+                continue
+            L[2].append((f"Nullstelle von {m(f'<i>f</i>(<i>x</i>) = {_lin_html(mm, b_)}')} (als Bruch)?", m(f"<b><i>x</i> = {fnum(Fr(-b_, mm))}</b>")))
+        else:
+            k = r.randint(1, 9)
+            L[2].append((f"Hochpunkt von {m(f'<i>f</i>(<i>x</i>) = −<i>x</i><sup>2</sup> + {k}')} und Nullstellen?", m(f"<b>H(0 | {k})</b>; Nullstellen <b>±√{k}</b>") if k not in (1, 4, 9) else m(f"<b>H(0 | {k})</b>; Nullstellen <b>±{int(k ** 0.5)}</b>")))
+    for i in range(80):
+        t = i % 4
+        if t == 0:
+            a, b = r.randint(2, 8), r.randint(20, 90)
+            # profit of a school kiosk: price a per roll, fixed costs b
+            L[3].append((f"Ein Schulkiosk verdient pro Brötchen {a} € und hat {b} € feste Kosten: {m(f'<i>G</i>(<i>x</i>) = {a}<i>x</i> − {b}')}. Bestimme die Nullstelle und deute sie.", f"<i>x</i> = {b}/{a} ≈ <b>{de(b / a, 1)}</b>: Ab {-(-b // a)} Brötchen macht der Kiosk Gewinn."))
+        elif t == 1:
+            k = r.randint(1, 4)
+            L[3].append((f"Zeige rechnerisch, dass {m(f'<i>f</i>(<i>x</i>) = <i>x</i><sup>2</sup> − {k}')} achsensymmetrisch zur <i>y</i>-Achse ist.", m(f"<i>f</i>(−<i>x</i>) = (−<i>x</i>)<sup>2</sup> − {k} = <i>x</i><sup>2</sup> − {k} = <i>f</i>(<i>x</i>)")))
+        elif t == 2:
+            p_, q = r.randint(1, 4), r.randint(1, 9)
+            L[3].append((f"Gib eine Funktion an, deren Graph eine Parabel mit dem Hochpunkt H({p_} | {q}) ist.", m(f"z. B. <b><i>f</i>(<i>x</i>) = −(<i>x</i> − {p_})<sup>2</sup> + {q}</b>")))
+        else:
+            c = r.randint(1, 9)
+            L[3].append((f"Begründe, warum {m(f'<i>f</i>(<i>x</i>) = <i>x</i><sup>2</sup> + {c}')} keine Nullstelle hat.", f"<i>x</i><sup>2</sup> ≥ 0, also ist <i>f</i>(<i>x</i>) ≥ {c} > 0 für alle <i>x</i>."))
+    return L
+
+
 M8, PH = "#1f6e8c", "#b4531f"
 TOPICS = {
     "osmose": ({"title": "Osmose", "eyebrow": "Biologie · Klasse 11", "accent": "#0d6f74", "cols": [1, 1, 1], "sol_cols": [1, 1, 1]}, osmose),
@@ -1568,6 +1634,7 @@ TOPICS = {
     "baumdiagramme": ({"title": "Baumdiagramme und Pfadregeln", "eyebrow": "Mathematik · Klasse 8", "accent": M8, "cols": [2, 2, 1], "sol_cols": [3, 2, 2]}, baumdiagramme),
     "unabhaengige-ereignisse": ({"title": "Unabhängige Ereignisse", "eyebrow": "Mathematik · Klasse 8", "accent": M8, "cols": [2, 2, 1], "sol_cols": [2, 2, 1]}, unabhaengig),
     "funktionsbegriff": ({"title": "Funktionsbegriff und Darstellungen", "eyebrow": "Mathematik · Klasse 8", "accent": M8, "cols": [3, 2, 1], "sol_cols": [3, 2, 1]}, funktionsbegriff),
+    "eigenschaften-funktionen": ({"title": "Eigenschaften von Funktionen", "eyebrow": "Mathematik · Klasse 8", "accent": M8, "cols": [2, 2, 1], "sol_cols": [3, 2, 1]}, eigenschaften),
     "binomische-formeln": ({"title": "Binomische Formeln", "eyebrow": "Mathematik · Klasse 8", "accent": M8, "cols": 2, "sol_cols": 2}, binomische_formeln),
     "bruchterme": ({"title": "Bruchterme", "eyebrow": "Mathematik · Klasse 8", "accent": "#2d6a4f", "cols": 3, "sol_cols": 3}, bruchterme),
     "ausmultiplizieren-faktorisieren": ({"title": "Ausmultiplizieren und Faktorisieren", "eyebrow": "Mathematik · Klasse 8", "accent": M8, "cols": 3, "sol_cols": 3}, ausmultiplizieren),

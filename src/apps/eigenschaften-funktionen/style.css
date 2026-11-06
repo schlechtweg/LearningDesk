@@ -1,0 +1,11 @@
+.plot text { font-family: var(--font-mono); font-size: 10.5px; fill: var(--muted); }
+.plot .gl { stroke: var(--line); stroke-width: 0.8; }
+.plot .ax { stroke: var(--ink); stroke-width: 1.4; }
+.plot .gr { fill: none; stroke: var(--accent); stroke-width: 2.5; }
+.plot .zero { fill: var(--bad); }
+.plot .yint { fill: #7b4bb0; }
+.plot .ext { fill: none; stroke: var(--ink); stroke-width: 2; }
+.plot .up { fill: rgba(31, 127, 75, 0.55); } .plot .down { fill: rgba(196, 86, 28, 0.55); }
+.plot .lab { font-family: var(--font-body); font-size: 11.5px; fill: var(--ink); }
+#eSel { width: 100%; }
+.controls > * { min-width: 0; }

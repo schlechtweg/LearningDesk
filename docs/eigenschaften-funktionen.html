@@ -1,0 +1,920 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<title>Eigenschaften von Funktionen</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Interaktive Lernhilfe zu Eigenschaften von Funktionen (Mathematik, Klasse 8)">
+<script>try{var t=localStorage.getItem("learningdesk.theme");if(t==="dark"||t==="light")document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=JetBrains+Mono:wght@400;600&family=STIX+Two+Text:ital,wght@0,400;0,600;1,400&display=swap">
+<style>
+/* LearnKit: shared layout for LearningDesk topic apps.
+   Colour tokens come in three blocks (light, dark via system, dark via switch);
+   each app sets its accent colours through config.py. */
+:root {
+  --bg: #f2f4f7;
+  --surface: #ffffff;
+  --surface-2: #e6ebf1;
+  --ink: #18222d;
+  --muted: #55626f;
+  --line: #d0d8e1;
+  --accent: #24539c;
+  --accent-ink: #ffffff;
+  --accent-soft: rgba(36, 83, 156, 0.12);
+  --c1: #2f5fb3;
+  --c2: #c4561c;
+  --c3: #3d8a4c;
+  --c4: #8e44ad;
+  --good: #1f7f4b;
+  --good-soft: rgba(31, 127, 75, 0.12);
+  --bad: #b5372e;
+  --bad-soft: rgba(181, 55, 46, 0.10);
+  --font-display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --font-body: "Atkinson Hyperlegible", "Segoe UI", system-ui, sans-serif;
+  --font-math: "STIX Two Text", "Cambria Math", "Times New Roman", serif;
+  --font-mono: "JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
+  --step--1: 0.875rem;
+  --step-0: 1.0625rem;
+  --step-1: 1.25rem;
+  --step-2: 1.6rem;
+  --step-3: 2.3rem;
+  --radius: 10px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0f1419; --surface: #161e26; --surface-2: #1e2832; --ink: #e4ebf1; --muted: #98a7b5; --line: #2b3946;
+    --accent-ink: #0b1220; --c1: #7ea6f0; --c2: #f09a5e; --c3: #6fc47f; --c4: #c39bdf;
+    --good: #5fd194; --good-soft: rgba(95, 209, 148, 0.14); --bad: #f07a70; --bad-soft: rgba(240, 122, 112, 0.14);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0f1419; --surface: #161e26; --surface-2: #1e2832; --ink: #e4ebf1; --muted: #98a7b5; --line: #2b3946;
+  --accent-ink: #0b1220; --c1: #7ea6f0; --c2: #f09a5e; --c3: #6fc47f; --c4: #c39bdf;
+  --good: #5fd194; --good-soft: rgba(95, 209, 148, 0.14); --bad: #f07a70; --bad-soft: rgba(240, 122, 112, 0.14);
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+body {
+  background: var(--bg); color: var(--ink);
+  font-family: var(--font-body); font-size: var(--step-0); line-height: 1.6;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 0 48px;
+}
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--bg); }
+.wrap { max-width: 980px; margin: 0 auto; }
+h1, h2, h3 { font-family: var(--font-display); line-height: 1.15; text-wrap: balance; margin: 0; }
+h1 { font-size: var(--step-3); font-weight: 800; letter-spacing: -0.02em; }
+h2 { font-size: var(--step-2); font-weight: 700; }
+h3 { font-size: var(--step-1); font-weight: 700; }
+p { margin: 0; max-width: 70ch; }
+.muted { color: var(--muted); }
+.small { font-size: var(--step--1); }
+.eyebrow { font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); }
+.c1 { color: var(--c1); font-weight: 700; } .c2 { color: var(--c2); font-weight: 700; } .c3 { color: var(--c3); font-weight: 700; } .c4 { color: var(--c4); font-weight: 700; }
+
+/* Header and tabs */
+header.top { padding-block: 28px 8px; display: grid; gap: 6px; }
+header.top p { color: var(--muted); }
+nav.tabs { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--bg); display: flex; gap: 6px; overflow-x: auto; padding-block: 12px; margin-bottom: 8px; border-bottom: 1px solid var(--line); }
+nav.tabs a { flex: 0 0 auto; text-decoration: none; color: var(--ink); font-weight: 700; padding: 8px 14px; border-radius: 999px; border: 1px solid var(--line); background: var(--surface); font-size: var(--step--1); }
+nav.tabs a .n { font-family: var(--font-mono); color: var(--muted); margin-right: 6px; font-weight: 400; }
+nav.tabs a[aria-current="page"] { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+nav.tabs a[aria-current="page"] .n { color: var(--accent-ink); opacity: 0.75; }
+a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible { outline: 3px solid var(--c2); outline-offset: 2px; }
+
+/* Layout blocks */
+section.view { display: grid; gap: 28px; padding-top: 16px; }
+.stack { display: grid; gap: 12px; }
+.panel { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 20px; min-width: 0; }
+.grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; align-items: start; }
+.grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 16px; align-items: start; }
+.merksatz { border-left: 4px solid var(--accent); background: var(--surface); padding: 16px 20px; border-radius: 0 var(--radius) var(--radius) 0; display: grid; gap: 4px; }
+.merksatz .eyebrow { display: block; margin-bottom: 4px; }
+.merksatz p { font-family: var(--font-display); font-size: var(--step-1); font-weight: 500; line-height: 1.35; }
+.einfach { background: var(--surface-2); border-radius: var(--radius); padding: 16px 20px; display: grid; gap: 8px; }
+.formel { font-family: var(--font-math); font-size: 1.5rem; line-height: 1.6; }
+ul.list, ol.list { margin: 0; padding-left: 1.2em; display: grid; gap: 8px; max-width: 70ch; }
+.sim-layout { display: grid; grid-template-columns: minmax(0, 1fr) 300px; gap: 16px; align-items: start; }
+@media (max-width: 800px) { .sim-layout { grid-template-columns: 1fr; } }
+.figure { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 10px; min-width: 0; }
+.figure svg { width: 100%; height: auto; display: block; }
+.table-scroll { overflow-x: auto; }
+table.data { width: 100%; border-collapse: collapse; font-size: var(--step--1); }
+table.data th, table.data td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--line); vertical-align: top; overflow-wrap: anywhere; hyphens: auto; }
+table.data th { font-family: var(--font-display); font-size: var(--step-0); }
+table.data td.num, table.data th.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+details.profi { border: 1px dashed var(--line); border-radius: var(--radius); padding: 12px 16px; background: var(--surface); }
+details.profi summary { cursor: pointer; font-weight: 700; font-size: var(--step--1); }
+details.profi[open] summary { margin-bottom: 8px; }
+details.profi p, details.profi li { font-size: var(--step--1); }
+
+/* Math typesetting */
+.math { font-family: var(--font-math); font-size: 1.12em; }
+.math i { font-style: italic; }
+.math sup { font-size: 0.7em; line-height: 0; }
+.frac { display: inline-flex; flex-direction: column; vertical-align: middle; text-align: center; margin: 0 2px; line-height: 1.2; font-size: 0.95em; }
+.frac > span { padding: 0 3px; }
+.frac > span:first-child { border-bottom: 1.5px solid currentColor; }
+.unit { font-family: var(--font-body); font-style: normal; font-size: 0.92em; }
+
+/* Controls */
+button, .btn { font: inherit; font-weight: 700; font-size: var(--step--1); cursor: pointer; text-decoration: none; display: inline-block; padding: 9px 16px; border-radius: 8px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); }
+button:hover, .btn:hover { border-color: var(--accent); }
+button.primary, .btn.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+button[aria-pressed="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+button:disabled { opacity: 0.5; cursor: default; }
+.row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+select, input[type="text"] { font: inherit; padding: 8px 10px; border-radius: 8px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); min-width: 0; max-width: 100%; }
+input[type="text"] { font-family: var(--font-mono); }
+input[type="range"] { width: 100%; accent-color: var(--accent); }
+label.lbl { display: flex; justify-content: space-between; gap: 8px; font-weight: 700; font-size: var(--step--1); }
+label.lbl output, label.lbl .val { font-family: var(--font-mono); font-weight: 400; }
+.controls { display: grid; gap: 14px; align-content: start; }
+.readout { display: grid; grid-template-columns: 1fr auto; gap: 4px 12px; font-size: var(--step--1); margin: 0; }
+.readout dt { color: var(--muted); }
+.readout dd { margin: 0; font-family: var(--font-mono); font-variant-numeric: tabular-nums; text-align: right; }
+.readout dd.big { font-size: 1.15rem; font-weight: 600; color: var(--accent); }
+.status-box { padding: 12px 14px; border-radius: 8px; background: var(--surface-2); font-size: var(--step--1); }
+
+/* Trainer */
+.modes { display: flex; flex-wrap: wrap; gap: 6px; }
+.task { font-size: var(--step-0); line-height: 1.7; }
+.task .math { font-size: 1.35em; }
+.answer-row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.answer-row input { flex: 1 1 220px; font-size: var(--step-0); }
+.answer-row label { white-space: nowrap; }
+.hint { font-size: var(--step--1); color: var(--muted); }
+.hint code, .feedback code { font-family: var(--font-mono); background: var(--surface-2); padding: 1px 5px; border-radius: 4px; }
+.feedback { padding: 14px 16px; border-radius: 8px; background: var(--surface-2); display: grid; gap: 8px; }
+.feedback ol { margin: 0; padding-left: 1.3em; display: grid; gap: 6px; }
+b.ok { color: var(--good); } b.no { color: var(--bad); }
+.score-line { font-family: var(--font-mono); font-size: var(--step--1); color: var(--muted); }
+
+/* Equation lab */
+.lab-eq { font-family: var(--font-math); font-size: 1.9rem; text-align: center; padding: 10px 4px; overflow-x: auto; }
+.lab-log { margin: 0; padding: 0; list-style: none; display: grid; gap: 2px; font-family: var(--font-math); font-size: 1.15rem; }
+.lab-log li { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 12px; padding: 4px 8px; border-bottom: 1px solid var(--line); }
+.lab-log li .op { font-family: var(--font-mono); font-size: 0.85rem; color: var(--accent); align-self: center; white-space: nowrap; }
+.lab-log li.flip .op { color: var(--bad); }
+.lab-msg.ok { color: var(--good); font-weight: 700; }
+.lab-msg.no { color: var(--bad); }
+
+/* Quiz */
+.progress-line { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+.bar { flex: 1 1 200px; height: 8px; background: var(--surface-2); border-radius: 999px; overflow: hidden; }
+.bar i { display: block; height: 100%; background: var(--accent); width: 0; transition: width 0.3s; }
+.quiz { display: grid; gap: 16px; }
+.quiz .qtext { font-family: var(--font-display); font-size: var(--step-1); font-weight: 700; line-height: 1.3; }
+.quiz .opts { display: grid; gap: 8px; }
+.quiz .opts button { text-align: left; font-weight: 400; font-size: var(--step-0); padding: 12px 16px; display: flex; gap: 12px; align-items: center; }
+.quiz .opts button .k { font-family: var(--font-mono); color: var(--muted); }
+.quiz .opts button.right { border-color: var(--good); background: var(--good-soft); }
+.quiz .opts button.wrong { border-color: var(--bad); background: var(--bad-soft); }
+.score-big { font-family: var(--font-display); font-size: 3.2rem; font-weight: 800; line-height: 1; }
+
+/* Prediction cards ("Was passiert, wenn ...") */
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
+.card { display: grid; gap: 10px; align-content: start; }
+.card .ctx { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+.card .opts { display: grid; gap: 6px; }
+.card .opts button { text-align: left; font-weight: 400; }
+.card .opts button.right { border-color: var(--good); background: var(--good-soft); font-weight: 700; }
+.card .opts button.wrong { border-color: var(--bad); background: var(--bad-soft); }
+.card .answer { font-size: var(--step--1); padding: 12px; border-radius: 8px; background: var(--surface-2); }
+
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+</style>
+<style>
+:root { --accent: #1f6e8c; --accent-soft: rgba(31, 110, 140, 0.12); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --accent: #5fb6d6; } }
+:root[data-theme="dark"] { --accent: #5fb6d6; }
+</style>
+<style>
+.plot text { font-family: var(--font-mono); font-size: 10.5px; fill: var(--muted); }
+.plot .gl { stroke: var(--line); stroke-width: 0.8; }
+.plot .ax { stroke: var(--ink); stroke-width: 1.4; }
+.plot .gr { fill: none; stroke: var(--accent); stroke-width: 2.5; }
+.plot .zero { fill: var(--bad); }
+.plot .yint { fill: #7b4bb0; }
+.plot .ext { fill: none; stroke: var(--ink); stroke-width: 2; }
+.plot .up { fill: rgba(31, 127, 75, 0.55); } .plot .down { fill: rgba(196, 86, 28, 0.55); }
+.plot .lab { font-family: var(--font-body); font-size: 11.5px; fill: var(--ink); }
+#eSel { width: 100%; }
+.controls > * { min-width: 0; }
+</style>
+<style>
+nav.crumbs ol { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 2px 6px; font-size: 0.85rem; line-height: 1.5; }
+nav.crumbs li { display: inline-flex; align-items: center; gap: 6px; min-width: 0; }
+nav.crumbs li + li::before { content: "›"; color: var(--muted); }
+nav.crumbs a { color: var(--accent); text-decoration: none; font-weight: 700; }
+nav.crumbs a:hover { text-decoration: underline; }
+nav.crumbs [aria-current] { color: var(--muted); }
+header.has-theme-toggle { position: relative; padding-right: 54px; }
+.theme-toggle { position: absolute; top: 18px; right: 0; width: 40px; height: 40px; border-radius: 999px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); font-size: 18px; line-height: 1; cursor: pointer; display: grid; place-items: center; padding: 0; }
+header:not(.top) > .theme-toggle { top: 0; }
+.theme-toggle:hover { border-color: var(--accent, currentColor); }
+.theme-toggle:focus-visible { outline: 3px solid var(--accent, currentColor); outline-offset: 2px; }
+
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <nav class="crumbs" aria-label="Brotkrümelnavigation"><ol><li><a href="index.html">LearningDesk</a></li><li><a href="klasse-8.html">Klasse 8</a></li><li><a href="klasse-8.html#mathematik">Mathematik</a></li><li><a href="#verstehen">Eigenschaften von Funktionen</a></li><li data-crumb-section hidden><span aria-current="location"></span></li></ol></nav>
+    <h1>Eigenschaften von Funktionen</h1>
+    <p>Was man am Graphen ablesen kann: Achsenschnittpunkte, Steigen und Fallen, höchste und tiefste Punkte und Symmetrie.</p>
+    <p style="display:flex; flex-wrap:wrap; gap:8px"><a class="btn" href="factsheets/eigenschaften-funktionen.pdf" target="_blank" rel="noopener">Factsheet als PDF ↓</a><a class="btn" href="aufgaben/eigenschaften-funktionen.pdf" target="_blank" rel="noopener">Übungsaufgaben als PDF ↓</a></p>
+  </header>
+  <nav class="tabs" aria-label="Bereiche">
+    <a href="#verstehen" data-view="verstehen"><span class="n">1</span>Verstehen</a>
+    <a href="#entdecken" data-view="entdecken"><span class="n">2</span>Eigenschaften entdecken</a>
+    <a href="#ueben" data-view="ueben"><span class="n">3</span>Üben</a>
+    <a href="#alltag" data-view="alltag"><span class="n">4</span>Im Alltag</a>
+    <a href="#quiz" data-view="quiz"><span class="n">5</span>Quiz</a>
+  </nav>
+
+  <section class="view" id="view-verstehen">
+    <div class="einfach">
+      <span class="eyebrow">Einfach erklärt</span>
+      <p>Am Graphen einer Funktion kann man vieles ablesen: Wo schneidet er die Achsen? Wo steigt oder fällt er? Wo ist der höchste oder tiefste Punkt? Ist er symmetrisch? Das sind die <strong>Eigenschaften</strong> einer Funktion.</p>
+    </div>
+    <div class="grid-2">
+      <div class="panel stack">
+        <h3>Schnittpunkte mit den Achsen</h3>
+        <ul class="list small">
+          <li><strong>Nullstelle</strong>: eine Stelle <span class="math"><i>x</i></span> mit <span class="math"><i>f</i>(<i>x</i>) = 0</span>. Dort schneidet oder berührt der Graph die <span class="math"><i>x</i></span>-Achse.</li>
+          <li><strong>Schnittpunkt mit der <span class="math"><i>y</i></span>-Achse</strong>: <span class="math">(0 | <i>f</i>(0))</span>.</li>
+          <li>Beispiel <span class="math"><i>f</i>(<i>x</i>) = 2<i>x</i> − 6</span>: Nullstelle 3, <span class="math"><i>y</i></span>-Achse bei −6.</li>
+        </ul>
+      </div>
+      <div class="panel stack">
+        <h3>Steigen und Fallen (Monotonie)</h3>
+        <ul class="list small">
+          <li><strong>steigend</strong>: Je größer <span class="math"><i>x</i></span>, desto größer <span class="math"><i>f</i>(<i>x</i>)</span>. Der Graph geht von links nach rechts nach oben.</li>
+          <li><strong>fallend</strong>: Der Graph geht nach unten.</li>
+          <li>Eine Parabel <span class="math"><i>x</i>²</span> fällt für <span class="math"><i>x</i> ≤ 0</span> und steigt für <span class="math"><i>x</i> ≥ 0</span>.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="grid-2">
+      <div class="panel stack">
+        <h3>Hochpunkt und Tiefpunkt</h3>
+        <p class="small">Am <strong>Tiefpunkt</strong> wechselt der Graph von fallend zu steigend, am <strong>Hochpunkt</strong> von steigend zu fallend. Der <span class="math"><i>y</i></span>-Wert ist dort der kleinste bzw. größte Wert in der Umgebung.</p>
+      </div>
+      <div class="panel stack">
+        <h3>Symmetrie</h3>
+        <ul class="list small">
+          <li><strong>achsensymmetrisch zur <span class="math"><i>y</i></span>-Achse</strong>: <span class="math"><i>f</i>(−<i>x</i>) = <i>f</i>(<i>x</i>)</span>, z. B. <span class="math"><i>x</i>²</span>.</li>
+          <li><strong>punktsymmetrisch zum Ursprung</strong>: <span class="math"><i>f</i>(−<i>x</i>) = −<i>f</i>(<i>x</i>)</span>, z. B. <span class="math"><i>x</i>³</span> oder <span class="math">2<i>x</i></span>.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="panel stack">
+      <h3>Typische Fehler</h3>
+      <ul class="list small">
+        <li>Nullstelle mit dem Schnittpunkt der <span class="math"><i>y</i></span>-Achse verwechselt: Nullstelle heißt <span class="math"><i>y</i> = 0</span>, nicht <span class="math"><i>x</i> = 0</span>.</li>
+        <li>Steigen und Fallen immer <strong>von links nach rechts</strong> lesen.</li>
+        <li>Eine Nullstelle ist eine Zahl (<span class="math"><i>x</i> = 3</span>), der Schnittpunkt ein Punkt <span class="math">(3 | 0)</span>.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="view" id="view-entdecken" hidden>
+    <div class="stack">
+      <span class="eyebrow">Ausprobieren</span>
+      <h2>Eigenschaften am Graphen</h2>
+      <p class="muted">Wähle eine Funktion und schalte die Eigenschaften ein. Unter dem Graphen zeigt ein Band, wo er steigt (grün) und fällt (orange).</p>
+    </div>
+    <div class="sim-layout">
+      <div class="figure"><svg class="plot" id="eSvg" viewBox="0 0 460 340" role="img" aria-label="Graph mit Eigenschaften"></svg></div>
+      <div class="panel controls">
+        <div><label class="lbl" for="eSel"><span>Funktion</span></label><select id="eSel"></select></div>
+        <label class="small"><input type="checkbox" id="eN" checked> Nullstellen</label>
+        <label class="small"><input type="checkbox" id="eY" checked> Schnittpunkt mit der <i>y</i>-Achse</label>
+        <label class="small"><input type="checkbox" id="eM" checked> Steigen und Fallen</label>
+        <label class="small"><input type="checkbox" id="eE" checked> Hoch- und Tiefpunkte</label>
+        <dl class="readout" id="eRo"></dl>
+      </div>
+    </div>
+  </section>
+
+  <section class="view" id="view-ueben" hidden>
+    <div class="stack">
+      <span class="eyebrow">Trainer</span>
+      <h2>Nullstellen, Achsen, Monotonie, Symmetrie</h2>
+      <p class="muted">Gib eine Zahl oder ein Wort ein.</p>
+    </div>
+    <div id="trainer" class="stack"></div>
+  </section>
+
+  <section class="view" id="view-alltag" hidden>
+    <div class="stack">
+      <span class="eyebrow">Im Alltag</span>
+      <h2>Eigenschaften im Alltag</h2>
+      <p class="muted">Wer Graphen lesen kann, versteht Nachrichten, Wetterberichte und Aktienkurse besser.</p>
+    </div>
+    <div class="grid-2">
+      <div class="panel stack"><span class="eyebrow">Wetter</span><h3>Tiefsttemperatur</h3><p class="small">Die Temperaturkurve eines Tages hat morgens einen <strong>Tiefpunkt</strong> und nachmittags einen <strong>Hochpunkt</strong>. Dazwischen steigt sie.</p></div>
+      <div class="panel stack"><span class="eyebrow">Sport</span><h3>Wurfparabel</h3><p class="small">Ein geworfener Ball fliegt auf einer Parabel. Der höchste Punkt ist der <strong>Hochpunkt</strong>, die Stelle, an der er landet, eine <strong>Nullstelle</strong>.</p></div>
+      <div class="panel stack"><span class="eyebrow">Handy</span><h3>Akku leer</h3><p class="small">Beim Akkustand ist die Nullstelle der Zeitpunkt, an dem das Handy ausgeht. Beim Laden steigt der Graph, sonst fällt er.</p></div>
+      <div class="panel stack"><span class="eyebrow">Geld</span><h3>Gewinnschwelle</h3><p class="small">Ein Schulkiosk: Gewinn = Einnahmen − Kosten. Die Nullstelle zeigt, ab wie vielen verkauften Brötchen sich der Kiosk lohnt.</p></div>
+      <div class="panel stack"><span class="eyebrow">Brücke</span><h3>Symmetrie</h3><p class="small">Viele Brückenbögen sind achsensymmetrisch. Legt man die <span class="math"><i>y</i></span>-Achse in die Mitte, gilt <span class="math"><i>f</i>(−<i>x</i>) = <i>f</i>(<i>x</i>)</span>.</p></div>
+      <div class="panel stack"><span class="eyebrow">Wasser</span><h3>Badewanne</h3><p class="small">Der Wasserstand steigt beim Einlassen, bleibt beim Baden gleich und fällt beim Ablassen. Wo er 0 ist, ist die Wanne leer.</p></div>
+    </div>
+  </section>
+
+  <section class="view" id="view-quiz" hidden>
+    <div class="stack">
+      <span class="eyebrow">Selbsttest</span>
+      <h2>Quiz</h2>
+      <div class="progress-line"><div class="bar" aria-hidden="true"><i id="qBar"></i></div><span class="score-line" id="qProgress"></span></div>
+    </div>
+    <div class="panel quiz" id="quizBox" aria-live="polite"></div>
+  </section>
+</div>
+
+<script>
+/* LearnKit: shared building blocks for LearningDesk topic apps.
+   Exposes window.LK with: DOM helpers, number/expression parsing, rationals,
+   views (tab routing), quiz, trainer (task generators + checkers),
+   prediction cards and the equation lab for equations and inequalities. */
+(function () {
+  "use strict";
+  const $ = (s, r = document) => r.querySelector(s);
+  const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
+  const store = {
+    get(k) { try { return JSON.parse(localStorage.getItem(k)); } catch (e) { return null; } },
+    set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) { /* storage unavailable */ } }
+  };
+  const rnd = (a, b) => a + Math.floor(Math.random() * (b - a + 1));
+  const pick = (a) => a[Math.floor(Math.random() * a.length)];
+  const nz = (a, b) => { let v = 0; while (v === 0) v = rnd(a, b); return v; };
+  function shuffle(a) { const b = a.slice(); for (let i = b.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [b[i], b[j]] = [b[j], b[i]]; } return b; }
+  const gcd = (a, b) => { a = Math.abs(a); b = Math.abs(b); while (b) [a, b] = [b, a % b]; return a; };
+  const esc = (s) => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  const minus = (s) => String(s).replace(/-/g, "−");
+  const frac = (n, d) => `<span class="frac"><span>${n}</span><span>${d}</span></span>`;
+
+  // ---------- numbers ----------
+  // German formatting with at most d decimals
+  function fmt(v, d = 2) {
+    if (!isFinite(v)) return "–";
+    const r = Math.round(v * 10 ** d) / 10 ** d || 0;
+    return minus(r.toLocaleString("de-DE", { maximumFractionDigits: d }));
+  }
+  // accepts "3,5", "-2", "7/2", "x = 4", "1.013,25"
+  function parseNum(raw) {
+    let s = String(raw).trim().replace(/\s+/g, "").replace(/[−–]/g, "-").replace(/^[a-zA-Z]+=/, "");
+    if (s.includes(",") && s.includes(".")) s = s.replace(/\./g, "");
+    else if (/^-?\d{1,3}(\.\d{3})+$/.test(s)) s = s.replace(/\./g, ""); // German thousands separator: 1.013
+    s = s.replace(",", ".");
+    const m = s.match(/^(-?\d+(?:\.\d+)?)\/(-?\d+(?:\.\d+)?)$/);
+    if (m) return Number(m[1]) / Number(m[2]);
+    if (!/^-?(\d+\.?\d*|\.\d+)(e-?\d+)?$/i.test(s)) return NaN;
+    return Number(s);
+  }
+
+  // ---------- rationals ----------
+  class R {
+    constructor(n, d = 1) {
+      if (d === 0) throw new Error("Division durch 0");
+      if (d < 0) { n = -n; d = -d; }
+      const g = gcd(n, d) || 1; this.n = n / g; this.d = d / g;
+    }
+    static of(x) { if (x instanceof R) return x; if (Number.isInteger(x)) return new R(x); const k = 1e6; return new R(Math.round(x * k), k); }
+    add(o) { o = R.of(o); return new R(this.n * o.d + o.n * this.d, this.d * o.d); }
+    sub(o) { o = R.of(o); return new R(this.n * o.d - o.n * this.d, this.d * o.d); }
+    mul(o) { o = R.of(o); return new R(this.n * o.n, this.d * o.d); }
+    div(o) { o = R.of(o); return new R(this.n * o.d, this.d * o.n); }
+    neg() { return new R(-this.n, this.d); }
+    isZero() { return this.n === 0; }
+    eq(o) { o = R.of(o); return this.n === o.n && this.d === o.d; }
+    val() { return this.n / this.d; }
+    sign() { return Math.sign(this.n); }
+    abs() { return new R(Math.abs(this.n), this.d); }
+    text() { return this.d === 1 ? String(this.n) : `${this.n}/${this.d}`; }
+    html() { const a = Math.abs(this.n); const body = this.d === 1 ? String(a) : frac(a, this.d); return (this.n < 0 ? "−" : "") + body; }
+  }
+  // a·x + b as HTML, e.g. "3x − 2", "−x", "5"
+  function linHtml(x, c, v = "x") {
+    x = R.of(x); c = R.of(c);
+    const vx = `<i>${v}</i>`;
+    let s = "";
+    if (!x.isZero()) {
+      const a = x.abs();
+      s = (x.sign() < 0 ? "−" : "") + (a.eq(1) ? "" : a.html()) + vx;
+    }
+    if (!c.isZero() || !s) {
+      if (!s) s = c.html();
+      else s += (c.sign() < 0 ? " − " : " + ") + c.abs().html();
+    }
+    return s;
+  }
+
+  // ---------- polynomials: terms are {c: coefficient, v: {x: 2, y: 1}} ----------
+  function monoParts(v) {
+    const keys = Object.keys(v || {}).filter((k) => v[k] > 0).sort();
+    return { vh: keys.map((k) => `<i>${k}</i>` + (v[k] > 1 ? `<sup>${v[k]}</sup>` : "")).join(""), vt: keys.map((k) => k + (v[k] > 1 ? "^" + v[k] : "")).join("") };
+  }
+  function poly(terms) {
+    let h = "", t = "";
+    terms.filter((m) => m.c !== 0).forEach((m, i) => {
+      const { vh, vt } = monoParts(m.v), a = Math.abs(m.c);
+      const ch = a === 1 && vh ? "" : fmt(a, 4), ct = a === 1 && vt ? "" : String(a);
+      if (i === 0) { h += (m.c < 0 ? "−" : "") + ch + vh; t += (m.c < 0 ? "-" : "") + ct + vt; }
+      else { h += (m.c < 0 ? " − " : " + ") + ch + vh; t += (m.c < 0 ? "-" : "+") + ct + vt; }
+    });
+    return h ? { html: h, text: t } : { html: "0", text: "0" };
+  }
+  const polyFn = (terms) => (e) => terms.reduce((s, m) => s + m.c * Object.entries(m.v || {}).reduce((p, [k, ex]) => p * Math.pow(e[k], ex), 1), 0);
+  // collect like terms: returns new term list sorted by degree
+  function collect(terms) {
+    const map = new Map();
+    terms.forEach((m) => { const key = monoParts(m.v).vt; const cur = map.get(key); if (cur) cur.c += m.c; else map.set(key, { c: m.c, v: { ...(m.v || {}) } }); });
+    const deg = (m) => Object.values(m.v).reduce((a, b) => a + b, 0);
+    return [...map.values()].filter((m) => m.c !== 0).sort((a, b) => deg(b) - deg(a) || monoParts(a.v).vt.localeCompare(monoParts(b.v).vt));
+  }
+
+  // ---------- expressions ----------
+  // single-letter variables, implicit multiplication, ^, ², ³, ·, ×, :, ÷, decimal comma
+  function parse(src) {
+    const s = String(src).toLowerCase().replace(/\s+/g, "").replace(/[−–]/g, "-").replace(/[·⋅×]/g, "*").replace(/[:÷]/g, "/")
+      .replace(/²/g, "^2").replace(/³/g, "^3").replace(/(\d),(\d)/g, "$1.$2");
+    if (!s) throw new Error("leer");
+    const toks = [];
+    for (let i = 0; i < s.length;) {
+      const ch = s[i];
+      if (/[0-9.]/.test(ch)) { let j = i; while (j < s.length && /[0-9.]/.test(s[j])) j++; const n = parseFloat(s.slice(i, j)); if (isNaN(n)) throw new Error("Zahl"); toks.push({ t: "num", v: n }); i = j; continue; }
+      if ("+-*/^()".includes(ch)) { toks.push({ t: ch }); i++; continue; }
+      if (/[a-z]/.test(ch)) { toks.push({ t: "var", v: ch }); i++; continue; }
+      throw new Error("Zeichen");
+    }
+    let p = 0;
+    const peek = () => toks[p];
+    const starts = (tk) => tk && (tk.t === "num" || tk.t === "var" || tk.t === "(");
+    function expr() { let a = term(); while (peek() && (peek().t === "+" || peek().t === "-")) { const op = toks[p++].t, b = term(), l = a; a = op === "+" ? (e) => l(e) + b(e) : (e) => l(e) - b(e); } return a; }
+    function term() {
+      let a = unary();
+      for (;;) {
+        const tk = peek();
+        if (tk && (tk.t === "*" || tk.t === "/")) { p++; const b = unary(), l = a; a = tk.t === "*" ? (e) => l(e) * b(e) : (e) => l(e) / b(e); }
+        else if (starts(tk)) { const b = power(), l = a; a = (e) => l(e) * b(e); }
+        else break;
+      }
+      return a;
+    }
+    function unary() { const tk = peek(); if (tk && tk.t === "-") { p++; const a = unary(); return (e) => -a(e); } if (tk && tk.t === "+") { p++; return unary(); } return power(); }
+    function power() { const b = primary(); if (peek() && peek().t === "^") { p++; const ex = unary(); return (e) => Math.pow(b(e), ex(e)); } return b; }
+    function primary() {
+      const tk = toks[p++];
+      if (!tk) throw new Error("unvollständig");
+      if (tk.t === "num") { const v = tk.v; return () => v; }
+      if (tk.t === "var") { const v = tk.v; return (e) => (v in e ? e[v] : NaN); }
+      if (tk.t === "(") { const a = expr(); if (!peek() || peek().t !== ")") throw new Error("Klammer"); p++; return a; }
+      throw new Error("Syntax");
+    }
+    const f = expr();
+    if (p < toks.length) throw new Error("Syntax");
+    return f;
+  }
+  const SAMPLE = [1.37, -2.11, 0.73, 3.29, -0.58, 2.47, -1.63];
+  function sameFn(f, g, vars = "abcxyz") {
+    for (let k = 0; k < 6; k++) {
+      const env = {}; [...vars].forEach((v, i) => { env[v] = SAMPLE[(k + 2 * i) % SAMPLE.length] + 0.1 * i; });
+      const u = f(env), w = g(env);
+      if (!isFinite(u) || !isFinite(w) || Math.abs(u - w) > 1e-7 * Math.max(1, Math.abs(w))) return false;
+    }
+    return true;
+  }
+  // number of top-level summands of an input, e.g. "3a+2b-(a+b)" -> 3
+  function countSummands(raw) {
+    const s = String(raw).replace(/\s+/g, "").replace(/[−–]/g, "-");
+    let depth = 0, n = 1;
+    for (let i = 0; i < s.length; i++) {
+      const c = s[i];
+      if (c === "(") depth++; else if (c === ")") depth--;
+      else if ((c === "+" || c === "-") && depth === 0 && i > 0 && !"*/^(:·×÷+-".includes(s[i - 1])) n++;
+    }
+    return n;
+  }
+
+  // ---------- checkers for the trainer ----------
+  const check = {
+    // numeric answer with relative tolerance (default 1 %)
+    num(value, { tol = 0.01, abs = null, unit = "" } = {}) {
+      return (raw) => {
+        const v = parseNum(String(raw).replace(new RegExp(unit.replace(/[.*+?^${}()|[\]\\]/g, "\\$&") + "$"), ""));
+        if (isNaN(v)) return { ok: false, msg: "Bitte gib eine Zahl ein, z. B. <code>12,5</code>." };
+        const lim = abs !== null ? abs : Math.max(Math.abs(value) * tol, 1e-9);
+        return Math.abs(v - value) <= lim ? { ok: true } : { ok: false, msg: "Der Wert stimmt noch nicht. Prüfe Formel, Einheiten und Rechnung." };
+      };
+    },
+    // algebraic expression, equivalent to f; optional form check and hints for typical mistakes
+    expr(f, { vars = "abcxyz", form = null, hints = [], fallback = "Der Term ist noch nicht gleichwertig. Rechne Schritt für Schritt nach." } = {}) {
+      return (raw) => {
+        let g;
+        try { g = parse(raw); } catch (e) { return { ok: false, msg: "Das kann ich nicht lesen. Prüfe Klammern und Zeichen, z. B. <code>3a+2b</code> oder <code>2x(x-3)</code>." }; }
+        const eq = sameFn(g, f, vars);
+        if (eq && form) { const m = form(raw); if (m) return { ok: false, msg: m }; }
+        if (eq) return { ok: true };
+        for (const h of hints) if (h.f && sameFn(g, h.f, vars)) return { ok: false, msg: h.msg };
+        return { ok: false, msg: fallback };
+      };
+    }
+  };
+
+  // ---------- views (tab routing) ----------
+  function views(names, onShow = {}) {
+    function show() {
+      const h = location.hash.slice(1);
+      const v = names.includes(h) ? h : names[0];
+      names.forEach((n) => { const el = $("#view-" + n); if (el) el.hidden = n !== v; });
+      $$("nav.tabs a").forEach((a) => { if (a.dataset.view === v) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current"); });
+      window.scrollTo({ top: 0 });
+      if (onShow[v]) requestAnimationFrame(onShow[v]);
+    }
+    window.addEventListener("hashchange", show);
+    show();
+    return show;
+  }
+
+  // ---------- quiz ----------
+  function quiz({ box, bar, progress, questions, n = 10, key, mathOptions = false }) {
+    const B = $(box), BAR = $(bar), P = $(progress);
+    const N = Math.min(n, questions.length);
+    let order = [], idx = 0, score = 0, answered = false;
+    function start() {
+      order = shuffle(questions).slice(0, N).map((q) => { const perm = shuffle(q.o.map((_, i) => i)); return { q: q.q, o: perm.map((i) => q.o[i]), a: perm.indexOf(q.a), e: q.e }; });
+      idx = 0; score = 0; render();
+    }
+    function render() {
+      BAR.style.width = (idx / N) * 100 + "%";
+      if (idx >= N) {
+        const best = Math.max(score, store.get(key) || 0); store.set(key, best);
+        const msg = score >= N - 1 ? "Super! Du hast das Thema sicher drauf." : score >= Math.ceil(N * 0.6) ? "Gut gemacht! Schau dir die Erklärungen zu deinen Fehlern noch einmal an." : "Wiederhole die Erklärungen und übe im Trainer. Dann klappt es beim nächsten Mal besser.";
+        P.textContent = `fertig · Bestwert ${best} / ${N}`;
+        B.innerHTML = `<span class="eyebrow">Ergebnis</span><div class="score-big">${score} / ${N}</div><p>${msg}</p><div class="row"><button type="button" class="primary lk-again">Neue Runde</button></div>`;
+        $(".lk-again", B).addEventListener("click", start);
+        return;
+      }
+      const q = order[idx]; answered = false;
+      P.textContent = `Frage ${idx + 1} von ${N} · ${score} richtig`;
+      B.innerHTML = `<div class="qtext"></div><div class="opts"></div><div class="feedback" hidden></div><div class="row"><button type="button" class="primary lk-next" hidden>${idx + 1 < N ? "Nächste Frage" : "Ergebnis anzeigen"}</button></div>`;
+      $(".qtext", B).textContent = q.q;
+      q.o.forEach((t, i) => {
+        const b = document.createElement("button"); b.type = "button";
+        b.innerHTML = `<span class="k">${"ABCD"[i]}</span><span${mathOptions ? ' class="math"' : ""}></span>`; b.lastChild.textContent = t;
+        b.addEventListener("click", () => choose(i));
+        $(".opts", B).appendChild(b);
+      });
+      $(".lk-next", B).addEventListener("click", () => { idx++; render(); });
+    }
+    function choose(i) {
+      if (answered) return; answered = true;
+      const q = order[idx];
+      $$(".opts button", B).forEach((b, j) => { b.disabled = true; if (j === q.a) b.classList.add("right"); else if (j === i) b.classList.add("wrong"); });
+      const ok = i === q.a; if (ok) score++;
+      const fb = $(".feedback", B); fb.hidden = false;
+      fb.innerHTML = ok ? '<span><b class="ok">Richtig!</b> </span>' : '<span><b class="no">Leider falsch.</b> </span>';
+      fb.firstChild.appendChild(document.createTextNode(q.e));
+      const nb = $(".lk-next", B); nb.hidden = false; nb.focus();
+      P.textContent = `Frage ${idx + 1} von ${N} · ${score} richtig`;
+    }
+    start();
+  }
+
+  // ---------- trainer ----------
+  const trainers = [];
+  function trainer({ el, modes, id = "tr" }) {
+    const root = $(el);
+    root.innerHTML = `
+      ${modes.length > 1 ? `<div class="modes" role="group" aria-label="Übungsart">${modes.map((m, i) => `<button type="button" data-mode="${m.id}" aria-pressed="${i === 0}">${m.label}</button>`).join("")}</div>` : ""}
+      <div class="panel stack">
+        <p class="small muted lk-instr"></p>
+        <form class="stack lk-form" autocomplete="off">
+          <div class="task lk-task"></div>
+          <div class="answer-row"><label class="math lk-label" for="${id}-in"></label><input type="text" id="${id}-in" class="lk-in" spellcheck="false"></div>
+          <div class="row"><button type="submit" class="primary">Prüfen</button><button type="button" class="lk-show">Lösung zeigen</button><button type="button" class="lk-new">Neue Aufgabe</button></div>
+        </form>
+        <p class="hint lk-hint"></p>
+        <div class="feedback lk-fb" hidden aria-live="polite"></div>
+        <span class="score-line lk-score"></span>
+      </div>`;
+    let mode = modes[0], task = null;
+    const score = { right: 0, total: 0 };
+    const fb = $(".lk-fb", root), input = $(".lk-in", root);
+    function updateScore() { $(".lk-score", root).textContent = `${score.right} von ${score.total} Aufgaben auf Anhieb richtig`; }
+    function next() {
+      task = mode.gen(); task.attempted = false;
+      $(".lk-instr", root).innerHTML = task.instr || mode.instr || "";
+      $(".lk-task", root).innerHTML = task.html;
+      $(".lk-label", root).innerHTML = task.label || "";
+      input.placeholder = task.placeholder || "";
+      $(".lk-hint", root).innerHTML = task.hint || mode.hint || "";
+      input.value = ""; fb.hidden = true;
+      return task;
+    }
+    function solutionHtml() { return task.solution ? `<div>${task.solution}</div>` : ""; }
+    function submit(raw) {
+      const r = task.check(raw);
+      if (!task.attempted) { task.attempted = true; score.total++; if (r.ok) score.right++; updateScore(); }
+      fb.hidden = false;
+      fb.innerHTML = r.ok ? `<span><b class="ok">Richtig!</b></span>${solutionHtml()}` : `<span><b class="no">Noch nicht richtig.</b> ${r.msg || ""}</span>`;
+      return r;
+    }
+    $(".lk-form", root).addEventListener("submit", (ev) => { ev.preventDefault(); submit(input.value); });
+    $(".lk-show", root).addEventListener("click", () => {
+      if (!task.attempted) { task.attempted = true; score.total++; updateScore(); }
+      fb.hidden = false; fb.innerHTML = `<span>Eine mögliche Lösung: <code>${esc(task.answer)}</code></span>${solutionHtml()}`;
+    });
+    $(".lk-new", root).addEventListener("click", () => { next(); input.focus(); });
+    $$("[data-mode]", root).forEach((b) => b.addEventListener("click", () => {
+      mode = modes.find((m) => m.id === b.dataset.mode);
+      $$("[data-mode]", root).forEach((x) => x.setAttribute("aria-pressed", String(x === b)));
+      next();
+    }));
+    next();
+    const api = { modes, next, submit, get task() { return task; }, setMode(i) { mode = modes[i]; return next(); } };
+    trainers.push(api);
+    return api;
+  }
+
+  // ---------- prediction cards ----------
+  function cards({ el, items, key }) {
+    const root = $(el);
+    let answers = store.get(key) || {};
+    function renderAll() {
+      root.innerHTML = "";
+      items.forEach((c, idx) => {
+        const card = document.createElement("article");
+        card.className = "panel card";
+        card.innerHTML = `<span class="ctx"></span><h3></h3><p class="small"></p><div class="opts"></div><div class="answer" hidden></div>`;
+        $(".ctx", card).textContent = c.ctx; $("h3", card).textContent = c.title; $("p", card).textContent = c.text;
+        const opts = $(".opts", card), ans = $(".answer", card);
+        c.o.forEach((t, i) => {
+          const b = document.createElement("button"); b.type = "button"; b.textContent = t;
+          b.addEventListener("click", () => { answers[idx] = i; store.set(key, answers); paint(); });
+          opts.appendChild(b);
+        });
+        function paint() {
+          const ch = answers[idx];
+          $$("button", opts).forEach((b, i) => { b.classList.remove("right", "wrong"); b.disabled = ch !== undefined; if (ch !== undefined) { if (i === c.a) b.classList.add("right"); else if (i === ch) b.classList.add("wrong"); } });
+          if (ch !== undefined) { ans.hidden = false; ans.innerHTML = ch === c.a ? '<b class="ok">Richtig.</b> ' : '<b class="no">Nicht ganz.</b> '; ans.appendChild(document.createTextNode(c.e)); }
+          else ans.hidden = true;
+        }
+        root.appendChild(card); paint();
+      });
+    }
+    renderAll();
+    return { reset() { answers = {}; store.set(key, answers); renderAll(); } };
+  }
+
+  // ---------- equation lab (equations and inequalities) ----------
+  const REL_FLIP = { "<": ">", ">": "<", "≤": "≥", "≥": "≤", "=": "=" };
+  function equationLab({ el, gen, inequality = false }) {
+    const root = $(el);
+    root.innerHTML = `
+      <div class="panel stack">
+        <div class="lab-eq lk-eq" aria-live="polite"></div>
+        <ol class="lab-log lk-log"></ol>
+        <form class="answer-row lk-form" autocomplete="off">
+          <label for="${el.slice(1)}-op" class="small"><strong>Umformung für beide Seiten:</strong></label>
+          <input type="text" id="${el.slice(1)}-op" class="lk-op" placeholder="z. B. −3 oder −2x oder :4" spellcheck="false">
+          <button type="submit" class="primary">Ausführen</button>
+        </form>
+        <p class="hint">Schreibweise: <code>-3</code>, <code>+5</code>, <code>-2x</code>, <code>+x</code>, <code>:4</code>, <code>*2</code>, <code>:(-3)</code>. Brüche als <code>1/2</code>.</p>
+        <p class="lab-msg lk-msg" aria-live="polite"></p>
+        <div class="row"><button type="button" class="lk-undo">Rückgängig</button><button type="button" class="lk-new">Neue ${inequality ? "Ungleichung" : "Gleichung"}</button></div>
+      </div>`;
+    let hist = [], st = null;
+    const eqHtml = (s) => `${linHtml(s.L.x, s.L.c)} ${s.rel} ${linHtml(s.R.x, s.R.c)}`;
+    function setMsg(t, cls = "") { const m = $(".lk-msg", root); m.className = "lab-msg lk-msg " + cls; m.innerHTML = t; }
+    function render() {
+      $(".lk-eq", root).innerHTML = eqHtml(st);
+      // the operation is written next to the line it is applied to (school notation)
+      $(".lk-log", root).innerHTML = hist.map((h, i) => { const nx = hist[i + 1]; return `<li class="${nx && nx.flip ? "flip" : ""}"><span>${eqHtml(h.s)}</span><span class="op">${nx ? "| " + esc(nx.op) : ""}</span></li>`; }).join("");
+      const s = st, xL = !s.L.x.isZero(), xR = !s.R.x.isZero();
+      if (!xL && !xR) {
+        const l = s.L.c.val(), r = s.R.c.val();
+        const truth = { "=": l === r, "<": l < r, ">": l > r, "≤": l <= r, "≥": l >= r }[s.rel];
+        setMsg(truth ? "Die Variable ist verschwunden und die Aussage ist immer wahr: Jede Zahl ist eine Lösung (L = ℚ)." : "Die Variable ist verschwunden und die Aussage ist falsch: Es gibt keine Lösung (L = { }).", "ok");
+        return;
+      }
+      const solvedL = s.L.x.eq(1) && s.L.c.isZero() && !xR, solvedR = s.R.x.eq(1) && s.R.c.isZero() && !xL;
+      if (solvedL || solvedR) {
+        const v = solvedL ? s.R.c : s.L.c, rel = solvedL ? s.rel : REL_FLIP[s.rel];
+        setMsg(inequality && rel !== "=" ? `Gelöst! Alle Zahlen mit <span class="math"><i>x</i> ${rel} ${v.html()}</span> erfüllen die Ungleichung: <span class="math">L = {<i>x</i> | <i>x</i> ${rel} ${v.html()}}</span>` : `Gelöst! <span class="math"><i>x</i> = ${v.html()}</span>, also <span class="math">L = {${v.html()}}</span>. Mach zur Sicherheit die Probe.`, "ok");
+      } else setMsg("Forme weiter um, bis <i>x</i> allein auf einer Seite steht.");
+    }
+    function start(s) { st = s || gen(); hist = [{ s: st, op: "" }]; render(); }
+    function apply(raw) {
+      let s = String(raw).replace(/\s+/g, "").replace(/[−–]/g, "-").replace(/[·⋅×]/g, "*").replace(/[÷/]/g, (m, i) => (i === 0 ? ":" : m)).replace(/^\//, ":");
+      const m = s.match(/^([+\-*:])\(?(-?)(\d*(?:[.,]\d+)?(?:\/\d+)?)(x?)\)?$/);
+      if (!m || (m[3] === "" && m[4] === "")) { setMsg("Das verstehe ich nicht. Beginne mit + − * oder :, z. B. <code>-3</code> oder <code>:2</code>.", "no"); return false; }
+      const [, op, sg, numTxt, hasX] = m;
+      let k; try { k = R.of(numTxt === "" ? 1 : parseNum(numTxt)); if (numTxt.includes("/")) { const [a, b] = numTxt.split("/").map(Number); k = new R(a, b); } } catch (e) { setMsg("Ungültige Zahl.", "no"); return false; }
+      if (sg) k = k.neg();
+      const next = { L: { ...st.L }, R: { ...st.R }, rel: st.rel };
+      let flip = false;
+      const label = `${op === "*" ? "·" : op === ":" ? ":" : op === "-" ? "−" : "+"}${op === "*" || op === ":" ? (k.sign() < 0 ? `(${k.text().replace("-", "−")})` : k.text()) : (k.sign() < 0 ? `(${k.text().replace("-", "−")})` : k.text())}${hasX ? "x" : ""}`.replace(/^([+−])1x$/, "$1x");
+      if (op === "+" || op === "-") {
+        const kk = op === "-" ? k.neg() : k;
+        for (const side of ["L", "R"]) { if (hasX) next[side].x = next[side].x.add(kk); else next[side].c = next[side].c.add(kk); }
+      } else {
+        if (hasX) { setMsg("Mit <i>x</i> malnehmen oder durch <i>x</i> teilen ist keine erlaubte Umformung, weil <i>x</i> null sein könnte.", "no"); return false; }
+        if (k.isZero()) { setMsg(op === ":" ? "Durch 0 darf man nicht teilen." : "Mal 0 macht beide Seiten zu 0. Dabei geht die Information verloren, das ist keine Äquivalenzumformung.", "no"); return false; }
+        for (const side of ["L", "R"]) {
+          next[side].x = op === "*" ? next[side].x.mul(k) : next[side].x.div(k);
+          next[side].c = op === "*" ? next[side].c.mul(k) : next[side].c.div(k);
+        }
+        if (inequality && k.sign() < 0 && next.rel !== "=") { next.rel = REL_FLIP[next.rel]; flip = true; }
+      }
+      st = next; hist.push({ s: st, op: label + (flip ? "  Zeichen umdrehen!" : ""), flip }); render();
+      if (flip) setMsg("Achtung: Du hast mit einer negativen Zahl multipliziert oder durch sie geteilt. Deshalb dreht sich das Ungleichheitszeichen um! " + $(".lk-msg", root).innerHTML, "no");
+      return true;
+    }
+    $(".lk-form", root).addEventListener("submit", (ev) => { ev.preventDefault(); const i = $(".lk-op", root); if (apply(i.value)) i.value = ""; i.focus(); });
+    $(".lk-undo", root).addEventListener("click", () => { if (hist.length > 1) { hist.pop(); st = hist[hist.length - 1].s; render(); } });
+    $(".lk-new", root).addEventListener("click", () => start());
+    start();
+    return { apply, start, get state() { return st; } };
+  }
+  // random linear equation a x + b (rel) c x + d with a "nice" solution
+  function genLinear({ rel = "=", fractions = false } = {}) {
+    let a, c; do { a = nz(-6, 7); c = rnd(-4, 4); } while (a === c);
+    const x0 = fractions ? new R(nz(-9, 9), pick([1, 2, 3])) : new R(nz(-6, 6));
+    const b = R.of(rnd(-9, 9)), d = x0.mul(a - c).add(b);
+    return { L: { x: R.of(a), c: b }, R: { x: R.of(c), c: d }, rel, x0 };
+  }
+
+  // number as plain answer text with decimal comma, e.g. 1013,25
+  const numText = (v, d = 2) => String(Math.round(v * 10 ** d) / 10 ** d || 0).replace(".", ",");
+
+  window.LK = { $, $$, store, rnd, pick, nz, shuffle, gcd, esc, minus, frac, fmt, parseNum, numText, R, linHtml, poly, polyFn, collect, monoParts, parse, sameFn, countSummands, check, views, quiz, trainer, trainers, cards, equationLab, genLinear, REL_FLIP };
+})();
+</script>
+<script>
+(function () {
+  "use strict";
+  const { $, pick, rnd, nz, fmt } = LK;
+  const F = [
+    { name: "f(x) = 2x − 3", f: (x) => 2 * x - 3, sym: "keine Symmetrie" },
+    { name: "f(x) = x² − 4", f: (x) => x * x - 4, sym: "achsensymmetrisch zur y-Achse" },
+    { name: "f(x) = −(x − 1)² + 4", f: (x) => -((x - 1) ** 2) + 4, sym: "keine Symmetrie zum Koordinatensystem (symmetrisch zur Geraden x = 1)" },
+    { name: "f(x) = 0,25x³ − 2x", f: (x) => 0.25 * x ** 3 - 2 * x, sym: "punktsymmetrisch zum Ursprung" },
+    { name: "f(x) = 0,5x", f: (x) => 0.5 * x, sym: "punktsymmetrisch zum Ursprung" },
+    { name: "f(x) = |x| − 2", f: (x) => Math.abs(x) - 2, sym: "achsensymmetrisch zur y-Achse" },
+    { name: "f(x) = −x + 2", f: (x) => -x + 2, sym: "keine Symmetrie" }
+  ];
+  $("#eSel").innerHTML = F.map((f, i) => `<option value="${i}">${f.name}</option>`).join("");
+  const X0 = 230, Y0 = 160, U = 28, XMIN = -7, XMAX = 7;
+  const sx = (x) => X0 + x * U, sy = (y) => Y0 - y * U;
+  const fmtN = (v) => fmt(Math.abs(v) < 1e-9 ? 0 : v, 2).replace("-", "−");
+  function analyse(f) {
+    const h = 0.01, zeros = [], ext = [], segs = [];
+    let prevY = f(XMIN), prevD = Math.sign(f(XMIN + h) - f(XMIN)), segStart = XMIN;
+    for (let x = XMIN + h; x <= XMAX + 1e-9; x += h) {
+      const y = f(x);
+      if (prevY === 0 || prevY * y < 0) { const z = Math.abs(prevY) < Math.abs(y) ? x - h : x; zeros.push(Math.round(z * 100) / 100); }
+      const d = Math.sign(f(x + h) - y);
+      if (d !== prevD && d !== 0 && prevD !== 0) { ext.push({ x: Math.round(x * 100) / 100, y: f(Math.round(x * 100) / 100), type: prevD > 0 ? "Hochpunkt" : "Tiefpunkt" }); segs.push([segStart, x, prevD]); segStart = x; }
+      if (d !== 0) prevD = d;
+      prevY = y;
+    }
+    segs.push([segStart, XMAX, prevD]);
+    return { zeros: zeros.filter((z, i, a) => i === 0 || Math.abs(z - a[i - 1]) > 0.05), ext, segs };
+  }
+  function draw() {
+    const fn = F[+$("#eSel").value], A = analyse(fn.f);
+    let s = "";
+    for (let i = XMIN; i <= XMAX; i++) s += `<line class="gl" x1="${sx(i)}" y1="10" x2="${sx(i)}" y2="300"/>`;
+    for (let j = -5; j <= 5; j++) s += `<line class="gl" x1="${sx(XMIN)}" y1="${sy(j)}" x2="${sx(XMAX)}" y2="${sy(j)}"/>`;
+    s += `<line class="ax" x1="${sx(XMIN)}" y1="${Y0}" x2="${sx(XMAX)}" y2="${Y0}"/><line class="ax" x1="${X0}" y1="10" x2="${X0}" y2="300"/>`;
+    for (let i = XMIN; i <= XMAX; i++) if (i) s += `<text x="${sx(i)}" y="${Y0 + 13}" text-anchor="middle">${String(i).replace("-", "−")}</text>`;
+    for (let j = -5; j <= 5; j++) if (j) s += `<text x="${X0 - 5}" y="${sy(j) + 4}" text-anchor="end">${String(j).replace("-", "−")}</text>`;
+    let d = "", pen = false;
+    for (let x = XMIN; x <= XMAX; x += 0.05) { const y = fn.f(x); if (Math.abs(y) > 5.6) { pen = false; continue; } d += `${pen ? "L" : "M"}${sx(x).toFixed(1)} ${sy(y).toFixed(1)} `; pen = true; }
+    s += `<path class="gr" d="${d}"/>`;
+    if ($("#eM").checked) A.segs.forEach(([a, b, dir]) => { s += `<rect class="${dir > 0 ? "up" : "down"}" x="${sx(a)}" y="312" width="${Math.max(0, sx(b) - sx(a))}" height="10"/>`; });
+    if ($("#eM").checked) s += `<text class="lab" x="${sx(XMIN)}" y="336">steigt (grün) / fällt (orange)</text>`;
+    if ($("#eN").checked) A.zeros.forEach((z) => { s += `<circle class="zero" cx="${sx(z)}" cy="${Y0}" r="5.5"/>`; });
+    const y0 = fn.f(0);
+    if ($("#eY").checked && Math.abs(y0) < 5.6) s += `<circle class="yint" cx="${X0}" cy="${sy(y0)}" r="5.5"/>`;
+    if ($("#eE").checked) A.ext.forEach((e) => { if (Math.abs(e.y) < 5.6) s += `<circle class="ext" cx="${sx(e.x)}" cy="${sy(e.y)}" r="8"/><text class="lab" x="${sx(e.x) + 10}" y="${sy(e.y) + (e.type === "Hochpunkt" ? -8 : 16)}">${e.type === "Hochpunkt" ? "H" : "T"}(${fmtN(e.x)} | ${fmtN(e.y)})</text>`; });
+    $("#eSvg").innerHTML = s;
+    const mono = A.segs.map(([a, b, dir]) => (a <= XMIN + 0.01 && b >= XMAX - 0.01) ? `${dir > 0 ? "steigend" : "fallend"} für alle x` : `${dir > 0 ? "steigend" : "fallend"} für ${a <= XMIN + 0.01 ? "x" : fmtN(a) + " ≤ x"}${b >= XMAX - 0.01 ? "" : " ≤ " + fmtN(b)}`).join("; ");
+    $("#eRo").innerHTML = `<dt>Nullstellen</dt><dd>${A.zeros.length ? A.zeros.map(fmtN).join("; ") : "keine"}</dd><dt>Schnittpunkt <i>y</i>-Achse</dt><dd>(0 | ${fmtN(y0)})</dd><dt>Steigen/Fallen</dt><dd style="text-align:right">${mono}</dd><dt>Hoch-/Tiefpunkte</dt><dd>${A.ext.length ? A.ext.map((e) => `${e.type[0]}(${fmtN(e.x)} | ${fmtN(e.y)})`).join("; ") : "keine"}</dd><dt>Symmetrie</dt><dd style="text-align:right">${fn.sym}</dd>`;
+  }
+  ["eSel", "eN", "eY", "eM", "eE"].forEach((id) => $("#" + id).addEventListener("change", draw));
+
+  // ---------- trainer ----------
+  const neg = (v) => fmt(v, 3).replace("-", "−");
+  const lin = (m, b) => `${m === 1 ? "" : m === -1 ? "−" : neg(m)}<i>x</i>${b ? (b > 0 ? " + " + b : " − " + -b) : ""}`;
+  function genZero() {
+    const m = nz(-5, 5), x0 = rnd(-6, 6), b = -m * x0;
+    return { html: `Bestimme die Nullstelle von <i>f</i>(<i>x</i>) = ${lin(m, b)}.`, label: "<i>x</i> =", placeholder: "Zahl", answer: neg(x0), check: LK.check.num(x0, { abs: 1e-6 }), solution: `<span class="math">${lin(m, b)} = 0 ⇒ <b><i>x</i> = ${neg(x0)}</b></span>` };
+  }
+  function genY() {
+    const T = pick([() => { const m = nz(-5, 5), b = rnd(-8, 8); return [lin(m, b), b]; }, () => { const a = nz(-3, 3), c = rnd(-6, 6); return [`${a === 1 ? "" : a === -1 ? "−" : neg(a)}<i>x</i><sup>2</sup>${c ? (c > 0 ? " + " + c : " − " + -c) : ""}`, c]; }, () => { const p = rnd(-3, 3), q = rnd(-4, 4); return [`(<i>x</i> ${p < 0 ? "+ " + -p : "− " + p})<sup>2</sup>${q ? (q > 0 ? " + " + q : " − " + -q) : ""}`, p * p + q]; }])();
+    return { html: `In welchem Punkt schneidet der Graph von <i>f</i>(<i>x</i>) = ${T[0]} die <i>y</i>-Achse? Gib den <i>y</i>-Wert an.`, label: "<i>y</i> =", placeholder: "Zahl", answer: neg(T[1]), check: LK.check.num(T[1], { abs: 1e-6 }), solution: `<i>f</i>(0) = <b>${neg(T[1])}</b>: Punkt (0 | ${neg(T[1])})` };
+  }
+  function genMono() {
+    const m = nz(-5, 5), b = rnd(-6, 6), ans = m > 0 ? "steigend" : "fallend";
+    return { html: `Ist <i>f</i>(<i>x</i>) = ${lin(m, b)} steigend oder fallend?`, label: "Antwort:", placeholder: "steigend oder fallend", answer: ans,
+      check: (raw) => { const t = raw.trim().toLowerCase(); const v = /^stei/.test(t) ? "steigend" : /^fall/.test(t) ? "fallend" : null; if (!v) return { ok: false, msg: "Antworte mit <code>steigend</code> oder <code>fallend</code>." }; return v === ans ? { ok: true } : { ok: false, msg: "Was passiert mit f(x), wenn x größer wird?" }; },
+      solution: `Der Faktor vor <i>x</i> ist ${m > 0 ? "positiv" : "negativ"}: <b>${ans}</b>` };
+  }
+  function genSym() {
+    const T = pick([["<i>x</i><sup>2</sup>", "achse"], ["<i>x</i><sup>2</sup> + 3", "achse"], ["−2<i>x</i><sup>2</sup>", "achse"], ["<i>x</i><sup>3</sup>", "punkt"], ["3<i>x</i>", "punkt"], ["<i>x</i><sup>3</sup> − <i>x</i>", "punkt"], ["<i>x</i> + 1", "keine"], ["(<i>x</i> − 2)<sup>2</sup>", "keine"], ["<i>x</i><sup>4</sup> − <i>x</i><sup>2</sup>", "achse"]]);
+    const word = { achse: "achsensymmetrisch", punkt: "punktsymmetrisch", keine: "keine Symmetrie" };
+    return { html: `Welche Symmetrie hat der Graph von <i>f</i>(<i>x</i>) = ${T[0]}?`, label: "Antwort:", placeholder: "achsensymmetrisch, punktsymmetrisch oder keine", answer: word[T[1]],
+      check: (raw) => { const t = raw.trim().toLowerCase(); const v = /achs/.test(t) ? "achse" : /punkt/.test(t) ? "punkt" : /kein|kein/.test(t) ? "keine" : null; if (!v) return { ok: false, msg: "Antworte mit achsensymmetrisch, punktsymmetrisch oder keine." }; return v === T[1] ? { ok: true } : { ok: false, msg: "Vergleiche f(−x) mit f(x) und mit −f(x)." }; },
+      solution: `<b>${word[T[1]]}</b>${T[1] === "achse" ? " zur y-Achse: f(−x) = f(x)" : T[1] === "punkt" ? " zum Ursprung: f(−x) = −f(x)" : ""}` };
+  }
+  LK.trainer({ el: "#trainer", modes: [
+    { id: "null", label: "Nullstelle", gen: genZero },
+    { id: "yachse", label: "y-Achsenabschnitt", gen: genY },
+    { id: "mono", label: "Steigend oder fallend?", gen: genMono },
+    { id: "sym", label: "Symmetrie", gen: genSym }
+  ] });
+
+  LK.quiz({ box: "#quizBox", bar: "#qBar", progress: "#qProgress", key: "eigensch.best", n: 10, questions: [
+    { q: "Was ist eine Nullstelle?", o: ["Eine Stelle x mit f(x) = 0", "Der Punkt (0 | 0)", "f(0)", "Der tiefste Punkt"], a: 0, e: "Dort schneidet der Graph die x-Achse." },
+    { q: "Wo schneidet f(x) = 3x − 5 die y-Achse?", o: ["(0 | 3)", "(0 | −5)", "(5/3 | 0)", "(−5 | 0)"], a: 1, e: "f(0) = −5." },
+    { q: "Nullstelle von f(x) = 2x − 8?", o: ["−8", "8", "4", "−4"], a: 2, e: "2x − 8 = 0 ⇒ x = 4." },
+    { q: "f(x) = −3x + 1 ist …", o: ["steigend", "fallend", "konstant", "symmetrisch"], a: 1, e: "Negativer Faktor vor x." },
+    { q: "Welche Funktion ist achsensymmetrisch zur y-Achse?", o: ["x³", "2x + 1", "x²", "x − 4"], a: 2, e: "f(−x) = f(x)." },
+    { q: "Welche Funktion ist punktsymmetrisch zum Ursprung?", o: ["x²", "x³", "x² + 1", "|x|"], a: 1, e: "f(−x) = −f(x)." },
+    { q: "Was passiert am Tiefpunkt?", o: ["Der Graph wechselt von steigend zu fallend", "Der Graph wechselt von fallend zu steigend", "f(x) = 0", "x = 0"], a: 1, e: "Davor fällt, danach steigt er." },
+    { q: "Wie viele Nullstellen hat f(x) = x² + 1?", o: ["0", "1", "2", "unendlich viele"], a: 0, e: "x² + 1 ist immer mindestens 1." },
+    { q: "In welche Richtung liest man „steigend/fallend“?", o: ["Von rechts nach links", "Von links nach rechts", "Von oben nach unten", "Egal"], a: 1, e: "Mit wachsendem x." },
+    { q: "Wo liegt der Tiefpunkt von f(x) = x² − 4?", o: ["(2 | 0)", "(0 | −4)", "(−4 | 0)", "(0 | 4)"], a: 1, e: "Der Scheitel der Normalparabel, um 4 nach unten verschoben." }
+  ] });
+
+  LK.views(["verstehen", "entdecken", "ueben", "alltag", "quiz"], { entdecken: draw });
+})();
+</script>
+<script>
+(function () {
+  "use strict";
+  // Light/dark switch shared by all LearningDesk pages; the choice is remembered in this browser
+  var KEY = "learningdesk.theme", root = document.documentElement;
+  var header = document.querySelector("header");
+  if (!header) return;
+  function effective() {
+    var t = root.getAttribute("data-theme");
+    if (t === "dark" || t === "light") return t;
+    return window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+  }
+  var btn = document.createElement("button");
+  btn.type = "button"; btn.className = "theme-toggle";
+  function paint() {
+    var dark = effective() === "dark";
+    var label = dark ? "Helles Design einschalten" : "Dunkles Design einschalten";
+    btn.textContent = dark ? "\u2600" : "\u263E";
+    btn.setAttribute("aria-label", label); btn.title = label;
+  }
+  btn.addEventListener("click", function () {
+    var next = effective() === "dark" ? "light" : "dark";
+    root.setAttribute("data-theme", next);
+    try { localStorage.setItem(KEY, next); } catch (e) { /* storage unavailable */ }
+    paint();
+    // canvases read the colour tokens when they draw, so ask them to redraw
+    window.dispatchEvent(new Event("resize"));
+  });
+  header.classList.add("has-theme-toggle");
+  header.appendChild(btn);
+  paint();
+  try { window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", paint); } catch (e) { /* old browsers */ }
+})();
+</script>
+<script>
+(function () {
+  "use strict";
+  // keep the last breadcrumb in sync with the active section tab
+  var last = document.querySelector("nav.crumbs [data-crumb-section]");
+  if (!last) return;
+  function update() {
+    var a = document.querySelector('nav.tabs a[aria-current="page"]');
+    if (!a) { last.hidden = true; return; }
+    var t = a.cloneNode(true); var n = t.querySelector(".n"); if (n) n.remove();
+    last.querySelector("span").textContent = t.textContent.trim();
+    last.hidden = false;
+  }
+  window.addEventListener("hashchange", function () { setTimeout(update, 0); });
+  setTimeout(update, 0);
+})();
+</script>
+
+<p style="text-align:center;margin-top:32px"><a href="klasse-8.html" style="color:inherit">← Zurück zur Themenübersicht</a></p>
+</body>
+</html>

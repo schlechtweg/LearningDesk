@@ -151,6 +151,14 @@ TOPICS = [
         "fonts": "math", "first_view": "verstehen", "factsheet": "Factsheet als PDF ↓",
     },
     {
+        "slug": "eigenschaften-funktionen", "grade": "8", "subject": "mathematik", "chapter": "III", "order": 2, "kit": True, "accent": ACCENT_MATH8,
+        "title": "Eigenschaften von Funktionen", "short": "Eigenschaften", "tag": "Funktionen",
+        "card": "Nullstellen, Schnittpunkt mit der y-Achse, steigend und fallend, Hoch- und Tiefpunkte, Symmetrie, interaktiver Graph, Trainer, Quiz",
+        "description": "Interaktive Lernhilfe zu Eigenschaften von Funktionen (Mathematik, Klasse 8)",
+        "intro": "Was man am Graphen ablesen kann: Achsenschnittpunkte, Steigen und Fallen, höchste und tiefste Punkte und Symmetrie.",
+        "fonts": "math", "first_view": "verstehen", "factsheet": "Factsheet als PDF ↓",
+    },
+    {
         "slug": "binomische-formeln", "grade": "8", "subject": "mathematik", "chapter": "I", "order": 4,
         "title": "Binomische Formeln", "short": "Binomische Formeln", "tag": "Terme",
         "card": "Die drei Formeln, Erklärung mit Flächen, Trainer mit Lückenaufgaben, Kopfrechen-Trick, Quiz",

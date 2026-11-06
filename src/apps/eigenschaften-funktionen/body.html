@@ -1,0 +1,106 @@
+  <nav class="tabs" aria-label="Bereiche">
+    <a href="#verstehen" data-view="verstehen"><span class="n">1</span>Verstehen</a>
+    <a href="#entdecken" data-view="entdecken"><span class="n">2</span>Eigenschaften entdecken</a>
+    <a href="#ueben" data-view="ueben"><span class="n">3</span>Üben</a>
+    <a href="#alltag" data-view="alltag"><span class="n">4</span>Im Alltag</a>
+    <a href="#quiz" data-view="quiz"><span class="n">5</span>Quiz</a>
+  </nav>
+
+  <section class="view" id="view-verstehen">
+    <div class="einfach">
+      <span class="eyebrow">Einfach erklärt</span>
+      <p>Am Graphen einer Funktion kann man vieles ablesen: Wo schneidet er die Achsen? Wo steigt oder fällt er? Wo ist der höchste oder tiefste Punkt? Ist er symmetrisch? Das sind die <strong>Eigenschaften</strong> einer Funktion.</p>
+    </div>
+    <div class="grid-2">
+      <div class="panel stack">
+        <h3>Schnittpunkte mit den Achsen</h3>
+        <ul class="list small">
+          <li><strong>Nullstelle</strong>: eine Stelle <span class="math"><i>x</i></span> mit <span class="math"><i>f</i>(<i>x</i>) = 0</span>. Dort schneidet oder berührt der Graph die <span class="math"><i>x</i></span>-Achse.</li>
+          <li><strong>Schnittpunkt mit der <span class="math"><i>y</i></span>-Achse</strong>: <span class="math">(0 | <i>f</i>(0))</span>.</li>
+          <li>Beispiel <span class="math"><i>f</i>(<i>x</i>) = 2<i>x</i> − 6</span>: Nullstelle 3, <span class="math"><i>y</i></span>-Achse bei −6.</li>
+        </ul>
+      </div>
+      <div class="panel stack">
+        <h3>Steigen und Fallen (Monotonie)</h3>
+        <ul class="list small">
+          <li><strong>steigend</strong>: Je größer <span class="math"><i>x</i></span>, desto größer <span class="math"><i>f</i>(<i>x</i>)</span>. Der Graph geht von links nach rechts nach oben.</li>
+          <li><strong>fallend</strong>: Der Graph geht nach unten.</li>
+          <li>Eine Parabel <span class="math"><i>x</i>²</span> fällt für <span class="math"><i>x</i> ≤ 0</span> und steigt für <span class="math"><i>x</i> ≥ 0</span>.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="grid-2">
+      <div class="panel stack">
+        <h3>Hochpunkt und Tiefpunkt</h3>
+        <p class="small">Am <strong>Tiefpunkt</strong> wechselt der Graph von fallend zu steigend, am <strong>Hochpunkt</strong> von steigend zu fallend. Der <span class="math"><i>y</i></span>-Wert ist dort der kleinste bzw. größte Wert in der Umgebung.</p>
+      </div>
+      <div class="panel stack">
+        <h3>Symmetrie</h3>
+        <ul class="list small">
+          <li><strong>achsensymmetrisch zur <span class="math"><i>y</i></span>-Achse</strong>: <span class="math"><i>f</i>(−<i>x</i>) = <i>f</i>(<i>x</i>)</span>, z. B. <span class="math"><i>x</i>²</span>.</li>
+          <li><strong>punktsymmetrisch zum Ursprung</strong>: <span class="math"><i>f</i>(−<i>x</i>) = −<i>f</i>(<i>x</i>)</span>, z. B. <span class="math"><i>x</i>³</span> oder <span class="math">2<i>x</i></span>.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="panel stack">
+      <h3>Typische Fehler</h3>
+      <ul class="list small">
+        <li>Nullstelle mit dem Schnittpunkt der <span class="math"><i>y</i></span>-Achse verwechselt: Nullstelle heißt <span class="math"><i>y</i> = 0</span>, nicht <span class="math"><i>x</i> = 0</span>.</li>
+        <li>Steigen und Fallen immer <strong>von links nach rechts</strong> lesen.</li>
+        <li>Eine Nullstelle ist eine Zahl (<span class="math"><i>x</i> = 3</span>), der Schnittpunkt ein Punkt <span class="math">(3 | 0)</span>.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="view" id="view-entdecken" hidden>
+    <div class="stack">
+      <span class="eyebrow">Ausprobieren</span>
+      <h2>Eigenschaften am Graphen</h2>
+      <p class="muted">Wähle eine Funktion und schalte die Eigenschaften ein. Unter dem Graphen zeigt ein Band, wo er steigt (grün) und fällt (orange).</p>
+    </div>
+    <div class="sim-layout">
+      <div class="figure"><svg class="plot" id="eSvg" viewBox="0 0 460 340" role="img" aria-label="Graph mit Eigenschaften"></svg></div>
+      <div class="panel controls">
+        <div><label class="lbl" for="eSel"><span>Funktion</span></label><select id="eSel"></select></div>
+        <label class="small"><input type="checkbox" id="eN" checked> Nullstellen</label>
+        <label class="small"><input type="checkbox" id="eY" checked> Schnittpunkt mit der <i>y</i>-Achse</label>
+        <label class="small"><input type="checkbox" id="eM" checked> Steigen und Fallen</label>
+        <label class="small"><input type="checkbox" id="eE" checked> Hoch- und Tiefpunkte</label>
+        <dl class="readout" id="eRo"></dl>
+      </div>
+    </div>
+  </section>
+
+  <section class="view" id="view-ueben" hidden>
+    <div class="stack">
+      <span class="eyebrow">Trainer</span>
+      <h2>Nullstellen, Achsen, Monotonie, Symmetrie</h2>
+      <p class="muted">Gib eine Zahl oder ein Wort ein.</p>
+    </div>
+    <div id="trainer" class="stack"></div>
+  </section>
+
+  <section class="view" id="view-alltag" hidden>
+    <div class="stack">
+      <span class="eyebrow">Im Alltag</span>
+      <h2>Eigenschaften im Alltag</h2>
+      <p class="muted">Wer Graphen lesen kann, versteht Nachrichten, Wetterberichte und Aktienkurse besser.</p>
+    </div>
+    <div class="grid-2">
+      <div class="panel stack"><span class="eyebrow">Wetter</span><h3>Tiefsttemperatur</h3><p class="small">Die Temperaturkurve eines Tages hat morgens einen <strong>Tiefpunkt</strong> und nachmittags einen <strong>Hochpunkt</strong>. Dazwischen steigt sie.</p></div>
+      <div class="panel stack"><span class="eyebrow">Sport</span><h3>Wurfparabel</h3><p class="small">Ein geworfener Ball fliegt auf einer Parabel. Der höchste Punkt ist der <strong>Hochpunkt</strong>, die Stelle, an der er landet, eine <strong>Nullstelle</strong>.</p></div>
+      <div class="panel stack"><span class="eyebrow">Handy</span><h3>Akku leer</h3><p class="small">Beim Akkustand ist die Nullstelle der Zeitpunkt, an dem das Handy ausgeht. Beim Laden steigt der Graph, sonst fällt er.</p></div>
+      <div class="panel stack"><span class="eyebrow">Geld</span><h3>Gewinnschwelle</h3><p class="small">Ein Schulkiosk: Gewinn = Einnahmen − Kosten. Die Nullstelle zeigt, ab wie vielen verkauften Brötchen sich der Kiosk lohnt.</p></div>
+      <div class="panel stack"><span class="eyebrow">Brücke</span><h3>Symmetrie</h3><p class="small">Viele Brückenbögen sind achsensymmetrisch. Legt man die <span class="math"><i>y</i></span>-Achse in die Mitte, gilt <span class="math"><i>f</i>(−<i>x</i>) = <i>f</i>(<i>x</i>)</span>.</p></div>
+      <div class="panel stack"><span class="eyebrow">Wasser</span><h3>Badewanne</h3><p class="small">Der Wasserstand steigt beim Einlassen, bleibt beim Baden gleich und fällt beim Ablassen. Wo er 0 ist, ist die Wanne leer.</p></div>
+    </div>
+  </section>
+
+  <section class="view" id="view-quiz" hidden>
+    <div class="stack">
+      <span class="eyebrow">Selbsttest</span>
+      <h2>Quiz</h2>
+      <div class="progress-line"><div class="bar" aria-hidden="true"><i id="qBar"></i></div><span class="score-line" id="qProgress"></span></div>
+    </div>
+    <div class="panel quiz" id="quizBox" aria-live="polite"></div>
+  </section>

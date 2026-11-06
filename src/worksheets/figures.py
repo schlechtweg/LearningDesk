@@ -611,10 +611,25 @@ def funktionsbegriff():
     return {"title": "Funktion oder nicht?", "stars": "★☆☆", "task": (pic, task), "sol": (pic, sol)}
 
 
+def eigenschaften():
+    # graph of f(x) = 0.5 (x + 1)^2 - 2 to read off properties
+    f = lambda x: 0.5 * (x + 1) ** 2 - 2
+    assert f(1) == 0 and f(-3) == 0 and f(0) == -1.5
+    ox, oy, u = 120, 110, 22
+    base = grid(ox, oy, u, (-5, 4), (-3, 4)) + plot(f, ox, oy, u, -5, 4, 4.3, "fg") + text(ox + 2.6 * u, oy - 3.6 * u, "f", "ft it")
+    sol = base + "".join(f'<circle class="pt" cx="{ox + x * u}" cy="{oy}" r="4"/>' for x in (-3, 1)) + f'<circle cx="{ox - u}" cy="{oy + 2 * u}" r="6" fill="none" stroke="#c0392b" stroke-width="2"/><circle cx="{ox}" cy="{oy + 1.5 * u}" r="4" fill="#7b4bb0"/>'
+    task = ('<p>Lies am Graphen von <i>f</i> ab:</p>'
+            '<ol class="lab" style="--lc:1"><li><b>a)</b><span class="lt">Nullstellen: <span class="blank"></span></span></li><li><b>b)</b><span class="lt">Schnittpunkt mit der <i>y</i>-Achse: <span class="blank"></span></span></li>'
+            '<li><b>c)</b><span class="lt">Tiefpunkt: <span class="blank"></span></span></li><li><b>d)</b><span class="lt">Wo fällt, wo steigt der Graph? <span class="blank"></span></span></li><li><b>e)</b><span class="lt">Symmetrieachse: <span class="blank"></span></span></li></ol>')
+    soltxt = ('<ol class="lab" style="--lc:1"><li><b>a)</b><span class="lt"><b><i>x</i> = −3</b> und <b><i>x</i> = 1</b></span></li><li><b>b)</b><span class="lt"><b>(0 | −1,5)</b></span></li>'
+              '<li><b>c)</b><span class="lt"><b>T(−1 | −2)</b></span></li><li><b>d)</b><span class="lt">fallend für <i>x</i> ≤ −1, steigend für <i>x</i> ≥ −1</span></li><li><b>e)</b><span class="lt">die senkrechte Gerade <b><i>x</i> = −1</b></span></li></ol>')
+    return {"title": "Eigenschaften ablesen", "stars": "★☆☆", "task": (svg("0 0 240 200", base), task), "sol": (svg("0 0 240 200", sol), soltxt)}
+
+
 FIGS = {
     "osmose": osmose, "natrium-kalium-pumpe": nak, "symport-antiport": symport, "endocytose-exocytose": endo,
     "ableiten": ableiten, "nervensystem": nerven, "auge": auge,
-    "termstruktur": termstruktur, "zufallsexperimente": zufallsexperimente, "laplace": laplace, "baumdiagramme": baumdiagramme, "unabhaengige-ereignisse": unabhaengig, "funktionsbegriff": funktionsbegriff, "binomische-formeln": binom, "bruchterme": bruchterme, "ausmultiplizieren-faktorisieren": ausmult, "terme-vereinfachen": terme,
+    "termstruktur": termstruktur, "zufallsexperimente": zufallsexperimente, "laplace": laplace, "baumdiagramme": baumdiagramme, "unabhaengige-ereignisse": unabhaengig, "funktionsbegriff": funktionsbegriff, "eigenschaften-funktionen": eigenschaften, "binomische-formeln": binom, "bruchterme": bruchterme, "ausmultiplizieren-faktorisieren": ausmult, "terme-vereinfachen": terme,
     "gleichungen": gleichungen, "ungleichungen": ungleichungen,
     "druck": druck, "hydraulik": hydraulik, "schweredruck": schweredruck, "auftrieb": auftrieb, "luftdruck": luftdruck,
 }
