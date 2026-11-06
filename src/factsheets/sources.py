@@ -1709,6 +1709,55 @@ SHEETS["gleichsetzungsverfahren"] = dict(title="Gleichsetzungs- und Einsetzungsv
     </div>
   </div>''')
 
+SHEETS["additionsverfahren"] = dict(title="Additionsverfahren", eyebrow="Mathematik · Klasse 8 · Lineare Gleichungssysteme", accent=M8, body=f'''
+  <div class="kern">Die Gleichungen werden so mit Zahlen multipliziert, dass eine Variable <strong>entgegengesetzte Koeffizienten</strong> hat. Beim <strong>Addieren</strong> fällt sie weg: Es bleibt eine Gleichung mit einer Variablen.</div>
+  <div class="cols">
+    <div class="box">
+      <h2>Vorgehen</h2>
+      <ol>
+        <li>Beide Gleichungen in die Form {m("<i>ax</i> + <i>by</i> = <i>c</i>")} bringen.</li>
+        <li>Faktoren wählen, sodass z. B. {m("+6<i>y</i>")} und {m("−6<i>y</i>")} entstehen.</li>
+        <li>Gleichungen addieren, nach der verbliebenen Variablen lösen.</li>
+        <li>In eine Ausgangsgleichung einsetzen, Probe in der anderen.</li>
+      </ol>
+    </div>
+    <div class="box">
+      <h2>Beispiel</h2>
+      <p>I: {m("2<i>x</i> + 3<i>y</i> = 12")}, II: {m("3<i>x</i> − 2<i>y</i> = 5")}</p>
+      <ul>
+        <li>I · 2: {m("4<i>x</i> + 6<i>y</i> = 24")}</li>
+        <li>II · 3: {m("9<i>x</i> − 6<i>y</i> = 15")}</li>
+        <li>Addieren: {m("13<i>x</i> = 39 ⇒ <i>x</i> = 3")}</li>
+        <li>In I: {m("6 + 3<i>y</i> = 12 ⇒ <i>y</i> = 2")}, Lösung <strong>(3 | 2)</strong></li>
+      </ul>
+    </div>
+    <div class="box full">
+      <h2>Welches Verfahren wann?</h2>
+      <table>
+        <tr><th>Form der Gleichungen</th><th>Verfahren</th><th>Beispiel</th></tr>
+        <tr><td>beide nach derselben Variablen aufgelöst</td><td><strong>Gleichsetzen</strong></td><td>{m("<i>y</i> = 2<i>x</i> + 1, <i>y</i> = −<i>x</i> + 7")}</td></tr>
+        <tr><td>eine nach einer Variablen aufgelöst</td><td><strong>Einsetzen</strong></td><td>{m("<i>y</i> = 3<i>x</i>, 2<i>x</i> + <i>y</i> = 10")}</td></tr>
+        <tr><td>beide in der Form {m("<i>ax</i> + <i>by</i> = <i>c</i>")}</td><td><strong>Addieren</strong></td><td>{m("<i>x</i> + <i>y</i> = 10, <i>x</i> − <i>y</i> = 2")}</td></tr>
+      </table>
+    </div>
+    <div class="box">
+      <h2>Im Alltag</h2>
+      <ul>
+        <li>Zwei Einkäufe verraten die Einzelpreise.</li>
+        <li>Boot mit und gegen die Strömung.</li>
+        <li>Zweier und Dreier im Basketball.</li>
+      </ul>
+    </div>
+    <div class="box warn">
+      <h2>Typische Fehler</h2>
+      <ul>
+        <li>Rechte Seite nicht mitmultipliziert.</li>
+        <li>Gleiche Koeffizienten addiert statt subtrahiert.</li>
+        <li>Vorzeichenfehler bei negativen Faktoren.</li>
+      </ul>
+    </div>
+  </div>''')
+
 OUT = sys.argv[1] if len(sys.argv) > 1 else os.path.join(os.path.dirname(__file__), "_build")
 os.makedirs(OUT, exist_ok=True)
 shutil.copyfile(os.path.join(os.path.dirname(os.path.abspath(__file__)), "factsheet.css"), os.path.join(OUT, "factsheet.css"))

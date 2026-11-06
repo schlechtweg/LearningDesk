@@ -19,6 +19,7 @@ Interaktive Lern-Apps für die Schule, sortiert nach Klassenstufe. Alles läuft 
 | Klasse 8 · Mathematik (III) | Funktionsgleichungen bestimmen | Aus Steigung und Punkt, zwei Punkten, Graph und Text; Punkte setzen mit Rechenweg, Trainer, Quiz |
 | Klasse 8 · Mathematik (IV) | Gleichungen mit zwei Variablen und LGS | Lösungsmengen, grafisches Lösen, Anzahl der Lösungen, Geraden-Werkzeug, Trainer, Quiz |
 | Klasse 8 · Mathematik (IV) | Gleichsetzungs- und Einsetzungsverfahren | Rechenweg Schritt für Schritt, Sonderfälle, Trainer, Quiz |
+| Klasse 8 · Mathematik (IV) | Additionsverfahren | Multiplizieren und Addieren mit Rechenweg, welches Verfahren wann, Trainer, Quiz |
 | Klasse 8 · Mathematik | Binomische Formeln | Formeln, Flächenmodell, Trainer (Lücken, ausmultiplizieren, faktorisieren), Kopfrechen-Trick, Quiz |
 | Klasse 8 · Mathematik | Bruchterme | Definitionsmenge, Kürzen und Erweitern, Rechenregeln, Trainer, Quiz |
 | Klasse 8 · Mathematik | Ausmultiplizieren und Faktorisieren | Distributivgesetz, Klammer mal Klammer, Ausklammern, Flächenmodell, Trainer, Quiz |

@@ -1910,6 +1910,91 @@ def gleichsetzungsverfahren():
     return L
 
 
+def additionsverfahren():
+    r = random.Random(102)
+    L = {1: [], 2: [], 3: []}
+    nzc = lambda lo, hi: r.choice([v for v in range(lo, hi + 1) if v])
+    seen = set()
+
+    def add(lvl, q, a):
+        if q not in seen:
+            seen.add(q)
+            L[lvl].append((q, a))
+    for i in range(300):
+        x, y = r.randint(-4, 5), r.randint(-4, 5)
+        if i % 3 < 2:
+            a1, a2, b = nzc(-5, 5), nzc(-5, 5), nzc(1, 5)
+            if a1 + a2 == 0:
+                continue
+            sg = r.choice([1, -1])
+            e1, e2 = (a1, sg * b, a1 * x + sg * b * y), (a2, -sg * b, a2 * x - sg * b * y)
+            add(1, f"I: {m(_eq2(*e1))}, II: {m(_eq2(*e2))}", f"I + II: {m(_eq2(a1 + a2, 0, e1[2] + e2[2]))} ⇒ <b>({_n(x)} | {_n(y)})</b>")
+        else:
+            a, b1, b2 = nzc(1, 5), nzc(-5, 5), nzc(-5, 5)
+            if b1 == b2:
+                continue
+            e1, e2 = (a, b1, a * x + b1 * y), (a, b2, a * x + b2 * y)
+            add(1, f"I: {m(_eq2(*e1))}, II: {m(_eq2(*e2))}", f"I − II: {m(_eq2(0, b1 - b2, e1[2] - e2[2]))} ⇒ <b>({_n(x)} | {_n(y)})</b>")
+    for i in range(300):
+        t = i % 3
+        x, y = r.randint(-5, 5), r.randint(-5, 5)
+        if t == 0:
+            # one multiplication suffices
+            a1, b1, k = nzc(-4, 4), nzc(-3, 3), r.choice([2, 3, -2, -3])
+            a2, b2 = nzc(-5, 5), -k * b1
+            if a1 * b2 - a2 * b1 == 0:
+                continue
+            e1, e2 = (a1, b1, a1 * x + b1 * y), (a2, b2, a2 * x + b2 * y)
+            add(2, f"I: {m(_eq2(*e1))}, II: {m(_eq2(*e2))}", f"I · {_n(k)}: {m(_eq2(k * a1, k * b1, k * e1[2]))}; + II: {m(_eq2(k * a1 + a2, 0, k * e1[2] + e2[2]))} ⇒ <i>x</i> = {_n(x)}, <i>y</i> = {_n(y)}: <b>({_n(x)} | {_n(y)})</b>")
+        elif t == 1:
+            x, y, e1, e2 = _system(r, -4, 5, (-5, 5))
+            g = math.gcd(abs(e1[0]), abs(e2[0]))
+            k1, k2 = abs(e2[0]) // g, -(1 if e1[0] * e2[0] > 0 else -1) * abs(e1[0]) // g
+            assert k1 * e1[0] + k2 * e2[0] == 0
+            add(2, f"Mit welchen Zahlen musst du I und II multiplizieren, damit <i>x</i> wegfällt? Löse dann. I: {m(_eq2(*e1))}, II: {m(_eq2(*e2))}", f"I · {_n(k1)}, II · {_n(k2)}: {m(_eq2(k1 * e1[0], k1 * e1[1], k1 * e1[2]))}, {m(_eq2(k2 * e2[0], k2 * e2[1], k2 * e2[2]))}; addiert: {m(_eq2(0, k1 * e1[1] + k2 * e2[1], k1 * e1[2] + k2 * e2[2]))} ⇒ <b>({_n(x)} | {_n(y)})</b>")
+        else:
+            a, b, c = nzc(1, 4), nzc(-4, 4), r.randint(-8, 8)
+            k = r.choice([2, 3, -2, -1])
+            same = r.random() < 0.5
+            e2 = (k * a, k * b, k * c if same else k * c + r.choice([1, 2, -1, 3]))
+            add(2, f"Wie viele Lösungen? I: {m(_eq2(a, b, c))}, II: {m(_eq2(*e2))}", f"I · {_n(-k)} + II: {m(f'0 = {_n(e2[2] - k * c)}')} ⇒ <b>{'unendlich viele' if same else 'keine'}</b>")
+    eur = lambda c: f"{c / 100:.2f}".replace(".", ",")
+    for i in range(500):
+        t = i % 6
+        if t == 0:
+            x, y, e1, e2 = _system(r, -6, 6, (-7, 7))
+            if min(abs(v) for v in (e1[0], e1[1], e2[0], e2[1])) < 2:
+                continue
+            g = math.gcd(abs(e1[1]), abs(e2[1]))
+            k1, k2 = abs(e2[1]) // g, -(1 if e1[1] * e2[1] > 0 else -1) * abs(e1[1]) // g
+            add(3, f"Löse mit dem Additionsverfahren und mache die Probe: I: {m(_eq2(*e1))}, II: {m(_eq2(*e2))}", f"I · {_n(k1)}, II · {_n(k2)}: {m(_eq2(k1 * e1[0] + k2 * e2[0], 0, k1 * e1[2] + k2 * e2[2]))} ⇒ <i>x</i> = {_n(x)}, <i>y</i> = {_n(y)}: <b>({_n(x)} | {_n(y)})</b>. Probe: {_n(e1[0] * x)} + {_n(e1[1] * y)} = {_n(e1[2])} ✓")
+        elif t == 1:
+            k_, b_ = r.choice([90, 100, 110, 120, 130, 140]), r.choice([50, 80, 100, 120])
+            n1, n2 = r.choice([2, 3]), r.choice([4, 5])
+            m1, m2 = r.choice([1, 2]), r.choice([1, 2])
+            p1, p2 = n1 * k_ + m1 * b_, n2 * k_ + m2 * b_
+            if n1 * m2 == n2 * m1:
+                continue
+            add(3, f"Eisdiele: {n1} Kugeln und {m1} Becher kosten {eur(p1)} €, {n2} Kugeln und {m2} Becher kosten {eur(p2)} €. Was kosten eine Kugel und ein Becher?", f"In ct: {m(f'{n1}<i>k</i> + {m1}<i>b</i> = {p1}')}, {m(f'{n2}<i>k</i> + {m2}<i>b</i> = {p2}')} ⇒ Faktoren I · {_n(n2 // math.gcd(n1, n2))}, II · {_n(-n1 // math.gcd(n1, n2))} eliminieren <i>k</i> ⇒ <b>Kugel {eur(k_)} €, Becher {eur(b_)} €</b>. Probe: {n1 * k_} + {m1 * b_} = {p1} ✓")
+        elif t == 2:
+            z, d = r.randint(3, 14), r.randint(2, 9)
+            add(3, f"Im Basketballspiel trifft Mia {z + d}-mal und erzielt {2 * z + 3 * d} Punkte, nur mit Zweiern und Dreiern. Wie viele Zweier und Dreier waren es?", f"{m(f'<i>z</i> + <i>d</i> = {z + d}')}, {m(f'2<i>z</i> + 3<i>d</i> = {2 * z + 3 * d}')}. I · (−2) + II: <i>d</i> = {d}, in I: <i>z</i> = {z + d} − {d} = {z}: <b>{z} Zweier, {d} Dreier</b>. Probe: {2 * z} + {3 * d} = {2 * z + 3 * d} ✓")
+        elif t == 3:
+            v, st = r.randint(8, 20), r.randint(1, 6)
+            add(3, f"Ein Boot fährt flussabwärts {v + st} km/h und flussaufwärts {v - st} km/h. Wie schnell ist das Boot im stehenden Wasser, wie schnell die Strömung?", f"{m(f'<i>v</i> + <i>s</i> = {v + st}')}, {m(f'<i>v</i> − <i>s</i> = {v - st}')}. Addieren: {m(f'2<i>v</i> = {2 * v}')} ⇒ <i>v</i> = {v}, in I: {m(f'{v} + <i>s</i> = {v + st}')}: <b>Boot {v} km/h, Strömung {st} km/h</b>. Probe: {v} − {st} = {v - st} ✓")
+        elif t == 4:
+            e, z = r.randint(3, 15), r.randint(3, 15)
+            add(3, f"In einer Kasse liegen {e + z} Münzen, nur 1-€- und 2-€-Stücke, zusammen {e + 2 * z} €. Wie viele von jeder Sorte?", f"{m(f'<i>e</i> + <i>z</i> = {e + z}')}, {m(f'<i>e</i> + 2<i>z</i> = {e + 2 * z}')}. II − I: <i>z</i> = {z}, in I: <i>e</i> = {e + z} − {z} = {e}: <b>{e} Ein-Euro- und {z} Zwei-Euro-Stücke</b>. Probe: {e} + {2 * z} = {e + 2 * z} ✓")
+        else:
+            x, y = r.randint(-4, 6), r.randint(-4, 6)
+            a1, b1, a2, b2 = nzc(2, 5), nzc(2, 4), nzc(2, 5), nzc(-4, -2)
+            if a1 * b2 - a2 * b1 == 0:
+                continue
+            c1, c2 = a1 * x + b1 * y, a2 * x + b2 * y
+            add(3, f"Bringe zuerst in die Form {m('<i>ax</i> + <i>by</i> = <i>c</i>')} und löse: I: {m(f'{a1}<i>x</i> = {_n(c1)} − {b1}<i>y</i>')}, II: {m(f'{a2}<i>x</i> − {_n(c2)} = {-b2}<i>y</i>')}", f"I: {m(_eq2(a1, b1, c1))}, II: {m(_eq2(a2, b2, c2))}. Faktoren für <i>y</i>: I · {_n(-b2 // math.gcd(b1, -b2))}, II · {_n(b1 // math.gcd(b1, -b2))} ⇒ {m(_eq2((-b2 * a1 + b1 * a2) // math.gcd(b1, -b2), 0, (-b2 * c1 + b1 * c2) // math.gcd(b1, -b2)))} ⇒ <b>({_n(x)} | {_n(y)})</b>")
+    return L
+
+
 M8, PH = "#1f6e8c", "#b4531f"
 TOPICS = {
     "osmose": ({"title": "Osmose", "eyebrow": "Biologie · Klasse 11", "accent": "#0d6f74", "cols": [1, 1, 1], "sol_cols": [1, 1, 1]}, osmose),
@@ -1930,6 +2015,7 @@ TOPICS = {
     "funktionsgleichungen": ({"title": "Funktionsgleichungen bestimmen", "eyebrow": "Mathematik · Klasse 8", "accent": M8, "cols": [2, 2, 1], "sol_cols": [2, 3, 1]}, funktionsgleichungen),
     "lgs-grafisch": ({"title": "Gleichungen mit zwei Variablen und LGS", "eyebrow": "Mathematik · Klasse 8", "accent": M8, "cols": [2, 2, 1], "sol_cols": [2, 2, 1]}, lgs_grafisch),
     "gleichsetzungsverfahren": ({"title": "Gleichsetzungs- und Einsetzungsverfahren", "eyebrow": "Mathematik · Klasse 8", "accent": M8, "cols": [2, 2, 1], "sol_cols": [2, 2, 1]}, gleichsetzungsverfahren),
+    "additionsverfahren": ({"title": "Additionsverfahren", "eyebrow": "Mathematik · Klasse 8", "accent": M8, "cols": [2, 2, 1], "sol_cols": [2, 2, 1]}, additionsverfahren),
     "binomische-formeln": ({"title": "Binomische Formeln", "eyebrow": "Mathematik · Klasse 8", "accent": M8, "cols": 2, "sol_cols": 2}, binomische_formeln),
     "bruchterme": ({"title": "Bruchterme", "eyebrow": "Mathematik · Klasse 8", "accent": "#2d6a4f", "cols": 3, "sol_cols": 3}, bruchterme),
     "ausmultiplizieren-faktorisieren": ({"title": "Ausmultiplizieren und Faktorisieren", "eyebrow": "Mathematik · Klasse 8", "accent": M8, "cols": 3, "sol_cols": 3}, ausmultiplizieren),

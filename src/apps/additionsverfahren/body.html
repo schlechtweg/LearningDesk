@@ -1,0 +1,92 @@
+  <nav class="tabs" aria-label="Bereiche">
+    <a href="#verstehen" data-view="verstehen"><span class="n">1</span>Verstehen</a>
+    <a href="#schritte" data-view="schritte"><span class="n">2</span>Schritt für Schritt</a>
+    <a href="#ueben" data-view="ueben"><span class="n">3</span>Üben</a>
+    <a href="#alltag" data-view="alltag"><span class="n">4</span>Im Alltag</a>
+    <a href="#quiz" data-view="quiz"><span class="n">5</span>Quiz</a>
+  </nav>
+
+  <section class="view" id="view-verstehen">
+    <div class="einfach">
+      <span class="eyebrow">Einfach erklärt</span>
+      <p>Beim Additionsverfahren <strong>addiert</strong> man die beiden Gleichungen so, dass eine Variable <strong>wegfällt</strong>. Dafür multipliziert man vorher eine oder beide Gleichungen mit passenden Zahlen, bis die Koeffizienten einer Variablen <strong>entgegengesetzt</strong> sind (z. B. 3<i>y</i> und −3<i>y</i>).</p>
+    </div>
+    <div class="grid-2">
+      <div class="panel stack">
+        <h3>Direkt addieren</h3>
+        <p class="small math">I: 3<i>x</i> + 2<i>y</i> = 16<br>II: 5<i>x</i> − 2<i>y</i> = 16</p>
+        <ol class="list small">
+          <li>I + II: <span class="math">8<i>x</i> = 32</span>, denn 2<i>y</i> − 2<i>y</i> = 0</li>
+          <li><span class="math"><i>x</i> = 4</span></li>
+          <li>In I: <span class="math">12 + 2<i>y</i> = 16 ⇒ <i>y</i> = 2</span></li>
+          <li>Lösung <span class="math">(4 | 2)</span></li>
+        </ol>
+      </div>
+      <div class="panel stack">
+        <h3>Erst multiplizieren</h3>
+        <p class="small math">I: 2<i>x</i> + 3<i>y</i> = 12<br>II: 3<i>x</i> + 2<i>y</i> = 13</p>
+        <ol class="list small">
+          <li>I · 2 und II · (−3): <span class="math">4<i>x</i> + 6<i>y</i> = 24</span>, <span class="math">−9<i>x</i> − 6<i>y</i> = −39</span></li>
+          <li>Addieren: <span class="math">−5<i>x</i> = −15 ⇒ <i>x</i> = 3</span></li>
+          <li>In I: <span class="math">6 + 3<i>y</i> = 12 ⇒ <i>y</i> = 2</span></li>
+          <li>Lösung <span class="math">(3 | 2)</span></li>
+        </ol>
+      </div>
+    </div>
+    <div class="merksatz">
+      <span class="eyebrow">Welches Verfahren?</span>
+      <p><strong>Gleichsetzen</strong>: beide nach derselben Variablen aufgelöst. <strong>Einsetzen</strong>: eine Gleichung aufgelöst. <strong>Addieren</strong>: beide in der Form <span class="math"><i>a</i><i>x</i> + <i>b</i><i>y</i> = <i>c</i></span>, besonders wenn Koeffizienten schon gleich oder entgegengesetzt sind.</p>
+    </div>
+    <div class="panel stack">
+      <h3>Typische Fehler</h3>
+      <ul class="list small">
+        <li>Beim Multiplizieren die <strong>rechte Seite</strong> vergessen: Jede Zahl der Gleichung wird multipliziert.</li>
+        <li>Gleiche statt entgegengesetzte Koeffizienten: Dann <strong>subtrahieren</strong> statt addieren (oder mit −1 multiplizieren).</li>
+        <li>Vorzeichenfehler beim Multiplizieren mit negativen Zahlen.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="view" id="view-schritte" hidden>
+    <div class="stack">
+      <span class="eyebrow">Rechenweg</span>
+      <h2>Schritt für Schritt</h2>
+      <p class="muted">Wähle, welche Variable wegfallen soll, und lass dir den Rechenweg zeigen. Überlege vor jedem Klick, mit welchen Zahlen multipliziert wird.</p>
+    </div>
+    <div class="row"><div class="modes" role="group" aria-label="Variable"><button type="button" data-v="y" aria-pressed="true"><i>y</i> eliminieren</button><button type="button" data-v="x" aria-pressed="false"><i>x</i> eliminieren</button></div><button type="button" id="sNew">Neues System</button></div>
+    <div class="panel stack"><div id="sSys" class="sys"></div><ol class="steps" id="sSteps"></ol><div class="row"><button type="button" class="primary" id="sNext">Nächster Schritt</button><button type="button" id="sAll">Alles zeigen</button></div></div>
+  </section>
+
+  <section class="view" id="view-ueben" hidden>
+    <div class="stack">
+      <span class="eyebrow">Trainer</span>
+      <h2>Additionsverfahren üben</h2>
+      <p class="muted">Lösung als <code>(2|5)</code>, Faktoren als <code>2; -3</code> eingeben.</p>
+    </div>
+    <div id="trainer" class="stack"></div>
+  </section>
+
+  <section class="view" id="view-alltag" hidden>
+    <div class="stack">
+      <span class="eyebrow">Im Alltag</span>
+      <h2>Zwei Bedingungen, zwei Unbekannte</h2>
+      <p class="muted">Wenn zwei Einkäufe mit denselben Dingen bekannt sind, hilft das Additionsverfahren.</p>
+    </div>
+    <div class="grid-2">
+      <div class="panel stack"><span class="eyebrow">Eisdiele</span><h3>Kugeln und Becher</h3><p class="small">2 Kugeln + 1 Becher = 3,80 €, 3 Kugeln + 1 Becher = 5,10 €. II − I: 1 Kugel = 1,30 €, Becher = 1,20 €.</p></div>
+      <div class="panel stack"><span class="eyebrow">Kino</span><h3>Popcorn und Getränk</h3><p class="small">Zwei Bestellungen mit verschiedenen Mengen verraten die Einzelpreise.</p></div>
+      <div class="panel stack"><span class="eyebrow">Sport</span><h3>Punkte im Basketball</h3><p class="small">12 Treffer, 28 Punkte aus Zweiern und Dreiern: <span class="math"><i>z</i> + <i>d</i> = 12</span>, <span class="math">2<i>z</i> + 3<i>d</i> = 28</span> ⇒ 8 Zweier, 4 Dreier.</p></div>
+      <div class="panel stack"><span class="eyebrow">Mischung</span><h3>Saftschorle</h3><p class="small">Wie viel Saft und Wasser ergeben 1 Liter mit 40 % Saftanteil? Zwei Gleichungen: Menge und Saftanteil.</p></div>
+      <div class="panel stack"><span class="eyebrow">Fluss</span><h3>Boot mit und gegen die Strömung</h3><p class="small">Mit Strömung: <span class="math"><i>v</i> + <i>s</i> = 15</span>, dagegen: <span class="math"><i>v</i> − <i>s</i> = 9</span>. Addieren: <span class="math"><i>v</i> = 12</span> km/h, Strömung 3 km/h.</p></div>
+      <div class="panel stack"><span class="eyebrow">Kasse</span><h3>Münzen zählen</h3><p class="small">20 Münzen aus 1-€- und 2-€-Stücken ergeben 31 €: 9 Einer und 11 Zweier.</p></div>
+    </div>
+  </section>
+
+  <section class="view" id="view-quiz" hidden>
+    <div class="stack">
+      <span class="eyebrow">Selbsttest</span>
+      <h2>Quiz</h2>
+      <div class="progress-line"><div class="bar" aria-hidden="true"><i id="qBar"></i></div><span class="score-line" id="qProgress"></span></div>
+    </div>
+    <div class="panel quiz" id="quizBox" aria-live="polite"></div>
+  </section>

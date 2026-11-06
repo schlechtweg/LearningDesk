@@ -696,10 +696,27 @@ def gleichsetzungsverfahren():
     return {"title": "Tarife vergleichen", "stars": "★★☆", "task": (svg("0 0 240 215", base), task), "sol": (svg("0 0 240 215", sol), soltxt)}
 
 
+def additionsverfahren():
+    # I: 2x + 3y = 12, II: 3x - 2y = 5  ->  (3 | 2)
+    assert 2 * 3 + 3 * 2 == 12 and 3 * 3 - 2 * 2 == 5
+    ox, oy, u = 70, 140, 17
+    base = grid(ox, oy, u, (-3, 9), (-3, 7))
+    lines = plot(lambda x: (12 - 2 * x) / 3, ox, oy, u, -3, 9, 6.6, "fs") + plot(lambda x: (3 * x - 5) / 2, ox, oy, u, -3, 9, 6.6, "fs")
+    sol = base + lines + f'<circle class="pt" cx="{ox + 3 * u}" cy="{oy - 2 * u}" r="4.5"/>' + text(ox + 3 * u + 8, oy - 2 * u + 15, "(3|2)", "ft sol", "start")
+    task = ('<p>I: 2<i>x</i> + 3<i>y</i> = 12 &nbsp; II: 3<i>x</i> − 2<i>y</i> = 5</p>'
+            '<p class="q">I · <span class="blank short"></span>, II · <span class="blank short"></span> ⇒ <span class="blank wide"></span></p>'
+            '<p class="q">Lösung: <span class="blank"></span></p>'
+            '<p class="q">Zeichne beide Geraden und kontrolliere die Lösung am Schnittpunkt.</p>')
+    soltxt = ('<p class="q">I · 2: 4<i>x</i> + 6<i>y</i> = 24, II · 3: 9<i>x</i> − 6<i>y</i> = 15</p>'
+              '<p class="q">Addieren: 13<i>x</i> = 39 ⇒ <b><i>x</i> = 3</b>, in I: 6 + 3<i>y</i> = 12 ⇒ <b><i>y</i> = 2</b></p>'
+              '<p class="q">Geraden <i>y</i> = −⅔<i>x</i> + 4 und <i>y</i> = 1,5<i>x</i> − 2,5 schneiden sich in <b>(3 | 2)</b>.</p>')
+    return {"title": "Rechnen und zeichnen", "stars": "★★☆", "task": (svg("0 0 240 210", base), task), "sol": (svg("0 0 240 210", sol), soltxt)}
+
+
 FIGS = {
     "osmose": osmose, "natrium-kalium-pumpe": nak, "symport-antiport": symport, "endocytose-exocytose": endo,
     "ableiten": ableiten, "nervensystem": nerven, "auge": auge,
-    "termstruktur": termstruktur, "zufallsexperimente": zufallsexperimente, "laplace": laplace, "baumdiagramme": baumdiagramme, "unabhaengige-ereignisse": unabhaengig, "funktionsbegriff": funktionsbegriff, "eigenschaften-funktionen": eigenschaften, "lineare-funktionen": lineare_funktionen, "funktionsgleichungen": funktionsgleichungen, "lgs-grafisch": lgs_grafisch, "gleichsetzungsverfahren": gleichsetzungsverfahren, "binomische-formeln": binom, "bruchterme": bruchterme, "ausmultiplizieren-faktorisieren": ausmult, "terme-vereinfachen": terme,
+    "termstruktur": termstruktur, "zufallsexperimente": zufallsexperimente, "laplace": laplace, "baumdiagramme": baumdiagramme, "unabhaengige-ereignisse": unabhaengig, "funktionsbegriff": funktionsbegriff, "eigenschaften-funktionen": eigenschaften, "lineare-funktionen": lineare_funktionen, "funktionsgleichungen": funktionsgleichungen, "lgs-grafisch": lgs_grafisch, "gleichsetzungsverfahren": gleichsetzungsverfahren, "additionsverfahren": additionsverfahren, "binomische-formeln": binom, "bruchterme": bruchterme, "ausmultiplizieren-faktorisieren": ausmult, "terme-vereinfachen": terme,
     "gleichungen": gleichungen, "ungleichungen": ungleichungen,
     "druck": druck, "hydraulik": hydraulik, "schweredruck": schweredruck, "auftrieb": auftrieb, "luftdruck": luftdruck,
 }

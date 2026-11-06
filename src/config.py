@@ -191,6 +191,14 @@ TOPICS = [
         "fonts": "math", "first_view": "verstehen", "factsheet": "Factsheet als PDF ↓",
     },
     {
+        "slug": "additionsverfahren", "grade": "8", "subject": "mathematik", "chapter": "IV", "order": 3, "kit": True, "accent": ACCENT_MATH8,
+        "title": "Additionsverfahren", "short": "Additionsverfahren", "tag": "Gleichungssysteme",
+        "card": "Gleichungen geschickt multiplizieren und addieren, Rechenweg Schritt für Schritt, welches Verfahren wann, Trainer, Quiz",
+        "description": "Interaktive Lernhilfe zum Additionsverfahren für lineare Gleichungssysteme (Mathematik, Klasse 8)",
+        "intro": "Lineare Gleichungssysteme lösen, indem eine Variable durch geschicktes Addieren wegfällt, mit Rechenweg und Trainer.",
+        "fonts": "math", "first_view": "verstehen", "factsheet": "Factsheet als PDF ↓",
+    },
+    {
         "slug": "binomische-formeln", "grade": "8", "subject": "mathematik", "chapter": "I", "order": 4,
         "title": "Binomische Formeln", "short": "Binomische Formeln", "tag": "Terme",
         "card": "Die drei Formeln, Erklärung mit Flächen, Trainer mit Lückenaufgaben, Kopfrechen-Trick, Quiz",
