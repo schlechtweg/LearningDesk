@@ -111,6 +111,14 @@ TOPICS = [
         "fonts": "math", "first_view": "verstehen", "factsheet": "Factsheet als PDF ↓",
     },
     {
+        "slug": "zufallsexperimente", "grade": "8", "subject": "mathematik", "chapter": "II", "order": 1, "kit": True, "accent": ACCENT_MATH8,
+        "title": "Zufallsexperimente und Häufigkeiten", "short": "Zufallsexperimente", "tag": "Wahrscheinlichkeit",
+        "card": "Ergebnis, Ereignis, absolute und relative Häufigkeit, Gesetz der großen Zahlen, Simulation langer Versuchsreihen, Trainer, Quiz",
+        "description": "Interaktive Lernhilfe zu Zufallsexperimenten und relativen Häufigkeiten (Mathematik, Klasse 8)",
+        "intro": "Von der Versuchsreihe zur Wahrscheinlichkeit: Häufigkeiten bestimmen und beobachten, wie sich der Zufall bei vielen Versuchen beruhigt.",
+        "fonts": "math", "first_view": "verstehen", "factsheet": "Factsheet als PDF ↓",
+    },
+    {
         "slug": "binomische-formeln", "grade": "8", "subject": "mathematik", "chapter": "I", "order": 4,
         "title": "Binomische Formeln", "short": "Binomische Formeln", "tag": "Terme",
         "card": "Die drei Formeln, Erklärung mit Flächen, Trainer mit Lückenaufgaben, Kopfrechen-Trick, Quiz",

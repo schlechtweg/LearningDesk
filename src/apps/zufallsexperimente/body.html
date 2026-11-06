@@ -1,0 +1,113 @@
+  <nav class="tabs" aria-label="Bereiche">
+    <a href="#verstehen" data-view="verstehen"><span class="n">1</span>Verstehen</a>
+    <a href="#versuch" data-view="versuch"><span class="n">2</span>Versuchsreihe</a>
+    <a href="#ueben" data-view="ueben"><span class="n">3</span>Üben</a>
+    <a href="#alltag" data-view="alltag"><span class="n">4</span>Im Alltag</a>
+    <a href="#quiz" data-view="quiz"><span class="n">5</span>Quiz</a>
+  </nav>
+
+  <section class="view" id="view-verstehen">
+    <div class="einfach">
+      <span class="eyebrow">Einfach erklärt</span>
+      <p>Bei einem <strong>Zufallsexperiment</strong> weiß man vorher, was alles herauskommen kann, aber nicht, was <strong>diesmal</strong> herauskommt. Beispiele: eine Münze werfen, würfeln, ein Glücksrad drehen.</p>
+    </div>
+    <div class="grid-2">
+      <div class="panel stack">
+        <h3>Die wichtigsten Begriffe</h3>
+        <ul class="list small">
+          <li><strong>Ergebnis</strong>: ein möglicher Ausgang, z. B. „4“ beim Würfeln.</li>
+          <li><strong>Ergebnismenge</strong> <span class="math">S</span>: alle möglichen Ergebnisse, z. B. <span class="math">S = {1; 2; 3; 4; 5; 6}</span>.</li>
+          <li><strong>Ereignis</strong>: eine Auswahl von Ergebnissen, z. B. „gerade Zahl“ = <span class="math">{2; 4; 6}</span>.</li>
+          <li>Ein Ereignis <strong>tritt ein</strong>, wenn eines seiner Ergebnisse herauskommt.</li>
+        </ul>
+      </div>
+      <div class="panel stack">
+        <h3>Absolute und relative Häufigkeit</h3>
+        <p class="small">Man wirft <span class="math"><i>n</i></span>-mal und zählt, wie oft ein Ergebnis kommt.</p>
+        <ul class="list small">
+          <li><strong>absolute Häufigkeit</strong> <span class="math"><i>k</i></span>: die Anzahl, z. B. 17-mal „6“.</li>
+          <li><strong>relative Häufigkeit</strong>: der Anteil <span class="math"><i>h</i> = <i>k</i> : <i>n</i></span>, z. B. <span class="math">17 : 100 = 0,17 = 17 %</span>.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="merksatz">
+      <span class="eyebrow">Gesetz der großen Zahlen</span>
+      <p>Je öfter man ein Zufallsexperiment wiederholt, desto mehr <strong>stabilisiert</strong> sich die relative Häufigkeit. Diesen stabilen Wert nimmt man als <strong>Wahrscheinlichkeit</strong> <span class="math"><i>P</i></span>.</p>
+    </div>
+    <div class="grid-2">
+      <div class="panel stack">
+        <h3>Wahrscheinlichkeiten</h3>
+        <ul class="list small">
+          <li>liegen immer zwischen <strong>0</strong> (unmöglich) und <strong>1</strong> (sicher), also 0 % bis 100 %.</li>
+          <li>Die Wahrscheinlichkeiten aller Ergebnisse ergeben zusammen <strong>1</strong>.</li>
+          <li>Bei Reißzwecken oder Kronkorken kann man die Wahrscheinlichkeit nicht ausrechnen, nur durch eine lange <strong>Versuchsreihe schätzen</strong>.</li>
+        </ul>
+      </div>
+      <div class="panel stack">
+        <h3>Vorhersagen</h3>
+        <p class="small">Mit einer Wahrscheinlichkeit kann man schätzen, wie oft etwas bei vielen Versuchen <strong>ungefähr</strong> eintritt: erwartete Anzahl ≈ <span class="math"><i>n</i> · <i>P</i></span>.</p>
+        <p class="small math">600 Würfe, P(„6“) = 1/6 ⇒ etwa 100-mal „6“</p>
+      </div>
+    </div>
+    <div class="panel stack">
+      <h3>Typische Fehler</h3>
+      <ul class="list small">
+        <li>„Nach fünfmal Kopf muss jetzt Zahl kommen.“ <strong>Falsch.</strong> Die Münze hat kein Gedächtnis.</li>
+        <li>Die relative Häufigkeit nach 10 Würfen ist noch <strong>kein</strong> guter Schätzwert. Es braucht viele Versuche.</li>
+        <li>Relative Häufigkeit und absolute Häufigkeit verwechselt: <span class="math"><i>h</i></span> ist ein Anteil, <span class="math"><i>k</i></span> eine Anzahl.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="view" id="view-versuch" hidden>
+    <div class="stack">
+      <span class="eyebrow">Simulation</span>
+      <h2>Lange Versuchsreihen</h2>
+      <p class="muted">Wiederhole das Experiment oft und beobachte, wie die relative Häufigkeit zur Ruhe kommt. Bei Reißzwecke und Kronkorken ist die Wahrscheinlichkeit geheim: Schätze sie.</p>
+    </div>
+    <div class="sim-layout">
+      <div class="figure"><svg class="chart" id="cSvg" viewBox="0 0 460 280" role="img" aria-label="Relative Häufigkeit im Verlauf"></svg></div>
+      <div class="panel controls">
+        <div><label class="lbl" for="eSel"><span>Experiment</span></label><select id="eSel"></select></div>
+        <div><label class="lbl" for="oSel"><span>beobachtetes Ergebnis</span></label><select id="oSel"></select></div>
+        <div class="row"><button type="button" class="primary" data-n="1">+1</button><button type="button" class="primary" data-n="10">+10</button><button type="button" class="primary" data-n="100">+100</button><button type="button" class="primary" data-n="1000">+1000</button></div>
+        <div class="row"><button type="button" id="eReset">Neu starten</button><button type="button" id="eReveal" hidden>Wahrscheinlichkeit zeigen</button></div>
+        <dl class="readout" id="eRo"></dl>
+      </div>
+    </div>
+    <div class="panel stack"><h3>Häufigkeitstabelle</h3><div class="table-scroll" id="eTab"></div><p class="small muted" id="eLast"></p></div>
+  </section>
+
+  <section class="view" id="view-ueben" hidden>
+    <div class="stack">
+      <span class="eyebrow">Trainer</span>
+      <h2>Häufigkeiten und Schätzungen</h2>
+      <p class="muted">Gib Anteile als Dezimalzahl, Bruch oder in Prozent ein, z. B. <code>0,25</code>, <code>1/4</code> oder <code>25 %</code>.</p>
+    </div>
+    <div id="trainer" class="stack"></div>
+  </section>
+
+  <section class="view" id="view-alltag" hidden>
+    <div class="stack">
+      <span class="eyebrow">Im Alltag</span>
+      <h2>Zufall im Alltag</h2>
+      <p class="muted">Viele Wahrscheinlichkeiten im Alltag stammen aus langen Beobachtungen, also aus relativen Häufigkeiten.</p>
+    </div>
+    <div class="grid-2">
+      <div class="panel stack"><span class="eyebrow">Wetter</span><h3>Regenwahrscheinlichkeit</h3><p class="small">„70 % Regen“ heißt: An vielen Tagen mit ähnlicher Wetterlage hat es an etwa 70 von 100 Tagen geregnet.</p></div>
+      <div class="panel stack"><span class="eyebrow">Sport</span><h3>Elfmeterquote</h3><p class="small">Eine Spielerin hat 41 von 50 Elfmetern verwandelt: relative Häufigkeit 0,82. Das ist ein guter Schätzwert für ihren nächsten Schuss.</p></div>
+      <div class="panel stack"><span class="eyebrow">Spiele</span><h3>Würfel testen</h3><p class="small">Ist ein Würfel gezinkt? Bei 600 Würfen sollte jede Zahl etwa 100-mal kommen. Kommt die 6 aber 180-mal, ist das sehr verdächtig.</p></div>
+      <div class="panel stack"><span class="eyebrow">Fabrik</span><h3>Qualitätskontrolle</h3><p class="small">Von 2 000 geprüften Schrauben sind 30 fehlerhaft: 1,5 %. Bei einer Lieferung von 10 000 rechnet man mit etwa 150 fehlerhaften Schrauben.</p></div>
+      <div class="panel stack"><span class="eyebrow">Biologie</span><h3>Jungen und Mädchen</h3><p class="small">In Deutschland werden auf 100 Mädchen etwa 105 Jungen geboren. Die Wahrscheinlichkeit für einen Jungen ist also etwas größer als 50 %.</p></div>
+      <div class="panel stack"><span class="eyebrow">Verkehr</span><h3>Grüne Welle</h3><p class="small">Wer jeden Tag an derselben Ampel steht, kann zählen: an 12 von 40 Schultagen grün. Die Chance auf Grün liegt also bei etwa 30 %.</p></div>
+    </div>
+  </section>
+
+  <section class="view" id="view-quiz" hidden>
+    <div class="stack">
+      <span class="eyebrow">Selbsttest</span>
+      <h2>Quiz</h2>
+      <div class="progress-line"><div class="bar" aria-hidden="true"><i id="qBar"></i></div><span class="score-line" id="qProgress"></span></div>
+    </div>
+    <div class="panel quiz" id="quizBox" aria-live="polite"></div>
+  </section>

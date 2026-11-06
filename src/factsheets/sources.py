@@ -1192,6 +1192,59 @@ SHEETS["termstruktur"] = dict(title="Termstruktur und Termwerte", eyebrow="Mathe
     </div>
   </div>''')
 
+SHEETS["zufallsexperimente"] = dict(title="Zufallsexperimente und Häufigkeiten", eyebrow="Mathematik · Klasse 8 · Zufallsversuche", accent=M8, body=f'''
+  <div class="kern">Bei einem <strong>Zufallsexperiment</strong> kennt man alle möglichen Ergebnisse, aber nicht den nächsten Ausgang. Wiederholt man es oft, <strong>stabilisiert</strong> sich die relative Häufigkeit: Sie ist ein Schätzwert für die <strong>Wahrscheinlichkeit</strong>.</div>
+  <div class="cols">
+    <div class="box">
+      <h2>Begriffe</h2>
+      <table>
+        <tr><td><strong>Ergebnis</strong></td><td>ein möglicher Ausgang, z. B. „4“</td></tr>
+        <tr><td><strong>Ergebnismenge</strong> S</td><td>alle Ergebnisse: {m("S = {1; 2; 3; 4; 5; 6}")}</td></tr>
+        <tr><td><strong>Ereignis</strong></td><td>Auswahl von Ergebnissen: „gerade“ = {m("{2; 4; 6}")}</td></tr>
+        <tr><td><strong>sicheres</strong> Ereignis</td><td>tritt immer ein (P = 1)</td></tr>
+        <tr><td><strong>unmögliches</strong> Ereignis</td><td>tritt nie ein (P = 0)</td></tr>
+      </table>
+    </div>
+    <div class="box">
+      <h2>Häufigkeiten</h2>
+      <ul>
+        <li><strong>absolute Häufigkeit</strong> <i>k</i>: wie oft ein Ergebnis eintritt.</li>
+        <li><strong>relative Häufigkeit</strong>: {m("<i>h</i> = <i>k</i> : <i>n</i>")} (Anteil an allen <i>n</i> Versuchen).</li>
+        <li>Beispiel: 17-mal „6“ bei 100 Würfen: {m("<i>h</i> = 0,17 = 17 %")}</li>
+        <li>Alle relativen Häufigkeiten zusammen ergeben <strong>1</strong>.</li>
+      </ul>
+    </div>
+    <div class="box full">
+      <h2>Gesetz der großen Zahlen</h2>
+      <p>Bei wenigen Versuchen schwankt die relative Häufigkeit stark. Bei <strong>vielen</strong> Versuchen pendelt sie sich um einen festen Wert ein. Diesen Wert nimmt man als <strong>Wahrscheinlichkeit</strong> <i>P</i>. Bei Reißzwecken oder Kronkorken kann man <i>P</i> nur so <strong>schätzen</strong>; bei Münze und Würfel kann man sie auch ausrechnen (½ bzw. ⅙).</p>
+    </div>
+    <div class="box">
+      <h2>Wahrscheinlichkeiten</h2>
+      <ul>
+        <li>liegen zwischen <strong>0</strong> und <strong>1</strong> (0 % bis 100 %).</li>
+        <li>Summe über alle Ergebnisse: <strong>1</strong>.</li>
+        <li>Erwartete Anzahl bei <i>n</i> Versuchen: {m("≈ <i>n</i> · <i>P</i>")}</li>
+        <li>600 Würfe: etwa {m("600 · ⅙ = 100")}-mal „6“.</li>
+      </ul>
+    </div>
+    <div class="box">
+      <h2>Im Alltag</h2>
+      <ul>
+        <li><strong>Regenwahrscheinlichkeit</strong> 70 %: an etwa 70 von 100 ähnlichen Tagen Regen.</li>
+        <li><strong>Elfmeterquote</strong> 41 von 50: Schätzwert 0,82.</li>
+        <li><strong>Qualitätskontrolle</strong>: 30 von 2 000 fehlerhaft = 1,5 %.</li>
+      </ul>
+    </div>
+    <div class="box warn full">
+      <h2>Typische Fehler</h2>
+      <ul>
+        <li>„Nach fünfmal Kopf kommt jetzt Zahl.“ <span class="no">Falsch</span>: Der Zufall hat kein Gedächtnis.</li>
+        <li>Nach 10 Würfen ist die relative Häufigkeit noch <strong>kein</strong> guter Schätzwert.</li>
+        <li>Relative Häufigkeit ist ein <strong>Anteil</strong> (z. B. 0,17), die absolute eine <strong>Anzahl</strong> (17).</li>
+      </ul>
+    </div>
+  </div>''')
+
 OUT = sys.argv[1] if len(sys.argv) > 1 else os.path.join(os.path.dirname(__file__), "_build")
 os.makedirs(OUT, exist_ok=True)
 shutil.copyfile(os.path.join(os.path.dirname(os.path.abspath(__file__)), "factsheet.css"), os.path.join(OUT, "factsheet.css"))

@@ -9,6 +9,8 @@ Computed answers are checked with assertions.
 """
 import math
 
+from tasks import de
+
 MINUS = "−"
 
 
@@ -463,10 +465,34 @@ def termstruktur():
     return {"title": "Rechenbaum ausfüllen", "stars": "★☆☆", "task": (fig(False), task), "sol": (fig(True), sol)}
 
 
+def zufallsexperimente():
+    import random as _r
+    rr = _r.Random(7)
+    p, n, k, pts = 0.62, 500, 0, []
+    for i in range(1, n + 1):
+        k += rr.random() < p
+        pts.append((i, k / i))
+    X = lambda i: 40 + i / n * 240
+    Y = lambda v: 170 - v * 150
+    grid_ = "".join(f'<line class="gl" x1="40" y1="{Y(v)}" x2="280" y2="{Y(v)}"/>{text(34, Y(v) + 3, de(v, 1), "ft tiny", "end")}' for v in [0, 0.2, 0.4, 0.6, 0.8, 1])
+    grid_ += "".join(text(X(i), 184, str(i), "ft tiny") for i in [100, 200, 300, 400, 500])
+    line = '<polyline fill="none" stroke="#1f6e8c" stroke-width="1.6" points="' + " ".join(f"{X(i):.1f},{Y(v):.1f}" for i, v in pts[::2]) + '"/>'
+    base = grid_ + '<line class="o" x1="40" y1="170" x2="282" y2="170"/><line class="o" x1="40" y1="170" x2="40" y2="16"/>' + line + text(160, 198, "Anzahl der Würfe", "ft small") + text(44, 12, "relative Häufigkeit „Kopf“", "ft small", "start")
+    final = k / n
+    sol = base + f'<line x1="40" y1="{Y(0.62):.1f}" x2="280" y2="{Y(0.62):.1f}" stroke="#c0392b" stroke-width="1.6" stroke-dasharray="5 3"/>'
+    task = ('<p>Eine Reißzwecke wurde 500-mal geworfen. Das Diagramm zeigt die relative Häufigkeit von „Kopf“.</p>'
+            '<p class="q">Beschreibe, wie sich die Kurve verändert: <span class="blank wide"></span></p>'
+            '<p class="q">Schätze die Wahrscheinlichkeit für „Kopf“ und zeichne sie als Linie ein: <span class="blank"></span></p>'
+            '<p class="q">Wie oft erwartest du bei 2 000 Würfen etwa „Kopf“? <span class="blank"></span></p>')
+    soltxt = (f'<p class="q">Am Anfang schwankt die Kurve stark, mit vielen Würfen <b>stabilisiert</b> sie sich (Gesetz der großen Zahlen).</p>'
+              f'<p class="q">Schätzwert: <b>P ≈ {de(round(final, 2), 2)}</b> (rote Linie).</p><p class="q">2 000 · {de(round(final, 2), 2)} ≈ <b>{de(2000 * round(final, 2), 0)}</b>-mal</p>')
+    return {"title": "Versuchsreihe auswerten", "stars": "★★☆", "task": (svg("0 0 290 205", base), task), "sol": (svg("0 0 290 205", sol), soltxt)}
+
+
 FIGS = {
     "osmose": osmose, "natrium-kalium-pumpe": nak, "symport-antiport": symport, "endocytose-exocytose": endo,
     "ableiten": ableiten, "nervensystem": nerven, "auge": auge,
-    "termstruktur": termstruktur, "binomische-formeln": binom, "bruchterme": bruchterme, "ausmultiplizieren-faktorisieren": ausmult, "terme-vereinfachen": terme,
+    "termstruktur": termstruktur, "zufallsexperimente": zufallsexperimente, "binomische-formeln": binom, "bruchterme": bruchterme, "ausmultiplizieren-faktorisieren": ausmult, "terme-vereinfachen": terme,
     "gleichungen": gleichungen, "ungleichungen": ungleichungen,
     "druck": druck, "hydraulik": hydraulik, "schweredruck": schweredruck, "auftrieb": auftrieb, "luftdruck": luftdruck,
 }

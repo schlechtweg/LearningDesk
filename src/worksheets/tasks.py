@@ -1173,6 +1173,84 @@ def termstruktur():
     return L
 
 
+
+# ================================================================ grade 8 maths, chapter II: random experiments
+def _pct(q):
+    return de(float(q) * 100, 1) + " %"
+
+
+def zufallsexperimente():
+    r = random.Random(92)
+    L = {1: [], 2: [], 3: []}
+    things = [("Würfel", "eine 6"), ("Münze", "Kopf"), ("Reißzwecke", "Kopflage"), ("Glücksrad", "Rot"), ("Kronkorken", "„Zacken oben“")]
+    events = [("Augenzahl größer als 4", "{5; 6}"), ("gerade Augenzahl", "{2; 4; 6}"), ("Primzahl", "{2; 3; 5}"), ("höchstens 2", "{1; 2}"),
+              ("mindestens 4", "{4; 5; 6}"), ("durch 3 teilbar", "{3; 6}"), ("ungerade Augenzahl", "{1; 3; 5}"), ("kleiner als 1", "{ } (unmöglich)")]
+    for i in range(150):
+        t = i % 3
+        if t == 0:
+            th, ev = things[i % len(things)]
+            n = r.choice([20, 25, 40, 50, 80, 100, 200, 250, 400, 500])
+            k = r.randint(1, n - 1)
+            q = Fr(k, n)
+            L[1].append((f"{n} Würfe mit einem {th}: {k}-mal {ev}. Relative Häufigkeit?", f"{k} : {n} = <b>{de(float(q), 4)}</b> = {_pct(q)}"))
+        elif t == 1:
+            ev, st = events[(i // 3) % len(events)]
+            L[1].append((f"Würfel: Schreibe das Ereignis „{ev}“ als Menge.", m(f"<b>{st}</b>")))
+        else:
+            k, n = r.randint(1, 49), r.choice([50, 100, 200])
+            L[1].append((f"Schreibe {k}/{n} als Dezimalzahl und in Prozent.", f"<b>{de(k / n, 3)}</b> = <b>{_pct(Fr(k, n))}</b>"))
+    for i in range(220):
+        t = i % 4
+        if t == 0:
+            n, hp = r.choice([50, 100, 200, 400, 500, 800, 1000]), r.choice([5, 10, 12, 15, 20, 24, 25, 30, 35, 40, 45, 60, 65, 75])
+            k = Fr(n * hp, 100)
+            if k.denominator != 1:
+                continue
+            L[2].append((f"{n} Versuche, relative Häufigkeit {hp} %. Absolute Häufigkeit?", f"{n} · {de(hp / 100, 2)} = <b>{k}</b>"))
+        elif t == 1:
+            name, p, ns = r.choice([("eine 6 beim Würfeln", Fr(1, 6), [300, 600, 1200]), ("Kopf beim Münzwurf", Fr(1, 2), [100, 500, 1000]),
+                                    ("eine Zahl kleiner 3 beim Würfeln", Fr(1, 3), [150, 300, 900]), ("Gelb am Glücksrad (P = ⅙)", Fr(1, 6), [60, 240])])
+            n = r.choice(ns)
+            L[2].append((f"Wie oft erwartest du bei {n} Versuchen ungefähr {name}?", f"{n} · {ftext(p)} ≈ <b>{n * p}</b>-mal"))
+        elif t == 2:
+            a, b = r.choice([(0.25, 0.4), (0.15, 0.5), (0.3, 0.45), (0.2, 0.35), (0.1, 0.6)])
+            c = round(1 - a - b, 2)
+            L[2].append((f"Glücksrad mit Rot, Blau, Gelb: relative Häufigkeiten Rot {de(a, 2)}, Blau {de(b, 2)}. Wie groß ist die relative Häufigkeit von Gelb?", f"1 − {de(a, 2)} − {de(b, 2)} = <b>{de(c, 2)}</b>"))
+        else:
+            if i % 16 != 3:
+                continue
+            n1, n2 = r.choice([(20, 400), (10, 500), (50, 1000), (30, 600)])
+            L[2].append((f"Lisa würfelt {n1}-mal, Tom {n2}-mal. Wessen relative Häufigkeit ist der bessere Schätzwert für die Wahrscheinlichkeit? Begründe.",
+                         f"<b>Toms</b>: Bei mehr Versuchen stabilisiert sich die relative Häufigkeit (Gesetz der großen Zahlen)."))
+    for i in range(70):
+        t = i % 5
+        if t == 0:
+            k1, n1, k2, n2 = r.randint(10, 40), 50, r.randint(40, 140), 200
+            q = Fr(k1 + k2, n1 + n2)
+            L[3].append((f"Zwei Gruppen werfen eine Reißzwecke: Gruppe A {k1}-mal Kopf bei {n1} Würfen, Gruppe B {k2}-mal bei {n2} Würfen. Bestimme die relative Häufigkeit für alle Würfe zusammen.",
+                         f"({k1} + {k2}) : ({n1} + {n2}) = {k1 + k2} : {n1 + n2} = <b>{de(float(q), 3)}</b>"))
+        elif t == 1:
+            a, b, c, d = r.randint(30, 45), 50, r.randint(60, 85), 100
+            better = "A" if Fr(a, b) > Fr(c, d) else "B"
+            if Fr(a, b) == Fr(c, d):
+                continue
+            L[3].append((f"Elfmeter: Spielerin A traf {a} von {b}, Spielerin B {c} von {d}. Wer ist (statistisch) die sicherere Schützin?",
+                         f"A: {de(a / b, 2)}, B: {de(c / d, 2)} ⇒ <b>Spielerin {better}</b>"))
+        elif t == 2:
+            six = r.randint(150, 200)
+            L[3].append((f"Ein Würfel zeigte bei 600 Würfen {six}-mal die 6. Ist er vermutlich gezinkt? Begründe.",
+                         f"Erwartet wären etwa <b>100</b>; {six} ist <b>viel mehr</b> (rel. Häufigkeit {de(six / 600, 2)} statt etwa 0,17): wahrscheinlich gezinkt."))
+        elif t == 3:
+            n, k = r.choice([(2000, 30), (5000, 40), (1000, 12), (4000, 50)])
+            lot = r.choice([10000, 20000, 50000])
+            L[3].append((f"Von {n} geprüften Teilen waren {k} fehlerhaft. Wie viele fehlerhafte Teile erwartest du bei {lot} Teilen?",
+                         f"{k} : {n} = {de(k / n, 4)}; {lot} · {de(k / n, 4)} ≈ <b>{de(lot * k / n, 0)}</b>"))
+        else:
+            L[3].append(("Nach fünfmal Kopf sagt Max: „Jetzt kommt bestimmt Zahl.“ Nimm Stellung.",
+                         "<b>Falsch</b>: Die Münze hat kein Gedächtnis, die Wahrscheinlichkeit bleibt bei jedem Wurf <b>½</b>."))
+    return L
+
+
 M8, PH = "#1f6e8c", "#b4531f"
 TOPICS = {
     "osmose": ({"title": "Osmose", "eyebrow": "Biologie · Klasse 11", "accent": "#0d6f74", "cols": [1, 1, 1], "sol_cols": [1, 1, 1]}, osmose),
@@ -1183,6 +1261,7 @@ TOPICS = {
     "nervensystem": ({"title": "Das Nervensystem", "eyebrow": "Biologie · Klasse 8", "accent": "#4a7a1e", "cols": [1, 1, 1], "sol_cols": [1, 1, 1]}, nerven),
     "auge": ({"title": "Das Auge", "eyebrow": "Biologie · Klasse 8", "accent": "#4a7a1e", "cols": [1, 1, 1], "sol_cols": [1, 1, 1]}, auge),
     "termstruktur": ({"title": "Termstruktur und Termwerte", "eyebrow": "Mathematik · Klasse 8", "accent": M8, "cols": [3, 2, 1], "sol_cols": [3, 2, 1]}, termstruktur),
+    "zufallsexperimente": ({"title": "Zufallsexperimente und Häufigkeiten", "eyebrow": "Mathematik · Klasse 8", "accent": M8, "cols": [2, 2, 1], "sol_cols": [2, 2, 1]}, zufallsexperimente),
     "binomische-formeln": ({"title": "Binomische Formeln", "eyebrow": "Mathematik · Klasse 8", "accent": M8, "cols": 2, "sol_cols": 2}, binomische_formeln),
     "bruchterme": ({"title": "Bruchterme", "eyebrow": "Mathematik · Klasse 8", "accent": "#2d6a4f", "cols": 3, "sol_cols": 3}, bruchterme),
     "ausmultiplizieren-faktorisieren": ({"title": "Ausmultiplizieren und Faktorisieren", "eyebrow": "Mathematik · Klasse 8", "accent": M8, "cols": 3, "sol_cols": 3}, ausmultiplizieren),

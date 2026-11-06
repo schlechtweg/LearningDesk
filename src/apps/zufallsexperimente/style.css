@@ -1,0 +1,9 @@
+/* Relative frequency chart */
+.chart text { font-family: var(--font-mono); font-size: 10.5px; fill: var(--muted); }
+.chart .ax { stroke: var(--ink); stroke-width: 1.2; }
+.chart .gl { stroke: var(--line); stroke-width: 0.8; }
+.chart .ln { fill: none; stroke: var(--accent); stroke-width: 2; }
+.chart .pl { stroke: var(--bad); stroke-width: 1.5; stroke-dasharray: 6 4; }
+.chart .lab { font-family: var(--font-body); font-size: 12px; fill: var(--ink); }
+#eSel, #oSel { width: 100%; }
+.controls > * { min-width: 0; }
