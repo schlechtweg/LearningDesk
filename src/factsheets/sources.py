@@ -1856,6 +1856,53 @@ SHEETS["zentrische-streckung"] = dict(title="Ähnliche Figuren und zentrische St
     </div>
   </div>''')
 
+SHEETS["aehnliche-dreiecke"] = dict(title="Ähnliche Dreiecke", eyebrow="Mathematik · Klasse 8 · Ähnlichkeit", accent=M8, body=f'''
+  <div class="kern">Dreiecke sind ähnlich, wenn sie in den Winkeln übereinstimmen. Dann stehen <strong>entsprechende Seiten</strong> (gegenüber gleichen Winkeln) im selben Verhältnis {m("<i>k</i>")}.</div>
+  <div class="cols">
+    <div class="box">
+      <h2>Ähnlichkeitssätze</h2>
+      <ul>
+        <li><strong>WW</strong>: zwei Winkel gleich.</li>
+        <li><strong>SSS</strong>: {m("<i>a</i>′ : <i>a</i> = <i>b</i>′ : <i>b</i> = <i>c</i>′ : <i>c</i>")}</li>
+        <li><strong>SWS</strong>: zwei Seitenverhältnisse gleich und der eingeschlossene Winkel gleich.</li>
+      </ul>
+    </div>
+    <div class="box">
+      <h2>Fehlende Seite</h2>
+      <ol>
+        <li>Seiten zuordnen (über Winkel oder Größe).</li>
+        <li>{m("<i>k</i> = Bildseite : Originalseite")}</li>
+        <li>{m("<i>x</i> = <i>k</i> · Originalseite")}</li>
+      </ol>
+      <p>3, 4, 5 cm und 6 cm, <i>x</i>, 10 cm: {m("<i>k</i> = 2, <i>x</i> = 8")} cm</p>
+    </div>
+    <div class="box full">
+      <h2>Höhen messen</h2>
+      <table>
+        <tr><th>Methode</th><th>Ähnliche Dreiecke durch</th><th>Rechnung</th></tr>
+        <tr><td>Schatten</td><td>parallele Sonnenstrahlen</td><td>{m("<i>H</i> : <i>S</i> = <i>h</i> : <i>s</i>")}</td></tr>
+        <tr><td>Spiegel</td><td>Einfallswinkel = Ausfallswinkel</td><td>{m("<i>H</i> : <i>D</i> = <i>h</i> : <i>d</i>")}</td></tr>
+        <tr><td>Daumensprung</td><td>Arm und Augenabstand</td><td>Entfernung ≈ 10 · Sprung</td></tr>
+      </table>
+    </div>
+    <div class="box">
+      <h2>Im Alltag</h2>
+      <ul>
+        <li>Baumhöhe über den Schatten.</li>
+        <li>Entfernungen schätzen.</li>
+        <li>Gleiche Dachneigung.</li>
+      </ul>
+    </div>
+    <div class="box warn">
+      <h2>Typische Fehler</h2>
+      <ul>
+        <li>Nicht entsprechende Seiten verglichen.</li>
+        <li>Bei SSS nur zwei Verhältnisse geprüft.</li>
+        <li>Bei SWS liegt der Winkel nicht zwischen den Seiten.</li>
+      </ul>
+    </div>
+  </div>''')
+
 OUT = sys.argv[1] if len(sys.argv) > 1 else os.path.join(os.path.dirname(__file__), "_build")
 os.makedirs(OUT, exist_ok=True)
 shutil.copyfile(os.path.join(os.path.dirname(os.path.abspath(__file__)), "factsheet.css"), os.path.join(OUT, "factsheet.css"))

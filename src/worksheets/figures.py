@@ -756,10 +756,33 @@ def zentrische_streckung():
     return {"title": "Streckung zeichnen", "stars": "★☆☆", "task": (svg("0 0 260 200", base), task), "sol": (svg("0 0 260 200", sol), soltxt)}
 
 
+def aehnliche_dreiecke():
+    # triangle 1: legs 3 and 4, hypotenuse 5; triangle 2 mirrored with k = 1.5: 4.5, 6, 7.5
+    assert 3 ** 2 + 4 ** 2 == 5 ** 2 and (4 * 1.5, 3 * 1.5, 5 * 1.5) == (6, 4.5, 7.5)
+    u = 18
+    o1, o2 = (20, 175), (235, 175)
+    t1 = [o1, (o1[0] + 4 * u, o1[1]), (o1[0], o1[1] - 3 * u)]
+    t2 = [o2, (o2[0] - 6 * u, o2[1]), (o2[0], o2[1] - 4.5 * u)]
+    poly = lambda pts: f'<polygon class="fg" points="{" ".join(f"{x},{y}" for x, y in pts)}"/>'
+    sq = lambda p, dx: f'<path class="o" fill="none" d="M{p[0] + dx} {p[1]} V{p[1] - 9} H{p[0]}"/>'
+    base = poly(t1) + poly(t2) + sq(o1, 9) + sq(o2, -9)
+    base += text(o1[0] + 2 * u, o1[1] + 14, "4 cm") + text(o1[0] - 4, o1[1] - 1.5 * u, "3 cm", "ft", "end") + text(o1[0] + 2.4 * u, o1[1] - 1.8 * u, "5 cm", "ft", "start")
+    base += text(o2[0] - 3 * u, o2[1] + 14, "6 cm") + text(o2[0] + 4, o2[1] - 2.25 * u, "x", "ft it", "start") + text(o2[0] - 3.6 * u, o2[1] - 2.6 * u, "y", "ft it", "end")
+    sol = base + text(o2[0] + 16, o2[1] - 2.25 * u + 14, "= 4,5 cm", "ft sol", "start") + text(o2[0] - 3.6 * u, o2[1] - 2.6 * u - 14, "7,5 cm", "ft sol", "end")
+    task = ('<p>Die beiden rechtwinkligen Dreiecke sind ähnlich.</p>'
+            '<p class="q">Begründe die Ähnlichkeit: <span class="blank wide"></span></p>'
+            '<p class="q"><i>k</i> = <span class="blank"></span> <i>x</i> = <span class="blank"></span> <i>y</i> = <span class="blank"></span></p>'
+            '<p class="q">Wie verhalten sich die Flächen? <span class="blank wide"></span></p>')
+    soltxt = ('<p class="q">Seitenverhältnisse gleich (SSS) bzw. rechter Winkel und gleiche Kathetenverhältnisse (SWS).</p>'
+              '<p class="q"><b><i>k</i> = 6 : 4 = 1,5</b>, <b><i>x</i> = 4,5 cm</b>, <b><i>y</i> = 7,5 cm</b></p>'
+              '<p class="q">6 cm² → 13,5 cm²: <b>Faktor 2,25 = 1,5²</b></p>')
+    return {"title": "Fehlende Seiten", "stars": "★★☆", "task": (svg("0 0 260 200", base), task), "sol": (svg("0 0 260 200", sol), soltxt)}
+
+
 FIGS = {
     "osmose": osmose, "natrium-kalium-pumpe": nak, "symport-antiport": symport, "endocytose-exocytose": endo,
     "ableiten": ableiten, "nervensystem": nerven, "auge": auge,
-    "termstruktur": termstruktur, "zufallsexperimente": zufallsexperimente, "laplace": laplace, "baumdiagramme": baumdiagramme, "unabhaengige-ereignisse": unabhaengig, "funktionsbegriff": funktionsbegriff, "eigenschaften-funktionen": eigenschaften, "lineare-funktionen": lineare_funktionen, "funktionsgleichungen": funktionsgleichungen, "lgs-grafisch": lgs_grafisch, "gleichsetzungsverfahren": gleichsetzungsverfahren, "additionsverfahren": additionsverfahren, "lgs-anwendungen": lgs_anwendungen, "zentrische-streckung": zentrische_streckung, "binomische-formeln": binom, "bruchterme": bruchterme, "ausmultiplizieren-faktorisieren": ausmult, "terme-vereinfachen": terme,
+    "termstruktur": termstruktur, "zufallsexperimente": zufallsexperimente, "laplace": laplace, "baumdiagramme": baumdiagramme, "unabhaengige-ereignisse": unabhaengig, "funktionsbegriff": funktionsbegriff, "eigenschaften-funktionen": eigenschaften, "lineare-funktionen": lineare_funktionen, "funktionsgleichungen": funktionsgleichungen, "lgs-grafisch": lgs_grafisch, "gleichsetzungsverfahren": gleichsetzungsverfahren, "additionsverfahren": additionsverfahren, "lgs-anwendungen": lgs_anwendungen, "zentrische-streckung": zentrische_streckung, "aehnliche-dreiecke": aehnliche_dreiecke, "binomische-formeln": binom, "bruchterme": bruchterme, "ausmultiplizieren-faktorisieren": ausmult, "terme-vereinfachen": terme,
     "gleichungen": gleichungen, "ungleichungen": ungleichungen,
     "druck": druck, "hydraulik": hydraulik, "schweredruck": schweredruck, "auftrieb": auftrieb, "luftdruck": luftdruck,
 }

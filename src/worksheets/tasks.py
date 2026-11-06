@@ -2186,6 +2186,105 @@ def zentrische_streckung():
     return L
 
 
+def aehnliche_dreiecke():
+    r = random.Random(105)
+    L = {1: [], 2: [], 3: []}
+    seen = set()
+    dec = lambda v: f"{float(v):g}".replace(".", ",").replace("-", MINUS)
+    def rd(v):
+        v = Fr(v)
+        return dec(v) if (v * 1000).denominator == 1 else "≈ " + f"{float(v):.2f}".replace(".", ",")
+    cm = lambda v: dec(v) + " cm"
+
+    def add(lvl, q, a):
+        if q not in seen and len(L[lvl]) < 120:
+            seen.add(q)
+            L[lvl].append((q, a))
+
+    def sides():
+        while True:
+            t = sorted(r.randint(2, 9) for _ in range(3))
+            if t[0] + t[1] > t[2]:
+                return t
+    ks = [Fr(3, 2), Fr(2), Fr(5, 2), Fr(3), Fr(1, 2)]
+    for i in range(900):
+        t = i % 6
+        if t >= 4:
+            a, b = r.randint(6, 14) * 5, r.randint(6, 12) * 5
+            if a + b >= 170:
+                continue
+            g = 180 - a - b
+            add(1, f"Dreieck 1: α = {a}°, β = {b}°. Dreieck 2: β′ = {b}°, γ′ = {g}°. Ähnlich? Begründe.", f"Dreieck 1: γ = 180° − {a}° − {b}° = {g}°. Dreieck 2: α′ = 180° − {b}° − {g}° = {a}°. Alle Winkel gleich: <b>ähnlich (WW)</b>")
+            continue
+        if t == 0:
+            a, b = r.randint(6, 16) * 5, r.randint(6, 14) * 5
+            if a + b >= 170:
+                continue
+            add(1, f"Dreieck: α = {a}°, β = {b}°. Wie groß sind die Winkel eines ähnlichen Dreiecks?", f"Winkel bleiben gleich: α′ = {a}°, β′ = {b}°, γ′ = 180° − {a}° − {b}° = <b>{180 - a - b}°</b>")
+        elif t == 1:
+            x, k = r.randint(2, 9), r.choice(ks)
+            add(1, f"Entsprechende Seiten: {cm(x)} und {cm(x * k)}. Bestimme <i>k</i>.", f"<i>k</i> = Bild : Original = {dec(x * k)} : {x} = <b>{dec(k)}</b> ({'Vergrößerung' if k > 1 else 'Verkleinerung'})")
+        elif t == 2:
+            a, b = r.randint(6, 14) * 5, r.randint(6, 12) * 5
+            same = r.random() < 0.5
+            g = 180 - a - b
+            c2 = g if same else g + r.choice([5, 10, -5])
+            if a + b >= 170:
+                continue
+            add(1, f"Dreieck 1: α = {a}°, β = {b}°. Dreieck 2: α′ = {a}°, γ′ = {c2}°. Ähnlich?", f"γ = 180° − {a}° − {b}° = {g}° {'=' if same else '≠'} {c2}°: <b>{'ja (WW)' if same else 'nein'}</b>")
+        else:
+            s_ = sides()
+            k = r.choice(ks)
+            add(1, f"Dreieck mit {', '.join(cm(v) for v in s_)} wird mit <i>k</i> = {dec(k)} vergrößert/verkleinert. Neue Seiten?", f"Jede Seite · {dec(k)}: <b>{', '.join(cm(v * k) for v in s_)}</b>")
+    for i in range(900):
+        t = i % 4
+        s_ = sides()
+        k = r.choice(ks)
+        if t == 0:
+            j = r.choice([1, 2])
+            shown = [cm(s_[0] * k)] + ["<i>x</i>" if q == j else cm(s_[q] * k) for q in (1, 2)]
+            add(2, f"Ähnliche Dreiecke: {', '.join(cm(v) for v in s_)} und {', '.join(shown)}. Berechne <i>x</i>.", f"<i>k</i> = {dec(s_[0] * k)} : {s_[0]} = {dec(k)}, <i>x</i> = {dec(k)} · {s_[j]} = <b>{cm(s_[j] * k)}</b>")
+        elif t == 1:
+            same = r.random() < 0.5
+            s2 = [v * k for v in s_]
+            if not same:
+                s2[2] += r.choice([1, -1, Fr(1, 2)])
+            add(2, f"Dreiecke {', '.join(cm(v) for v in s_)} und {', '.join(cm(v) for v in s2)}: ähnlich?", f"{', '.join(f'{dec(b)} : {a} = {rd(Fr(b) / a)}' for a, b in zip(s_, s2))}: <b>{'ja (SSS)' if same else 'nein'}</b>")
+        elif t == 2:
+            b, c, w = r.randint(3, 8), r.randint(3, 8), r.randint(6, 24) * 5
+            same = r.random() < 0.5
+            w2 = w if same else w + r.choice([5, 10, -10])
+            add(2, f"Dreieck 1: <i>b</i> = {cm(b)}, <i>c</i> = {cm(c)}, α = {w}°. Dreieck 2: <i>b</i>′ = {cm(b * k)}, <i>c</i>′ = {cm(c * k)}, α′ = {w2}°. Ähnlich?", f"<i>b</i>′ : <i>b</i> = <i>c</i>′ : <i>c</i> = {dec(k)}, Winkel {'gleich' if same else 'verschieden'}: <b>{'ja (SWS)' if same else 'nein'}</b>")
+        else:
+            add(2, f"Ähnliche Dreiecke mit <i>k</i> = {dec(k)}. Umfang des Originals: {cm(sum(s_))}. Umfang des Bildes?", f"Umfang · <i>k</i>: {dec(k)} · {sum(s_)} = <b>{cm(sum(s_) * k)}</b>")
+    for i in range(900):
+        t = i % 4
+        if t == 0:
+            h, sh, S = r.choice([Fr(3, 2), Fr(8, 5), Fr(9, 5), Fr(2)]), r.choice([Fr(1), Fr(6, 5), Fr(3, 2), Fr(2), Fr(5, 2)]), r.choice([6, 8, 9, 10, 12, 15, 20])
+            H = h * S / sh
+            if (H * 100).denominator != 1:
+                continue
+            add(3, f"Ein {dec(h)} m großer Mensch wirft {dec(sh)} m Schatten, ein Turm gleichzeitig {S} m. Wie hoch ist der Turm? Warum sind die Dreiecke ähnlich?", f"Sonnenstrahlen parallel, rechter Winkel ⇒ gleiche Winkel (WW). {dec(h)} : {dec(sh)} = <i>H</i> : {S} ⇒ <i>H</i> = {dec(h)} · {S} : {dec(sh)} = <b>{dec(H)} m</b>. Der Turm ist {rd(Fr(S) / sh)}-mal so hoch wie der Mensch, weil sein Schatten {rd(Fr(S) / sh)}-mal so lang ist.")
+        elif t == 1:
+            arm, w = r.choice([60, 65, 70]), r.choice([20, 25, 30, 40, 50, 80])
+            th = Fr(arm, 10)
+            dist = Fr(arm, th) * w
+            if (dist * 10).denominator != 1:
+                continue
+            add(3, f"Daumensprung: Armlänge {arm} cm, Augenabstand {dec(th)} cm. Der Daumen springt am Ziel um {w} m. Wie weit ist das Ziel entfernt?", f"Ähnliche Dreiecke: <i>e</i> : {w} m = {arm} : {dec(th)} ⇒ <i>e</i> = {w} · {arm} : {dec(th)} ≈ <b>{dec(dist)} m</b>. Faustregel: Armlänge ≈ 10 · Augenabstand, also Entfernung ≈ 10 · Sprung.")
+        elif t == 2:
+            a, b = r.randint(2, 6), r.randint(3, 8)
+            k = r.choice([Fr(3, 2), Fr(2), Fr(5, 2), Fr(3)])
+            add(3, f"Ein rechtwinkliges Dreieck hat die Katheten {cm(a)} und {cm(b)}. Ein ähnliches Dreieck hat die kürzere Kathete {cm(min(a, b) * k)}. Berechne die andere Kathete und das Verhältnis der Flächen.", f"<i>k</i> = {dec(k)}, Kathete <b>{cm(max(a, b) * k)}</b>; Flächen: {dec(Fr(a * b, 2))} cm² → {dec(Fr(a * b, 2) * k * k)} cm², <b>Verhältnis {dec(k * k)} = <i>k</i>²</b>. Begründung: Beide Katheten werden mit {dec(k)} multipliziert, die Fläche also mit {dec(k)} · {dec(k)}.")
+        else:
+            d1, h1, d2 = r.choice([2, 3, 4]), r.choice([Fr(3, 2), Fr(8, 5), Fr(9, 5)]), r.choice([10, 12, 15, 18, 20])
+            H = h1 * Fr(d2 + d1, d1)
+            if (H * 100).denominator != 1:
+                continue
+            add(3, f"Spiegelmethode: Ein Spiegel liegt {d2} m vor einem Baum. Lea steht {d1} m vom Spiegel entfernt, ihre Augen sind {dec(h1)} m hoch, und sie sieht die Baumspitze im Spiegel. Wie hoch ist der Baum?", f"Einfallswinkel = Ausfallswinkel ⇒ ähnliche Dreiecke (WW): <i>H</i> : {d2} = {dec(h1)} : {d1} ⇒ <i>H</i> = {dec(h1)} · {d2} : {d1} = <b>{dec(h1 * d2 / d1)} m</b>. Beide Dreiecke haben einen rechten Winkel und gleiche Winkel am Spiegel.")
+    return L
+
+
 M8, PH = "#1f6e8c", "#b4531f"
 TOPICS = {
     "osmose": ({"title": "Osmose", "eyebrow": "Biologie · Klasse 11", "accent": "#0d6f74", "cols": [1, 1, 1], "sol_cols": [1, 1, 1]}, osmose),
@@ -2209,6 +2308,7 @@ TOPICS = {
     "additionsverfahren": ({"title": "Additionsverfahren", "eyebrow": "Mathematik · Klasse 8", "accent": M8, "cols": [2, 2, 1], "sol_cols": [2, 2, 1]}, additionsverfahren),
     "lgs-anwendungen": ({"title": "Anwendungen linearer Gleichungssysteme", "eyebrow": "Mathematik · Klasse 8", "accent": M8, "cols": [2, 1, 1], "sol_cols": [2, 1, 1]}, lgs_anwendungen),
     "zentrische-streckung": ({"title": "Ähnliche Figuren und zentrische Streckung", "eyebrow": "Mathematik · Klasse 8", "accent": M8, "cols": [2, 2, 1], "sol_cols": [2, 2, 1]}, zentrische_streckung),
+    "aehnliche-dreiecke": ({"title": "Ähnliche Dreiecke", "eyebrow": "Mathematik · Klasse 8", "accent": M8, "cols": [2, 1, 1], "sol_cols": [2, 1, 1]}, aehnliche_dreiecke),
     "binomische-formeln": ({"title": "Binomische Formeln", "eyebrow": "Mathematik · Klasse 8", "accent": M8, "cols": 2, "sol_cols": 2}, binomische_formeln),
     "bruchterme": ({"title": "Bruchterme", "eyebrow": "Mathematik · Klasse 8", "accent": "#2d6a4f", "cols": 3, "sol_cols": 3}, bruchterme),
     "ausmultiplizieren-faktorisieren": ({"title": "Ausmultiplizieren und Faktorisieren", "eyebrow": "Mathematik · Klasse 8", "accent": M8, "cols": 3, "sol_cols": 3}, ausmultiplizieren),

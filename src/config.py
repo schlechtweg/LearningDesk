@@ -215,6 +215,14 @@ TOPICS = [
         "fonts": "math", "first_view": "verstehen", "factsheet": "Factsheet als PDF ↓",
     },
     {
+        "slug": "aehnliche-dreiecke", "grade": "8", "subject": "mathematik", "chapter": "V", "order": 2, "kit": True, "accent": ACCENT_MATH8,
+        "title": "Ähnliche Dreiecke", "short": "Ähnliche Dreiecke", "tag": "Ähnlichkeit",
+        "card": "Ähnlichkeitssätze WW, SSS, SWS, fehlende Seiten, Höhen über Schatten, Prüfen, Trainer, Quiz",
+        "description": "Interaktive Lernhilfe zu ähnlichen Dreiecken und den Ähnlichkeitssätzen (Mathematik, Klasse 8)",
+        "intro": "Wann Dreiecke ähnlich sind und wie man damit unbekannte Längen berechnet.",
+        "fonts": "math", "first_view": "verstehen", "factsheet": "Factsheet als PDF ↓",
+    },
+    {
         "slug": "binomische-formeln", "grade": "8", "subject": "mathematik", "chapter": "I", "order": 4,
         "title": "Binomische Formeln", "short": "Binomische Formeln", "tag": "Terme",
         "card": "Die drei Formeln, Erklärung mit Flächen, Trainer mit Lückenaufgaben, Kopfrechen-Trick, Quiz",

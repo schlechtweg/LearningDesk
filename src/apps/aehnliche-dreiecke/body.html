@@ -1,0 +1,105 @@
+  <nav class="tabs" aria-label="Bereiche">
+    <a href="#verstehen" data-view="verstehen"><span class="n">1</span>Verstehen</a>
+    <a href="#entdecken" data-view="entdecken"><span class="n">2</span>Entdecken</a>
+    <a href="#pruefen" data-view="pruefen"><span class="n">3</span>Prüfen</a>
+    <a href="#ueben" data-view="ueben"><span class="n">4</span>Üben</a>
+    <a href="#alltag" data-view="alltag"><span class="n">5</span>Im Alltag</a>
+    <a href="#quiz" data-view="quiz"><span class="n">6</span>Quiz</a>
+  </nav>
+
+  <section class="view" id="view-verstehen">
+    <div class="einfach">
+      <span class="eyebrow">Einfach erklärt</span>
+      <p>Bei Dreiecken muss man nicht alles vergleichen. Schon <strong>zwei gleiche Winkel</strong> reichen: Dann stimmt auch der dritte (Winkelsumme 180°), und die Dreiecke sind ähnlich.</p>
+    </div>
+    <div class="grid-2">
+      <div class="panel stack">
+        <h3>Ähnlichkeitssätze</h3>
+        <ul class="list small">
+          <li><strong>WW</strong>: Zwei Winkel stimmen überein.</li>
+          <li><strong>SSS</strong>: Alle drei Seitenverhältnisse sind gleich: <span class="math"><i>a</i>′ : <i>a</i> = <i>b</i>′ : <i>b</i> = <i>c</i>′ : <i>c</i></span>.</li>
+          <li><strong>SWS</strong>: Zwei Seitenverhältnisse sind gleich und der eingeschlossene Winkel stimmt überein.</li>
+        </ul>
+      </div>
+      <div class="panel stack">
+        <h3>Fehlende Seiten berechnen</h3>
+        <p class="small">Dreieck mit 3, 4, 5 cm ist ähnlich zu einem mit 6 cm, <span class="math"><i>x</i></span>, 10 cm.</p>
+        <ol class="list small">
+          <li>Entsprechende Seiten zuordnen (kleinste zu kleinster …).</li>
+          <li>Faktor: <span class="math"><i>k</i> = 6 : 3 = 2</span></li>
+          <li><span class="math"><i>x</i> = 2 · 4 = 8</span> cm</li>
+        </ol>
+      </div>
+    </div>
+    <div class="merksatz">
+      <span class="eyebrow">Merke</span>
+      <p>Gegenüber gleich großen Winkeln liegen <strong>entsprechende Seiten</strong>. Nur entsprechende Seiten dürfen ins Verhältnis gesetzt werden.</p>
+    </div>
+    <div class="panel stack">
+      <h3>Typische Fehler</h3>
+      <ul class="list small">
+        <li>Falsche Seiten zugeordnet: Immer über die Winkel oder die Reihenfolge der Größe zuordnen.</li>
+        <li>Nur zwei Seitenverhältnisse geprüft (SSS braucht alle drei).</li>
+        <li>Differenzen statt Verhältnisse verglichen.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="view" id="view-entdecken" hidden>
+    <div class="stack">
+      <span class="eyebrow">Ausprobieren</span>
+      <h2>Gleiche Winkel, gleiche Verhältnisse</h2>
+      <p class="muted">Stelle die Winkel und die Größe ein. Das zweite Dreieck hat dieselben Winkel. Was passiert mit den Seitenverhältnissen?</p>
+    </div>
+    <div class="sim-layout">
+      <div class="figure"><svg class="plot" id="tSvg" viewBox="0 0 460 300" role="img" aria-label="Zwei ähnliche Dreiecke"></svg></div>
+      <div class="panel stack ctl">
+        <label for="al">α = <b id="alV"></b></label><input type="range" id="al" min="20" max="110" step="5" value="50">
+        <label for="be">β = <b id="beV"></b></label><input type="range" id="be" min="20" max="110" step="5" value="70">
+        <label for="kk">Faktor <i>k</i> = <b id="kkV"></b></label><input type="range" id="kk" min="0.5" max="2" step="0.25" value="1.5">
+        <table class="facts" id="tFacts"></table>
+      </div>
+    </div>
+  </section>
+
+  <section class="view" id="view-pruefen" hidden>
+    <div class="stack">
+      <span class="eyebrow">Ähnlichkeitssätze</span>
+      <h2>Ähnlich oder nicht?</h2>
+      <p class="muted">Entscheide und wähle den passenden Satz.</p>
+    </div>
+    <div class="panel stack"><p class="case" id="pCase"></p><div class="opts" id="pOpts"><button type="button" data-a="WW">ähnlich (WW)</button><button type="button" data-a="SSS">ähnlich (SSS)</button><button type="button" data-a="SWS">ähnlich (SWS)</button><button type="button" data-a="nein">nicht ähnlich</button></div><p class="small" id="pFb" aria-live="polite"></p><div class="row"><button type="button" class="primary" id="pNext">Nächster Fall</button><span class="score-line" id="pScore"></span></div></div>
+  </section>
+
+  <section class="view" id="view-ueben" hidden>
+    <div class="stack">
+      <span class="eyebrow">Trainer</span>
+      <h2>Ähnliche Dreiecke berechnen</h2>
+      <p class="muted">Dezimalzahlen mit Komma oder Punkt.</p>
+    </div>
+    <div id="trainer" class="stack"></div>
+  </section>
+
+  <section class="view" id="view-alltag" hidden>
+    <div class="stack">
+      <span class="eyebrow">Im Alltag</span>
+      <h2>Messen ohne hinaufzuklettern</h2>
+    </div>
+    <div class="grid-2">
+      <div class="panel stack"><span class="eyebrow">Schatten</span><h3>Wie hoch ist der Baum?</h3><p class="small">Ein 1,80 m großer Mensch wirft 1,20 m Schatten, der Baum 10 m. Sonnenstrahlen sind parallel, die Dreiecke ähnlich: Baum = 10 · 1,8 : 1,2 = 15 m.</p></div>
+      <div class="panel stack"><span class="eyebrow">Daumensprung</span><h3>Entfernungen schätzen</h3><p class="small">Mit ausgestrecktem Arm und Daumen entstehen ähnliche Dreiecke: Abstand ≈ 10 · Sprungweite.</p></div>
+      <div class="panel stack"><span class="eyebrow">Spiegel</span><h3>Höhe mit einem Spiegel</h3><p class="small">Einfallswinkel = Ausfallswinkel: Die beiden Dreiecke zum Spiegel sind ähnlich (WW).</p></div>
+      <div class="panel stack"><span class="eyebrow">Geschichte</span><h3>Thales und die Pyramide</h3><p class="small">Thales soll die Höhe der Cheops-Pyramide über ihren Schatten bestimmt haben.</p></div>
+      <div class="panel stack"><span class="eyebrow">Fotografie</span><h3>Objektiv und Sensor</h3><p class="small">Gegenstand und Bild bilden ähnliche Dreiecke durch die Linse.</p></div>
+      <div class="panel stack"><span class="eyebrow">Bau</span><h3>Dachneigung</h3><p class="small">Gleiche Neigung heißt ähnliche Dreiecke: Auf 2 m Breite 1,5 m Höhe, dann auf 4 m Breite 3 m.</p></div>
+    </div>
+  </section>
+
+  <section class="view" id="view-quiz" hidden>
+    <div class="stack">
+      <span class="eyebrow">Selbsttest</span>
+      <h2>Quiz</h2>
+      <div class="progress-line"><div class="bar" aria-hidden="true"><i id="qBar"></i></div><span class="score-line" id="qProgress"></span></div>
+    </div>
+    <div class="panel quiz" id="quizBox" aria-live="polite"></div>
+  </section>
