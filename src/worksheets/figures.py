@@ -8,8 +8,9 @@ Every function returns a dict with
 Computed answers are checked with assertions.
 """
 import math
+from fractions import Fraction as Fr
 
-from tasks import de
+from tasks import de, ftext
 
 MINUS = "−"
 
@@ -513,10 +514,51 @@ def laplace():
     return {"title": "Augensummen-Tabelle", "stars": "★★☆", "task": (fig(False), task), "sol": (fig(True), sol)}
 
 
+def baumdiagramme():
+    # urn with 3 red and 2 blue balls, two draws without replacement
+    R, B = 3, 2
+    nodes = {"": (20, 100), "r": (110, 50), "b": (110, 150), "rr": (200, 25), "rb": (200, 75), "br": (200, 125), "bb": (200, 175)}
+    probs = {"r": (R, 5), "b": (B, 5), "rr": (2, 4), "rb": (2, 4), "br": (3, 4), "bb": (1, 4)}
+    paths = {"rr": Fr(3, 5) * Fr(2, 4), "rb": Fr(3, 5) * Fr(2, 4), "br": Fr(2, 5) * Fr(3, 4), "bb": Fr(2, 5) * Fr(1, 4)}
+    assert sum(paths.values()) == 1
+
+    def fig(show):
+        d = ""
+        for k, (x, y) in nodes.items():
+            if not k:
+                continue
+            px, py = nodes[k[:-1]]
+            d += f'<line class="o" x1="{px}" y1="{py}" x2="{x}" y2="{y}"/>'
+            mx, my = (px + x) / 2, (py + y) / 2 - 7
+            if show:
+                d += text(mx, my, f"{probs[k][0]}/{probs[k][1]}", "ft sol")
+            else:
+                d += f'<rect x="{mx - 15}" y="{my - 11}" width="30" height="15" rx="3" fill="#fff" stroke="#9aa4ad"/>'
+        for k, (x, y) in nodes.items():
+            col = "#1b2228" if not k else ("#c0392b" if k[-1] == "r" else "#2f7fb8")
+            d += f'<circle cx="{x}" cy="{y}" r="{4 if not k else 7}" fill="{col}"/>'
+        for k in ["rr", "rb", "br", "bb"]:
+            x, y = nodes[k]
+            d += text(x + 14, y + 4, k.upper() + ":", "ft", "start")
+            if show:
+                d += text(x + 46, y + 4, ftext(paths[k]), "ft sol", "start")
+            else:
+                d += f'<rect x="{x + 42}" y="{y - 9}" width="34" height="15" rx="3" fill="#fff" stroke="#9aa4ad"/>'
+        return svg("0 5 290 185", d)
+    task = ('<p>In einer Urne liegen 3 rote und 2 blaue Kugeln. Es werden zwei Kugeln <b>ohne Zurücklegen</b> gezogen. Ergänze die Wahrscheinlichkeiten an den Ästen und an den Pfadenden.</p>'
+            '<p class="q">P(gleiche Farbe) = <span class="blank"></span> &nbsp; P(mindestens eine blaue) = <span class="blank"></span></p>')
+    same = paths["rr"] + paths["bb"]
+    atleast = 1 - paths["rr"]
+    assert same == Fr(2, 5) and atleast == Fr(7, 10)
+    sol = (f'<p class="q">Pfade: RR = RB = BR = 3/10, BB = 1/10 (Summe 1).</p>'
+           f'<p class="q">P(gleiche Farbe) = 3/10 + 1/10 = <b>2/5</b>; P(mindestens eine blaue) = 1 − 3/10 = <b>7/10</b>.</p>')
+    return {"title": "Baumdiagramm ergänzen", "stars": "★★☆", "task": (fig(False), task), "sol": (fig(True), sol)}
+
+
 FIGS = {
     "osmose": osmose, "natrium-kalium-pumpe": nak, "symport-antiport": symport, "endocytose-exocytose": endo,
     "ableiten": ableiten, "nervensystem": nerven, "auge": auge,
-    "termstruktur": termstruktur, "zufallsexperimente": zufallsexperimente, "laplace": laplace, "binomische-formeln": binom, "bruchterme": bruchterme, "ausmultiplizieren-faktorisieren": ausmult, "terme-vereinfachen": terme,
+    "termstruktur": termstruktur, "zufallsexperimente": zufallsexperimente, "laplace": laplace, "baumdiagramme": baumdiagramme, "binomische-formeln": binom, "bruchterme": bruchterme, "ausmultiplizieren-faktorisieren": ausmult, "terme-vereinfachen": terme,
     "gleichungen": gleichungen, "ungleichungen": ungleichungen,
     "druck": druck, "hydraulik": hydraulik, "schweredruck": schweredruck, "auftrieb": auftrieb, "luftdruck": luftdruck,
 }

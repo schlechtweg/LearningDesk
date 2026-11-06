@@ -1,0 +1,11 @@
+/* Probability tree */
+.btree line { stroke: var(--line); stroke-width: 2; }
+.btree line.hi { stroke: var(--accent); stroke-width: 3.5; }
+.btree circle.r { fill: #c0392b; } .btree circle.b { fill: #2f7fb8; }
+.btree circle.root { fill: var(--ink); }
+.btree text { font-family: var(--font-mono); font-size: 11px; fill: var(--muted); }
+.btree text.pp { fill: var(--ink); font-size: 11.5px; }
+.btree text.pp.hi { fill: var(--accent); font-weight: 700; }
+.btree rect.hi { fill: var(--accent-soft); }
+#bEv { width: 100%; }
+.controls > * { min-width: 0; }

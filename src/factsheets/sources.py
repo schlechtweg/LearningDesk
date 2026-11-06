@@ -1293,6 +1293,57 @@ SHEETS["laplace"] = dict(title="Laplace-Experimente und Anzahlen", eyebrow="Math
     </div>
   </div>''')
 
+SHEETS["baumdiagramme"] = dict(title="Baumdiagramme und Pfadregeln", eyebrow="Mathematik · Klasse 8 · Zufallsversuche", accent=M8, body=f'''
+  <div class="kern">Ein <strong>mehrstufiges</strong> Zufallsexperiment stellt man im <strong>Baumdiagramm</strong> dar. An jedem Ast steht eine Wahrscheinlichkeit, jeder Pfad ist ein Ergebnis.</div>
+  <div class="cols">
+    <div class="box">
+      <h2>1. Pfadregel (Produktregel)</h2>
+      <p>Wahrscheinlichkeit eines Pfades = <strong>Produkt</strong> der Astwahrscheinlichkeiten.</p>
+      <p class="small">Zweimal rot (3 rot, 2 blau, mit Zurücklegen): {m("3/5 · 3/5 = 9/25")}</p>
+    </div>
+    <div class="box">
+      <h2>2. Pfadregel (Summenregel)</h2>
+      <p>Mehrere Pfade zu einem Ereignis: Wahrscheinlichkeiten <strong>addieren</strong>.</p>
+      <p class="small">Genau eine rote: {m("3/5 · 2/5 + 2/5 · 3/5 = 12/25")}</p>
+    </div>
+    <div class="box">
+      <h2>Mit Zurücklegen</h2>
+      <p>Die Kugel kommt zurück: Wahrscheinlichkeiten bleiben auf jeder Stufe <strong>gleich</strong>.</p>
+    </div>
+    <div class="box">
+      <h2>Ohne Zurücklegen</h2>
+      <p>Eine Kugel weniger: Wahrscheinlichkeiten der nächsten Stufe <strong>ändern sich</strong>.</p>
+      <p class="small">Zweimal rot: {m("3/5 · 2/4 = 3/10")}</p>
+    </div>
+    <div class="box">
+      <h2>Kontrollen</h2>
+      <ul>
+        <li>Äste an einem Verzweigungspunkt: Summe <strong>1</strong>.</li>
+        <li>Alle Pfadwahrscheinlichkeiten: Summe <strong>1</strong>.</li>
+      </ul>
+    </div>
+    <div class="box">
+      <h2>„Mindestens einmal“: Gegenereignis</h2>
+      <p>{m("<i>P</i>(mindestens einmal) = 1 − <i>P</i>(keinmal)")}</p>
+      <p class="small">Mindestens eine 6 bei 3 Würfen: {m("1 − (5/6)<sup>3</sup> ≈ 0,42")}</p>
+    </div>
+    <div class="box">
+      <h2>Im Alltag</h2>
+      <ul>
+        <li>Zwei Ampeln (40 % und 50 % grün): beide grün {m("0,4 · 0,5 = 0,2")}.</li>
+        <li>Zwei Freiwürfe (70 %): mindestens ein Treffer {m("1 − 0,3 · 0,3 = 0,91")}.</li>
+      </ul>
+    </div>
+    <div class="box warn">
+      <h2>Typische Fehler</h2>
+      <ul>
+        <li>Entlang eines Pfades <strong>addiert</strong> statt multipliziert.</li>
+        <li>Ohne Zurücklegen die zweite Stufe nicht angepasst.</li>
+        <li>„Genau einmal“ hat <strong>mehrere</strong> Pfade.</li>
+      </ul>
+    </div>
+  </div>''')
+
 OUT = sys.argv[1] if len(sys.argv) > 1 else os.path.join(os.path.dirname(__file__), "_build")
 os.makedirs(OUT, exist_ok=True)
 shutil.copyfile(os.path.join(os.path.dirname(os.path.abspath(__file__)), "factsheet.css"), os.path.join(OUT, "factsheet.css"))

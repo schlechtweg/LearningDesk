@@ -1343,6 +1343,71 @@ def laplace():
     return L
 
 
+
+def baumdiagramme():
+    r = random.Random(94)
+    L = {1: [], 2: [], 3: []}
+    for i in range(160):
+        t = i % 3
+        rr, b = r.randint(1, 7), r.randint(1, 7)
+        n = rr + b
+        if t == 0:
+            q = Fr(rr, n) * Fr(rr, n)
+            L[1].append((f"Urne {rr} rot, {b} blau, zweimal <b>mit</b> Zurücklegen. P(rot, rot)?", m(f"{fr(rr, n)} · {fr(rr, n)} = <b>{fnum(q)}</b>")))
+        elif t == 1:
+            if rr < 2:
+                continue
+            q = Fr(rr, n) * Fr(rr - 1, n - 1)
+            L[1].append((f"Urne {rr} rot, {b} blau, zweimal <b>ohne</b> Zurücklegen. P(rot, rot)?", m(f"{fr(rr, n)} · {fr(rr - 1, n - 1)} = <b>{fnum(q)}</b>")))
+        else:
+            p1, p2 = r.choice([0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8]), r.choice([0.25, 0.4, 0.5, 0.6, 0.75, 0.9])
+            L[1].append((f"Ampel 1 grün mit {de(p1, 2)}, Ampel 2 mit {de(p2, 2)}. P(beide grün)?", m(f"{de(p1, 2)} · {de(p2, 2)} = <b>{de(p1 * p2, 4)}</b>")))
+    for i in range(140):
+        t = i % 4
+        rr, b = r.randint(2, 7), r.randint(2, 7)
+        n = rr + b
+        if t == 0:
+            q = 2 * Fr(rr, n) * Fr(b, n)
+            L[2].append((f"Urne {rr} rot, {b} blau, zweimal mit Zurücklegen. P(genau eine rote)?", m(f"2 · {fr(rr, n)} · {fr(b, n)} = <b>{fnum(q)}</b>")))
+        elif t == 1:
+            q = 2 * Fr(rr, n) * Fr(b, n - 1)
+            L[2].append((f"Urne {rr} rot, {b} blau, zweimal ohne Zurücklegen. P(genau eine rote)?", m(f"{fr(rr, n)} · {fr(b, n - 1)} + {fr(b, n)} · {fr(rr, n - 1)} = <b>{fnum(q)}</b>")))
+        elif t == 2:
+            q = Fr(rr, n) * Fr(rr - 1, n - 1) + Fr(b, n) * Fr(b - 1, n - 1)
+            L[2].append((f"Urne {rr} rot, {b} blau, zweimal ohne Zurücklegen. P(gleiche Farbe)?", m(f"{fr(rr, n)} · {fr(rr - 1, n - 1)} + {fr(b, n)} · {fr(b - 1, n - 1)} = <b>{fnum(q)}</b>")))
+        else:
+            k = r.choice([2, 3])
+            q = 1 - Fr(5, 6) ** k
+            L[2].append((f"Würfel, {k} Würfe. P(mindestens eine 6)?", f"1 − {m(f'({fr(5, 6)})<sup>{k}</sup>')} = <b>{m(fnum(q))}</b>"))
+    for i in range(80):
+        t = i % 5
+        if t == 0:
+            p_ = r.choice([Fr(1, 2), Fr(3, 5), Fr(7, 10), Fr(4, 5)])
+            k = r.choice([2, 3])
+            q = 1 - (1 - p_) ** k
+            L[3].append((f"Trefferquote {_pct(p_)}. Wie groß ist die Wahrscheinlichkeit für mindestens einen Treffer bei {k} Würfen?", f"1 − ({ftext(1 - p_)})<sup>{k}</sup> = <b>{m(fnum(q))}</b> ≈ {_pct(q)}"))
+        elif t == 1:
+            g, j = r.randint(10, 15), r.randint(10, 15)
+            n = g + j
+            q = Fr(g, n) * Fr(g - 1, n - 1)
+            L[3].append((f"In einer Klasse sind {g} Mädchen und {j} Jungen. Zwei Klassensprecher werden gelost. P(zwei Mädchen)?", m(f"{fr(g, n)} · {fr(g - 1, n - 1)} = <b>{fnum(q)}</b>") + f" ≈ {_pct(q)}"))
+        elif t == 2:
+            rr, b = r.randint(3, 6), r.randint(2, 5)
+            n = rr + b
+            q = Fr(rr, n) * Fr(rr - 1, n - 1) * Fr(rr - 2, n - 2)
+            L[3].append((f"Urne {rr} rot, {b} blau. Drei Kugeln ohne Zurücklegen. P(dreimal rot)?", m(f"{fr(rr, n)} · {fr(rr - 1, n - 1)} · {fr(rr - 2, n - 2)} = <b>{fnum(q)}</b>")))
+        elif t == 3:
+            k = r.randint(2, 5)
+            q = 1 - Fr(1, 2) ** k
+            L[3].append((f"Wie groß ist die Wahrscheinlichkeit, bei {k} Münzwürfen mindestens einmal Kopf zu werfen?", f"1 − (½)<sup>{k}</sup> = <b>{m(fnum(q))}</b>"))
+        else:
+            n = r.randint(2, 4)
+            L[3].append((f"Wie oft muss man mindestens würfeln, damit die Wahrscheinlichkeit für mindestens eine 6 größer als 50 % ist?", "1 − (5/6)<sup>3</sup> ≈ 42 %, 1 − (5/6)<sup>4</sup> ≈ <b>52 %</b>: mindestens <b>4</b>-mal"))
+            assert 1 - Fr(5, 6) ** 3 < Fr(1, 2) < 1 - Fr(5, 6) ** 4
+            _ = n
+    return L
+
+
 M8, PH = "#1f6e8c", "#b4531f"
 TOPICS = {
     "osmose": ({"title": "Osmose", "eyebrow": "Biologie · Klasse 11", "accent": "#0d6f74", "cols": [1, 1, 1], "sol_cols": [1, 1, 1]}, osmose),
@@ -1355,6 +1420,7 @@ TOPICS = {
     "termstruktur": ({"title": "Termstruktur und Termwerte", "eyebrow": "Mathematik · Klasse 8", "accent": M8, "cols": [3, 2, 1], "sol_cols": [3, 2, 1]}, termstruktur),
     "zufallsexperimente": ({"title": "Zufallsexperimente und Häufigkeiten", "eyebrow": "Mathematik · Klasse 8", "accent": M8, "cols": [2, 2, 1], "sol_cols": [2, 2, 1]}, zufallsexperimente),
     "laplace": ({"title": "Laplace-Experimente und Anzahlen", "eyebrow": "Mathematik · Klasse 8", "accent": M8, "cols": [2, 2, 1], "sol_cols": [3, 2, 1]}, laplace),
+    "baumdiagramme": ({"title": "Baumdiagramme und Pfadregeln", "eyebrow": "Mathematik · Klasse 8", "accent": M8, "cols": [2, 2, 1], "sol_cols": [3, 2, 2]}, baumdiagramme),
     "binomische-formeln": ({"title": "Binomische Formeln", "eyebrow": "Mathematik · Klasse 8", "accent": M8, "cols": 2, "sol_cols": 2}, binomische_formeln),
     "bruchterme": ({"title": "Bruchterme", "eyebrow": "Mathematik · Klasse 8", "accent": "#2d6a4f", "cols": 3, "sol_cols": 3}, bruchterme),
     "ausmultiplizieren-faktorisieren": ({"title": "Ausmultiplizieren und Faktorisieren", "eyebrow": "Mathematik · Klasse 8", "accent": M8, "cols": 3, "sol_cols": 3}, ausmultiplizieren),

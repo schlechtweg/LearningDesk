@@ -127,6 +127,14 @@ TOPICS = [
         "fonts": "math", "first_view": "verstehen", "factsheet": "Factsheet als PDF ↓",
     },
     {
+        "slug": "baumdiagramme", "grade": "8", "subject": "mathematik", "chapter": "II", "order": 3, "kit": True, "accent": ACCENT_MATH8,
+        "title": "Baumdiagramme und Pfadregeln", "short": "Baumdiagramme", "tag": "Wahrscheinlichkeit",
+        "card": "Mehrstufige Zufallsexperimente, Pfadregeln, mit und ohne Zurücklegen, „mindestens einmal“, interaktiver Baum, Trainer, Quiz",
+        "description": "Interaktive Lernhilfe zu Baumdiagrammen und Pfadregeln (Mathematik, Klasse 8)",
+        "intro": "Mehrere Zufallsschritte nacheinander: Mit dem Baumdiagramm und zwei Pfadregeln behältst du den Überblick, auch beim Ziehen ohne Zurücklegen.",
+        "fonts": "math", "first_view": "verstehen", "factsheet": "Factsheet als PDF ↓",
+    },
+    {
         "slug": "binomische-formeln", "grade": "8", "subject": "mathematik", "chapter": "I", "order": 4,
         "title": "Binomische Formeln", "short": "Binomische Formeln", "tag": "Terme",
         "card": "Die drei Formeln, Erklärung mit Flächen, Trainer mit Lückenaufgaben, Kopfrechen-Trick, Quiz",
