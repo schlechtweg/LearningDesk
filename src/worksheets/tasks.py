@@ -1483,6 +1483,76 @@ def unabhaengig():
     return L
 
 
+
+# ================================================================ grade 8 maths, chapter III: functions
+def _lin_html(mm, b):
+    """m·x + b as HTML with proper signs, m and b Fractions or ints."""
+    mm, b = Fr(mm), Fr(b)
+    if mm == 0:
+        return fnum(b)
+    head = "" if mm == 1 else MINUS if mm == -1 else fnum(mm)
+    s_ = f"{head}<i>x</i>"
+    if b > 0:
+        s_ += f" + {fnum(b)}"
+    elif b < 0:
+        s_ += f" − {fnum(-b)}"
+    return s_
+
+
+def funktionsbegriff():
+    r = random.Random(96)
+    L = {1: [], 2: [], 3: []}
+    for i in range(160):
+        t = i % 3
+        mm, b = r.choice([-4, -3, -2, -1, 2, 3, 4, 5]), r.randint(-6, 6)
+        x = r.randint(-5, 5)
+        if t == 0:
+            L[1].append((f"{m(f'<i>f</i>(<i>x</i>) = {_lin_html(mm, b)}')}. Berechne {m(f'<i>f</i>({_n(x)})')}.", m(f"<b>{_n(mm * x + b)}</b>")))
+        elif t == 1:
+            c = r.randint(-5, 5)
+            sq = '<i>f</i>(<i>x</i>) = <i>x</i><sup>2</sup>' + (f' + {c}' if c > 0 else f' − {-c}' if c < 0 else '')
+            L[1].append((f"{m(sq)}. Berechne {m(f'<i>f</i>({_n(x)})')}.", m(f"<b>{_n(x * x + c)}</b>")))
+        else:
+            xs = [-2, -1, 0, 1, 2]
+            L[1].append((f"Wertetabelle für {m(f'<i>f</i>(<i>x</i>) = {_lin_html(mm, b)}')} mit <i>x</i> = −2 bis 2.", m(" · ".join(_n(mm * v + b) for v in xs))))
+    for i in range(140):
+        t = i % 4
+        mm, b = r.choice([-4, -3, -2, 2, 3, 4, 5]), r.randint(-6, 6)
+        x = r.randint(-5, 5)
+        if t == 0:
+            y = mm * x + b
+            L[2].append((f"{m(f'<i>f</i>(<i>x</i>) = {_lin_html(mm, b)}')}. Für welches <i>x</i> ist {m(f'<i>f</i>(<i>x</i>) = {_n(y)}')}?", m(f"<b><i>x</i> = {_n(x)}</b>")))
+        elif t == 1:
+            on = r.random() < 0.5
+            y = mm * x + b + (0 if on else r.choice([-2, -1, 1, 2]))
+            L[2].append((f"Liegt P({_n(x)} | {_n(y)}) auf dem Graphen von {m(f'<i>f</i>(<i>x</i>) = {_lin_html(mm, b)}')}?", f"<i>f</i>({_n(x)}) = {_n(mm * x + b)} ⇒ <b>{'ja' if on else 'nein'}</b>"))
+        elif t == 2:
+            k, d = r.randint(2, 9), r.randint(1, 9)
+            w = r.choice([(f"Multipliziere mit {k} und subtrahiere {d}.", f"{k}<i>x</i> − {d}"), (f"Addiere {d} und multipliziere mit {k}.", f"{k}(<i>x</i> + {d})"), (f"Quadriere und addiere {d}.", f"<i>x</i><sup>2</sup> + {d}")])
+            L[2].append((f"Schreibe als Funktionsgleichung: „{w[0]}“", m(f"<b><i>f</i>(<i>x</i>) = {w[1]}</b>")))
+        else:
+            a = r.randint(1, 6)
+            L[2].append((f"Welche Zahl gehört nicht zur Definitionsmenge von {m(f'<i>f</i>(<i>x</i>) = {fr(12, f'<i>x</i> − {a}')}')}?", f"<i>x</i> = <b>{a}</b> (Nenner 0): D = ℚ \\ {{{a}}}"))
+    for i in range(80):
+        t = i % 4
+        if t == 0:
+            g, k = r.choice([3.5, 4, 4.5]), r.choice([1.8, 2, 2.2, 2.5])
+            km = r.randint(3, 20)
+            L[3].append((f"Taxi: {de(g, 2)} € Grundpreis, {de(k, 2)} € pro km. Stelle die Funktionsgleichung auf und berechne den Preis für {km} km.", f"{m(f'<i>p</i>(<i>x</i>) = {de(k, 2)}<i>x</i> + {de(g, 2)}')}; <b>{de(g + k * km, 2)} €</b>"))
+        elif t == 1:
+            w = r.randint(5, 600)
+            price = 0.95 if w <= 20 else 1.10 if w <= 50 else 1.80 if w <= 500 else 2.75
+            L[3].append((f"Porto: bis 20 g 0,95 €, bis 50 g 1,10 €, bis 500 g 1,80 €, bis 1000 g 2,75 €. Wie viel kostet ein Brief mit {w} g? Warum ist das eine Funktion?", f"<b>{de(price, 2)} €</b>; jedem Gewicht ist <b>genau ein</b> Preis zugeordnet."))
+        elif t == 2:
+            c = r.randint(-5, 5)
+            L[3].append((f"Bestimme die Wertemenge von {m(f'<i>f</i>(<i>x</i>) = <i>x</i><sup>2</sup>' + (f' + {c}' if c > 0 else f' − {-c}' if c < 0 else ''))}. Begründe.", f"Quadrate sind ≥ 0, also <b>W: alle Zahlen ≥ {_n(c)}</b>"))
+        else:
+            e = r.choice([("Jeder Zahl wird ihr Doppeltes zugeordnet.", "Funktion"), ("Jeder Zahl werden alle ihre Teiler zugeordnet.", "keine Funktion"), ("Jedem Schüler wird sein Geburtstag zugeordnet.", "Funktion"),
+                          ("Jedem Monat wird ein Tag mit Regen zugeordnet.", "keine Funktion"), ("Jedem Land wird seine Hauptstadt zugeordnet.", "Funktion")])
+            L[3].append((f"Funktion oder nicht? Begründe: {e[0]}", f"<b>{e[1]}</b>: {'zu jeder Eingabe genau eine Ausgabe' if e[1] == 'Funktion' else 'zu einer Eingabe gibt es mehrere Ausgaben'}"))
+    return L
+
+
 M8, PH = "#1f6e8c", "#b4531f"
 TOPICS = {
     "osmose": ({"title": "Osmose", "eyebrow": "Biologie · Klasse 11", "accent": "#0d6f74", "cols": [1, 1, 1], "sol_cols": [1, 1, 1]}, osmose),
@@ -1497,6 +1567,7 @@ TOPICS = {
     "laplace": ({"title": "Laplace-Experimente und Anzahlen", "eyebrow": "Mathematik · Klasse 8", "accent": M8, "cols": [2, 2, 1], "sol_cols": [3, 2, 1]}, laplace),
     "baumdiagramme": ({"title": "Baumdiagramme und Pfadregeln", "eyebrow": "Mathematik · Klasse 8", "accent": M8, "cols": [2, 2, 1], "sol_cols": [3, 2, 2]}, baumdiagramme),
     "unabhaengige-ereignisse": ({"title": "Unabhängige Ereignisse", "eyebrow": "Mathematik · Klasse 8", "accent": M8, "cols": [2, 2, 1], "sol_cols": [2, 2, 1]}, unabhaengig),
+    "funktionsbegriff": ({"title": "Funktionsbegriff und Darstellungen", "eyebrow": "Mathematik · Klasse 8", "accent": M8, "cols": [3, 2, 1], "sol_cols": [3, 2, 1]}, funktionsbegriff),
     "binomische-formeln": ({"title": "Binomische Formeln", "eyebrow": "Mathematik · Klasse 8", "accent": M8, "cols": 2, "sol_cols": 2}, binomische_formeln),
     "bruchterme": ({"title": "Bruchterme", "eyebrow": "Mathematik · Klasse 8", "accent": "#2d6a4f", "cols": 3, "sol_cols": 3}, bruchterme),
     "ausmultiplizieren-faktorisieren": ({"title": "Ausmultiplizieren und Faktorisieren", "eyebrow": "Mathematik · Klasse 8", "accent": M8, "cols": 3, "sol_cols": 3}, ausmultiplizieren),

@@ -143,6 +143,14 @@ TOPICS = [
         "fonts": "math", "first_view": "verstehen", "factsheet": "Factsheet als PDF ↓",
     },
     {
+        "slug": "funktionsbegriff", "grade": "8", "subject": "mathematik", "chapter": "III", "order": 1, "kit": True, "accent": ACCENT_MATH8,
+        "title": "Funktionsbegriff und Darstellungen", "short": "Funktionsbegriff", "tag": "Funktionen",
+        "card": "Zuordnung und Funktion, Schreibweisen, Wertetabelle und Graph synchron, Funktion oder nicht?, Trainer, Quiz",
+        "description": "Interaktive Lernhilfe zum Funktionsbegriff und den Darstellungen von Funktionen (Mathematik, Klasse 8)",
+        "intro": "Was eine Funktion ist, wie man sie als Wortvorschrift, Gleichung, Tabelle und Graph darstellt und wie man erkennt, ob eine Zuordnung eine Funktion ist.",
+        "fonts": "math", "first_view": "verstehen", "factsheet": "Factsheet als PDF ↓",
+    },
+    {
         "slug": "binomische-formeln", "grade": "8", "subject": "mathematik", "chapter": "I", "order": 4,
         "title": "Binomische Formeln", "short": "Binomische Formeln", "tag": "Terme",
         "card": "Die drei Formeln, Erklärung mit Flächen, Trainer mit Lückenaufgaben, Kopfrechen-Trick, Quiz",

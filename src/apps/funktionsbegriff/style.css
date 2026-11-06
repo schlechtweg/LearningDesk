@@ -1,0 +1,10 @@
+/* Function plot */
+.plot text { font-family: var(--font-mono); font-size: 10.5px; fill: var(--muted); }
+.plot .gl { stroke: var(--line); stroke-width: 0.8; }
+.plot .ax { stroke: var(--ink); stroke-width: 1.4; }
+.plot .gr { fill: none; stroke: var(--accent); stroke-width: 2.5; }
+.plot .pt { fill: var(--bad); }
+.plot .hl { stroke: var(--bad); stroke-width: 1.2; stroke-dasharray: 4 3; }
+.plot .lab { font-family: var(--font-body); font-size: 12px; fill: var(--bad); font-weight: 700; }
+#fSel { width: 100%; }
+.controls > * { min-width: 0; }

@@ -588,10 +588,33 @@ def unabhaengig():
     return {"title": "Vierfeldertafel ergänzen", "stars": "★★☆", "task": (fig(False), task), "sol": (fig(True), sol)}
 
 
+def funktionsbegriff():
+    # four small graphs: which ones belong to functions?
+    def axes(ox):
+        return f'<line class="o" x1="{ox}" y1="70" x2="{ox + 70}" y2="70"/><line class="o" x1="{ox + 35}" y1="12" x2="{ox + 35}" y2="128"/>'
+    def path(ox, pts):
+        return '<path fill="none" stroke="#1f6e8c" stroke-width="2.2" d="M' + " L".join(f"{ox + 35 + x * 10:.1f} {70 - y * 10:.1f}" for x, y in pts) + '"/>'
+    A = path(0, [(x / 4, (x / 4) ** 2 / 1.8 - 2.5) for x in range(-12, 13)])
+    circle = '<circle cx="{}" cy="70" r="28" fill="none" stroke="#1f6e8c" stroke-width="2.2"/>'
+    B = circle.format(80 + 35)
+    C = path(160, [((y / 4) ** 2 / 1.8 - 2.5, y / 4) for y in range(-14, 15)])
+    D = "".join(f'<line x1="{240 + 35 + x0 * 10}" y1="{70 - yv * 10}" x2="{240 + 35 + x1 * 10}" y2="{70 - yv * 10}" stroke="#1f6e8c" stroke-width="2.6"/>' for x0, x1, yv in [(-3.2, -1, -2), (-1, 1, 0), (1, 3.2, 2)])
+    d = "".join(axes(o) for o in (0, 80, 160, 240)) + A + B + C + D
+    d += "".join(text(o + 35, 146, c, "ft big") for o, c in zip((0, 80, 160, 240), "ABCD"))
+    pic = svg("-4 4 320 150", d)
+    names = ["Funktion (Parabel)", "keine Funktion (Kreis)", "keine Funktion (liegende Parabel)", "Funktion (Treppenfunktion)"]
+    task = ('<p>Welche Graphen gehören zu einer Funktion? Begründe mit dem „Senkrechte-Linie-Test“.</p>'
+            '<ol class="lab abc" style="--lc:2">' + "".join(f'<li><b>{c}</b><span class="blank"></span></li>' for c in "ABCD") + '</ol>'
+            '<p class="q">Regel: <span class="blank wide"></span></p>')
+    sol = ('<ol class="lab abc" style="--lc:2">' + "".join(f'<li><b>{c}</b><span class="lt">{n}</span></li>' for c, n in zip("ABCD", names)) + '</ol>'
+           '<p class="q">Jede senkrechte Linie darf den Graphen <b>höchstens einmal</b> schneiden; bei B und C schneidet sie zweimal.</p>')
+    return {"title": "Funktion oder nicht?", "stars": "★☆☆", "task": (pic, task), "sol": (pic, sol)}
+
+
 FIGS = {
     "osmose": osmose, "natrium-kalium-pumpe": nak, "symport-antiport": symport, "endocytose-exocytose": endo,
     "ableiten": ableiten, "nervensystem": nerven, "auge": auge,
-    "termstruktur": termstruktur, "zufallsexperimente": zufallsexperimente, "laplace": laplace, "baumdiagramme": baumdiagramme, "unabhaengige-ereignisse": unabhaengig, "binomische-formeln": binom, "bruchterme": bruchterme, "ausmultiplizieren-faktorisieren": ausmult, "terme-vereinfachen": terme,
+    "termstruktur": termstruktur, "zufallsexperimente": zufallsexperimente, "laplace": laplace, "baumdiagramme": baumdiagramme, "unabhaengige-ereignisse": unabhaengig, "funktionsbegriff": funktionsbegriff, "binomische-formeln": binom, "bruchterme": bruchterme, "ausmultiplizieren-faktorisieren": ausmult, "terme-vereinfachen": terme,
     "gleichungen": gleichungen, "ungleichungen": ungleichungen,
     "druck": druck, "hydraulik": hydraulik, "schweredruck": schweredruck, "auftrieb": auftrieb, "luftdruck": luftdruck,
 }

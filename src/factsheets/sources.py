@@ -1398,6 +1398,56 @@ SHEETS["unabhaengige-ereignisse"] = dict(title="Unabhängige Ereignisse", eyebro
     </div>
   </div>''')
 
+SHEETS["funktionsbegriff"] = dict(title="Funktionsbegriff und Darstellungen", eyebrow="Mathematik · Klasse 8 · Funktionen", accent=M8, body=f'''
+  <div class="kern">Eine <strong>Funktion</strong> ordnet jeder Eingabe <i>x</i> <strong>genau eine</strong> Ausgabe <i>y</i> zu. Schreibweisen: {m("<i>f</i>: <i>x</i> ↦ 2<i>x</i> + 1")}, {m("<i>f</i>(<i>x</i>) = 2<i>x</i> + 1")}, {m("<i>y</i> = 2<i>x</i> + 1")}.</div>
+  <div class="cols">
+    <div class="box">
+      <h2>Vier Darstellungen</h2>
+      <table>
+        <tr><td><strong>Wortvorschrift</strong></td><td>„Verdopple und addiere 1.“</td></tr>
+        <tr><td><strong>Gleichung</strong></td><td>{m("<i>f</i>(<i>x</i>) = 2<i>x</i> + 1")}</td></tr>
+        <tr><td><strong>Wertetabelle</strong></td><td>{m("<i>x</i>: 0, 1, 2 → <i>y</i>: 1, 3, 5")}</td></tr>
+        <tr><td><strong>Graph</strong></td><td>alle Punkte {m("(<i>x</i> | <i>f</i>(<i>x</i>))")}</td></tr>
+      </table>
+    </div>
+    <div class="box">
+      <h2>Begriffe</h2>
+      <ul>
+        <li><strong>Funktionswert</strong> {m("<i>f</i>(3)")}: Ausgabe für {m("<i>x</i> = 3")}.</li>
+        <li><strong>Definitionsmenge</strong> D: erlaubte <i>x</i> (bei {m("6 : <i>x</i>")} nicht 0).</li>
+        <li><strong>Wertemenge</strong> W: mögliche <i>y</i> (bei {m("<i>x</i><sup>2</sup>")}: alle ≥ 0).</li>
+      </ul>
+    </div>
+    <div class="box">
+      <h2>Rechnen mit Funktionen</h2>
+      <ul>
+        <li>{m("<i>f</i>(4)")}: einsetzen: {m("2 · 4 + 1 = 9")}</li>
+        <li>{m("<i>f</i>(<i>x</i>) = 9")}: Gleichung lösen: {m("<i>x</i> = 4")}</li>
+        <li>Liegt {m("P(2 | 5)")} auf dem Graphen? Ja, wenn {m("<i>f</i>(2) = 5")}.</li>
+      </ul>
+    </div>
+    <div class="box">
+      <h2>Funktion oder nicht?</h2>
+      <p><strong>Senkrechte-Linie-Test</strong>: Jede senkrechte Linie schneidet den Graphen höchstens einmal.</p>
+      <p class="small">Ein Kreis ist <strong>kein</strong> Funktionsgraph. Gleiche <i>y</i> für verschiedene <i>x</i> sind erlaubt.</p>
+    </div>
+    <div class="box">
+      <h2>Im Alltag</h2>
+      <ul>
+        <li>Gewicht ↦ Preis, Zeit ↦ Temperatur, Gewicht ↦ Porto (Treppenfunktion).</li>
+        <li>Joggen mit 10 km/h: {m("<i>s</i>(<i>t</i>) = 10<i>t</i>")}.</li>
+      </ul>
+    </div>
+    <div class="box warn">
+      <h2>Typische Fehler</h2>
+      <ul>
+        <li>„Zwei <i>x</i> mit gleichem <i>y</i> sind verboten.“ <span class="no">Falsch</span>.</li>
+        <li>Punkte: erst <i>x</i>, dann <i>y</i>.</li>
+        <li>{m("<i>f</i>(<i>x</i>)")} heißt „<i>f</i> von <i>x</i>“, nicht „<i>f</i> mal <i>x</i>“.</li>
+      </ul>
+    </div>
+  </div>''')
+
 OUT = sys.argv[1] if len(sys.argv) > 1 else os.path.join(os.path.dirname(__file__), "_build")
 os.makedirs(OUT, exist_ok=True)
 shutil.copyfile(os.path.join(os.path.dirname(os.path.abspath(__file__)), "factsheet.css"), os.path.join(OUT, "factsheet.css"))
