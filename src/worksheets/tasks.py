@@ -1619,6 +1619,66 @@ def eigenschaften():
     return L
 
 
+
+def lineare_funktionen():
+    r = random.Random(98)
+    L = {1: [], 2: [], 3: []}
+    for i in range(160):
+        t = i % 4
+        mm, b = r.choice([-5, -4, -3, -2, -1, 2, 3, 4, 5]), r.randint(-9, 9)
+        if t == 0:
+            L[1].append((f"Steigung und <i>y</i>-Achsenabschnitt von {m(f'<i>f</i>(<i>x</i>) = {_lin_html(mm, b)}')}?", m(f"<b><i>m</i> = {_n(mm)}</b>, <b><i>b</i> = {_n(b)}</b>")))
+        elif t == 1:
+            x = r.randint(-5, 5)
+            L[1].append((f"{m(f'<i>f</i>(<i>x</i>) = {_lin_html(mm, b)}')}: berechne {m(f'<i>f</i>({_n(x)})')}.", m(f"<b>{_n(mm * x + b)}</b>")))
+        elif t == 2:
+            L[1].append((f"Ist {m(f'<i>f</i>(<i>x</i>) = {_lin_html(mm, b)}')} steigend oder fallend? Proportional?", f"<b>{'steigend' if mm > 0 else 'fallend'}</b>, <b>{'proportional' if b == 0 else 'nicht proportional'}</b>"))
+        else:
+            mm2 = r.choice([mm, mm, r.randint(-5, 5)])
+            b2 = r.randint(-9, 9)
+            if b2 == b:
+                continue
+            L[1].append((f"Sind {m(f'<i>f</i>(<i>x</i>) = {_lin_html(mm, b)}')} und {m(f'<i>g</i>(<i>x</i>) = {_lin_html(mm2, b2)}')} parallel?", f"<b>{'ja' if mm == mm2 else 'nein'}</b> ({'gleiche' if mm == mm2 else 'verschiedene'} Steigung)"))
+    for i in range(160):
+        t = i % 3
+        if t == 0:
+            x1, y1 = r.randint(-5, 3), r.randint(-6, 6)
+            x2, y2 = x1 + r.randint(1, 5), r.randint(-6, 6)
+            mm = Fr(y2 - y1, x2 - x1)
+            L[2].append((f"Steigung der Geraden durch P({_n(x1)} | {_n(y1)}) und Q({_n(x2)} | {_n(y2)})?", m(f"({_n(y2)} − {_sg(y1)}) : ({_n(x2)} − {_sg(x1)}) = <b>{fnum(mm)}</b>")))
+        elif t == 1:
+            mm, b = r.choice([-4, -3, -2, 2, 3, 4, 5]), r.randint(-9, 9)
+            if b == 0:
+                continue
+            L[2].append((f"Nullstelle von {m(f'<i>f</i>(<i>x</i>) = {_lin_html(mm, b)}')}?", m(f"<b><i>x</i> = {fnum(Fr(-b, mm))}</b>")))
+        else:
+            xs, ys = r.randint(-4, 4), r.randint(-5, 5)
+            m1 = r.choice([-3, -2, -1, 1, 2, 3])
+            m2 = r.choice([v for v in [-3, -2, -1, 1, 2, 3] if v != m1])
+            b1, b2 = ys - m1 * xs, ys - m2 * xs
+            L[2].append((f"Schnittpunkt von {m(f'<i>f</i>(<i>x</i>) = {_lin_html(m1, b1)}')} und {m(f'<i>g</i>(<i>x</i>) = {_lin_html(m2, b2)}')}?", m(f"<b>S({_n(xs)} | {_n(ys)})</b>")))
+    for i in range(80):
+        t = i % 4
+        if t == 0:
+            g_, p_ = r.choice([5, 8, 10, 12]), r.choice([Fr(5, 100), Fr(8, 100), Fr(9, 100)])
+            p2 = p_ + r.choice([Fr(5, 100), Fr(7, 100), Fr(10, 100)])
+            xs = Fr(g_) / (p2 - p_)
+            L[3].append((f"Tarif A: {g_} € Grundgebühr + {de(float(p_), 2)} € pro Minute, Tarif B: {de(float(p2), 2)} € pro Minute. Ab wie vielen Minuten ist A günstiger?", f"{g_} + {de(float(p_), 2)}<i>x</i> = {de(float(p2), 2)}<i>x</i> ⇒ <i>x</i> = <b>{de(float(xs), 1)}</b>; ab mehr als {de(float(xs), 1)} Minuten ist A günstiger."))
+        elif t == 1:
+            h, v = r.choice([20, 24, 30, 15]), r.choice([1.5, 2, 2.5, 3])
+            L[3].append((f"Eine Kerze ist {h} cm lang und brennt {de(v, 1)} cm pro Stunde ab. Stelle die Funktion auf. Wann ist sie abgebrannt?", f"{m(f'<i>h</i>(<i>t</i>) = {h} − {de(v, 1)}<i>t</i>')}; <i>t</i> = {h} : {de(v, 1)} = <b>{de(h / v, 1)} h</b>"))
+        elif t == 2:
+            mm = r.choice([-3, -2, 2, 3, 4])
+            x0, y0 = r.randint(-3, 3), r.randint(-4, 4)
+            b = y0 - mm * x0
+            L[3].append((f"Eine Gerade ist parallel zu {m(f'<i>y</i> = {_lin_html(mm, 0)}')} und geht durch P({_n(x0)} | {_n(y0)}). Gleichung?", m(f"<b><i>y</i> = {_lin_html(mm, b)}</b>")))
+        else:
+            pct = r.choice([6, 8, 10, 12, 15])
+            dist = r.choice([200, 500, 800, 1000])
+            L[3].append((f"Ein Straßenschild zeigt {pct} % Steigung. Wie viele Meter Höhe gewinnt man auf {dist} m waagerechter Strecke?", f"<i>m</i> = {de(pct / 100, 2)}; {dist} · {de(pct / 100, 2)} = <b>{de(dist * pct / 100, 0)} m</b>"))
+    return L
+
+
 M8, PH = "#1f6e8c", "#b4531f"
 TOPICS = {
     "osmose": ({"title": "Osmose", "eyebrow": "Biologie · Klasse 11", "accent": "#0d6f74", "cols": [1, 1, 1], "sol_cols": [1, 1, 1]}, osmose),
@@ -1635,6 +1695,7 @@ TOPICS = {
     "unabhaengige-ereignisse": ({"title": "Unabhängige Ereignisse", "eyebrow": "Mathematik · Klasse 8", "accent": M8, "cols": [2, 2, 1], "sol_cols": [2, 2, 1]}, unabhaengig),
     "funktionsbegriff": ({"title": "Funktionsbegriff und Darstellungen", "eyebrow": "Mathematik · Klasse 8", "accent": M8, "cols": [3, 2, 1], "sol_cols": [3, 2, 1]}, funktionsbegriff),
     "eigenschaften-funktionen": ({"title": "Eigenschaften von Funktionen", "eyebrow": "Mathematik · Klasse 8", "accent": M8, "cols": [2, 2, 1], "sol_cols": [3, 2, 1]}, eigenschaften),
+    "lineare-funktionen": ({"title": "Lineare Funktionen", "eyebrow": "Mathematik · Klasse 8", "accent": M8, "cols": [2, 2, 1], "sol_cols": [2, 3, 1]}, lineare_funktionen),
     "binomische-formeln": ({"title": "Binomische Formeln", "eyebrow": "Mathematik · Klasse 8", "accent": M8, "cols": 2, "sol_cols": 2}, binomische_formeln),
     "bruchterme": ({"title": "Bruchterme", "eyebrow": "Mathematik · Klasse 8", "accent": "#2d6a4f", "cols": 3, "sol_cols": 3}, bruchterme),
     "ausmultiplizieren-faktorisieren": ({"title": "Ausmultiplizieren und Faktorisieren", "eyebrow": "Mathematik · Klasse 8", "accent": M8, "cols": 3, "sol_cols": 3}, ausmultiplizieren),

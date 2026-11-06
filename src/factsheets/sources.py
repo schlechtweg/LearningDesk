@@ -1499,6 +1499,65 @@ SHEETS["eigenschaften-funktionen"] = dict(title="Eigenschaften von Funktionen", 
     </div>
   </div>''')
 
+SHEETS["lineare-funktionen"] = dict(title="Lineare Funktionen", eyebrow="Mathematik · Klasse 8 · Funktionen", accent=M8, body=f'''
+  <div class="kern">Lineare Funktion: {m("<i>f</i>(<i>x</i>) = <i>m</i><i>x</i> + <i>b</i>")}. Der Graph ist eine <strong>Gerade</strong> mit der <strong>Steigung</strong> <i>m</i> und dem <strong><i>y</i>-Achsenabschnitt</strong> <i>b</i>.</div>
+  <div class="cols">
+    <div class="box">
+      <h2>Steigung <i>m</i></h2>
+      <ul>
+        <li>{m("<i>m</i> > 0")}: steigend, {m("<i>m</i> < 0")}: fallend, {m("<i>m</i> = 0")}: waagerecht.</li>
+        <li><strong>Steigungsdreieck</strong>: 1 nach rechts, <i>m</i> nach oben.</li>
+        <li>Aus zwei Punkten: {m("<i>m</i> = (<i>y</i>₂ − <i>y</i>₁) : (<i>x</i>₂ − <i>x</i>₁)")}</li>
+        <li>Straßenschild 12 %: {m("<i>m</i> = 0,12")}.</li>
+      </ul>
+    </div>
+    <div class="box">
+      <h2><i>y</i>-Achsenabschnitt <i>b</i></h2>
+      <ul>
+        <li>Schnittpunkt mit der <i>y</i>-Achse: {m("(0 | <i>b</i>)")}.</li>
+        <li>{m("<i>b</i> = 0")}: Gerade durch den Ursprung, <strong>proportional</strong>.</li>
+        <li>Vorsicht: In {m("3 − 2<i>x</i>")} ist {m("<i>m</i> = −2")}, {m("<i>b</i> = 3")}.</li>
+      </ul>
+    </div>
+    <div class="box">
+      <h2>Graph zeichnen</h2>
+      <ol>
+        <li>Punkt {m("(0 | <i>b</i>)")} eintragen.</li>
+        <li>Steigungsdreieck anlegen ({m("<i>m</i> = 2/3")}: 3 nach rechts, 2 nach oben).</li>
+        <li>Gerade durch beide Punkte ziehen.</li>
+      </ol>
+    </div>
+    <div class="box">
+      <h2>Nullstelle</h2>
+      <p>{m("<i>m</i><i>x</i> + <i>b</i> = 0 ⇒ <i>x</i> = −<i>b</i> : <i>m</i>")}</p>
+      <p class="small">{m("2<i>x</i> + 6 = 0 ⇒ <i>x</i> = −3")}</p>
+    </div>
+    <div class="box">
+      <h2>Zwei Geraden</h2>
+      <ul>
+        <li><strong>parallel</strong>: gleiche Steigung, verschiedenes <i>b</i>.</li>
+        <li><strong>Schnittpunkt</strong>: Terme gleichsetzen, <i>x</i> berechnen, <i>y</i> einsetzen.</li>
+        <li>{m("<i>x</i> + 1 = −<i>x</i> + 5 ⇒ <i>x</i> = 2, <i>y</i> = 3")}: S(2 | 3)</li>
+      </ul>
+    </div>
+    <div class="box">
+      <h2>Im Alltag</h2>
+      <ul>
+        <li>Grundpreis + Preis pro Einheit: Taxi, Handytarif, Strom.</li>
+        <li>Kerze: {m("<i>h</i>(<i>t</i>) = 20 − 2<i>t</i>")}, abgebrannt nach 10 h.</li>
+        <li>Tarifvergleich: Schnittpunkt = Grenze, ab der sich der Tarif lohnt.</li>
+      </ul>
+    </div>
+    <div class="box warn full">
+      <h2>Typische Fehler</h2>
+      <ul>
+        <li><i>m</i> und <i>b</i> vertauscht, wenn der Term nicht in der Form {m("<i>m</i><i>x</i> + <i>b</i>")} steht.</li>
+        <li>Steigungsdreieck nach links gezeichnet. Immer <strong>nach rechts</strong>.</li>
+        <li>Beim Schnittpunkt nur <i>x</i> angegeben: Ein Punkt braucht auch <i>y</i>.</li>
+      </ul>
+    </div>
+  </div>''')
+
 OUT = sys.argv[1] if len(sys.argv) > 1 else os.path.join(os.path.dirname(__file__), "_build")
 os.makedirs(OUT, exist_ok=True)
 shutil.copyfile(os.path.join(os.path.dirname(os.path.abspath(__file__)), "factsheet.css"), os.path.join(OUT, "factsheet.css"))

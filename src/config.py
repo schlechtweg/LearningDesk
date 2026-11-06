@@ -159,6 +159,14 @@ TOPICS = [
         "fonts": "math", "first_view": "verstehen", "factsheet": "Factsheet als PDF ↓",
     },
     {
+        "slug": "lineare-funktionen", "grade": "8", "subject": "mathematik", "chapter": "III", "order": 3, "kit": True, "accent": ACCENT_MATH8,
+        "title": "Lineare Funktionen", "short": "Lineare Funktionen", "tag": "Funktionen",
+        "card": "f(x) = mx + b, Steigung und Steigungsdreieck, y-Achsenabschnitt, Nullstelle, parallele Geraden, Schnittpunkte, Geraden-Labor, Trainer, Quiz",
+        "description": "Interaktive Lernhilfe zu linearen Funktionen (Mathematik, Klasse 8)",
+        "intro": "Geraden verstehen: Was Steigung und Achsenabschnitt bedeuten, wie man Nullstellen und Schnittpunkte berechnet und wann Geraden parallel sind.",
+        "fonts": "math", "first_view": "verstehen", "factsheet": "Factsheet als PDF ↓",
+    },
+    {
         "slug": "binomische-formeln", "grade": "8", "subject": "mathematik", "chapter": "I", "order": 4,
         "title": "Binomische Formeln", "short": "Binomische Formeln", "tag": "Terme",
         "card": "Die drei Formeln, Erklärung mit Flächen, Trainer mit Lückenaufgaben, Kopfrechen-Trick, Quiz",

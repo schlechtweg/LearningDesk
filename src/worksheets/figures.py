@@ -626,10 +626,24 @@ def eigenschaften():
     return {"title": "Eigenschaften ablesen", "stars": "★☆☆", "task": (svg("0 0 240 200", base), task), "sol": (svg("0 0 240 200", sol), soltxt)}
 
 
+def lineare_funktionen():
+    f = lambda x: 2 * x - 1
+    g = lambda x: -0.5 * x + 4
+    assert f(2) == g(2) == 3
+    ox, oy, u = 110, 120, 18
+    base = grid(ox, oy, u, (-5, 6), (-4, 6))
+    sol = base + plot(f, ox, oy, u, -5, 6, 6.2, "fs") + plot(g, ox, oy, u, -5, 6, 6.2, "fs") + f'<circle class="pt" cx="{ox + 2 * u}" cy="{oy - 3 * u}" r="4.5"/>' + text(ox + 2 * u + 8, oy - 3 * u - 6, "S(2|3)", "ft sol", "start")
+    task = ('<p>Zeichne die Graphen von <i>f</i>(<i>x</i>) = 2<i>x</i> − 1 und <i>g</i>(<i>x</i>) = −0,5<i>x</i> + 4 mit Hilfe von <i>y</i>-Achsenabschnitt und Steigungsdreieck.</p>'
+            '<p class="q">Schnittpunkt abgelesen: <span class="blank"></span></p><p class="q">Rechnerische Kontrolle: <span class="blank wide"></span></p>')
+    soltxt = ('<p class="q"><i>f</i>: Start (0 | −1), 1 nach rechts, 2 nach oben. <i>g</i>: Start (0 | 4), 2 nach rechts, 1 nach unten.</p>'
+              '<p class="q">2<i>x</i> − 1 = −0,5<i>x</i> + 4 ⇒ 2,5<i>x</i> = 5 ⇒ <i>x</i> = 2, <i>y</i> = 3: <b>S(2 | 3)</b></p>')
+    return {"title": "Geraden zeichnen", "stars": "★★☆", "task": (svg("0 0 230 210", base), task), "sol": (svg("0 0 230 210", sol), soltxt)}
+
+
 FIGS = {
     "osmose": osmose, "natrium-kalium-pumpe": nak, "symport-antiport": symport, "endocytose-exocytose": endo,
     "ableiten": ableiten, "nervensystem": nerven, "auge": auge,
-    "termstruktur": termstruktur, "zufallsexperimente": zufallsexperimente, "laplace": laplace, "baumdiagramme": baumdiagramme, "unabhaengige-ereignisse": unabhaengig, "funktionsbegriff": funktionsbegriff, "eigenschaften-funktionen": eigenschaften, "binomische-formeln": binom, "bruchterme": bruchterme, "ausmultiplizieren-faktorisieren": ausmult, "terme-vereinfachen": terme,
+    "termstruktur": termstruktur, "zufallsexperimente": zufallsexperimente, "laplace": laplace, "baumdiagramme": baumdiagramme, "unabhaengige-ereignisse": unabhaengig, "funktionsbegriff": funktionsbegriff, "eigenschaften-funktionen": eigenschaften, "lineare-funktionen": lineare_funktionen, "binomische-formeln": binom, "bruchterme": bruchterme, "ausmultiplizieren-faktorisieren": ausmult, "terme-vereinfachen": terme,
     "gleichungen": gleichungen, "ungleichungen": ungleichungen,
     "druck": druck, "hydraulik": hydraulik, "schweredruck": schweredruck, "auftrieb": auftrieb, "luftdruck": luftdruck,
 }

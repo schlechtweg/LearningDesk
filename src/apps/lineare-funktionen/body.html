@@ -1,0 +1,119 @@
+  <nav class="tabs" aria-label="Bereiche">
+    <a href="#verstehen" data-view="verstehen"><span class="n">1</span>Verstehen</a>
+    <a href="#gerade" data-view="gerade"><span class="n">2</span>Geraden-Labor</a>
+    <a href="#ueben" data-view="ueben"><span class="n">3</span>Üben</a>
+    <a href="#alltag" data-view="alltag"><span class="n">4</span>Im Alltag</a>
+    <a href="#quiz" data-view="quiz"><span class="n">5</span>Quiz</a>
+  </nav>
+
+  <section class="view" id="view-verstehen">
+    <div class="einfach">
+      <span class="eyebrow">Einfach erklärt</span>
+      <p>Eine <strong>lineare Funktion</strong> hat einen Graphen, der eine <strong>Gerade</strong> ist. Pro Schritt nach rechts geht es immer um denselben Betrag nach oben oder unten.</p>
+    </div>
+    <div class="merksatz">
+      <span class="eyebrow">Funktionsgleichung</span>
+      <p class="formel" style="font-size:1.4rem"><i>f</i>(<i>x</i>) = <i>m</i> · <i>x</i> + <i>b</i></p>
+      <p><span class="math"><i>m</i></span> ist die <strong>Steigung</strong>, <span class="math"><i>b</i></span> der <strong><span class="math"><i>y</i></span>-Achsenabschnitt</strong>.</p>
+    </div>
+    <div class="grid-2">
+      <div class="panel stack">
+        <h3>Die Steigung <span class="math"><i>m</i></span></h3>
+        <ul class="list small">
+          <li><span class="math"><i>m</i> > 0</span>: Die Gerade steigt. <span class="math"><i>m</i> < 0</span>: Sie fällt. <span class="math"><i>m</i> = 0</span>: waagerecht.</li>
+          <li><strong>Steigungsdreieck</strong>: 1 nach rechts, <span class="math"><i>m</i></span> nach oben (bei negativem <span class="math"><i>m</i></span> nach unten).</li>
+          <li>Je größer <span class="math">|<i>m</i>|</span>, desto steiler.</li>
+          <li>Aus zwei Punkten: <span class="math"><i>m</i> = (<i>y</i>₂ − <i>y</i>₁) : (<i>x</i>₂ − <i>x</i>₁)</span>.</li>
+        </ul>
+      </div>
+      <div class="panel stack">
+        <h3>Der <span class="math"><i>y</i></span>-Achsenabschnitt <span class="math"><i>b</i></span></h3>
+        <ul class="list small">
+          <li>Dort schneidet die Gerade die <span class="math"><i>y</i></span>-Achse: <span class="math">(0 | <i>b</i>)</span>.</li>
+          <li><span class="math"><i>b</i> = 0</span>: Die Gerade geht durch den Ursprung. Dann ist die Funktion <strong>proportional</strong>: <span class="math"><i>f</i>(<i>x</i>) = <i>m</i><i>x</i></span>.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="grid-2">
+      <div class="panel stack">
+        <h3>Weitere Eigenschaften</h3>
+        <ul class="list small">
+          <li><strong>Nullstelle</strong>: <span class="math"><i>m</i><i>x</i> + <i>b</i> = 0 ⇒ <i>x</i> = −<i>b</i> : <i>m</i></span></li>
+          <li><strong>Parallel</strong>: Zwei Geraden mit gleicher Steigung (und verschiedenem <span class="math"><i>b</i></span>) schneiden sich nie.</li>
+          <li><strong>Schnittpunkt</strong> zweier Geraden: Funktionsterme gleichsetzen, <span class="math"><i>x</i></span> berechnen, dann <span class="math"><i>y</i></span>.</li>
+        </ul>
+      </div>
+      <div class="panel stack">
+        <h3>Graph zeichnen in 3 Schritten</h3>
+        <ol class="list small">
+          <li>Punkt <span class="math">(0 | <i>b</i>)</span> eintragen.</li>
+          <li>Steigungsdreieck anlegen: 1 nach rechts, <span class="math"><i>m</i></span> nach oben (oder bei <span class="math"><i>m</i> = 2/3</span>: 3 nach rechts, 2 nach oben).</li>
+          <li>Gerade durch beide Punkte ziehen.</li>
+        </ol>
+      </div>
+    </div>
+    <div class="panel stack">
+      <h3>Typische Fehler</h3>
+      <ul class="list small">
+        <li><span class="math"><i>m</i></span> und <span class="math"><i>b</i></span> vertauscht: In <span class="math"><i>f</i>(<i>x</i>) = 3 − 2<i>x</i></span> ist <span class="math"><i>m</i> = −2</span> und <span class="math"><i>b</i> = 3</span>.</li>
+        <li>Beim Steigungsdreieck nach links statt nach rechts gegangen.</li>
+        <li>Beim Schnittpunkt nur <span class="math"><i>x</i></span> angegeben: Ein Punkt braucht auch <span class="math"><i>y</i></span>.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="view" id="view-gerade" hidden>
+    <div class="stack">
+      <span class="eyebrow">Ausprobieren</span>
+      <h2>Geraden-Labor</h2>
+      <p class="muted">Verändere Steigung und Achsenabschnitt. Mit einer zweiten Geraden siehst du Schnittpunkte und parallele Geraden.</p>
+    </div>
+    <div class="sim-layout">
+      <div class="figure"><svg class="plot" id="gSvg" viewBox="0 0 460 340" role="img" aria-label="Geraden im Koordinatensystem"></svg></div>
+      <div class="panel controls">
+        <div><label class="lbl" for="gM"><span><i>m</i> (Steigung)</span><span class="val" id="gMOut"></span></label><input type="range" id="gM" min="-3" max="3" step="0.25" value="0.5"></div>
+        <div><label class="lbl" for="gB"><span><i>b</i> (<i>y</i>-Achsenabschnitt)</span><span class="val" id="gBOut"></span></label><input type="range" id="gB" min="-5" max="5" step="0.5" value="1"></div>
+        <label class="small"><input type="checkbox" id="gTri" checked> Steigungsdreieck zeigen</label>
+        <label class="small"><input type="checkbox" id="g2"> zweite Gerade <i>g</i></label>
+        <div id="g2c" hidden>
+          <div><label class="lbl" for="gM2"><span><i>m</i>₂</span><span class="val" id="gM2Out"></span></label><input type="range" id="gM2" min="-3" max="3" step="0.25" value="-1"></div>
+          <div><label class="lbl" for="gB2"><span><i>b</i>₂</span><span class="val" id="gB2Out"></span></label><input type="range" id="gB2" min="-5" max="5" step="0.5" value="4"></div>
+        </div>
+        <dl class="readout" id="gRo"></dl>
+      </div>
+    </div>
+  </section>
+
+  <section class="view" id="view-ueben" hidden>
+    <div class="stack">
+      <span class="eyebrow">Trainer</span>
+      <h2>Mit linearen Funktionen rechnen</h2>
+      <p class="muted">Brüche wie <code>2/3</code> sind erlaubt. Schnittpunkte als <code>(2|3)</code> oder <code>2;3</code>.</p>
+    </div>
+    <div id="trainer" class="stack"></div>
+  </section>
+
+  <section class="view" id="view-alltag" hidden>
+    <div class="stack">
+      <span class="eyebrow">Im Alltag</span>
+      <h2>Lineare Funktionen im Alltag</h2>
+      <p class="muted">Grundpreis plus gleichbleibender Preis pro Einheit: Das ist fast immer eine lineare Funktion.</p>
+    </div>
+    <div class="grid-2">
+      <div class="panel stack"><span class="eyebrow">Handy</span><h3>Tarife vergleichen</h3><p class="small">Tarif A: <span class="math">10 + 0,05<i>x</i></span>, Tarif B: <span class="math">0,15<i>x</i></span> (<span class="math"><i>x</i></span> Minuten). Schnittpunkt bei 100 Minuten: Wer mehr telefoniert, nimmt Tarif A.</p></div>
+      <div class="panel stack"><span class="eyebrow">Taxi</span><h3>Grundpreis und Kilometerpreis</h3><p class="small"><span class="math"><i>b</i></span> = Grundpreis, <span class="math"><i>m</i></span> = Preis pro km. Ein steilerer Graph heißt: teurer pro Kilometer.</p></div>
+      <div class="panel stack"><span class="eyebrow">Kerze</span><h3>Abbrennen</h3><p class="small">Eine 20 cm lange Kerze brennt 2 cm pro Stunde ab: <span class="math"><i>h</i>(<i>t</i>) = 20 − 2<i>t</i></span>. Die Nullstelle <span class="math"><i>t</i> = 10</span>: nach 10 Stunden ist sie abgebrannt.</p></div>
+      <div class="panel stack"><span class="eyebrow">Sparen</span><h3>Sparschwein</h3><p class="small">50 € Startguthaben, jede Woche 5 € dazu: <span class="math">50 + 5<i>w</i></span>. Nach 20 Wochen sind es 150 €.</p></div>
+      <div class="panel stack"><span class="eyebrow">Straße</span><h3>Steigung in Prozent</h3><p class="small">Ein Schild „12 %“ heißt: auf 100 m waagerecht 12 m hoch, also <span class="math"><i>m</i> = 0,12</span>.</p></div>
+      <div class="panel stack"><span class="eyebrow">Wasser</span><h3>Pool füllen</h3><p class="small">Im Pool stehen 5 cm Wasser, pro Stunde kommen 8 cm dazu: <span class="math">5 + 8<i>t</i></span>. Für 1,25 m braucht man 15 Stunden.</p></div>
+    </div>
+  </section>
+
+  <section class="view" id="view-quiz" hidden>
+    <div class="stack">
+      <span class="eyebrow">Selbsttest</span>
+      <h2>Quiz</h2>
+      <div class="progress-line"><div class="bar" aria-hidden="true"><i id="qBar"></i></div><span class="score-line" id="qProgress"></span></div>
+    </div>
+    <div class="panel quiz" id="quizBox" aria-live="polite"></div>
+  </section>

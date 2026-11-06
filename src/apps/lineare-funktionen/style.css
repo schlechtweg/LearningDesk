@@ -1,0 +1,10 @@
+.plot text { font-family: var(--font-mono); font-size: 10.5px; fill: var(--muted); }
+.plot .gl { stroke: var(--line); stroke-width: 0.8; }
+.plot .ax { stroke: var(--ink); stroke-width: 1.4; }
+.plot .g1 { stroke: var(--accent); stroke-width: 2.8; }
+.plot .g2 { stroke: #7b4bb0; stroke-width: 2.8; }
+.plot .tri { fill: none; stroke: var(--bad); stroke-width: 2; stroke-dasharray: 5 3; }
+.plot .tl { font-family: var(--font-body); font-size: 12px; fill: var(--bad); font-weight: 700; }
+.plot .pt { fill: var(--ink); }
+.plot .sp { fill: #e0a400; stroke: var(--ink); stroke-width: 1.5; }
+.controls > * { min-width: 0; }
