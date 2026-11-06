@@ -489,10 +489,34 @@ def zufallsexperimente():
     return {"title": "Versuchsreihe auswerten", "stars": "★★☆", "task": (svg("0 0 290 205", base), task), "sol": (svg("0 0 290 205", sol), soltxt)}
 
 
+def laplace():
+    # 6 x 6 table of the sums of two dice
+    def fig(show):
+        d = ""
+        for i in range(1, 7):
+            d += text(40 + i * 28, 22, str(i), "ft big") + text(26, 40 + i * 24, str(i), "ft big")
+            for j in range(1, 7):
+                hit = i + j == 7
+                fill = "#f6d7d2" if show and hit else "#fff"
+                d += f'<rect x="{27 + j * 28}" y="{26 + i * 24}" width="26" height="22" rx="3" fill="{fill}" stroke="#9aa4ad"/>'
+                if show or (i + j) % 5 == 0:
+                    d += text(40 + j * 28, 41 + i * 24, str(i + j), "ft" + (" sol" if show and (i + j) % 5 else ""))
+        d += text(124, 8, "2. Würfel", "ft small") + f'<text class="ft small" x="8" y="110" transform="rotate(-90 8 110)" text-anchor="middle">1. Würfel</text>'
+        return svg("0 0 232 200", d)
+    assert sum(1 for i in range(1, 7) for j in range(1, 7) if i + j == 7) == 6
+    assert sum(1 for i in range(1, 7) for j in range(1, 7) if i + j >= 10) == 6
+    task = ('<p>Trage in die Tabelle die Augensummen der beiden Würfel ein (einige sind schon eingetragen). Färbe alle Felder mit der Summe 7.</p>'
+            '<p class="q">P(Summe 7) = <span class="blank"></span> &nbsp; P(Summe mindestens 10) = <span class="blank"></span></p>'
+            '<p class="q">Welche Summe ist am wahrscheinlichsten? <span class="blank"></span></p>')
+    sol = ('<p class="q">Summe 7 kommt 6-mal vor: <b>P = 6/36 = 1/6</b>.</p><p class="q">Summe 10, 11 oder 12: 3 + 2 + 1 = 6 Felder: <b>P = 1/6</b>.</p>'
+           '<p class="q">Am wahrscheinlichsten ist die Summe <b>7</b>.</p>')
+    return {"title": "Augensummen-Tabelle", "stars": "★★☆", "task": (fig(False), task), "sol": (fig(True), sol)}
+
+
 FIGS = {
     "osmose": osmose, "natrium-kalium-pumpe": nak, "symport-antiport": symport, "endocytose-exocytose": endo,
     "ableiten": ableiten, "nervensystem": nerven, "auge": auge,
-    "termstruktur": termstruktur, "zufallsexperimente": zufallsexperimente, "binomische-formeln": binom, "bruchterme": bruchterme, "ausmultiplizieren-faktorisieren": ausmult, "terme-vereinfachen": terme,
+    "termstruktur": termstruktur, "zufallsexperimente": zufallsexperimente, "laplace": laplace, "binomische-formeln": binom, "bruchterme": bruchterme, "ausmultiplizieren-faktorisieren": ausmult, "terme-vereinfachen": terme,
     "gleichungen": gleichungen, "ungleichungen": ungleichungen,
     "druck": druck, "hydraulik": hydraulik, "schweredruck": schweredruck, "auftrieb": auftrieb, "luftdruck": luftdruck,
 }

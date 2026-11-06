@@ -1251,6 +1251,98 @@ def zufallsexperimente():
     return L
 
 
+
+def laplace():
+    r = random.Random(93)
+    L = {1: [], 2: [], 3: []}
+
+    def pf(k, n):
+        q = Fr(k, n)
+        return f"{m(fr(k, n) if q.denominator == n else fr(k, n) + ' = ' + fnum(q))} ≈ {_pct(q)}"
+    for i in range(160):
+        t = i % 4
+        if t == 0:
+            rr, b, g = r.randint(1, 7), r.randint(1, 9), r.randint(0, 5)
+            c, k = r.choice([("rote", rr), ("blaue", b)])
+            L[1].append((f"Urne: {rr} rote, {b} blaue, {g} grüne Kugeln. P(<b>{c}</b> Kugel)?", pf(k, rr + b + g)))
+        elif t == 1:
+            ev, k = r.choice([("Zahl größer als 2", 4), ("ungerade Zahl", 3), ("1 oder 6", 2), ("Zahl kleiner als 6", 5), ("Primzahl", 3), ("Vielfaches von 3", 2)])
+            L[1].append((f"Würfel: P({ev})?", pf(k, 6)))
+        elif t == 2:
+            k, n = r.randint(1, 19), r.choice([20, 25, 40, 50])
+            L[1].append((f"P(<i>E</i>) = {k}/{n}. P(Gegenereignis)?", f"1 − {k}/{n} = {m(fnum(Fr(n - k, n)))}"))
+        else:
+            a, b = r.randint(2, 6), r.randint(2, 6)
+            L[1].append((f"{a} T-Shirts und {b} Hosen. Wie viele Kombinationen?", m(f"{a} · {b} = <b>{a * b}</b>")))
+    sums = {s_: sum(1 for i in range(1, 7) for j in range(1, 7) if i + j == s_) for s_ in range(2, 13)}
+    for i in range(120):
+        t = i % 4
+        if t == 0:
+            ev, k = r.choice([("Herz", 8), ("Ass", 4), ("Bildkarte (B, D, K)", 12), ("rote Karte", 16), ("Kreuz-Bube", 1), ("rote Dame", 2), ("keine Bildkarte", 20)])
+            L[2].append((f"32 Skatkarten: P({ev})?", pf(k, 32)))
+        elif t == 1:
+            s_ = r.randint(2, 12)
+            L[2].append((f"Zwei Würfel: P(Augensumme {s_})?", pf(sums[s_], 36)))
+        elif t == 2:
+            a, b, c = r.randint(2, 5), r.randint(2, 6), r.randint(2, 4)
+            L[2].append((f"{a} Vorspeisen, {b} Hauptgerichte, {c} Nachspeisen. Wie viele Menüs gibt es?", m(f"{a} · {b} · {c} = <b>{a * b * c}</b>")))
+        else:
+            n = r.randint(3, 5)
+            L[2].append((f"Zahlenschloss mit {n} Rädern (0 bis 9): Anzahl der Codes und Wahrscheinlichkeit, beim ersten Versuch richtig zu raten?", f"<b>{10 ** n:,}</b>".replace(",", " ") + f" Codes; P = 1/{10 ** n:,}".replace(",", " ")))
+    for i in range(40):
+        t = i % 5
+        if t == 0:
+            n = r.choice([2, 3])
+            k = r.randint(0, n)
+            from math import comb
+            L[3].append((f"{n} Münzen werden geworfen. Wie groß ist die Wahrscheinlichkeit für genau {k}-mal Kopf?",
+                         f"{2 ** n} Ergebnisse, davon {comb(n, k)} günstig: {m(fnum(Fr(comb(n, k), 2 ** n)))}"))
+        elif t == 1:
+            w = r.choice(["eine 6 und Kopf", "eine gerade Zahl und Zahl", "eine Zahl größer 4 und Kopf"])
+            k = {"eine 6 und Kopf": 1, "eine gerade Zahl und Zahl": 3, "eine Zahl größer 4 und Kopf": 2}[w]
+            L[3].append((f"Ein Würfel und eine Münze werden geworfen. Wie viele Ergebnisse gibt es, und wie groß ist P({w})?", f"6 · 2 = <b>12</b> Ergebnisse; P = {m(fnum(Fr(k, 12)))}"))
+        elif t == 2:
+            n, z = r.choice([(4, 62), (6, 62), (8, 62), (4, 36), (5, 36)])
+            L[3].append((f"Ein Passwort hat {n} Zeichen, jedes aus {z} möglichen Zeichen. Wie viele Passwörter gibt es?", m(f"{z}<sup>{n}</sup> = <b>{z ** n:,}</b>".replace(",", " "))))
+        elif t == 3:
+            rr, b = r.randint(3, 9), r.randint(3, 9)
+            rem = b - 2 * rr
+            if rem <= 0:
+                continue
+            L[3].append((f"Urne mit {rr} roten und {b} blauen Kugeln. Wie viele blaue Kugeln muss man herausnehmen, damit P(rot) = 1/3 ist?", f"Dann doppelt so viele blaue wie rote ({2 * rr}): <b>{rem}</b> blaue herausnehmen"))
+            assert Fr(rr, rr + b - rem) == Fr(1, 3)
+        else:
+            mon, days = r.choice([("Januar", 31), ("Februar", 28), ("April", 30), ("Dezember", 31)])
+            L[3].append((f"Wie groß ist (vereinfacht, 365 Tage, alle gleich wahrscheinlich) die Wahrscheinlichkeit, dass jemand im {mon} Geburtstag hat?", f"{m(fr(days, 365))} ≈ {_pct(Fr(days, 365))}"))
+    for i in range(80):
+        t = i % 5
+        if t == 0:
+            a = r.randint(4, 9)
+            L[3].append((f"Ein Lauf mit {a} Teilnehmenden. Wie viele Möglichkeiten gibt es für die Plätze 1 bis 3?", m(f"{a} · {a - 1} · {a - 2} = <b>{a * (a - 1) * (a - 2)}</b>")))
+        elif t == 1:
+            n = r.randint(2, 4)
+            L[3].append((f"Ein Code aus {n} Buchstaben (26) und einer Ziffer (10). Wie viele Codes gibt es?", m(f"26<sup>{n}</sup> · 10 = <b>{26 ** n * 10:,}</b>".replace(",", " "))))
+        elif t == 2:
+            rr, b = r.randint(2, 6), r.randint(2, 6)
+            k = r.randint(1, 4)
+            # how many red balls must be added so that P(red) = 1/2
+            add = b - rr
+            if add <= 0:
+                continue
+            L[3].append((f"Urne mit {rr} roten und {b} blauen Kugeln. Wie viele rote Kugeln muss man hinzufügen, damit P(rot) = ½ ist?", f"Gleich viele rote wie blaue: <b>{add}</b> rote dazu"))
+            assert Fr(rr + add, rr + add + b) == Fr(1, 2)
+            _ = k
+        elif t == 3:
+            L[3].append(("Begründe, warum die Augensummen 2 bis 12 bei zwei Würfeln nicht gleich wahrscheinlich sind.", "Die Summen entstehen auf <b>verschieden viele Arten</b>: 7 sechsmal (1|6 … 6|1), 2 nur einmal (1|1)."))
+        else:
+            k = r.randint(1, 5)
+            q = Fr(1, 6) ** 0 - Fr(5, 6) ** 2
+            L[3].append(("Zwei Würfel: Wie groß ist die Wahrscheinlichkeit für mindestens eine 6? Nutze das Gegenereignis.", f"Gegenereignis „keine 6“: 25 von 36. P = 1 − 25/36 = <b>11/36</b> ≈ {_pct(Fr(11, 36))}"))
+            assert q == Fr(11, 36)
+            _ = k
+    return L
+
+
 M8, PH = "#1f6e8c", "#b4531f"
 TOPICS = {
     "osmose": ({"title": "Osmose", "eyebrow": "Biologie · Klasse 11", "accent": "#0d6f74", "cols": [1, 1, 1], "sol_cols": [1, 1, 1]}, osmose),
@@ -1262,6 +1354,7 @@ TOPICS = {
     "auge": ({"title": "Das Auge", "eyebrow": "Biologie · Klasse 8", "accent": "#4a7a1e", "cols": [1, 1, 1], "sol_cols": [1, 1, 1]}, auge),
     "termstruktur": ({"title": "Termstruktur und Termwerte", "eyebrow": "Mathematik · Klasse 8", "accent": M8, "cols": [3, 2, 1], "sol_cols": [3, 2, 1]}, termstruktur),
     "zufallsexperimente": ({"title": "Zufallsexperimente und Häufigkeiten", "eyebrow": "Mathematik · Klasse 8", "accent": M8, "cols": [2, 2, 1], "sol_cols": [2, 2, 1]}, zufallsexperimente),
+    "laplace": ({"title": "Laplace-Experimente und Anzahlen", "eyebrow": "Mathematik · Klasse 8", "accent": M8, "cols": [2, 2, 1], "sol_cols": [3, 2, 1]}, laplace),
     "binomische-formeln": ({"title": "Binomische Formeln", "eyebrow": "Mathematik · Klasse 8", "accent": M8, "cols": 2, "sol_cols": 2}, binomische_formeln),
     "bruchterme": ({"title": "Bruchterme", "eyebrow": "Mathematik · Klasse 8", "accent": "#2d6a4f", "cols": 3, "sol_cols": 3}, bruchterme),
     "ausmultiplizieren-faktorisieren": ({"title": "Ausmultiplizieren und Faktorisieren", "eyebrow": "Mathematik · Klasse 8", "accent": M8, "cols": 3, "sol_cols": 3}, ausmultiplizieren),

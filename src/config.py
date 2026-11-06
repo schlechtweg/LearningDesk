@@ -119,6 +119,14 @@ TOPICS = [
         "fonts": "math", "first_view": "verstehen", "factsheet": "Factsheet als PDF ↓",
     },
     {
+        "slug": "laplace", "grade": "8", "subject": "mathematik", "chapter": "II", "order": 2, "kit": True, "accent": ACCENT_MATH8,
+        "title": "Laplace-Experimente und Anzahlen", "short": "Laplace", "tag": "Wahrscheinlichkeit",
+        "card": "Laplace-Regel, Gegenereignis, Produktregel, Ereignis-Labor mit Würfeln, Urne und Karten, Möglichkeiten zählen, Trainer, Quiz",
+        "description": "Interaktive Lernhilfe zu Laplace-Experimenten und Anzahlen (Mathematik, Klasse 8)",
+        "intro": "Wenn alle Ergebnisse gleich wahrscheinlich sind, genügt Abzählen: günstige durch mögliche. Und mit der Produktregel zählst du Möglichkeiten blitzschnell.",
+        "fonts": "math", "first_view": "verstehen", "factsheet": "Factsheet als PDF ↓",
+    },
+    {
         "slug": "binomische-formeln", "grade": "8", "subject": "mathematik", "chapter": "I", "order": 4,
         "title": "Binomische Formeln", "short": "Binomische Formeln", "tag": "Terme",
         "card": "Die drei Formeln, Erklärung mit Flächen, Trainer mit Lückenaufgaben, Kopfrechen-Trick, Quiz",

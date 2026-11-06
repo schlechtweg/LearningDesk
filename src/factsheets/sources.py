@@ -1245,6 +1245,54 @@ SHEETS["zufallsexperimente"] = dict(title="Zufallsexperimente und Häufigkeiten"
     </div>
   </div>''')
 
+SHEETS["laplace"] = dict(title="Laplace-Experimente und Anzahlen", eyebrow="Mathematik · Klasse 8 · Zufallsversuche", accent=M8, body=f'''
+  <div class="kern">Bei einem <strong>Laplace-Experiment</strong> sind alle Ergebnisse gleich wahrscheinlich. Dann gilt: {m("<i>P</i>(<i>E</i>) = günstige Ergebnisse : mögliche Ergebnisse")}.</div>
+  <div class="cols">
+    <div class="box">
+      <h2>Laplace-Regel: Beispiele</h2>
+      <table>
+        <tr><th>Experiment</th><th>Ereignis</th><th><i>P</i></th></tr>
+        <tr><td>Würfel</td><td>gerade Zahl</td><td>{m("3/6 = 1/2")}</td></tr>
+        <tr><td>Urne 3 rot, 7 blau</td><td>rot</td><td>{m("3/10 = 30 %")}</td></tr>
+        <tr><td>32 Skatkarten</td><td>Ass</td><td>{m("4/32 = 1/8")}</td></tr>
+        <tr><td>zwei Würfel</td><td>Summe 7</td><td>{m("6/36 = 1/6")}</td></tr>
+      </table>
+      <p class="small">Nicht bei Reißzwecke oder ungleich großen Glücksradfeldern!</p>
+    </div>
+    <div class="box">
+      <h2>Gegenereignis</h2>
+      <p>Das Gegenereignis {m("Ē")} tritt ein, wenn <i>E</i> nicht eintritt: {m("<i>P</i>(Ē) = 1 − <i>P</i>(<i>E</i>)")}</p>
+      <p class="small">Keine 6: {m("1 − 1/6 = 5/6")}. Mindestens eine 6 mit zwei Würfeln: {m("1 − 25/36 = 11/36")}</p>
+    </div>
+    <div class="box">
+      <h2>Produktregel (Anzahlen)</h2>
+      <p>Mehrere Entscheidungen nacheinander: Anzahlen <strong>multiplizieren</strong>.</p>
+      <ul>
+        <li>3 T-Shirts, 2 Hosen, 2 Paar Schuhe: {m("3 · 2 · 2 = 12")}</li>
+        <li>Zahlenschloss, 3 Räder: {m("10 · 10 · 10 = 1 000")}</li>
+        <li>Platz 1 und 2 bei 8 Läufern: {m("8 · 7 = 56")}</li>
+      </ul>
+    </div>
+    <div class="box">
+      <h2>Zwei Würfel</h2>
+      <p>36 gleich wahrscheinliche Ergebnisse (1|1 bis 6|6). Die <strong>Augensummen</strong> sind <strong>nicht</strong> gleich wahrscheinlich:</p>
+      <table><tr><th>Summe</th><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td><td>10</td><td>11</td><td>12</td></tr><tr><th>Anzahl</th><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>5</td><td>4</td><td>3</td><td>2</td><td>1</td></tr></table>
+    </div>
+    <div class="box">
+      <h2>Anzahl und Wahrscheinlichkeit</h2>
+      <p>Bei <i>N</i> gleich wahrscheinlichen Möglichkeiten rät man mit {m("1/<i>N</i>")} richtig.</p>
+      <p class="small">4-stellige PIN: 10 000 Möglichkeiten, {m("<i>P</i> = 0,01 %")}.</p>
+    </div>
+    <div class="box warn">
+      <h2>Typische Fehler</h2>
+      <ul>
+        <li>Laplace-Regel bei <strong>ungleich wahrscheinlichen</strong> Ergebnissen.</li>
+        <li>Bei zwei Würfeln mit 11 statt <strong>36</strong> Ergebnissen gerechnet.</li>
+        <li>Bei der Produktregel <strong>addiert</strong> statt multipliziert.</li>
+      </ul>
+    </div>
+  </div>''')
+
 OUT = sys.argv[1] if len(sys.argv) > 1 else os.path.join(os.path.dirname(__file__), "_build")
 os.makedirs(OUT, exist_ok=True)
 shutil.copyfile(os.path.join(os.path.dirname(os.path.abspath(__file__)), "factsheet.css"), os.path.join(OUT, "factsheet.css"))

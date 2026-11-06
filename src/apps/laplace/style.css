@@ -1,0 +1,12 @@
+/* Event lab: clickable outcomes */
+.lgrid { display: grid; gap: 6px; padding: 12px; }
+.lgrid button { font-family: var(--font-mono); font-size: 0.9rem; padding: 6px 0; min-width: 0; }
+.lgrid button.on { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+.lgrid .hd { font-family: var(--font-mono); font-size: 0.8rem; color: var(--muted); text-align: center; align-self: center; }
+.lgrid .ball { border-radius: 999px; aspect-ratio: 1; }
+#lSel, #lEv, #zSel { width: 100%; max-width: 420px; }
+/* Counting tree */
+.ztree line { stroke: var(--line); stroke-width: 1.2; }
+.ztree circle { fill: var(--accent); }
+.ztree text { font-family: var(--font-mono); font-size: 11px; fill: var(--muted); }
+.controls > * { min-width: 0; }

@@ -1,0 +1,120 @@
+  <nav class="tabs" aria-label="Bereiche">
+    <a href="#verstehen" data-view="verstehen"><span class="n">1</span>Verstehen</a>
+    <a href="#labor" data-view="labor"><span class="n">2</span>Ereignis-Labor</a>
+    <a href="#zaehlen" data-view="zaehlen"><span class="n">3</span>Zählen</a>
+    <a href="#ueben" data-view="ueben"><span class="n">4</span>Üben</a>
+    <a href="#alltag" data-view="alltag"><span class="n">5</span>Im Alltag</a>
+    <a href="#quiz" data-view="quiz"><span class="n">6</span>Quiz</a>
+  </nav>
+
+  <section class="view" id="view-verstehen">
+    <div class="einfach">
+      <span class="eyebrow">Einfach erklärt</span>
+      <p>Bei einem <strong>Laplace-Experiment</strong> sind alle Ergebnisse <strong>gleich wahrscheinlich</strong>, zum Beispiel beim fairen Würfel oder beim Ziehen einer Kugel aus einer gut gemischten Urne. Dann kann man Wahrscheinlichkeiten einfach durch Abzählen ausrechnen.</p>
+    </div>
+    <div class="merksatz">
+      <span class="eyebrow">Laplace-Regel</span>
+      <p class="formel" style="font-size:1.3rem"><i>P</i>(<i>E</i>) = Anzahl der günstigen Ergebnisse : Anzahl aller möglichen Ergebnisse</p>
+    </div>
+    <div class="grid-2">
+      <div class="panel stack">
+        <h3>Beispiele</h3>
+        <ul class="list small">
+          <li>Würfel, „gerade Zahl“: 3 günstige von 6 möglichen: <span class="math"><i>P</i> = 3/6 = 1/2</span>.</li>
+          <li>Urne mit 3 roten und 7 blauen Kugeln, „rot“: <span class="math"><i>P</i> = 3/10 = 30 %</span>.</li>
+          <li>Zwei Würfel, „Augensumme 7“: 6 von 36: <span class="math"><i>P</i> = 1/6</span>.</li>
+        </ul>
+      </div>
+      <div class="panel stack">
+        <h3>Gegenereignis</h3>
+        <p class="small">Das <strong>Gegenereignis</strong> <span class="math">Ē</span> tritt genau dann ein, wenn <span class="math"><i>E</i></span> nicht eintritt.</p>
+        <p class="small math"><i>P</i>(Ē) = 1 − <i>P</i>(<i>E</i>)</p>
+        <p class="small">Keine 6 beim Würfeln: <span class="math">1 − 1/6 = 5/6</span>.</p>
+      </div>
+    </div>
+    <div class="grid-2">
+      <div class="panel stack">
+        <h3>Anzahlen: Produktregel</h3>
+        <p class="small">Trifft man mehrere Entscheidungen nacheinander, <strong>multipliziert</strong> man die Anzahlen der Möglichkeiten.</p>
+        <p class="small">3 T-Shirts, 2 Hosen, 2 Paar Schuhe: <span class="math">3 · 2 · 2 = 12</span> Outfits.<br>Zahlenschloss mit 3 Rädern (0 bis 9): <span class="math">10 · 10 · 10 = 1 000</span> Codes.</p>
+      </div>
+      <div class="panel stack">
+        <h3>Anzahl und Wahrscheinlichkeit</h3>
+        <p class="small">Gibt es <span class="math"><i>N</i></span> gleich wahrscheinliche Möglichkeiten, rät man mit der Wahrscheinlichkeit <span class="math">1/<i>N</i></span> richtig.</p>
+        <p class="small">Den Code des Zahlenschlosses beim ersten Versuch erraten: <span class="math">1/1 000 = 0,1 %</span>.</p>
+      </div>
+    </div>
+    <div class="panel stack">
+      <h3>Typische Fehler</h3>
+      <ul class="list small">
+        <li>Die Laplace-Regel bei <strong>ungleich wahrscheinlichen</strong> Ergebnissen benutzt, z. B. bei einer Reißzwecke oder einem Glücksrad mit unterschiedlich großen Feldern.</li>
+        <li>Bei zwei Würfeln gibt es <strong>36</strong> Ergebnisse, nicht 11 Augensummen. Die Summen sind <strong>nicht</strong> gleich wahrscheinlich.</li>
+        <li>Bei der Produktregel addiert statt multipliziert.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="view" id="view-labor" hidden>
+    <div class="stack">
+      <span class="eyebrow">Ausprobieren</span>
+      <h2>Ereignis-Labor</h2>
+      <p class="muted">Wähle ein Experiment und tippe die Ergebnisse an, die zu deinem Ereignis gehören. Oder nimm eines der vorbereiteten Ereignisse.</p>
+    </div>
+    <div class="row"><select id="lSel" aria-label="Experiment"></select></div>
+    <div class="sim-layout">
+      <div class="figure"><div id="lGrid" class="lgrid"></div></div>
+      <div class="panel controls">
+        <div><label class="lbl" for="lEv"><span>Ereignis</span></label><select id="lEv"></select></div>
+        <div class="row"><button type="button" id="lClear">Auswahl löschen</button><button type="button" id="lInv">Gegenereignis</button></div>
+        <dl class="readout" id="lRo"></dl>
+      </div>
+    </div>
+  </section>
+
+  <section class="view" id="view-zaehlen" hidden>
+    <div class="stack">
+      <span class="eyebrow">Ausprobieren</span>
+      <h2>Möglichkeiten zählen</h2>
+      <p class="muted">Stelle ein, wie viele Möglichkeiten es auf jeder Stufe gibt. Die Produktregel liefert die Gesamtzahl.</p>
+    </div>
+    <div class="row"><select id="zSel" aria-label="Situation"></select></div>
+    <div class="sim-layout">
+      <div class="figure"><svg class="ztree" id="zSvg" viewBox="0 0 460 260" role="img" aria-label="Baum der Möglichkeiten"></svg></div>
+      <div class="panel controls" id="zCtl"></div>
+    </div>
+    <div class="einfach"><p id="zText"></p></div>
+  </section>
+
+  <section class="view" id="view-ueben" hidden>
+    <div class="stack">
+      <span class="eyebrow">Trainer</span>
+      <h2>Wahrscheinlichkeiten und Anzahlen</h2>
+      <p class="muted">Wahrscheinlichkeiten als Bruch, Dezimalzahl oder in Prozent eingeben, z. B. <code>3/8</code>, <code>0,375</code> oder <code>37,5 %</code>.</p>
+    </div>
+    <div id="trainer" class="stack"></div>
+  </section>
+
+  <section class="view" id="view-alltag" hidden>
+    <div class="stack">
+      <span class="eyebrow">Im Alltag</span>
+      <h2>Laplace und Zählen im Alltag</h2>
+      <p class="muted">Codes, Lose, Spiele: Wo alle Möglichkeiten gleich wahrscheinlich sind, hilft Abzählen.</p>
+    </div>
+    <div class="grid-2">
+      <div class="panel stack"><span class="eyebrow">Handy</span><h3>Die PIN</h3><p class="small">Eine 4-stellige PIN hat <span class="math">10 · 10 · 10 · 10 = 10 000</span> Möglichkeiten. Mit 3 Versuchen errät man sie mit höchstens <span class="math">3/10 000 = 0,03 %</span>.</p></div>
+      <div class="panel stack"><span class="eyebrow">Fahrrad</span><h3>Zahlenschloss</h3><p class="small">3 Räder mit je 10 Ziffern: 1 000 Codes. Wer pro Sekunde einen Code probiert, braucht höchstens etwa 17 Minuten. Darum sind 4 oder 5 Räder sicherer.</p></div>
+      <div class="panel stack"><span class="eyebrow">Spieleabend</span><h3>Mensch ärgere dich nicht</h3><p class="small">Die Wahrscheinlichkeit, eine 6 zu würfeln, ist 1/6. Die Chance, sie <em>nicht</em> zu würfeln, ist mit 5/6 viel größer. Darum dauert das Rauskommen manchmal so lange.</p></div>
+      <div class="panel stack"><span class="eyebrow">Kantine</span><h3>Menü zusammenstellen</h3><p class="small">3 Vorspeisen, 4 Hauptgerichte, 2 Nachspeisen: <span class="math">3 · 4 · 2 = 24</span> verschiedene Menüs. Für jeden Schultag eines Monats ein anderes.</p></div>
+      <div class="panel stack"><span class="eyebrow">Schulfest</span><h3>Tombola</h3><p class="small">Von 500 Losen sind 50 Gewinne. Beim ersten Los: <span class="math">50/500 = 10 %</span> Gewinnchance, solange die Lose gut gemischt sind.</p></div>
+      <div class="panel stack"><span class="eyebrow">Kleidung</span><h3>Outfits</h3><p class="small">5 T-Shirts und 3 Hosen ergeben 15 Kombinationen. Ein weiteres T-Shirt bringt gleich 3 neue Outfits dazu.</p></div>
+    </div>
+  </section>
+
+  <section class="view" id="view-quiz" hidden>
+    <div class="stack">
+      <span class="eyebrow">Selbsttest</span>
+      <h2>Quiz</h2>
+      <div class="progress-line"><div class="bar" aria-hidden="true"><i id="qBar"></i></div><span class="score-line" id="qProgress"></span></div>
+    </div>
+    <div class="panel quiz" id="quizBox" aria-live="polite"></div>
+  </section>
