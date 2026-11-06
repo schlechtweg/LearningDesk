@@ -1,0 +1,97 @@
+  <nav class="tabs" aria-label="Bereiche">
+    <a href="#verstehen" data-view="verstehen"><span class="n">1</span>Verstehen</a>
+    <a href="#entdecken" data-view="entdecken"><span class="n">2</span>Entdecken</a>
+    <a href="#ueben" data-view="ueben"><span class="n">3</span>Üben</a>
+    <a href="#alltag" data-view="alltag"><span class="n">4</span>Im Alltag</a>
+    <a href="#quiz" data-view="quiz"><span class="n">5</span>Quiz</a>
+  </nav>
+
+  <section class="view" id="view-verstehen">
+    <div class="einfach">
+      <span class="eyebrow">Einfach erklärt</span>
+      <p>Wird eine Figur mit dem Faktor <span class="math"><i>k</i></span> vergrößert, wachsen <strong>Längen</strong> mit <span class="math"><i>k</i></span>, <strong>Flächen</strong> mit <span class="math"><i>k</i>²</span> und <strong>Volumen</strong> mit <span class="math"><i>k</i>³</span>. Doppelt so lang heißt: 4-mal so viel Fläche und 8-mal so viel Volumen.</p>
+    </div>
+    <div class="grid-2">
+      <div class="panel stack">
+        <h3>Warum <i>k</i>²?</h3>
+        <p class="small">Eine Fläche hat zwei Richtungen (Länge und Breite). Beide werden mit <span class="math"><i>k</i></span> multipliziert: <span class="math"><i>A</i>′ = (<i>k</i> · <i>a</i>) · (<i>k</i> · <i>b</i>) = <i>k</i>² · <i>A</i></span>.</p>
+      </div>
+      <div class="panel stack">
+        <h3>Warum <i>k</i>³?</h3>
+        <p class="small">Ein Körper hat drei Richtungen: <span class="math"><i>V</i>′ = (<i>k</i><i>a</i>)(<i>k</i><i>b</i>)(<i>k</i><i>c</i>) = <i>k</i>³ · <i>V</i></span>.</p>
+      </div>
+    </div>
+    <div class="panel stack">
+      <h3>Übersicht</h3>
+      <table class="facts">
+        <tr><th><i>k</i></th><th>Länge</th><th>Fläche (<i>k</i>²)</th><th>Volumen (<i>k</i>³)</th></tr>
+        <tr><td>2</td><td>· 2</td><td>· 4</td><td>· 8</td></tr>
+        <tr><td>3</td><td>· 3</td><td>· 9</td><td>· 27</td></tr>
+        <tr><td>0,5</td><td>· 0,5</td><td>· 0,25</td><td>· 0,125</td></tr>
+        <tr><td>10</td><td>· 10</td><td>· 100</td><td>· 1000</td></tr>
+      </table>
+    </div>
+    <div class="merksatz">
+      <span class="eyebrow">Rückwärts</span>
+      <p>Ist die Fläche 9-mal so groß, gilt <span class="math"><i>k</i> = √9 = 3</span>. Ist das Volumen 8-mal so groß, gilt <span class="math"><i>k</i> = ∛8 = 2</span>.</p>
+    </div>
+    <div class="panel stack">
+      <h3>Typische Fehler</h3>
+      <ul class="list small">
+        <li>Fläche mit <span class="math"><i>k</i></span> statt <span class="math"><i>k</i>²</span> multipliziert.</li>
+        <li>Volumen nur verdoppelt, wenn alle Längen verdoppelt werden: richtig ist ·8.</li>
+        <li>Bei Maßstäben Flächen wie Längen umgerechnet.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="view" id="view-entdecken" hidden>
+    <div class="stack">
+      <span class="eyebrow">Ausprobieren</span>
+      <h2>Quadrate und Würfel zählen</h2>
+      <p class="muted">Vergrößere ein Einheitsquadrat und einen Einheitswürfel mit dem Faktor <span class="math"><i>k</i></span> und zähle, wie oft das Original hineinpasst.</p>
+    </div>
+    <div class="sim-layout">
+      <div class="figure"><svg class="plot" id="fSvg" viewBox="0 0 460 300" role="img" aria-label="Vergrößertes Quadrat und vergrößerter Würfel"></svg></div>
+      <div class="panel stack ctl">
+        <p class="kv" id="kVal"></p>
+        <label for="kR">Faktor <i>k</i></label>
+        <input type="range" id="kR" min="1" max="5" step="1" value="2">
+        <table class="facts" id="fFacts"></table>
+      </div>
+    </div>
+    <div class="einfach"><p id="fText"></p></div>
+  </section>
+
+  <section class="view" id="view-ueben" hidden>
+    <div class="stack">
+      <span class="eyebrow">Trainer</span>
+      <h2>Flächen und Volumen umrechnen</h2>
+      <p class="muted">Dezimalzahlen mit Komma oder Punkt.</p>
+    </div>
+    <div id="trainer" class="stack"></div>
+  </section>
+
+  <section class="view" id="view-alltag" hidden>
+    <div class="stack">
+      <span class="eyebrow">Im Alltag</span>
+      <h2>Größer ist nicht einfach mehr</h2>
+    </div>
+    <div class="grid-2">
+      <div class="panel stack"><span class="eyebrow">Pizza</span><h3>32 cm statt 24 cm</h3><p class="small"><span class="math"><i>k</i> = 4/3</span>, Fläche · 16/9 ≈ 1,78: fast doppelt so viel Pizza, oft aber nicht doppelt so teuer.</p></div>
+      <div class="panel stack"><span class="eyebrow">Biologie</span><h3>Elefant und Maus</h3><p class="small">Ein großes Tier hat im Verhältnis zum Volumen wenig Oberfläche (<span class="math"><i>k</i>²</span> gegen <span class="math"><i>k</i>³</span>) und verliert langsamer Wärme.</p></div>
+      <div class="panel stack"><span class="eyebrow">Modellbau</span><h3>Maßstab 1 : 10</h3><p class="small">Das Modell braucht 1/100 der Lackfläche und wiegt etwa 1/1000 des Originals.</p></div>
+      <div class="panel stack"><span class="eyebrow">Küche</span><h3>Eiswürfel</h3><p class="small">Kleine Würfel schmelzen schneller: Bei gleichem Gesamtvolumen haben sie viel mehr Oberfläche.</p></div>
+      <div class="panel stack"><span class="eyebrow">Wohnen</span><h3>Grundriss</h3><p class="small">Ein Plan im Maßstab 1 : 100: 1 cm² auf dem Plan sind 10 000 cm² = 1 m² in echt.</p></div>
+      <div class="panel stack"><span class="eyebrow">Getränke</span><h3>Doppelt so hohe Dose?</h3><p class="small">Ist eine ähnliche Dose in allen Maßen doppelt so groß, passt 8-mal so viel hinein.</p></div>
+    </div>
+  </section>
+
+  <section class="view" id="view-quiz" hidden>
+    <div class="stack">
+      <span class="eyebrow">Selbsttest</span>
+      <h2>Quiz</h2>
+      <div class="progress-line"><div class="bar" aria-hidden="true"><i id="qBar"></i></div><span class="score-line" id="qProgress"></span></div>
+    </div>
+    <div class="panel quiz" id="quizBox" aria-live="polite"></div>
+  </section>

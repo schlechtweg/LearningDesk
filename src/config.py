@@ -223,6 +223,14 @@ TOPICS = [
         "fonts": "math", "first_view": "verstehen", "factsheet": "Factsheet als PDF ↓",
     },
     {
+        "slug": "flaeche-volumen-aehnlich", "grade": "8", "subject": "mathematik", "chapter": "V", "order": 3, "kit": True, "accent": ACCENT_MATH8,
+        "title": "Flächen und Volumen ähnlicher Figuren", "short": "Flächen und Volumen", "tag": "Ähnlichkeit",
+        "card": "Längen mit k, Flächen mit k², Volumen mit k³, Quadrate und Würfel zählen, Maßstäbe, Trainer, Quiz",
+        "description": "Interaktive Lernhilfe zu Flächeninhalt und Volumen ähnlicher Figuren und Körper (Mathematik, Klasse 8)",
+        "intro": "Wie sich Flächen und Volumen ändern, wenn man Figuren und Körper vergrößert oder verkleinert.",
+        "fonts": "math", "first_view": "verstehen", "factsheet": "Factsheet als PDF ↓",
+    },
+    {
         "slug": "binomische-formeln", "grade": "8", "subject": "mathematik", "chapter": "I", "order": 4,
         "title": "Binomische Formeln", "short": "Binomische Formeln", "tag": "Terme",
         "card": "Die drei Formeln, Erklärung mit Flächen, Trainer mit Lückenaufgaben, Kopfrechen-Trick, Quiz",

@@ -1,7 +1,7 @@
 (function () {
   "use strict";
   const { $, $$, pick, rnd, fmt, shuffle } = LK;
-  const d = (v, p = 2) => fmt(v, p).replace(".", ",").replace("-", "−");
+  const d = (v, p = 2) => fmt(v, p).replace("-", "−");
   const rad = (g) => g * Math.PI / 180;
 
   // ---------- discover ----------

@@ -1903,6 +1903,53 @@ SHEETS["aehnliche-dreiecke"] = dict(title="Ähnliche Dreiecke", eyebrow="Mathema
     </div>
   </div>''')
 
+SHEETS["flaeche-volumen-aehnlich"] = dict(title="Flächen und Volumen ähnlicher Figuren", eyebrow="Mathematik · Klasse 8 · Ähnlichkeit", accent=M8, body=f'''
+  <div class="kern">Bei einer Vergrößerung mit dem Faktor {m("<i>k</i>")} gilt: Längen · {m("<i>k</i>")}, Flächen · {m("<i>k</i>²")}, Volumen · {m("<i>k</i>³")}. Rückwärts: {m("<i>k</i> = √Flächenfaktor = ∛Volumenfaktor")}.</div>
+  <div class="cols">
+    <div class="box">
+      <h2>Begründung</h2>
+      <ul>
+        <li>Fläche: {m("(<i>k</i><i>a</i>) · (<i>k</i><i>b</i>) = <i>k</i>² · <i>a</i><i>b</i>")}</li>
+        <li>Volumen: {m("(<i>k</i><i>a</i>)(<i>k</i><i>b</i>)(<i>k</i><i>c</i>) = <i>k</i>³ · <i>a</i><i>b</i><i>c</i>")}</li>
+        <li>Würfel mit {m("<i>k</i> = 3")}: 9 Flächen-Quadrate, 27 Würfel.</li>
+      </ul>
+    </div>
+    <div class="box">
+      <h2>Maßstab</h2>
+      <ul>
+        <li>1 : 100 bei Längen: 1 cm → 1 m.</li>
+        <li>Flächen: 1 cm² → 10 000 cm² = 1 m².</li>
+        <li>Volumen: 1 cm³ → 1 000 000 cm³ = 1 m³.</li>
+      </ul>
+    </div>
+    <div class="box full">
+      <h2>Faktoren</h2>
+      <table>
+        <tr><th><i>k</i></th><th>Länge</th><th>Fläche</th><th>Volumen</th></tr>
+        <tr><td>2</td><td>· 2</td><td>· 4</td><td>· 8</td></tr>
+        <tr><td>3</td><td>· 3</td><td>· 9</td><td>· 27</td></tr>
+        <tr><td>0,5</td><td>· 0,5</td><td>· 0,25</td><td>· 0,125</td></tr>
+        <tr><td>10</td><td>· 10</td><td>· 100</td><td>· 1000</td></tr>
+      </table>
+    </div>
+    <div class="box">
+      <h2>Im Alltag</h2>
+      <ul>
+        <li>Pizza: Durchmesser ·2 ⇒ Fläche ·4.</li>
+        <li>Modelle: Lack ·{m("<i>k</i>²")}, Gewicht ·{m("<i>k</i>³")}.</li>
+        <li>Große Tiere kühlen langsamer aus.</li>
+      </ul>
+    </div>
+    <div class="box warn">
+      <h2>Typische Fehler</h2>
+      <ul>
+        <li>Fläche mit {m("<i>k</i>")} statt {m("<i>k</i>²")} multipliziert.</li>
+        <li>Volumen bei {m("<i>k</i> = 2")} nur verdoppelt.</li>
+        <li>Maßstab bei Flächen wie bei Längen angewendet.</li>
+      </ul>
+    </div>
+  </div>''')
+
 OUT = sys.argv[1] if len(sys.argv) > 1 else os.path.join(os.path.dirname(__file__), "_build")
 os.makedirs(OUT, exist_ok=True)
 shutil.copyfile(os.path.join(os.path.dirname(os.path.abspath(__file__)), "factsheet.css"), os.path.join(OUT, "factsheet.css"))

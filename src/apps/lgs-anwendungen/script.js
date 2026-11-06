@@ -1,7 +1,7 @@
 (function () {
   "use strict";
   const { $, pick, rnd, shuffle, fmt } = LK;
-  const eur = (c) => fmt(c / 100, 2).replace(".", ",");
+  const eur = (c) => (c / 100).toFixed(2).replace(".", ",");
   const I = (v) => `<i>${v}</i>`;
 
   // Each story: text, right system, two plausible wrong systems, values and labels.

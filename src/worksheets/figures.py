@@ -779,10 +779,25 @@ def aehnliche_dreiecke():
     return {"title": "Fehlende Seiten", "stars": "★★☆", "task": (svg("0 0 260 200", base), task), "sol": (svg("0 0 260 200", sol), soltxt)}
 
 
+def flaeche_volumen_aehnlich():
+    # rectangle 3 x 2 squares, k = 2 -> 6 x 4 = 24 squares = 4 * 6
+    assert 6 * 4 == 2 ** 2 * (3 * 2)
+    u, ox, oy = 18, 15, 15
+    g = "".join(f'<line class="gl" x1="{ox + i * u}" y1="{oy}" x2="{ox + i * u}" y2="{oy + 9 * u}"/>' for i in range(14)) + "".join(f'<line class="gl" x1="{ox}" y1="{oy + j * u}" x2="{ox + 13 * u}" y2="{oy + j * u}"/>' for j in range(10))
+    base = g + f'<rect class="fg" x="{ox + u}" y="{oy + 4 * u}" width="{3 * u}" height="{2 * u}"/>' + text(ox + 2.5 * u, oy + 3.6 * u, "A = ?", "ft")
+    sol = base + f'<rect class="fs" x="{ox + 6 * u}" y="{oy + u}" width="{6 * u}" height="{4 * u}"/>' + text(ox + 9 * u, oy + 6 * u, "24 Kästchen", "ft sol")
+    task = ('<p>Zeichne ein zum Rechteck ähnliches Rechteck mit <i>k</i> = 2 ins Gitter.</p>'
+            '<p class="q">Kästchen vorher: <span class="blank"></span> nachher: <span class="blank"></span></p>'
+            '<p class="q">Faktor der Fläche: <span class="blank"></span> Warum? <span class="blank wide"></span></p>')
+    soltxt = ('<p class="q">Rechteck 6 × 4 Kästchen.</p>'
+              '<p class="q">vorher <b>6</b>, nachher <b>24</b> Kästchen: Faktor <b>4 = 2²</b>, weil Länge <i>und</i> Breite verdoppelt werden.</p>')
+    return {"title": "Fläche verdoppeln?", "stars": "★☆☆", "task": (svg("0 0 265 200", base), task), "sol": (svg("0 0 265 200", sol), soltxt)}
+
+
 FIGS = {
     "osmose": osmose, "natrium-kalium-pumpe": nak, "symport-antiport": symport, "endocytose-exocytose": endo,
     "ableiten": ableiten, "nervensystem": nerven, "auge": auge,
-    "termstruktur": termstruktur, "zufallsexperimente": zufallsexperimente, "laplace": laplace, "baumdiagramme": baumdiagramme, "unabhaengige-ereignisse": unabhaengig, "funktionsbegriff": funktionsbegriff, "eigenschaften-funktionen": eigenschaften, "lineare-funktionen": lineare_funktionen, "funktionsgleichungen": funktionsgleichungen, "lgs-grafisch": lgs_grafisch, "gleichsetzungsverfahren": gleichsetzungsverfahren, "additionsverfahren": additionsverfahren, "lgs-anwendungen": lgs_anwendungen, "zentrische-streckung": zentrische_streckung, "aehnliche-dreiecke": aehnliche_dreiecke, "binomische-formeln": binom, "bruchterme": bruchterme, "ausmultiplizieren-faktorisieren": ausmult, "terme-vereinfachen": terme,
+    "termstruktur": termstruktur, "zufallsexperimente": zufallsexperimente, "laplace": laplace, "baumdiagramme": baumdiagramme, "unabhaengige-ereignisse": unabhaengig, "funktionsbegriff": funktionsbegriff, "eigenschaften-funktionen": eigenschaften, "lineare-funktionen": lineare_funktionen, "funktionsgleichungen": funktionsgleichungen, "lgs-grafisch": lgs_grafisch, "gleichsetzungsverfahren": gleichsetzungsverfahren, "additionsverfahren": additionsverfahren, "lgs-anwendungen": lgs_anwendungen, "zentrische-streckung": zentrische_streckung, "aehnliche-dreiecke": aehnliche_dreiecke, "flaeche-volumen-aehnlich": flaeche_volumen_aehnlich, "binomische-formeln": binom, "bruchterme": bruchterme, "ausmultiplizieren-faktorisieren": ausmult, "terme-vereinfachen": terme,
     "gleichungen": gleichungen, "ungleichungen": ungleichungen,
     "druck": druck, "hydraulik": hydraulik, "schweredruck": schweredruck, "auftrieb": auftrieb, "luftdruck": luftdruck,
 }

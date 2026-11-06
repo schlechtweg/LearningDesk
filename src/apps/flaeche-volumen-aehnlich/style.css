@@ -1,0 +1,13 @@
+.plot text { font-family: var(--font-body); font-size: 12px; font-weight: 700; fill: var(--ink); }
+.plot .sq { fill: color-mix(in srgb, var(--accent) 16%, transparent); stroke: var(--accent); stroke-width: 1; }
+.plot .sq0 { fill: color-mix(in srgb, var(--accent) 55%, transparent); stroke: var(--accent); stroke-width: 1.2; }
+.plot .top { fill: color-mix(in srgb, #7b4bb0 22%, transparent); }
+.plot .left { fill: color-mix(in srgb, #7b4bb0 12%, transparent); }
+.plot .right { fill: color-mix(in srgb, #7b4bb0 32%, transparent); }
+.plot .cl { stroke: #7b4bb0; stroke-width: 1; fill: none; }
+.plot .co { stroke: #7b4bb0; stroke-width: 2; fill: none; }
+.ctl input[type=range] { width: 100%; }
+.kv { font-family: var(--font-display); font-size: 1.6rem; font-weight: 800; margin: 0; }
+.facts { width: 100%; border-collapse: collapse; font-size: var(--step--1); }
+.facts th, .facts td { padding: 4px 6px; border-bottom: 1px solid var(--line); text-align: left; }
+.facts td:last-child { text-align: right; font-family: var(--font-mono); }

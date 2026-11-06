@@ -23,6 +23,7 @@ Interaktive Lern-Apps für die Schule, sortiert nach Klassenstufe. Alles läuft 
 | Klasse 8 · Mathematik (IV) | Anwendungen linearer Gleichungssysteme | Textaufgaben in fünf Schritten, passendes LGS wählen, Preise, Anzahlen, Mischungen, Tarife, Trainer, Quiz |
 | Klasse 8 · Mathematik (V) | Ähnliche Figuren und zentrische Streckung | Ähnlichkeit, Streckzentrum und Streckfaktor, Streckung zum Ziehen, Maßstab, Trainer, Quiz |
 | Klasse 8 · Mathematik (V) | Ähnliche Dreiecke | Ähnlichkeitssätze WW, SSS, SWS, Entdecken mit Schiebereglern, Prüfen, Höhen messen, Trainer, Quiz |
+| Klasse 8 · Mathematik (V) | Flächen und Volumen ähnlicher Figuren | Längen mit k, Flächen mit k², Volumen mit k³, Quadrate und Würfel zählen, Maßstäbe, Trainer, Quiz |
 | Klasse 8 · Mathematik | Binomische Formeln | Formeln, Flächenmodell, Trainer (Lücken, ausmultiplizieren, faktorisieren), Kopfrechen-Trick, Quiz |
 | Klasse 8 · Mathematik | Bruchterme | Definitionsmenge, Kürzen und Erweitern, Rechenregeln, Trainer, Quiz |
 | Klasse 8 · Mathematik | Ausmultiplizieren und Faktorisieren | Distributivgesetz, Klammer mal Klammer, Ausklammern, Flächenmodell, Trainer, Quiz |

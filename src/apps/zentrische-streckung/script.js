@@ -1,7 +1,7 @@
 (function () {
   "use strict";
   const { $, $$, pick, rnd, fmt } = LK;
-  const d = (v, p = 2) => fmt(v, p).replace(".", ",").replace("-", "−");
+  const d = (v, p = 2) => fmt(v, p).replace("-", "−");
 
   // ---------- simulation ----------
   const W = 460, H = 340;

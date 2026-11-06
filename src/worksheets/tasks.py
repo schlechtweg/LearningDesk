@@ -2285,6 +2285,86 @@ def aehnliche_dreiecke():
     return L
 
 
+def flaeche_volumen_aehnlich():
+    r = random.Random(106)
+    L = {1: [], 2: [], 3: []}
+    seen = set()
+    def dec(v):
+        v = Fr(v)
+        t = f"{float(v):,.6g}" if abs(v) < 1e6 else f"{float(v):,.0f}"
+        return t.replace(",", " ").replace(".", ",").replace(" ", ".").replace("-", MINUS)
+    def eq(v):
+        # "= exact" or "≈ rounded"
+        v = Fr(v)
+        return "= " + dec(v) if (v * 1000).denominator == 1 else "≈ " + f"{float(v):.2f}".replace(".", ",")
+
+    def add(lvl, q, a):
+        if q not in seen and len(L[lvl]) < 120:
+            seen.add(q)
+            L[lvl].append((q, a))
+    ks = [Fr(2), Fr(3), Fr(4), Fr(5), Fr(1, 2), Fr(3, 2), Fr(10), Fr(1, 4), Fr(5, 2)]
+    for i in range(900):
+        t = i % 5
+        k = r.choice(ks)
+        if t == 0:
+            add(1, f"<i>k</i> = {dec(k)}: Mit welchem Faktor ändern sich Längen, Flächen, Volumen?", f"Längen · {dec(k)}, Flächen · <b>{dec(k * k)}</b>, Volumen · <b>{dec(k ** 3)}</b>")
+        elif t == 1:
+            A = r.choice([2, 3, 4, 5, 6, 8, 10, 12, 15])
+            add(1, f"Fläche {A} cm², gestreckt mit <i>k</i> = {dec(k)}. Neue Fläche?", f"{A} · {dec(k)}² = {A} · {dec(k * k)} = <b>{dec(A * k * k)} cm²</b>")
+        elif t == 2:
+            V = r.choice([1, 2, 3, 4, 5, 6, 8, 10])
+            add(1, f"Volumen {V} cm³, gestreckt mit <i>k</i> = {dec(k)}. Neues Volumen?", f"{V} · {dec(k)}³ = {V} · {dec(k ** 3)} = <b>{dec(V * k ** 3)} cm³</b>")
+        elif t == 3:
+            kk = r.choice([2, 3, 4, 5, 6, 7, 8, 9, 10])
+            add(1, f"Die Fläche ist {kk * kk}-mal so groß. Wie groß ist <i>k</i>?", f"<i>k</i> = √{kk * kk} = <b>{kk}</b>")
+        else:
+            kk = r.choice([2, 3, 4, 5, 10])
+            add(1, f"Das Volumen ist {kk ** 3}-mal so groß. Wie groß ist <i>k</i>?", f"<i>k</i> = ∛{kk ** 3} = <b>{kk}</b>")
+    for i in range(900):
+        t = i % 5
+        if t == 0:
+            a, k = r.randint(2, 6), r.choice([2, 3, Fr(1, 2), Fr(3, 2)])
+            add(2, f"Würfel mit Kante {a} cm, Streckung mit <i>k</i> = {dec(k)}. Oberfläche und Volumen vorher und nachher?", f"<i>O</i>: {6 * a * a} cm² → <b>{dec(6 * a * a * k * k)} cm²</b>, <i>V</i>: {a ** 3} cm³ → <b>{dec(a ** 3 * k ** 3)} cm³</b>")
+        elif t == 1:
+            sc, A = r.choice([100, 200, 500, 1000]), r.choice([2, 4, 5, 6, 8, 12, 20])
+            real = A * sc * sc
+            add(2, f"Plan im Maßstab 1 : {sc}: Ein Raum ist auf dem Plan {A} cm² groß. Wie groß in Wirklichkeit (in m²)?", f"Fläche · {sc}² = {A} · {dec(sc * sc)} cm² = {dec(real)} cm² = <b>{dec(Fr(real, 10000))} m²</b>")
+        elif t == 2:
+            A1, k = r.choice([3, 5, 8, 12, 20]), r.choice([2, 3, 4, 5])
+            add(2, f"Zwei ähnliche Figuren haben {A1} cm² und {A1 * k * k} cm². Wie verhalten sich entsprechende Seiten?", f"Flächenfaktor {k * k} ⇒ <b><i>k</i> = √{k * k} = {k}</b>: Seiten {k}-mal so lang")
+        elif t == 3:
+            V1, k = r.choice([2, 5, 10, 25, 40]), r.choice([2, 3, 4, 5])
+            add(2, f"Zwei ähnliche Körper haben {V1} cm³ und {V1 * k ** 3} cm³. Kantenlänge des kleinen: 3 cm. Kantenlänge des großen?", f"Volumenfaktor {k ** 3} ⇒ <i>k</i> = ∛{k ** 3} = {k}: <b>{3 * k} cm</b>")
+        else:
+            d1, d2 = r.choice([(24, 32), (26, 32), (20, 30), (28, 36), (30, 40), (22, 33)])
+            k = Fr(d2, d1)
+            add(2, f"Pizza mit {d1} cm und mit {d2} cm Durchmesser. Wievielmal so viel Pizza hat die große?", f"<i>k</i> = {d2} : {d1} {eq(k)}, Fläche · <i>k</i>² <b>{eq(k * k)}</b>")
+    for i in range(900):
+        t = i % 5
+        if t == 0:
+            d1, d2, p1 = r.choice([(24, 32), (26, 36), (28, 40), (30, 40), (20, 30)]) + (r.choice([6, 7, 8, 9]),)
+            p2 = p1 + r.choice([3, 4, 5, 6])
+            k2 = Fr(d2 * d2, d1 * d1)
+            ratio = Fr(p2, p1)
+            better = "die große" if k2 > ratio else "die kleine"
+            add(3, f"Pizza A: {d1} cm für {p1} €, Pizza B: {d2} cm für {p2} €. Welche ist im Verhältnis günstiger?", f"Fläche · ({d2} : {d1})² {eq(k2)}, Preis · ({p2} : {p1}) {eq(ratio)}: <b>{better} Pizza</b> ist günstiger pro cm²")
+        elif t == 1:
+            sc, m = r.choice([(10, 1500), (20, 1600), (18, 1458), (24, 1728), (12, 1728)])
+            add(3, f"Ein Modellauto im Maßstab 1 : {sc} aus demselben Material wie das Original. Das Original wiegt {m} kg. Was würde das Modell wiegen? Wie viel Lack (Fläche) braucht es im Vergleich?", f"Masse wächst wie das Volumen: {m} kg : {sc}³ = {m} kg : {dec(sc ** 3)} <b>{eq(Fr(m * 1000, sc ** 3))} g</b>; Lack: <b>1/{dec(sc * sc)}</b>")
+        elif t == 2:
+            k = r.choice([2, 3, 4])
+            add(3, f"Ein Würfel wird mit <i>k</i> = {k} gestreckt. Wie ändert sich das Verhältnis Oberfläche : Volumen? Was bedeutet das für große Tiere?", f"Oberfläche · <i>k</i>² = {k * k}, Volumen · <i>k</i>³ = {k ** 3}: Das Verhältnis <i>O</i> : <i>V</i> wird mit {k * k}/{k ** 3} = 1/{k} multipliziert. <b>Große Tiere haben relativ weniger Oberfläche</b> und verlieren langsamer Wärme.")
+        elif t == 3:
+            h1, h2, V1 = r.choice([(10, 20), (8, 12), (6, 18), (10, 15), (12, 24)]) + (r.choice([200, 250, 330, 500]),)
+            k = Fr(h2, h1)
+            add(3, f"Zwei ähnliche Gläser sind {h1} cm und {h2} cm hoch. Ins kleine passen {V1} ml. Wie viel passt ins große?", f"<i>k</i> = {h2} : {h1} {eq(k)}, Volumen · <i>k</i>³ {eq(k ** 3)}: {V1} ml · {dec(k ** 3)} <b>{eq(V1 * k ** 3)} ml</b>")
+        else:
+            A1, A2 = r.choice([(4, 9), (9, 16), (4, 25), (16, 25), (1, 4)])
+            k = Fr(int(A2 ** 0.5), int(A1 ** 0.5))
+            add(3, f"Die Grundflächen zweier ähnlicher Pyramiden verhalten sich wie {A1} : {A2}. Wie verhalten sich Höhen und Volumen?", f"Grundflächen sind Flächen, ihr Verhältnis ist <i>k</i>². <i>k</i> = √({A2}/{A1}) {eq(k)}: Höhen <b>{int(A1 ** 0.5)} : {int(A2 ** 0.5)}</b>, Volumen <b>{int(A1 ** 0.5) ** 3} : {int(A2 ** 0.5) ** 3}</b>")
+    return L
+
+
 M8, PH = "#1f6e8c", "#b4531f"
 TOPICS = {
     "osmose": ({"title": "Osmose", "eyebrow": "Biologie · Klasse 11", "accent": "#0d6f74", "cols": [1, 1, 1], "sol_cols": [1, 1, 1]}, osmose),
@@ -2309,6 +2389,7 @@ TOPICS = {
     "lgs-anwendungen": ({"title": "Anwendungen linearer Gleichungssysteme", "eyebrow": "Mathematik · Klasse 8", "accent": M8, "cols": [2, 1, 1], "sol_cols": [2, 1, 1]}, lgs_anwendungen),
     "zentrische-streckung": ({"title": "Ähnliche Figuren und zentrische Streckung", "eyebrow": "Mathematik · Klasse 8", "accent": M8, "cols": [2, 2, 1], "sol_cols": [2, 2, 1]}, zentrische_streckung),
     "aehnliche-dreiecke": ({"title": "Ähnliche Dreiecke", "eyebrow": "Mathematik · Klasse 8", "accent": M8, "cols": [2, 1, 1], "sol_cols": [2, 1, 1]}, aehnliche_dreiecke),
+    "flaeche-volumen-aehnlich": ({"title": "Flächen und Volumen ähnlicher Figuren", "eyebrow": "Mathematik · Klasse 8", "accent": M8, "cols": [2, 1, 1], "sol_cols": [2, 1, 1]}, flaeche_volumen_aehnlich),
     "binomische-formeln": ({"title": "Binomische Formeln", "eyebrow": "Mathematik · Klasse 8", "accent": M8, "cols": 2, "sol_cols": 2}, binomische_formeln),
     "bruchterme": ({"title": "Bruchterme", "eyebrow": "Mathematik · Klasse 8", "accent": "#2d6a4f", "cols": 3, "sol_cols": 3}, bruchterme),
     "ausmultiplizieren-faktorisieren": ({"title": "Ausmultiplizieren und Faktorisieren", "eyebrow": "Mathematik · Klasse 8", "accent": M8, "cols": 3, "sol_cols": 3}, ausmultiplizieren),
