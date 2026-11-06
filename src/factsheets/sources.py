@@ -1613,6 +1613,52 @@ SHEETS["funktionsgleichungen"] = dict(title="Funktionsgleichungen bestimmen", ey
     </div>
   </div>''')
 
+SHEETS["lgs-grafisch"] = dict(title="Gleichungen mit zwei Variablen und LGS", eyebrow="Mathematik · Klasse 8 · Lineare Gleichungssysteme", accent=M8, body=f'''
+  <div class="kern">Eine Gleichung {m("<i>a</i><i>x</i> + <i>b</i><i>y</i> = <i>c</i>")} hat unendlich viele Lösungen (Zahlenpaare); zusammen bilden sie eine <strong>Gerade</strong>. Ein <strong>lineares Gleichungssystem</strong> (LGS) verlangt, dass zwei Gleichungen <strong>gleichzeitig</strong> gelten: Die Lösung ist der <strong>Schnittpunkt</strong> der Geraden.</div>
+  <div class="cols">
+    <div class="box">
+      <h2>Gleichung mit zwei Variablen</h2>
+      <ul>
+        <li>{m("2<i>x</i> + <i>y</i> = 6")}: Lösungen (0 | 6), (1 | 4), (3 | 0) …</li>
+        <li>Prüfen: Paar einsetzen, Gleichung muss stimmen.</li>
+        <li>Nach <i>y</i> umgestellt: {m("<i>y</i> = −2<i>x</i> + 6")}.</li>
+      </ul>
+    </div>
+    <div class="box">
+      <h2>Grafisch lösen</h2>
+      <ol>
+        <li>Beide Gleichungen nach <i>y</i> umstellen.</li>
+        <li>Beide Geraden zeichnen.</li>
+        <li>Schnittpunkt ablesen und in <strong>beide</strong> Gleichungen einsetzen (Probe).</li>
+      </ol>
+    </div>
+    <div class="box full">
+      <h2>Anzahl der Lösungen</h2>
+      <table>
+        <tr><th>Lage der Geraden</th><th>Lösungen</th><th>Beispiel</th></tr>
+        <tr><td>schneiden sich</td><td><strong>genau eine</strong></td><td>{m("<i>x</i> + <i>y</i> = 5, <i>x</i> − <i>y</i> = 1")} ⇒ (3 | 2)</td></tr>
+        <tr><td>parallel</td><td><strong>keine</strong></td><td>{m("<i>x</i> + <i>y</i> = 5, 2<i>x</i> + 2<i>y</i> = 7")}</td></tr>
+        <tr><td>identisch</td><td><strong>unendlich viele</strong></td><td>{m("<i>x</i> + <i>y</i> = 5, 2<i>x</i> + 2<i>y</i> = 10")}</td></tr>
+      </table>
+    </div>
+    <div class="box">
+      <h2>Im Alltag</h2>
+      <ul>
+        <li>Kinokarten: Anzahl und Gesamtpreis.</li>
+        <li>Köpfe und Beine im Tierpark.</li>
+        <li>Tarifvergleich: Schnittpunkt der Kostengeraden.</li>
+      </ul>
+    </div>
+    <div class="box warn">
+      <h2>Typische Fehler</h2>
+      <ul>
+        <li>Nur eine Gleichung geprüft.</li>
+        <li>Vorzeichenfehler beim Umstellen nach <i>y</i>.</li>
+        <li>Ablesen ist ungenau: bei krummen Werten rechnen.</li>
+      </ul>
+    </div>
+  </div>''')
+
 OUT = sys.argv[1] if len(sys.argv) > 1 else os.path.join(os.path.dirname(__file__), "_build")
 os.makedirs(OUT, exist_ok=True)
 shutil.copyfile(os.path.join(os.path.dirname(os.path.abspath(__file__)), "factsheet.css"), os.path.join(OUT, "factsheet.css"))

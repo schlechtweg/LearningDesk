@@ -175,6 +175,14 @@ TOPICS = [
         "fonts": "math", "first_view": "verstehen", "factsheet": "Factsheet als PDF ↓",
     },
     {
+        "slug": "lgs-grafisch", "grade": "8", "subject": "mathematik", "chapter": "IV", "order": 1, "kit": True, "accent": ACCENT_MATH8,
+        "title": "Gleichungen mit zwei Variablen und LGS", "short": "LGS grafisch", "tag": "Gleichungssysteme",
+        "card": "Lösungen als Zahlenpaare, Gleichungen als Geraden, LGS grafisch lösen, eine, keine oder unendlich viele Lösungen, Trainer, Quiz",
+        "description": "Interaktive Lernhilfe zu linearen Gleichungen mit zwei Variablen und linearen Gleichungssystemen (Mathematik, Klasse 8)",
+        "intro": "Zwei Unbekannte, zwei Bedingungen: Wie Gleichungen mit zwei Variablen zu Geraden werden und wo sich die Lösung eines Gleichungssystems versteckt.",
+        "fonts": "math", "first_view": "verstehen", "factsheet": "Factsheet als PDF ↓",
+    },
+    {
         "slug": "binomische-formeln", "grade": "8", "subject": "mathematik", "chapter": "I", "order": 4,
         "title": "Binomische Formeln", "short": "Binomische Formeln", "tag": "Terme",
         "card": "Die drei Formeln, Erklärung mit Flächen, Trainer mit Lückenaufgaben, Kopfrechen-Trick, Quiz",

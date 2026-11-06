@@ -1729,6 +1729,85 @@ def funktionsgleichungen():
     return L
 
 
+
+# ================================================================ grade 8 maths, chapter IV: linear systems
+def _eq2(a, b, c):
+    """a·x + b·y = c as HTML."""
+    def t(k, v, first):
+        if k == 0:
+            return ""
+        sign = (MINUS if k < 0 else "") if first else (" − " if k < 0 else " + ")
+        return f"{sign}{'' if abs(k) == 1 else abs(k)}<i>{v}</i>"
+    left = t(a, "x", True) + t(b, "y", a == 0)
+    return f"{left or '0'} = {_n(c)}"
+
+
+def _system(r, lo=-5, hi=5, coef=(-4, 4)):
+    """Random system with an integer solution and a unique solution."""
+    while True:
+        x, y = r.randint(lo, hi), r.randint(lo, hi)
+        a1, b1, a2, b2 = [r.choice([v for v in range(coef[0], coef[1] + 1) if v]) for _ in range(4)]
+        if a1 * b2 - a2 * b1 != 0:
+            return x, y, (a1, b1, a1 * x + b1 * y), (a2, b2, a2 * x + b2 * y)
+
+
+def lgs_grafisch():
+    r = random.Random(100)
+    L = {1: [], 2: [], 3: []}
+    for i in range(170):
+        t = i % 3
+        a, b = r.choice([1, 2, 3, -1, -2]), r.choice([1, 2, -1, 3])
+        x, y = r.randint(-4, 5), r.randint(-4, 5)
+        if t == 0:
+            ok = r.random() < 0.5
+            c = a * x + b * y + (0 if ok else r.choice([-2, -1, 1, 2]))
+            L[1].append((f"Ist ({_n(x)} | {_n(y)}) Lösung von {m(_eq2(a, b, c))}?", f"{_n(a * x + b * y)} {'=' if ok else '≠'} {_n(c)}: <b>{'ja' if ok else 'nein'}</b>"))
+        elif t == 1:
+            bb = r.choice([1, -1])
+            c = a * x + bb * y
+            L[1].append((f"Stelle nach <i>y</i> um: {m(_eq2(a, bb, c))}", m(f"<b><i>y</i> = {_lin_html(Fr(-a, bb), Fr(c, bb))}</b>")))
+        else:
+            c = a * x + b * y
+            L[1].append((f"Gib zwei Lösungen von {m(_eq2(a, b, c))} an.", f"z. B. <b>({_n(x)} | {_n(y)})</b> und <b>({_n(x + b)} | {_n(y - a)})</b>"))
+            assert a * (x + b) + b * (y - a) == c
+    for i in range(120):
+        t = i % 2
+        if t == 0:
+            x, y, e1, e2 = _system(r, -4, 4, (-3, 3))
+            L[2].append((f"Löse grafisch: I: {m(_eq2(*e1))}, II: {m(_eq2(*e2))}", m(f"<b>({_n(x)} | {_n(y)})</b>")))
+        else:
+            a, b, c = r.choice([1, 2, -1, 3]), r.choice([1, 2, -2, 3]), r.randint(-6, 6)
+            k = r.choice([2, 3, -1, -2])
+            kind = r.choice(["keine", "unendlich viele", "genau eine"])
+            if kind == "keine":
+                e2 = (k * a, k * b, k * c + r.choice([1, 2, -1]))
+            elif kind == "unendlich viele":
+                e2 = (k * a, k * b, k * c)
+            else:
+                a2, b2 = r.choice([1, 2, -1, 3]), r.choice([1, -1, 2, -3])
+                if a * b2 == a2 * b:
+                    continue
+                e2 = (a2, b2, r.randint(-6, 6))
+            L[2].append((f"Wie viele Lösungen? I: {m(_eq2(a, b, c))}, II: {m(_eq2(*e2))}", f"<b>{kind}</b>"))
+    for i in range(70):
+        t = i % 3
+        if t == 0:
+            k, beine = r.randint(15, 35), 0
+            h = r.randint(3, k - 3)
+            beine = 2 * h + 4 * (k - h)
+            L[3].append((f"Auf einem Hof leben Hühner und Kaninchen: {k} Köpfe, {beine} Beine. Stelle ein LGS auf und löse es.", f"{m('<i>h</i> + <i>k</i> = ' + str(k))}, {m(f'2<i>h</i> + 4<i>k</i> = {beine}')}: <b>{h} Hühner, {k - h} Kaninchen</b>"))
+        elif t == 1:
+            n_, e = r.randint(5, 12), r.choice([8, 9, 10, 12])
+            ki = r.choice([5, 6])
+            ad = r.randint(1, n_ - 1)
+            total = ad * e + (n_ - ad) * ki
+            L[3].append((f"{n_} Kinokarten kosten {total} €. Erwachsene zahlen {e} €, Kinder {ki} €. Wie viele Erwachsene und Kinder?", f"{m(f'<i>e</i> + <i>k</i> = {n_}')}, {m(f'{e}<i>e</i> + {ki}<i>k</i> = {total}')}: <b>{ad} Erwachsene, {n_ - ad} Kinder</b>"))
+        else:
+            a, b, c = r.choice([1, 2, 3]), r.choice([1, -1, 2]), r.randint(-6, 6)
+            L[3].append((f"Gib eine zweite Gleichung an, sodass das System mit {m(_eq2(a, b, c))} <b>keine</b> Lösung hat. Begründe.", f"z. B. {m(_eq2(a, b, c + 1))}: gleiche Steigung, anderer Achsenabschnitt ⇒ <b>parallel</b>"))
+    return L
+
+
 M8, PH = "#1f6e8c", "#b4531f"
 TOPICS = {
     "osmose": ({"title": "Osmose", "eyebrow": "Biologie · Klasse 11", "accent": "#0d6f74", "cols": [1, 1, 1], "sol_cols": [1, 1, 1]}, osmose),
@@ -1747,6 +1826,7 @@ TOPICS = {
     "eigenschaften-funktionen": ({"title": "Eigenschaften von Funktionen", "eyebrow": "Mathematik · Klasse 8", "accent": M8, "cols": [2, 2, 1], "sol_cols": [3, 2, 1]}, eigenschaften),
     "lineare-funktionen": ({"title": "Lineare Funktionen", "eyebrow": "Mathematik · Klasse 8", "accent": M8, "cols": [2, 2, 1], "sol_cols": [2, 3, 1]}, lineare_funktionen),
     "funktionsgleichungen": ({"title": "Funktionsgleichungen bestimmen", "eyebrow": "Mathematik · Klasse 8", "accent": M8, "cols": [2, 2, 1], "sol_cols": [2, 3, 1]}, funktionsgleichungen),
+    "lgs-grafisch": ({"title": "Gleichungen mit zwei Variablen und LGS", "eyebrow": "Mathematik · Klasse 8", "accent": M8, "cols": [2, 2, 1], "sol_cols": [2, 2, 1]}, lgs_grafisch),
     "binomische-formeln": ({"title": "Binomische Formeln", "eyebrow": "Mathematik · Klasse 8", "accent": M8, "cols": 2, "sol_cols": 2}, binomische_formeln),
     "bruchterme": ({"title": "Bruchterme", "eyebrow": "Mathematik · Klasse 8", "accent": "#2d6a4f", "cols": 3, "sol_cols": 3}, bruchterme),
     "ausmultiplizieren-faktorisieren": ({"title": "Ausmultiplizieren und Faktorisieren", "eyebrow": "Mathematik · Klasse 8", "accent": M8, "cols": 3, "sol_cols": 3}, ausmultiplizieren),

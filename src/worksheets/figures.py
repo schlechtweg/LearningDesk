@@ -659,10 +659,24 @@ def funktionsgleichungen():
     return {"title": "Gleichungen ablesen", "stars": "★★☆", "task": (svg("0 0 230 190", base), task), "sol": (svg("0 0 230 190", sol), soltxt)}
 
 
+def lgs_grafisch():
+    # I: x + 2y = 8  ->  y = -x/2 + 4 ;  II: x - y = 2  ->  y = x - 2 ;  solution (4 | 2)
+    assert 4 + 2 * 2 == 8 and 4 - 2 == 2
+    ox, oy, u = 100, 130, 17
+    base = grid(ox, oy, u, (-4, 8), (-4, 6))
+    sol = base + plot(lambda x: -x / 2 + 4, ox, oy, u, -4, 8, 6.2, "fs") + plot(lambda x: x - 2, ox, oy, u, -4, 8, 6.2, "fs") + f'<circle class="pt" cx="{ox + 4 * u}" cy="{oy - 2 * u}" r="4.5"/>' + text(ox + 4 * u + 7, oy - 2 * u - 7, "(4|2)", "ft sol", "start")
+    task = ('<p>Löse das Gleichungssystem grafisch. I: <i>x</i> + 2<i>y</i> = 8 &nbsp; II: <i>x</i> − <i>y</i> = 2</p>'
+            '<p class="q">I nach <i>y</i>: <span class="blank"></span> &nbsp; II nach <i>y</i>: <span class="blank"></span></p>'
+            '<p class="q">Lösung: <span class="blank"></span> &nbsp; Probe: <span class="blank wide"></span></p>')
+    soltxt = ('<p class="q">I: <b><i>y</i> = −½<i>x</i> + 4</b>, II: <b><i>y</i> = <i>x</i> − 2</b></p>'
+              '<p class="q">Schnittpunkt <b>(4 | 2)</b>. Probe: I: 4 + 4 = 8 ✓, II: 4 − 2 = 2 ✓</p>')
+    return {"title": "LGS grafisch lösen", "stars": "★☆☆", "task": (svg("0 0 260 220", base), task), "sol": (svg("0 0 260 220", sol), soltxt)}
+
+
 FIGS = {
     "osmose": osmose, "natrium-kalium-pumpe": nak, "symport-antiport": symport, "endocytose-exocytose": endo,
     "ableiten": ableiten, "nervensystem": nerven, "auge": auge,
-    "termstruktur": termstruktur, "zufallsexperimente": zufallsexperimente, "laplace": laplace, "baumdiagramme": baumdiagramme, "unabhaengige-ereignisse": unabhaengig, "funktionsbegriff": funktionsbegriff, "eigenschaften-funktionen": eigenschaften, "lineare-funktionen": lineare_funktionen, "funktionsgleichungen": funktionsgleichungen, "binomische-formeln": binom, "bruchterme": bruchterme, "ausmultiplizieren-faktorisieren": ausmult, "terme-vereinfachen": terme,
+    "termstruktur": termstruktur, "zufallsexperimente": zufallsexperimente, "laplace": laplace, "baumdiagramme": baumdiagramme, "unabhaengige-ereignisse": unabhaengig, "funktionsbegriff": funktionsbegriff, "eigenschaften-funktionen": eigenschaften, "lineare-funktionen": lineare_funktionen, "funktionsgleichungen": funktionsgleichungen, "lgs-grafisch": lgs_grafisch, "binomische-formeln": binom, "bruchterme": bruchterme, "ausmultiplizieren-faktorisieren": ausmult, "terme-vereinfachen": terme,
     "gleichungen": gleichungen, "ungleichungen": ungleichungen,
     "druck": druck, "hydraulik": hydraulik, "schweredruck": schweredruck, "auftrieb": auftrieb, "luftdruck": luftdruck,
 }

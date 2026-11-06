@@ -1,0 +1,12 @@
+.plot text { font-family: var(--font-mono); font-size: 10.5px; fill: var(--muted); }
+.plot .gl { stroke: var(--line); stroke-width: 0.8; }
+.plot .ax { stroke: var(--ink); stroke-width: 1.4; }
+.plot .g1 { stroke: var(--accent); stroke-width: 2.8; }
+.plot .g2 { stroke: #7b4bb0; stroke-width: 2.8; }
+.plot .sp { fill: #e0a400; stroke: var(--ink); stroke-width: 1.5; }
+.plot .sl { font-family: var(--font-body); font-size: 12.5px; fill: var(--ink); font-weight: 700; }
+.eqrow { display: grid; grid-template-columns: auto 1fr; gap: 4px 8px; align-items: center; }
+.eqrow input[type=range] { width: 100%; }
+.eqh { font-family: var(--font-math); font-size: 1.1rem; }
+.state { font-family: var(--font-display); font-size: 1.2rem; font-weight: 800; margin: 0; }
+.controls > * { min-width: 0; }

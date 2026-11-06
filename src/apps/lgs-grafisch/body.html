@@ -1,0 +1,103 @@
+  <nav class="tabs" aria-label="Bereiche">
+    <a href="#verstehen" data-view="verstehen"><span class="n">1</span>Verstehen</a>
+    <a href="#grafisch" data-view="grafisch"><span class="n">2</span>Grafisch lösen</a>
+    <a href="#ueben" data-view="ueben"><span class="n">3</span>Üben</a>
+    <a href="#alltag" data-view="alltag"><span class="n">4</span>Im Alltag</a>
+    <a href="#quiz" data-view="quiz"><span class="n">5</span>Quiz</a>
+  </nav>
+
+  <section class="view" id="view-verstehen">
+    <div class="einfach">
+      <span class="eyebrow">Einfach erklärt</span>
+      <p>Eine Gleichung wie <span class="math"><i>x</i> + <i>y</i> = 5</span> hat <strong>unendlich viele</strong> Lösungen: (1 | 4), (2 | 3), (0,5 | 4,5) … Jede Lösung ist ein <strong>Zahlenpaar</strong>. Zeichnet man alle Lösungen ein, entsteht eine <strong>Gerade</strong>.</p>
+    </div>
+    <div class="grid-2">
+      <div class="panel stack">
+        <h3>Lineare Gleichung mit zwei Variablen</h3>
+        <ul class="list small">
+          <li>Form: <span class="math"><i>a</i><i>x</i> + <i>b</i><i>y</i> = <i>c</i></span>, z. B. <span class="math">2<i>x</i> + <i>y</i> = 6</span></li>
+          <li>Ein Paar ist Lösung, wenn die Gleichung stimmt: <span class="math">(1 | 4)</span>: <span class="math">2 + 4 = 6</span> ✓</li>
+          <li>Nach <span class="math"><i>y</i></span> umgestellt: <span class="math"><i>y</i> = −2<i>x</i> + 6</span>, eine lineare Funktion.</li>
+        </ul>
+      </div>
+      <div class="panel stack">
+        <h3>Lineares Gleichungssystem (LGS)</h3>
+        <p class="small">Zwei Gleichungen sollen <strong>gleichzeitig</strong> gelten:</p>
+        <p class="small math">I: <i>x</i> + <i>y</i> = 5<br>II: <i>x</i> − <i>y</i> = 1</p>
+        <p class="small">Gesucht ist das Paar, das <strong>beide</strong> erfüllt: hier <span class="math">(3 | 2)</span>. Grafisch: der <strong>Schnittpunkt</strong> der beiden Geraden.</p>
+      </div>
+    </div>
+    <div class="merksatz">
+      <span class="eyebrow">Anzahl der Lösungen</span>
+      <p>Geraden schneiden sich: <strong>genau eine</strong> Lösung. Geraden parallel: <strong>keine</strong> Lösung. Geraden identisch: <strong>unendlich viele</strong> Lösungen.</p>
+    </div>
+    <div class="grid-2">
+      <div class="panel stack">
+        <h3>Grafisch lösen in 3 Schritten</h3>
+        <ol class="list small">
+          <li>Beide Gleichungen nach <span class="math"><i>y</i></span> umstellen.</li>
+          <li>Beide Geraden zeichnen.</li>
+          <li>Schnittpunkt ablesen und durch Einsetzen <strong>prüfen</strong>.</li>
+        </ol>
+      </div>
+      <div class="panel stack">
+        <h3>Grenzen</h3>
+        <p class="small">Ablesen ist oft ungenau, z. B. bei <span class="math">(1,4 | 2,7)</span>. Darum gibt es rechnerische Verfahren: Gleichsetzen, Einsetzen, Addieren.</p>
+      </div>
+    </div>
+    <div class="panel stack">
+      <h3>Typische Fehler</h3>
+      <ul class="list small">
+        <li>Nur eine der beiden Gleichungen geprüft. Die Lösung muss <strong>beide</strong> erfüllen.</li>
+        <li>Beim Umstellen nach <span class="math"><i>y</i></span> das Vorzeichen verloren: <span class="math">2<i>x</i> + <i>y</i> = 6 ⇒ <i>y</i> = 6 − 2<i>x</i></span>.</li>
+        <li>„Parallel“ heißt nicht „eine Lösung irgendwo weit weg“, sondern <strong>keine</strong> Lösung.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="view" id="view-grafisch" hidden>
+    <div class="stack">
+      <span class="eyebrow">Ausprobieren</span>
+      <h2>Zwei Gleichungen, zwei Geraden</h2>
+      <p class="muted">Stelle die Zahlen der Gleichungen <span class="math"><i>a</i><i>x</i> + <i>b</i><i>y</i> = <i>c</i></span> ein. Wo sich die Geraden schneiden, liegt die Lösung.</p>
+    </div>
+    <div class="sim-layout">
+      <div class="figure"><svg class="plot" id="gSvg" viewBox="0 0 460 340" role="img" aria-label="Zwei Geraden"></svg></div>
+      <div class="panel controls" id="gCtl"></div>
+    </div>
+    <div class="einfach"><p id="gText"></p></div>
+  </section>
+
+  <section class="view" id="view-ueben" hidden>
+    <div class="stack">
+      <span class="eyebrow">Trainer</span>
+      <h2>Lösungen prüfen und Anzahl bestimmen</h2>
+      <p class="muted">Zahlenpaare als <code>(3|2)</code> oder <code>3;2</code> eingeben.</p>
+    </div>
+    <div id="trainer" class="stack"></div>
+  </section>
+
+  <section class="view" id="view-alltag" hidden>
+    <div class="stack">
+      <span class="eyebrow">Im Alltag</span>
+      <h2>Zwei Bedingungen gleichzeitig</h2>
+      <p class="muted">Immer wenn zwei Unbekannte zwei Bedingungen erfüllen müssen, entsteht ein Gleichungssystem.</p>
+    </div>
+    <div class="grid-2">
+      <div class="panel stack"><span class="eyebrow">Kino</span><h3>Eintrittskarten</h3><p class="small">7 Karten kosten zusammen 52 €: Erwachsene 10 €, Kinder 6 €. <span class="math"><i>e</i> + <i>k</i> = 7</span> und <span class="math">10<i>e</i> + 6<i>k</i> = 52</span>: 3 Erwachsene, 4 Kinder.</p></div>
+      <div class="panel stack"><span class="eyebrow">Tierpark</span><h3>Köpfe und Beine</h3><p class="small">Hühner und Kaninchen haben zusammen 20 Köpfe und 56 Beine. Lösung: 12 Hühner und 8 Kaninchen.</p></div>
+      <div class="panel stack"><span class="eyebrow">Handy</span><h3>Tarifvergleich</h3><p class="small">Zwei Tarife sind Geraden. Ihr Schnittpunkt zeigt, ab welcher Minutenzahl der andere Tarif günstiger wird.</p></div>
+      <div class="panel stack"><span class="eyebrow">Geld</span><h3>Münzen</h3><p class="small">In der Spardose sind 15 Münzen, nur 1-€- und 2-€-Stücke, zusammen 22 €. Es sind 8 Ein-Euro- und 7 Zwei-Euro-Münzen.</p></div>
+      <div class="panel stack"><span class="eyebrow">Sport</span><h3>Treffer beim Basketball</h3><p class="small">12 Treffer, 28 Punkte, nur Zweier und Dreier: 8 Zweier und 4 Dreier.</p></div>
+      <div class="panel stack"><span class="eyebrow">Unterwegs</span><h3>Treffpunkt</h3><p class="small">Zwei Radfahrer fahren aufeinander zu. Ihre Weg-Zeit-Geraden schneiden sich dort, wo sie sich treffen.</p></div>
+    </div>
+  </section>
+
+  <section class="view" id="view-quiz" hidden>
+    <div class="stack">
+      <span class="eyebrow">Selbsttest</span>
+      <h2>Quiz</h2>
+      <div class="progress-line"><div class="bar" aria-hidden="true"><i id="qBar"></i></div><span class="score-line" id="qProgress"></span></div>
+    </div>
+    <div class="panel quiz" id="quizBox" aria-live="polite"></div>
+  </section>
