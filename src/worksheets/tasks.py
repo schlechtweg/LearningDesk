@@ -1808,6 +1808,108 @@ def lgs_grafisch():
     return L
 
 
+def gleichsetzungsverfahren():
+    r = random.Random(101)
+    L = {1: [], 2: [], 3: []}
+    yl = lambda mm, b: m(f"<i>y</i> = {_lin_html(mm, b)}")
+    for i in range(170):
+        x, y = r.randint(-4, 5), r.randint(-4, 6)
+        if i % 2 == 0:
+            m1 = r.choice([1, 2, 3, -1, -2]); m2 = r.choice([v for v in (1, 2, -1, -2, -3) if v != m1])
+            b1, b2 = y - m1 * x, y - m2 * x
+            L[1].append((f"Gleichsetzen: I: {yl(m1, b1)}, II: {yl(m2, b2)}", f"{m(f'{_lin_html(m1, b1)} = {_lin_html(m2, b2)}')} ⇒ <b>({_n(x)} | {_n(y)})</b>"))
+        else:
+            m1, a = r.choice([1, 2, 3, -1, -2]), r.choice([1, 2, 3, -1])
+            if a + m1 == 0:
+                continue
+            b1 = y - m1 * x
+            c = a * x + y
+            L[1].append((f"Einsetzen: I: {yl(m1, b1)}, II: {m(_eq2(a, 1, c))}", f"{m(f'{_lin_html(a + m1, b1)} = {_n(c)}')} ⇒ <b>({_n(x)} | {_n(y)})</b>"))
+    for i in range(130):
+        t = i % 4
+        x, y = r.randint(-5, 6), r.randint(-5, 6)
+        if t == 0:
+            # both solved for x
+            k1, k2 = r.choice([1, 2, -1, 3]), r.choice([2, -2, -1, -3, 1])
+            if k1 == k2:
+                continue
+            c1, c2 = x - k1 * y, x - k2 * y
+            hy = lambda k, c: (("" if k == 1 else MINUS if k == -1 else _n(k)) + "<i>y</i>" + (f" + {_n(c)}" if c > 0 else f" − {_n(-c)}" if c < 0 else ""))
+            L[2].append((f"I: {m('<i>x</i> = ' + hy(k1, c1))}, II: {m('<i>x</i> = ' + hy(k2, c2))}", f"{m(hy(k1, c1) + ' = ' + hy(k2, c2))} ⇒ <b>({_n(x)} | {_n(y)})</b>"))
+        elif t == 1:
+            # one equation must be solved for y first
+            a1, a2, b2 = r.choice([2, 3, -2, 1]), r.choice([1, 2, -1, 3]), r.choice([2, 3, -2])
+            m1 = -a1
+            if a2 + b2 * m1 == 0:
+                continue
+            c1, c2 = a1 * x + y, a2 * x + b2 * y
+            L[2].append((f"Löse: I: {m(_eq2(a1, 1, c1))}, II: {m(_eq2(a2, b2, c2))}", f"I: {yl(m1, c1)} in II ⇒ <b>({_n(x)} | {_n(y)})</b>"))
+        elif t == 2:
+            mm, b = r.choice([2, -1, 3, -2, 1]), r.randint(-5, 5)
+            same = r.random() < 0.5
+            k = r.choice([2, 3])
+            e2 = (-k * mm, k, k * b if same else k * b + r.choice([1, 2, -1]))
+            L[2].append((f"Wie viele Lösungen? I: {yl(mm, b)}, II: {m(_eq2(*e2))}", f"Einsetzen ergibt {m(f'{_n(k * b)} = {_n(e2[2])}')}: <b>{'unendlich viele' if same else 'keine'}</b>"))
+        else:
+            m1, a, bb = r.choice([2, -1, 3, 1]), r.choice([1, 2, 3, -2]), r.choice([-1, -2, 2, 3])
+            if a + bb * m1 == 0:
+                continue
+            b1 = y - m1 * x
+            c = a * x + bb * y
+            L[2].append((f"Einsetzen: I: {yl(m1, b1)}, II: {m(_eq2(a, bb, c))}", f"{m(f'{_n(a)}<i>x</i> {MINUS if bb < 0 else '+'} {abs(bb)}·({_lin_html(m1, b1)}) = {_n(c)}')} ⇒ <b>({_n(x)} | {_n(y)})</b>"))
+    eur = lambda c: f"{c / 100:.2f}".replace(".", ",")
+    seen = set()
+    for i in range(400):
+        t = i % 7
+        if t == 0:
+            g, p1 = r.choice([5, 6, 8, 9, 10, 12]), r.choice([4, 5, 6, 8, 10])
+            p2 = p1 + r.choice([4, 5, 6, 10])
+            if (100 * g) % (p2 - p1):
+                continue
+            xx = 100 * g // (p2 - p1)
+            q = f"Tarif A: {g} € Grundgebühr und {p1} ct pro Minute, Tarif B: {p2} ct pro Minute ohne Grundgebühr. Ab wie vielen Minuten ist A günstiger?"
+            a_ = f"<i>x</i>: Minuten. A: {m(f'{g} + {eur(p1)}<i>x</i>')}, B: {m(f'{eur(p2)}<i>x</i>')}. Gleichsetzen ⇒ {m(f'{eur(p2 - p1)}<i>x</i> = {g}')} ⇒ <i>x</i> = {xx}. Bei {xx} min kosten beide {eur(p2 * xx)} € ({g} + {eur(p1 * xx)} = {eur(p2 * xx)} ✓): <b>ab mehr als {xx} Minuten</b> ist A günstiger."
+        elif t == 1:
+            a, k = r.randint(4, 25), r.choice([2, 3, 4, 5])
+            s_ = a * (k + 1)
+            q = f"Die Summe zweier Zahlen ist {s_}. Die eine Zahl ist {k}-mal so groß wie die andere. Stelle ein LGS auf und löse es mit dem Einsetzungsverfahren."
+            a_ = f"{m('<i>a</i> + <i>b</i> = ' + str(s_))}, {m(f'<i>a</i> = {k}<i>b</i>')}. Einsetzen: {m(f'{k + 1}<i>b</i> = {s_}')} ⇒ <i>b</i> = {a}, <i>a</i> = {a * k}. Probe: {a * k} + {a} = {s_} ✓ <b>{a * k} und {a}</b>"
+        elif t == 2:
+            v1, v2, d = r.choice([12, 15, 18, 20]), r.choice([36, 40, 45, 60]), r.choice([2, 3, 4, 5, 6])
+            tt = Fr(d, v2 - v1)
+            mins = tt * 60
+            if mins.denominator != 1:
+                continue
+            q = f"Ein Radfahrer ({v1} km/h) hat {d} km Vorsprung vor einem Bus ({v2} km/h). Nach wie vielen Minuten holt der Bus ihn ein?"
+            a_ = f"<i>t</i> in h. Rad: {m(f'<i>s</i> = {v1}<i>t</i> + {d}')}, Bus: {m(f'<i>s</i> = {v2}<i>t</i>')}. Gleichsetzen ⇒ {m(f'{v2 - v1}<i>t</i> = {d}')} ⇒ <i>t</i> = {fnum(tt)} h = <b>{mins} min</b>. Probe: Bus {_n(v2 * tt)} km, Rad {_n(v1 * tt)} + {d} = {_n(v1 * tt + d)} km ✓"
+        elif t == 3:
+            ma, mb, sa, sb = r.randint(20, 80), r.randint(0, 20), r.choice([2, 3, 4, 5]), r.choice([6, 7, 8, 10])
+            if (ma - mb) % (sb - sa):
+                continue
+            w = (ma - mb) // (sb - sa)
+            q = f"Lea hat {ma} € und spart {sa} € pro Woche, Ben hat {mb} € und spart {sb} € pro Woche. Wann haben beide gleich viel?"
+            a_ = f"<i>w</i>: Wochen. {m(f'{ma} + {sa}<i>w</i> = {mb} + {sb}<i>w</i>')} ⇒ {m(f'{ma - mb} = {sb - sa}<i>w</i>')}: <b>nach {w} Wochen</b> haben beide {ma + sa * w} € ({ma} + {sa * w} = {mb} + {sb * w} ✓), danach Ben mehr."
+        elif t == 4:
+            ap, d, na, nb = r.choice([30, 35, 40, 45, 50]), r.choice([10, 15, 20, 25]), r.choice([2, 3, 4]), r.choice([2, 3, 5])
+            tot = na * ap + nb * (ap + d)
+            q = f"{na} Äpfel und {nb} Birnen kosten {eur(tot)} €. Eine Birne kostet {d} ct mehr als ein Apfel. Was kostet ein Apfel, was eine Birne?"
+            a_ = f"In ct: {m(f'{na}<i>a</i> + {nb}<i>b</i> = {tot}')}, {m(f'<i>b</i> = <i>a</i> + {d}')}. Einsetzen: {m(f'{na + nb}<i>a</i> + {nb * d} = {tot}')} ⇒ <b>Apfel {ap} ct, Birne {ap + d} ct</b>. Probe: {na * ap} + {nb * (ap + d)} = {tot} ✓"
+        elif t == 5:
+            b_, d = r.randint(3, 15), r.randint(2, 9)
+            u = 2 * (2 * b_ + d)
+            q = f"Ein Rechteck hat den Umfang {u} cm. Die Länge ist {d} cm größer als die Breite. Berechne Länge und Breite."
+            a_ = f"{m(f'2<i>l</i> + 2<i>b</i> = {u}')}, {m(f'<i>l</i> = <i>b</i> + {d}')}. Einsetzen: {m(f'4<i>b</i> + {2 * d} = {u}')} ⇒ <b><i>b</i> = {b_} cm, <i>l</i> = {b_ + d} cm</b>. Probe: 2 · {b_ + d} + 2 · {b_} = {u} ✓"
+        else:
+            kid, diff, yrs = r.randint(6, 16), r.randint(22, 34), r.choice([4, 5, 6, 8, 10])
+            mum = kid + diff
+            q = f"Eine Mutter ist {diff} Jahre älter als ihr Kind. In {yrs} Jahren sind beide zusammen {mum + kid + 2 * yrs} Jahre alt. Wie alt sind sie heute?"
+            a_ = f"{m(f'<i>m</i> = <i>k</i> + {diff}')}, {m(f'(<i>m</i> + {yrs}) + (<i>k</i> + {yrs}) = {mum + kid + 2 * yrs}')}. Einsetzen: {m(f'2<i>k</i> + {diff + 2 * yrs} = {mum + kid + 2 * yrs}')} ⇒ <b>Kind {kid}, Mutter {mum} Jahre</b>. Probe: {mum + yrs} + {kid + yrs} = {mum + kid + 2 * yrs} ✓"
+        if q not in seen:
+            seen.add(q)
+            L[3].append((q, a_))
+    return L
+
+
 M8, PH = "#1f6e8c", "#b4531f"
 TOPICS = {
     "osmose": ({"title": "Osmose", "eyebrow": "Biologie · Klasse 11", "accent": "#0d6f74", "cols": [1, 1, 1], "sol_cols": [1, 1, 1]}, osmose),
@@ -1827,6 +1929,7 @@ TOPICS = {
     "lineare-funktionen": ({"title": "Lineare Funktionen", "eyebrow": "Mathematik · Klasse 8", "accent": M8, "cols": [2, 2, 1], "sol_cols": [2, 3, 1]}, lineare_funktionen),
     "funktionsgleichungen": ({"title": "Funktionsgleichungen bestimmen", "eyebrow": "Mathematik · Klasse 8", "accent": M8, "cols": [2, 2, 1], "sol_cols": [2, 3, 1]}, funktionsgleichungen),
     "lgs-grafisch": ({"title": "Gleichungen mit zwei Variablen und LGS", "eyebrow": "Mathematik · Klasse 8", "accent": M8, "cols": [2, 2, 1], "sol_cols": [2, 2, 1]}, lgs_grafisch),
+    "gleichsetzungsverfahren": ({"title": "Gleichsetzungs- und Einsetzungsverfahren", "eyebrow": "Mathematik · Klasse 8", "accent": M8, "cols": [2, 2, 1], "sol_cols": [2, 2, 1]}, gleichsetzungsverfahren),
     "binomische-formeln": ({"title": "Binomische Formeln", "eyebrow": "Mathematik · Klasse 8", "accent": M8, "cols": 2, "sol_cols": 2}, binomische_formeln),
     "bruchterme": ({"title": "Bruchterme", "eyebrow": "Mathematik · Klasse 8", "accent": "#2d6a4f", "cols": 3, "sol_cols": 3}, bruchterme),
     "ausmultiplizieren-faktorisieren": ({"title": "Ausmultiplizieren und Faktorisieren", "eyebrow": "Mathematik · Klasse 8", "accent": M8, "cols": 3, "sol_cols": 3}, ausmultiplizieren),

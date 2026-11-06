@@ -1,0 +1,94 @@
+  <nav class="tabs" aria-label="Bereiche">
+    <a href="#verstehen" data-view="verstehen"><span class="n">1</span>Verstehen</a>
+    <a href="#schritte" data-view="schritte"><span class="n">2</span>Schritt für Schritt</a>
+    <a href="#ueben" data-view="ueben"><span class="n">3</span>Üben</a>
+    <a href="#alltag" data-view="alltag"><span class="n">4</span>Im Alltag</a>
+    <a href="#quiz" data-view="quiz"><span class="n">5</span>Quiz</a>
+  </nav>
+
+  <section class="view" id="view-verstehen">
+    <div class="einfach">
+      <span class="eyebrow">Einfach erklärt</span>
+      <p>Beide Verfahren machen aus <strong>zwei</strong> Gleichungen mit zwei Variablen <strong>eine</strong> Gleichung mit nur einer Variablen. Die löst man wie gewohnt, dann berechnet man die zweite Variable.</p>
+    </div>
+    <div class="grid-2">
+      <div class="panel stack">
+        <h3>Gleichsetzungsverfahren</h3>
+        <p class="small">Gut, wenn <strong>beide</strong> Gleichungen nach derselben Variablen aufgelöst sind (oder sich leicht auflösen lassen).</p>
+        <p class="small math">I: <i>y</i> = 2<i>x</i> + 1<br>II: <i>y</i> = −<i>x</i> + 7</p>
+        <ol class="list small">
+          <li>Gleichsetzen: <span class="math">2<i>x</i> + 1 = −<i>x</i> + 7</span></li>
+          <li>Lösen: <span class="math">3<i>x</i> = 6 ⇒ <i>x</i> = 2</span></li>
+          <li>Einsetzen in I: <span class="math"><i>y</i> = 2 · 2 + 1 = 5</span></li>
+          <li>Lösung: <span class="math">(2 | 5)</span>, Probe in II: <span class="math">−2 + 7 = 5</span> ✓</li>
+        </ol>
+      </div>
+      <div class="panel stack">
+        <h3>Einsetzungsverfahren</h3>
+        <p class="small">Gut, wenn <strong>eine</strong> Gleichung nach einer Variablen aufgelöst ist.</p>
+        <p class="small math">I: <i>y</i> = 3<i>x</i> − 2<br>II: 2<i>x</i> + <i>y</i> = 13</p>
+        <ol class="list small">
+          <li>I in II einsetzen: <span class="math">2<i>x</i> + (3<i>x</i> − 2) = 13</span></li>
+          <li>Lösen: <span class="math">5<i>x</i> = 15 ⇒ <i>x</i> = 3</span></li>
+          <li>In I einsetzen: <span class="math"><i>y</i> = 3 · 3 − 2 = 7</span></li>
+          <li>Lösung: <span class="math">(3 | 7)</span></li>
+        </ol>
+      </div>
+    </div>
+    <div class="merksatz">
+      <span class="eyebrow">Sonderfälle</span>
+      <p>Fällt beim Rechnen die Variable weg und es entsteht eine <strong>falsche</strong> Aussage (z. B. <span class="math">0 = 5</span>), gibt es <strong>keine</strong> Lösung. Entsteht eine <strong>wahre</strong> Aussage (z. B. <span class="math">0 = 0</span>), gibt es <strong>unendlich viele</strong>.</p>
+    </div>
+    <div class="panel stack">
+      <h3>Typische Fehler</h3>
+      <ul class="list small">
+        <li>Beim Einsetzen die <strong>Klammer</strong> vergessen: <span class="math">2<i>x</i> − (3<i>x</i> − 2)</span>, nicht <span class="math">2<i>x</i> − 3<i>x</i> − 2</span>.</li>
+        <li>Nur <span class="math"><i>x</i></span> berechnet: Zur Lösung gehört auch <span class="math"><i>y</i></span>.</li>
+        <li>Keine Probe in der <strong>anderen</strong> Gleichung gemacht.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="view" id="view-schritte" hidden>
+    <div class="stack">
+      <span class="eyebrow">Rechenweg</span>
+      <h2>Schritt für Schritt</h2>
+      <p class="muted">Wähle ein Verfahren und lass dir den Rechenweg Schritt für Schritt zeigen. Überlege vor jedem Klick, was als Nächstes kommt.</p>
+    </div>
+    <div class="row"><div class="modes" role="group" aria-label="Verfahren"><button type="button" data-m="gleich" aria-pressed="true">Gleichsetzen</button><button type="button" data-m="ein" aria-pressed="false">Einsetzen</button></div><button type="button" id="sNew">Neues System</button></div>
+    <div class="panel stack"><div id="sSys" class="sys"></div><ol class="steps" id="sSteps"></ol><div class="row"><button type="button" class="primary" id="sNext">Nächster Schritt</button><button type="button" id="sAll">Alles zeigen</button></div></div>
+  </section>
+
+  <section class="view" id="view-ueben" hidden>
+    <div class="stack">
+      <span class="eyebrow">Trainer</span>
+      <h2>Gleichungssysteme lösen</h2>
+      <p class="muted">Lösung als <code>(2|5)</code> eingeben, bei Sonderfällen <code>keine</code> oder <code>unendlich</code>.</p>
+    </div>
+    <div id="trainer" class="stack"></div>
+  </section>
+
+  <section class="view" id="view-alltag" hidden>
+    <div class="stack">
+      <span class="eyebrow">Im Alltag</span>
+      <h2>Gleichsetzen im Alltag</h2>
+      <p class="muted">Gleichsetzen ist die natürliche Frage „Wann ist beides gleich?“.</p>
+    </div>
+    <div class="grid-2">
+      <div class="panel stack"><span class="eyebrow">Handy</span><h3>Wann kosten beide Tarife gleich viel?</h3><p class="small"><span class="math">10 + 0,05<i>x</i> = 0,15<i>x</i></span> ⇒ <span class="math"><i>x</i> = 100</span>. Bei 100 Minuten sind beide gleich teuer.</p></div>
+      <div class="panel stack"><span class="eyebrow">Verkehr</span><h3>Wann holt der Bus das Rad ein?</h3><p class="small">Rad: <span class="math">15<i>t</i> + 3</span> (3 km Vorsprung), Bus: <span class="math">45<i>t</i></span>. Gleichsetzen: <span class="math"><i>t</i> = 0,1 h</span> = 6 Minuten.</p></div>
+      <div class="panel stack"><span class="eyebrow">Sparen</span><h3>Wer hat zuerst mehr?</h3><p class="small">Lea hat 40 € und spart 5 € pro Woche, Ben hat 10 € und spart 8 €. Nach 10 Wochen haben beide 90 €.</p></div>
+      <div class="panel stack"><span class="eyebrow">Vermietung</span><h3>Fahrradverleih</h3><p class="small">Verleih A: 8 € + 2 € pro Stunde, Verleih B: 4 € pro Stunde. Bei 4 Stunden sind beide gleich teuer, danach ist A günstiger.</p></div>
+      <div class="panel stack"><span class="eyebrow">Einkauf</span><h3>Äpfel und Birnen</h3><p class="small">3 Äpfel und 2 Birnen kosten 2,60 €, eine Birne kostet 20 ct mehr als ein Apfel. Einsetzen liefert: Apfel 44 ct, Birne 64 ct.</p></div>
+      <div class="panel stack"><span class="eyebrow">Zahlenrätsel</span><h3>Zwei Zahlen</h3><p class="small">Die Summe zweier Zahlen ist 30, die eine ist doppelt so groß wie die andere: <span class="math"><i>a</i> = 2<i>b</i></span> einsetzen ⇒ 10 und 20.</p></div>
+    </div>
+  </section>
+
+  <section class="view" id="view-quiz" hidden>
+    <div class="stack">
+      <span class="eyebrow">Selbsttest</span>
+      <h2>Quiz</h2>
+      <div class="progress-line"><div class="bar" aria-hidden="true"><i id="qBar"></i></div><span class="score-line" id="qProgress"></span></div>
+    </div>
+    <div class="panel quiz" id="quizBox" aria-live="polite"></div>
+  </section>

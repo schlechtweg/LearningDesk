@@ -183,6 +183,14 @@ TOPICS = [
         "fonts": "math", "first_view": "verstehen", "factsheet": "Factsheet als PDF ↓",
     },
     {
+        "slug": "gleichsetzungsverfahren", "grade": "8", "subject": "mathematik", "chapter": "IV", "order": 2, "kit": True, "accent": ACCENT_MATH8,
+        "title": "Gleichsetzungs- und Einsetzungsverfahren", "short": "Gleichsetzen und Einsetzen", "tag": "Gleichungssysteme",
+        "card": "Gleichsetzen, Einsetzen, Sonderfälle ohne oder mit unendlich vielen Lösungen, Rechenweg Schritt für Schritt, Trainer, Quiz",
+        "description": "Interaktive Lernhilfe zum Gleichsetzungs- und Einsetzungsverfahren (Mathematik, Klasse 8)",
+        "intro": "Zwei rechnerische Verfahren, um lineare Gleichungssysteme exakt zu lösen, mit Rechenweg zum Mitdenken und Trainer.",
+        "fonts": "math", "first_view": "verstehen", "factsheet": "Factsheet als PDF ↓",
+    },
+    {
         "slug": "binomische-formeln", "grade": "8", "subject": "mathematik", "chapter": "I", "order": 4,
         "title": "Binomische Formeln", "short": "Binomische Formeln", "tag": "Terme",
         "card": "Die drei Formeln, Erklärung mit Flächen, Trainer mit Lückenaufgaben, Kopfrechen-Trick, Quiz",

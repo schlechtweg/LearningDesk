@@ -1659,6 +1659,56 @@ SHEETS["lgs-grafisch"] = dict(title="Gleichungen mit zwei Variablen und LGS", ey
     </div>
   </div>''')
 
+SHEETS["gleichsetzungsverfahren"] = dict(title="Gleichsetzungs- und Einsetzungsverfahren", eyebrow="Mathematik · Klasse 8 · Lineare Gleichungssysteme", accent=M8, body=f'''
+  <div class="kern">Beide Verfahren machen aus zwei Gleichungen mit zwei Variablen <strong>eine</strong> Gleichung mit einer Variablen. Diese wird gelöst, dann wird die zweite Variable berechnet. Zum Schluss: <strong>Probe in beiden Gleichungen</strong>.</div>
+  <div class="cols">
+    <div class="box">
+      <h2>Gleichsetzungsverfahren</h2>
+      <p>Wenn beide Gleichungen nach derselben Variablen aufgelöst sind.</p>
+      <ol>
+        <li>I: {m("<i>y</i> = 2<i>x</i> + 1")}, II: {m("<i>y</i> = −<i>x</i> + 7")}</li>
+        <li>Gleichsetzen: {m("2<i>x</i> + 1 = −<i>x</i> + 7")}</li>
+        <li>{m("3<i>x</i> = 6 ⇒ <i>x</i> = 2")}</li>
+        <li>In I: {m("<i>y</i> = 5")}, Lösung <strong>(2 | 5)</strong></li>
+      </ol>
+    </div>
+    <div class="box">
+      <h2>Einsetzungsverfahren</h2>
+      <p>Wenn eine Gleichung nach einer Variablen aufgelöst ist.</p>
+      <ol>
+        <li>I: {m("<i>y</i> = 3<i>x</i> − 2")}, II: {m("2<i>x</i> + <i>y</i> = 13")}</li>
+        <li>Einsetzen <strong>mit Klammer</strong>: {m("2<i>x</i> + (3<i>x</i> − 2) = 13")}</li>
+        <li>{m("5<i>x</i> = 15 ⇒ <i>x</i> = 3")}</li>
+        <li>In I: {m("<i>y</i> = 7")}, Lösung <strong>(3 | 7)</strong></li>
+      </ol>
+    </div>
+    <div class="box full">
+      <h2>Sonderfälle</h2>
+      <table>
+        <tr><th>Am Ende steht …</th><th>Bedeutung</th><th>Geraden</th></tr>
+        <tr><td>{m("<i>x</i> = Zahl")}</td><td><strong>genau eine</strong> Lösung</td><td>schneiden sich</td></tr>
+        <tr><td>falsche Aussage, z. B. {m("0 = 5")}</td><td><strong>keine</strong> Lösung</td><td>parallel</td></tr>
+        <tr><td>wahre Aussage, z. B. {m("0 = 0")}</td><td><strong>unendlich viele</strong></td><td>identisch</td></tr>
+      </table>
+    </div>
+    <div class="box">
+      <h2>Im Alltag</h2>
+      <ul>
+        <li>Tarifvergleich: Wann kosten beide gleich viel?</li>
+        <li>Überholen: Wann sind beide am selben Ort?</li>
+        <li>Sparen: Wann haben beide gleich viel Geld?</li>
+      </ul>
+    </div>
+    <div class="box warn">
+      <h2>Typische Fehler</h2>
+      <ul>
+        <li>Klammer beim Einsetzen vergessen.</li>
+        <li>Nur <i>x</i> angegeben, <i>y</i> fehlt.</li>
+        <li>Probe nur in der Gleichung, mit der <i>y</i> berechnet wurde.</li>
+      </ul>
+    </div>
+  </div>''')
+
 OUT = sys.argv[1] if len(sys.argv) > 1 else os.path.join(os.path.dirname(__file__), "_build")
 os.makedirs(OUT, exist_ok=True)
 shutil.copyfile(os.path.join(os.path.dirname(os.path.abspath(__file__)), "factsheet.css"), os.path.join(OUT, "factsheet.css"))

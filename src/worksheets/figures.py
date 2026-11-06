@@ -673,10 +673,33 @@ def lgs_grafisch():
     return {"title": "LGS grafisch lösen", "stars": "★☆☆", "task": (svg("0 0 260 220", base), task), "sol": (svg("0 0 260 220", sol), soltxt)}
 
 
+def gleichsetzungsverfahren():
+    # costs: A = 8 + 2x, B = 4x  ->  equal at x = 4 h, 16 euros
+    assert 8 + 2 * 4 == 4 * 4 == 16
+    ox, oy, ux, uy = 40, 190, 26, 8
+    g = "".join(f'<line class="gr" x1="{ox + i * ux}" y1="{oy}" x2="{ox + i * ux}" y2="{oy - 22 * uy}"/>' for i in range(8))
+    g += "".join(f'<line class="gr" x1="{ox}" y1="{oy - j * uy}" x2="{ox + 7 * ux}" y2="{oy - j * uy}"/>' for j in range(0, 23, 2))
+    g += f'<line class="ax" x1="{ox}" y1="{oy}" x2="{ox + 7.4 * ux}" y2="{oy}"/><line class="ax" x1="{ox}" y1="{oy}" x2="{ox}" y2="{oy - 23 * uy}"/>'
+    g += "".join(text(ox + i * ux, oy + 13, str(i), "ft") for i in range(1, 8)) + "".join(text(ox - 8, oy - j * uy + 4, str(j), "ft", "end") for j in range(4, 23, 4))
+    g += text(ox + 7.4 * ux, oy - 6, "h", "ft it", "end") + text(ox + 6, oy - 22.4 * uy, "€", "ft", "start")
+    lines = f'<line class="fg" x1="{ox}" y1="{oy - 8 * uy}" x2="{ox + 7 * ux}" y2="{oy - 22 * uy}"/><line class="fg" x1="{ox}" y1="{oy}" x2="{ox + 5.5 * ux}" y2="{oy - 22 * uy}"/>'
+    lines += text(ox + 6.6 * ux, oy - 18.6 * uy, "A", "ft it") + text(ox + 4.3 * ux, oy - 20.6 * uy, "B", "ft it")
+    base = g + lines
+    sol = base + f'<circle class="pt" cx="{ox + 4 * ux}" cy="{oy - 16 * uy}" r="4.5"/>' + text(ox + 4 * ux + 8, oy - 16 * uy + 14, "(4|16)", "ft sol", "start")
+    task = ('<p>Fahrradverleih A: 8 € Grundgebühr und 2 € pro Stunde. Verleih B: 4 € pro Stunde.</p>'
+            '<p class="q">Kosten A: <span class="blank"></span> &nbsp; Kosten B: <span class="blank"></span></p>'
+            '<p class="q">Gleichsetzen und lösen: <span class="blank wide"></span></p>'
+            '<p class="q">Markiere den Schnittpunkt. Wann ist A günstiger? <span class="blank wide"></span></p>')
+    soltxt = ('<p class="q">A: <b><i>y</i> = 2<i>x</i> + 8</b>, B: <b><i>y</i> = 4<i>x</i></b></p>'
+              '<p class="q">2<i>x</i> + 8 = 4<i>x</i> ⇒ 8 = 2<i>x</i> ⇒ <b><i>x</i> = 4</b>, <i>y</i> = 16</p>'
+              '<p class="q">Schnittpunkt <b>(4 | 16)</b>: Ab mehr als <b>4 Stunden</b> ist A günstiger.</p>')
+    return {"title": "Tarife vergleichen", "stars": "★★☆", "task": (svg("0 0 240 215", base), task), "sol": (svg("0 0 240 215", sol), soltxt)}
+
+
 FIGS = {
     "osmose": osmose, "natrium-kalium-pumpe": nak, "symport-antiport": symport, "endocytose-exocytose": endo,
     "ableiten": ableiten, "nervensystem": nerven, "auge": auge,
-    "termstruktur": termstruktur, "zufallsexperimente": zufallsexperimente, "laplace": laplace, "baumdiagramme": baumdiagramme, "unabhaengige-ereignisse": unabhaengig, "funktionsbegriff": funktionsbegriff, "eigenschaften-funktionen": eigenschaften, "lineare-funktionen": lineare_funktionen, "funktionsgleichungen": funktionsgleichungen, "lgs-grafisch": lgs_grafisch, "binomische-formeln": binom, "bruchterme": bruchterme, "ausmultiplizieren-faktorisieren": ausmult, "terme-vereinfachen": terme,
+    "termstruktur": termstruktur, "zufallsexperimente": zufallsexperimente, "laplace": laplace, "baumdiagramme": baumdiagramme, "unabhaengige-ereignisse": unabhaengig, "funktionsbegriff": funktionsbegriff, "eigenschaften-funktionen": eigenschaften, "lineare-funktionen": lineare_funktionen, "funktionsgleichungen": funktionsgleichungen, "lgs-grafisch": lgs_grafisch, "gleichsetzungsverfahren": gleichsetzungsverfahren, "binomische-formeln": binom, "bruchterme": bruchterme, "ausmultiplizieren-faktorisieren": ausmult, "terme-vereinfachen": terme,
     "gleichungen": gleichungen, "ungleichungen": ungleichungen,
     "druck": druck, "hydraulik": hydraulik, "schweredruck": schweredruck, "auftrieb": auftrieb, "luftdruck": luftdruck,
 }
