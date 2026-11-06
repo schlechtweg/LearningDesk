@@ -34,6 +34,14 @@ ACCENT_SYM = ("#2f7d5b", "#6cc79a", "rgba(47, 125, 91, 0.12)")
 ACCENT_ENDO = ("#7a3f8f", "#c995de", "rgba(122, 63, 143, 0.12)")
 ACCENT_BIO8 = ("#4a7a1e", "#9ccc65", "rgba(74, 122, 30, 0.12)")
 
+# Chapters of a subject in a grade (book order). Topics name their chapter with "chapter".
+CHAPTERS = {
+    ("8", "mathematik"): [
+        ("I", "Terme und Gleichungen"), ("II", "Zufallsversuche"), ("III", "Funktionen"),
+        ("IV", "Lineare Gleichungssysteme"), ("V", "Ähnlichkeit"),
+    ],
+}
+
 # Tools appear on the start page under "Werkzeuge" instead of a grade.
 TOOLS_TITLE = "Werkzeuge"
 
@@ -95,7 +103,15 @@ TOPICS = [
         "fonts": "base", "first_view": "verstehen", "factsheet": "Factsheet als PDF ↓",
     },
     {
-        "slug": "binomische-formeln", "grade": "8", "subject": "mathematik",
+        "slug": "termstruktur", "grade": "8", "subject": "mathematik", "chapter": "I", "order": 1, "kit": True, "accent": ACCENT_MATH8,
+        "title": "Termstruktur und Termwerte", "short": "Termstruktur", "tag": "Terme",
+        "card": "Termarten, Rechenreihenfolge, Rechenbaum zum Ausprobieren, Termwerte und Wertetabellen, Terme aufstellen, Quiz",
+        "description": "Interaktive Lernhilfe zu Termstruktur und Termwertberechnung (Mathematik, Klasse 8)",
+        "intro": "Woran man erkennt, ob ein Term eine Summe, ein Produkt oder eine Potenz ist, und wie man Termwerte sicher berechnet.",
+        "fonts": "math", "first_view": "verstehen", "factsheet": "Factsheet als PDF ↓",
+    },
+    {
+        "slug": "binomische-formeln", "grade": "8", "subject": "mathematik", "chapter": "I", "order": 4,
         "title": "Binomische Formeln", "short": "Binomische Formeln", "tag": "Terme",
         "card": "Die drei Formeln, Erklärung mit Flächen, Trainer mit Lückenaufgaben, Kopfrechen-Trick, Quiz",
         "description": "Interaktive Lernhilfe zu den binomischen Formeln (Mathematik, Klasse 8)",
@@ -103,7 +119,7 @@ TOPICS = [
         "fonts": "math", "first_view": "formeln", "factsheet": "Factsheet als PDF ↓",
     },
     {
-        "slug": "bruchterme", "grade": "8", "subject": "mathematik",
+        "slug": "bruchterme", "grade": "8", "subject": "mathematik", "chapter": "I", "order": 5,
         "title": "Bruchterme", "short": "Bruchterme", "tag": "Terme",
         "card": "Definitionsmenge, Kürzen und Erweitern, Rechnen mit Bruchtermen, Trainer mit Lösungsweg, Quiz",
         "description": "Interaktive Lernhilfe zu Bruchtermen (Mathematik, Klasse 8)",
@@ -111,7 +127,7 @@ TOPICS = [
         "fonts": "math", "first_view": "grundlagen", "factsheet": "Factsheet als PDF ↓",
     },
     {
-        "slug": "ausmultiplizieren-faktorisieren", "grade": "8", "subject": "mathematik", "kit": True, "accent": ACCENT_MATH8,
+        "slug": "ausmultiplizieren-faktorisieren", "grade": "8", "subject": "mathematik", "chapter": "I", "order": 3, "kit": True, "accent": ACCENT_MATH8,
         "title": "Ausmultiplizieren und Faktorisieren", "short": "Ausmultiplizieren", "tag": "Terme",
         "card": "Klammern auflösen, Klammer mal Klammer, Ausklammern, Flächenmodell, Trainer, Quiz",
         "description": "Interaktive Lernhilfe zum Ausmultiplizieren und Faktorisieren (Mathematik, Klasse 8)",
@@ -119,7 +135,7 @@ TOPICS = [
         "fonts": "math", "first_view": "verstehen", "factsheet": "Factsheet als PDF ↓",
     },
     {
-        "slug": "terme-vereinfachen", "grade": "8", "subject": "mathematik", "kit": True, "accent": ACCENT_MATH8,
+        "slug": "terme-vereinfachen", "grade": "8", "subject": "mathematik", "chapter": "I", "order": 2, "kit": True, "accent": ACCENT_MATH8,
         "title": "Terme vereinfachen", "short": "Terme vereinfachen", "tag": "Terme",
         "card": "Gleichartige Terme, Zusammenfassen, Produkte mit mehreren Variablen, Termsortierer, Trainer, Quiz",
         "description": "Interaktive Lernhilfe zum Vereinfachen von Termen mit mehreren Variablen (Mathematik, Klasse 8)",
@@ -127,7 +143,7 @@ TOPICS = [
         "fonts": "math", "first_view": "verstehen", "factsheet": "Factsheet als PDF ↓",
     },
     {
-        "slug": "gleichungen", "grade": "8", "subject": "mathematik", "kit": True, "accent": ACCENT_MATH8,
+        "slug": "gleichungen", "grade": "8", "subject": "mathematik", "chapter": "I", "order": 6, "kit": True, "accent": ACCENT_MATH8,
         "title": "Gleichungen lösen", "short": "Gleichungen", "tag": "Gleichungen",
         "card": "Äquivalenzumformungen, Fahrplan mit Probe, Umformungs-Werkstatt, Trainer mit Rechenweg, Quiz",
         "description": "Interaktive Lernhilfe zum Lösen linearer Gleichungen (Mathematik, Klasse 8)",
@@ -135,7 +151,7 @@ TOPICS = [
         "fonts": "math", "first_view": "verstehen", "factsheet": "Factsheet als PDF ↓",
     },
     {
-        "slug": "ungleichungen", "grade": "8", "subject": "mathematik", "kit": True, "accent": ACCENT_MATH8,
+        "slug": "ungleichungen", "grade": "8", "subject": "mathematik", "chapter": "I", "order": 7, "kit": True, "accent": ACCENT_MATH8,
         "title": "Ungleichungen lösen", "short": "Ungleichungen", "tag": "Gleichungen",
         "card": "Zeichen und Lösungsmengen, Zahlenstrahl, Zeichen umdrehen, Umformungs-Werkstatt, Trainer, Quiz",
         "description": "Interaktive Lernhilfe zum Lösen linearer Ungleichungen (Mathematik, Klasse 8)",

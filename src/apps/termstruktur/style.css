@@ -1,0 +1,11 @@
+/* Term tree */
+.tree text { font-family: var(--font-math); font-size: 15px; fill: var(--ink); text-anchor: middle; dominant-baseline: central; }
+.tree .edge { stroke: var(--line); stroke-width: 2; }
+.tree .op { fill: var(--accent-soft); stroke: var(--accent); stroke-width: 2; }
+.tree .op.top { fill: var(--accent); }
+.tree .op.top + text { fill: var(--accent-ink); font-weight: 700; }
+.tree .leaf { fill: var(--surface); stroke: var(--line); stroke-width: 1.5; }
+.tree .val { font-family: var(--font-mono); font-size: 11px; fill: var(--muted); }
+.state { font-family: var(--font-display); font-size: 1.3rem; font-weight: 800; margin: 0; }
+#tSel, #tIn { width: 100%; }
+.controls > * { min-width: 0; }

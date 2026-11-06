@@ -26,6 +26,9 @@ a.card:hover, a.card:focus-visible { border-color: var(--c); outline: none; }
 .subject { display: grid; gap: 12px; }
 .subject h2 { font-size: 1.3rem; }
 .back { color: inherit; font-weight: 700; }
+/* chapters of a subject (e.g. the chapters of the maths book) */
+.chap { font-family: "Bricolage Grotesque", system-ui, sans-serif; font-size: 1.05rem; margin: 10px 0 0; display: flex; align-items: baseline; gap: 10px; color: var(--muted); }
+.chap .num { font-family: "JetBrains Mono", monospace; font-size: 0.85rem; color: var(--math); min-width: 2.2em; }
 </style>
 <style>
 nav.crumbs ol { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 2px 6px; font-size: 0.85rem; line-height: 1.5; }
@@ -69,7 +72,26 @@ header:not(.top) > .theme-toggle { top: 0; }
   </div>
   <div class="subject" id="mathematik">
     <h2>Mathematik</h2>
+    <h3 class="chap"><span class="num">I</span>Terme und Gleichungen</h3>
     <div class="cards">
+    <a class="card" href="termstruktur.html" style="--c: var(--math)">
+      <span class="tag">Terme</span>
+      <h2>Termstruktur und Termwerte</h2>
+      <span class="muted">Termarten, Rechenreihenfolge, Rechenbaum zum Ausprobieren, Termwerte und Wertetabellen, Terme aufstellen, Quiz</span>
+      <span class="go">Öffnen →</span>
+    </a>
+    <a class="card" href="terme-vereinfachen.html" style="--c: var(--math)">
+      <span class="tag">Terme</span>
+      <h2>Terme vereinfachen</h2>
+      <span class="muted">Gleichartige Terme, Zusammenfassen, Produkte mit mehreren Variablen, Termsortierer, Trainer, Quiz</span>
+      <span class="go">Öffnen →</span>
+    </a>
+    <a class="card" href="ausmultiplizieren-faktorisieren.html" style="--c: var(--math)">
+      <span class="tag">Terme</span>
+      <h2>Ausmultiplizieren und Faktorisieren</h2>
+      <span class="muted">Klammern auflösen, Klammer mal Klammer, Ausklammern, Flächenmodell, Trainer, Quiz</span>
+      <span class="go">Öffnen →</span>
+    </a>
     <a class="card" href="binomische-formeln.html" style="--c: var(--math)">
       <span class="tag">Terme</span>
       <h2>Binomische Formeln</h2>
@@ -80,18 +102,6 @@ header:not(.top) > .theme-toggle { top: 0; }
       <span class="tag">Terme</span>
       <h2>Bruchterme</h2>
       <span class="muted">Definitionsmenge, Kürzen und Erweitern, Rechnen mit Bruchtermen, Trainer mit Lösungsweg, Quiz</span>
-      <span class="go">Öffnen →</span>
-    </a>
-    <a class="card" href="ausmultiplizieren-faktorisieren.html" style="--c: var(--math)">
-      <span class="tag">Terme</span>
-      <h2>Ausmultiplizieren und Faktorisieren</h2>
-      <span class="muted">Klammern auflösen, Klammer mal Klammer, Ausklammern, Flächenmodell, Trainer, Quiz</span>
-      <span class="go">Öffnen →</span>
-    </a>
-    <a class="card" href="terme-vereinfachen.html" style="--c: var(--math)">
-      <span class="tag">Terme</span>
-      <h2>Terme vereinfachen</h2>
-      <span class="muted">Gleichartige Terme, Zusammenfassen, Produkte mit mehreren Variablen, Termsortierer, Trainer, Quiz</span>
       <span class="go">Öffnen →</span>
     </a>
     <a class="card" href="gleichungen.html" style="--c: var(--math)">

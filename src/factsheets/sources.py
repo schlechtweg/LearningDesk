@@ -1132,6 +1132,66 @@ SHEETS["nervensystem"] = dict(extra="body { font-size: 9pt; } .page { gap: 2.6mm
     </div>
   </div>''')
 
+SHEETS["termstruktur"] = dict(title="Termstruktur und Termwerte", eyebrow="Mathematik · Klasse 8 · Terme und Gleichungen", accent=M8, body=f'''
+  <div class="kern">Ein <strong>Term</strong> ist ein Rechenausdruck aus Zahlen, Variablen, Rechenzeichen und Klammern. Die <strong>Termart</strong> richtet sich nach der Rechnung, die man <strong>zuletzt</strong> ausführt.</div>
+  <div class="cols">
+    <div class="box">
+      <h2>Termarten</h2>
+      <table>
+        <tr><th>zuletzt …</th><th>Termart</th><th>Beispiel</th></tr>
+        <tr><td>addiert</td><td><strong>Summe</strong></td><td>{m("2<i>x</i> + 7")}</td></tr>
+        <tr><td>subtrahiert</td><td><strong>Differenz</strong></td><td>{m("<i>x</i><sup>2</sup> − 4")}</td></tr>
+        <tr><td>multipliziert</td><td><strong>Produkt</strong></td><td>{m("3 · (<i>x</i> − 2)")}</td></tr>
+        <tr><td>dividiert</td><td><strong>Quotient</strong></td><td>{m("(<i>a</i> + 5) : 2")}</td></tr>
+        <tr><td>potenziert</td><td><strong>Potenz</strong></td><td>{m("(<i>x</i> + 1)<sup>2</sup>")}</td></tr>
+      </table>
+    </div>
+    <div class="box">
+      <h2>Rechenreihenfolge: KlaPoPS</h2>
+      <ol>
+        <li><strong>Kl</strong>ammern</li>
+        <li><strong>Po</strong>tenzen</li>
+        <li><strong>P</strong>unktrechnung (· und :)</li>
+        <li><strong>S</strong>trichrechnung (+ und −)</li>
+      </ol>
+      <p class="small">Gleichrangiges von links nach rechts. Beispiel: {m("2 + 3 · 4<sup>2</sup> = 2 + 3 · 16 = 50")}</p>
+    </div>
+    <div class="box">
+      <h2>Rechenbaum</h2>
+      <p>Der Rechenbaum zeigt die Reihenfolge: unten die ersten Rechnungen, <strong>oben die letzte</strong>. Die Rechnung ganz oben bestimmt die Termart.</p>
+      <p class="small">{m("2 · (<i>x</i> + 3)<sup>2</sup> − 5")}: erst +, dann Potenz, dann ·, zuletzt − ⇒ <strong>Differenz</strong>.</p>
+    </div>
+    <div class="box">
+      <h2>Termwert berechnen</h2>
+      <p>Variable durch die Zahl ersetzen, <strong>negative Zahlen einklammern</strong>, dann KlaPoPS.</p>
+      <p class="small">{m("3<i>x</i><sup>2</sup> − 2<i>x</i>")} für {m("<i>x</i> = −2")}: {m("3 · (−2)<sup>2</sup> − 2 · (−2) = 12 + 4 = 16")}</p>
+      <table><tr><th><i>x</i></th><td>−1</td><td>0</td><td>1</td><td>2</td></tr><tr><th>2<i>x</i> + 1</th><td>−1</td><td>1</td><td>3</td><td>5</td></tr></table>
+    </div>
+    <div class="box">
+      <h2>Terme aufstellen</h2>
+      <ul>
+        <li>das Dreifache von <i>x</i>, vermindert um 5: {m("3<i>x</i> − 5")}</li>
+        <li>die Summe aus <i>x</i> und 4, mal 2: {m("2(<i>x</i> + 4)")}</li>
+        <li>das Quadrat der Summe aus <i>x</i> und 1: {m("(<i>x</i> + 1)<sup>2</sup>")}</li>
+        <li>Handytarif: 5 € + 9 ct pro Minute: {m("5 + 0,09<i>m</i>")}</li>
+      </ul>
+    </div>
+    <div class="box">
+      <h2>Gleichwertige Terme</h2>
+      <p>Gleichwertig heißt: für <strong>jede</strong> Einsetzung derselbe Wert, z. B. {m("2(<i>x</i> + 3)")} und {m("2<i>x</i> + 6")}.</p>
+      <p class="small">Ein <strong>Gegenbeispiel</strong> genügt, um zu zeigen, dass zwei Terme nicht gleichwertig sind.</p>
+    </div>
+    <div class="box warn full">
+      <h2>Typische Fehler</h2>
+      <ul>
+        <li>{m("−3<sup>2</sup> = −9")}, aber {m("(−3)<sup>2</sup> = 9")}: negative Zahlen beim Einsetzen <strong>einklammern</strong>.</li>
+        <li>{m("2 + 3 · 4")} ist 14, nicht 20: <strong>Punkt vor Strich</strong>.</li>
+        <li>{m("3<i>x</i>")} für {m("<i>x</i> = 5")} ist {m("3 · 5 = 15")}, nicht 35.</li>
+        <li>Die Termart richtet sich nach der <strong>letzten</strong>, nicht nach der ersten Rechnung.</li>
+      </ul>
+    </div>
+  </div>''')
+
 OUT = sys.argv[1] if len(sys.argv) > 1 else os.path.join(os.path.dirname(__file__), "_build")
 os.makedirs(OUT, exist_ok=True)
 shutil.copyfile(os.path.join(os.path.dirname(os.path.abspath(__file__)), "factsheet.css"), os.path.join(OUT, "factsheet.css"))

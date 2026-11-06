@@ -26,6 +26,9 @@ a.card:hover, a.card:focus-visible { border-color: var(--c); outline: none; }
 .subject { display: grid; gap: 12px; }
 .subject h2 { font-size: 1.3rem; }
 .back { color: inherit; font-weight: 700; }
+/* chapters of a subject (e.g. the chapters of the maths book) */
+.chap { font-family: "Bricolage Grotesque", system-ui, sans-serif; font-size: 1.05rem; margin: 10px 0 0; display: flex; align-items: baseline; gap: 10px; color: var(--muted); }
+.chap .num { font-family: "JetBrains Mono", monospace; font-size: 0.85rem; color: var(--math); min-width: 2.2em; }
 </style>
 <style>
 nav.crumbs ol { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 2px 6px; font-size: 0.85rem; line-height: 1.5; }
@@ -53,7 +56,7 @@ header:not(.top) > .theme-toggle { top: 0; }
     <a class="card" href="klasse-8.html" style="--c: var(--g8)">
       <span class="grade">8</span>
       <h2>Klassenstufe 8</h2>
-      <span class="muted">Biologie: Das Auge, Nervensystem · Mathematik: Binomische Formeln, Bruchterme, Ausmultiplizieren, Terme vereinfachen, Gleichungen, Ungleichungen · Physik: Druck, Hydraulik, Schweredruck, Auftrieb, Luftdruck</span>
+      <span class="muted">Biologie: Das Auge, Nervensystem · Mathematik: Termstruktur, Binomische Formeln, Bruchterme, Ausmultiplizieren, Terme vereinfachen, Gleichungen, Ungleichungen · Physik: Druck, Hydraulik, Schweredruck, Auftrieb, Luftdruck</span>
       <span class="go">Zu den Themen →</span>
     </a>
     <a class="card" href="klasse-11.html" style="--c: var(--g11)">
@@ -72,7 +75,7 @@ header:not(.top) > .theme-toggle { top: 0; }
       <span class="go">Öffnen →</span>
     </a>
   </div>
-<footer class="ld-version">LearningDesk · Version 1.5.0 · Stand 06.11.2026</footer>
+<footer class="ld-version">LearningDesk · Version 1.6.0 · Stand 06.11.2026</footer>
 </div>
 <script>
 (function () {

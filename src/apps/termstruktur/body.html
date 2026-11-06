@@ -1,0 +1,120 @@
+  <nav class="tabs" aria-label="Bereiche">
+    <a href="#verstehen" data-view="verstehen"><span class="n">1</span>Verstehen</a>
+    <a href="#baum" data-view="baum"><span class="n">2</span>Rechenbaum</a>
+    <a href="#ueben" data-view="ueben"><span class="n">3</span>Üben</a>
+    <a href="#alltag" data-view="alltag"><span class="n">4</span>Im Alltag</a>
+    <a href="#quiz" data-view="quiz"><span class="n">5</span>Quiz</a>
+  </nav>
+
+  <section class="view" id="view-verstehen">
+    <div class="einfach">
+      <span class="eyebrow">Einfach erklärt</span>
+      <p>Ein <strong>Term</strong> ist ein Rechenausdruck aus Zahlen, Variablen, Rechenzeichen und Klammern, zum Beispiel <span class="math">3<i>x</i> + 5</span> oder <span class="math">(<i>a</i> − 2) · 4</span>. Setzt man für die Variablen Zahlen ein, erhält man den <strong>Termwert</strong>.</p>
+    </div>
+    <div class="merksatz">
+      <span class="eyebrow">Merke</span>
+      <p>Die <strong>Art eines Terms</strong> richtet sich nach dem Rechenzeichen, das man <strong>zuletzt</strong> ausführt.</p>
+    </div>
+    <div class="grid-2">
+      <div class="panel stack">
+        <h3>Termarten</h3>
+        <table class="data">
+          <tr><th>zuletzt …</th><th>Termart</th><th>Beispiel</th></tr>
+          <tr><td>addiert</td><td><strong>Summe</strong></td><td class="math">2<i>x</i> + 7</td></tr>
+          <tr><td>subtrahiert</td><td><strong>Differenz</strong></td><td class="math">(<i>x</i> + 1) − 4</td></tr>
+          <tr><td>multipliziert</td><td><strong>Produkt</strong></td><td class="math">3 · (<i>x</i> − 2)</td></tr>
+          <tr><td>dividiert</td><td><strong>Quotient</strong></td><td class="math">(<i>a</i> + 5) : 2</td></tr>
+          <tr><td>potenziert</td><td><strong>Potenz</strong></td><td class="math">(<i>x</i> + 1)²</td></tr>
+        </table>
+      </div>
+      <div class="panel stack">
+        <h3>Reihenfolge beim Rechnen</h3>
+        <ol class="list small">
+          <li><strong>Kl</strong>ammern zuerst</li>
+          <li><strong>Po</strong>tenzen</li>
+          <li><strong>P</strong>unktrechnung (· und :)</li>
+          <li><strong>S</strong>trichrechnung (+ und −)</li>
+        </ol>
+        <p class="small muted">Merkwort: <strong>KlaPoPS</strong>. Gleichrangige Rechnungen von links nach rechts.</p>
+      </div>
+    </div>
+    <div class="grid-2">
+      <div class="panel stack">
+        <h3>Termwert berechnen</h3>
+        <p class="small">Setze für <span class="math"><i>x</i></span> die Zahl ein und rechne nach den Vorrangregeln. <strong>Negative Zahlen in Klammern setzen!</strong></p>
+        <p class="small math">3<i>x</i>² − 2<i>x</i> für <i>x</i> = −2:<br>3 · (−2)² − 2 · (−2) = 3 · 4 + 4 = 16</p>
+      </div>
+      <div class="panel stack">
+        <h3>Wertetabelle</h3>
+        <p class="small">Viele Werte auf einmal: Man setzt nacheinander verschiedene Zahlen ein.</p>
+        <table class="data"><tr><th><i>x</i></th><td>−1</td><td>0</td><td>1</td><td>2</td><td>3</td></tr><tr><th>2<i>x</i> + 1</th><td>−1</td><td>1</td><td>3</td><td>5</td><td>7</td></tr></table>
+      </div>
+    </div>
+    <div class="panel stack">
+      <h3>Gleichwertige Terme</h3>
+      <p class="small">Zwei Terme sind <strong>gleichwertig</strong> (äquivalent), wenn sie für <strong>jede</strong> Einsetzung denselben Wert haben, z. B. <span class="math">2(<i>x</i> + 3)</span> und <span class="math">2<i>x</i> + 6</span>. Ein einziges Gegenbeispiel zeigt, dass zwei Terme <strong>nicht</strong> gleichwertig sind.</p>
+    </div>
+    <div class="panel stack">
+      <h3>Typische Fehler</h3>
+      <ul class="list small">
+        <li><span class="math">−3²</span> ist <strong>−9</strong>, aber <span class="math">(−3)²</span> ist <strong>9</strong>. Darum negative Zahlen beim Einsetzen immer einklammern.</li>
+        <li><span class="math">2 + 3 · 4</span> ist 14, nicht 20: Punkt vor Strich.</li>
+        <li>Bei <span class="math">3<i>x</i></span> mit <span class="math"><i>x</i> = 5</span> entsteht <span class="math">3 · 5 = 15</span>, nicht 35.</li>
+        <li>Die Termart richtet sich nicht nach dem ersten, sondern nach dem <strong>letzten</strong> Rechenschritt.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="view" id="view-baum" hidden>
+    <div class="stack">
+      <span class="eyebrow">Ausprobieren</span>
+      <h2>Der Rechenbaum</h2>
+      <p class="muted">Ein Rechenbaum zeigt, in welcher Reihenfolge gerechnet wird. Ganz oben steht die letzte Rechnung: Sie bestimmt die Termart. Wähle einen Term oder tippe einen eigenen ein und verändere die Werte.</p>
+    </div>
+    <div class="sim-layout">
+      <div class="figure"><svg class="tree" id="tSvg" viewBox="0 0 460 300" role="img" aria-label="Rechenbaum"></svg></div>
+      <div class="panel controls">
+        <div><label class="lbl" for="tSel"><span>Term</span></label><select id="tSel"></select></div>
+        <div><label class="lbl" for="tIn"><span>oder eigener Term</span></label><input type="text" id="tIn" spellcheck="false" placeholder="z. B. 3(x-2)^2+1"></div>
+        <div><label class="lbl" for="tX"><span><i>x</i> =</span><span class="val" id="tXOut"></span></label><input type="range" id="tX" min="-6" max="6" step="1" value="2"></div>
+        <div><label class="lbl" for="tY"><span><i>y</i> =</span><span class="val" id="tYOut"></span></label><input type="range" id="tY" min="-6" max="6" step="1" value="3"></div>
+        <p class="state" id="tType"></p>
+        <p class="small" id="tMsg"></p>
+      </div>
+    </div>
+    <div class="einfach"><p id="tSteps"></p></div>
+  </section>
+
+  <section class="view" id="view-ueben" hidden>
+    <div class="stack">
+      <span class="eyebrow">Trainer</span>
+      <h2>Termarten, Termwerte und Terme aufstellen</h2>
+      <p class="muted">Immer neue Aufgaben. Für Terme kannst du schreiben: <code>3x-5</code>, <code>2(x+1)</code>, <code>x^2</code>.</p>
+    </div>
+    <div id="trainer" class="stack"></div>
+  </section>
+
+  <section class="view" id="view-alltag" hidden>
+    <div class="stack">
+      <span class="eyebrow">Im Alltag</span>
+      <h2>Terme im Alltag</h2>
+      <p class="muted">Überall, wo man „für verschiedene Werte“ rechnet, stecken Terme dahinter.</p>
+    </div>
+    <div class="grid-2">
+      <div class="panel stack"><span class="eyebrow">Handy</span><h3>Der Handytarif</h3><p class="small">Grundgebühr 5 € plus 9 Cent pro Minute: <span class="math">5 + 0,09 · <i>m</i></span>. Bei 120 Minuten: 5 + 10,80 = <strong>15,80 €</strong>.</p></div>
+      <div class="panel stack"><span class="eyebrow">Taxi</span><h3>Taxipreis</h3><p class="small">4,50 € Grundpreis und 2,20 € pro Kilometer: <span class="math">4,5 + 2,2 · <i>k</i></span>. Für 8 km zahlst du <strong>22,10 €</strong>.</p></div>
+      <div class="panel stack"><span class="eyebrow">Wetter</span><h3>Grad Fahrenheit</h3><p class="small">In den USA rechnet man <span class="math"><i>F</i> = 1,8 · <i>C</i> + 32</span>. 20 °C sind 1,8 · 20 + 32 = <strong>68 °F</strong>.</p></div>
+      <div class="panel stack"><span class="eyebrow">Basteln</span><h3>Streichholz-Muster</h3><p class="small">Für eine Reihe aus <span class="math"><i>n</i></span> Quadraten braucht man <span class="math">3<i>n</i> + 1</span> Streichhölzer. Für 10 Quadrate also <strong>31</strong>.</p></div>
+      <div class="panel stack"><span class="eyebrow">Garten</span><h3>Zaun um ein Beet</h3><p class="small">Ein Beet ist <span class="math"><i>a</i></span> Meter lang und 2 m breit. Der Zaun ist <span class="math">2<i>a</i> + 4</span> Meter lang. Bei 6 m Länge: <strong>16 m</strong>.</p></div>
+      <div class="panel stack"><span class="eyebrow">Klassenfahrt</span><h3>Kosten pro Person</h3><p class="small">Der Bus kostet 600 €, dazu 35 € Eintritt pro Person: <span class="math">(600 + 35<i>n</i>) : <i>n</i></span>. Bei 25 Personen sind es <strong>59 €</strong> pro Person.</p></div>
+    </div>
+  </section>
+
+  <section class="view" id="view-quiz" hidden>
+    <div class="stack">
+      <span class="eyebrow">Selbsttest</span>
+      <h2>Quiz</h2>
+      <div class="progress-line"><div class="bar" aria-hidden="true"><i id="qBar"></i></div><span class="score-line" id="qProgress"></span></div>
+    </div>
+    <div class="panel quiz" id="quizBox" aria-live="polite"></div>
+  </section>

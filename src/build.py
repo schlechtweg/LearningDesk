@@ -137,10 +137,18 @@ def build_menus(sh):
         blocks = []
         for s in config.SUBJECTS:
             ts = [t for t in topics_of(g["id"]) if t["subject"] == s["id"]]
-            if ts:
-                blocks.append({"heading": s["title"], "id": s["id"], "cards": [
-                    {"href": t["slug"] + ".html", "color": s["color"], "tag": t["tag"], "title": t["title"],
-                     "text": t["card"], "go": "Öffnen →"} for t in ts]})
+            if not ts:
+                continue
+            card = lambda t: {"href": t["slug"] + ".html", "color": s["color"], "tag": t["tag"], "title": t["title"],
+                              "text": t["card"], "go": "Öffnen →"}
+            chapters = config.CHAPTERS.get((g["id"], s["id"]))
+            if chapters:
+                # one group per book chapter, topics in book order
+                groups = [{"num": num, "title": title, "cards": [card(t) for t in sorted((t for t in ts if t.get("chapter") == num), key=lambda t: t.get("order", 99))]}
+                          for num, title in chapters]
+                blocks.append({"heading": s["title"], "id": s["id"], "groups": [gr for gr in groups if gr["cards"]]})
+            else:
+                blocks.append({"heading": s["title"], "id": s["id"], "cards": [card(t) for t in ts]})
         crumbs = crumbs_html([(config.SITE_NAME, "index.html"), (g["crumb"], None)])
         page = menu.render(title=g["title"], intro="Wähle ein Thema.", crumbs=crumbs, shared=sh, fonts=MENU_FONTS, blocks=blocks, show_version=False)
         (DOCS / g["page"]).write_text(page, encoding="utf-8")

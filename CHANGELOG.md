@@ -9,6 +9,10 @@ Schema **MAJOR.MINOR.PATCH**:
 
 Neue Version: oben einen Eintrag `## [x.y.z] – JJJJ-MM-TT` ergänzen und `python3 src/build.py` ausführen.
 
+## [1.6.0] – 2026-11-06
+- Klasse 8 Mathematik ist nach den Kapiteln des Schulbuchs gegliedert (I Terme und Gleichungen bis V Ähnlichkeit).
+- Neues Thema I.1 Termstruktur und Termwerte (Rechenbaum zum Ausprobieren, Trainer, Quiz, Factsheet, Übungs-PDF).
+
 ## [1.5.0] – 2026-11-06
 - Übungsaufgaben wieder in **einem PDF pro Thema** (6 Seiten): Seite 1 leicht, Seite 2 mittel, Seite 3 schwer, Seite 4 bis 6 die Lösungen dazu. Die Einzelblätter pro Stufe entfallen.
 - Jede Aufgabenseite ist gefüllt: größere Aufgabenvorräte für Mathe und Physik, über 200 neue Aufgaben für Biologie und schwere Physikaufgaben (`src/worksheets/extra_tasks.py`).

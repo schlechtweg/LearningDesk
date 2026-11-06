@@ -1075,6 +1075,104 @@ def nerven():
     }
 
 
+# ================================================================ grade 8 maths, chapter I: term structure
+def _sg(v):
+    """Number for substitution: negative values in brackets."""
+    return f"({MINUS}{abs(v)})" if v < 0 else str(v)
+
+
+def _n(v):
+    return (MINUS if v < 0 else "") + str(abs(v))
+
+
+def termstruktur():
+    r = random.Random(91)
+    L = {1: [], 2: [], 3: []}
+    kinds = [
+        (lambda a, b, c: f"{a}<i>x</i> + {b}", "Summe"), (lambda a, b, c: f"{a} · (<i>x</i> + {b})", "Produkt"),
+        (lambda a, b, c: f"(<i>x</i> − {b})<sup>2</sup>", "Potenz"), (lambda a, b, c: f"({a}<i>x</i> + {b}) : {c}", "Quotient"),
+        (lambda a, b, c: f"{a}<i>x</i><sup>2</sup> − {b}", "Differenz"), (lambda a, b, c: f"(<i>x</i> + {a}) · (<i>x</i> − {b})", "Produkt"),
+        (lambda a, b, c: f"{a} − {b} · <i>x</i>", "Differenz"), (lambda a, b, c: f"<i>x</i> : {c} + {a}", "Summe"),
+    ]
+    for i in range(150):
+        t = i % 3
+        a, b, c = r.randint(2, 9), r.randint(2, 9), r.randint(2, 6)
+        if t == 0:
+            f, kind = kinds[(i // 3) % len(kinds)]
+            L[1].append((f"Termart von {m(f(a, b, c))}?", f"<b>{kind}</b>"))
+        elif t == 1:
+            x = r.randint(1, 9)
+            L[1].append((f"Berechne {m(f'{a}<i>x</i> + {b}')} für {m(f'<i>x</i> = {x}')}.", m(f"{a} · {x} + {b} = <b>{a * x + b}</b>")))
+        else:
+            p, q, s_ = r.randint(2, 9), r.randint(2, 9), r.randint(2, 9)
+            L[1].append((f"Berechne: {m(f'{p} + {q} · {s_}')}", m(f"{p} + {q * s_} = <b>{p + q * s_}</b>")))
+    for i in range(140):
+        t = i % 4
+        a, b = r.choice([-4, -3, -2, 2, 3, 4, 5]), r.randint(1, 9)
+        x = r.choice([-5, -4, -3, -2, -1, 2, 3, 4])
+        if t == 0:
+            val = a * x * x - b
+            L[2].append((f"Berechne {m(f'{_n(a)}<i>x</i><sup>2</sup> − {b}')} für {m(f'<i>x</i> = {_n(x)}')}.", m(f"{_n(a)} · {_sg(x)}<sup>2</sup> − {b} = {_n(a)} · {x * x} − {b} = <b>{_n(val)}</b>")))
+        elif t == 1:
+            val = (x - b) * (x + 2)
+            L[2].append((f"Berechne {m(f'(<i>x</i> − {b}) · (<i>x</i> + 2)')} für {m(f'<i>x</i> = {_n(x)}')}.", m(f"({_n(x)} − {b}) · ({_n(x)} + 2) = {_sg(x - b)} · {_sg(x + 2)} = <b>{_n(val)}</b>")))
+        elif t == 2:
+            k, d = r.randint(2, 9), r.randint(1, 9)
+            word = ["", "", "Doppelte", "Dreifache", "Vierfache", "Fünffache", "Sechsfache", "Siebenfache", "Achtfache", "Neunfache"][k]
+            form = r.choice([(f"das {word} einer Zahl <i>x</i>, vermindert um {d}", f"{k}<i>x</i> − {d}"),
+                             (f"die Summe aus <i>x</i> und {d}, multipliziert mit {k}", f"{k} · (<i>x</i> + {d})"),
+                             (f"das Quadrat einer Zahl <i>x</i>, vermehrt um {d}", f"<i>x</i><sup>2</sup> + {d}"),
+                             (f"die Differenz aus {d} und dem {word} von <i>x</i>", f"{d} − {k}<i>x</i>")])
+            L[2].append((f"Schreibe als Term: {form[0]}.", m(f"<b>{form[1]}</b>")))
+        else:
+            xs = [-2, -1, 0, 1, 2]
+            vals = [a * v + b for v in xs]
+            L[2].append((f"Wertetabelle von {m(f'{_n(a)}<i>x</i> + {b}')} für <i>x</i> = −2, −1, 0, 1, 2.", m(" · ".join(f"<b>{_n(v)}</b>" for v in vals))))
+    for i in range(70):
+        t = i % 7
+        if t == 4:
+            k, d = r.randint(2, 7), r.randint(1, 9)
+            x = r.randint(2, 9)
+            L[3].append((f"Welche Zahl muss man für {m('<i>x</i>')} einsetzen, damit {m(f'{k}<i>x</i> − {d}')} den Wert {k * x - d} hat?", f"{m(f'{k} · {x} − {d} = {k * x - d}')} ⇒ <b><i>x</i> = {x}</b>"))
+            continue
+        if t == 5:
+            c = r.randint(1, 4)
+            xs = list(range(-2, 4))
+            vals = [v * v - 2 * c * v for v in xs]
+            low = min(vals)
+            L[3].append((f"Lege eine Wertetabelle von {m(f'<i>x</i><sup>2</sup> − {2 * c}<i>x</i>')} für <i>x</i> = −2 bis 3 an. Für welches <i>x</i> ist der Wert am kleinsten?",
+                         m(" · ".join(_n(v) for v in vals)) + f"; kleinster Wert <b>{_n(low)}</b> bei <b><i>x</i> = {xs[vals.index(low)]}</b>"))
+            continue
+        if t == 6:
+            a_, b_ = r.randint(2, 5), r.randint(1, 6)
+            L[3].append((f"Begründe ohne Rechnen, welcher Term für <i>x</i> = −{b_} den Wert 0 hat: {m(f'{a_}(<i>x</i> + {b_})')} oder {m(f'{a_}<i>x</i> + {b_}')}.",
+                         f"{m(f'{a_}(<i>x</i> + {b_})')}: Die Klammer wird 0, und ein <b>Produkt mit dem Faktor 0</b> ist 0."))
+            assert a_ * (-b_ + b_) == 0 and a_ * (-b_) + b_ != 0
+            continue
+        if t == 0:
+            n = r.randint(5, 30)
+            L[3].append((f"Streichhölzer: Eine Reihe aus {m('<i>n</i>')} Quadraten braucht {m('3<i>n</i> + 1')} Hölzer. Wie viele Hölzer braucht man für {n} Quadrate, wie viele Quadrate schafft man mit {3 * n + 4} Hölzern?",
+                         f"{m(f'3 · {n} + 1 = <b>{3 * n + 1}</b>')} Hölzer; {m(f'3<i>n</i> + 1 = {3 * n + 4}')} ⇒ <b>{n + 1} Quadrate</b>"))
+        elif t == 1:
+            a, b = r.randint(2, 6), r.randint(1, 5)
+            # the terms a(x + b) and ax + b differ for every x
+            assert all(a * (x + b) != a * x + b for x in range(-5, 6))
+            L[3].append((f"Zeige mit einem Gegenbeispiel: {m(f'{a}(<i>x</i> + {b})')} und {m(f'{a}<i>x</i> + {b}')} sind <b>nicht</b> gleichwertig.",
+                         f"z. B. <i>x</i> = 0: {m(f'{a} · {b} = {a * b}')}, aber {m(f'{a} · 0 + {b} = {b}')}. <b>Verschiedene Werte.</b>"))
+        elif t == 2:
+            g, p = r.choice([3, 4, 5, 6, 8]), r.choice([12, 15, 18, 20, 25])
+            n = r.choice([10, 20, 25, 30])
+            total = Fr(200 + p * n, n)
+            L[3].append((f"Eine Klassenfahrt: Bus 200 €, Eintritt {p} € pro Person. Stelle einen Term für die Kosten pro Person bei {m('<i>n</i>')} Personen auf und berechne ihn für {n} Personen.",
+                         f"{m(f'(200 + {p}<i>n</i>) : <i>n</i>')}; für {n}: {m(f'(200 + {p * n}) : {n} = <b>{de(float(total))} €</b>')}"))
+        else:
+            a, b, c = r.randint(2, 6), r.randint(2, 6), r.randint(2, 6)
+            target = (a + b) * c
+            assert target != a + b * c
+            L[3].append((f"Setze Klammern so, dass das Ergebnis stimmt: {m(f'{a} + {b} · {c} = {target}')}", m(f"<b>({a} + {b}) · {c}</b> = {target}")))
+    return L
+
+
 M8, PH = "#1f6e8c", "#b4531f"
 TOPICS = {
     "osmose": ({"title": "Osmose", "eyebrow": "Biologie · Klasse 11", "accent": "#0d6f74", "cols": [1, 1, 1], "sol_cols": [1, 1, 1]}, osmose),
@@ -1084,6 +1182,7 @@ TOPICS = {
     "ableiten": ({"title": "Ableiten", "eyebrow": "Mathematik · Klasse 11", "accent": "#24539c", "cols": 2, "sol_cols": 2}, ableiten),
     "nervensystem": ({"title": "Das Nervensystem", "eyebrow": "Biologie · Klasse 8", "accent": "#4a7a1e", "cols": [1, 1, 1], "sol_cols": [1, 1, 1]}, nerven),
     "auge": ({"title": "Das Auge", "eyebrow": "Biologie · Klasse 8", "accent": "#4a7a1e", "cols": [1, 1, 1], "sol_cols": [1, 1, 1]}, auge),
+    "termstruktur": ({"title": "Termstruktur und Termwerte", "eyebrow": "Mathematik · Klasse 8", "accent": M8, "cols": [3, 2, 1], "sol_cols": [3, 2, 1]}, termstruktur),
     "binomische-formeln": ({"title": "Binomische Formeln", "eyebrow": "Mathematik · Klasse 8", "accent": M8, "cols": 2, "sol_cols": 2}, binomische_formeln),
     "bruchterme": ({"title": "Bruchterme", "eyebrow": "Mathematik · Klasse 8", "accent": "#2d6a4f", "cols": 3, "sol_cols": 3}, bruchterme),
     "ausmultiplizieren-faktorisieren": ({"title": "Ausmultiplizieren und Faktorisieren", "eyebrow": "Mathematik · Klasse 8", "accent": M8, "cols": 3, "sol_cols": 3}, ausmultiplizieren),

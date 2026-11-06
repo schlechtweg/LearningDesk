@@ -429,10 +429,44 @@ def luftdruck():
     return {"title": "Luftdruck am Berg", "stars": "★★☆", "task": (base, task), "sol": (base, soltxt)}
 
 
+def termstruktur():
+    # tree of 2 · (x + 3)^2 − 5 for x = 1, values checked
+    x = 1
+    v_sum, v_pow = x + 3, (x + 3) ** 2
+    v_prod, v_top = 2 * v_pow, 2 * v_pow - 5
+    assert (v_sum, v_pow, v_prod, v_top) == (4, 16, 32, 27)
+    nodes = {"top": (150, 22, "−", v_top), "prod": (95, 72, "·", v_prod), "pow": (140, 122, "^", v_pow), "sum": (95, 172, "+", v_sum)}
+    leaves = [(250, 72, "5", "top"), (45, 122, "2", "prod"), (190, 172, "2", "pow"), (55, 222, "<tspan font-style=\"italic\">x</tspan>", "sum"), (135, 222, "3", "sum")]
+    edges = [("top", "prod"), ("prod", "pow"), ("pow", "sum")]
+
+    def fig(show):
+        d = ""
+        for a, b in edges:
+            d += f'<line class="o" x1="{nodes[a][0]}" y1="{nodes[a][1]}" x2="{nodes[b][0]}" y2="{nodes[b][1]}"/>'
+        for lx, ly, _, parent in leaves:
+            d += f'<line class="o" x1="{nodes[parent][0]}" y1="{nodes[parent][1]}" x2="{lx}" y2="{ly}"/>'
+        for key, (nx, ny, op, val) in nodes.items():
+            d += f'<circle cx="{nx}" cy="{ny}" r="13" fill="#e2eef4" stroke="#1f6e8c" stroke-width="1.6"/>{text(nx, ny + 4.5, op, "ft big")}'
+            d += f'<rect x="{nx + 17}" y="{ny - 11}" width="34" height="20" rx="4" fill="#fff" stroke="#9aa4ad"/>'
+            if show:
+                d += text(nx + 34, ny + 4, str(val), "ft sol")
+        for lx, ly, lab, _ in leaves:
+            d += f'<rect x="{lx - 15}" y="{ly - 12}" width="30" height="24" rx="5" fill="#fff" stroke="#9aa4ad"/>{text(lx, ly + 5, lab, "ft big")}'
+        d += text(55, 248, "x = 1", "ft it")
+        return svg("20 0 260 260", d)
+    task = ('<p>Der Rechenbaum gehört zum Term 2 · (<i>x</i> + 3)² − 5. Trage für <i>x</i> = 1 die Zwischenergebnisse in die Kästchen ein.</p>'
+            '<p class="q">Welche Termart ist es? Woran erkennst du das am Baum? <span class="blank wide"></span><span class="blank wide"></span></p>'
+            '<p class="q">Termwert für <i>x</i> = −3: <span class="blank"></span></p>')
+    assert 2 * (-3 + 3) ** 2 - 5 == -5
+    sol = ('<p class="q">Zwischenergebnisse: 1 + 3 = 4, 4² = 16, 2 · 16 = 32, 32 − 5 = <b>27</b>.</p>'
+           '<p class="q">Eine <b>Differenz</b>: Ganz oben im Baum (zuletzt) steht das Minus.</p><p class="q">Für <i>x</i> = −3: 2 · 0² − 5 = <b>−5</b></p>')
+    return {"title": "Rechenbaum ausfüllen", "stars": "★☆☆", "task": (fig(False), task), "sol": (fig(True), sol)}
+
+
 FIGS = {
     "osmose": osmose, "natrium-kalium-pumpe": nak, "symport-antiport": symport, "endocytose-exocytose": endo,
     "ableiten": ableiten, "nervensystem": nerven, "auge": auge,
-    "binomische-formeln": binom, "bruchterme": bruchterme, "ausmultiplizieren-faktorisieren": ausmult, "terme-vereinfachen": terme,
+    "termstruktur": termstruktur, "binomische-formeln": binom, "bruchterme": bruchterme, "ausmultiplizieren-faktorisieren": ausmult, "terme-vereinfachen": terme,
     "gleichungen": gleichungen, "ungleichungen": ungleichungen,
     "druck": druck, "hydraulik": hydraulik, "schweredruck": schweredruck, "auftrieb": auftrieb, "luftdruck": luftdruck,
 }
