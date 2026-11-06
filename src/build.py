@@ -62,6 +62,7 @@ def shared():
         "crumbs_css_menu": crumbs_css.replace("var(--accent)", "var(--ink)"),
         "toggle_css": read("shared/theme-toggle.css"),
         "toggle_js": read("shared/theme-toggle.js"),
+        "fold_js": read("shared/fold.js"),
         "crumbs_js": read("shared/crumbs.js"),
         "menu_css": read("shared/menu.css"),
         "learnkit_css": read("shared/learnkit.css"),
@@ -147,11 +148,11 @@ def build_menus(sh):
                 # one group per book chapter, topics in book order
                 groups = [{"num": num, "title": title, "cards": [card(t) for t in sorted((t for t in ts if t.get("chapter") == num), key=lambda t: t.get("order", 99))]}
                           for num, title in chapters]
-                blocks.append({"heading": s["title"], "id": s["id"], "groups": [gr for gr in groups if gr["cards"]]})
+                blocks.append({"heading": s["title"], "id": s["id"], "color": s["color"], "count": len(ts), "groups": [gr for gr in groups if gr["cards"]]})
             else:
-                blocks.append({"heading": s["title"], "id": s["id"], "cards": [card(t) for t in ts]})
+                blocks.append({"heading": s["title"], "id": s["id"], "color": s["color"], "count": len(ts), "cards": [card(t) for t in ts]})
         crumbs = crumbs_html([(config.SITE_NAME, "index.html"), (g["crumb"], None)])
-        page = menu.render(title=g["title"], intro="Wähle ein Thema.", crumbs=crumbs, shared=sh, fonts=MENU_FONTS, blocks=blocks, show_version=False)
+        page = menu.render(title=g["title"], intro="Wähle ein Fach und ein Thema.", collapsible=True, crumbs=crumbs, shared=sh, fonts=MENU_FONTS, blocks=blocks, show_version=False)
         (DOCS / g["page"]).write_text(page, encoding="utf-8")
 
 

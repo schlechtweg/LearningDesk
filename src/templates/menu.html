@@ -1,3 +1,4 @@
+{%- set collapsible = collapsible|default(false) -%}
 {% macro cards(list) %}    <div class="cards">
 {% for c in list %}    <a class="card" href="{{ c.href }}" style="--c: var({{ c.color }})">
 {% if c.get('big') %}      <span class="grade"{% if c.get('big_style') %} style="{{ c.big_style }}"{% endif %}>{{ c.big }}</span>
@@ -28,13 +29,22 @@
 {% else %}    <h1>{{ title }}</h1>
 {% endif %}    <p class="muted">{{ intro }}</p>
   </header>
-{% for block in blocks %}{% if block.get('heading') %}  <div class="subject"{% if block.get('id') %} id="{{ block.id }}"{% endif %}>
+{% if collapsible %}  <div class="foldall"><button type="button" id="openAll">Alle öffnen</button><button type="button" id="closeAll">Alle schließen</button></div>
+{% endif %}{% for block in blocks %}{% if block.get('heading') and collapsible %}  <details class="subject fold" id="{{ block.id }}" style="--c: var({{ block.color }})">
+    <summary><h2>{{ block.heading }}</h2><span class="count">{{ block.count }} {{ "Thema" if block.count == 1 else "Themen" }}</span></summary>
+    <div class="foldbody">
+{% elif block.get('heading') %}  <div class="subject"{% if block.get('id') %} id="{{ block.id }}"{% endif %}>
     <h2>{{ block.heading }}</h2>
-{% endif %}{% if block.get('groups') %}{% for g in block.groups %}    <h3 class="chap"><span class="num">{{ g.num }}</span>{{ g.title }}</h3>
-{{ cards(g.cards) }}{% endfor %}{% else %}{{ cards(block.cards) }}{% endif %}{% if block.get('heading') %}  </div>
+{% endif %}{% if block.get('groups') %}{% for g in block.groups %}    <details class="chapfold" open>
+    <summary class="chap"><span class="num">{{ g.num }}</span>{{ g.title }}<span class="count">{{ g.cards|length }}</span></summary>
+{{ cards(g.cards) }}    </details>
+{% endfor %}{% else %}{{ cards(block.cards) }}{% endif %}{% if block.get('heading') and collapsible %}    </div>
+  </details>
+{% elif block.get('heading') %}  </div>
 {% endif %}{% endfor %}{% if show_version %}{{ shared.version_line }}
 {% endif %}</div>
 <script>
-{{ shared.toggle_js }}</script>
+{{ shared.toggle_js }}
+{% if collapsible %}{{ shared.fold_js }}{% endif %}</script>
 </body>
 </html>

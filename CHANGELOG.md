@@ -9,6 +9,10 @@ Schema **MAJOR.MINOR.PATCH**:
 
 Neue Version: oben einen Eintrag `## [x.y.z] – JJJJ-MM-TT` ergänzen und `python3 src/build.py` ausführen.
 
+## [1.11.0] – 2026-11-06
+
+- Klassenseiten: Fächer und Buchkapitel lassen sich auf- und zuklappen, mit Themenanzahl und „Alle öffnen / Alle schließen“. Der Zustand wird im Browser gemerkt; Links auf ein Fach (z. B. aus den Breadcrumbs) öffnen es automatisch.
+
 ## [1.10.0] – 2026-11-06
 
 - Mathematik Klasse 8, Kapitel V „Ähnlichkeit“ komplett:
