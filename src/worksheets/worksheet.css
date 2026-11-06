@@ -10,7 +10,7 @@
 * { box-sizing: border-box; }
 html, body { margin: 0; padding: 0; }
 body { font-family: var(--font-body); color: var(--ink); font-size: 9.2pt; line-height: 1.32; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-.page { width: 210mm; height: 297mm; padding: 10mm 11mm 8mm; display: flex; flex-direction: column; gap: 2.4mm; overflow: hidden; counter-reset: task; break-after: page; }
+.page { width: 210mm; height: 297mm; padding: 10mm 11mm 8mm; display: flex; flex-direction: column; gap: 2.4mm; overflow: hidden; break-after: page; }
 .page:last-of-type { break-after: auto; }
 header { display: flex; justify-content: space-between; align-items: flex-end; border-bottom: 2.5px solid var(--accent); padding-bottom: 2mm; }
 header .eyebrow { font-family: var(--font-mono); font-size: 7.2pt; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); }
@@ -79,7 +79,6 @@ ol.lab li > .lt .blank { min-width: 18mm; width: 30mm; flex: none; }
 .fsvg .solx { stroke: #c0392b; stroke-width: 2.6; fill: none; }
 .fsvg .jet { fill: none; stroke: #2f7fb8; stroke-width: 3; stroke-linecap: round; }
 
-/* Single-level sheets: ruled writing space below every task (height set by the fit step) */
-.tasks.write ol.items li { padding-bottom: calc(0.7mm + var(--gap, 0mm)); }
-.tasks.write ol.items li::after { content: ""; display: block; height: calc(var(--ans, 0) * 6.4mm); margin-top: 0.6mm;
-  background: repeating-linear-gradient(to bottom, transparent 0 6mm, #b9c2ca 6mm 6.4mm); }
+/* Levels with written tasks in one column: larger type, more room */
+section.roomy ol.items li { font-size: 10pt; line-height: 1.4; padding: 1.5mm 0 1.5mm 7mm; border-bottom: 1px dotted var(--line); }
+section.roomy ol.items li:last-child { border-bottom: 0; }

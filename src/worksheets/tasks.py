@@ -175,10 +175,10 @@ def rel_samples(p, q, vars_="abxy"):
 def binomische_formeln():
     r = random.Random(81)
     L = {1: [], 2: [], 3: []}
-    for i in range(40):
+    for i in range(160):
         k = r.randint(1, 9)
         v = [x, a, y][i % 3]
-        t = i % 3
+        t = (i // 3) % 3
         if t == 0:
             task, res = f"({(v + k).html()})<sup>2</sup>", (v + k) ** 2
         elif t == 1:
@@ -186,7 +186,7 @@ def binomische_formeln():
         else:
             task, res = f"({(v + k).html()})({(v - k).html()})", (v + k) * (v - k)
         L[1].append((m(task), m(f"{task} = <b>{res.html()}</b>")))
-    for i in range(36):
+    for i in range(144):
         t = i % 4
         if t == 0:
             k, c = r.randint(2, 5), pick_nz(r, -9, 9)
@@ -204,7 +204,7 @@ def binomische_formeln():
         else:
             k = r.randint(2, 12)
             L[2].append(("Faktorisiere: " + m(((x ** 2) - k * k).html()), m(f"<b>({(x + k).html()})({(x - k).html()})</b>")))
-    for i in range(32):
+    for i in range(128):
         t = i % 5
         if t == 0:
             p, q = r.randint(2, 4), r.randint(1, 5) * r.choice([1, -1])
@@ -236,14 +236,14 @@ def binomische_formeln():
 def ausmultiplizieren():
     r = random.Random(82)
     L = {1: [], 2: [], 3: []}
-    for i in range(40):
+    for i in range(160):
         k = pick_nz(r, -9, 9) if i % 4 else -1
         p, q = r.randint(1, 6), pick_nz(r, -9, 9)
         e = lin(p, q)
         res = k * e
         kt = MINUS if k == -1 else (f"({MINUS}{abs(k)})" if k < 0 else str(k))
         L[1].append((m(f"{kt}·({e.html()})" if k != -1 else f"{MINUS}({e.html()})"), m(f"<b>{res.html()}</b>")))
-    for i in range(36):
+    for i in range(144):
         if i % 2 == 0:
             p, q, s, t = r.choice([1, 1, 2, 3]), pick_nz(r, -9, 9), r.choice([1, 1, 2]), pick_nz(r, -9, 9)
             e1, e2 = lin(p, q), lin(s, t)
@@ -256,7 +256,7 @@ def ausmultiplizieren():
             g = r.randint(2, 9)
             s = g * lin(p, q)
             L[2].append(("Klammere aus: " + m(s.html()), m(f"<b>{g}({lin(p, q).html()})</b>")))
-    for i in range(32):
+    for i in range(128):
         t = i % 4
         if t == 0:
             while True:
@@ -293,7 +293,7 @@ def terme():
     r = random.Random(83)
     L = {1: [], 2: [], 3: []}
     kinds = [a, b, a * b, a ** 2, P.of(1)]
-    for i in range(40):
+    for i in range(160):
         ts = r.sample(range(5), 2)
         parts = [pick_nz(r, -8, 9) * kinds[ts[j % 2]] for j in range(4)]
         r.shuffle(parts)
@@ -301,7 +301,7 @@ def terme():
         res = sum(parts, P())
         L[1].append((m(task), m(f"<b>{res.html()}</b>")))
     vs = [a, b, x]
-    for i in range(36):
+    for i in range(144):
         n = 2 if i % 3 else 3
         fs = [pick_nz(r, -6, 7) * r.choice(vs) * (r.choice(vs) if r.random() < 0.4 else 1) for _ in range(n)]
         task = " · ".join(f"({f.html()})" if f.terms()[0][1] < 0 else f.html() for f in fs)
@@ -309,7 +309,7 @@ def terme():
         for f in fs:
             res = res * f
         L[2].append((m(task), m(f"<b>{res.html()}</b>")))
-    for i in range(32):
+    for i in range(128):
         k, mm = pick_nz(r, -5, 5), pick_nz(r, -4, 4)
         p, q, s, t = pick_nz(r, -6, 6), pick_nz(r, -6, 6), pick_nz(r, -6, 6), pick_nz(r, -6, 6)
         if i % 2 == 0:
@@ -337,13 +337,13 @@ def solve_lin(p1, q1, p2, q2):
 def gleichungen():
     r = random.Random(84)
     L = {1: [], 2: [], 3: []}
-    for i in range(44):
+    for i in range(176):
         p, x0, q = pick_nz(r, -9, 9), pick_nz(r, -9, 9), pick_nz(r, -12, 12)
         c = p * x0 + q
         sol = solve_lin(p, q, 0, c)
         assert sol == x0
         L[1].append((m(f"{lin(p, q).html()} = {fnum(c)}"), m(f"{lin(p, 0).html()} = {fnum(c - q)} ⇒ <b><i>x</i> = {fnum(sol)}</b>")))
-    for i in range(36):
+    for i in range(144):
         while True:
             p1, p2 = pick_nz(r, -7, 8), r.randint(-5, 5)
             if p1 != p2:
@@ -353,7 +353,7 @@ def gleichungen():
         sol = solve_lin(p1, q1, p2, q2)
         assert sol == x0
         L[2].append((m(lin_eq_html(p1, q1, p2, q2)), m(f"{lin(p1 - p2, 0).html()} = {fnum(q2 - q1)} ⇒ <b><i>x</i> = {fnum(sol)}</b>")))
-    for i in range(32):
+    for i in range(128):
         t = i % 3
         if t == 0:
             while True:
@@ -418,13 +418,13 @@ def ungleichungen():
         return m(f"{lin(p1, q1).html()} {REL_H[rel]} {lin(p2, q2).html()}"), sol
 
     rels = ["<", ">", "≤", "≥"]
-    for i in range(44):
+    for i in range(176):
         p, x0, q = r.randint(2, 9), pick_nz(r, -8, 8), pick_nz(r, -9, 9)
         L[1].append(make(p, q, 0, p * x0 + q, rels[i % 4]))
-    for i in range(36):
+    for i in range(144):
         p, x0, q = -r.randint(1, 7), pick_nz(r, -8, 8), pick_nz(r, -9, 9)
         L[2].append(make(p, q, 0, p * x0 + q, rels[i % 4]))
-    for i in range(32):
+    for i in range(128):
         while True:
             p1, p2 = pick_nz(r, -6, 7), r.randint(-5, 5)
             if p1 != p2:
@@ -447,7 +447,7 @@ def ungleichungen():
 def bruchterme():
     r = random.Random(86)
     L = {1: [], 2: [], 3: []}
-    for i in range(40):
+    for i in range(160):
         t = i % 3
         if t == 0:
             k, a0 = r.randint(2, 9), pick_nz(r, -9, 9)
@@ -470,7 +470,7 @@ def bruchterme():
             p, q, c = r.randint(1, 9), r.randint(1, 9), pick_nz(r, -6, 6)
             den = (x + c).html()
             L[1].append((m(f"{fr(p, den)} + {fr(q, den)}"), m(f"<b>{fr(p + q, den)}</b>")))
-    for i in range(36):
+    for i in range(144):
         t = i % 4
         if t == 0:
             a0 = pick_nz(r, -7, 7)
@@ -490,7 +490,7 @@ def bruchterme():
             N, D = n // g, d // g
             res = fr(N, f"{'' if D == 1 else D}{X}")
             L[2].append((m(f"{fr(f'{p}{X}' if p > 1 else X, q)} · {fr(s, f'{t2}{X}<sup>2</sup>')}"), m(f"{fr(f'{n}{X}', f'{d}{X}<sup>2</sup>')} = <b>{res}</b>")))
-    for i in range(32):
+    for i in range(128):
         t = i % 4
         if t == 0:
             p, q = r.randint(2, 9), r.randint(1, 9)
@@ -552,11 +552,11 @@ def dev(terms, x0):
 def ableiten():
     r = random.Random(87)
     L = {1: [], 2: [], 3: []}
-    for i in range(40):
+    for i in range(160):
         degs = sorted(r.sample([0, 1, 2, 3, 4, 5], r.choice([2, 3])), reverse=True)
         f = [(pick_nz(r, -7, 7), d) for d in degs]
         L[1].append((m(f"<i>f</i>(<i>x</i>) = {dpoly(f)}"), m(f"<i>f</i>′(<i>x</i>) = <b>{dpoly(deriv(f))}</b>")))
-    for i in range(36):
+    for i in range(144):
         t = i % 2
         if t == 0:
             f = [(r.choice([1, 2, 3, -2, 4]), r.choice([2, 3])), (r.choice([1, 2, 3, -1, 4]), r.choice([-1, -2])), (r.choice([2, 4, 6, -2]), Fr(1, 2))]
@@ -570,7 +570,7 @@ def ableiten():
             dv = sum(Fr(c) * e * Fr(x0) ** (e - 1) for c, e in f if e != 0)
             L[2].append((f"Steigung von {m(f'<i>f</i>(<i>x</i>) = {dpoly(f)}')} an der Stelle {m(f'<i>x</i> = {fnum(x0)}')}",
                          m(f"<i>f</i>′(<i>x</i>) = {dpoly(deriv(f))}, <b><i>f</i>′({fnum(x0)}) = {fnum(dv)}</b>")))
-    for i in range(32):
+    for i in range(128):
         t = i % 2
         if t == 0:
             f = [(r.choice([1, -1, 2, Fr(1, 2)]), 2), (pick_nz(r, -4, 4), 1), (r.randint(-5, 5), 0)]
@@ -599,7 +599,7 @@ G = 9.81
 def druck():
     r = random.Random(91)
     L = {1: [], 2: [], 3: []}
-    for i in range(36):
+    for i in range(144):
         t = i % 3
         if t == 0:
             A = r.choice([2, 3, 4, 5, 6, 8, 10, 12, 15, 20, 25]); F = A * r.randint(4, 60)
@@ -610,7 +610,7 @@ def druck():
         else:
             v = r.randint(5, 300) * 10
             L[1].append((f"Rechne {de(v, 0)} hPa in Pa um.", f"<b>{de(v * 100, 0)} Pa</b> (1 hPa = 100 Pa)"))
-    for i in range(32):
+    for i in range(128):
         t = i % 3
         if t == 0:
             A = r.choice([4, 5, 8, 10, 15, 20, 25, 40]); F = A * r.randint(10, 80)
@@ -640,12 +640,12 @@ def druck():
 def hydraulik():
     r = random.Random(92)
     L = {1: [], 2: [], 3: []}
-    for i in range(32):
+    for i in range(128):
         A1, k, F1 = r.choice([1, 2, 3, 4, 5, 8, 10]), r.choice([4, 5, 8, 10, 12, 15, 20, 25, 40, 50]), r.randint(2, 30) * 10
         A2 = A1 * k
         L[1].append((f"{m(f'<i>A</i><sub>1</sub> = {A1} cm²')}, {m(f'<i>F</i><sub>1</sub> = {F1} N')}, {m(f'<i>A</i><sub>2</sub> = {A2} cm²')}. Berechne {m('<i>F</i><sub>2</sub>')}.",
                      f"{m(f'<i>F</i><sub>2</sub> = {F1} N · {A2} : {A1} = ')}<b>{de(F1 * k, 0)} N</b>"))
-    for i in range(32):
+    for i in range(128):
         t = i % 2
         if t == 0:
             A1, F1, F2 = r.choice([1, 2, 4, 5, 8]), r.choice([50, 80, 100, 120, 150, 200, 250]), r.randint(4, 30) * 1000
@@ -672,11 +672,11 @@ def hydraulik():
 def schweredruck():
     r = random.Random(93)
     L = {1: [], 2: [], 3: []}
-    for i in range(32):
+    for i in range(128):
         h = r.randint(1, 60)
         p = 1000 * G * h
         L[1].append((f"Wie groß ist der Schweredruck in {m(f'{h} m')} Wassertiefe (in hPa)?", f"{m(f'1 000 · 9,81 · {h} = ')}{de(p, 0)} Pa = <b>{de(p / 100, 0)} hPa</b>"))
-    for i in range(32):
+    for i in range(128):
         t = i % 3
         if t == 0:
             name, rho = r.choice([("Meerwasser", 1025), ("Speiseöl", 920), ("Spiritus", 790)])
@@ -706,14 +706,14 @@ def schweredruck():
 def auftrieb():
     r = random.Random(94)
     L = {1: [], 2: [], 3: []}
-    for i in range(32):
+    for i in range(128):
         V = r.randint(1, 100) * 20
         FA = 1000 * V / 1e6 * G
         L[1].append((f"Ein Körper mit {m(f'{V} cm³')} ist ganz in Wasser. Wie groß ist der Auftrieb?", f"{m(f'1 000 · 9,81 · {de(V / 1e6, 6)} = ')}<b>{de(FA, 3)} N</b>"))
     pairs = [("Kork", 240, "Wasser", 1000), ("Eisen", 7870, "Wasser", 1000), ("Eis", 920, "Spiritus", 790), ("Eis", 920, "Meerwasser", 1025), ("Eisen", 7870, "Quecksilber", 13600), ("Aluminium", 2700, "Wasser", 1000)]
     for bn, rb, ln, rl in pairs:
         L[1].append((f"Schwimmt {bn} ({de(rb, 0)} kg/m³) in {ln} ({de(rl, 0)} kg/m³)?", f"<b>{'Schwimmt' if rb < rl else 'Sinkt'}</b>, weil die Dichte {'kleiner' if rb < rl else 'größer'} ist."))
-    for i in range(32):
+    for i in range(128):
         t = i % 3
         if t == 0:
             name, rb = r.choice([("Aluminium", 2700), ("Eisen", 7870), ("Stein", 2600)])
@@ -742,7 +742,7 @@ def auftrieb():
 def luftdruck():
     r = random.Random(95)
     L = {1: [], 2: [], 3: []}
-    for i in range(32):
+    for i in range(128):
         t = i % 3
         if t == 0:
             v = r.randint(600, 1050)
@@ -753,7 +753,7 @@ def luftdruck():
         else:
             v = r.randint(600, 1050)
             L[1].append((f"Rechne {de(v, 0)} hPa in bar um.", f"<b>{de(v / 1000, 3)} bar</b>"))
-    for i in range(32):
+    for i in range(128):
         t = i % 2
         if t == 0:
             what, A, u = r.choice([("eine Tischplatte", 1.2, "m²"), ("eine Tür", 1.8, "m²"), ("ein Fenster", 0.75, "m²"), ("eine Handfläche", 150, "cm²"), ("ein Heft", 600, "cm²")])
@@ -1077,22 +1077,22 @@ def nerven():
 
 M8, PH = "#1f6e8c", "#b4531f"
 TOPICS = {
-    "osmose": ({"title": "Osmose", "eyebrow": "Biologie · Klasse 11", "accent": "#0d6f74", "cols": 2, "sol_cols": 2}, osmose),
-    "natrium-kalium-pumpe": ({"title": "Natrium-Kalium-Pumpe", "eyebrow": "Biologie · Klasse 11", "accent": "#8e2c5c", "cols": 2, "sol_cols": 2}, nak),
-    "symport-antiport": ({"title": "Symport und Antiport", "eyebrow": "Biologie · Klasse 11", "accent": "#2f7d5b", "cols": 2, "sol_cols": 2}, symport),
-    "endocytose-exocytose": ({"title": "Endocytose und Exocytose", "eyebrow": "Biologie · Klasse 11", "accent": "#7a3f8f", "cols": 2, "sol_cols": 2}, endo),
+    "osmose": ({"title": "Osmose", "eyebrow": "Biologie · Klasse 11", "accent": "#0d6f74", "cols": [1, 1, 1], "sol_cols": [1, 1, 1]}, osmose),
+    "natrium-kalium-pumpe": ({"title": "Natrium-Kalium-Pumpe", "eyebrow": "Biologie · Klasse 11", "accent": "#8e2c5c", "cols": [1, 1, 1], "sol_cols": [1, 1, 1]}, nak),
+    "symport-antiport": ({"title": "Symport und Antiport", "eyebrow": "Biologie · Klasse 11", "accent": "#2f7d5b", "cols": [1, 1, 1], "sol_cols": [1, 1, 1]}, symport),
+    "endocytose-exocytose": ({"title": "Endocytose und Exocytose", "eyebrow": "Biologie · Klasse 11", "accent": "#7a3f8f", "cols": [1, 1, 1], "sol_cols": [1, 1, 1]}, endo),
     "ableiten": ({"title": "Ableiten", "eyebrow": "Mathematik · Klasse 11", "accent": "#24539c", "cols": 2, "sol_cols": 2}, ableiten),
-    "nervensystem": ({"title": "Das Nervensystem", "eyebrow": "Biologie · Klasse 8", "accent": "#4a7a1e", "cols": 2, "sol_cols": 2}, nerven),
-    "auge": ({"title": "Das Auge", "eyebrow": "Biologie · Klasse 8", "accent": "#4a7a1e", "cols": 2, "sol_cols": 2}, auge),
-    "binomische-formeln": ({"title": "Binomische Formeln", "eyebrow": "Mathematik · Klasse 8", "accent": M8, "cols": 3, "sol_cols": 2}, binomische_formeln),
+    "nervensystem": ({"title": "Das Nervensystem", "eyebrow": "Biologie · Klasse 8", "accent": "#4a7a1e", "cols": [1, 1, 1], "sol_cols": [1, 1, 1]}, nerven),
+    "auge": ({"title": "Das Auge", "eyebrow": "Biologie · Klasse 8", "accent": "#4a7a1e", "cols": [1, 1, 1], "sol_cols": [1, 1, 1]}, auge),
+    "binomische-formeln": ({"title": "Binomische Formeln", "eyebrow": "Mathematik · Klasse 8", "accent": M8, "cols": 2, "sol_cols": 2}, binomische_formeln),
     "bruchterme": ({"title": "Bruchterme", "eyebrow": "Mathematik · Klasse 8", "accent": "#2d6a4f", "cols": 3, "sol_cols": 3}, bruchterme),
     "ausmultiplizieren-faktorisieren": ({"title": "Ausmultiplizieren und Faktorisieren", "eyebrow": "Mathematik · Klasse 8", "accent": M8, "cols": 3, "sol_cols": 3}, ausmultiplizieren),
     "terme-vereinfachen": ({"title": "Terme vereinfachen", "eyebrow": "Mathematik · Klasse 8", "accent": M8, "cols": 3, "sol_cols": 3}, terme),
-    "gleichungen": ({"title": "Gleichungen", "eyebrow": "Mathematik · Klasse 8", "accent": M8, "cols": 3, "sol_cols": 2}, gleichungen),
-    "ungleichungen": ({"title": "Ungleichungen", "eyebrow": "Mathematik · Klasse 8", "accent": M8, "cols": 3, "sol_cols": 2}, ungleichungen),
-    "druck": ({"title": "Druck", "eyebrow": "Physik · Klasse 8", "accent": PH, "cols": 2, "sol_cols": 2}, druck),
-    "hydraulik": ({"title": "Hydraulische Anlagen", "eyebrow": "Physik · Klasse 8", "accent": PH, "cols": 2, "sol_cols": 2}, hydraulik),
-    "schweredruck": ({"title": "Schweredruck", "eyebrow": "Physik · Klasse 8", "accent": PH, "cols": 2, "sol_cols": 2}, schweredruck),
-    "auftrieb": ({"title": "Auftrieb", "eyebrow": "Physik · Klasse 8", "accent": PH, "cols": 2, "sol_cols": 2}, auftrieb),
-    "luftdruck": ({"title": "Luftdruck", "eyebrow": "Physik · Klasse 8", "accent": PH, "cols": 2, "sol_cols": 2}, luftdruck),
+    "gleichungen": ({"title": "Gleichungen", "eyebrow": "Mathematik · Klasse 8", "accent": M8, "cols": 3, "sol_cols": 3}, gleichungen),
+    "ungleichungen": ({"title": "Ungleichungen", "eyebrow": "Mathematik · Klasse 8", "accent": M8, "cols": [3, 2, 2], "sol_cols": [3, 2, 2]}, ungleichungen),
+    "druck": ({"title": "Druck", "eyebrow": "Physik · Klasse 8", "accent": PH, "cols": [2, 2, 1], "sol_cols": [2, 2, 1]}, druck),
+    "hydraulik": ({"title": "Hydraulische Anlagen", "eyebrow": "Physik · Klasse 8", "accent": PH, "cols": [2, 2, 1], "sol_cols": [2, 2, 1]}, hydraulik),
+    "schweredruck": ({"title": "Schweredruck", "eyebrow": "Physik · Klasse 8", "accent": PH, "cols": [2, 2, 1], "sol_cols": [2, 2, 1]}, schweredruck),
+    "auftrieb": ({"title": "Auftrieb", "eyebrow": "Physik · Klasse 8", "accent": PH, "cols": [2, 2, 1], "sol_cols": [2, 2, 1]}, auftrieb),
+    "luftdruck": ({"title": "Luftdruck", "eyebrow": "Physik · Klasse 8", "accent": PH, "cols": [2, 2, 1], "sol_cols": [2, 2, 1]}, luftdruck),
 }

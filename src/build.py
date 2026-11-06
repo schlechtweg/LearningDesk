@@ -192,8 +192,7 @@ def main():
     if args.pdf:
         build_pdfs()
     missing = [t["slug"] for t in config.TOPICS if not (DOCS / "factsheets" / f"{t['slug']}.pdf").exists()]
-    missing += [f"{s}{x} (Aufgaben)" for s in worksheet_tasks.TOPICS for x in ("", "-leicht", "-mittel", "-schwer")
-                if not (DOCS / "aufgaben" / f"{s}{x}.pdf").exists()]
+    missing += [f"{s} (Aufgaben)" for s in worksheet_tasks.TOPICS if not (DOCS / "aufgaben" / f"{s}.pdf").exists()]
     print(f"Version {sh['version']}: built {len(config.TOPICS)} apps and {len(config.GRADES) + 1} menu pages.")
     if missing:
         print("Warning: factsheet PDF missing for", ", ".join(missing), "(run with --pdf)")
