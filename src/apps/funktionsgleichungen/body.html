@@ -1,0 +1,105 @@
+  <nav class="tabs" aria-label="Bereiche">
+    <a href="#verstehen" data-view="verstehen"><span class="n">1</span>Verstehen</a>
+    <a href="#punkte" data-view="punkte"><span class="n">2</span>Zwei Punkte</a>
+    <a href="#ueben" data-view="ueben"><span class="n">3</span>Üben</a>
+    <a href="#alltag" data-view="alltag"><span class="n">4</span>Im Alltag</a>
+    <a href="#quiz" data-view="quiz"><span class="n">5</span>Quiz</a>
+  </nav>
+
+  <section class="view" id="view-verstehen">
+    <div class="einfach">
+      <span class="eyebrow">Einfach erklärt</span>
+      <p>Oft kennt man nicht die Gleichung, sondern nur zwei Punkte, eine Steigung oder einen Graphen. Dann bestimmt man <span class="math"><i>m</i></span> und <span class="math"><i>b</i></span> und erhält die <strong>Funktionsgleichung</strong> <span class="math"><i>f</i>(<i>x</i>) = <i>m</i><i>x</i> + <i>b</i></span>.</p>
+    </div>
+    <div class="grid-2">
+      <div class="panel stack">
+        <h3>Fall 1: Steigung und ein Punkt</h3>
+        <p class="small">Gegeben: <span class="math"><i>m</i> = 2</span>, Punkt <span class="math">P(3 | 5)</span>.</p>
+        <ol class="list small">
+          <li>Einsetzen in <span class="math"><i>y</i> = <i>m</i><i>x</i> + <i>b</i></span>: <span class="math">5 = 2 · 3 + <i>b</i></span></li>
+          <li>Nach <span class="math"><i>b</i></span> auflösen: <span class="math"><i>b</i> = −1</span></li>
+          <li>Ergebnis: <span class="math"><i>f</i>(<i>x</i>) = 2<i>x</i> − 1</span></li>
+        </ol>
+      </div>
+      <div class="panel stack">
+        <h3>Fall 2: Zwei Punkte</h3>
+        <p class="small">Gegeben: <span class="math">P(1 | 2)</span> und <span class="math">Q(4 | 8)</span>.</p>
+        <ol class="list small">
+          <li>Steigung: <span class="math"><i>m</i> = (8 − 2) : (4 − 1) = 2</span></li>
+          <li>Einen Punkt einsetzen: <span class="math">2 = 2 · 1 + <i>b</i> ⇒ <i>b</i> = 0</span></li>
+          <li>Ergebnis: <span class="math"><i>f</i>(<i>x</i>) = 2<i>x</i></span></li>
+        </ol>
+      </div>
+    </div>
+    <div class="grid-2">
+      <div class="panel stack">
+        <h3>Fall 3: Am Graphen ablesen</h3>
+        <ol class="list small">
+          <li><span class="math"><i>b</i></span>: Wo schneidet die Gerade die <span class="math"><i>y</i></span>-Achse?</li>
+          <li><span class="math"><i>m</i></span>: Steigungsdreieck zwischen zwei gut ablesbaren Gitterpunkten: Höhe durch Breite.</li>
+        </ol>
+      </div>
+      <div class="panel stack">
+        <h3>Fall 4: Aus einem Text</h3>
+        <p class="small">„Ein Taxi kostet 3,50 € Grundgebühr und 2 € pro km.“ Grundgebühr = <span class="math"><i>b</i></span>, Preis pro km = <span class="math"><i>m</i></span>: <span class="math"><i>f</i>(<i>x</i>) = 2<i>x</i> + 3,5</span>.</p>
+      </div>
+    </div>
+    <div class="panel stack">
+      <h3>Typische Fehler</h3>
+      <ul class="list small">
+        <li>In der Steigungsformel oben und unten die Punkte in verschiedener Reihenfolge eingesetzt.</li>
+        <li>Beim Einsetzen <span class="math"><i>x</i></span> und <span class="math"><i>y</i></span> vertauscht: In <span class="math">P(3 | 5)</span> ist <span class="math"><i>x</i> = 3</span>, <span class="math"><i>y</i> = 5</span>.</li>
+        <li>Vergessen zu prüfen: Setze am Ende den zweiten Punkt ein. Stimmt die Gleichung?</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="view" id="view-punkte" hidden>
+    <div class="stack">
+      <span class="eyebrow">Ausprobieren</span>
+      <h2>Gerade durch zwei Punkte</h2>
+      <p class="muted">Tippe in das Koordinatensystem: Der erste Tipp setzt <strong>P</strong>, der zweite <strong>Q</strong>. Die App zeigt den Rechenweg zur Funktionsgleichung.</p>
+    </div>
+    <div class="sim-layout">
+      <div class="figure"><svg class="plot" id="pSvg" viewBox="0 0 460 340" role="img" aria-label="Koordinatensystem zum Setzen von Punkten"></svg></div>
+      <div class="panel controls">
+        <dl class="readout" id="pRo"></dl>
+        <div class="row"><button type="button" id="pReset">Neu setzen</button></div>
+      </div>
+    </div>
+    <div class="einfach"><p id="pText"></p></div>
+  </section>
+
+  <section class="view" id="view-ueben" hidden>
+    <div class="stack">
+      <span class="eyebrow">Trainer</span>
+      <h2>Funktionsgleichungen aufstellen</h2>
+      <p class="muted">Gib die Gleichung ein, z. B. <code>2x-1</code> oder <code>y=0,5x+3</code>.</p>
+    </div>
+    <div id="trainer" class="stack"></div>
+  </section>
+
+  <section class="view" id="view-alltag" hidden>
+    <div class="stack">
+      <span class="eyebrow">Im Alltag</span>
+      <h2>Gleichungen aus dem Alltag</h2>
+      <p class="muted">Aus zwei Messungen lässt sich oft eine ganze Funktion bestimmen.</p>
+    </div>
+    <div class="grid-2">
+      <div class="panel stack"><span class="eyebrow">Strom</span><h3>Stromrechnung</h3><p class="small">Bei 1 000 kWh zahlt man 420 €, bei 2 000 kWh 720 €. Steigung: 300 € pro 1 000 kWh = 0,30 €/kWh, Grundgebühr 120 €: <span class="math"><i>K</i>(<i>x</i>) = 0,3<i>x</i> + 120</span>.</p></div>
+      <div class="panel stack"><span class="eyebrow">Schwimmbad</span><h3>Wasser ablassen</h3><p class="small">Nach 2 Stunden sind noch 160 m³ im Becken, nach 5 Stunden 100 m³. Pro Stunde fließen 20 m³ ab, am Anfang waren es 200 m³.</p></div>
+      <div class="panel stack"><span class="eyebrow">Wetter</span><h3>Celsius und Fahrenheit</h3><p class="small">0 °C = 32 °F und 100 °C = 212 °F. Daraus folgt <span class="math"><i>F</i> = 1,8 · <i>C</i> + 32</span>.</p></div>
+      <div class="panel stack"><span class="eyebrow">Wachstum</span><h3>Pflanze</h3><p class="small">Eine Bohnenpflanze ist am Tag 3 genau 8 cm, am Tag 7 genau 20 cm hoch. Sie wächst 3 cm pro Tag und war am Tag 0 vermutlich −1 cm „hoch“. Das zeigt: Ein Modell gilt nicht überall.</p></div>
+      <div class="panel stack"><span class="eyebrow">Fahrrad</span><h3>Wegstrecke</h3><p class="small">Um 14:00 Uhr bei km 12, um 15:30 Uhr bei km 39: Tempo 18 km/h. Zur Abfahrt um 13:20 Uhr war es km 0.</p></div>
+      <div class="panel stack"><span class="eyebrow">Handwerk</span><h3>Handwerkerrechnung</h3><p class="small">2 Stunden kosten 150 €, 5 Stunden 300 €. Also 50 € pro Stunde und 50 € Anfahrt.</p></div>
+    </div>
+  </section>
+
+  <section class="view" id="view-quiz" hidden>
+    <div class="stack">
+      <span class="eyebrow">Selbsttest</span>
+      <h2>Quiz</h2>
+      <div class="progress-line"><div class="bar" aria-hidden="true"><i id="qBar"></i></div><span class="score-line" id="qProgress"></span></div>
+    </div>
+    <div class="panel quiz" id="quizBox" aria-live="polite"></div>
+  </section>

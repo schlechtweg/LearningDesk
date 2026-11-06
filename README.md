@@ -13,6 +13,10 @@ Interaktive Lern-Apps für die Schule, sortiert nach Klassenstufe. Alles läuft 
 | Klasse 8 · Mathematik (II) | Laplace-Experimente und Anzahlen | Laplace-Regel, Gegenereignis, Produktregel, Ereignis-Labor, Zählen, Trainer, Quiz |
 | Klasse 8 · Mathematik (II) | Baumdiagramme und Pfadregeln | Pfadregeln, mit/ohne Zurücklegen, „mindestens einmal“, interaktiver Baum, Trainer, Quiz |
 | Klasse 8 · Mathematik (II) | Unabhängige Ereignisse | Produktbedingung, Vierfeldertafel, Trainer, Quiz |
+| Klasse 8 · Mathematik (III) | Funktionsbegriff und Darstellungen | Funktion, Schreibweisen, Tabelle und Graph synchron, Funktion oder nicht?, Trainer, Quiz |
+| Klasse 8 · Mathematik (III) | Eigenschaften von Funktionen | Nullstellen, Achsenschnittpunkte, Monotonie, Hoch-/Tiefpunkte, Symmetrie, Trainer, Quiz |
+| Klasse 8 · Mathematik (III) | Lineare Funktionen | Steigung, Achsenabschnitt, Steigungsdreieck, Nullstelle, Parallelen, Schnittpunkte, Trainer, Quiz |
+| Klasse 8 · Mathematik (III) | Funktionsgleichungen bestimmen | Aus Steigung und Punkt, zwei Punkten, Graph und Text; Punkte setzen mit Rechenweg, Trainer, Quiz |
 | Klasse 8 · Mathematik | Binomische Formeln | Formeln, Flächenmodell, Trainer (Lücken, ausmultiplizieren, faktorisieren), Kopfrechen-Trick, Quiz |
 | Klasse 8 · Mathematik | Bruchterme | Definitionsmenge, Kürzen und Erweitern, Rechenregeln, Trainer, Quiz |
 | Klasse 8 · Mathematik | Ausmultiplizieren und Faktorisieren | Distributivgesetz, Klammer mal Klammer, Ausklammern, Flächenmodell, Trainer, Quiz |

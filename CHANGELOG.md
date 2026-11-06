@@ -9,6 +9,10 @@ Schema **MAJOR.MINOR.PATCH**:
 
 Neue Version: oben einen Eintrag `## [x.y.z] – JJJJ-MM-TT` ergänzen und `python3 src/build.py` ausführen.
 
+## [1.8.0] – 2026-11-06
+- Kapitel III Funktionen (Klasse 8): Funktionsbegriff und Darstellungen, Eigenschaften von Funktionen, Lineare Funktionen, Funktionsgleichungen bestimmen; jeweils mit App, Factsheet und Übungs-PDF.
+- Lange Überschriften brechen auf dem Handy um.
+
 ## [1.7.0] – 2026-11-06
 - Kapitel II Zufallsversuche (Klasse 8): Zufallsexperimente und Häufigkeiten, Laplace-Experimente und Anzahlen, Baumdiagramme und Pfadregeln, Unabhängige Ereignisse; jeweils mit App, Factsheet und Übungs-PDF.
 

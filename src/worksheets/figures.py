@@ -640,10 +640,29 @@ def lineare_funktionen():
     return {"title": "Geraden zeichnen", "stars": "★★☆", "task": (svg("0 0 230 210", base), task), "sol": (svg("0 0 230 210", sol), soltxt)}
 
 
+def funktionsgleichungen():
+    f = lambda x: 2 / 3 * x - 2
+    g = lambda x: -0.5 * x + 1
+    assert abs(f(3)) < 1e-12 and g(-4) == 3 and g(2) == 0
+    ox, oy, u = 110, 100, 18
+    base = grid(ox, oy, u, (-5, 6), (-4, 5)) + plot(f, ox, oy, u, -5, 6, 5.3, "fg") + plot(g, ox, oy, u, -5, 6, 5.3, "fg") + text(ox + 5.2 * u, oy - 1.9 * u, "f", "ft it") + text(ox - 4.6 * u, oy - 3.9 * u, "g", "ft it")
+    sol = base + f'<path class="arr sol" d="M{ox} {oy + 2 * u} H{ox + 3 * u} V{oy}"/>' + text(ox + 1.5 * u, oy + 2 * u + 12, "3", "ft sol") + text(ox + 3 * u + 8, oy + u + 4, "2", "ft sol", "start")
+    task = ('<p>Lies die Gleichungen der beiden Geraden ab.</p>'
+            '<p class="q"><i>f</i>(<i>x</i>) = <span class="blank"></span></p><p class="q"><i>g</i>(<i>x</i>) = <span class="blank"></span></p>'
+            '<p class="q">Berechne den Schnittpunkt von <i>f</i> und <i>g</i>: <span class="blank wide"></span></p>')
+    xs = Fr(3) / (Fr(2, 3) + Fr(1, 2))
+    ys = Fr(-1, 2) * xs + 1
+    assert (xs, ys) == (Fr(18, 7), Fr(-2, 7))
+    soltxt = ('<p class="q"><i>f</i>: <i>b</i> = −2, Steigungsdreieck 3 nach rechts, 2 nach oben: <b><i>f</i>(<i>x</i>) = ⅔<i>x</i> − 2</b></p>'
+              '<p class="q"><i>g</i>: <i>b</i> = 1, 2 nach rechts, 1 nach unten: <b><i>g</i>(<i>x</i>) = −½<i>x</i> + 1</b></p>'
+              '<p class="q">⅔<i>x</i> − 2 = −½<i>x</i> + 1 ⇒ <sup>7</sup>⁄<sub>6</sub><i>x</i> = 3 ⇒ <b>S(18/7 | −2/7)</b> ≈ (2,57 | −0,29)</p>')
+    return {"title": "Gleichungen ablesen", "stars": "★★☆", "task": (svg("0 0 230 190", base), task), "sol": (svg("0 0 230 190", sol), soltxt)}
+
+
 FIGS = {
     "osmose": osmose, "natrium-kalium-pumpe": nak, "symport-antiport": symport, "endocytose-exocytose": endo,
     "ableiten": ableiten, "nervensystem": nerven, "auge": auge,
-    "termstruktur": termstruktur, "zufallsexperimente": zufallsexperimente, "laplace": laplace, "baumdiagramme": baumdiagramme, "unabhaengige-ereignisse": unabhaengig, "funktionsbegriff": funktionsbegriff, "eigenschaften-funktionen": eigenschaften, "lineare-funktionen": lineare_funktionen, "binomische-formeln": binom, "bruchterme": bruchterme, "ausmultiplizieren-faktorisieren": ausmult, "terme-vereinfachen": terme,
+    "termstruktur": termstruktur, "zufallsexperimente": zufallsexperimente, "laplace": laplace, "baumdiagramme": baumdiagramme, "unabhaengige-ereignisse": unabhaengig, "funktionsbegriff": funktionsbegriff, "eigenschaften-funktionen": eigenschaften, "lineare-funktionen": lineare_funktionen, "funktionsgleichungen": funktionsgleichungen, "binomische-formeln": binom, "bruchterme": bruchterme, "ausmultiplizieren-faktorisieren": ausmult, "terme-vereinfachen": terme,
     "gleichungen": gleichungen, "ungleichungen": ungleichungen,
     "druck": druck, "hydraulik": hydraulik, "schweredruck": schweredruck, "auftrieb": auftrieb, "luftdruck": luftdruck,
 }

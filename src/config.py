@@ -167,6 +167,14 @@ TOPICS = [
         "fonts": "math", "first_view": "verstehen", "factsheet": "Factsheet als PDF ↓",
     },
     {
+        "slug": "funktionsgleichungen", "grade": "8", "subject": "mathematik", "chapter": "III", "order": 4, "kit": True, "accent": ACCENT_MATH8,
+        "title": "Funktionsgleichungen bestimmen", "short": "Funktionsgleichungen", "tag": "Funktionen",
+        "card": "Gleichung aus Steigung und Punkt, aus zwei Punkten, aus dem Graphen und aus Texten, Punkte setzen mit Rechenweg, Trainer, Quiz",
+        "description": "Interaktive Lernhilfe zum Bestimmen von Funktionsgleichungen linearer Funktionen (Mathematik, Klasse 8)",
+        "intro": "Aus zwei Punkten, einer Steigung oder einem Text die Gleichung einer Geraden aufstellen, Schritt für Schritt mit Probe.",
+        "fonts": "math", "first_view": "verstehen", "factsheet": "Factsheet als PDF ↓",
+    },
+    {
         "slug": "binomische-formeln", "grade": "8", "subject": "mathematik", "chapter": "I", "order": 4,
         "title": "Binomische Formeln", "short": "Binomische Formeln", "tag": "Terme",
         "card": "Die drei Formeln, Erklärung mit Flächen, Trainer mit Lückenaufgaben, Kopfrechen-Trick, Quiz",

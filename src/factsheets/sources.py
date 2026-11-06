@@ -1558,6 +1558,61 @@ SHEETS["lineare-funktionen"] = dict(title="Lineare Funktionen", eyebrow="Mathema
     </div>
   </div>''')
 
+SHEETS["funktionsgleichungen"] = dict(title="Funktionsgleichungen bestimmen", eyebrow="Mathematik · Klasse 8 · Funktionen", accent=M8, body=f'''
+  <div class="kern">Ziel: die Gleichung {m("<i>f</i>(<i>x</i>) = <i>m</i><i>x</i> + <i>b</i>")} einer Geraden. Man bestimmt erst die <strong>Steigung</strong> <i>m</i>, dann durch Einsetzen eines Punktes den <strong><i>y</i>-Achsenabschnitt</strong> <i>b</i>.</div>
+  <div class="cols">
+    <div class="box">
+      <h2>Steigung und Punkt</h2>
+      <p>{m("<i>m</i> = 2")}, {m("P(3 | 5)")}:</p>
+      <ol>
+        <li>{m("5 = 2 · 3 + <i>b</i>")}</li>
+        <li>{m("<i>b</i> = −1")}</li>
+        <li>{m("<i>f</i>(<i>x</i>) = 2<i>x</i> − 1")}</li>
+      </ol>
+    </div>
+    <div class="box">
+      <h2>Zwei Punkte</h2>
+      <p>{m("P(1 | 2)")}, {m("Q(4 | 8)")}:</p>
+      <ol>
+        <li>{m("<i>m</i> = (8 − 2) : (4 − 1) = 2")}</li>
+        <li>P einsetzen: {m("2 = 2 · 1 + <i>b</i> ⇒ <i>b</i> = 0")}</li>
+        <li>{m("<i>f</i>(<i>x</i>) = 2<i>x</i>")}; Probe mit Q: {m("2 · 4 = 8")} ✓</li>
+      </ol>
+    </div>
+    <div class="box">
+      <h2>Am Graphen ablesen</h2>
+      <ul>
+        <li><i>b</i>: Schnittpunkt mit der <i>y</i>-Achse.</li>
+        <li><i>m</i>: Steigungsdreieck zwischen zwei Gitterpunkten, {m("Höhe : Breite")}.</li>
+        <li>3 nach rechts, 2 nach oben: {m("<i>m</i> = 2/3")}.</li>
+      </ul>
+    </div>
+    <div class="box">
+      <h2>Aus einem Text</h2>
+      <ul>
+        <li>Startwert / Grundgebühr → <strong><i>b</i></strong></li>
+        <li>Änderung pro Einheit → <strong><i>m</i></strong> (Abnahme: negativ)</li>
+        <li>Taxi 3,50 € + 2 € pro km: {m("<i>f</i>(<i>x</i>) = 2<i>x</i> + 3,5")}</li>
+        <li>Kerze 20 cm, 2 cm pro h: {m("<i>h</i>(<i>t</i>) = 20 − 2<i>t</i>")}</li>
+      </ul>
+    </div>
+    <div class="box">
+      <h2>Im Alltag</h2>
+      <ul>
+        <li>Strom: 1 000 kWh 420 €, 2 000 kWh 720 € ⇒ {m("<i>K</i>(<i>x</i>) = 0,3<i>x</i> + 120")}</li>
+        <li>Celsius → Fahrenheit: {m("<i>F</i> = 1,8<i>C</i> + 32")}</li>
+      </ul>
+    </div>
+    <div class="box warn">
+      <h2>Typische Fehler</h2>
+      <ul>
+        <li>In der Steigungsformel die Punkte oben und unten in verschiedener Reihenfolge.</li>
+        <li><i>x</i> und <i>y</i> beim Einsetzen vertauscht.</li>
+        <li>Probe mit dem zweiten Punkt vergessen.</li>
+      </ul>
+    </div>
+  </div>''')
+
 OUT = sys.argv[1] if len(sys.argv) > 1 else os.path.join(os.path.dirname(__file__), "_build")
 os.makedirs(OUT, exist_ok=True)
 shutil.copyfile(os.path.join(os.path.dirname(os.path.abspath(__file__)), "factsheet.css"), os.path.join(OUT, "factsheet.css"))

@@ -1679,6 +1679,56 @@ def lineare_funktionen():
     return L
 
 
+
+def funktionsgleichungen():
+    r = random.Random(99)
+    L = {1: [], 2: [], 3: []}
+    for i in range(160):
+        t = i % 2
+        mm = r.choice([-4, -3, -2, -1, 1, 2, 3, 4])
+        b = r.randint(-7, 7)
+        x = r.randint(-4, 4)
+        y = mm * x + b
+        if t == 0:
+            L[1].append((f"Steigung {m(f'<i>m</i> = {_n(mm)}')}, Punkt P({_n(x)} | {_n(y)}). Gleichung?", m(f"{_n(y)} = {_n(mm)} · {_sg(x)} + <i>b</i> ⇒ <b><i>f</i>(<i>x</i>) = {_lin_html(mm, b)}</b>")))
+        else:
+            L[1].append((f"Gerade mit {m(f'<i>m</i> = {_n(mm)}')}, die die <i>y</i>-Achse bei {_n(b)} schneidet. Gleichung?", m(f"<b><i>f</i>(<i>x</i>) = {_lin_html(mm, b)}</b>")))
+    for i in range(160):
+        mm = r.choice([Fr(-3), Fr(-2), Fr(-1), Fr(1), Fr(2), Fr(3), Fr(1, 2), Fr(-1, 2), Fr(2, 3), Fr(3, 2)])
+        x1 = r.randint(-4, 2)
+        dx = r.choice([1, 2, 3, 4]) * mm.denominator
+        b = Fr(r.randint(-6, 6))
+        x2 = x1 + dx
+        y1, y2 = mm * x1 + b, mm * x2 + b
+        if y1.denominator != 1 or y2.denominator != 1:
+            continue
+        L[2].append((f"Gerade durch P({_n(x1)} | {_n(int(y1))}) und Q({_n(x2)} | {_n(int(y2))}). Gleichung?", m(f"<i>m</i> = {fnum(mm)}, <i>b</i> = {fnum(b)}: <b><i>f</i>(<i>x</i>) = {_lin_html(mm, b)}</b>")))
+    for i in range(80):
+        t = i % 4
+        if t == 0:
+            a1, k1 = r.choice([(1000, 420), (1500, 570), (2000, 720)])
+            a2 = a1 + 1000
+            k2 = k1 + 300
+            mm = Fr(k2 - k1, a2 - a1)
+            b = k1 - mm * a1
+            L[3].append((f"Stromkosten: {a1} kWh kosten {k1} €, {a2} kWh kosten {k2} €. Bestimme die Funktionsgleichung. Was bedeuten <i>m</i> und <i>b</i>?", f"{m(f'<i>K</i>(<i>x</i>) = {de(float(mm), 2)}<i>x</i> + {de(float(b), 0)}')}: <b>{de(float(mm), 2)} € pro kWh</b>, <b>{de(float(b), 0)} € Grundgebühr</b>"))
+        elif t == 1:
+            h1, v1, h2 = r.choice([(2, 160, 5), (1, 180, 4), (3, 140, 6)])
+            rate = r.choice([10, 20])
+            v2 = v1 - rate * (h2 - h1)
+            start = v1 + rate * h1
+            L[3].append((f"Ein Becken wird geleert: nach {h1} h sind {v1} m³ darin, nach {h2} h noch {v2} m³. Wie viel war am Anfang drin, wann ist es leer?", f"{m(f'<i>V</i>(<i>t</i>) = {start} − {rate}<i>t</i>')}: Anfang <b>{start} m³</b>, leer nach <b>{de(start / rate, 1)} h</b>"))
+        elif t == 2:
+            L[3].append(("Wasser gefriert bei 0 °C = 32 °F und siedet bei 100 °C = 212 °F. Bestimme die Gleichung <i>F</i>(<i>C</i>) und rechne 25 °C um.", f"{m('<i>F</i> = 1,8<i>C</i> + 32')}; 25 °C = <b>77 °F</b>"))
+            assert Fr(212 - 32, 100) == Fr(9, 5) and Fr(9, 5) * 25 + 32 == 77
+        else:
+            mm = r.choice([2, 3, -2, -1])
+            x0, y0 = r.randint(-3, 3), r.randint(-4, 4)
+            b = y0 - mm * x0
+            L[3].append((f"Prüfe, ob die Punkte A({_n(x0)} | {_n(y0)}), B({_n(x0 + 1)} | {_n(y0 + mm)}) und C({_n(x0 + 3)} | {_n(y0 + 3 * mm + 1)}) auf einer Geraden liegen.", f"Gerade durch A, B: {m(f'<i>y</i> = {_lin_html(mm, b)}')}; C ergibt {_n(y0 + 3 * mm)} ≠ {_n(y0 + 3 * mm + 1)}: <b>nein</b>"))
+    return L
+
+
 M8, PH = "#1f6e8c", "#b4531f"
 TOPICS = {
     "osmose": ({"title": "Osmose", "eyebrow": "Biologie · Klasse 11", "accent": "#0d6f74", "cols": [1, 1, 1], "sol_cols": [1, 1, 1]}, osmose),
@@ -1696,6 +1746,7 @@ TOPICS = {
     "funktionsbegriff": ({"title": "Funktionsbegriff und Darstellungen", "eyebrow": "Mathematik · Klasse 8", "accent": M8, "cols": [3, 2, 1], "sol_cols": [3, 2, 1]}, funktionsbegriff),
     "eigenschaften-funktionen": ({"title": "Eigenschaften von Funktionen", "eyebrow": "Mathematik · Klasse 8", "accent": M8, "cols": [2, 2, 1], "sol_cols": [3, 2, 1]}, eigenschaften),
     "lineare-funktionen": ({"title": "Lineare Funktionen", "eyebrow": "Mathematik · Klasse 8", "accent": M8, "cols": [2, 2, 1], "sol_cols": [2, 3, 1]}, lineare_funktionen),
+    "funktionsgleichungen": ({"title": "Funktionsgleichungen bestimmen", "eyebrow": "Mathematik · Klasse 8", "accent": M8, "cols": [2, 2, 1], "sol_cols": [2, 3, 1]}, funktionsgleichungen),
     "binomische-formeln": ({"title": "Binomische Formeln", "eyebrow": "Mathematik · Klasse 8", "accent": M8, "cols": 2, "sol_cols": 2}, binomische_formeln),
     "bruchterme": ({"title": "Bruchterme", "eyebrow": "Mathematik · Klasse 8", "accent": "#2d6a4f", "cols": 3, "sol_cols": 3}, bruchterme),
     "ausmultiplizieren-faktorisieren": ({"title": "Ausmultiplizieren und Faktorisieren", "eyebrow": "Mathematik · Klasse 8", "accent": M8, "cols": 3, "sol_cols": 3}, ausmultiplizieren),
