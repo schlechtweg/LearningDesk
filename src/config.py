@@ -25,6 +25,7 @@ SUBJECTS = [
     {"id": "biologie", "title": "Biologie", "color": "--bio"},
     {"id": "mathematik", "title": "Mathematik", "color": "--math"},
     {"id": "physik", "title": "Physik", "color": "--phys"},
+    {"id": "chemie", "title": "Chemie", "color": "--chem"},
 ]
 
 # Accent colours of LearnKit apps: (light, dark, soft background)
@@ -33,6 +34,7 @@ ACCENT_PHYS = ("#b4531f", "#f0995a", "rgba(180, 83, 31, 0.12)")
 ACCENT_SYM = ("#2f7d5b", "#6cc79a", "rgba(47, 125, 91, 0.12)")
 ACCENT_ENDO = ("#7a3f8f", "#c995de", "rgba(122, 63, 143, 0.12)")
 ACCENT_BIO8 = ("#4a7a1e", "#9ccc65", "rgba(74, 122, 30, 0.12)")
+ACCENT_CHEM = ("#6a3fa0", "#b79be0", "rgba(106, 63, 160, 0.12)")
 
 # Chapters of a subject in a grade (book order). Topics name their chapter with "chapter".
 CHAPTERS = {
@@ -237,6 +239,14 @@ TOPICS = [
         "description": "Interaktive Lernhilfe zu den Strahlensätzen (Mathematik, Klasse 8)",
         "intro": "Mit parallelen Geraden unerreichbare Längen berechnen: die beiden Strahlensätze in V- und X-Figur.",
         "fonts": "math", "first_view": "verstehen", "factsheet": "Factsheet als PDF ↓",
+    },
+    {
+        "slug": "atombau", "grade": "11", "subject": "chemie", "kit": True, "accent": ACCENT_CHEM, "prelude": ["chemdata.js"],
+        "title": "Atombau und Schalenmodell", "short": "Atombau", "tag": "Atome",
+        "card": "Protonen, Neutronen, Elektronen, Isotope und Ionen, Atom-Baukasten, Schalenmodell nach Bohr, Lewis-Schreibweise, Trainer, Quiz",
+        "description": "Interaktive Lernhilfe zum Atombau und zum Schalenmodell nach Bohr (Chemie, Klasse 11)",
+        "intro": "Woraus Atome bestehen, wie sich Isotope und Ionen unterscheiden und wie die Elektronen nach Bohr auf Schalen verteilt sind.",
+        "fonts": "base", "first_view": "verstehen", "factsheet": "Factsheet als PDF ↓",
     },
     {
         "slug": "binomische-formeln", "grade": "8", "subject": "mathematik", "chapter": "I", "order": 4,

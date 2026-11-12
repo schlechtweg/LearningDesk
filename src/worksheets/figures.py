@@ -818,10 +818,32 @@ def strahlensaetze():
     return {"title": "Strahlensatzfigur", "stars": "★★☆", "task": (svg("0 0 270 200", base), task), "sol": (svg("0 0 270 200", sol), soltxt)}
 
 
+def atombau():
+    # Bohr model of aluminium: 13 p, 14 n, shells 2, 8, 3
+    import math as _m
+    cx, cy, sh = 150, 115, [2, 8, 3]
+    d = ""
+    for i, n in enumerate(sh):
+        rr = 34 + 30 * i
+        d += f'<circle cx="{cx}" cy="{cy}" r="{rr}" fill="none" stroke="#9aa4ad" stroke-width="1.4"/>'
+        for k in range(n):
+            a = -_m.pi / 2 + 2 * _m.pi * k / n + i * 0.4
+            d += f'<circle cx="{cx + rr * _m.cos(a):.1f}" cy="{cy + rr * _m.sin(a):.1f}" r="5" fill="{"#e0a400" if i == 2 else "#6a3fa0"}" stroke="#1b2228" stroke-width="0.8"/>'
+    d += f'<circle cx="{cx}" cy="{cy}" r="20" fill="#ece3f6" stroke="#6a3fa0" stroke-width="1.6"/>' + text(cx, cy - 1, "13 p⁺", "ft small") + text(cx, cy + 10, "14 n", "ft small")
+    # items: (n, target x, target y, number x, number y)
+    a3 = -_m.pi / 2 + 0.8
+    items = [(1, cx + 14, cy + 14, 40, 205), (2, cx + 34, cy, 280, 30), (3, cx - 64, cy, 18, 115), (4, cx + 94 * _m.cos(a3), cy + 94 * _m.sin(a3), 280, 100), (5, cx, cy - 94, 150, 6)]
+    names = ["Atomkern (Protonen + Neutronen)", "K-Schale (2 e⁻)", "L-Schale (8 e⁻)", "Valenzelektron", "M-Schale = Valenzschale"]
+    return labeling("Schalenmodell beschriften", "★☆☆", "0 -6 300 222", d, items, names,
+                    "Das Bild zeigt ein Atom im Schalenmodell nach Bohr. Benenne die nummerierten Teile.",
+                    extra_task='<p class="q">Welches Element ist es? Massenzahl? Typisches Ion? <span class="blank wide"></span></p>',
+                    extra_sol='<p class="q"><b>Aluminium</b>, Z = 13, A = 13 + 14 = <b>27</b>. Es gibt die 3 Valenzelektronen ab: <b>Al³⁺</b> (2, 8 wie Neon).</p>', cols=1)
+
+
 FIGS = {
     "osmose": osmose, "natrium-kalium-pumpe": nak, "symport-antiport": symport, "endocytose-exocytose": endo,
     "ableiten": ableiten, "nervensystem": nerven, "auge": auge,
-    "termstruktur": termstruktur, "zufallsexperimente": zufallsexperimente, "laplace": laplace, "baumdiagramme": baumdiagramme, "unabhaengige-ereignisse": unabhaengig, "funktionsbegriff": funktionsbegriff, "eigenschaften-funktionen": eigenschaften, "lineare-funktionen": lineare_funktionen, "funktionsgleichungen": funktionsgleichungen, "lgs-grafisch": lgs_grafisch, "gleichsetzungsverfahren": gleichsetzungsverfahren, "additionsverfahren": additionsverfahren, "lgs-anwendungen": lgs_anwendungen, "zentrische-streckung": zentrische_streckung, "aehnliche-dreiecke": aehnliche_dreiecke, "flaeche-volumen-aehnlich": flaeche_volumen_aehnlich, "strahlensaetze": strahlensaetze, "binomische-formeln": binom, "bruchterme": bruchterme, "ausmultiplizieren-faktorisieren": ausmult, "terme-vereinfachen": terme,
+    "termstruktur": termstruktur, "zufallsexperimente": zufallsexperimente, "laplace": laplace, "baumdiagramme": baumdiagramme, "unabhaengige-ereignisse": unabhaengig, "funktionsbegriff": funktionsbegriff, "eigenschaften-funktionen": eigenschaften, "lineare-funktionen": lineare_funktionen, "funktionsgleichungen": funktionsgleichungen, "lgs-grafisch": lgs_grafisch, "gleichsetzungsverfahren": gleichsetzungsverfahren, "additionsverfahren": additionsverfahren, "lgs-anwendungen": lgs_anwendungen, "zentrische-streckung": zentrische_streckung, "aehnliche-dreiecke": aehnliche_dreiecke, "flaeche-volumen-aehnlich": flaeche_volumen_aehnlich, "strahlensaetze": strahlensaetze, "atombau": atombau, "binomische-formeln": binom, "bruchterme": bruchterme, "ausmultiplizieren-faktorisieren": ausmult, "terme-vereinfachen": terme,
     "gleichungen": gleichungen, "ungleichungen": ungleichungen,
     "druck": druck, "hydraulik": hydraulik, "schweredruck": schweredruck, "auftrieb": auftrieb, "luftdruck": luftdruck,
 }

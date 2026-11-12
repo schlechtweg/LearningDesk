@@ -1996,6 +1996,57 @@ SHEETS["strahlensaetze"] = dict(title="Strahlensätze", eyebrow="Mathematik · K
     </div>
   </div>''')
 
+CH11 = "#6a3fa0"
+SHEETS["atombau"] = dict(title="Atombau und Schalenmodell", eyebrow="Chemie · Klasse 11 · Atome", accent=CH11, body=f'''
+  <div class="kern">Atome bestehen aus einem winzigen <strong>Kern</strong> (Protonen p⁺ und Neutronen n) und einer <strong>Hülle</strong> aus Elektronen e⁻. Die <strong>Protonenzahl</strong> (Ordnungszahl Z) legt das Element fest. Nach <strong>Bohr</strong> befinden sich die Elektronen auf Schalen mit bestimmter Energie.</div>
+  <div class="cols">
+    <div class="box">
+      <h2>Teilchen und Zahlen</h2>
+      <table>
+        <tr><th>Teilchen</th><th>Ladung</th><th>Masse</th></tr>
+        <tr><td>Proton (Kern)</td><td>+1</td><td>≈ 1 u</td></tr>
+        <tr><td>Neutron (Kern)</td><td>0</td><td>≈ 1 u</td></tr>
+        <tr><td>Elektron (Hülle)</td><td>−1</td><td>≈ 1/1836 u</td></tr>
+      </table>
+      <p>Massenzahl A = p⁺ + n, Neutronen = A − Z. Beispiel <sup>35</sup><sub>17</sub>Cl: 17 p⁺, 18 n, 17 e⁻.</p>
+    </div>
+    <div class="box">
+      <h2>Isotope und Ionen</h2>
+      <ul>
+        <li><strong>Isotope</strong>: gleiche Protonen-, andere Neutronenzahl (¹²C, ¹⁴C).</li>
+        <li><strong>Kation</strong>: Elektronen abgegeben, positiv (Na⁺, Mg²⁺).</li>
+        <li><strong>Anion</strong>: Elektronen aufgenommen, negativ (Cl⁻, O²⁻).</li>
+        <li>Mittlere Atommasse: gewichteter Mittelwert der Isotope.</li>
+      </ul>
+    </div>
+    <div class="box full">
+      <h2>Schalenmodell nach Bohr</h2>
+      <table>
+        <tr><th>Schale</th><th>K (n = 1)</th><th>L (n = 2)</th><th>M (n = 3)</th><th>N (n = 4)</th></tr>
+        <tr><td>maximal 2n²</td><td>2</td><td>8</td><td>18</td><td>32</td></tr>
+        <tr><td>Beispiel Na (Z = 11)</td><td>2</td><td>8</td><td>1</td><td>–</td></tr>
+        <tr><td>Beispiel Ca (Z = 20)</td><td>2</td><td>8</td><td>8</td><td>2</td></tr>
+      </table>
+      <p>Valenzelektronen = Elektronen der äußersten Schale = Hauptgruppennummer. Acht Valenzelektronen (He: zwei) = <strong>Edelgaskonfiguration</strong>, besonders stabil. Lewis-Schreibweise: Valenzelektronen als Punkte, Paare als Striche.</p>
+    </div>
+    <div class="box">
+      <h2>Im Alltag</h2>
+      <ul>
+        <li>Flammenfärbung und Feuerwerk.</li>
+        <li>C-14-Altersbestimmung.</li>
+        <li>Radioaktives Iod in der Medizin.</li>
+      </ul>
+    </div>
+    <div class="box warn">
+      <h2>Typische Fehler</h2>
+      <ul>
+        <li>Massenzahl mit Neutronenzahl verwechselt.</li>
+        <li>Bei Ionen die Protonenzahl geändert.</li>
+        <li>Bohr-Bahnen als echte Kreisbahnen verstanden.</li>
+      </ul>
+    </div>
+  </div>''')
+
 OUT = sys.argv[1] if len(sys.argv) > 1 else os.path.join(os.path.dirname(__file__), "_build")
 os.makedirs(OUT, exist_ok=True)
 shutil.copyfile(os.path.join(os.path.dirname(os.path.abspath(__file__)), "factsheet.css"), os.path.join(OUT, "factsheet.css"))

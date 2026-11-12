@@ -105,6 +105,8 @@ def topic_crumbs(t, base):
 def render_app(t, base, sh):
     app = {name: read(f"apps/{t['slug']}/{file}") for name, file in
            [("css", "style.css"), ("body", "body.html"), ("js", "script.js")]}
+    # shared data files (e.g. element data) are inlined in front of the app script
+    app["js"] = "".join(read(f"shared/{f}") + "\n" for f in t.get("prelude", [])) + app["js"]
     t = {"scripts": [], "kit": False, "worksheet": t["slug"] in worksheet_tasks.TOPICS, **t}
     return env.get_template("app.html").render(
         t=t, app=app, shared=sh, base=base, fonts=config.FONTS[t["fonts"]], crumbs=topic_crumbs(t, base))

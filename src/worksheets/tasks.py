@@ -2442,6 +2442,163 @@ def strahlensaetze():
     return L
 
 
+# ================================================================ grade 11 chemistry
+def _chem():
+    """Element data shared with the apps: parsed from src/shared/chemdata.js."""
+    import json
+    import os
+    src = open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "shared", "chemdata.js"), encoding="utf-8").read()
+    raw = json.loads("[" + src.split("const raw = [", 1)[1].split("];", 1)[0] + "]")
+    keys = ["z", "sym", "name", "group", "period", "A", "mass", "en", "r", "ie", "cls"]
+    els = [dict(zip(keys, row)) for row in raw]
+
+    def shells(z):
+        if z <= 2: return [z]
+        if z <= 10: return [2, z - 2]
+        if z <= 18: return [2, 8, z - 10]
+        if z <= 20: return [2, 8, 8, z - 18]
+        if z <= 36: return [2, 8, 18, z - 28]
+        if z <= 38: return [2, 8, 18, 8, z - 36]
+        return [2, 8, 18, 18, z - 46]
+    for e in els:
+        e["shells"] = shells(e["z"])
+    return els, shells
+
+
+CHEM_ELS, CHEM_SHELLS = _chem()
+CH = {e["sym"]: e for e in CHEM_ELS}
+_SUP = str.maketrans("0123456789+-", "⁰¹²³⁴⁵⁶⁷⁸⁹⁺⁻")
+_SUB = str.maketrans("0123456789", "₀₁₂₃₄₅₆₇₈₉")
+
+
+def chg(q):
+    """Ion charge as superscript: 2 -> ²⁺, -1 -> ⁻."""
+    return "" if q == 0 else (("" if abs(q) == 1 else str(abs(q))) + ("+" if q > 0 else "-")).translate(_SUP)
+
+
+def ion_q(e):
+    if e["cls"] == "e" or e["group"] == 4:
+        return None
+    return e["group"] if e["group"] <= 3 else e["group"] - 8
+
+
+def nuc(e, A, q=0):
+    return f'<sup>{A}</sup><sub>{e["z"]}</sub>{e["sym"]}{chg(q)}'
+
+
+def atombau():
+    r = random.Random(201)
+    L = {1: [], 2: [], 3: []}
+    seen = set()
+    f20 = [e for e in CHEM_ELS if e["z"] <= 20]
+    ions = [e for e in f20 if ion_q(e) is not None and e["z"] > 2]
+    noble = {2: "Helium", 10: "Neon", 18: "Argon", 36: "Krypton"}
+
+    def add(lvl, q, a):
+        if q not in seen and len(L[lvl]) < 120:
+            seen.add(q)
+            L[lvl].append((q, a))
+    for i in range(1500):
+        t = i % 5
+        e = r.choice(f20)
+        if t == 0:
+            A = e["A"] + r.choice([0, 0, 1, 2])
+            add(1, f"Wie viele Protonen, Neutronen und Elektronen hat {nuc(e, A)}?", f"<b>{e['z']} p⁺, {A - e['z']} n, {e['z']} e⁻</b>")
+        elif t == 1:
+            add(1, f"Schalenbesetzung von {e['name']} (Z = {e['z']})?", f"<b>{', '.join(map(str, e['shells']))}</b>")
+        elif t == 2:
+            if e["z"] == 2:
+                continue
+            add(1, f"Valenzelektronen von {e['name']}?", f"{e['group']}. Hauptgruppe: <b>{e['group']}</b>")
+        elif t == 3:
+            e = r.choice(ions)
+            q = ion_q(e)
+            add(1, f"Ist {e['sym']}{chg(q)} ein Kation oder ein Anion?", f"<b>{'Kation' if q > 0 else 'Anion'}</b> ({'positiv' if q > 0 else 'negativ'})")
+        else:
+            A = e["A"]
+            add(1, f"Massenzahl eines {e['name']}-Atoms mit {A - e['z']} Neutronen?", f"{e['z']} + {A - e['z']} = <b>{A}</b>")
+    for i in range(1500):
+        t = i % 5
+        if t == 0:
+            e = r.choice(ions)
+            q = ion_q(e)
+            ne = e["z"] - q
+            add(2, f"Elektronenzahl und Schalenbesetzung von {e['sym']}{chg(q)}?", f"{e['z']} {'−' if q > 0 else '+'} {abs(q)} = <b>{ne} e⁻</b>: <b>{', '.join(map(str, CHEM_SHELLS(ne)))}</b> wie {noble.get(ne, '')}")
+        elif t == 1:
+            e = r.choice([x for x in f20 if x["z"] > 2])
+            add(2, f"Welches Element hat die Schalenbesetzung {', '.join(map(str, e['shells']))}?", f"Elektronen: {' + '.join(map(str, e['shells']))} = {e['z']} = Z: <b>{e['name']} ({e['sym']})</b>, {e['period']}. Periode, {e['group']}. Hauptgruppe")
+        elif t == 2:
+            e = r.choice(f20)
+            dn = r.choice([0, 1, 2])
+            q = r.choice([0, 0, ion_q(e) or 0])
+            A = e["A"] + dn
+            add(2, f"Ein Teilchen hat {e['z']} Protonen, {A - e['z']} Neutronen und {e['z'] - q} Elektronen. Schreibe es in Symbolschreibweise.", f"Z = {e['z']} ⇒ {e['name']}, A = {e['z']} + {A - e['z']} = {A}, Ladung {e['z']} − {e['z'] - q} = {q}: <b>{nuc(e, A, q)}</b>")
+        elif t == 3:
+            a, b = r.sample(f20, 2)
+            same = r.random() < 0.5
+            if same:
+                b = a
+            Aa, Ab = a["A"], b["A"] + (r.choice([1, 2]) if same else 0)
+            if not same and Aa == Ab:
+                ans = "keine Isotope: gleiche Massenzahl, aber verschiedene Elemente"
+            else:
+                ans = "Isotope: gleiche Protonenzahl, verschiedene Neutronenzahl" if same else "keine Isotope: verschiedene Protonenzahlen"
+            add(2, f"Sind {nuc(a, Aa)} und {nuc(b, Ab)} Isotope? Begründe.", f"<b>{ans}</b>")
+        else:
+            e = r.choice(ions)
+            q = ion_q(e)
+            eq = f"{e['sym']} → {e['sym']}{chg(q)} + {'' if q == 1 else q} e⁻" if q > 0 else f"{e['sym']} + {'' if q == -1 else -q} e⁻ → {e['sym']}{chg(q)}"
+            add(2, f"Stelle die Gleichung für die Bildung des Ions von {e['name']} auf.", f"<b>{eq}</b>: {e['name']} {'gibt' if q > 0 else 'nimmt'} {abs(q)} Elektron{'en' if abs(q) > 1 else ''} {'ab' if q > 0 else 'auf'} und erreicht Edelgaskonfiguration ({', '.join(map(str, CHEM_SHELLS(e['z'] - q)))}).")
+    iso = [("Chlor", "Cl", [(35, 75.78), (37, 24.22)]), ("Bor", "B", [(10, 19.9), (11, 80.1)]), ("Lithium", "Li", [(6, 7.59), (7, 92.41)]), ("Kupfer", "Cu", [(63, 69.15), (65, 30.85)]),
+           ("Brom", "Br", [(79, 50.69), (81, 49.31)]), ("Gallium", "Ga", [(69, 60.11), (71, 39.89)]), ("Magnesium", "Mg", [(24, 78.99), (25, 10.00), (26, 11.01)]), ("Silber", "Ag", [(107, 51.84), (109, 48.16)])]
+    de = lambda v: f"{v:g}".replace(".", ",")
+    for name, sym, parts in iso:
+        M = sum(A * p for A, p in parts) / 100
+        add(3, f"{name} besteht aus {' und '.join(f'{de(p)} % <sup>{A}</sup>{sym}' for A, p in parts)}. Berechne die mittlere Atommasse (Isotopenmasse ≈ Massenzahl in u).",
+            f"Anteile als Dezimalzahl gewichten: {' + '.join(f'{A} · ' + f'{p / 100:.4f}'.replace('.', ',') for A, p in parts)} ≈ <b>{M:.2f} u</b>. Der Wert liegt nahe am häufigsten Isotop <sup>{max(parts, key=lambda t: t[1])[0]}</sup>{sym}.".replace(".", ",").replace(", Der", ". Der"))
+    for i in range(6):
+        A1 = r.choice([10, 20, 30, 35, 50, 63, 79])
+        A2 = A1 + 2
+        x = r.choice([20, 25, 40, 60, 75, 80])
+        M = (A1 * x + A2 * (100 - x)) / 100
+        add(3, f"Ein Element hat zwei Isotope mit den Massenzahlen {A1} und {A2}. Die mittlere Atommasse beträgt {de(M)} u. Berechne die Anteile.",
+            f"<i>x</i> = Anteil von <sup>{A1}</sup>X. {A1}·<i>x</i> + {A2}·(1 − <i>x</i>) = {de(M)} ⇒ {A2} − 2<i>x</i> = {de(M)} ⇒ <i>x</i> = {de(x / 100)}: <b>{x} % <sup>{A1}</sup>X, {100 - x} % <sup>{A2}</sup>X</b>")
+
+    # identify an ion from electron and neutron numbers
+    for e in r.sample(ions, 8):
+        q = ion_q(e)
+        add(3, f"Ein Ion mit der Ladung {chg(q) or '0'} hat {e['z'] - q} Elektronen und {e['A'] - e['z']} Neutronen. Um welches Teilchen handelt es sich?", f"Protonen = {e['z'] - q} {'+' if q > 0 else '−'} {abs(q)} = {e['z']} ⇒ {e['name']}; A = {e['z']} + {e['A'] - e['z']} = {e['A']}: <b>{nuc(e, e['A'], q)}</b>")
+    # mass of single atoms
+    for sym in ["C", "O", "Fe" if "Fe" in CH else "Na", "Ca", "Al"]:
+        e = CH[sym]
+        mk = e["A"] * 1.66054e-27
+        n1g = 1e-3 / mk
+        add(3, f"Berechne die Masse eines <sup>{e['A']}</sup>{sym}-Atoms in kg (1 u ≈ 1,66 · 10⁻²⁷ kg) und wie viele Atome 1 g {e['name']} enthält.",
+            f"<i>m</i> ≈ {e['A']} · 1,66 · 10⁻²⁷ kg ≈ <b>{mk / 10 ** -26:.2f} · 10⁻²⁶ kg</b>".replace(".", ",") + f"; 1 g : <i>m</i> ≈ <b>{n1g / 1e22:.1f} · 10²² Atome</b>".replace(".", ","))
+    fixed = [
+        ("Warum reagieren Edelgase kaum? Erkläre mit dem Schalenmodell.", "Ihre Valenzschale ist voll besetzt (8, bei He 2 Elektronen): <b>Edelgaskonfiguration</b> ist energetisch besonders günstig, Abgabe oder Aufnahme von Elektronen lohnt sich nicht."),
+        ("Erkläre mit dem Bohr-Modell, warum Natriumsalze eine Flamme gelb färben.", "Die Wärme hebt Elektronen auf eine höhere Schale (<b>angeregter Zustand</b>). Beim Zurückfallen wird die Energiedifferenz als Licht einer bestimmten Farbe frei (Na: gelb, ≈ 589 nm)."),
+        ("Nenne zwei Grenzen des Bohr-Modells.", "<b>Elektronen bewegen sich nicht auf festen Kreisbahnen</b> (nur Aufenthaltswahrscheinlichkeiten, Orbitalmodell); Spektren von Atomen mit mehreren Elektronen und Bindungswinkel lassen sich nicht erklären."),
+        ("Beschreibe Rutherfords Streuversuch und seine Folgerung.", "α-Teilchen auf Goldfolie: <b>fast alle gehen durch</b>, wenige werden stark abgelenkt ⇒ Atom ist fast leer, Masse und positive Ladung sitzen in einem <b>winzigen Kern</b>."),
+        ("Warum bilden Natrium und Chlor die Ionen Na⁺ und Cl⁻ und nicht Na⁷⁻ und Cl⁷⁺?", "Na gibt <b>1</b> Valenzelektron ab (2,8 wie Ne), Cl nimmt <b>1</b> Elektron auf (2,8,8 wie Ar). Beides erreicht Edelgaskonfiguration mit dem <b>geringsten Aufwand</b>."),
+        ("Das Isotop ¹⁴C entsteht in der Atmosphäre aus ¹⁴N. Vergleiche die Teilchenzahlen beider Kerne.", "¹⁴N: 7 p⁺, 7 n; ¹⁴C: 6 p⁺, 8 n. <b>Gleiche Massenzahl</b>, aber ein Proton wurde zu einem Neutron: anderes Element."),
+        ("Warum ist ein Atom nach außen elektrisch neutral, obwohl es geladene Teilchen enthält?", "Im Atom gilt <b>Protonenzahl = Elektronenzahl</b>; die Ladungen +1 und −1 heben sich auf."),
+        ("Erkläre, warum K⁺ und Cl⁻ gleich viele Elektronen haben, aber verschieden groß sind.", "Beide haben 18 e⁻ (2,8,8). K⁺ hat aber <b>19 Protonen</b>, Cl⁻ nur 17: Die höhere Kernladung zieht die Hülle stärker an, <b>K⁺ ist kleiner</b>."),
+        ("Ordne die isoelektronischen Teilchen O²⁻, F⁻, Na⁺, Mg²⁺ nach ihrer Größe. Begründe.", "Alle haben 10 e⁻ (2, 8). Mit steigender Protonenzahl (8, 9, 11, 12) wird die Hülle stärker angezogen: <b>O²⁻ > F⁻ > Na⁺ > Mg²⁺</b>."),
+        ("Warum steigt der Atomradius innerhalb einer Hauptgruppe von oben nach unten?", "Mit jeder Periode kommt <b>eine Schale hinzu</b>; die Valenzelektronen sind weiter vom Kern entfernt, die inneren Schalen schirmen die Kernladung ab."),
+        ("Welcher Anteil der Masse eines ¹²C-Atoms entfällt auf die Elektronen? (Elektron ≈ 1/1836 u)", "6 · 1/1836 u ≈ 0,0033 u; 0,0033 : 12 ≈ <b>0,03 %</b>. Fast die ganze Masse steckt im <b>Kern</b>."),
+        ("Ein Elektron springt einmal von der M- auf die L-Schale und einmal von der M- auf die K-Schale. Wann wird mehr Energie frei?", "Beim Sprung auf die <b>K-Schale</b>: Der Energieunterschied ist größer, das Licht energiereicher (kürzere Wellenlänge, z. B. UV statt sichtbar)."),
+        ("Warum steht Wasserstoff in der 1. Hauptgruppe, gehört aber nicht zu den Alkalimetallen?", "H hat <b>1 Valenzelektron</b> wie die Alkalimetalle, ist aber ein <b>Nichtmetall</b> (Gas, H₂-Moleküle) und kann auch ein Elektron aufnehmen (H⁻) oder Elektronenpaarbindungen bilden."),
+        ("Zeichne die Lewis-Schreibweise von N, O und Cl und gib die Zahl der Elektronenpaare und ungepaarten Elektronen an.", "N: 1 Paar, <b>3 ungepaarte</b>; O: 2 Paare, <b>2 ungepaarte</b>; Cl: 3 Paare, <b>1 ungepaartes</b> Elektron. Ungepaarte Elektronen können Bindungen eingehen."),
+        ("Die 1. Ionisierungsenergie von Natrium beträgt 496 kJ/mol, die 2. aber 4562 kJ/mol. Erkläre den Sprung.", "Das 1. Elektron kommt aus der fast leeren <b>M-Schale</b>. Danach hat Na⁺ Edelgaskonfiguration; das 2. Elektron muss aus der voll besetzten, kernnahen <b>L-Schale</b> entfernt werden."),
+        ("Warum haben die Isotope ³⁵Cl und ³⁷Cl die gleichen chemischen Eigenschaften?", "Chemische Eigenschaften hängen von der <b>Elektronenhülle</b> ab. Beide haben 17 Protonen und 17 Elektronen (2, 8, 7); sie unterscheiden sich nur in der Neutronenzahl, also in der Masse."),
+    ]
+    for q_, a_ in fixed:
+        add(3, q_, a_)
+    r.shuffle(L[3])
+    return L
+
+
 M8, PH = "#1f6e8c", "#b4531f"
 TOPICS = {
     "osmose": ({"title": "Osmose", "eyebrow": "Biologie · Klasse 11", "accent": "#0d6f74", "cols": [1, 1, 1], "sol_cols": [1, 1, 1]}, osmose),
@@ -2468,6 +2625,7 @@ TOPICS = {
     "aehnliche-dreiecke": ({"title": "Ähnliche Dreiecke", "eyebrow": "Mathematik · Klasse 8", "accent": M8, "cols": [2, 1, 1], "sol_cols": [2, 1, 1]}, aehnliche_dreiecke),
     "flaeche-volumen-aehnlich": ({"title": "Flächen und Volumen ähnlicher Figuren", "eyebrow": "Mathematik · Klasse 8", "accent": M8, "cols": [2, 1, 1], "sol_cols": [2, 1, 1]}, flaeche_volumen_aehnlich),
     "strahlensaetze": ({"title": "Strahlensätze", "eyebrow": "Mathematik · Klasse 8", "accent": M8, "cols": [2, 2, 1], "sol_cols": [2, 2, 1]}, strahlensaetze),
+    "atombau": ({"title": "Atombau und Schalenmodell", "eyebrow": "Chemie · Klasse 11", "accent": "#6a3fa0", "cols": [2, 2, 1], "sol_cols": [2, 2, 1]}, atombau),
     "binomische-formeln": ({"title": "Binomische Formeln", "eyebrow": "Mathematik · Klasse 8", "accent": M8, "cols": 2, "sol_cols": 2}, binomische_formeln),
     "bruchterme": ({"title": "Bruchterme", "eyebrow": "Mathematik · Klasse 8", "accent": "#2d6a4f", "cols": 3, "sol_cols": 3}, bruchterme),
     "ausmultiplizieren-faktorisieren": ({"title": "Ausmultiplizieren und Faktorisieren", "eyebrow": "Mathematik · Klasse 8", "accent": M8, "cols": 3, "sol_cols": 3}, ausmultiplizieren),

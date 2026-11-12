@@ -1,0 +1,27 @@
+.bohr { width: 100%; max-width: 300px; height: auto; display: block; margin: 0 auto; }
+.bohr .shell { fill: none; stroke: var(--line); stroke-width: 1.5; }
+.bohr .el { fill: var(--accent); }
+.bohr .el.val { fill: #e0a400; stroke: var(--ink); stroke-width: 0.8; }
+.bohr .core { fill: var(--accent-soft); stroke: var(--accent); stroke-width: 1.5; }
+.bohr .coret { font: 700 12px var(--font-mono); fill: var(--ink); text-anchor: middle; }
+.ptab { width: 100%; border-collapse: collapse; font-size: var(--step--1); }
+.ptab th, .ptab td { padding: 6px 8px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
+.ptab th { color: var(--muted); font-weight: 700; }
+.counter { display: grid; grid-template-columns: 1fr auto auto auto; gap: 8px; align-items: center; }
+.counter b { font-family: var(--font-mono); min-width: 2.2em; text-align: center; font-size: 1.1rem; }
+.counter button { width: 40px; height: 40px; padding: 0; font-size: 1.2rem; }
+.nuclide { font-family: var(--font-display); font-size: 2.6rem; font-weight: 800; line-height: 1; display: flex; align-items: center; gap: 4px; }
+.nuclide .nums { display: grid; font-size: 0.95rem; font-family: var(--font-mono); text-align: right; line-height: 1.25; }
+.nuclide .q { font-size: 1.1rem; align-self: flex-start; }
+.badge { display: inline-block; padding: 3px 10px; border-radius: 999px; background: var(--accent-soft); color: var(--ink); font-weight: 700; font-size: var(--step--1); }
+.elgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(52px, 1fr)); gap: 6px; }
+.elgrid button { padding: 6px 0; font-family: var(--font-mono); display: grid; line-height: 1.15; }
+.elgrid button small { font-size: 0.65rem; color: var(--muted); }
+.elgrid button[aria-pressed="true"] small { color: inherit; }
+.lewis { width: 120px; height: 120px; display: block; margin: 0 auto; }
+.lewis text { font: 800 34px var(--font-display); fill: var(--ink); text-anchor: middle; }
+.lewis .d { fill: #e0a400; stroke: var(--ink); stroke-width: 0.8; }
+.lewis .b { stroke: #e0a400; stroke-width: 4; stroke-linecap: round; }
+.shtab { width: 100%; border-collapse: collapse; font-family: var(--font-mono); font-size: var(--step--1); }
+.shtab th, .shtab td { padding: 5px 6px; border-bottom: 1px solid var(--line); text-align: center; }
+.scale { display: grid; gap: 6px; font-size: var(--step--1); }

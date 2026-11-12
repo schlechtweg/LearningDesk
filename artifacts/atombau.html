@@ -1,0 +1,1019 @@
+<title>Atombau und Schalenmodell</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Interaktive Lernhilfe zum Atombau und zum Schalenmodell nach Bohr (Chemie, Klasse 11)">
+<script>try{var t=localStorage.getItem("learningdesk.theme");if(t==="dark"||t==="light")document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* LearnKit: shared layout for LearningDesk topic apps.
+   Colour tokens come in three blocks (light, dark via system, dark via switch);
+   each app sets its accent colours through config.py. */
+:root {
+  --bg: #f2f4f7;
+  --surface: #ffffff;
+  --surface-2: #e6ebf1;
+  --ink: #18222d;
+  --muted: #55626f;
+  --line: #d0d8e1;
+  --accent: #24539c;
+  --accent-ink: #ffffff;
+  --accent-soft: rgba(36, 83, 156, 0.12);
+  --c1: #2f5fb3;
+  --c2: #c4561c;
+  --c3: #3d8a4c;
+  --c4: #8e44ad;
+  --good: #1f7f4b;
+  --good-soft: rgba(31, 127, 75, 0.12);
+  --bad: #b5372e;
+  --bad-soft: rgba(181, 55, 46, 0.10);
+  --font-display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --font-body: "Atkinson Hyperlegible", "Segoe UI", system-ui, sans-serif;
+  --font-math: "STIX Two Text", "Cambria Math", "Times New Roman", serif;
+  --font-mono: "JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
+  --step--1: 0.875rem;
+  --step-0: 1.0625rem;
+  --step-1: 1.25rem;
+  --step-2: 1.6rem;
+  --step-3: 2.3rem;
+  --radius: 10px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0f1419; --surface: #161e26; --surface-2: #1e2832; --ink: #e4ebf1; --muted: #98a7b5; --line: #2b3946;
+    --accent-ink: #0b1220; --c1: #7ea6f0; --c2: #f09a5e; --c3: #6fc47f; --c4: #c39bdf;
+    --good: #5fd194; --good-soft: rgba(95, 209, 148, 0.14); --bad: #f07a70; --bad-soft: rgba(240, 122, 112, 0.14);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0f1419; --surface: #161e26; --surface-2: #1e2832; --ink: #e4ebf1; --muted: #98a7b5; --line: #2b3946;
+  --accent-ink: #0b1220; --c1: #7ea6f0; --c2: #f09a5e; --c3: #6fc47f; --c4: #c39bdf;
+  --good: #5fd194; --good-soft: rgba(95, 209, 148, 0.14); --bad: #f07a70; --bad-soft: rgba(240, 122, 112, 0.14);
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+body {
+  background: var(--bg); color: var(--ink);
+  font-family: var(--font-body); font-size: var(--step-0); line-height: 1.6;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 0 48px;
+}
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--bg); }
+.wrap { max-width: 980px; margin: 0 auto; }
+h1, h2, h3 { font-family: var(--font-display); line-height: 1.15; text-wrap: balance; margin: 0; }
+h1 { font-size: var(--step-3); font-weight: 800; letter-spacing: -0.02em; overflow-wrap: break-word; hyphens: auto; }
+h2 { font-size: var(--step-2); font-weight: 700; }
+h3 { font-size: var(--step-1); font-weight: 700; }
+p { margin: 0; max-width: 70ch; }
+.muted { color: var(--muted); }
+.small { font-size: var(--step--1); }
+.eyebrow { font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); }
+.c1 { color: var(--c1); font-weight: 700; } .c2 { color: var(--c2); font-weight: 700; } .c3 { color: var(--c3); font-weight: 700; } .c4 { color: var(--c4); font-weight: 700; }
+
+/* Header and tabs */
+header.top { padding-block: 28px 8px; display: grid; gap: 6px; }
+header.top p { color: var(--muted); }
+nav.tabs { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--bg); display: flex; gap: 6px; overflow-x: auto; padding-block: 12px; margin-bottom: 8px; border-bottom: 1px solid var(--line); }
+nav.tabs a { flex: 0 0 auto; text-decoration: none; color: var(--ink); font-weight: 700; padding: 8px 14px; border-radius: 999px; border: 1px solid var(--line); background: var(--surface); font-size: var(--step--1); }
+nav.tabs a .n { font-family: var(--font-mono); color: var(--muted); margin-right: 6px; font-weight: 400; }
+nav.tabs a[aria-current="page"] { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+nav.tabs a[aria-current="page"] .n { color: var(--accent-ink); opacity: 0.75; }
+a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible { outline: 3px solid var(--c2); outline-offset: 2px; }
+
+/* Layout blocks */
+section.view { display: grid; gap: 28px; padding-top: 16px; }
+.stack { display: grid; gap: 12px; }
+.panel { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 20px; min-width: 0; }
+.grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; align-items: start; }
+.grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 16px; align-items: start; }
+.merksatz { border-left: 4px solid var(--accent); background: var(--surface); padding: 16px 20px; border-radius: 0 var(--radius) var(--radius) 0; display: grid; gap: 4px; }
+.merksatz .eyebrow { display: block; margin-bottom: 4px; }
+.merksatz p { font-family: var(--font-display); font-size: var(--step-1); font-weight: 500; line-height: 1.35; }
+.einfach { background: var(--surface-2); border-radius: var(--radius); padding: 16px 20px; display: grid; gap: 8px; }
+.formel { font-family: var(--font-math); font-size: 1.5rem; line-height: 1.6; }
+ul.list, ol.list { margin: 0; padding-left: 1.2em; display: grid; gap: 8px; max-width: 70ch; }
+.sim-layout { display: grid; grid-template-columns: minmax(0, 1fr) 300px; gap: 16px; align-items: start; }
+@media (max-width: 800px) { .sim-layout { grid-template-columns: 1fr; } }
+.figure { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 10px; min-width: 0; }
+.figure svg { width: 100%; height: auto; display: block; }
+.table-scroll { overflow-x: auto; }
+table.data { width: 100%; border-collapse: collapse; font-size: var(--step--1); }
+table.data th, table.data td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--line); vertical-align: top; overflow-wrap: anywhere; hyphens: auto; }
+table.data th { font-family: var(--font-display); font-size: var(--step-0); }
+table.data td.num, table.data th.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+details.profi { border: 1px dashed var(--line); border-radius: var(--radius); padding: 12px 16px; background: var(--surface); }
+details.profi summary { cursor: pointer; font-weight: 700; font-size: var(--step--1); }
+details.profi[open] summary { margin-bottom: 8px; }
+details.profi p, details.profi li { font-size: var(--step--1); }
+
+/* Math typesetting */
+.math { font-family: var(--font-math); font-size: 1.12em; }
+.math i { font-style: italic; }
+.math sup { font-size: 0.7em; line-height: 0; }
+.frac { display: inline-flex; flex-direction: column; vertical-align: middle; text-align: center; margin: 0 2px; line-height: 1.2; font-size: 0.95em; }
+.frac > span { padding: 0 3px; }
+.frac > span:first-child { border-bottom: 1.5px solid currentColor; }
+.unit { font-family: var(--font-body); font-style: normal; font-size: 0.92em; }
+
+/* Controls */
+button, .btn { font: inherit; font-weight: 700; font-size: var(--step--1); cursor: pointer; text-decoration: none; display: inline-block; padding: 9px 16px; border-radius: 8px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); }
+button:hover, .btn:hover { border-color: var(--accent); }
+button.primary, .btn.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+button[aria-pressed="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+button:disabled { opacity: 0.5; cursor: default; }
+.row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+select, input[type="text"] { font: inherit; padding: 8px 10px; border-radius: 8px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); min-width: 0; max-width: 100%; }
+input[type="text"] { font-family: var(--font-mono); }
+input[type="range"] { width: 100%; accent-color: var(--accent); }
+label.lbl { display: flex; justify-content: space-between; gap: 8px; font-weight: 700; font-size: var(--step--1); }
+label.lbl output, label.lbl .val { font-family: var(--font-mono); font-weight: 400; }
+.controls { display: grid; gap: 14px; align-content: start; }
+.readout { display: grid; grid-template-columns: 1fr auto; gap: 4px 12px; font-size: var(--step--1); margin: 0; }
+.readout dt { color: var(--muted); }
+.readout dd { margin: 0; font-family: var(--font-mono); font-variant-numeric: tabular-nums; text-align: right; }
+.readout dd.big { font-size: 1.15rem; font-weight: 600; color: var(--accent); }
+.status-box { padding: 12px 14px; border-radius: 8px; background: var(--surface-2); font-size: var(--step--1); }
+
+/* Trainer */
+.modes { display: flex; flex-wrap: wrap; gap: 6px; }
+.task { font-size: var(--step-0); line-height: 1.7; }
+.task .math { font-size: 1.35em; }
+.answer-row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.answer-row input { flex: 1 1 220px; font-size: var(--step-0); }
+.answer-row label { white-space: nowrap; }
+.hint { font-size: var(--step--1); color: var(--muted); }
+.hint code, .feedback code { font-family: var(--font-mono); background: var(--surface-2); padding: 1px 5px; border-radius: 4px; }
+.feedback { padding: 14px 16px; border-radius: 8px; background: var(--surface-2); display: grid; gap: 8px; }
+.feedback ol { margin: 0; padding-left: 1.3em; display: grid; gap: 6px; }
+b.ok { color: var(--good); } b.no { color: var(--bad); }
+.score-line { font-family: var(--font-mono); font-size: var(--step--1); color: var(--muted); }
+
+/* Equation lab */
+.lab-eq { font-family: var(--font-math); font-size: 1.9rem; text-align: center; padding: 10px 4px; overflow-x: auto; }
+.lab-log { margin: 0; padding: 0; list-style: none; display: grid; gap: 2px; font-family: var(--font-math); font-size: 1.15rem; }
+.lab-log li { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 12px; padding: 4px 8px; border-bottom: 1px solid var(--line); }
+.lab-log li .op { font-family: var(--font-mono); font-size: 0.85rem; color: var(--accent); align-self: center; white-space: nowrap; }
+.lab-log li.flip .op { color: var(--bad); }
+.lab-msg.ok { color: var(--good); font-weight: 700; }
+.lab-msg.no { color: var(--bad); }
+
+/* Quiz */
+.progress-line { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+.bar { flex: 1 1 200px; height: 8px; background: var(--surface-2); border-radius: 999px; overflow: hidden; }
+.bar i { display: block; height: 100%; background: var(--accent); width: 0; transition: width 0.3s; }
+.quiz { display: grid; gap: 16px; }
+.quiz .qtext { font-family: var(--font-display); font-size: var(--step-1); font-weight: 700; line-height: 1.3; }
+.quiz .opts { display: grid; gap: 8px; }
+.quiz .opts button { text-align: left; font-weight: 400; font-size: var(--step-0); padding: 12px 16px; display: flex; gap: 12px; align-items: center; }
+.quiz .opts button .k { font-family: var(--font-mono); color: var(--muted); }
+.quiz .opts button.right { border-color: var(--good); background: var(--good-soft); }
+.quiz .opts button.wrong { border-color: var(--bad); background: var(--bad-soft); }
+.score-big { font-family: var(--font-display); font-size: 3.2rem; font-weight: 800; line-height: 1; }
+
+/* Prediction cards ("Was passiert, wenn ...") */
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
+.card { display: grid; gap: 10px; align-content: start; }
+.card .ctx { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+.card .opts { display: grid; gap: 6px; }
+.card .opts button { text-align: left; font-weight: 400; }
+.card .opts button.right { border-color: var(--good); background: var(--good-soft); font-weight: 700; }
+.card .opts button.wrong { border-color: var(--bad); background: var(--bad-soft); }
+.card .answer { font-size: var(--step--1); padding: 12px; border-radius: 8px; background: var(--surface-2); }
+
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+</style>
+<style>
+:root { --accent: #6a3fa0; --accent-soft: rgba(106, 63, 160, 0.12); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --accent: #b79be0; } }
+:root[data-theme="dark"] { --accent: #b79be0; }
+</style>
+<style>
+.bohr { width: 100%; max-width: 300px; height: auto; display: block; margin: 0 auto; }
+.bohr .shell { fill: none; stroke: var(--line); stroke-width: 1.5; }
+.bohr .el { fill: var(--accent); }
+.bohr .el.val { fill: #e0a400; stroke: var(--ink); stroke-width: 0.8; }
+.bohr .core { fill: var(--accent-soft); stroke: var(--accent); stroke-width: 1.5; }
+.bohr .coret { font: 700 12px var(--font-mono); fill: var(--ink); text-anchor: middle; }
+.ptab { width: 100%; border-collapse: collapse; font-size: var(--step--1); }
+.ptab th, .ptab td { padding: 6px 8px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
+.ptab th { color: var(--muted); font-weight: 700; }
+.counter { display: grid; grid-template-columns: 1fr auto auto auto; gap: 8px; align-items: center; }
+.counter b { font-family: var(--font-mono); min-width: 2.2em; text-align: center; font-size: 1.1rem; }
+.counter button { width: 40px; height: 40px; padding: 0; font-size: 1.2rem; }
+.nuclide { font-family: var(--font-display); font-size: 2.6rem; font-weight: 800; line-height: 1; display: flex; align-items: center; gap: 4px; }
+.nuclide .nums { display: grid; font-size: 0.95rem; font-family: var(--font-mono); text-align: right; line-height: 1.25; }
+.nuclide .q { font-size: 1.1rem; align-self: flex-start; }
+.badge { display: inline-block; padding: 3px 10px; border-radius: 999px; background: var(--accent-soft); color: var(--ink); font-weight: 700; font-size: var(--step--1); }
+.elgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(52px, 1fr)); gap: 6px; }
+.elgrid button { padding: 6px 0; font-family: var(--font-mono); display: grid; line-height: 1.15; }
+.elgrid button small { font-size: 0.65rem; color: var(--muted); }
+.elgrid button[aria-pressed="true"] small { color: inherit; }
+.lewis { width: 120px; height: 120px; display: block; margin: 0 auto; }
+.lewis text { font: 800 34px var(--font-display); fill: var(--ink); text-anchor: middle; }
+.lewis .d { fill: #e0a400; stroke: var(--ink); stroke-width: 0.8; }
+.lewis .b { stroke: #e0a400; stroke-width: 4; stroke-linecap: round; }
+.shtab { width: 100%; border-collapse: collapse; font-family: var(--font-mono); font-size: var(--step--1); }
+.shtab th, .shtab td { padding: 5px 6px; border-bottom: 1px solid var(--line); text-align: center; }
+.scale { display: grid; gap: 6px; font-size: var(--step--1); }
+</style>
+<style>
+nav.crumbs ol { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 2px 6px; font-size: 0.85rem; line-height: 1.5; }
+nav.crumbs li { display: inline-flex; align-items: center; gap: 6px; min-width: 0; }
+nav.crumbs li + li::before { content: "›"; color: var(--muted); }
+nav.crumbs a { color: var(--accent); text-decoration: none; font-weight: 700; }
+nav.crumbs a:hover { text-decoration: underline; }
+nav.crumbs [aria-current] { color: var(--muted); }
+header.has-theme-toggle { position: relative; padding-right: 54px; }
+.theme-toggle { position: absolute; top: 18px; right: 0; width: 40px; height: 40px; border-radius: 999px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); font-size: 18px; line-height: 1; cursor: pointer; display: grid; place-items: center; padding: 0; }
+header:not(.top) > .theme-toggle { top: 0; }
+.theme-toggle:hover { border-color: var(--accent, currentColor); }
+.theme-toggle:focus-visible { outline: 3px solid var(--accent, currentColor); outline-offset: 2px; }
+
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <nav class="crumbs" aria-label="Brotkrümelnavigation"><ol><li><a href="https://schlechtweg.github.io/LearningDesk/index.html">LearningDesk</a></li><li><a href="https://schlechtweg.github.io/LearningDesk/klasse-11.html">Klasse 11</a></li><li><a href="https://schlechtweg.github.io/LearningDesk/klasse-11.html#chemie">Chemie</a></li><li><a href="#verstehen">Atombau und Schalenmodell</a></li><li data-crumb-section hidden><span aria-current="location"></span></li></ol></nav>
+    <h1>Atombau und Schalenmodell</h1>
+    <p>Woraus Atome bestehen, wie sich Isotope und Ionen unterscheiden und wie die Elektronen nach Bohr auf Schalen verteilt sind.</p>
+    <p style="display:flex; flex-wrap:wrap; gap:8px"><a class="btn" href="https://schlechtweg.github.io/LearningDesk/factsheets/atombau.pdf" target="_blank" rel="noopener">Factsheet als PDF ↓</a><a class="btn" href="https://schlechtweg.github.io/LearningDesk/aufgaben/atombau.pdf" target="_blank" rel="noopener">Übungsaufgaben als PDF ↓</a></p>
+  </header>
+  <nav class="tabs" aria-label="Bereiche">
+    <a href="#verstehen" data-view="verstehen"><span class="n">1</span>Verstehen</a>
+    <a href="#baukasten" data-view="baukasten"><span class="n">2</span>Atom-Baukasten</a>
+    <a href="#schalen" data-view="schalen"><span class="n">3</span>Schalenmodell</a>
+    <a href="#ueben" data-view="ueben"><span class="n">4</span>Üben</a>
+    <a href="#alltag" data-view="alltag"><span class="n">5</span>Im Alltag</a>
+    <a href="#quiz" data-view="quiz"><span class="n">6</span>Quiz</a>
+  </nav>
+
+  <section class="view" id="view-verstehen">
+    <div class="einfach">
+      <span class="eyebrow">Einfach erklärt</span>
+      <p>Ein Atom besteht aus einem winzigen, schweren <strong>Atomkern</strong> mit Protonen und Neutronen und einer großen, fast leeren <strong>Atomhülle</strong> mit Elektronen. Die Zahl der Protonen bestimmt, um welches <strong>Element</strong> es sich handelt.</p>
+    </div>
+    <div class="panel stack">
+      <h3>Die drei Elementarteilchen</h3>
+      <table class="ptab">
+        <tr><th>Teilchen</th><th>Ort</th><th>Ladung</th><th>Masse</th></tr>
+        <tr><td><strong>Proton</strong> p⁺</td><td>Kern</td><td>+1</td><td>≈ 1 u</td></tr>
+        <tr><td><strong>Neutron</strong> n</td><td>Kern</td><td>0</td><td>≈ 1 u</td></tr>
+        <tr><td><strong>Elektron</strong> e⁻</td><td>Hülle</td><td>−1</td><td>≈ 1/1836 u</td></tr>
+      </table>
+      <p class="small muted">1 u (atomare Masseneinheit) ≈ 1,66 · 10⁻²⁷ kg. Fast die gesamte Masse steckt im Kern.</p>
+    </div>
+    <div class="grid-2">
+      <div class="panel stack">
+        <h3>Wichtige Zahlen</h3>
+        <ul class="list small">
+          <li><strong>Ordnungszahl Z</strong> = Zahl der Protonen = Kernladungszahl. Sie legt das Element fest.</li>
+          <li><strong>Massenzahl A</strong> = Protonen + Neutronen.</li>
+          <li><strong>Neutronenzahl N</strong> = A − Z.</li>
+          <li>Im neutralen <strong>Atom</strong>: Elektronen = Protonen.</li>
+        </ul>
+        <p class="small">Schreibweise: <strong>³⁵₁₇Cl</strong> hat 17 Protonen, 35 − 17 = 18 Neutronen und 17 Elektronen.</p>
+      </div>
+      <div class="panel stack">
+        <h3>Isotope und Ionen</h3>
+        <ul class="list small">
+          <li><strong>Isotope</strong>: gleiche Protonenzahl, verschiedene Neutronenzahl, z. B. ¹²C und ¹⁴C. Chemisch verhalten sie sich gleich.</li>
+          <li><strong>Ionen</strong>: geladene Teilchen. Bei Elektronenabgabe entsteht ein <strong>Kation</strong> (Na⁺), bei Elektronenaufnahme ein <strong>Anion</strong> (Cl⁻).</li>
+          <li>Die Protonenzahl ändert sich bei Ionenbildung <strong>nie</strong>.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="panel stack">
+      <h3>Schalenmodell nach Bohr</h3>
+      <p class="small">Niels Bohr (1913) stellte sich vor, dass die Elektronen den Kern auf bestimmten <strong>Schalen</strong> (Energiestufen) umkreisen. Je weiter außen die Schale, desto höher die Energie der Elektronen.</p>
+      <ul class="list small">
+        <li>Schalen K, L, M, N … (n = 1, 2, 3, 4 …). Die n-te Schale fasst höchstens <strong>2n²</strong> Elektronen: 2, 8, 18, 32.</li>
+        <li>Die Schalen werden von innen nach außen besetzt. Bei den ersten 20 Elementen: K bis 2, L bis 8, M bis 8, dann N.</li>
+        <li>Die äußerste Schale heißt <strong>Valenzschale</strong>, ihre Elektronen <strong>Valenzelektronen</strong> (Außenelektronen). Sie bestimmen das chemische Verhalten.</li>
+        <li>8 Valenzelektronen (bei He 2) sind besonders stabil: <strong>Edelgaskonfiguration</strong> (Oktettregel).</li>
+      </ul>
+    </div>
+    <div class="merksatz">
+      <span class="eyebrow">Merke</span>
+      <p>Hauptgruppennummer = Zahl der Valenzelektronen, Periodennummer = Zahl der besetzten Schalen. Atome geben Elektronen ab oder nehmen welche auf, um Edelgaskonfiguration zu erreichen.</p>
+    </div>
+    <div class="panel stack">
+      <h3>Grenzen des Bohr-Modells</h3>
+      <p class="small">Elektronen bewegen sich nicht auf festen Kreisbahnen. Das heutige <strong>Orbitalmodell</strong> beschreibt nur Aufenthaltswahrscheinlichkeiten. Für Bindungen und das Periodensystem reicht das Schalenmodell aber meist aus.</p>
+    </div>
+    <div class="panel stack">
+      <h3>Typische Fehler</h3>
+      <ul class="list small">
+        <li>Massenzahl mit Neutronenzahl verwechselt.</li>
+        <li>Bei Ionen die Protonenzahl geändert statt der Elektronenzahl.</li>
+        <li>Kation und Anion vertauscht: Kation = positiv (Elektronen abgegeben).</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="view" id="view-baukasten" hidden>
+    <div class="stack">
+      <span class="eyebrow">Ausprobieren</span>
+      <h2>Atom-Baukasten</h2>
+      <p class="muted">Füge Protonen, Neutronen und Elektronen hinzu. Was ändert das Element, was die Masse, was die Ladung?</p>
+    </div>
+    <div class="sim-layout">
+      <div class="figure stack"><div id="bBohr"></div></div>
+      <div class="panel stack">
+        <div class="counter"><span>Protonen</span><button type="button" data-d="p,-1" aria-label="Proton entfernen">−</button><b id="cP"></b><button type="button" data-d="p,1" aria-label="Proton hinzufügen">+</button></div>
+        <div class="counter"><span>Neutronen</span><button type="button" data-d="n,-1" aria-label="Neutron entfernen">−</button><b id="cN"></b><button type="button" data-d="n,1" aria-label="Neutron hinzufügen">+</button></div>
+        <div class="counter"><span>Elektronen</span><button type="button" data-d="e,-1" aria-label="Elektron entfernen">−</button><b id="cE"></b><button type="button" data-d="e,1" aria-label="Elektron hinzufügen">+</button></div>
+        <div class="nuclide" id="bNuc"></div>
+        <p id="bInfo" class="small"></p>
+      </div>
+    </div>
+    <div class="einfach"><p id="bText"></p></div>
+  </section>
+
+  <section class="view" id="view-schalen" hidden>
+    <div class="stack">
+      <span class="eyebrow">Schalenmodell</span>
+      <h2>Elektronen auf Schalen</h2>
+      <p class="muted">Wähle ein Element. Gelb sind die Valenzelektronen.</p>
+    </div>
+    <div class="elgrid" id="sGrid"></div>
+    <div class="sim-layout">
+      <div class="figure stack"><div id="sBohr"></div></div>
+      <div class="panel stack">
+        <h3 id="sName"></h3>
+        <table class="shtab" id="sTab"></table>
+        <div class="grid-2"><div><p class="small muted">Lewis-Schreibweise</p><div id="sLewis"></div></div><div id="sFacts" class="small"></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="view" id="view-ueben" hidden>
+    <div class="stack">
+      <span class="eyebrow">Trainer</span>
+      <h2>Atombau üben</h2>
+      <p class="muted">Schalenbesetzung mit Kommas eingeben, z. B. <code>2,8,1</code>.</p>
+    </div>
+    <div id="trainer" class="stack"></div>
+  </section>
+
+  <section class="view" id="view-alltag" hidden>
+    <div class="stack">
+      <span class="eyebrow">Im Alltag</span>
+      <h2>Atome im Alltag</h2>
+    </div>
+    <div class="grid-2">
+      <div class="panel stack"><span class="eyebrow">Größenvergleich</span><h3>Fast nur leerer Raum</h3><p class="small">Wäre der Atomkern so groß wie ein Stecknadelkopf in der Mitte eines Fußballstadions, reichte die Hülle bis zu den Tribünen.</p></div>
+      <div class="panel stack"><span class="eyebrow">Feuerwerk</span><h3>Flammenfärbung</h3><p class="small">Erhitzte Elektronen springen auf höhere Schalen und geben beim Zurückfallen Licht ab: Natrium gelb, Strontium rot, Kupfer grün. Genau diese Energiestufen beschreibt Bohrs Modell.</p></div>
+      <div class="panel stack"><span class="eyebrow">Archäologie</span><h3>C-14-Methode</h3><p class="small">Das Isotop ¹⁴C zerfällt mit einer Halbwertszeit von etwa 5730 Jahren. Aus dem Rest-¹⁴C lässt sich das Alter von Holz oder Knochen bestimmen.</p></div>
+      <div class="panel stack"><span class="eyebrow">Medizin</span><h3>Radioaktives Iod</h3><p class="small">Die Schilddrüse nimmt Iod auf. Das Isotop ¹³¹I wird zur Untersuchung und Behandlung eingesetzt, chemisch verhält es sich wie normales ¹²⁷I.</p></div>
+      <div class="panel stack"><span class="eyebrow">Leuchtreklame</span><h3>Neonröhren</h3><p class="small">In Gasentladungsröhren regt Strom die Elektronen an. Neon leuchtet rotorange, andere Gase in anderen Farben.</p></div>
+      <div class="panel stack"><span class="eyebrow">Technik</span><h3>Salz im Körper</h3><p class="small">Nerven arbeiten mit Ionen: Na⁺ und K⁺ haben Edelgaskonfiguration und kommen im Körper nur als Ionen vor.</p></div>
+    </div>
+  </section>
+
+  <section class="view" id="view-quiz" hidden>
+    <div class="stack">
+      <span class="eyebrow">Selbsttest</span>
+      <h2>Quiz</h2>
+      <div class="progress-line"><div class="bar" aria-hidden="true"><i id="qBar"></i></div><span class="score-line" id="qProgress"></span></div>
+    </div>
+    <div class="panel quiz" id="quizBox" aria-live="polite"></div>
+  </section>
+</div>
+
+<script>
+/* LearnKit: shared building blocks for LearningDesk topic apps.
+   Exposes window.LK with: DOM helpers, number/expression parsing, rationals,
+   views (tab routing), quiz, trainer (task generators + checkers),
+   prediction cards and the equation lab for equations and inequalities. */
+(function () {
+  "use strict";
+  const $ = (s, r = document) => r.querySelector(s);
+  const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
+  const store = {
+    get(k) { try { return JSON.parse(localStorage.getItem(k)); } catch (e) { return null; } },
+    set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) { /* storage unavailable */ } }
+  };
+  const rnd = (a, b) => a + Math.floor(Math.random() * (b - a + 1));
+  const pick = (a) => a[Math.floor(Math.random() * a.length)];
+  const nz = (a, b) => { let v = 0; while (v === 0) v = rnd(a, b); return v; };
+  function shuffle(a) { const b = a.slice(); for (let i = b.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [b[i], b[j]] = [b[j], b[i]]; } return b; }
+  const gcd = (a, b) => { a = Math.abs(a); b = Math.abs(b); while (b) [a, b] = [b, a % b]; return a; };
+  const esc = (s) => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  const minus = (s) => String(s).replace(/-/g, "−");
+  const frac = (n, d) => `<span class="frac"><span>${n}</span><span>${d}</span></span>`;
+
+  // ---------- numbers ----------
+  // German formatting with at most d decimals
+  function fmt(v, d = 2) {
+    if (!isFinite(v)) return "–";
+    const r = Math.round(v * 10 ** d) / 10 ** d || 0;
+    return minus(r.toLocaleString("de-DE", { maximumFractionDigits: d }));
+  }
+  // accepts "3,5", "-2", "7/2", "x = 4", "1.013,25"
+  function parseNum(raw) {
+    let s = String(raw).trim().replace(/\s+/g, "").replace(/[−–]/g, "-").replace(/^[a-zA-Z]+=/, "");
+    if (s.includes(",") && s.includes(".")) s = s.replace(/\./g, "");
+    else if (/^-?\d{1,3}(\.\d{3})+$/.test(s)) s = s.replace(/\./g, ""); // German thousands separator: 1.013
+    s = s.replace(",", ".");
+    const m = s.match(/^(-?\d+(?:\.\d+)?)\/(-?\d+(?:\.\d+)?)$/);
+    if (m) return Number(m[1]) / Number(m[2]);
+    if (!/^-?(\d+\.?\d*|\.\d+)(e-?\d+)?$/i.test(s)) return NaN;
+    return Number(s);
+  }
+
+  // ---------- rationals ----------
+  class R {
+    constructor(n, d = 1) {
+      if (d === 0) throw new Error("Division durch 0");
+      if (d < 0) { n = -n; d = -d; }
+      const g = gcd(n, d) || 1; this.n = n / g; this.d = d / g;
+    }
+    static of(x) { if (x instanceof R) return x; if (Number.isInteger(x)) return new R(x); const k = 1e6; return new R(Math.round(x * k), k); }
+    add(o) { o = R.of(o); return new R(this.n * o.d + o.n * this.d, this.d * o.d); }
+    sub(o) { o = R.of(o); return new R(this.n * o.d - o.n * this.d, this.d * o.d); }
+    mul(o) { o = R.of(o); return new R(this.n * o.n, this.d * o.d); }
+    div(o) { o = R.of(o); return new R(this.n * o.d, this.d * o.n); }
+    neg() { return new R(-this.n, this.d); }
+    isZero() { return this.n === 0; }
+    eq(o) { o = R.of(o); return this.n === o.n && this.d === o.d; }
+    val() { return this.n / this.d; }
+    sign() { return Math.sign(this.n); }
+    abs() { return new R(Math.abs(this.n), this.d); }
+    text() { return this.d === 1 ? String(this.n) : `${this.n}/${this.d}`; }
+    html() { const a = Math.abs(this.n); const body = this.d === 1 ? String(a) : frac(a, this.d); return (this.n < 0 ? "−" : "") + body; }
+  }
+  // a·x + b as HTML, e.g. "3x − 2", "−x", "5"
+  function linHtml(x, c, v = "x") {
+    x = R.of(x); c = R.of(c);
+    const vx = `<i>${v}</i>`;
+    let s = "";
+    if (!x.isZero()) {
+      const a = x.abs();
+      s = (x.sign() < 0 ? "−" : "") + (a.eq(1) ? "" : a.html()) + vx;
+    }
+    if (!c.isZero() || !s) {
+      if (!s) s = c.html();
+      else s += (c.sign() < 0 ? " − " : " + ") + c.abs().html();
+    }
+    return s;
+  }
+
+  // ---------- polynomials: terms are {c: coefficient, v: {x: 2, y: 1}} ----------
+  function monoParts(v) {
+    const keys = Object.keys(v || {}).filter((k) => v[k] > 0).sort();
+    return { vh: keys.map((k) => `<i>${k}</i>` + (v[k] > 1 ? `<sup>${v[k]}</sup>` : "")).join(""), vt: keys.map((k) => k + (v[k] > 1 ? "^" + v[k] : "")).join("") };
+  }
+  function poly(terms) {
+    let h = "", t = "";
+    terms.filter((m) => m.c !== 0).forEach((m, i) => {
+      const { vh, vt } = monoParts(m.v), a = Math.abs(m.c);
+      const ch = a === 1 && vh ? "" : fmt(a, 4), ct = a === 1 && vt ? "" : String(a);
+      if (i === 0) { h += (m.c < 0 ? "−" : "") + ch + vh; t += (m.c < 0 ? "-" : "") + ct + vt; }
+      else { h += (m.c < 0 ? " − " : " + ") + ch + vh; t += (m.c < 0 ? "-" : "+") + ct + vt; }
+    });
+    return h ? { html: h, text: t } : { html: "0", text: "0" };
+  }
+  const polyFn = (terms) => (e) => terms.reduce((s, m) => s + m.c * Object.entries(m.v || {}).reduce((p, [k, ex]) => p * Math.pow(e[k], ex), 1), 0);
+  // collect like terms: returns new term list sorted by degree
+  function collect(terms) {
+    const map = new Map();
+    terms.forEach((m) => { const key = monoParts(m.v).vt; const cur = map.get(key); if (cur) cur.c += m.c; else map.set(key, { c: m.c, v: { ...(m.v || {}) } }); });
+    const deg = (m) => Object.values(m.v).reduce((a, b) => a + b, 0);
+    return [...map.values()].filter((m) => m.c !== 0).sort((a, b) => deg(b) - deg(a) || monoParts(a.v).vt.localeCompare(monoParts(b.v).vt));
+  }
+
+  // ---------- expressions ----------
+  // single-letter variables, implicit multiplication, ^, ², ³, ·, ×, :, ÷, decimal comma
+  function parse(src) {
+    const s = String(src).toLowerCase().replace(/\s+/g, "").replace(/[−–]/g, "-").replace(/[·⋅×]/g, "*").replace(/[:÷]/g, "/")
+      .replace(/²/g, "^2").replace(/³/g, "^3").replace(/(\d),(\d)/g, "$1.$2");
+    if (!s) throw new Error("leer");
+    const toks = [];
+    for (let i = 0; i < s.length;) {
+      const ch = s[i];
+      if (/[0-9.]/.test(ch)) { let j = i; while (j < s.length && /[0-9.]/.test(s[j])) j++; const n = parseFloat(s.slice(i, j)); if (isNaN(n)) throw new Error("Zahl"); toks.push({ t: "num", v: n }); i = j; continue; }
+      if ("+-*/^()".includes(ch)) { toks.push({ t: ch }); i++; continue; }
+      if (/[a-z]/.test(ch)) { toks.push({ t: "var", v: ch }); i++; continue; }
+      throw new Error("Zeichen");
+    }
+    let p = 0;
+    const peek = () => toks[p];
+    const starts = (tk) => tk && (tk.t === "num" || tk.t === "var" || tk.t === "(");
+    function expr() { let a = term(); while (peek() && (peek().t === "+" || peek().t === "-")) { const op = toks[p++].t, b = term(), l = a; a = op === "+" ? (e) => l(e) + b(e) : (e) => l(e) - b(e); } return a; }
+    function term() {
+      let a = unary();
+      for (;;) {
+        const tk = peek();
+        if (tk && (tk.t === "*" || tk.t === "/")) { p++; const b = unary(), l = a; a = tk.t === "*" ? (e) => l(e) * b(e) : (e) => l(e) / b(e); }
+        else if (starts(tk)) { const b = power(), l = a; a = (e) => l(e) * b(e); }
+        else break;
+      }
+      return a;
+    }
+    function unary() { const tk = peek(); if (tk && tk.t === "-") { p++; const a = unary(); return (e) => -a(e); } if (tk && tk.t === "+") { p++; return unary(); } return power(); }
+    function power() { const b = primary(); if (peek() && peek().t === "^") { p++; const ex = unary(); return (e) => Math.pow(b(e), ex(e)); } return b; }
+    function primary() {
+      const tk = toks[p++];
+      if (!tk) throw new Error("unvollständig");
+      if (tk.t === "num") { const v = tk.v; return () => v; }
+      if (tk.t === "var") { const v = tk.v; return (e) => (v in e ? e[v] : NaN); }
+      if (tk.t === "(") { const a = expr(); if (!peek() || peek().t !== ")") throw new Error("Klammer"); p++; return a; }
+      throw new Error("Syntax");
+    }
+    const f = expr();
+    if (p < toks.length) throw new Error("Syntax");
+    return f;
+  }
+  const SAMPLE = [1.37, -2.11, 0.73, 3.29, -0.58, 2.47, -1.63];
+  function sameFn(f, g, vars = "abcxyz") {
+    for (let k = 0; k < 6; k++) {
+      const env = {}; [...vars].forEach((v, i) => { env[v] = SAMPLE[(k + 2 * i) % SAMPLE.length] + 0.1 * i; });
+      const u = f(env), w = g(env);
+      if (!isFinite(u) || !isFinite(w) || Math.abs(u - w) > 1e-7 * Math.max(1, Math.abs(w))) return false;
+    }
+    return true;
+  }
+  // number of top-level summands of an input, e.g. "3a+2b-(a+b)" -> 3
+  function countSummands(raw) {
+    const s = String(raw).replace(/\s+/g, "").replace(/[−–]/g, "-");
+    let depth = 0, n = 1;
+    for (let i = 0; i < s.length; i++) {
+      const c = s[i];
+      if (c === "(") depth++; else if (c === ")") depth--;
+      else if ((c === "+" || c === "-") && depth === 0 && i > 0 && !"*/^(:·×÷+-".includes(s[i - 1])) n++;
+    }
+    return n;
+  }
+
+  // ---------- checkers for the trainer ----------
+  const check = {
+    // numeric answer with relative tolerance (default 1 %)
+    num(value, { tol = 0.01, abs = null, unit = "" } = {}) {
+      return (raw) => {
+        const v = parseNum(String(raw).replace(new RegExp(unit.replace(/[.*+?^${}()|[\]\\]/g, "\\$&") + "$"), ""));
+        if (isNaN(v)) return { ok: false, msg: "Bitte gib eine Zahl ein, z. B. <code>12,5</code>." };
+        const lim = abs !== null ? abs : Math.max(Math.abs(value) * tol, 1e-9);
+        return Math.abs(v - value) <= lim ? { ok: true } : { ok: false, msg: "Der Wert stimmt noch nicht. Prüfe Formel, Einheiten und Rechnung." };
+      };
+    },
+    // algebraic expression, equivalent to f; optional form check and hints for typical mistakes
+    expr(f, { vars = "abcxyz", form = null, hints = [], fallback = "Der Term ist noch nicht gleichwertig. Rechne Schritt für Schritt nach." } = {}) {
+      return (raw) => {
+        let g;
+        try { g = parse(raw); } catch (e) { return { ok: false, msg: "Das kann ich nicht lesen. Prüfe Klammern und Zeichen, z. B. <code>3a+2b</code> oder <code>2x(x-3)</code>." }; }
+        const eq = sameFn(g, f, vars);
+        if (eq && form) { const m = form(raw); if (m) return { ok: false, msg: m }; }
+        if (eq) return { ok: true };
+        for (const h of hints) if (h.f && sameFn(g, h.f, vars)) return { ok: false, msg: h.msg };
+        return { ok: false, msg: fallback };
+      };
+    }
+  };
+
+  // ---------- views (tab routing) ----------
+  function views(names, onShow = {}) {
+    function show() {
+      const h = location.hash.slice(1);
+      const v = names.includes(h) ? h : names[0];
+      names.forEach((n) => { const el = $("#view-" + n); if (el) el.hidden = n !== v; });
+      $$("nav.tabs a").forEach((a) => { if (a.dataset.view === v) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current"); });
+      window.scrollTo({ top: 0 });
+      if (onShow[v]) requestAnimationFrame(onShow[v]);
+    }
+    window.addEventListener("hashchange", show);
+    show();
+    return show;
+  }
+
+  // ---------- quiz ----------
+  function quiz({ box, bar, progress, questions, n = 10, key, mathOptions = false }) {
+    const B = $(box), BAR = $(bar), P = $(progress);
+    const N = Math.min(n, questions.length);
+    let order = [], idx = 0, score = 0, answered = false;
+    function start() {
+      order = shuffle(questions).slice(0, N).map((q) => { const perm = shuffle(q.o.map((_, i) => i)); return { q: q.q, o: perm.map((i) => q.o[i]), a: perm.indexOf(q.a), e: q.e }; });
+      idx = 0; score = 0; render();
+    }
+    function render() {
+      BAR.style.width = (idx / N) * 100 + "%";
+      if (idx >= N) {
+        const best = Math.max(score, store.get(key) || 0); store.set(key, best);
+        const msg = score >= N - 1 ? "Super! Du hast das Thema sicher drauf." : score >= Math.ceil(N * 0.6) ? "Gut gemacht! Schau dir die Erklärungen zu deinen Fehlern noch einmal an." : "Wiederhole die Erklärungen und übe im Trainer. Dann klappt es beim nächsten Mal besser.";
+        P.textContent = `fertig · Bestwert ${best} / ${N}`;
+        B.innerHTML = `<span class="eyebrow">Ergebnis</span><div class="score-big">${score} / ${N}</div><p>${msg}</p><div class="row"><button type="button" class="primary lk-again">Neue Runde</button></div>`;
+        $(".lk-again", B).addEventListener("click", start);
+        return;
+      }
+      const q = order[idx]; answered = false;
+      P.textContent = `Frage ${idx + 1} von ${N} · ${score} richtig`;
+      B.innerHTML = `<div class="qtext"></div><div class="opts"></div><div class="feedback" hidden></div><div class="row"><button type="button" class="primary lk-next" hidden>${idx + 1 < N ? "Nächste Frage" : "Ergebnis anzeigen"}</button></div>`;
+      $(".qtext", B).textContent = q.q;
+      q.o.forEach((t, i) => {
+        const b = document.createElement("button"); b.type = "button";
+        b.innerHTML = `<span class="k">${"ABCD"[i]}</span><span${mathOptions ? ' class="math"' : ""}></span>`; b.lastChild.textContent = t;
+        b.addEventListener("click", () => choose(i));
+        $(".opts", B).appendChild(b);
+      });
+      $(".lk-next", B).addEventListener("click", () => { idx++; render(); });
+    }
+    function choose(i) {
+      if (answered) return; answered = true;
+      const q = order[idx];
+      $$(".opts button", B).forEach((b, j) => { b.disabled = true; if (j === q.a) b.classList.add("right"); else if (j === i) b.classList.add("wrong"); });
+      const ok = i === q.a; if (ok) score++;
+      const fb = $(".feedback", B); fb.hidden = false;
+      fb.innerHTML = ok ? '<span><b class="ok">Richtig!</b> </span>' : '<span><b class="no">Leider falsch.</b> </span>';
+      fb.firstChild.appendChild(document.createTextNode(q.e));
+      const nb = $(".lk-next", B); nb.hidden = false; nb.focus();
+      P.textContent = `Frage ${idx + 1} von ${N} · ${score} richtig`;
+    }
+    start();
+  }
+
+  // ---------- trainer ----------
+  const trainers = [];
+  function trainer({ el, modes, id = "tr" }) {
+    const root = $(el);
+    root.innerHTML = `
+      ${modes.length > 1 ? `<div class="modes" role="group" aria-label="Übungsart">${modes.map((m, i) => `<button type="button" data-mode="${m.id}" aria-pressed="${i === 0}">${m.label}</button>`).join("")}</div>` : ""}
+      <div class="panel stack">
+        <p class="small muted lk-instr"></p>
+        <form class="stack lk-form" autocomplete="off">
+          <div class="task lk-task"></div>
+          <div class="answer-row"><label class="math lk-label" for="${id}-in"></label><input type="text" id="${id}-in" class="lk-in" spellcheck="false"></div>
+          <div class="row"><button type="submit" class="primary">Prüfen</button><button type="button" class="lk-show">Lösung zeigen</button><button type="button" class="lk-new">Neue Aufgabe</button></div>
+        </form>
+        <p class="hint lk-hint"></p>
+        <div class="feedback lk-fb" hidden aria-live="polite"></div>
+        <span class="score-line lk-score"></span>
+      </div>`;
+    let mode = modes[0], task = null;
+    const score = { right: 0, total: 0 };
+    const fb = $(".lk-fb", root), input = $(".lk-in", root);
+    function updateScore() { $(".lk-score", root).textContent = `${score.right} von ${score.total} Aufgaben auf Anhieb richtig`; }
+    function next() {
+      task = mode.gen(); task.attempted = false;
+      $(".lk-instr", root).innerHTML = task.instr || mode.instr || "";
+      $(".lk-task", root).innerHTML = task.html;
+      $(".lk-label", root).innerHTML = task.label || "";
+      input.placeholder = task.placeholder || "";
+      $(".lk-hint", root).innerHTML = task.hint || mode.hint || "";
+      input.value = ""; fb.hidden = true;
+      return task;
+    }
+    function solutionHtml() { return task.solution ? `<div>${task.solution}</div>` : ""; }
+    function submit(raw) {
+      const r = task.check(raw);
+      if (!task.attempted) { task.attempted = true; score.total++; if (r.ok) score.right++; updateScore(); }
+      fb.hidden = false;
+      fb.innerHTML = r.ok ? `<span><b class="ok">Richtig!</b></span>${solutionHtml()}` : `<span><b class="no">Noch nicht richtig.</b> ${r.msg || ""}</span>`;
+      return r;
+    }
+    $(".lk-form", root).addEventListener("submit", (ev) => { ev.preventDefault(); submit(input.value); });
+    $(".lk-show", root).addEventListener("click", () => {
+      if (!task.attempted) { task.attempted = true; score.total++; updateScore(); }
+      fb.hidden = false; fb.innerHTML = `<span>Eine mögliche Lösung: <code>${esc(task.answer)}</code></span>${solutionHtml()}`;
+    });
+    $(".lk-new", root).addEventListener("click", () => { next(); input.focus(); });
+    $$("[data-mode]", root).forEach((b) => b.addEventListener("click", () => {
+      mode = modes.find((m) => m.id === b.dataset.mode);
+      $$("[data-mode]", root).forEach((x) => x.setAttribute("aria-pressed", String(x === b)));
+      next();
+    }));
+    next();
+    const api = { modes, next, submit, get task() { return task; }, setMode(i) { mode = modes[i]; return next(); } };
+    trainers.push(api);
+    return api;
+  }
+
+  // ---------- prediction cards ----------
+  function cards({ el, items, key }) {
+    const root = $(el);
+    let answers = store.get(key) || {};
+    function renderAll() {
+      root.innerHTML = "";
+      items.forEach((c, idx) => {
+        const card = document.createElement("article");
+        card.className = "panel card";
+        card.innerHTML = `<span class="ctx"></span><h3></h3><p class="small"></p><div class="opts"></div><div class="answer" hidden></div>`;
+        $(".ctx", card).textContent = c.ctx; $("h3", card).textContent = c.title; $("p", card).textContent = c.text;
+        const opts = $(".opts", card), ans = $(".answer", card);
+        c.o.forEach((t, i) => {
+          const b = document.createElement("button"); b.type = "button"; b.textContent = t;
+          b.addEventListener("click", () => { answers[idx] = i; store.set(key, answers); paint(); });
+          opts.appendChild(b);
+        });
+        function paint() {
+          const ch = answers[idx];
+          $$("button", opts).forEach((b, i) => { b.classList.remove("right", "wrong"); b.disabled = ch !== undefined; if (ch !== undefined) { if (i === c.a) b.classList.add("right"); else if (i === ch) b.classList.add("wrong"); } });
+          if (ch !== undefined) { ans.hidden = false; ans.innerHTML = ch === c.a ? '<b class="ok">Richtig.</b> ' : '<b class="no">Nicht ganz.</b> '; ans.appendChild(document.createTextNode(c.e)); }
+          else ans.hidden = true;
+        }
+        root.appendChild(card); paint();
+      });
+    }
+    renderAll();
+    return { reset() { answers = {}; store.set(key, answers); renderAll(); } };
+  }
+
+  // ---------- equation lab (equations and inequalities) ----------
+  const REL_FLIP = { "<": ">", ">": "<", "≤": "≥", "≥": "≤", "=": "=" };
+  function equationLab({ el, gen, inequality = false }) {
+    const root = $(el);
+    root.innerHTML = `
+      <div class="panel stack">
+        <div class="lab-eq lk-eq" aria-live="polite"></div>
+        <ol class="lab-log lk-log"></ol>
+        <form class="answer-row lk-form" autocomplete="off">
+          <label for="${el.slice(1)}-op" class="small"><strong>Umformung für beide Seiten:</strong></label>
+          <input type="text" id="${el.slice(1)}-op" class="lk-op" placeholder="z. B. −3 oder −2x oder :4" spellcheck="false">
+          <button type="submit" class="primary">Ausführen</button>
+        </form>
+        <p class="hint">Schreibweise: <code>-3</code>, <code>+5</code>, <code>-2x</code>, <code>+x</code>, <code>:4</code>, <code>*2</code>, <code>:(-3)</code>. Brüche als <code>1/2</code>.</p>
+        <p class="lab-msg lk-msg" aria-live="polite"></p>
+        <div class="row"><button type="button" class="lk-undo">Rückgängig</button><button type="button" class="lk-new">Neue ${inequality ? "Ungleichung" : "Gleichung"}</button></div>
+      </div>`;
+    let hist = [], st = null;
+    const eqHtml = (s) => `${linHtml(s.L.x, s.L.c)} ${s.rel} ${linHtml(s.R.x, s.R.c)}`;
+    function setMsg(t, cls = "") { const m = $(".lk-msg", root); m.className = "lab-msg lk-msg " + cls; m.innerHTML = t; }
+    function render() {
+      $(".lk-eq", root).innerHTML = eqHtml(st);
+      // the operation is written next to the line it is applied to (school notation)
+      $(".lk-log", root).innerHTML = hist.map((h, i) => { const nx = hist[i + 1]; return `<li class="${nx && nx.flip ? "flip" : ""}"><span>${eqHtml(h.s)}</span><span class="op">${nx ? "| " + esc(nx.op) : ""}</span></li>`; }).join("");
+      const s = st, xL = !s.L.x.isZero(), xR = !s.R.x.isZero();
+      if (!xL && !xR) {
+        const l = s.L.c.val(), r = s.R.c.val();
+        const truth = { "=": l === r, "<": l < r, ">": l > r, "≤": l <= r, "≥": l >= r }[s.rel];
+        setMsg(truth ? "Die Variable ist verschwunden und die Aussage ist immer wahr: Jede Zahl ist eine Lösung (L = ℚ)." : "Die Variable ist verschwunden und die Aussage ist falsch: Es gibt keine Lösung (L = { }).", "ok");
+        return;
+      }
+      const solvedL = s.L.x.eq(1) && s.L.c.isZero() && !xR, solvedR = s.R.x.eq(1) && s.R.c.isZero() && !xL;
+      if (solvedL || solvedR) {
+        const v = solvedL ? s.R.c : s.L.c, rel = solvedL ? s.rel : REL_FLIP[s.rel];
+        setMsg(inequality && rel !== "=" ? `Gelöst! Alle Zahlen mit <span class="math"><i>x</i> ${rel} ${v.html()}</span> erfüllen die Ungleichung: <span class="math">L = {<i>x</i> | <i>x</i> ${rel} ${v.html()}}</span>` : `Gelöst! <span class="math"><i>x</i> = ${v.html()}</span>, also <span class="math">L = {${v.html()}}</span>. Mach zur Sicherheit die Probe.`, "ok");
+      } else setMsg("Forme weiter um, bis <i>x</i> allein auf einer Seite steht.");
+    }
+    function start(s) { st = s || gen(); hist = [{ s: st, op: "" }]; render(); }
+    function apply(raw) {
+      let s = String(raw).replace(/\s+/g, "").replace(/[−–]/g, "-").replace(/[·⋅×]/g, "*").replace(/[÷/]/g, (m, i) => (i === 0 ? ":" : m)).replace(/^\//, ":");
+      const m = s.match(/^([+\-*:])\(?(-?)(\d*(?:[.,]\d+)?(?:\/\d+)?)(x?)\)?$/);
+      if (!m || (m[3] === "" && m[4] === "")) { setMsg("Das verstehe ich nicht. Beginne mit + − * oder :, z. B. <code>-3</code> oder <code>:2</code>.", "no"); return false; }
+      const [, op, sg, numTxt, hasX] = m;
+      let k; try { k = R.of(numTxt === "" ? 1 : parseNum(numTxt)); if (numTxt.includes("/")) { const [a, b] = numTxt.split("/").map(Number); k = new R(a, b); } } catch (e) { setMsg("Ungültige Zahl.", "no"); return false; }
+      if (sg) k = k.neg();
+      const next = { L: { ...st.L }, R: { ...st.R }, rel: st.rel };
+      let flip = false;
+      const label = `${op === "*" ? "·" : op === ":" ? ":" : op === "-" ? "−" : "+"}${op === "*" || op === ":" ? (k.sign() < 0 ? `(${k.text().replace("-", "−")})` : k.text()) : (k.sign() < 0 ? `(${k.text().replace("-", "−")})` : k.text())}${hasX ? "x" : ""}`.replace(/^([+−])1x$/, "$1x");
+      if (op === "+" || op === "-") {
+        const kk = op === "-" ? k.neg() : k;
+        for (const side of ["L", "R"]) { if (hasX) next[side].x = next[side].x.add(kk); else next[side].c = next[side].c.add(kk); }
+      } else {
+        if (hasX) { setMsg("Mit <i>x</i> malnehmen oder durch <i>x</i> teilen ist keine erlaubte Umformung, weil <i>x</i> null sein könnte.", "no"); return false; }
+        if (k.isZero()) { setMsg(op === ":" ? "Durch 0 darf man nicht teilen." : "Mal 0 macht beide Seiten zu 0. Dabei geht die Information verloren, das ist keine Äquivalenzumformung.", "no"); return false; }
+        for (const side of ["L", "R"]) {
+          next[side].x = op === "*" ? next[side].x.mul(k) : next[side].x.div(k);
+          next[side].c = op === "*" ? next[side].c.mul(k) : next[side].c.div(k);
+        }
+        if (inequality && k.sign() < 0 && next.rel !== "=") { next.rel = REL_FLIP[next.rel]; flip = true; }
+      }
+      st = next; hist.push({ s: st, op: label + (flip ? "  Zeichen umdrehen!" : ""), flip }); render();
+      if (flip) setMsg("Achtung: Du hast mit einer negativen Zahl multipliziert oder durch sie geteilt. Deshalb dreht sich das Ungleichheitszeichen um! " + $(".lk-msg", root).innerHTML, "no");
+      return true;
+    }
+    $(".lk-form", root).addEventListener("submit", (ev) => { ev.preventDefault(); const i = $(".lk-op", root); if (apply(i.value)) i.value = ""; i.focus(); });
+    $(".lk-undo", root).addEventListener("click", () => { if (hist.length > 1) { hist.pop(); st = hist[hist.length - 1].s; render(); } });
+    $(".lk-new", root).addEventListener("click", () => start());
+    start();
+    return { apply, start, get state() { return st; } };
+  }
+  // random linear equation a x + b (rel) c x + d with a "nice" solution
+  function genLinear({ rel = "=", fractions = false } = {}) {
+    let a, c; do { a = nz(-6, 7); c = rnd(-4, 4); } while (a === c);
+    const x0 = fractions ? new R(nz(-9, 9), pick([1, 2, 3])) : new R(nz(-6, 6));
+    const b = R.of(rnd(-9, 9)), d = x0.mul(a - c).add(b);
+    return { L: { x: R.of(a), c: b }, R: { x: R.of(c), c: d }, rel, x0 };
+  }
+
+  // number as plain answer text with decimal comma, e.g. 1013,25
+  const numText = (v, d = 2) => String(Math.round(v * 10 ** d) / 10 ** d || 0).replace(".", ",");
+
+  window.LK = { $, $$, store, rnd, pick, nz, shuffle, gcd, esc, minus, frac, fmt, parseNum, numText, R, linHtml, poly, polyFn, collect, monoParts, parse, sameFn, countSummands, check, views, quiz, trainer, trainers, cards, equationLab, genLinear, REL_FLIP };
+})();
+</script>
+<script>
+// Shared element data for the chemistry apps (main-group elements of periods 1-5).
+// z, symbol, German name, group (1-8, main-group numbering), period, mass number of the most common isotope,
+// average atomic mass (u), electronegativity (Pauling, null for noble gases), covalent radius (pm, Cordero 2008),
+// first ionisation energy (kJ/mol), class: m = metal, h = semimetal, n = nonmetal, e = noble gas
+window.CHEM = (function () {
+  "use strict";
+  const raw = [
+    [1, "H", "Wasserstoff", 1, 1, 1, 1.008, 2.20, 31, 1312, "n"], [2, "He", "Helium", 8, 1, 4, 4.003, null, 28, 2372, "e"],
+    [3, "Li", "Lithium", 1, 2, 7, 6.94, 0.98, 128, 520, "m"], [4, "Be", "Beryllium", 2, 2, 9, 9.012, 1.57, 96, 900, "m"],
+    [5, "B", "Bor", 3, 2, 11, 10.81, 2.04, 84, 801, "h"], [6, "C", "Kohlenstoff", 4, 2, 12, 12.01, 2.55, 76, 1086, "n"],
+    [7, "N", "Stickstoff", 5, 2, 14, 14.01, 3.04, 71, 1402, "n"], [8, "O", "Sauerstoff", 6, 2, 16, 16.00, 3.44, 66, 1314, "n"],
+    [9, "F", "Fluor", 7, 2, 19, 19.00, 3.98, 57, 1681, "n"], [10, "Ne", "Neon", 8, 2, 20, 20.18, null, 58, 2081, "e"],
+    [11, "Na", "Natrium", 1, 3, 23, 22.99, 0.93, 166, 496, "m"], [12, "Mg", "Magnesium", 2, 3, 24, 24.31, 1.31, 141, 738, "m"],
+    [13, "Al", "Aluminium", 3, 3, 27, 26.98, 1.61, 121, 578, "m"], [14, "Si", "Silicium", 4, 3, 28, 28.09, 1.90, 111, 787, "h"],
+    [15, "P", "Phosphor", 5, 3, 31, 30.97, 2.19, 107, 1012, "n"], [16, "S", "Schwefel", 6, 3, 32, 32.06, 2.58, 105, 1000, "n"],
+    [17, "Cl", "Chlor", 7, 3, 35, 35.45, 3.16, 102, 1251, "n"], [18, "Ar", "Argon", 8, 3, 40, 39.95, null, 106, 1521, "e"],
+    [19, "K", "Kalium", 1, 4, 39, 39.10, 0.82, 203, 419, "m"], [20, "Ca", "Calcium", 2, 4, 40, 40.08, 1.00, 176, 590, "m"],
+    [31, "Ga", "Gallium", 3, 4, 69, 69.72, 1.81, 122, 579, "m"], [32, "Ge", "Germanium", 4, 4, 74, 72.63, 2.01, 120, 762, "h"],
+    [33, "As", "Arsen", 5, 4, 75, 74.92, 2.18, 119, 947, "h"], [34, "Se", "Selen", 6, 4, 80, 78.97, 2.55, 120, 941, "n"],
+    [35, "Br", "Brom", 7, 4, 79, 79.90, 2.96, 120, 1140, "n"], [36, "Kr", "Krypton", 8, 4, 84, 83.80, null, 116, 1351, "e"],
+    [37, "Rb", "Rubidium", 1, 5, 85, 85.47, 0.82, 220, 403, "m"], [38, "Sr", "Strontium", 2, 5, 88, 87.62, 0.95, 195, 550, "m"],
+    [49, "In", "Indium", 3, 5, 115, 114.82, 1.78, 142, 558, "m"], [50, "Sn", "Zinn", 4, 5, 120, 118.71, 1.96, 139, 709, "m"],
+    [51, "Sb", "Antimon", 5, 5, 121, 121.76, 2.05, 139, 834, "h"], [52, "Te", "Tellur", 6, 5, 130, 127.60, 2.10, 138, 869, "h"],
+    [53, "I", "Iod", 7, 5, 127, 126.90, 2.66, 139, 1008, "n"], [54, "Xe", "Xenon", 8, 5, 132, 131.29, 2.60, 140, 1170, "e"]
+  ];
+  const groupNames = { 1: "Alkalimetalle", 2: "Erdalkalimetalle", 3: "Borgruppe (Erdmetalle)", 4: "Kohlenstoffgruppe", 5: "Stickstoffgruppe", 6: "Chalkogene", 7: "Halogene", 8: "Edelgase" };
+  const className = { m: "Metall", h: "Halbmetall", n: "Nichtmetall", e: "Edelgas" };
+  // electrons per shell (K, L, M, N, O) for the listed main-group elements
+  function shells(z) {
+    if (z <= 2) return [z];
+    if (z <= 10) return [2, z - 2];
+    if (z <= 18) return [2, 8, z - 10];
+    if (z <= 20) return [2, 8, 8, z - 18];
+    if (z <= 36) return [2, 8, 18, z - 28];
+    if (z <= 38) return [2, 8, 18, 8, z - 36];
+    return [2, 8, 18, 18, z - 46];
+  }
+  const els = raw.map(([z, sym, name, group, period, A, mass, en, r, ie, cls]) => ({ z, sym, name, group, period, A, mass, en, r, ie, cls, shells: shells(z), valence: z === 2 ? 2 : group }));
+  const bySym = Object.fromEntries(els.map((e) => [e.sym, e]));
+  const SUP = { "0": "⁰", "1": "¹", "2": "²", "3": "³", "4": "⁴", "5": "⁵", "6": "⁶", "7": "⁷", "8": "⁸", "9": "⁹", "+": "⁺", "-": "⁻" };
+  const SUB = { "0": "₀", "1": "₁", "2": "₂", "3": "₃", "4": "₄", "5": "₅", "6": "₆", "7": "₇", "8": "₈", "9": "₉" };
+  const sup = (s) => String(s).split("").map((c) => SUP[c] || c).join("");
+  const sub = (s) => String(s).split("").map((c) => SUB[c] || c).join("");
+  // charge as superscript, e.g. 2+ -> ²⁺, 1- -> ⁻
+  const charge = (q) => (q === 0 ? "" : sup((Math.abs(q) === 1 ? "" : Math.abs(q)) + (q > 0 ? "+" : "-")));
+  // typical ion charge of a main-group element (null for noble gases and group 4)
+  const ionCharge = (e) => (e.cls === "e" ? null : e.group <= 3 ? e.group : e.group >= 5 ? e.group - 8 : null);
+  // Bohr shell model as SVG; electrons spread evenly on each shell
+  function bohr(e, opt = {}) {
+    const q = opt.charge || 0, size = opt.size || 220, c = size / 2;
+    const sh = opt.shells || e.shells.slice();
+    if (q > 0) { let left = q; for (let i = sh.length - 1; i >= 0 && left > 0; i--) { const t = Math.min(left, sh[i]); sh[i] -= t; left -= t; } while (sh.length > 1 && sh[sh.length - 1] === 0) sh.pop(); }
+    if (q < 0) sh[sh.length - 1] -= q;
+    const n = sh.length, rStep = (c - 14) / (n + 0.6);
+    let g = `<svg class="bohr" viewBox="0 0 ${size} ${size}" role="img" aria-label="Schalenmodell ${e.name}">`;
+    sh.forEach((cnt, i) => {
+      const r = rStep * (i + 1.6);
+      g += `<circle class="shell" cx="${c}" cy="${c}" r="${r.toFixed(1)}"/>`;
+      for (let k = 0; k < cnt; k++) { const a = -Math.PI / 2 + (2 * Math.PI * k) / cnt + i * 0.35; g += `<circle class="el${i === n - 1 ? " val" : ""}" cx="${(c + r * Math.cos(a)).toFixed(1)}" cy="${(c + r * Math.sin(a)).toFixed(1)}" r="${Math.max(2.6, Math.min(5, size / 48)).toFixed(1)}"/>`; }
+    });
+    g += `<circle class="core" cx="${c}" cy="${c}" r="${(rStep * 0.95).toFixed(1)}"/><text class="coret" x="${c}" y="${c + 4}">${opt.coreLabel || e.z + "p⁺"}</text></svg>`;
+    return g;
+  }
+  return { els, bySym, groupNames, className, shells, sup, sub, charge, ionCharge, bohr };
+})();
+
+(function () {
+  "use strict";
+  const { $, $$, pick } = LK;
+  const C = window.CHEM;
+  const first20 = C.els.filter((e) => e.z <= 20);
+  const byZ = Object.fromEntries(C.els.map((e) => [e.z, e]));
+
+  // ---------- atom kit ----------
+  const S = { p: 6, n: 6, e: 6 };
+  function drawKit() {
+    $("#cP").textContent = S.p; $("#cN").textContent = S.n; $("#cE").textContent = S.e;
+    const el = byZ[S.p], q = S.p - S.e, A = S.p + S.n;
+    const kind = q === 0 ? "neutrales Atom" : q > 0 ? `Kation (${q} Elektron${q > 1 ? "en" : ""} zu wenig)` : `Anion (${-q} Elektron${q < -1 ? "en" : ""} zu viel)`;
+    const shellsE = S.e > 0 ? C.shells(S.e) : [];
+    $("#bBohr").innerHTML = el ? C.bohr(el, { shells: shellsE, coreLabel: `${S.p}p⁺ ${S.n}n` }) : "";
+    $("#bNuc").innerHTML = el ? `<span class="nums"><span>${A}</span><span>${S.p}</span></span><span>${el.sym}</span><span class="q">${C.charge(q)}</span>` : "";
+    const common = el && A === el.A;
+    $("#bInfo").innerHTML = el ? `<span class="badge">${el.name}</span> ${kind}<br>Massenzahl A = ${A}, Ladung ${q > 0 ? "+" : ""}${q === 0 ? "0" : q}<br>Schalen: ${shellsE.join(", ") || "–"}` : "";
+    const hints = [];
+    if (common) hints.push(`Das ist das häufigste Isotop von ${el.name}.`);
+    else if (el) hints.push(`Das häufigste Isotop von ${el.name} hat ${el.A - el.z} Neutronen. Mit ${S.n} Neutronen ist es ein anderes Isotop.`);
+    if (el && q !== 0 && C.ionCharge(el) === q) hints.push(`${el.sym}${C.charge(q)} ist das typische Ion von ${el.name}: Es hat Edelgaskonfiguration.`);
+    $("#bText").innerHTML = hints.join(" ") + " Ändere die Protonenzahl: Dann entsteht ein anderes Element.";
+    $$("[data-d]").forEach((b) => { const [k, d] = b.dataset.d.split(","); const v = S[k] + +d; b.disabled = k === "p" ? v < 1 || v > 20 : v < 0 || v > 24; });
+  }
+  $$("[data-d]").forEach((b) => b.addEventListener("click", () => { const [k, d] = b.dataset.d.split(","); S[k] += +d; drawKit(); }));
+  drawKit();
+
+  // ---------- shell model ----------
+  // Lewis symbol: up to 4 single dots on the four sides, then pairs become bars
+  function lewis(e) {
+    const v = e.z === 2 ? 2 : e.group, sides = [0, 0, 0, 0];
+    if (e.z === 2) sides[0] = 2; else for (let i = 0; i < v; i++) sides[i % 4]++;
+    let g = `<svg class="lewis" viewBox="0 0 120 120" aria-label="Lewis-Schreibweise ${e.sym}"><text x="60" y="72">${e.sym}</text>`;
+    const pos = [[60, 26, "h"], [98, 60, "v"], [60, 96, "h"], [22, 60, "v"]];
+    sides.forEach((n, i) => { const [x, y, o] = pos[i]; if (n === 1) g += `<circle class="d" cx="${x}" cy="${y}" r="4.5"/>`; if (n === 2) g += o === "h" ? `<line class="b" x1="${x - 13}" y1="${y}" x2="${x + 13}" y2="${y}"/>` : `<line class="b" x1="${x}" y1="${y - 13}" x2="${x}" y2="${y + 13}"/>`; });
+    return g + "</svg>";
+  }
+  let cur = C.bySym.Na;
+  $("#sGrid").innerHTML = C.els.map((e) => `<button type="button" data-z="${e.z}" aria-pressed="false"><b>${e.sym}</b><small>${e.z}</small></button>`).join("");
+  function drawShell() {
+    const e = cur;
+    $$("#sGrid button").forEach((b) => b.setAttribute("aria-pressed", String(+b.dataset.z === e.z)));
+    $("#sBohr").innerHTML = C.bohr(e);
+    $("#sName").textContent = `${e.name} (${e.sym}), Z = ${e.z}`;
+    const names = ["K", "L", "M", "N", "O"];
+    $("#sTab").innerHTML = `<tr><th>Schale</th>${e.shells.map((_, i) => `<th>${names[i]} (n=${i + 1})</th>`).join("")}</tr><tr><td>Elektronen</td>${e.shells.map((s) => `<td><b>${s}</b></td>`).join("")}</tr><tr><td>maximal 2n²</td>${e.shells.map((_, i) => `<td>${2 * (i + 1) ** 2}</td>`).join("")}</tr>`;
+    $("#sLewis").innerHTML = lewis(e);
+    const q = C.ionCharge(e);
+    const v = e.z === 2 ? 2 : e.group;
+    $("#sFacts").innerHTML = `<p><strong>${v}</strong> Valenzelektronen, <strong>${e.shells.length}</strong> besetzte Schalen → ${e.group}. Hauptgruppe, ${e.period}. Periode.</p>` +
+      (e.cls === "e" ? "<p>Edelgaskonfiguration: Edelgase gehen kaum Reaktionen ein.</p>" :
+        q === null ? "<p>Elemente der 4. Hauptgruppe bilden meist Elektronenpaarbindungen statt Ionen.</p>" :
+          `<p>Typisches Ion: <strong>${e.sym}${C.charge(q)}</strong> (${q > 0 ? `gibt ${q} e⁻ ab` : `nimmt ${-q} e⁻ auf`}) und erreicht so Edelgaskonfiguration.</p>`);
+  }
+  $$("#sGrid button").forEach((b) => b.addEventListener("click", () => { cur = byZ[+b.dataset.z]; drawShell(); }));
+  drawShell();
+
+  // ---------- trainer ----------
+  const nucl = (e, A, q = 0) => `<sup>${A}</sup><sub>${e.z}</sub>${e.sym}${q ? C.charge(q) : ""}`;
+  const listCheck = (want) => (raw) => { const got = String(raw).split(/[^0-9]+/).filter(Boolean).map(Number); if (!got.length) return { ok: false, msg: "Gib die Elektronen je Schale an, z. B. <code>2,8,1</code>." }; return got.join(",") === want.join(",") ? { ok: true } : { ok: false, msg: "Von innen nach außen: K höchstens 2, L höchstens 8, M (bis Z = 20) höchstens 8." }; };
+  function genTeilchen() {
+    const e = pick(first20), A = e.A + pick([0, 0, 1, 2, -1].filter((d) => e.A + d > e.z)), ask = pick(["Protonen", "Neutronen", "Elektronen"]);
+    const ans = ask === "Protonen" ? e.z : ask === "Neutronen" ? A - e.z : e.z;
+    return { html: `Wie viele <strong>${ask}</strong> hat das Atom ${nucl(e, A)}?`, label: `${ask}:`, answer: String(ans), check: LK.check.num(ans, { abs: 0 }),
+      solution: `Z = ${e.z}, A = ${A}: ${e.z} Protonen, ${A - e.z} Neutronen, ${e.z} Elektronen. Gesucht: <b>${ans}</b>`, hint: "Neutronen = Massenzahl − Ordnungszahl." };
+  }
+  function genSchalen() { const e = pick(first20); return { html: `Gib die Schalenbesetzung von <strong>${e.name}</strong> (Z = ${e.z}) an.`, label: "Schalen:", placeholder: "z. B. 2,8,1", answer: e.shells.join(","), check: listCheck(e.shells), solution: `<b>${e.shells.join(", ")}</b>` }; }
+  function genValenz() { const e = pick(C.els.filter((x) => x.z !== 2)); return { html: `Wie viele Valenzelektronen hat ein <strong>${e.name}</strong>-Atom (${e.group}. Hauptgruppe)?`, label: "Valenzelektronen:", answer: String(e.group), check: LK.check.num(e.group, { abs: 0 }), solution: `Hauptgruppennummer = Valenzelektronen: <b>${e.group}</b>` }; }
+  function genIon() {
+    const e = pick(first20.filter((x) => C.ionCharge(x) !== null && x.z > 2)), q = C.ionCharge(e), ne = e.z - q;
+    if (Math.random() < 0.5) return { html: `Wie viele Elektronen hat das Ion <strong>${e.sym}${C.charge(q)}</strong>?`, label: "Elektronen:", answer: String(ne), check: LK.check.num(ne, { abs: 0 }), solution: `${e.z} Protonen, Ladung ${q > 0 ? "+" : "−"}${Math.abs(q)} ⇒ ${e.z} ${q > 0 ? "−" : "+"} ${Math.abs(q)} = <b>${ne} Elektronen</b>` };
+    return { html: `Schalenbesetzung des Ions <strong>${e.sym}${C.charge(q)}</strong>?`, label: "Schalen:", placeholder: "z. B. 2,8", answer: C.shells(ne).join(","), check: listCheck(C.shells(ne)), solution: `${ne} Elektronen: <b>${C.shells(ne).join(", ")}</b> (Edelgaskonfiguration)` };
+  }
+  LK.trainer({ el: "#trainer", modes: [
+    { id: "teilchen", label: "Teilchen zählen", gen: genTeilchen },
+    { id: "schalen", label: "Schalenbesetzung", gen: genSchalen },
+    { id: "valenz", label: "Valenzelektronen", gen: genValenz },
+    { id: "ionen", label: "Ionen", gen: genIon }
+  ] });
+
+  LK.quiz({ box: "#quizBox", bar: "#qBar", progress: "#qProgress", key: "atombau.best", n: 8, questions: [
+    { q: "Was legt fest, um welches Element es sich handelt?", o: ["Die Neutronenzahl", "Die Protonenzahl", "Die Elektronenzahl", "Die Massenzahl"], a: 1, e: "Ordnungszahl = Protonenzahl." },
+    { q: "Wie viele Neutronen hat ³⁷₁₇Cl?", o: ["17", "20", "37", "54"], a: 1, e: "37 − 17 = 20." },
+    { q: "Was unterscheidet Isotope eines Elements?", o: ["Protonenzahl", "Elektronenzahl", "Neutronenzahl", "Ladung"], a: 2, e: "Gleiche Protonen, verschiedene Neutronen." },
+    { q: "Wie viele Elektronen passen höchstens auf die L-Schale (n = 2)?", o: ["2", "8", "18", "32"], a: 1, e: "2n² = 8." },
+    { q: "Schalenbesetzung von Schwefel (Z = 16)?", o: ["2, 8, 6", "2, 6, 8", "8, 8", "2, 14"], a: 0, e: "Von innen nach außen." },
+    { q: "Was ist ein Kation?", o: ["Ein negatives Ion", "Ein positives Ion", "Ein Neutron", "Ein Edelgas"], a: 1, e: "Es hat Elektronen abgegeben." },
+    { q: "Wie viele Elektronen hat O²⁻?", o: ["6", "8", "10", "16"], a: 2, e: "8 + 2 = 10, wie Neon." },
+    { q: "Welche Aussage über das Bohr-Modell stimmt?", o: ["Es ist völlig exakt", "Elektronen kreisen auf festen Schalen mit bestimmter Energie", "Der Kern besteht aus Elektronen", "Es gibt nur eine Schale"], a: 1, e: "Heute ergänzt durch das Orbitalmodell." }
+  ] });
+
+  LK.views(["verstehen", "baukasten", "schalen", "ueben", "alltag", "quiz"], {});
+})();
+</script>
+<script>
+(function () {
+  "use strict";
+  // Light/dark switch shared by all LearningDesk pages; the choice is remembered in this browser
+  var KEY = "learningdesk.theme", root = document.documentElement;
+  var header = document.querySelector("header");
+  if (!header) return;
+  function effective() {
+    var t = root.getAttribute("data-theme");
+    if (t === "dark" || t === "light") return t;
+    return window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+  }
+  var btn = document.createElement("button");
+  btn.type = "button"; btn.className = "theme-toggle";
+  function paint() {
+    var dark = effective() === "dark";
+    var label = dark ? "Helles Design einschalten" : "Dunkles Design einschalten";
+    btn.textContent = dark ? "\u2600" : "\u263E";
+    btn.setAttribute("aria-label", label); btn.title = label;
+  }
+  btn.addEventListener("click", function () {
+    var next = effective() === "dark" ? "light" : "dark";
+    root.setAttribute("data-theme", next);
+    try { localStorage.setItem(KEY, next); } catch (e) { /* storage unavailable */ }
+    paint();
+    // canvases read the colour tokens when they draw, so ask them to redraw
+    window.dispatchEvent(new Event("resize"));
+  });
+  header.classList.add("has-theme-toggle");
+  header.appendChild(btn);
+  paint();
+  try { window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", paint); } catch (e) { /* old browsers */ }
+})();
+</script>
+<script>
+(function () {
+  "use strict";
+  // keep the last breadcrumb in sync with the active section tab
+  var last = document.querySelector("nav.crumbs [data-crumb-section]");
+  if (!last) return;
+  function update() {
+    var a = document.querySelector('nav.tabs a[aria-current="page"]');
+    if (!a) { last.hidden = true; return; }
+    var t = a.cloneNode(true); var n = t.querySelector(".n"); if (n) n.remove();
+    last.querySelector("span").textContent = t.textContent.trim();
+    last.hidden = false;
+  }
+  window.addEventListener("hashchange", function () { setTimeout(update, 0); });
+  setTimeout(update, 0);
+})();
+</script>

@@ -1,0 +1,140 @@
+  <nav class="tabs" aria-label="Bereiche">
+    <a href="#verstehen" data-view="verstehen"><span class="n">1</span>Verstehen</a>
+    <a href="#baukasten" data-view="baukasten"><span class="n">2</span>Atom-Baukasten</a>
+    <a href="#schalen" data-view="schalen"><span class="n">3</span>Schalenmodell</a>
+    <a href="#ueben" data-view="ueben"><span class="n">4</span>Üben</a>
+    <a href="#alltag" data-view="alltag"><span class="n">5</span>Im Alltag</a>
+    <a href="#quiz" data-view="quiz"><span class="n">6</span>Quiz</a>
+  </nav>
+
+  <section class="view" id="view-verstehen">
+    <div class="einfach">
+      <span class="eyebrow">Einfach erklärt</span>
+      <p>Ein Atom besteht aus einem winzigen, schweren <strong>Atomkern</strong> mit Protonen und Neutronen und einer großen, fast leeren <strong>Atomhülle</strong> mit Elektronen. Die Zahl der Protonen bestimmt, um welches <strong>Element</strong> es sich handelt.</p>
+    </div>
+    <div class="panel stack">
+      <h3>Die drei Elementarteilchen</h3>
+      <table class="ptab">
+        <tr><th>Teilchen</th><th>Ort</th><th>Ladung</th><th>Masse</th></tr>
+        <tr><td><strong>Proton</strong> p⁺</td><td>Kern</td><td>+1</td><td>≈ 1 u</td></tr>
+        <tr><td><strong>Neutron</strong> n</td><td>Kern</td><td>0</td><td>≈ 1 u</td></tr>
+        <tr><td><strong>Elektron</strong> e⁻</td><td>Hülle</td><td>−1</td><td>≈ 1/1836 u</td></tr>
+      </table>
+      <p class="small muted">1 u (atomare Masseneinheit) ≈ 1,66 · 10⁻²⁷ kg. Fast die gesamte Masse steckt im Kern.</p>
+    </div>
+    <div class="grid-2">
+      <div class="panel stack">
+        <h3>Wichtige Zahlen</h3>
+        <ul class="list small">
+          <li><strong>Ordnungszahl Z</strong> = Zahl der Protonen = Kernladungszahl. Sie legt das Element fest.</li>
+          <li><strong>Massenzahl A</strong> = Protonen + Neutronen.</li>
+          <li><strong>Neutronenzahl N</strong> = A − Z.</li>
+          <li>Im neutralen <strong>Atom</strong>: Elektronen = Protonen.</li>
+        </ul>
+        <p class="small">Schreibweise: <strong>³⁵₁₇Cl</strong> hat 17 Protonen, 35 − 17 = 18 Neutronen und 17 Elektronen.</p>
+      </div>
+      <div class="panel stack">
+        <h3>Isotope und Ionen</h3>
+        <ul class="list small">
+          <li><strong>Isotope</strong>: gleiche Protonenzahl, verschiedene Neutronenzahl, z. B. ¹²C und ¹⁴C. Chemisch verhalten sie sich gleich.</li>
+          <li><strong>Ionen</strong>: geladene Teilchen. Bei Elektronenabgabe entsteht ein <strong>Kation</strong> (Na⁺), bei Elektronenaufnahme ein <strong>Anion</strong> (Cl⁻).</li>
+          <li>Die Protonenzahl ändert sich bei Ionenbildung <strong>nie</strong>.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="panel stack">
+      <h3>Schalenmodell nach Bohr</h3>
+      <p class="small">Niels Bohr (1913) stellte sich vor, dass die Elektronen den Kern auf bestimmten <strong>Schalen</strong> (Energiestufen) umkreisen. Je weiter außen die Schale, desto höher die Energie der Elektronen.</p>
+      <ul class="list small">
+        <li>Schalen K, L, M, N … (n = 1, 2, 3, 4 …). Die n-te Schale fasst höchstens <strong>2n²</strong> Elektronen: 2, 8, 18, 32.</li>
+        <li>Die Schalen werden von innen nach außen besetzt. Bei den ersten 20 Elementen: K bis 2, L bis 8, M bis 8, dann N.</li>
+        <li>Die äußerste Schale heißt <strong>Valenzschale</strong>, ihre Elektronen <strong>Valenzelektronen</strong> (Außenelektronen). Sie bestimmen das chemische Verhalten.</li>
+        <li>8 Valenzelektronen (bei He 2) sind besonders stabil: <strong>Edelgaskonfiguration</strong> (Oktettregel).</li>
+      </ul>
+    </div>
+    <div class="merksatz">
+      <span class="eyebrow">Merke</span>
+      <p>Hauptgruppennummer = Zahl der Valenzelektronen, Periodennummer = Zahl der besetzten Schalen. Atome geben Elektronen ab oder nehmen welche auf, um Edelgaskonfiguration zu erreichen.</p>
+    </div>
+    <div class="panel stack">
+      <h3>Grenzen des Bohr-Modells</h3>
+      <p class="small">Elektronen bewegen sich nicht auf festen Kreisbahnen. Das heutige <strong>Orbitalmodell</strong> beschreibt nur Aufenthaltswahrscheinlichkeiten. Für Bindungen und das Periodensystem reicht das Schalenmodell aber meist aus.</p>
+    </div>
+    <div class="panel stack">
+      <h3>Typische Fehler</h3>
+      <ul class="list small">
+        <li>Massenzahl mit Neutronenzahl verwechselt.</li>
+        <li>Bei Ionen die Protonenzahl geändert statt der Elektronenzahl.</li>
+        <li>Kation und Anion vertauscht: Kation = positiv (Elektronen abgegeben).</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="view" id="view-baukasten" hidden>
+    <div class="stack">
+      <span class="eyebrow">Ausprobieren</span>
+      <h2>Atom-Baukasten</h2>
+      <p class="muted">Füge Protonen, Neutronen und Elektronen hinzu. Was ändert das Element, was die Masse, was die Ladung?</p>
+    </div>
+    <div class="sim-layout">
+      <div class="figure stack"><div id="bBohr"></div></div>
+      <div class="panel stack">
+        <div class="counter"><span>Protonen</span><button type="button" data-d="p,-1" aria-label="Proton entfernen">−</button><b id="cP"></b><button type="button" data-d="p,1" aria-label="Proton hinzufügen">+</button></div>
+        <div class="counter"><span>Neutronen</span><button type="button" data-d="n,-1" aria-label="Neutron entfernen">−</button><b id="cN"></b><button type="button" data-d="n,1" aria-label="Neutron hinzufügen">+</button></div>
+        <div class="counter"><span>Elektronen</span><button type="button" data-d="e,-1" aria-label="Elektron entfernen">−</button><b id="cE"></b><button type="button" data-d="e,1" aria-label="Elektron hinzufügen">+</button></div>
+        <div class="nuclide" id="bNuc"></div>
+        <p id="bInfo" class="small"></p>
+      </div>
+    </div>
+    <div class="einfach"><p id="bText"></p></div>
+  </section>
+
+  <section class="view" id="view-schalen" hidden>
+    <div class="stack">
+      <span class="eyebrow">Schalenmodell</span>
+      <h2>Elektronen auf Schalen</h2>
+      <p class="muted">Wähle ein Element. Gelb sind die Valenzelektronen.</p>
+    </div>
+    <div class="elgrid" id="sGrid"></div>
+    <div class="sim-layout">
+      <div class="figure stack"><div id="sBohr"></div></div>
+      <div class="panel stack">
+        <h3 id="sName"></h3>
+        <table class="shtab" id="sTab"></table>
+        <div class="grid-2"><div><p class="small muted">Lewis-Schreibweise</p><div id="sLewis"></div></div><div id="sFacts" class="small"></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="view" id="view-ueben" hidden>
+    <div class="stack">
+      <span class="eyebrow">Trainer</span>
+      <h2>Atombau üben</h2>
+      <p class="muted">Schalenbesetzung mit Kommas eingeben, z. B. <code>2,8,1</code>.</p>
+    </div>
+    <div id="trainer" class="stack"></div>
+  </section>
+
+  <section class="view" id="view-alltag" hidden>
+    <div class="stack">
+      <span class="eyebrow">Im Alltag</span>
+      <h2>Atome im Alltag</h2>
+    </div>
+    <div class="grid-2">
+      <div class="panel stack"><span class="eyebrow">Größenvergleich</span><h3>Fast nur leerer Raum</h3><p class="small">Wäre der Atomkern so groß wie ein Stecknadelkopf in der Mitte eines Fußballstadions, reichte die Hülle bis zu den Tribünen.</p></div>
+      <div class="panel stack"><span class="eyebrow">Feuerwerk</span><h3>Flammenfärbung</h3><p class="small">Erhitzte Elektronen springen auf höhere Schalen und geben beim Zurückfallen Licht ab: Natrium gelb, Strontium rot, Kupfer grün. Genau diese Energiestufen beschreibt Bohrs Modell.</p></div>
+      <div class="panel stack"><span class="eyebrow">Archäologie</span><h3>C-14-Methode</h3><p class="small">Das Isotop ¹⁴C zerfällt mit einer Halbwertszeit von etwa 5730 Jahren. Aus dem Rest-¹⁴C lässt sich das Alter von Holz oder Knochen bestimmen.</p></div>
+      <div class="panel stack"><span class="eyebrow">Medizin</span><h3>Radioaktives Iod</h3><p class="small">Die Schilddrüse nimmt Iod auf. Das Isotop ¹³¹I wird zur Untersuchung und Behandlung eingesetzt, chemisch verhält es sich wie normales ¹²⁷I.</p></div>
+      <div class="panel stack"><span class="eyebrow">Leuchtreklame</span><h3>Neonröhren</h3><p class="small">In Gasentladungsröhren regt Strom die Elektronen an. Neon leuchtet rotorange, andere Gase in anderen Farben.</p></div>
+      <div class="panel stack"><span class="eyebrow">Technik</span><h3>Salz im Körper</h3><p class="small">Nerven arbeiten mit Ionen: Na⁺ und K⁺ haben Edelgaskonfiguration und kommen im Körper nur als Ionen vor.</p></div>
+    </div>
+  </section>
+
+  <section class="view" id="view-quiz" hidden>
+    <div class="stack">
+      <span class="eyebrow">Selbsttest</span>
+      <h2>Quiz</h2>
+      <div class="progress-line"><div class="bar" aria-hidden="true"><i id="qBar"></i></div><span class="score-line" id="qProgress"></span></div>
+    </div>
+    <div class="panel quiz" id="quizBox" aria-live="polite"></div>
+  </section>
