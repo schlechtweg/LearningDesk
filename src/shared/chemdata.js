@@ -21,7 +21,7 @@ window.CHEM = (function () {
     [37, "Rb", "Rubidium", 1, 5, 85, 85.47, 0.82, 220, 403, "m"], [38, "Sr", "Strontium", 2, 5, 88, 87.62, 0.95, 195, 550, "m"],
     [49, "In", "Indium", 3, 5, 115, 114.82, 1.78, 142, 558, "m"], [50, "Sn", "Zinn", 4, 5, 120, 118.71, 1.96, 139, 709, "m"],
     [51, "Sb", "Antimon", 5, 5, 121, 121.76, 2.05, 139, 834, "h"], [52, "Te", "Tellur", 6, 5, 130, 127.60, 2.10, 138, 869, "h"],
-    [53, "I", "Iod", 7, 5, 127, 126.90, 2.66, 139, 1008, "n"], [54, "Xe", "Xenon", 8, 5, 132, 131.29, 2.60, 140, 1170, "e"]
+    [53, "I", "Iod", 7, 5, 127, 126.90, 2.66, 139, 1008, "n"], [54, "Xe", "Xenon", 8, 5, 132, 131.29, null, 140, 1170, "e"]
   ];
   const groupNames = { 1: "Alkalimetalle", 2: "Erdalkalimetalle", 3: "Borgruppe (Erdmetalle)", 4: "Kohlenstoffgruppe", 5: "Stickstoffgruppe", 6: "Chalkogene", 7: "Halogene", 8: "Edelgase" };
   const className = { m: "Metall", h: "Halbmetall", n: "Nichtmetall", e: "Edelgas" };

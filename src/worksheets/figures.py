@@ -840,10 +840,33 @@ def atombau():
                     extra_sol='<p class="q"><b>Aluminium</b>, Z = 13, A = 13 + 14 = <b>27</b>. Es gibt die 3 Valenzelektronen ab: <b>Al³⁺</b> (2, 8 wie Neon).</p>', cols=1)
 
 
+def periodensystem():
+    # blank main-group table (periods 1-4) for trend arrows and element classes
+    syms = {(1, 1): "H", (1, 8): "He", (2, 1): "Li", (2, 2): "Be", (2, 3): "B", (2, 4): "C", (2, 5): "N", (2, 6): "O", (2, 7): "F", (2, 8): "Ne",
+            (3, 1): "Na", (3, 2): "Mg", (3, 3): "Al", (3, 4): "Si", (3, 5): "P", (3, 6): "S", (3, 7): "Cl", (3, 8): "Ar",
+            (4, 1): "K", (4, 2): "Ca", (4, 3): "Ga", (4, 4): "Ge", (4, 5): "As", (4, 6): "Se", (4, 7): "Br", (4, 8): "Kr"}
+    w, h, x0, y0 = 28, 26, 30, 30
+    g = ""
+    for (p, gr), sym in syms.items():
+        g += f'<rect x="{x0 + (gr - 1) * w}" y="{y0 + (p - 1) * h}" width="{w - 2}" height="{h - 2}" rx="3" fill="#fff" stroke="#9aa4ad"/>' + text(x0 + (gr - 1) * w + 13, y0 + (p - 1) * h + 16, sym, "ft small")
+    g += "".join(text(x0 + (gr - 1) * w + 13, y0 - 6, ["I", "II", "III", "IV", "V", "VI", "VII", "VIII"][gr - 1], "ft tiny") for gr in range(1, 9))
+    g += "".join(text(x0 - 8, y0 + (p - 1) * h + 16, str(p), "ft tiny", "end") for p in range(1, 5))
+    base = g
+    sol = g + arrow(x0, y0 + 4 * h + 14, x0 + 8 * w - 4, y0 + 4 * h + 14, "arr sol") + text(x0 + 4 * w, y0 + 4 * h + 28, "EN, Ionisierungsenergie steigen; Radius sinkt", "ft tiny sol")
+    sol += arrow(x0 + 8 * w + 14, y0, x0 + 8 * w + 14, y0 + 4 * h - 2, "arr sol") + text(x0 + 8 * w + 20, y0 + 2 * h, "Radius", "ft tiny sol", "start") + text(x0 + 8 * w + 20, y0 + 2 * h + 11, "steigt", "ft tiny sol", "start")
+    sol += f'<path class="solx" d="M{x0 + 2 * w} {y0 + h} V{y0 + 2 * h} H{x0 + 3 * w} V{y0 + 3 * h} H{x0 + 4 * w} V{y0 + 4 * h}"/>'
+    task = ('<p>Zeichne mit Pfeilen ein, in welche Richtung Atomradius und Elektronegativität zunehmen. Ziehe die Grenze zwischen Metallen (links) und Nichtmetallen (rechts).</p>'
+            '<p class="q">Element mit der größten EN: <span class="blank"></span> größtes Atom: <span class="blank"></span></p>'
+            '<p class="q">Begründung für den Radius nach unten: <span class="blank wide"></span></p>')
+    soltxt = ('<p class="q">Nach rechts: EN und Ionisierungsenergie steigen, Radius sinkt. Nach unten: Radius steigt, EN sinkt. Treppenlinie: B, Si, Ge (Halbmetalle) an der Grenze.</p>'
+              '<p class="q">Größte EN: <b>F</b>, größtes Atom: <b>K</b>. Nach unten kommt pro Periode <b>eine Schale</b> hinzu.</p>')
+    return {"title": "Trends einzeichnen", "stars": "★★☆", "task": (svg("0 0 310 175", base), task), "sol": (svg("0 0 310 175", sol), soltxt)}
+
+
 FIGS = {
     "osmose": osmose, "natrium-kalium-pumpe": nak, "symport-antiport": symport, "endocytose-exocytose": endo,
     "ableiten": ableiten, "nervensystem": nerven, "auge": auge,
-    "termstruktur": termstruktur, "zufallsexperimente": zufallsexperimente, "laplace": laplace, "baumdiagramme": baumdiagramme, "unabhaengige-ereignisse": unabhaengig, "funktionsbegriff": funktionsbegriff, "eigenschaften-funktionen": eigenschaften, "lineare-funktionen": lineare_funktionen, "funktionsgleichungen": funktionsgleichungen, "lgs-grafisch": lgs_grafisch, "gleichsetzungsverfahren": gleichsetzungsverfahren, "additionsverfahren": additionsverfahren, "lgs-anwendungen": lgs_anwendungen, "zentrische-streckung": zentrische_streckung, "aehnliche-dreiecke": aehnliche_dreiecke, "flaeche-volumen-aehnlich": flaeche_volumen_aehnlich, "strahlensaetze": strahlensaetze, "atombau": atombau, "binomische-formeln": binom, "bruchterme": bruchterme, "ausmultiplizieren-faktorisieren": ausmult, "terme-vereinfachen": terme,
+    "termstruktur": termstruktur, "zufallsexperimente": zufallsexperimente, "laplace": laplace, "baumdiagramme": baumdiagramme, "unabhaengige-ereignisse": unabhaengig, "funktionsbegriff": funktionsbegriff, "eigenschaften-funktionen": eigenschaften, "lineare-funktionen": lineare_funktionen, "funktionsgleichungen": funktionsgleichungen, "lgs-grafisch": lgs_grafisch, "gleichsetzungsverfahren": gleichsetzungsverfahren, "additionsverfahren": additionsverfahren, "lgs-anwendungen": lgs_anwendungen, "zentrische-streckung": zentrische_streckung, "aehnliche-dreiecke": aehnliche_dreiecke, "flaeche-volumen-aehnlich": flaeche_volumen_aehnlich, "strahlensaetze": strahlensaetze, "atombau": atombau, "periodensystem": periodensystem, "binomische-formeln": binom, "bruchterme": bruchterme, "ausmultiplizieren-faktorisieren": ausmult, "terme-vereinfachen": terme,
     "gleichungen": gleichungen, "ungleichungen": ungleichungen,
     "druck": druck, "hydraulik": hydraulik, "schweredruck": schweredruck, "auftrieb": auftrieb, "luftdruck": luftdruck,
 }

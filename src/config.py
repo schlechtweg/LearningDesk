@@ -249,6 +249,14 @@ TOPICS = [
         "fonts": "base", "first_view": "verstehen", "factsheet": "Factsheet als PDF ↓",
     },
     {
+        "slug": "periodensystem", "grade": "11", "subject": "chemie", "kit": True, "accent": ACCENT_CHEM, "prelude": ["chemdata.js"],
+        "title": "Periodensystem, Atombau und Eigenschaften", "short": "Periodensystem", "tag": "PSE",
+        "card": "Perioden und Hauptgruppen aus dem Atombau, interaktives Periodensystem, Trends bei Atomradius, Elektronegativität und Ionisierungsenergie, Trainer, Quiz",
+        "description": "Interaktive Lernhilfe zum Zusammenhang von Periodensystem, Atombau und Eigenschaften (Chemie, Klasse 11)",
+        "intro": "Warum die Stellung im Periodensystem den Atombau verrät und sich daraus Eigenschaften wie Atomradius und Elektronegativität vorhersagen lassen.",
+        "fonts": "base", "first_view": "verstehen", "factsheet": "Factsheet als PDF ↓",
+    },
+    {
         "slug": "binomische-formeln", "grade": "8", "subject": "mathematik", "chapter": "I", "order": 4,
         "title": "Binomische Formeln", "short": "Binomische Formeln", "tag": "Terme",
         "card": "Die drei Formeln, Erklärung mit Flächen, Trainer mit Lückenaufgaben, Kopfrechen-Trick, Quiz",

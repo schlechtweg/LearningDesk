@@ -2599,6 +2599,103 @@ def atombau():
     return L
 
 
+def periodensystem():
+    r = random.Random(202)
+    L = {1: [], 2: [], 3: []}
+    seen = set()
+    RO = ["", "I", "II", "III", "IV", "V", "VI", "VII", "VIII"]
+    GN = {1: "Alkalimetalle", 2: "Erdalkalimetalle", 3: "Borgruppe (Erdmetalle)", 4: "Kohlenstoffgruppe", 5: "Stickstoffgruppe", 6: "Chalkogene", 7: "Halogene", 8: "Edelgase"}
+    CN = {"m": "Metall", "h": "Halbmetall", "n": "Nichtmetall", "e": "Edelgas"}
+    de = lambda v: f"{v:g}".replace(".", ",")
+    pool = [e for e in CHEM_ELS if e["cls"] != "e" and e["z"] != 1]
+
+    def add(lvl, q, a):
+        if q not in seen and len(L[lvl]) < 120:
+            seen.add(q)
+            L[lvl].append((q, a))
+
+    def why(a, b):
+        if a["period"] == b["period"]:
+            return f"gleiche Periode, {(a if a['z'] > b['z'] else b)['sym']} hat mehr Protonen bei gleicher Schalenzahl"
+        return f"gleiche Gruppe, {(a if a['period'] > b['period'] else b)['sym']} hat mehr Schalen"
+
+    def pair(k, md):
+        while True:
+            a, b = r.sample(pool, 2)
+            if (a["period"] == b["period"] or a["group"] == b["group"]) and abs(a[k] - b[k]) >= md:
+                return a, b
+    for i in range(1500):
+        t = i % 5
+        e = r.choice([x for x in CHEM_ELS if x["z"] > 2])
+        if t == 0:
+            add(1, f"Schalen {', '.join(map(str, e['shells']))}: Hauptgruppe und Periode?", f"{e['shells'][-1]} Valenzelektronen, {len(e['shells'])} Schalen: <b>{RO[e['group']]}. HG, {e['period']}. Periode</b> ({e['name']})")
+        elif t == 1:
+            add(1, f"Wie viele Schalen und Valenzelektronen hat {e['name']} ({RO[e['group']]}. HG, {e['period']}. Periode)?", f"Periode = Schalen, HG = Valenzelektronen: <b>{e['period']} Schalen, {e['group'] if e['z'] != 2 else 2} Valenzelektronen</b> ({', '.join(map(str, e['shells']))})")
+        elif t == 2:
+            add(1, f"Zu welcher Gruppe gehört {e['name']}? Name der Gruppe?", f"<b>{RO[e['group']]}. Hauptgruppe</b>{', ' + GN[e['group']] if e['z'] != 1 else ''}")
+        elif t == 3:
+            add(1, f"Ist {e['name']} ein Metall, Halbmetall, Nichtmetall oder Edelgas?", f"<b>{CN[e['cls']]}</b> ({RO[e['group']]}. HG, {e['period']}. Periode{': links bzw. unten im PSE' if e['cls'] == 'm' else ': an der Grenze' if e['cls'] == 'h' else ': rechts oben im PSE' if e['cls'] == 'n' else ': ganz rechts'})")
+        else:
+            add(1, f"Welches Element steht in der {RO[e['group']]}. Hauptgruppe und {e['period']}. Periode?", f"<b>{e['name']} ({e['sym']})</b>, Z = {e['z']}, Schalen {', '.join(map(str, e['shells']))}")
+    for i in range(1500):
+        t = i % 5
+        if t == 0:
+            a, b = pair("r", 8)
+            big = a if a["r"] > b["r"] else b
+            add(2, f"Welches Atom ist größer: {a['sym']} oder {b['sym']}? Begründe.", f"<b>{big['sym']}</b> ({a['r']} pm / {b['r']} pm): {why(a, b)}")
+        elif t == 1:
+            a, b = pair("en", 0.2)
+            big = a if a["en"] > b["en"] else b
+            add(2, f"Welches Element hat die höhere Elektronegativität: {a['sym']} oder {b['sym']}? Begründe.", f"<b>{big['sym']}</b> ({de(a['en'])} / {de(b['en'])}): {why(a, b)}")
+        elif t == 2:
+            a, b = pair("ie", 60)
+            big = a if a["ie"] > b["ie"] else b
+            add(2, f"Welches Atom gibt sein äußerstes Elektron leichter ab: {a['sym']} oder {b['sym']}?", f"<b>{(b if big is a else a)['sym']}</b> (geringere Ionisierungsenergie {min(a['ie'], b['ie'])} kJ/mol): {why(a, b)}")
+        elif t == 3:
+            e = r.choice([x for x in pool if ion_q(x) is not None and not (x['group'] == 3 and x['z'] > 20)])
+            q = ion_q(e)
+            add(2, f"Welches Ion bildet {e['name']} ({RO[e['group']]}. HG)? Welche Edelgaskonfiguration erreicht es?", f"<b>{e['sym']}{chg(q)}</b>, {', '.join(map(str, CHEM_SHELLS(e['z'] - q)))}")
+        else:
+            g = r.choice([1, 2, 6, 7])
+            trio = sorted(r.sample([x for x in pool if x["group"] == g], 3), key=lambda x: x["r"])
+            sh = trio[:]
+            r.shuffle(sh)
+            add(2, f"Ordne nach steigendem Atomradius: {', '.join(x['sym'] for x in sh)}.", f"<b>{' < '.join(x['sym'] for x in trio)}</b> (mehr Schalen nach unten)")
+    # Mendeleev-style predictions from the neighbours above and below
+    for sym in ["Ge", "Si", "Se", "Br", "Ga", "Sb", "Ca"]:
+        e = CH[sym]
+        up = next(x for x in CHEM_ELS if x["group"] == e["group"] and x["period"] == e["period"] - 1)
+        dn = next((x for x in CHEM_ELS if x["group"] == e["group"] and x["period"] == e["period"] + 1), None)
+        if not dn:
+            continue
+        est = (up["r"] + dn["r"]) / 2
+        add(3, f"Schätze wie Mendelejew den Atomradius von {e['name']} aus seinen Nachbarn {up['sym']} ({up['r']} pm) und {dn['sym']} ({dn['r']} pm). Vergleiche mit dem Tabellenwert {e['r']} pm.",
+            f"Mittelwert ({up['r']} + {dn['r']}) : 2 = <b>{de(est)} pm</b>; Abweichung {de(abs(est - e['r']))} pm. Die Schätzung trifft die Größenordnung, weil sich Eigenschaften in einer Gruppe <b>regelmäßig</b> ändern.")
+    # successive ionisation energies reveal the group
+    ies = {"Na": [496, 4562, 6910, 9543], "Mg": [738, 1451, 7733, 10543], "Al": [578, 1817, 2745, 11577], "Li": [520, 7298, 11815, None], "Be": [900, 1757, 14849, 21007], "B": [801, 2427, 3660, 25026]}
+    for sym, v in ies.items():
+        vals = [x for x in v if x]
+        jump = max(range(1, len(vals)), key=lambda i: vals[i] / vals[i - 1])
+        add(3, f"Die ersten Ionisierungsenergien eines Elements der 2. oder 3. Periode sind {', '.join(f'{x:,}'.replace(',', '.') for x in vals)} kJ/mol. In welcher Hauptgruppe steht es? Um welches Element handelt es sich, wenn es in der {CH[sym]['period']}. Periode steht?",
+            f"Großer Sprung nach dem {jump}. Elektron: Danach muss eine voll besetzte, kernnähere Schale angegriffen werden ⇒ <b>{jump} Valenzelektron{'en' if jump > 1 else ''}, {RO[jump]}. Hauptgruppe</b>: <b>{CH[sym]['name']}</b>")
+    fixed = [
+        ("Erkläre, warum der Atomradius innerhalb einer Periode abnimmt, obwohl die Zahl der Elektronen steigt.", "Die Elektronen kommen auf <b>dieselbe Schale</b>, aber die <b>Kernladung steigt</b>. Die stärkere Anziehung zieht die Hülle zusammen; die Abstoßung zusätzlicher Elektronen derselben Schale ist schwächer."),
+        ("Warum nimmt die Reaktivität der Alkalimetalle von Lithium zu Kalium zu, die der Halogene von Fluor zu Iod aber ab?", "Alkalimetalle <b>geben</b> ein Elektron ab: Nach unten ist es weiter vom Kern entfernt und leichter abzugeben. Halogene <b>nehmen</b> ein Elektron auf: Nach unten wird es schwächer angezogen."),
+        ("Warum haben die Edelgase die höchsten Ionisierungsenergien ihrer Periode?", "Sie haben die <b>höchste Kernladung</b> der Periode bei gleicher Schalenzahl und eine voll besetzte Valenzschale (<b>Edelgaskonfiguration</b>): Ein Elektron zu entfernen kostet sehr viel Energie."),
+        ("Ein unbekanntes Element ist ein glänzender Feststoff, leitet Strom und bildet Ionen X²⁺. Es hat 4 Schalen. Um welches Element handelt es sich?", "Ion X²⁺ ⇒ <b>II. Hauptgruppe</b>, 4 Schalen ⇒ <b>4. Periode</b>: <b>Calcium (Ca)</b>, ein Metall."),
+        ("Warum ist die Elektronegativität für Edelgase meist nicht angegeben?", "EN beschreibt das Anziehen von <b>Bindungselektronen</b>. Edelgase (He, Ne, Ar) gehen praktisch <b>keine Bindungen</b> ein."),
+        ("Begründe, warum Silicium ein Halbmetall ist, mit seiner Stellung im Periodensystem.", "Si steht an der <b>Grenze</b> zwischen Metallen (links unten) und Nichtmetallen (rechts oben), IV. HG: 4 Valenzelektronen, weder leicht abzugeben noch aufzunehmen. Daher <b>Halbleiter</b>."),
+        ("Lithium, Natrium und Kalium werden in Wasser gegeben. Beschreibe und erkläre die Unterschiede.", "Li reagiert ruhig, Na heftig (schmilzt, zischt), K entzündet den Wasserstoff. Nach unten <b>sinkt die Ionisierungsenergie</b>, das Valenzelektron wird leichter abgegeben."),
+        ("Ordne F, Cl, O, S nach steigender Elektronegativität und begründe.", "<b>S (2,58) < Cl (3,16) < O (3,44) < F (3,98)</b>: EN steigt nach rechts in der Periode und sinkt nach unten in der Gruppe."),
+        ("Warum ist das Atom Na größer als das Ion Na⁺, aber das Atom Cl kleiner als das Ion Cl⁻?", "Na⁺ hat die äußere M-Schale verloren (2, 8): <b>kleiner</b>. Cl⁻ hat ein Elektron mehr bei gleicher Kernladung: Die Elektronen stoßen sich stärker ab, <b>größer</b>."),
+        ("Warum stehen Elemente mit ähnlichen Eigenschaften im Periodensystem untereinander?", "Sie haben <b>gleich viele Valenzelektronen</b>. Chemische Eigenschaften hängen von den Valenzelektronen ab; die Eigenschaften wiederholen sich daher <b>periodisch</b> mit jeder neuen Schale."),
+    ]
+    for q_, a_ in fixed:
+        add(3, q_, a_)
+    r.shuffle(L[3])
+    return L
+
+
 M8, PH = "#1f6e8c", "#b4531f"
 TOPICS = {
     "osmose": ({"title": "Osmose", "eyebrow": "Biologie · Klasse 11", "accent": "#0d6f74", "cols": [1, 1, 1], "sol_cols": [1, 1, 1]}, osmose),
@@ -2626,6 +2723,7 @@ TOPICS = {
     "flaeche-volumen-aehnlich": ({"title": "Flächen und Volumen ähnlicher Figuren", "eyebrow": "Mathematik · Klasse 8", "accent": M8, "cols": [2, 1, 1], "sol_cols": [2, 1, 1]}, flaeche_volumen_aehnlich),
     "strahlensaetze": ({"title": "Strahlensätze", "eyebrow": "Mathematik · Klasse 8", "accent": M8, "cols": [2, 2, 1], "sol_cols": [2, 2, 1]}, strahlensaetze),
     "atombau": ({"title": "Atombau und Schalenmodell", "eyebrow": "Chemie · Klasse 11", "accent": "#6a3fa0", "cols": [2, 2, 1], "sol_cols": [2, 2, 1]}, atombau),
+    "periodensystem": ({"title": "Periodensystem, Atombau und Eigenschaften", "eyebrow": "Chemie · Klasse 11", "accent": "#6a3fa0", "cols": [2, 2, 1], "sol_cols": [2, 2, 1]}, periodensystem),
     "binomische-formeln": ({"title": "Binomische Formeln", "eyebrow": "Mathematik · Klasse 8", "accent": M8, "cols": 2, "sol_cols": 2}, binomische_formeln),
     "bruchterme": ({"title": "Bruchterme", "eyebrow": "Mathematik · Klasse 8", "accent": "#2d6a4f", "cols": 3, "sol_cols": 3}, bruchterme),
     "ausmultiplizieren-faktorisieren": ({"title": "Ausmultiplizieren und Faktorisieren", "eyebrow": "Mathematik · Klasse 8", "accent": M8, "cols": 3, "sol_cols": 3}, ausmultiplizieren),

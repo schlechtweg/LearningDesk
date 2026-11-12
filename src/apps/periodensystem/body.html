@@ -1,0 +1,117 @@
+  <nav class="tabs" aria-label="Bereiche">
+    <a href="#verstehen" data-view="verstehen"><span class="n">1</span>Verstehen</a>
+    <a href="#pse" data-view="pse"><span class="n">2</span>Periodensystem</a>
+    <a href="#trends" data-view="trends"><span class="n">3</span>Trends</a>
+    <a href="#ueben" data-view="ueben"><span class="n">4</span>Üben</a>
+    <a href="#alltag" data-view="alltag"><span class="n">5</span>Im Alltag</a>
+    <a href="#quiz" data-view="quiz"><span class="n">6</span>Quiz</a>
+  </nav>
+
+  <section class="view" id="view-verstehen">
+    <div class="einfach">
+      <span class="eyebrow">Einfach erklärt</span>
+      <p>Das Periodensystem ordnet die Elemente nach steigender <strong>Protonenzahl</strong>. Die Anordnung spiegelt den <strong>Atombau</strong> wider: Wer in derselben Spalte steht, hat gleich viele Valenzelektronen und verhält sich chemisch ähnlich.</p>
+    </div>
+    <div class="grid-2">
+      <div class="panel stack">
+        <h3>Perioden (Zeilen)</h3>
+        <p class="small">Die <strong>Periodennummer</strong> gibt die Zahl der besetzten Schalen an. Natrium (2, 8, 1) steht in der 3. Periode.</p>
+      </div>
+      <div class="panel stack">
+        <h3>Hauptgruppen (Spalten)</h3>
+        <p class="small">Die <strong>Hauptgruppennummer</strong> gibt die Zahl der Valenzelektronen an. Chlor (2, 8, 7) steht in der 7. Hauptgruppe.</p>
+      </div>
+    </div>
+    <div class="panel stack">
+      <h3>Wichtige Gruppen</h3>
+      <table class="ptab">
+        <tr><th>Gruppe</th><th>Name</th><th>Valenz-e⁻</th><th>typisches Verhalten</th></tr>
+        <tr><td>I</td><td>Alkalimetalle</td><td>1</td><td>weiche, sehr reaktive Metalle, bilden Ionen M⁺, reagieren heftig mit Wasser</td></tr>
+        <tr><td>II</td><td>Erdalkalimetalle</td><td>2</td><td>reaktive Metalle, Ionen M²⁺</td></tr>
+        <tr><td>VII</td><td>Halogene</td><td>7</td><td>reaktive Nichtmetalle, zweiatomige Moleküle (Cl₂), Ionen X⁻</td></tr>
+        <tr><td>VIII</td><td>Edelgase</td><td>8 (He 2)</td><td>Edelgaskonfiguration, reaktionsträge, einatomig</td></tr>
+      </table>
+    </div>
+    <div class="panel stack">
+      <h3>Trends: Warum sich Eigenschaften periodisch ändern</h3>
+      <ul class="list small">
+        <li><strong>In einer Periode nach rechts</strong>: Die Kernladung steigt, die Schalenzahl bleibt gleich. Die Elektronen werden stärker angezogen: <strong>Atomradius sinkt</strong>, <strong>Ionisierungsenergie</strong> und <strong>Elektronegativität steigen</strong>, der Metallcharakter nimmt ab.</li>
+        <li><strong>In einer Gruppe nach unten</strong>: Es kommt jeweils eine Schale hinzu, die Valenzelektronen sind weiter vom Kern entfernt und durch innere Schalen abgeschirmt: <strong>Atomradius steigt</strong>, Ionisierungsenergie und Elektronegativität <strong>sinken</strong>, der Metallcharakter nimmt zu.</li>
+      </ul>
+    </div>
+    <div class="merksatz">
+      <span class="eyebrow">Merke</span>
+      <p>Elektronegativität (EN) ist die Fähigkeit eines Atoms, in einer Bindung Elektronen an sich zu ziehen. Fluor hat mit 4,0 die höchste EN, links unten stehen die Elemente mit der niedrigsten.</p>
+    </div>
+    <div class="panel stack">
+      <h3>Typische Fehler</h3>
+      <ul class="list small">
+        <li>„Mehr Protonen = größeres Atom“: In einer Periode ist es umgekehrt.</li>
+        <li>Perioden und Gruppen vertauscht: Perioden sind die Zeilen.</li>
+        <li>Wasserstoff zu den Alkalimetallen gezählt.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="view" id="view-pse" hidden>
+    <div class="stack">
+      <span class="eyebrow">Interaktiv</span>
+      <h2>Periodensystem der Hauptgruppen</h2>
+      <p class="muted">Wähle, welche Eigenschaft farbig dargestellt wird, und tippe auf ein Element.</p>
+    </div>
+    <div class="row"><div class="modes" role="group" aria-label="Farbe nach"><button type="button" data-c="cls" aria-pressed="true">Metall / Nichtmetall</button><button type="button" data-c="r" aria-pressed="false">Atomradius</button><button type="button" data-c="en" aria-pressed="false">Elektronegativität</button><button type="button" data-c="ie" aria-pressed="false">Ionisierungsenergie</button></div></div>
+    <div class="panel stack"><div class="pse" id="pGrid"></div><div class="legend" id="pLegend"></div></div>
+    <div class="sim-layout">
+      <div class="figure stack"><div id="pBohr"></div></div>
+      <div class="panel stack"><h3 id="pName"></h3><div id="pInfo" class="small"></div></div>
+    </div>
+  </section>
+
+  <section class="view" id="view-trends" hidden>
+    <div class="stack">
+      <span class="eyebrow">Vergleichen</span>
+      <h2>Trends im Diagramm</h2>
+      <p class="muted">Wähle eine Größe und eine Periode oder Gruppe.</p>
+    </div>
+    <div class="row"><div class="modes" role="group" aria-label="Größe"><button type="button" data-t="r" aria-pressed="true">Atomradius</button><button type="button" data-t="en" aria-pressed="false">EN</button><button type="button" data-t="ie" aria-pressed="false">Ionisierungsenergie</button></div>
+      <select id="tSel" aria-label="Periode oder Gruppe"></select></div>
+    <div class="panel stack"><svg class="bars" id="tSvg" viewBox="0 0 460 230" role="img" aria-label="Balkendiagramm"></svg><p class="small" id="tText"></p></div>
+    <div class="panel stack">
+      <h3>Zwei Elemente vergleichen</h3>
+      <div class="cmp"><select id="c1" aria-label="Element 1"></select><select id="c2" aria-label="Element 2"></select></div>
+      <div id="cOut" class="small"></div>
+    </div>
+  </section>
+
+  <section class="view" id="view-ueben" hidden>
+    <div class="stack">
+      <span class="eyebrow">Trainer</span>
+      <h2>Periodensystem üben</h2>
+      <p class="muted">Elemente als Symbol eingeben, Gruppe und Periode als <code>3;2</code> (Gruppe; Periode), Ladungen als <code>2+</code>.</p>
+    </div>
+    <div id="trainer" class="stack"></div>
+  </section>
+
+  <section class="view" id="view-alltag" hidden>
+    <div class="stack">
+      <span class="eyebrow">Im Alltag</span>
+      <h2>Das Periodensystem im Alltag</h2>
+    </div>
+    <div class="grid-2">
+      <div class="panel stack"><span class="eyebrow">Geschichte</span><h3>Mendelejews Vorhersagen</h3><p class="small">1869 ließ Dmitri Mendelejew Lücken frei und sagte Eigenschaften noch unbekannter Elemente voraus, etwa Gallium und Germanium. Sie wurden später genau so gefunden.</p></div>
+      <div class="panel stack"><span class="eyebrow">Technik</span><h3>Halbleiter</h3><p class="small">Silicium und Germanium stehen an der Grenze zwischen Metallen und Nichtmetallen. Diese Halbmetalle sind die Grundlage von Computerchips und Solarzellen.</p></div>
+      <div class="panel stack"><span class="eyebrow">Sicherheit</span><h3>Natrium unter Öl</h3><p class="small">Alkalimetalle reagieren mit Wasser und Luft so heftig, dass sie unter Paraffinöl aufbewahrt werden. Kalium reagiert noch heftiger als Natrium: Trend in der Gruppe.</p></div>
+      <div class="panel stack"><span class="eyebrow">Hygiene</span><h3>Halogene als Desinfektion</h3><p class="small">Chlor im Schwimmbad und Iod in Wunddesinfektion nutzen die hohe Reaktivität der Halogene.</p></div>
+      <div class="panel stack"><span class="eyebrow">Technik</span><h3>Edelgase</h3><p class="small">Argon schützt beim Schweißen und in Glühlampen, Helium füllt Ballons: Ihre Reaktionsträgheit ist hier gerade erwünscht.</p></div>
+      <div class="panel stack"><span class="eyebrow">Akkus</span><h3>Lithium</h3><p class="small">Lithium ist das leichteste Metall und gibt sein Valenzelektron leicht ab: ideal für leichte Akkus.</p></div>
+    </div>
+  </section>
+
+  <section class="view" id="view-quiz" hidden>
+    <div class="stack">
+      <span class="eyebrow">Selbsttest</span>
+      <h2>Quiz</h2>
+      <div class="progress-line"><div class="bar" aria-hidden="true"><i id="qBar"></i></div><span class="score-line" id="qProgress"></span></div>
+    </div>
+    <div class="panel quiz" id="quizBox" aria-live="polite"></div>
+  </section>

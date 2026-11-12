@@ -25,3 +25,4 @@
 .shtab { width: 100%; border-collapse: collapse; font-family: var(--font-mono); font-size: var(--step--1); }
 .shtab th, .shtab td { padding: 5px 6px; border-bottom: 1px solid var(--line); text-align: center; }
 .scale { display: grid; gap: 6px; font-size: var(--step--1); }
+.ptab th, .ptab td { overflow-wrap: anywhere; hyphens: auto; }

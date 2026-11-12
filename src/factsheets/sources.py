@@ -2047,6 +2047,58 @@ SHEETS["atombau"] = dict(title="Atombau und Schalenmodell", eyebrow="Chemie · K
     </div>
   </div>''')
 
+SHEETS["periodensystem"] = dict(title="Periodensystem, Atombau und Eigenschaften", eyebrow="Chemie · Klasse 11 · PSE", accent=CH11, body=f'''
+  <div class="kern">Die Stellung im Periodensystem verrät den Atombau: <strong>Hauptgruppe = Zahl der Valenzelektronen</strong>, <strong>Periode = Zahl der Schalen</strong>. Daraus folgen periodisch wiederkehrende Eigenschaften.</div>
+  <div class="cols">
+    <div class="box">
+      <h2>Wichtige Gruppen</h2>
+      <table>
+        <tr><th>HG</th><th>Name</th><th>Ion</th></tr>
+        <tr><td>I</td><td>Alkalimetalle</td><td>M⁺</td></tr>
+        <tr><td>II</td><td>Erdalkalimetalle</td><td>M²⁺</td></tr>
+        <tr><td>VI</td><td>Chalkogene</td><td>X²⁻</td></tr>
+        <tr><td>VII</td><td>Halogene</td><td>X⁻</td></tr>
+        <tr><td>VIII</td><td>Edelgase</td><td>–</td></tr>
+      </table>
+    </div>
+    <div class="box">
+      <h2>Begriffe</h2>
+      <ul>
+        <li><strong>Atomradius</strong>: Größe des Atoms (pm).</li>
+        <li><strong>Ionisierungsenergie</strong>: Energie zum Entfernen des äußersten Elektrons.</li>
+        <li><strong>Elektronegativität</strong> (EN): Fähigkeit, Bindungselektronen anzuziehen (F = 4,0 maximal).</li>
+        <li><strong>Metallcharakter</strong>: Neigung, Elektronen abzugeben.</li>
+      </ul>
+    </div>
+    <div class="box full">
+      <h2>Trends</h2>
+      <table>
+        <tr><th></th><th>Periode nach rechts</th><th>Gruppe nach unten</th></tr>
+        <tr><td>Ursache</td><td>Kernladung steigt, gleiche Schalenzahl</td><td>eine Schale mehr, Abschirmung</td></tr>
+        <tr><td>Atomradius</td><td>sinkt</td><td>steigt</td></tr>
+        <tr><td>Ionisierungsenergie</td><td>steigt</td><td>sinkt</td></tr>
+        <tr><td>Elektronegativität</td><td>steigt</td><td>sinkt</td></tr>
+        <tr><td>Metallcharakter</td><td>sinkt</td><td>steigt</td></tr>
+      </table>
+    </div>
+    <div class="box">
+      <h2>Im Alltag</h2>
+      <ul>
+        <li>Mendelejew sagte Ga und Ge voraus.</li>
+        <li>Halbmetalle Si, Ge in Computerchips.</li>
+        <li>Alkalimetalle unter Paraffinöl.</li>
+      </ul>
+    </div>
+    <div class="box warn">
+      <h2>Typische Fehler</h2>
+      <ul>
+        <li>Mehr Protonen gleich größeres Atom (nur in der Gruppe).</li>
+        <li>Perioden und Gruppen vertauscht.</li>
+        <li>Wasserstoff als Alkalimetall.</li>
+      </ul>
+    </div>
+  </div>''')
+
 OUT = sys.argv[1] if len(sys.argv) > 1 else os.path.join(os.path.dirname(__file__), "_build")
 os.makedirs(OUT, exist_ok=True)
 shutil.copyfile(os.path.join(os.path.dirname(os.path.abspath(__file__)), "factsheet.css"), os.path.join(OUT, "factsheet.css"))
