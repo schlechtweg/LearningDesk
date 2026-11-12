@@ -863,10 +863,42 @@ def periodensystem():
     return {"title": "Trends einzeichnen", "stars": "★★☆", "task": (svg("0 0 310 175", base), task), "sol": (svg("0 0 310 175", sol), soltxt)}
 
 
+def stoffklassen():
+    # hydrated Na+ (left) and Cl- (right): O points to the cation, H atoms point to the anion
+    import math as _m
+    d = '<rect x="4" y="4" width="352" height="196" rx="10" fill="#eef5fb"/>'
+
+    def water(x, y, toward, ox, oy):
+        a = _m.atan2(oy - y, ox - x)
+        dd = a if toward else a + _m.pi
+        hs = "".join(f'<circle cx="{x - _m.cos(dd + k) * 10:.1f}" cy="{y - _m.sin(dd + k) * 10:.1f}" r="4.5" fill="#fff" stroke="#56626d"/>' for k in (0.9, -0.9))
+        return hs + f'<circle cx="{x:.1f}" cy="{y:.1f}" r="8" fill="#e05a4a" stroke="#8f2a20"/>'
+    for (cx, cy, cat) in [(95, 102, True), (265, 102, False)]:
+        rr = 44 if cat else 52
+        for k in range(6):
+            a = k / 6 * 2 * _m.pi + 0.3
+            d += water(cx + rr * _m.cos(a), cy + rr * _m.sin(a), cat, cx, cy)
+        d += f'<circle cx="{cx}" cy="{cy}" r="{16 if cat else 22}" fill="{"#9fb8e8" if cat else "#b8e3b0"}" stroke="{"#2b4f8f" if cat else "#2f7a3a"}" stroke-width="1.5"/>'
+    a0 = 0.3
+    ox, oy = 95 + 44 * _m.cos(a0), 102 + 44 * _m.sin(a0)
+    a1 = 0.3 + _m.pi / 3 * 4
+    hx = 265 + 52 * _m.cos(a1) + 9, 102 + 52 * _m.sin(a1)
+    wx, wy = 265 + 52 * _m.cos(a0), 102 + 52 * _m.sin(a0)
+    ah = _m.atan2(102 - wy, 265 - wx)
+    hx, hy = wx + 10 * _m.cos(ah + 0.9), wy + 10 * _m.sin(ah + 0.9)
+    t5 = (95 + 44 * _m.cos(4 / 6 * 2 * _m.pi + 0.3), 102 + 44 * _m.sin(4 / 6 * 2 * _m.pi + 0.3))
+    items = [(1, 95, 102, 30, 190), (2, 265, 102, 330, 190), (3, ox, oy, 180, 190), (4, hx, hy, 345, 60), (5, t5[0], t5[1], 40, 14), (6, 265 + 30, 102 - 43, 300, 14)]
+    names = ["Natrium-Ion Na⁺", "Chlorid-Ion Cl⁻", "Sauerstoffatom (δ⁻) zeigt zum Kation", "Wasserstoffatom (δ⁺) zeigt zum Anion", "Wassermolekül (Dipol)", "Hydrathülle"]
+    return labeling("Hydratisierte Ionen", "★☆☆", "0 0 360 204", d, items, names,
+                    "Natriumchlorid wurde in Wasser gelöst. Beschrifte die nummerierten Teile.",
+                    extra_task='<p class="q">Gleichung des Lösevorgangs: <span class="blank wide"></span></p>',
+                    extra_sol='<p class="q"><b>NaCl(s) → Na⁺(aq) + Cl⁻(aq)</b>. Die Wasser-Dipole richten sich nach der Ladung der Ionen aus.</p>', cols=1)
+
+
 FIGS = {
     "osmose": osmose, "natrium-kalium-pumpe": nak, "symport-antiport": symport, "endocytose-exocytose": endo,
     "ableiten": ableiten, "nervensystem": nerven, "auge": auge,
-    "termstruktur": termstruktur, "zufallsexperimente": zufallsexperimente, "laplace": laplace, "baumdiagramme": baumdiagramme, "unabhaengige-ereignisse": unabhaengig, "funktionsbegriff": funktionsbegriff, "eigenschaften-funktionen": eigenschaften, "lineare-funktionen": lineare_funktionen, "funktionsgleichungen": funktionsgleichungen, "lgs-grafisch": lgs_grafisch, "gleichsetzungsverfahren": gleichsetzungsverfahren, "additionsverfahren": additionsverfahren, "lgs-anwendungen": lgs_anwendungen, "zentrische-streckung": zentrische_streckung, "aehnliche-dreiecke": aehnliche_dreiecke, "flaeche-volumen-aehnlich": flaeche_volumen_aehnlich, "strahlensaetze": strahlensaetze, "atombau": atombau, "periodensystem": periodensystem, "binomische-formeln": binom, "bruchterme": bruchterme, "ausmultiplizieren-faktorisieren": ausmult, "terme-vereinfachen": terme,
+    "termstruktur": termstruktur, "zufallsexperimente": zufallsexperimente, "laplace": laplace, "baumdiagramme": baumdiagramme, "unabhaengige-ereignisse": unabhaengig, "funktionsbegriff": funktionsbegriff, "eigenschaften-funktionen": eigenschaften, "lineare-funktionen": lineare_funktionen, "funktionsgleichungen": funktionsgleichungen, "lgs-grafisch": lgs_grafisch, "gleichsetzungsverfahren": gleichsetzungsverfahren, "additionsverfahren": additionsverfahren, "lgs-anwendungen": lgs_anwendungen, "zentrische-streckung": zentrische_streckung, "aehnliche-dreiecke": aehnliche_dreiecke, "flaeche-volumen-aehnlich": flaeche_volumen_aehnlich, "strahlensaetze": strahlensaetze, "atombau": atombau, "periodensystem": periodensystem, "stoffklassen": stoffklassen, "binomische-formeln": binom, "bruchterme": bruchterme, "ausmultiplizieren-faktorisieren": ausmult, "terme-vereinfachen": terme,
     "gleichungen": gleichungen, "ungleichungen": ungleichungen,
     "druck": druck, "hydraulik": hydraulik, "schweredruck": schweredruck, "auftrieb": auftrieb, "luftdruck": luftdruck,
 }

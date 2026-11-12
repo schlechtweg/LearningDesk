@@ -257,6 +257,14 @@ TOPICS = [
         "fonts": "base", "first_view": "verstehen", "factsheet": "Factsheet als PDF ↓",
     },
     {
+        "slug": "stoffklassen", "grade": "11", "subject": "chemie", "kit": True, "accent": ACCENT_CHEM, "prelude": ["chemdata.js"],
+        "title": "Stoffklassen", "short": "Stoffklassen", "tag": "Stoffklassen",
+        "card": "Metalle, Ionensubstanzen und ihr Lösen in Wasser, Molekülsubstanzen, zwischenmolekulare Wechselwirkungen, Struktur-Eigenschafts-Beziehungen, Simulationen, Trainer, Quiz",
+        "description": "Interaktive Lernhilfe zu Metallen, Ionen- und Molekülsubstanzen und ihren Eigenschaften (Chemie, Klasse 11)",
+        "intro": "Wie Teilchen und Bindungen die Eigenschaften von Metallen, Salzen und Molekülsubstanzen bestimmen.",
+        "fonts": "base", "first_view": "ueberblick", "factsheet": "Factsheet als PDF ↓",
+    },
+    {
         "slug": "binomische-formeln", "grade": "8", "subject": "mathematik", "chapter": "I", "order": 4,
         "title": "Binomische Formeln", "short": "Binomische Formeln", "tag": "Terme",
         "card": "Die drei Formeln, Erklärung mit Flächen, Trainer mit Lückenaufgaben, Kopfrechen-Trick, Quiz",

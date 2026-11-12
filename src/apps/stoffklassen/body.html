@@ -1,0 +1,184 @@
+  <nav class="tabs" aria-label="Bereiche">
+    <a href="#ueberblick" data-view="ueberblick"><span class="n">1</span>Überblick</a>
+    <a href="#metalle" data-view="metalle"><span class="n">2</span>Metalle</a>
+    <a href="#ionen" data-view="ionen"><span class="n">3</span>Ionensubstanzen</a>
+    <a href="#molekuele" data-view="molekuele"><span class="n">4</span>Molekülsubstanzen</a>
+    <a href="#ww" data-view="ww"><span class="n">5</span>Wechselwirkungen</a>
+    <a href="#struktur" data-view="struktur"><span class="n">6</span>Struktur und Eigenschaften</a>
+    <a href="#ueben" data-view="ueben"><span class="n">7</span>Üben</a>
+    <a href="#alltag" data-view="alltag"><span class="n">8</span>Im Alltag</a>
+    <a href="#quiz" data-view="quiz"><span class="n">9</span>Quiz</a>
+  </nav>
+
+  <section class="view" id="view-ueberblick">
+    <div class="einfach">
+      <span class="eyebrow">Einfach erklärt</span>
+      <p>Die Eigenschaften eines Stoffes hängen davon ab, <strong>welche Teilchen</strong> er enthält und <strong>wie sie zusammenhalten</strong>. Danach unterscheidet man drei große Stoffklassen: <strong>Metalle</strong>, <strong>Ionensubstanzen</strong> (Salze) und <strong>Molekülsubstanzen</strong>.</p>
+    </div>
+    <div class="panel stack">
+      <h3>Welche Bindung? Ein erster Blick auf die Elemente</h3>
+      <table class="ptab">
+        <tr><th>beteiligte Elemente</th><th>Bindung</th><th>Teilchen</th><th>Stoffklasse</th><th>Beispiel</th></tr>
+        <tr><td>Metall + Metall</td><td>Metallbindung</td><td>Atomrümpfe und frei bewegliche Elektronen</td><td>Metall</td><td>Cu, Fe, Messing</td></tr>
+        <tr><td>Metall + Nichtmetall</td><td>Ionenbindung</td><td>Kationen und Anionen im Ionengitter</td><td>Ionensubstanz (Salz)</td><td>NaCl, MgO</td></tr>
+        <tr><td>Nichtmetall + Nichtmetall</td><td>Elektronenpaarbindung</td><td>Moleküle</td><td>Molekülsubstanz</td><td>H₂O, CO₂, I₂</td></tr>
+      </table>
+      <p class="small">Genauer entscheidet die <strong>Elektronegativitätsdifferenz</strong> ΔEN: unter 0,4 unpolare Elektronenpaarbindung, 0,4 bis 1,7 polare Elektronenpaarbindung, über 1,7 Ionenbindung. Die Grenzen sind fließend.</p>
+    </div>
+    <div class="panel stack">
+      <h3>Typische Eigenschaften</h3>
+      <table class="ptab">
+        <tr><th></th><th>Metalle</th><th>Ionensubstanzen</th><th>Molekülsubstanzen</th></tr>
+        <tr><td>Schmelztemperatur</td><td>meist hoch</td><td>hoch</td><td>niedrig</td></tr>
+        <tr><td>elektrische Leitfähigkeit</td><td>fest und flüssig</td><td>nur Schmelze und Lösung</td><td>keine</td></tr>
+        <tr><td>Verformbarkeit</td><td>verformbar</td><td>spröde</td><td>meist weich oder flüssig/gasförmig</td></tr>
+        <tr><td>Löslichkeit in Wasser</td><td>unlöslich</td><td>oft gut löslich</td><td>polare ja, unpolare nein</td></tr>
+      </table>
+    </div>
+    <div class="merksatz">
+      <span class="eyebrow">Struktur-Eigenschafts-Beziehung</span>
+      <p>Aus dem <strong>Bau</strong> der Teilchen und den <strong>Kräften</strong> zwischen ihnen lassen sich die Eigenschaften eines Stoffes erklären und vorhersagen. Das ist der Leitgedanke dieses Kapitels.</p>
+    </div>
+  </section>
+
+  <section class="view" id="view-metalle" hidden>
+    <div class="stack">
+      <span class="eyebrow">Metallbindung</span>
+      <h2>Das Elektronengasmodell</h2>
+      <p class="muted">Metallatome geben ihre Valenzelektronen ab. Die positiv geladenen <strong>Atomrümpfe</strong> bilden ein regelmäßiges <strong>Metallgitter</strong>, die Elektronen bewegen sich frei als <strong>Elektronengas</strong> dazwischen und halten die Rümpfe zusammen.</p>
+    </div>
+    <div class="sim-layout">
+      <div class="figure"><svg class="scene" id="mSvg" viewBox="0 0 420 260" role="img" aria-label="Elektronengasmodell eines Metalls"></svg></div>
+      <div class="panel stack">
+        <button type="button" id="mVolt" aria-pressed="false">Spannung anlegen</button>
+        <button type="button" id="mHit">Mit dem Hammer schlagen</button>
+        <p class="small" id="mText">Die gelben Punkte sind die frei beweglichen Valenzelektronen.</p>
+      </div>
+    </div>
+    <div class="grid-2">
+      <div class="panel stack"><h3>Elektrische Leitfähigkeit</h3><p class="small">Beim Anlegen einer Spannung wandern die freien Elektronen zum Pluspol. Metalle leiten im festen <strong>und</strong> flüssigen Zustand.</p></div>
+      <div class="panel stack"><h3>Verformbarkeit</h3><p class="small">Schichten von Atomrümpfen können gegeneinander verschoben werden. Das Elektronengas hält sie in jeder Lage zusammen: Metalle lassen sich walzen und biegen.</p></div>
+      <div class="panel stack"><h3>Wärmeleitung und Glanz</h3><p class="small">Die beweglichen Elektronen transportieren Wärme schnell und werfen Licht zurück: Metallglanz.</p></div>
+      <div class="panel stack"><h3>Schmelztemperatur</h3><p class="small">Je mehr Valenzelektronen und je kleiner die Atomrümpfe, desto stärker die Metallbindung: Na schmilzt bei 98 °C, Mg bei 650 °C, Al bei 660 °C.</p></div>
+    </div>
+  </section>
+
+  <section class="view" id="view-ionen" hidden>
+    <div class="stack">
+      <span class="eyebrow">Ionenbindung</span>
+      <h2>Ionengitter und Lösen in Wasser</h2>
+      <p class="muted">Metallatome geben Elektronen an Nichtmetallatome ab. Die entstehenden Kationen und Anionen ziehen sich nach allen Seiten an und bilden ein <strong>Ionengitter</strong>. Die <strong>Verhältnisformel</strong> gibt das Zahlenverhältnis der Ionen an.</p>
+    </div>
+    <div class="panel stack">
+      <h3>Natriumchlorid löst sich in Wasser</h3>
+      <svg class="scene" id="iSvg" viewBox="0 0 440 270" role="img" aria-label="Lösevorgang eines Ionenkristalls"></svg>
+      <ol class="steps" id="iSteps">
+        <li>Ein Kristall aus Na⁺ (blau) und Cl⁻ (grün) liegt im Wasser.</li>
+        <li>Die <strong>Wasser-Dipole</strong> richten sich aus: das negativ polarisierte O-Atom zu Na⁺, die positiv polarisierten H-Atome zu Cl⁻.</li>
+        <li>Die Anziehung durch viele Wassermoleküle löst Ionen an Ecken und Kanten aus dem Gitter.</li>
+        <li>Die Ionen sind von einer <strong>Hydrathülle</strong> umgeben und verteilen sich: NaCl(s) → Na⁺(aq) + Cl⁻(aq)</li>
+      </ol>
+      <div class="row"><button type="button" class="primary" id="iNext">Nächster Schritt</button><button type="button" id="iReset">Von vorn</button><button type="button" id="iHit">Mit dem Hammer schlagen</button></div>
+      <p class="small" id="iText"></p>
+    </div>
+    <div class="grid-2">
+      <div class="panel stack"><h3>Hohe Schmelztemperatur</h3><p class="small">Die Anziehung zwischen den Ionen wirkt in alle Richtungen (Gitterenergie). Je höher die Ladungen und je kleiner die Ionen, desto fester: NaCl 801 °C, MgO 2852 °C.</p></div>
+      <div class="panel stack"><h3>Sprödigkeit</h3><p class="small">Verschiebt ein Schlag eine Ionenschicht, liegen sich gleich geladene Ionen gegenüber und stoßen sich ab: Der Kristall bricht.</p></div>
+      <div class="panel stack"><h3>Leitfähigkeit</h3><p class="small">Im Kristall sind die Ionen fest. In der Schmelze und in der Lösung werden sie beweglich und leiten den Strom.</p></div>
+      <div class="panel stack"><h3>Energie beim Lösen</h3><p class="small">Gitterenergie muss aufgebracht werden, Hydratationsenergie wird frei. Überwiegt die Gitterenergie, kühlt die Lösung ab (z. B. Kühlpacks mit Ammoniumnitrat).</p></div>
+    </div>
+    <div class="panel stack">
+      <h3>Verhältnisformel bilden</h3>
+      <div class="ionpick"><select id="fCat" aria-label="Kation"></select><select id="fAn" aria-label="Anion"></select></div>
+      <p class="formula" id="fOut"></p>
+      <p class="small" id="fText"></p>
+    </div>
+  </section>
+
+  <section class="view" id="view-molekuele" hidden>
+    <div class="stack">
+      <span class="eyebrow">Elektronenpaarbindung</span>
+      <h2>Moleküle, polare Bindungen und Dipole</h2>
+      <p class="muted">Nichtmetallatome teilen sich Elektronenpaare (<strong>Elektronenpaarbindung</strong>, kovalente Bindung) und erreichen so Edelgaskonfiguration. Es entstehen abgeschlossene <strong>Moleküle</strong>.</p>
+    </div>
+    <div class="panel stack">
+      <h3>Wie polar ist die Bindung?</h3>
+      <div class="ens"><select id="eA" aria-label="Atom A"></select><select id="eB" aria-label="Atom B"></select></div>
+      <div class="enbar"><i id="enMark"></i></div>
+      <div class="enlbl"><span>0</span><span>0,4</span><span>1,7</span><span>3,3</span></div>
+      <p id="enText" class="small"></p>
+    </div>
+    <div class="panel stack">
+      <h3>Polare Bindung heißt noch nicht Dipolmolekül</h3>
+      <p class="small">Ein Molekül ist ein <strong>Dipol</strong>, wenn die Schwerpunkte der positiven und negativen Teilladungen nicht zusammenfallen. Das hängt vom <strong>räumlichen Bau</strong> ab (Elektronenpaarabstoßungsmodell, EPA).</p>
+      <div class="mols" id="molCards"></div>
+    </div>
+  </section>
+
+  <section class="view" id="view-ww" hidden>
+    <div class="stack">
+      <span class="eyebrow">Zwischenmolekulare Wechselwirkungen</span>
+      <h2>Was Moleküle zusammenhält</h2>
+      <p class="muted">Innerhalb der Moleküle wirken starke Elektronenpaarbindungen. <strong>Zwischen</strong> den Molekülen wirken viel schwächere Kräfte. Sie bestimmen Siede- und Schmelztemperatur und die Löslichkeit.</p>
+    </div>
+    <div class="grid-3">
+      <div class="panel stack"><h3>London-Kräfte</h3><p class="small">(Van-der-Waals-Kräfte) Kurzzeitige Dipole durch Elektronenbewegung. Wirken zwischen <strong>allen</strong> Molekülen, stärker bei großen Molekülen mit vielen Elektronen und großer Oberfläche.</p></div>
+      <div class="panel stack"><h3>Dipol-Dipol-Kräfte</h3><p class="small">Permanente Dipolmoleküle ziehen sich mit entgegengesetzt geladenen Enden an, z. B. HCl, Aceton.</p></div>
+      <div class="panel stack"><h3>Wasserstoffbrücken</h3><p class="small">Ein H-Atom an <strong>N, O oder F</strong> wird von einem freien Elektronenpaar eines N-, O- oder F-Atoms eines Nachbarmoleküls angezogen. Die stärksten zwischenmolekularen Kräfte: H₂O, NH₃, HF, Alkohole.</p></div>
+    </div>
+    <div class="row"><div class="modes" role="group" aria-label="Reihe"><button type="button" data-s="alk" aria-pressed="true">Alkane</button><button type="button" data-s="hal" aria-pressed="false">Halogene</button><button type="button" data-s="hx" aria-pressed="false">Halogenwasserstoffe</button><button type="button" data-s="h6" aria-pressed="false">Wasserstoffverbindungen IV und VI</button><button type="button" data-s="iso" aria-pressed="false">gleiche Masse</button></div></div>
+    <div class="panel stack"><svg class="bars" id="wSvg" viewBox="0 0 460 260" role="img" aria-label="Siedetemperaturen"></svg>
+      <div class="legend"><span><i style="background:#9aa4ad"></i>nur London-Kräfte</span><span><i style="background:#e0a400"></i>zusätzlich Dipol-Dipol</span><span><i style="background:var(--accent)"></i>zusätzlich Wasserstoffbrücken</span></div>
+      <p class="small" id="wText"></p></div>
+  </section>
+
+  <section class="view" id="view-struktur" hidden>
+    <div class="stack">
+      <span class="eyebrow">Struktur-Eigenschafts-Beziehungen</span>
+      <h2>Stoff-Detektiv</h2>
+      <p class="muted">Wähle einen Stoff. Tippe zuerst, zu welcher Stoffklasse er gehört. Dann siehst du seinen Steckbrief mit Erklärungen.</p>
+    </div>
+    <div class="chips" id="dChips"></div>
+    <div class="panel stack">
+      <h3 id="dName"></h3>
+      <div class="opts" id="dOpts"><button type="button" data-k="m">Metall</button><button type="button" data-k="i">Ionensubstanz</button><button type="button" data-k="mol">Molekülsubstanz</button></div>
+      <div id="dOut" class="small"></div>
+    </div>
+    <div class="panel stack">
+      <h3>Ähnliches löst sich in Ähnlichem</h3>
+      <p class="small">Polare Stoffe und Ionensubstanzen lösen sich in polaren Lösemitteln wie Wasser, unpolare Stoffe (Fette, Wachs, Iod) in unpolaren Lösemitteln wie Benzin. Entscheidend ist, ob zwischen gelöstem Stoff und Lösemittel ähnlich starke Wechselwirkungen entstehen können.</p>
+    </div>
+  </section>
+
+  <section class="view" id="view-ueben" hidden>
+    <div class="stack">
+      <span class="eyebrow">Trainer</span>
+      <h2>Stoffklassen üben</h2>
+      <p class="muted">Formeln mit normalen Ziffern eingeben, z. B. <code>Al2O3</code> oder <code>Ca(OH)2</code>.</p>
+    </div>
+    <div id="trainer" class="stack"></div>
+  </section>
+
+  <section class="view" id="view-alltag" hidden>
+    <div class="stack">
+      <span class="eyebrow">Im Alltag</span>
+      <h2>Stoffklassen im Alltag</h2>
+    </div>
+    <div class="grid-2">
+      <div class="panel stack"><span class="eyebrow">Küche</span><h3>Salz und Zucker</h3><p class="small">Beide lösen sich in Wasser. Die Salzlösung leitet Strom (Ionen), die Zuckerlösung nicht (Moleküle). Salz schmilzt erst bei 801 °C, Zucker zersetzt sich schon bei etwa 186 °C.</p></div>
+      <div class="panel stack"><span class="eyebrow">Winter</span><h3>Streusalz</h3><p class="small">Gelöste Ionen stören die Ordnung der Wassermoleküle im Eis: Salzwasser gefriert erst unter 0 °C.</p></div>
+      <div class="panel stack"><span class="eyebrow">Technik</span><h3>Kupferkabel</h3><p class="small">Kupfer leitet dank des Elektronengases hervorragend und lässt sich zu dünnen Drähten ziehen, ohne zu brechen.</p></div>
+      <div class="panel stack"><span class="eyebrow">Natur</span><h3>Wasser ist besonders</h3><p class="small">Ohne Wasserstoffbrücken würde Wasser bei etwa −80 °C sieden. Dass es bei Raumtemperatur flüssig ist, macht Leben erst möglich.</p></div>
+      <div class="panel stack"><span class="eyebrow">Wäsche</span><h3>Fettflecken</h3><p class="small">Fett ist unpolar und löst sich nicht in Wasser. Tenside haben einen polaren und einen unpolaren Teil und verbinden beide Welten.</p></div>
+      <div class="panel stack"><span class="eyebrow">Sport</span><h3>Kühlpacks</h3><p class="small">Beim Lösen von Ammoniumnitrat wird mehr Gitterenergie gebraucht als Hydratationsenergie frei wird: Der Beutel wird kalt.</p></div>
+    </div>
+  </section>
+
+  <section class="view" id="view-quiz" hidden>
+    <div class="stack">
+      <span class="eyebrow">Selbsttest</span>
+      <h2>Quiz</h2>
+      <div class="progress-line"><div class="bar" aria-hidden="true"><i id="qBar"></i></div><span class="score-line" id="qProgress"></span></div>
+    </div>
+    <div class="panel quiz" id="quizBox" aria-live="polite"></div>
+  </section>

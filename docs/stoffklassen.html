@@ -1,0 +1,1257 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<title>Stoffklassen</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Interaktive Lernhilfe zu Metallen, Ionen- und Molekülsubstanzen und ihren Eigenschaften (Chemie, Klasse 11)">
+<script>try{var t=localStorage.getItem("learningdesk.theme");if(t==="dark"||t==="light")document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* LearnKit: shared layout for LearningDesk topic apps.
+   Colour tokens come in three blocks (light, dark via system, dark via switch);
+   each app sets its accent colours through config.py. */
+:root {
+  --bg: #f2f4f7;
+  --surface: #ffffff;
+  --surface-2: #e6ebf1;
+  --ink: #18222d;
+  --muted: #55626f;
+  --line: #d0d8e1;
+  --accent: #24539c;
+  --accent-ink: #ffffff;
+  --accent-soft: rgba(36, 83, 156, 0.12);
+  --c1: #2f5fb3;
+  --c2: #c4561c;
+  --c3: #3d8a4c;
+  --c4: #8e44ad;
+  --good: #1f7f4b;
+  --good-soft: rgba(31, 127, 75, 0.12);
+  --bad: #b5372e;
+  --bad-soft: rgba(181, 55, 46, 0.10);
+  --font-display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --font-body: "Atkinson Hyperlegible", "Segoe UI", system-ui, sans-serif;
+  --font-math: "STIX Two Text", "Cambria Math", "Times New Roman", serif;
+  --font-mono: "JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
+  --step--1: 0.875rem;
+  --step-0: 1.0625rem;
+  --step-1: 1.25rem;
+  --step-2: 1.6rem;
+  --step-3: 2.3rem;
+  --radius: 10px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0f1419; --surface: #161e26; --surface-2: #1e2832; --ink: #e4ebf1; --muted: #98a7b5; --line: #2b3946;
+    --accent-ink: #0b1220; --c1: #7ea6f0; --c2: #f09a5e; --c3: #6fc47f; --c4: #c39bdf;
+    --good: #5fd194; --good-soft: rgba(95, 209, 148, 0.14); --bad: #f07a70; --bad-soft: rgba(240, 122, 112, 0.14);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0f1419; --surface: #161e26; --surface-2: #1e2832; --ink: #e4ebf1; --muted: #98a7b5; --line: #2b3946;
+  --accent-ink: #0b1220; --c1: #7ea6f0; --c2: #f09a5e; --c3: #6fc47f; --c4: #c39bdf;
+  --good: #5fd194; --good-soft: rgba(95, 209, 148, 0.14); --bad: #f07a70; --bad-soft: rgba(240, 122, 112, 0.14);
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+body {
+  background: var(--bg); color: var(--ink);
+  font-family: var(--font-body); font-size: var(--step-0); line-height: 1.6;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 0 48px;
+}
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--bg); }
+.wrap { max-width: 980px; margin: 0 auto; }
+h1, h2, h3 { font-family: var(--font-display); line-height: 1.15; text-wrap: balance; margin: 0; }
+h1 { font-size: var(--step-3); font-weight: 800; letter-spacing: -0.02em; overflow-wrap: break-word; hyphens: auto; }
+h2 { font-size: var(--step-2); font-weight: 700; }
+h3 { font-size: var(--step-1); font-weight: 700; }
+p { margin: 0; max-width: 70ch; }
+.muted { color: var(--muted); }
+.small { font-size: var(--step--1); }
+.eyebrow { font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); }
+.c1 { color: var(--c1); font-weight: 700; } .c2 { color: var(--c2); font-weight: 700; } .c3 { color: var(--c3); font-weight: 700; } .c4 { color: var(--c4); font-weight: 700; }
+
+/* Header and tabs */
+header.top { padding-block: 28px 8px; display: grid; gap: 6px; }
+header.top p { color: var(--muted); }
+nav.tabs { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--bg); display: flex; gap: 6px; overflow-x: auto; padding-block: 12px; margin-bottom: 8px; border-bottom: 1px solid var(--line); }
+nav.tabs a { flex: 0 0 auto; text-decoration: none; color: var(--ink); font-weight: 700; padding: 8px 14px; border-radius: 999px; border: 1px solid var(--line); background: var(--surface); font-size: var(--step--1); }
+nav.tabs a .n { font-family: var(--font-mono); color: var(--muted); margin-right: 6px; font-weight: 400; }
+nav.tabs a[aria-current="page"] { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+nav.tabs a[aria-current="page"] .n { color: var(--accent-ink); opacity: 0.75; }
+a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible { outline: 3px solid var(--c2); outline-offset: 2px; }
+
+/* Layout blocks */
+section.view { display: grid; gap: 28px; padding-top: 16px; }
+.stack { display: grid; gap: 12px; }
+.panel { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 20px; min-width: 0; }
+.grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; align-items: start; }
+.grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 16px; align-items: start; }
+.merksatz { border-left: 4px solid var(--accent); background: var(--surface); padding: 16px 20px; border-radius: 0 var(--radius) var(--radius) 0; display: grid; gap: 4px; }
+.merksatz .eyebrow { display: block; margin-bottom: 4px; }
+.merksatz p { font-family: var(--font-display); font-size: var(--step-1); font-weight: 500; line-height: 1.35; }
+.einfach { background: var(--surface-2); border-radius: var(--radius); padding: 16px 20px; display: grid; gap: 8px; }
+.formel { font-family: var(--font-math); font-size: 1.5rem; line-height: 1.6; }
+ul.list, ol.list { margin: 0; padding-left: 1.2em; display: grid; gap: 8px; max-width: 70ch; }
+.sim-layout { display: grid; grid-template-columns: minmax(0, 1fr) 300px; gap: 16px; align-items: start; }
+@media (max-width: 800px) { .sim-layout { grid-template-columns: 1fr; } }
+.figure { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 10px; min-width: 0; }
+.figure svg { width: 100%; height: auto; display: block; }
+.table-scroll { overflow-x: auto; }
+table.data { width: 100%; border-collapse: collapse; font-size: var(--step--1); }
+table.data th, table.data td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--line); vertical-align: top; overflow-wrap: anywhere; hyphens: auto; }
+table.data th { font-family: var(--font-display); font-size: var(--step-0); }
+table.data td.num, table.data th.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+details.profi { border: 1px dashed var(--line); border-radius: var(--radius); padding: 12px 16px; background: var(--surface); }
+details.profi summary { cursor: pointer; font-weight: 700; font-size: var(--step--1); }
+details.profi[open] summary { margin-bottom: 8px; }
+details.profi p, details.profi li { font-size: var(--step--1); }
+
+/* Math typesetting */
+.math { font-family: var(--font-math); font-size: 1.12em; }
+.math i { font-style: italic; }
+.math sup { font-size: 0.7em; line-height: 0; }
+.frac { display: inline-flex; flex-direction: column; vertical-align: middle; text-align: center; margin: 0 2px; line-height: 1.2; font-size: 0.95em; }
+.frac > span { padding: 0 3px; }
+.frac > span:first-child { border-bottom: 1.5px solid currentColor; }
+.unit { font-family: var(--font-body); font-style: normal; font-size: 0.92em; }
+
+/* Controls */
+button, .btn { font: inherit; font-weight: 700; font-size: var(--step--1); cursor: pointer; text-decoration: none; display: inline-block; padding: 9px 16px; border-radius: 8px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); }
+button:hover, .btn:hover { border-color: var(--accent); }
+button.primary, .btn.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+button[aria-pressed="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+button:disabled { opacity: 0.5; cursor: default; }
+.row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+select, input[type="text"] { font: inherit; padding: 8px 10px; border-radius: 8px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); min-width: 0; max-width: 100%; }
+input[type="text"] { font-family: var(--font-mono); }
+input[type="range"] { width: 100%; accent-color: var(--accent); }
+label.lbl { display: flex; justify-content: space-between; gap: 8px; font-weight: 700; font-size: var(--step--1); }
+label.lbl output, label.lbl .val { font-family: var(--font-mono); font-weight: 400; }
+.controls { display: grid; gap: 14px; align-content: start; }
+.readout { display: grid; grid-template-columns: 1fr auto; gap: 4px 12px; font-size: var(--step--1); margin: 0; }
+.readout dt { color: var(--muted); }
+.readout dd { margin: 0; font-family: var(--font-mono); font-variant-numeric: tabular-nums; text-align: right; }
+.readout dd.big { font-size: 1.15rem; font-weight: 600; color: var(--accent); }
+.status-box { padding: 12px 14px; border-radius: 8px; background: var(--surface-2); font-size: var(--step--1); }
+
+/* Trainer */
+.modes { display: flex; flex-wrap: wrap; gap: 6px; }
+.task { font-size: var(--step-0); line-height: 1.7; }
+.task .math { font-size: 1.35em; }
+.answer-row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.answer-row input { flex: 1 1 220px; font-size: var(--step-0); }
+.answer-row label { white-space: nowrap; }
+.hint { font-size: var(--step--1); color: var(--muted); }
+.hint code, .feedback code { font-family: var(--font-mono); background: var(--surface-2); padding: 1px 5px; border-radius: 4px; }
+.feedback { padding: 14px 16px; border-radius: 8px; background: var(--surface-2); display: grid; gap: 8px; }
+.feedback ol { margin: 0; padding-left: 1.3em; display: grid; gap: 6px; }
+b.ok { color: var(--good); } b.no { color: var(--bad); }
+.score-line { font-family: var(--font-mono); font-size: var(--step--1); color: var(--muted); }
+
+/* Equation lab */
+.lab-eq { font-family: var(--font-math); font-size: 1.9rem; text-align: center; padding: 10px 4px; overflow-x: auto; }
+.lab-log { margin: 0; padding: 0; list-style: none; display: grid; gap: 2px; font-family: var(--font-math); font-size: 1.15rem; }
+.lab-log li { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 12px; padding: 4px 8px; border-bottom: 1px solid var(--line); }
+.lab-log li .op { font-family: var(--font-mono); font-size: 0.85rem; color: var(--accent); align-self: center; white-space: nowrap; }
+.lab-log li.flip .op { color: var(--bad); }
+.lab-msg.ok { color: var(--good); font-weight: 700; }
+.lab-msg.no { color: var(--bad); }
+
+/* Quiz */
+.progress-line { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+.bar { flex: 1 1 200px; height: 8px; background: var(--surface-2); border-radius: 999px; overflow: hidden; }
+.bar i { display: block; height: 100%; background: var(--accent); width: 0; transition: width 0.3s; }
+.quiz { display: grid; gap: 16px; }
+.quiz .qtext { font-family: var(--font-display); font-size: var(--step-1); font-weight: 700; line-height: 1.3; }
+.quiz .opts { display: grid; gap: 8px; }
+.quiz .opts button { text-align: left; font-weight: 400; font-size: var(--step-0); padding: 12px 16px; display: flex; gap: 12px; align-items: center; }
+.quiz .opts button .k { font-family: var(--font-mono); color: var(--muted); }
+.quiz .opts button.right { border-color: var(--good); background: var(--good-soft); }
+.quiz .opts button.wrong { border-color: var(--bad); background: var(--bad-soft); }
+.score-big { font-family: var(--font-display); font-size: 3.2rem; font-weight: 800; line-height: 1; }
+
+/* Prediction cards ("Was passiert, wenn ...") */
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
+.card { display: grid; gap: 10px; align-content: start; }
+.card .ctx { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+.card .opts { display: grid; gap: 6px; }
+.card .opts button { text-align: left; font-weight: 400; }
+.card .opts button.right { border-color: var(--good); background: var(--good-soft); font-weight: 700; }
+.card .opts button.wrong { border-color: var(--bad); background: var(--bad-soft); }
+.card .answer { font-size: var(--step--1); padding: 12px; border-radius: 8px; background: var(--surface-2); }
+
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+</style>
+<style>
+:root { --accent: #6a3fa0; --accent-soft: rgba(106, 63, 160, 0.12); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --accent: #b79be0; } }
+:root[data-theme="dark"] { --accent: #b79be0; }
+</style>
+<style>
+.ptab { width: 100%; border-collapse: collapse; font-size: var(--step--1); }
+.ptab th, .ptab td { padding: 6px 8px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; overflow-wrap: anywhere; hyphens: auto; }
+.ptab th { color: var(--muted); }
+.scene { width: 100%; height: auto; display: block; touch-action: manipulation; }
+.scene .cat { fill: #9fb8e8; stroke: #2b4f8f; stroke-width: 1.5; }
+.scene .an { fill: #b8e3b0; stroke: #2f7a3a; stroke-width: 1.5; }
+.scene .core { fill: #c9cfd6; stroke: #56626d; stroke-width: 1.5; }
+.scene .eg { fill: #e0a400; }
+.scene .lbl { font: 700 12px var(--font-body); fill: #15232d; text-anchor: middle; dominant-baseline: central; pointer-events: none; }
+.scene .cap { font: 12px var(--font-body); fill: var(--muted); }
+.scene .ow { fill: #e05a4a; stroke: #8f2a20; stroke-width: 1; }
+.scene .hw { fill: #fff; stroke: #56626d; stroke-width: 1; }
+.scene .rep { stroke: #c62828; stroke-width: 2.5; fill: none; }
+.scene .bg { fill: color-mix(in srgb, #2f7fb8 10%, transparent); }
+.scene .ion-moving { transition: transform .6s ease; }
+.steps { margin: 0; padding-left: 1.3em; display: grid; gap: 6px; font-size: var(--step--1); }
+.steps li.on { font-weight: 700; color: var(--ink); }
+.steps li { color: var(--muted); }
+.ens { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.ens select { width: 100%; }
+.enbar { position: relative; height: 26px; border-radius: 6px; background: linear-gradient(90deg, #cfe8d0 0 calc(100% * 0.4 / 3.3), #f4e2a8 calc(100% * 0.4 / 3.3) calc(100% * 1.7 / 3.3), #f2c0b8 calc(100% * 1.7 / 3.3)); border: 1px solid var(--line); }
+.enbar i { position: absolute; top: -4px; bottom: -4px; width: 4px; background: var(--ink); border-radius: 2px; transition: left .3s; }
+.enlbl { display: flex; justify-content: space-between; font: 0.72rem var(--font-mono); color: var(--muted); }
+.mols { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; }
+.mols svg { width: 100%; height: auto; }
+.mols text { font: 700 15px var(--font-body); fill: var(--ink); text-anchor: middle; }
+.mols .d { font: 11px var(--font-mono); fill: #c62828; }
+.mols .dp { fill: #2b4f8f; }
+.mols line { stroke: var(--ink); stroke-width: 2.2; }
+.mols .arr { stroke: #c62828; stroke-width: 2; fill: none; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chips button { font-family: var(--font-mono); padding: 6px 10px; }
+.bars { width: 100%; height: auto; max-height: 320px; }
+.bars text { font: 11px var(--font-mono); fill: var(--muted); }
+.bars .lbl { font: 700 12px var(--font-body); fill: var(--ink); }
+.bars .zero { stroke: var(--ink); stroke-width: 1; }
+.bars rect.l { fill: #9aa4ad; } .bars rect.d { fill: #e0a400; } .bars rect.h { fill: var(--accent); }
+.legend { display: flex; flex-wrap: wrap; gap: 12px; font-size: var(--step--1); }
+.legend i { display: inline-block; width: 14px; height: 14px; border-radius: 3px; vertical-align: -2px; margin-right: 4px; }
+.opts { display: flex; flex-wrap: wrap; gap: 8px; }
+.opts button.right { border-color: #2e7d32; background: color-mix(in srgb, #2e7d32 14%, transparent); }
+.opts button.wrong { border-color: #c62828; background: color-mix(in srgb, #c62828 12%, transparent); }
+.formula { font-family: var(--font-display); font-size: 2rem; font-weight: 800; margin: 0; }
+.ionpick { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.ionpick select { width: 100%; }
+.mols text { paint-order: stroke; stroke: var(--surface); stroke-width: 7px; stroke-linejoin: round; }
+</style>
+<style>
+nav.crumbs ol { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 2px 6px; font-size: 0.85rem; line-height: 1.5; }
+nav.crumbs li { display: inline-flex; align-items: center; gap: 6px; min-width: 0; }
+nav.crumbs li + li::before { content: "›"; color: var(--muted); }
+nav.crumbs a { color: var(--accent); text-decoration: none; font-weight: 700; }
+nav.crumbs a:hover { text-decoration: underline; }
+nav.crumbs [aria-current] { color: var(--muted); }
+header.has-theme-toggle { position: relative; padding-right: 54px; }
+.theme-toggle { position: absolute; top: 18px; right: 0; width: 40px; height: 40px; border-radius: 999px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); font-size: 18px; line-height: 1; cursor: pointer; display: grid; place-items: center; padding: 0; }
+header:not(.top) > .theme-toggle { top: 0; }
+.theme-toggle:hover { border-color: var(--accent, currentColor); }
+.theme-toggle:focus-visible { outline: 3px solid var(--accent, currentColor); outline-offset: 2px; }
+
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <nav class="crumbs" aria-label="Brotkrümelnavigation"><ol><li><a href="index.html">LearningDesk</a></li><li><a href="klasse-11.html">Klasse 11</a></li><li><a href="klasse-11.html#chemie">Chemie</a></li><li><a href="#ueberblick">Stoffklassen</a></li><li data-crumb-section hidden><span aria-current="location"></span></li></ol></nav>
+    <h1>Stoffklassen</h1>
+    <p>Wie Teilchen und Bindungen die Eigenschaften von Metallen, Salzen und Molekülsubstanzen bestimmen.</p>
+    <p style="display:flex; flex-wrap:wrap; gap:8px"><a class="btn" href="factsheets/stoffklassen.pdf" target="_blank" rel="noopener">Factsheet als PDF ↓</a><a class="btn" href="aufgaben/stoffklassen.pdf" target="_blank" rel="noopener">Übungsaufgaben als PDF ↓</a></p>
+  </header>
+  <nav class="tabs" aria-label="Bereiche">
+    <a href="#ueberblick" data-view="ueberblick"><span class="n">1</span>Überblick</a>
+    <a href="#metalle" data-view="metalle"><span class="n">2</span>Metalle</a>
+    <a href="#ionen" data-view="ionen"><span class="n">3</span>Ionensubstanzen</a>
+    <a href="#molekuele" data-view="molekuele"><span class="n">4</span>Molekülsubstanzen</a>
+    <a href="#ww" data-view="ww"><span class="n">5</span>Wechselwirkungen</a>
+    <a href="#struktur" data-view="struktur"><span class="n">6</span>Struktur und Eigenschaften</a>
+    <a href="#ueben" data-view="ueben"><span class="n">7</span>Üben</a>
+    <a href="#alltag" data-view="alltag"><span class="n">8</span>Im Alltag</a>
+    <a href="#quiz" data-view="quiz"><span class="n">9</span>Quiz</a>
+  </nav>
+
+  <section class="view" id="view-ueberblick">
+    <div class="einfach">
+      <span class="eyebrow">Einfach erklärt</span>
+      <p>Die Eigenschaften eines Stoffes hängen davon ab, <strong>welche Teilchen</strong> er enthält und <strong>wie sie zusammenhalten</strong>. Danach unterscheidet man drei große Stoffklassen: <strong>Metalle</strong>, <strong>Ionensubstanzen</strong> (Salze) und <strong>Molekülsubstanzen</strong>.</p>
+    </div>
+    <div class="panel stack">
+      <h3>Welche Bindung? Ein erster Blick auf die Elemente</h3>
+      <table class="ptab">
+        <tr><th>beteiligte Elemente</th><th>Bindung</th><th>Teilchen</th><th>Stoffklasse</th><th>Beispiel</th></tr>
+        <tr><td>Metall + Metall</td><td>Metallbindung</td><td>Atomrümpfe und frei bewegliche Elektronen</td><td>Metall</td><td>Cu, Fe, Messing</td></tr>
+        <tr><td>Metall + Nichtmetall</td><td>Ionenbindung</td><td>Kationen und Anionen im Ionengitter</td><td>Ionensubstanz (Salz)</td><td>NaCl, MgO</td></tr>
+        <tr><td>Nichtmetall + Nichtmetall</td><td>Elektronenpaarbindung</td><td>Moleküle</td><td>Molekülsubstanz</td><td>H₂O, CO₂, I₂</td></tr>
+      </table>
+      <p class="small">Genauer entscheidet die <strong>Elektronegativitätsdifferenz</strong> ΔEN: unter 0,4 unpolare Elektronenpaarbindung, 0,4 bis 1,7 polare Elektronenpaarbindung, über 1,7 Ionenbindung. Die Grenzen sind fließend.</p>
+    </div>
+    <div class="panel stack">
+      <h3>Typische Eigenschaften</h3>
+      <table class="ptab">
+        <tr><th></th><th>Metalle</th><th>Ionensubstanzen</th><th>Molekülsubstanzen</th></tr>
+        <tr><td>Schmelztemperatur</td><td>meist hoch</td><td>hoch</td><td>niedrig</td></tr>
+        <tr><td>elektrische Leitfähigkeit</td><td>fest und flüssig</td><td>nur Schmelze und Lösung</td><td>keine</td></tr>
+        <tr><td>Verformbarkeit</td><td>verformbar</td><td>spröde</td><td>meist weich oder flüssig/gasförmig</td></tr>
+        <tr><td>Löslichkeit in Wasser</td><td>unlöslich</td><td>oft gut löslich</td><td>polare ja, unpolare nein</td></tr>
+      </table>
+    </div>
+    <div class="merksatz">
+      <span class="eyebrow">Struktur-Eigenschafts-Beziehung</span>
+      <p>Aus dem <strong>Bau</strong> der Teilchen und den <strong>Kräften</strong> zwischen ihnen lassen sich die Eigenschaften eines Stoffes erklären und vorhersagen. Das ist der Leitgedanke dieses Kapitels.</p>
+    </div>
+  </section>
+
+  <section class="view" id="view-metalle" hidden>
+    <div class="stack">
+      <span class="eyebrow">Metallbindung</span>
+      <h2>Das Elektronengasmodell</h2>
+      <p class="muted">Metallatome geben ihre Valenzelektronen ab. Die positiv geladenen <strong>Atomrümpfe</strong> bilden ein regelmäßiges <strong>Metallgitter</strong>, die Elektronen bewegen sich frei als <strong>Elektronengas</strong> dazwischen und halten die Rümpfe zusammen.</p>
+    </div>
+    <div class="sim-layout">
+      <div class="figure"><svg class="scene" id="mSvg" viewBox="0 0 420 260" role="img" aria-label="Elektronengasmodell eines Metalls"></svg></div>
+      <div class="panel stack">
+        <button type="button" id="mVolt" aria-pressed="false">Spannung anlegen</button>
+        <button type="button" id="mHit">Mit dem Hammer schlagen</button>
+        <p class="small" id="mText">Die gelben Punkte sind die frei beweglichen Valenzelektronen.</p>
+      </div>
+    </div>
+    <div class="grid-2">
+      <div class="panel stack"><h3>Elektrische Leitfähigkeit</h3><p class="small">Beim Anlegen einer Spannung wandern die freien Elektronen zum Pluspol. Metalle leiten im festen <strong>und</strong> flüssigen Zustand.</p></div>
+      <div class="panel stack"><h3>Verformbarkeit</h3><p class="small">Schichten von Atomrümpfen können gegeneinander verschoben werden. Das Elektronengas hält sie in jeder Lage zusammen: Metalle lassen sich walzen und biegen.</p></div>
+      <div class="panel stack"><h3>Wärmeleitung und Glanz</h3><p class="small">Die beweglichen Elektronen transportieren Wärme schnell und werfen Licht zurück: Metallglanz.</p></div>
+      <div class="panel stack"><h3>Schmelztemperatur</h3><p class="small">Je mehr Valenzelektronen und je kleiner die Atomrümpfe, desto stärker die Metallbindung: Na schmilzt bei 98 °C, Mg bei 650 °C, Al bei 660 °C.</p></div>
+    </div>
+  </section>
+
+  <section class="view" id="view-ionen" hidden>
+    <div class="stack">
+      <span class="eyebrow">Ionenbindung</span>
+      <h2>Ionengitter und Lösen in Wasser</h2>
+      <p class="muted">Metallatome geben Elektronen an Nichtmetallatome ab. Die entstehenden Kationen und Anionen ziehen sich nach allen Seiten an und bilden ein <strong>Ionengitter</strong>. Die <strong>Verhältnisformel</strong> gibt das Zahlenverhältnis der Ionen an.</p>
+    </div>
+    <div class="panel stack">
+      <h3>Natriumchlorid löst sich in Wasser</h3>
+      <svg class="scene" id="iSvg" viewBox="0 0 440 270" role="img" aria-label="Lösevorgang eines Ionenkristalls"></svg>
+      <ol class="steps" id="iSteps">
+        <li>Ein Kristall aus Na⁺ (blau) und Cl⁻ (grün) liegt im Wasser.</li>
+        <li>Die <strong>Wasser-Dipole</strong> richten sich aus: das negativ polarisierte O-Atom zu Na⁺, die positiv polarisierten H-Atome zu Cl⁻.</li>
+        <li>Die Anziehung durch viele Wassermoleküle löst Ionen an Ecken und Kanten aus dem Gitter.</li>
+        <li>Die Ionen sind von einer <strong>Hydrathülle</strong> umgeben und verteilen sich: NaCl(s) → Na⁺(aq) + Cl⁻(aq)</li>
+      </ol>
+      <div class="row"><button type="button" class="primary" id="iNext">Nächster Schritt</button><button type="button" id="iReset">Von vorn</button><button type="button" id="iHit">Mit dem Hammer schlagen</button></div>
+      <p class="small" id="iText"></p>
+    </div>
+    <div class="grid-2">
+      <div class="panel stack"><h3>Hohe Schmelztemperatur</h3><p class="small">Die Anziehung zwischen den Ionen wirkt in alle Richtungen (Gitterenergie). Je höher die Ladungen und je kleiner die Ionen, desto fester: NaCl 801 °C, MgO 2852 °C.</p></div>
+      <div class="panel stack"><h3>Sprödigkeit</h3><p class="small">Verschiebt ein Schlag eine Ionenschicht, liegen sich gleich geladene Ionen gegenüber und stoßen sich ab: Der Kristall bricht.</p></div>
+      <div class="panel stack"><h3>Leitfähigkeit</h3><p class="small">Im Kristall sind die Ionen fest. In der Schmelze und in der Lösung werden sie beweglich und leiten den Strom.</p></div>
+      <div class="panel stack"><h3>Energie beim Lösen</h3><p class="small">Gitterenergie muss aufgebracht werden, Hydratationsenergie wird frei. Überwiegt die Gitterenergie, kühlt die Lösung ab (z. B. Kühlpacks mit Ammoniumnitrat).</p></div>
+    </div>
+    <div class="panel stack">
+      <h3>Verhältnisformel bilden</h3>
+      <div class="ionpick"><select id="fCat" aria-label="Kation"></select><select id="fAn" aria-label="Anion"></select></div>
+      <p class="formula" id="fOut"></p>
+      <p class="small" id="fText"></p>
+    </div>
+  </section>
+
+  <section class="view" id="view-molekuele" hidden>
+    <div class="stack">
+      <span class="eyebrow">Elektronenpaarbindung</span>
+      <h2>Moleküle, polare Bindungen und Dipole</h2>
+      <p class="muted">Nichtmetallatome teilen sich Elektronenpaare (<strong>Elektronenpaarbindung</strong>, kovalente Bindung) und erreichen so Edelgaskonfiguration. Es entstehen abgeschlossene <strong>Moleküle</strong>.</p>
+    </div>
+    <div class="panel stack">
+      <h3>Wie polar ist die Bindung?</h3>
+      <div class="ens"><select id="eA" aria-label="Atom A"></select><select id="eB" aria-label="Atom B"></select></div>
+      <div class="enbar"><i id="enMark"></i></div>
+      <div class="enlbl"><span>0</span><span>0,4</span><span>1,7</span><span>3,3</span></div>
+      <p id="enText" class="small"></p>
+    </div>
+    <div class="panel stack">
+      <h3>Polare Bindung heißt noch nicht Dipolmolekül</h3>
+      <p class="small">Ein Molekül ist ein <strong>Dipol</strong>, wenn die Schwerpunkte der positiven und negativen Teilladungen nicht zusammenfallen. Das hängt vom <strong>räumlichen Bau</strong> ab (Elektronenpaarabstoßungsmodell, EPA).</p>
+      <div class="mols" id="molCards"></div>
+    </div>
+  </section>
+
+  <section class="view" id="view-ww" hidden>
+    <div class="stack">
+      <span class="eyebrow">Zwischenmolekulare Wechselwirkungen</span>
+      <h2>Was Moleküle zusammenhält</h2>
+      <p class="muted">Innerhalb der Moleküle wirken starke Elektronenpaarbindungen. <strong>Zwischen</strong> den Molekülen wirken viel schwächere Kräfte. Sie bestimmen Siede- und Schmelztemperatur und die Löslichkeit.</p>
+    </div>
+    <div class="grid-3">
+      <div class="panel stack"><h3>London-Kräfte</h3><p class="small">(Van-der-Waals-Kräfte) Kurzzeitige Dipole durch Elektronenbewegung. Wirken zwischen <strong>allen</strong> Molekülen, stärker bei großen Molekülen mit vielen Elektronen und großer Oberfläche.</p></div>
+      <div class="panel stack"><h3>Dipol-Dipol-Kräfte</h3><p class="small">Permanente Dipolmoleküle ziehen sich mit entgegengesetzt geladenen Enden an, z. B. HCl, Aceton.</p></div>
+      <div class="panel stack"><h3>Wasserstoffbrücken</h3><p class="small">Ein H-Atom an <strong>N, O oder F</strong> wird von einem freien Elektronenpaar eines N-, O- oder F-Atoms eines Nachbarmoleküls angezogen. Die stärksten zwischenmolekularen Kräfte: H₂O, NH₃, HF, Alkohole.</p></div>
+    </div>
+    <div class="row"><div class="modes" role="group" aria-label="Reihe"><button type="button" data-s="alk" aria-pressed="true">Alkane</button><button type="button" data-s="hal" aria-pressed="false">Halogene</button><button type="button" data-s="hx" aria-pressed="false">Halogenwasserstoffe</button><button type="button" data-s="h6" aria-pressed="false">Wasserstoffverbindungen IV und VI</button><button type="button" data-s="iso" aria-pressed="false">gleiche Masse</button></div></div>
+    <div class="panel stack"><svg class="bars" id="wSvg" viewBox="0 0 460 260" role="img" aria-label="Siedetemperaturen"></svg>
+      <div class="legend"><span><i style="background:#9aa4ad"></i>nur London-Kräfte</span><span><i style="background:#e0a400"></i>zusätzlich Dipol-Dipol</span><span><i style="background:var(--accent)"></i>zusätzlich Wasserstoffbrücken</span></div>
+      <p class="small" id="wText"></p></div>
+  </section>
+
+  <section class="view" id="view-struktur" hidden>
+    <div class="stack">
+      <span class="eyebrow">Struktur-Eigenschafts-Beziehungen</span>
+      <h2>Stoff-Detektiv</h2>
+      <p class="muted">Wähle einen Stoff. Tippe zuerst, zu welcher Stoffklasse er gehört. Dann siehst du seinen Steckbrief mit Erklärungen.</p>
+    </div>
+    <div class="chips" id="dChips"></div>
+    <div class="panel stack">
+      <h3 id="dName"></h3>
+      <div class="opts" id="dOpts"><button type="button" data-k="m">Metall</button><button type="button" data-k="i">Ionensubstanz</button><button type="button" data-k="mol">Molekülsubstanz</button></div>
+      <div id="dOut" class="small"></div>
+    </div>
+    <div class="panel stack">
+      <h3>Ähnliches löst sich in Ähnlichem</h3>
+      <p class="small">Polare Stoffe und Ionensubstanzen lösen sich in polaren Lösemitteln wie Wasser, unpolare Stoffe (Fette, Wachs, Iod) in unpolaren Lösemitteln wie Benzin. Entscheidend ist, ob zwischen gelöstem Stoff und Lösemittel ähnlich starke Wechselwirkungen entstehen können.</p>
+    </div>
+  </section>
+
+  <section class="view" id="view-ueben" hidden>
+    <div class="stack">
+      <span class="eyebrow">Trainer</span>
+      <h2>Stoffklassen üben</h2>
+      <p class="muted">Formeln mit normalen Ziffern eingeben, z. B. <code>Al2O3</code> oder <code>Ca(OH)2</code>.</p>
+    </div>
+    <div id="trainer" class="stack"></div>
+  </section>
+
+  <section class="view" id="view-alltag" hidden>
+    <div class="stack">
+      <span class="eyebrow">Im Alltag</span>
+      <h2>Stoffklassen im Alltag</h2>
+    </div>
+    <div class="grid-2">
+      <div class="panel stack"><span class="eyebrow">Küche</span><h3>Salz und Zucker</h3><p class="small">Beide lösen sich in Wasser. Die Salzlösung leitet Strom (Ionen), die Zuckerlösung nicht (Moleküle). Salz schmilzt erst bei 801 °C, Zucker zersetzt sich schon bei etwa 186 °C.</p></div>
+      <div class="panel stack"><span class="eyebrow">Winter</span><h3>Streusalz</h3><p class="small">Gelöste Ionen stören die Ordnung der Wassermoleküle im Eis: Salzwasser gefriert erst unter 0 °C.</p></div>
+      <div class="panel stack"><span class="eyebrow">Technik</span><h3>Kupferkabel</h3><p class="small">Kupfer leitet dank des Elektronengases hervorragend und lässt sich zu dünnen Drähten ziehen, ohne zu brechen.</p></div>
+      <div class="panel stack"><span class="eyebrow">Natur</span><h3>Wasser ist besonders</h3><p class="small">Ohne Wasserstoffbrücken würde Wasser bei etwa −80 °C sieden. Dass es bei Raumtemperatur flüssig ist, macht Leben erst möglich.</p></div>
+      <div class="panel stack"><span class="eyebrow">Wäsche</span><h3>Fettflecken</h3><p class="small">Fett ist unpolar und löst sich nicht in Wasser. Tenside haben einen polaren und einen unpolaren Teil und verbinden beide Welten.</p></div>
+      <div class="panel stack"><span class="eyebrow">Sport</span><h3>Kühlpacks</h3><p class="small">Beim Lösen von Ammoniumnitrat wird mehr Gitterenergie gebraucht als Hydratationsenergie frei wird: Der Beutel wird kalt.</p></div>
+    </div>
+  </section>
+
+  <section class="view" id="view-quiz" hidden>
+    <div class="stack">
+      <span class="eyebrow">Selbsttest</span>
+      <h2>Quiz</h2>
+      <div class="progress-line"><div class="bar" aria-hidden="true"><i id="qBar"></i></div><span class="score-line" id="qProgress"></span></div>
+    </div>
+    <div class="panel quiz" id="quizBox" aria-live="polite"></div>
+  </section>
+</div>
+
+<script>
+/* LearnKit: shared building blocks for LearningDesk topic apps.
+   Exposes window.LK with: DOM helpers, number/expression parsing, rationals,
+   views (tab routing), quiz, trainer (task generators + checkers),
+   prediction cards and the equation lab for equations and inequalities. */
+(function () {
+  "use strict";
+  const $ = (s, r = document) => r.querySelector(s);
+  const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
+  const store = {
+    get(k) { try { return JSON.parse(localStorage.getItem(k)); } catch (e) { return null; } },
+    set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) { /* storage unavailable */ } }
+  };
+  const rnd = (a, b) => a + Math.floor(Math.random() * (b - a + 1));
+  const pick = (a) => a[Math.floor(Math.random() * a.length)];
+  const nz = (a, b) => { let v = 0; while (v === 0) v = rnd(a, b); return v; };
+  function shuffle(a) { const b = a.slice(); for (let i = b.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [b[i], b[j]] = [b[j], b[i]]; } return b; }
+  const gcd = (a, b) => { a = Math.abs(a); b = Math.abs(b); while (b) [a, b] = [b, a % b]; return a; };
+  const esc = (s) => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  const minus = (s) => String(s).replace(/-/g, "−");
+  const frac = (n, d) => `<span class="frac"><span>${n}</span><span>${d}</span></span>`;
+
+  // ---------- numbers ----------
+  // German formatting with at most d decimals
+  function fmt(v, d = 2) {
+    if (!isFinite(v)) return "–";
+    const r = Math.round(v * 10 ** d) / 10 ** d || 0;
+    return minus(r.toLocaleString("de-DE", { maximumFractionDigits: d }));
+  }
+  // accepts "3,5", "-2", "7/2", "x = 4", "1.013,25"
+  function parseNum(raw) {
+    let s = String(raw).trim().replace(/\s+/g, "").replace(/[−–]/g, "-").replace(/^[a-zA-Z]+=/, "");
+    if (s.includes(",") && s.includes(".")) s = s.replace(/\./g, "");
+    else if (/^-?\d{1,3}(\.\d{3})+$/.test(s)) s = s.replace(/\./g, ""); // German thousands separator: 1.013
+    s = s.replace(",", ".");
+    const m = s.match(/^(-?\d+(?:\.\d+)?)\/(-?\d+(?:\.\d+)?)$/);
+    if (m) return Number(m[1]) / Number(m[2]);
+    if (!/^-?(\d+\.?\d*|\.\d+)(e-?\d+)?$/i.test(s)) return NaN;
+    return Number(s);
+  }
+
+  // ---------- rationals ----------
+  class R {
+    constructor(n, d = 1) {
+      if (d === 0) throw new Error("Division durch 0");
+      if (d < 0) { n = -n; d = -d; }
+      const g = gcd(n, d) || 1; this.n = n / g; this.d = d / g;
+    }
+    static of(x) { if (x instanceof R) return x; if (Number.isInteger(x)) return new R(x); const k = 1e6; return new R(Math.round(x * k), k); }
+    add(o) { o = R.of(o); return new R(this.n * o.d + o.n * this.d, this.d * o.d); }
+    sub(o) { o = R.of(o); return new R(this.n * o.d - o.n * this.d, this.d * o.d); }
+    mul(o) { o = R.of(o); return new R(this.n * o.n, this.d * o.d); }
+    div(o) { o = R.of(o); return new R(this.n * o.d, this.d * o.n); }
+    neg() { return new R(-this.n, this.d); }
+    isZero() { return this.n === 0; }
+    eq(o) { o = R.of(o); return this.n === o.n && this.d === o.d; }
+    val() { return this.n / this.d; }
+    sign() { return Math.sign(this.n); }
+    abs() { return new R(Math.abs(this.n), this.d); }
+    text() { return this.d === 1 ? String(this.n) : `${this.n}/${this.d}`; }
+    html() { const a = Math.abs(this.n); const body = this.d === 1 ? String(a) : frac(a, this.d); return (this.n < 0 ? "−" : "") + body; }
+  }
+  // a·x + b as HTML, e.g. "3x − 2", "−x", "5"
+  function linHtml(x, c, v = "x") {
+    x = R.of(x); c = R.of(c);
+    const vx = `<i>${v}</i>`;
+    let s = "";
+    if (!x.isZero()) {
+      const a = x.abs();
+      s = (x.sign() < 0 ? "−" : "") + (a.eq(1) ? "" : a.html()) + vx;
+    }
+    if (!c.isZero() || !s) {
+      if (!s) s = c.html();
+      else s += (c.sign() < 0 ? " − " : " + ") + c.abs().html();
+    }
+    return s;
+  }
+
+  // ---------- polynomials: terms are {c: coefficient, v: {x: 2, y: 1}} ----------
+  function monoParts(v) {
+    const keys = Object.keys(v || {}).filter((k) => v[k] > 0).sort();
+    return { vh: keys.map((k) => `<i>${k}</i>` + (v[k] > 1 ? `<sup>${v[k]}</sup>` : "")).join(""), vt: keys.map((k) => k + (v[k] > 1 ? "^" + v[k] : "")).join("") };
+  }
+  function poly(terms) {
+    let h = "", t = "";
+    terms.filter((m) => m.c !== 0).forEach((m, i) => {
+      const { vh, vt } = monoParts(m.v), a = Math.abs(m.c);
+      const ch = a === 1 && vh ? "" : fmt(a, 4), ct = a === 1 && vt ? "" : String(a);
+      if (i === 0) { h += (m.c < 0 ? "−" : "") + ch + vh; t += (m.c < 0 ? "-" : "") + ct + vt; }
+      else { h += (m.c < 0 ? " − " : " + ") + ch + vh; t += (m.c < 0 ? "-" : "+") + ct + vt; }
+    });
+    return h ? { html: h, text: t } : { html: "0", text: "0" };
+  }
+  const polyFn = (terms) => (e) => terms.reduce((s, m) => s + m.c * Object.entries(m.v || {}).reduce((p, [k, ex]) => p * Math.pow(e[k], ex), 1), 0);
+  // collect like terms: returns new term list sorted by degree
+  function collect(terms) {
+    const map = new Map();
+    terms.forEach((m) => { const key = monoParts(m.v).vt; const cur = map.get(key); if (cur) cur.c += m.c; else map.set(key, { c: m.c, v: { ...(m.v || {}) } }); });
+    const deg = (m) => Object.values(m.v).reduce((a, b) => a + b, 0);
+    return [...map.values()].filter((m) => m.c !== 0).sort((a, b) => deg(b) - deg(a) || monoParts(a.v).vt.localeCompare(monoParts(b.v).vt));
+  }
+
+  // ---------- expressions ----------
+  // single-letter variables, implicit multiplication, ^, ², ³, ·, ×, :, ÷, decimal comma
+  function parse(src) {
+    const s = String(src).toLowerCase().replace(/\s+/g, "").replace(/[−–]/g, "-").replace(/[·⋅×]/g, "*").replace(/[:÷]/g, "/")
+      .replace(/²/g, "^2").replace(/³/g, "^3").replace(/(\d),(\d)/g, "$1.$2");
+    if (!s) throw new Error("leer");
+    const toks = [];
+    for (let i = 0; i < s.length;) {
+      const ch = s[i];
+      if (/[0-9.]/.test(ch)) { let j = i; while (j < s.length && /[0-9.]/.test(s[j])) j++; const n = parseFloat(s.slice(i, j)); if (isNaN(n)) throw new Error("Zahl"); toks.push({ t: "num", v: n }); i = j; continue; }
+      if ("+-*/^()".includes(ch)) { toks.push({ t: ch }); i++; continue; }
+      if (/[a-z]/.test(ch)) { toks.push({ t: "var", v: ch }); i++; continue; }
+      throw new Error("Zeichen");
+    }
+    let p = 0;
+    const peek = () => toks[p];
+    const starts = (tk) => tk && (tk.t === "num" || tk.t === "var" || tk.t === "(");
+    function expr() { let a = term(); while (peek() && (peek().t === "+" || peek().t === "-")) { const op = toks[p++].t, b = term(), l = a; a = op === "+" ? (e) => l(e) + b(e) : (e) => l(e) - b(e); } return a; }
+    function term() {
+      let a = unary();
+      for (;;) {
+        const tk = peek();
+        if (tk && (tk.t === "*" || tk.t === "/")) { p++; const b = unary(), l = a; a = tk.t === "*" ? (e) => l(e) * b(e) : (e) => l(e) / b(e); }
+        else if (starts(tk)) { const b = power(), l = a; a = (e) => l(e) * b(e); }
+        else break;
+      }
+      return a;
+    }
+    function unary() { const tk = peek(); if (tk && tk.t === "-") { p++; const a = unary(); return (e) => -a(e); } if (tk && tk.t === "+") { p++; return unary(); } return power(); }
+    function power() { const b = primary(); if (peek() && peek().t === "^") { p++; const ex = unary(); return (e) => Math.pow(b(e), ex(e)); } return b; }
+    function primary() {
+      const tk = toks[p++];
+      if (!tk) throw new Error("unvollständig");
+      if (tk.t === "num") { const v = tk.v; return () => v; }
+      if (tk.t === "var") { const v = tk.v; return (e) => (v in e ? e[v] : NaN); }
+      if (tk.t === "(") { const a = expr(); if (!peek() || peek().t !== ")") throw new Error("Klammer"); p++; return a; }
+      throw new Error("Syntax");
+    }
+    const f = expr();
+    if (p < toks.length) throw new Error("Syntax");
+    return f;
+  }
+  const SAMPLE = [1.37, -2.11, 0.73, 3.29, -0.58, 2.47, -1.63];
+  function sameFn(f, g, vars = "abcxyz") {
+    for (let k = 0; k < 6; k++) {
+      const env = {}; [...vars].forEach((v, i) => { env[v] = SAMPLE[(k + 2 * i) % SAMPLE.length] + 0.1 * i; });
+      const u = f(env), w = g(env);
+      if (!isFinite(u) || !isFinite(w) || Math.abs(u - w) > 1e-7 * Math.max(1, Math.abs(w))) return false;
+    }
+    return true;
+  }
+  // number of top-level summands of an input, e.g. "3a+2b-(a+b)" -> 3
+  function countSummands(raw) {
+    const s = String(raw).replace(/\s+/g, "").replace(/[−–]/g, "-");
+    let depth = 0, n = 1;
+    for (let i = 0; i < s.length; i++) {
+      const c = s[i];
+      if (c === "(") depth++; else if (c === ")") depth--;
+      else if ((c === "+" || c === "-") && depth === 0 && i > 0 && !"*/^(:·×÷+-".includes(s[i - 1])) n++;
+    }
+    return n;
+  }
+
+  // ---------- checkers for the trainer ----------
+  const check = {
+    // numeric answer with relative tolerance (default 1 %)
+    num(value, { tol = 0.01, abs = null, unit = "" } = {}) {
+      return (raw) => {
+        const v = parseNum(String(raw).replace(new RegExp(unit.replace(/[.*+?^${}()|[\]\\]/g, "\\$&") + "$"), ""));
+        if (isNaN(v)) return { ok: false, msg: "Bitte gib eine Zahl ein, z. B. <code>12,5</code>." };
+        const lim = abs !== null ? abs : Math.max(Math.abs(value) * tol, 1e-9);
+        return Math.abs(v - value) <= lim ? { ok: true } : { ok: false, msg: "Der Wert stimmt noch nicht. Prüfe Formel, Einheiten und Rechnung." };
+      };
+    },
+    // algebraic expression, equivalent to f; optional form check and hints for typical mistakes
+    expr(f, { vars = "abcxyz", form = null, hints = [], fallback = "Der Term ist noch nicht gleichwertig. Rechne Schritt für Schritt nach." } = {}) {
+      return (raw) => {
+        let g;
+        try { g = parse(raw); } catch (e) { return { ok: false, msg: "Das kann ich nicht lesen. Prüfe Klammern und Zeichen, z. B. <code>3a+2b</code> oder <code>2x(x-3)</code>." }; }
+        const eq = sameFn(g, f, vars);
+        if (eq && form) { const m = form(raw); if (m) return { ok: false, msg: m }; }
+        if (eq) return { ok: true };
+        for (const h of hints) if (h.f && sameFn(g, h.f, vars)) return { ok: false, msg: h.msg };
+        return { ok: false, msg: fallback };
+      };
+    }
+  };
+
+  // ---------- views (tab routing) ----------
+  function views(names, onShow = {}) {
+    function show() {
+      const h = location.hash.slice(1);
+      const v = names.includes(h) ? h : names[0];
+      names.forEach((n) => { const el = $("#view-" + n); if (el) el.hidden = n !== v; });
+      $$("nav.tabs a").forEach((a) => { if (a.dataset.view === v) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current"); });
+      window.scrollTo({ top: 0 });
+      if (onShow[v]) requestAnimationFrame(onShow[v]);
+    }
+    window.addEventListener("hashchange", show);
+    show();
+    return show;
+  }
+
+  // ---------- quiz ----------
+  function quiz({ box, bar, progress, questions, n = 10, key, mathOptions = false }) {
+    const B = $(box), BAR = $(bar), P = $(progress);
+    const N = Math.min(n, questions.length);
+    let order = [], idx = 0, score = 0, answered = false;
+    function start() {
+      order = shuffle(questions).slice(0, N).map((q) => { const perm = shuffle(q.o.map((_, i) => i)); return { q: q.q, o: perm.map((i) => q.o[i]), a: perm.indexOf(q.a), e: q.e }; });
+      idx = 0; score = 0; render();
+    }
+    function render() {
+      BAR.style.width = (idx / N) * 100 + "%";
+      if (idx >= N) {
+        const best = Math.max(score, store.get(key) || 0); store.set(key, best);
+        const msg = score >= N - 1 ? "Super! Du hast das Thema sicher drauf." : score >= Math.ceil(N * 0.6) ? "Gut gemacht! Schau dir die Erklärungen zu deinen Fehlern noch einmal an." : "Wiederhole die Erklärungen und übe im Trainer. Dann klappt es beim nächsten Mal besser.";
+        P.textContent = `fertig · Bestwert ${best} / ${N}`;
+        B.innerHTML = `<span class="eyebrow">Ergebnis</span><div class="score-big">${score} / ${N}</div><p>${msg}</p><div class="row"><button type="button" class="primary lk-again">Neue Runde</button></div>`;
+        $(".lk-again", B).addEventListener("click", start);
+        return;
+      }
+      const q = order[idx]; answered = false;
+      P.textContent = `Frage ${idx + 1} von ${N} · ${score} richtig`;
+      B.innerHTML = `<div class="qtext"></div><div class="opts"></div><div class="feedback" hidden></div><div class="row"><button type="button" class="primary lk-next" hidden>${idx + 1 < N ? "Nächste Frage" : "Ergebnis anzeigen"}</button></div>`;
+      $(".qtext", B).textContent = q.q;
+      q.o.forEach((t, i) => {
+        const b = document.createElement("button"); b.type = "button";
+        b.innerHTML = `<span class="k">${"ABCD"[i]}</span><span${mathOptions ? ' class="math"' : ""}></span>`; b.lastChild.textContent = t;
+        b.addEventListener("click", () => choose(i));
+        $(".opts", B).appendChild(b);
+      });
+      $(".lk-next", B).addEventListener("click", () => { idx++; render(); });
+    }
+    function choose(i) {
+      if (answered) return; answered = true;
+      const q = order[idx];
+      $$(".opts button", B).forEach((b, j) => { b.disabled = true; if (j === q.a) b.classList.add("right"); else if (j === i) b.classList.add("wrong"); });
+      const ok = i === q.a; if (ok) score++;
+      const fb = $(".feedback", B); fb.hidden = false;
+      fb.innerHTML = ok ? '<span><b class="ok">Richtig!</b> </span>' : '<span><b class="no">Leider falsch.</b> </span>';
+      fb.firstChild.appendChild(document.createTextNode(q.e));
+      const nb = $(".lk-next", B); nb.hidden = false; nb.focus();
+      P.textContent = `Frage ${idx + 1} von ${N} · ${score} richtig`;
+    }
+    start();
+  }
+
+  // ---------- trainer ----------
+  const trainers = [];
+  function trainer({ el, modes, id = "tr" }) {
+    const root = $(el);
+    root.innerHTML = `
+      ${modes.length > 1 ? `<div class="modes" role="group" aria-label="Übungsart">${modes.map((m, i) => `<button type="button" data-mode="${m.id}" aria-pressed="${i === 0}">${m.label}</button>`).join("")}</div>` : ""}
+      <div class="panel stack">
+        <p class="small muted lk-instr"></p>
+        <form class="stack lk-form" autocomplete="off">
+          <div class="task lk-task"></div>
+          <div class="answer-row"><label class="math lk-label" for="${id}-in"></label><input type="text" id="${id}-in" class="lk-in" spellcheck="false"></div>
+          <div class="row"><button type="submit" class="primary">Prüfen</button><button type="button" class="lk-show">Lösung zeigen</button><button type="button" class="lk-new">Neue Aufgabe</button></div>
+        </form>
+        <p class="hint lk-hint"></p>
+        <div class="feedback lk-fb" hidden aria-live="polite"></div>
+        <span class="score-line lk-score"></span>
+      </div>`;
+    let mode = modes[0], task = null;
+    const score = { right: 0, total: 0 };
+    const fb = $(".lk-fb", root), input = $(".lk-in", root);
+    function updateScore() { $(".lk-score", root).textContent = `${score.right} von ${score.total} Aufgaben auf Anhieb richtig`; }
+    function next() {
+      task = mode.gen(); task.attempted = false;
+      $(".lk-instr", root).innerHTML = task.instr || mode.instr || "";
+      $(".lk-task", root).innerHTML = task.html;
+      $(".lk-label", root).innerHTML = task.label || "";
+      input.placeholder = task.placeholder || "";
+      $(".lk-hint", root).innerHTML = task.hint || mode.hint || "";
+      input.value = ""; fb.hidden = true;
+      return task;
+    }
+    function solutionHtml() { return task.solution ? `<div>${task.solution}</div>` : ""; }
+    function submit(raw) {
+      const r = task.check(raw);
+      if (!task.attempted) { task.attempted = true; score.total++; if (r.ok) score.right++; updateScore(); }
+      fb.hidden = false;
+      fb.innerHTML = r.ok ? `<span><b class="ok">Richtig!</b></span>${solutionHtml()}` : `<span><b class="no">Noch nicht richtig.</b> ${r.msg || ""}</span>`;
+      return r;
+    }
+    $(".lk-form", root).addEventListener("submit", (ev) => { ev.preventDefault(); submit(input.value); });
+    $(".lk-show", root).addEventListener("click", () => {
+      if (!task.attempted) { task.attempted = true; score.total++; updateScore(); }
+      fb.hidden = false; fb.innerHTML = `<span>Eine mögliche Lösung: <code>${esc(task.answer)}</code></span>${solutionHtml()}`;
+    });
+    $(".lk-new", root).addEventListener("click", () => { next(); input.focus(); });
+    $$("[data-mode]", root).forEach((b) => b.addEventListener("click", () => {
+      mode = modes.find((m) => m.id === b.dataset.mode);
+      $$("[data-mode]", root).forEach((x) => x.setAttribute("aria-pressed", String(x === b)));
+      next();
+    }));
+    next();
+    const api = { modes, next, submit, get task() { return task; }, setMode(i) { mode = modes[i]; return next(); } };
+    trainers.push(api);
+    return api;
+  }
+
+  // ---------- prediction cards ----------
+  function cards({ el, items, key }) {
+    const root = $(el);
+    let answers = store.get(key) || {};
+    function renderAll() {
+      root.innerHTML = "";
+      items.forEach((c, idx) => {
+        const card = document.createElement("article");
+        card.className = "panel card";
+        card.innerHTML = `<span class="ctx"></span><h3></h3><p class="small"></p><div class="opts"></div><div class="answer" hidden></div>`;
+        $(".ctx", card).textContent = c.ctx; $("h3", card).textContent = c.title; $("p", card).textContent = c.text;
+        const opts = $(".opts", card), ans = $(".answer", card);
+        c.o.forEach((t, i) => {
+          const b = document.createElement("button"); b.type = "button"; b.textContent = t;
+          b.addEventListener("click", () => { answers[idx] = i; store.set(key, answers); paint(); });
+          opts.appendChild(b);
+        });
+        function paint() {
+          const ch = answers[idx];
+          $$("button", opts).forEach((b, i) => { b.classList.remove("right", "wrong"); b.disabled = ch !== undefined; if (ch !== undefined) { if (i === c.a) b.classList.add("right"); else if (i === ch) b.classList.add("wrong"); } });
+          if (ch !== undefined) { ans.hidden = false; ans.innerHTML = ch === c.a ? '<b class="ok">Richtig.</b> ' : '<b class="no">Nicht ganz.</b> '; ans.appendChild(document.createTextNode(c.e)); }
+          else ans.hidden = true;
+        }
+        root.appendChild(card); paint();
+      });
+    }
+    renderAll();
+    return { reset() { answers = {}; store.set(key, answers); renderAll(); } };
+  }
+
+  // ---------- equation lab (equations and inequalities) ----------
+  const REL_FLIP = { "<": ">", ">": "<", "≤": "≥", "≥": "≤", "=": "=" };
+  function equationLab({ el, gen, inequality = false }) {
+    const root = $(el);
+    root.innerHTML = `
+      <div class="panel stack">
+        <div class="lab-eq lk-eq" aria-live="polite"></div>
+        <ol class="lab-log lk-log"></ol>
+        <form class="answer-row lk-form" autocomplete="off">
+          <label for="${el.slice(1)}-op" class="small"><strong>Umformung für beide Seiten:</strong></label>
+          <input type="text" id="${el.slice(1)}-op" class="lk-op" placeholder="z. B. −3 oder −2x oder :4" spellcheck="false">
+          <button type="submit" class="primary">Ausführen</button>
+        </form>
+        <p class="hint">Schreibweise: <code>-3</code>, <code>+5</code>, <code>-2x</code>, <code>+x</code>, <code>:4</code>, <code>*2</code>, <code>:(-3)</code>. Brüche als <code>1/2</code>.</p>
+        <p class="lab-msg lk-msg" aria-live="polite"></p>
+        <div class="row"><button type="button" class="lk-undo">Rückgängig</button><button type="button" class="lk-new">Neue ${inequality ? "Ungleichung" : "Gleichung"}</button></div>
+      </div>`;
+    let hist = [], st = null;
+    const eqHtml = (s) => `${linHtml(s.L.x, s.L.c)} ${s.rel} ${linHtml(s.R.x, s.R.c)}`;
+    function setMsg(t, cls = "") { const m = $(".lk-msg", root); m.className = "lab-msg lk-msg " + cls; m.innerHTML = t; }
+    function render() {
+      $(".lk-eq", root).innerHTML = eqHtml(st);
+      // the operation is written next to the line it is applied to (school notation)
+      $(".lk-log", root).innerHTML = hist.map((h, i) => { const nx = hist[i + 1]; return `<li class="${nx && nx.flip ? "flip" : ""}"><span>${eqHtml(h.s)}</span><span class="op">${nx ? "| " + esc(nx.op) : ""}</span></li>`; }).join("");
+      const s = st, xL = !s.L.x.isZero(), xR = !s.R.x.isZero();
+      if (!xL && !xR) {
+        const l = s.L.c.val(), r = s.R.c.val();
+        const truth = { "=": l === r, "<": l < r, ">": l > r, "≤": l <= r, "≥": l >= r }[s.rel];
+        setMsg(truth ? "Die Variable ist verschwunden und die Aussage ist immer wahr: Jede Zahl ist eine Lösung (L = ℚ)." : "Die Variable ist verschwunden und die Aussage ist falsch: Es gibt keine Lösung (L = { }).", "ok");
+        return;
+      }
+      const solvedL = s.L.x.eq(1) && s.L.c.isZero() && !xR, solvedR = s.R.x.eq(1) && s.R.c.isZero() && !xL;
+      if (solvedL || solvedR) {
+        const v = solvedL ? s.R.c : s.L.c, rel = solvedL ? s.rel : REL_FLIP[s.rel];
+        setMsg(inequality && rel !== "=" ? `Gelöst! Alle Zahlen mit <span class="math"><i>x</i> ${rel} ${v.html()}</span> erfüllen die Ungleichung: <span class="math">L = {<i>x</i> | <i>x</i> ${rel} ${v.html()}}</span>` : `Gelöst! <span class="math"><i>x</i> = ${v.html()}</span>, also <span class="math">L = {${v.html()}}</span>. Mach zur Sicherheit die Probe.`, "ok");
+      } else setMsg("Forme weiter um, bis <i>x</i> allein auf einer Seite steht.");
+    }
+    function start(s) { st = s || gen(); hist = [{ s: st, op: "" }]; render(); }
+    function apply(raw) {
+      let s = String(raw).replace(/\s+/g, "").replace(/[−–]/g, "-").replace(/[·⋅×]/g, "*").replace(/[÷/]/g, (m, i) => (i === 0 ? ":" : m)).replace(/^\//, ":");
+      const m = s.match(/^([+\-*:])\(?(-?)(\d*(?:[.,]\d+)?(?:\/\d+)?)(x?)\)?$/);
+      if (!m || (m[3] === "" && m[4] === "")) { setMsg("Das verstehe ich nicht. Beginne mit + − * oder :, z. B. <code>-3</code> oder <code>:2</code>.", "no"); return false; }
+      const [, op, sg, numTxt, hasX] = m;
+      let k; try { k = R.of(numTxt === "" ? 1 : parseNum(numTxt)); if (numTxt.includes("/")) { const [a, b] = numTxt.split("/").map(Number); k = new R(a, b); } } catch (e) { setMsg("Ungültige Zahl.", "no"); return false; }
+      if (sg) k = k.neg();
+      const next = { L: { ...st.L }, R: { ...st.R }, rel: st.rel };
+      let flip = false;
+      const label = `${op === "*" ? "·" : op === ":" ? ":" : op === "-" ? "−" : "+"}${op === "*" || op === ":" ? (k.sign() < 0 ? `(${k.text().replace("-", "−")})` : k.text()) : (k.sign() < 0 ? `(${k.text().replace("-", "−")})` : k.text())}${hasX ? "x" : ""}`.replace(/^([+−])1x$/, "$1x");
+      if (op === "+" || op === "-") {
+        const kk = op === "-" ? k.neg() : k;
+        for (const side of ["L", "R"]) { if (hasX) next[side].x = next[side].x.add(kk); else next[side].c = next[side].c.add(kk); }
+      } else {
+        if (hasX) { setMsg("Mit <i>x</i> malnehmen oder durch <i>x</i> teilen ist keine erlaubte Umformung, weil <i>x</i> null sein könnte.", "no"); return false; }
+        if (k.isZero()) { setMsg(op === ":" ? "Durch 0 darf man nicht teilen." : "Mal 0 macht beide Seiten zu 0. Dabei geht die Information verloren, das ist keine Äquivalenzumformung.", "no"); return false; }
+        for (const side of ["L", "R"]) {
+          next[side].x = op === "*" ? next[side].x.mul(k) : next[side].x.div(k);
+          next[side].c = op === "*" ? next[side].c.mul(k) : next[side].c.div(k);
+        }
+        if (inequality && k.sign() < 0 && next.rel !== "=") { next.rel = REL_FLIP[next.rel]; flip = true; }
+      }
+      st = next; hist.push({ s: st, op: label + (flip ? "  Zeichen umdrehen!" : ""), flip }); render();
+      if (flip) setMsg("Achtung: Du hast mit einer negativen Zahl multipliziert oder durch sie geteilt. Deshalb dreht sich das Ungleichheitszeichen um! " + $(".lk-msg", root).innerHTML, "no");
+      return true;
+    }
+    $(".lk-form", root).addEventListener("submit", (ev) => { ev.preventDefault(); const i = $(".lk-op", root); if (apply(i.value)) i.value = ""; i.focus(); });
+    $(".lk-undo", root).addEventListener("click", () => { if (hist.length > 1) { hist.pop(); st = hist[hist.length - 1].s; render(); } });
+    $(".lk-new", root).addEventListener("click", () => start());
+    start();
+    return { apply, start, get state() { return st; } };
+  }
+  // random linear equation a x + b (rel) c x + d with a "nice" solution
+  function genLinear({ rel = "=", fractions = false } = {}) {
+    let a, c; do { a = nz(-6, 7); c = rnd(-4, 4); } while (a === c);
+    const x0 = fractions ? new R(nz(-9, 9), pick([1, 2, 3])) : new R(nz(-6, 6));
+    const b = R.of(rnd(-9, 9)), d = x0.mul(a - c).add(b);
+    return { L: { x: R.of(a), c: b }, R: { x: R.of(c), c: d }, rel, x0 };
+  }
+
+  // number as plain answer text with decimal comma, e.g. 1013,25
+  const numText = (v, d = 2) => String(Math.round(v * 10 ** d) / 10 ** d || 0).replace(".", ",");
+
+  window.LK = { $, $$, store, rnd, pick, nz, shuffle, gcd, esc, minus, frac, fmt, parseNum, numText, R, linHtml, poly, polyFn, collect, monoParts, parse, sameFn, countSummands, check, views, quiz, trainer, trainers, cards, equationLab, genLinear, REL_FLIP };
+})();
+</script>
+<script>
+// Shared element data for the chemistry apps (main-group elements of periods 1-5).
+// z, symbol, German name, group (1-8, main-group numbering), period, mass number of the most common isotope,
+// average atomic mass (u), electronegativity (Pauling, null for noble gases), covalent radius (pm, Cordero 2008),
+// first ionisation energy (kJ/mol), class: m = metal, h = semimetal, n = nonmetal, e = noble gas
+window.CHEM = (function () {
+  "use strict";
+  const raw = [
+    [1, "H", "Wasserstoff", 1, 1, 1, 1.008, 2.20, 31, 1312, "n"], [2, "He", "Helium", 8, 1, 4, 4.003, null, 28, 2372, "e"],
+    [3, "Li", "Lithium", 1, 2, 7, 6.94, 0.98, 128, 520, "m"], [4, "Be", "Beryllium", 2, 2, 9, 9.012, 1.57, 96, 900, "m"],
+    [5, "B", "Bor", 3, 2, 11, 10.81, 2.04, 84, 801, "h"], [6, "C", "Kohlenstoff", 4, 2, 12, 12.01, 2.55, 76, 1086, "n"],
+    [7, "N", "Stickstoff", 5, 2, 14, 14.01, 3.04, 71, 1402, "n"], [8, "O", "Sauerstoff", 6, 2, 16, 16.00, 3.44, 66, 1314, "n"],
+    [9, "F", "Fluor", 7, 2, 19, 19.00, 3.98, 57, 1681, "n"], [10, "Ne", "Neon", 8, 2, 20, 20.18, null, 58, 2081, "e"],
+    [11, "Na", "Natrium", 1, 3, 23, 22.99, 0.93, 166, 496, "m"], [12, "Mg", "Magnesium", 2, 3, 24, 24.31, 1.31, 141, 738, "m"],
+    [13, "Al", "Aluminium", 3, 3, 27, 26.98, 1.61, 121, 578, "m"], [14, "Si", "Silicium", 4, 3, 28, 28.09, 1.90, 111, 787, "h"],
+    [15, "P", "Phosphor", 5, 3, 31, 30.97, 2.19, 107, 1012, "n"], [16, "S", "Schwefel", 6, 3, 32, 32.06, 2.58, 105, 1000, "n"],
+    [17, "Cl", "Chlor", 7, 3, 35, 35.45, 3.16, 102, 1251, "n"], [18, "Ar", "Argon", 8, 3, 40, 39.95, null, 106, 1521, "e"],
+    [19, "K", "Kalium", 1, 4, 39, 39.10, 0.82, 203, 419, "m"], [20, "Ca", "Calcium", 2, 4, 40, 40.08, 1.00, 176, 590, "m"],
+    [31, "Ga", "Gallium", 3, 4, 69, 69.72, 1.81, 122, 579, "m"], [32, "Ge", "Germanium", 4, 4, 74, 72.63, 2.01, 120, 762, "h"],
+    [33, "As", "Arsen", 5, 4, 75, 74.92, 2.18, 119, 947, "h"], [34, "Se", "Selen", 6, 4, 80, 78.97, 2.55, 120, 941, "n"],
+    [35, "Br", "Brom", 7, 4, 79, 79.90, 2.96, 120, 1140, "n"], [36, "Kr", "Krypton", 8, 4, 84, 83.80, null, 116, 1351, "e"],
+    [37, "Rb", "Rubidium", 1, 5, 85, 85.47, 0.82, 220, 403, "m"], [38, "Sr", "Strontium", 2, 5, 88, 87.62, 0.95, 195, 550, "m"],
+    [49, "In", "Indium", 3, 5, 115, 114.82, 1.78, 142, 558, "m"], [50, "Sn", "Zinn", 4, 5, 120, 118.71, 1.96, 139, 709, "m"],
+    [51, "Sb", "Antimon", 5, 5, 121, 121.76, 2.05, 139, 834, "h"], [52, "Te", "Tellur", 6, 5, 130, 127.60, 2.10, 138, 869, "h"],
+    [53, "I", "Iod", 7, 5, 127, 126.90, 2.66, 139, 1008, "n"], [54, "Xe", "Xenon", 8, 5, 132, 131.29, null, 140, 1170, "e"]
+  ];
+  const groupNames = { 1: "Alkalimetalle", 2: "Erdalkalimetalle", 3: "Borgruppe (Erdmetalle)", 4: "Kohlenstoffgruppe", 5: "Stickstoffgruppe", 6: "Chalkogene", 7: "Halogene", 8: "Edelgase" };
+  const className = { m: "Metall", h: "Halbmetall", n: "Nichtmetall", e: "Edelgas" };
+  // electrons per shell (K, L, M, N, O) for the listed main-group elements
+  function shells(z) {
+    if (z <= 2) return [z];
+    if (z <= 10) return [2, z - 2];
+    if (z <= 18) return [2, 8, z - 10];
+    if (z <= 20) return [2, 8, 8, z - 18];
+    if (z <= 36) return [2, 8, 18, z - 28];
+    if (z <= 38) return [2, 8, 18, 8, z - 36];
+    return [2, 8, 18, 18, z - 46];
+  }
+  const els = raw.map(([z, sym, name, group, period, A, mass, en, r, ie, cls]) => ({ z, sym, name, group, period, A, mass, en, r, ie, cls, shells: shells(z), valence: z === 2 ? 2 : group }));
+  const bySym = Object.fromEntries(els.map((e) => [e.sym, e]));
+  const SUP = { "0": "⁰", "1": "¹", "2": "²", "3": "³", "4": "⁴", "5": "⁵", "6": "⁶", "7": "⁷", "8": "⁸", "9": "⁹", "+": "⁺", "-": "⁻" };
+  const SUB = { "0": "₀", "1": "₁", "2": "₂", "3": "₃", "4": "₄", "5": "₅", "6": "₆", "7": "₇", "8": "₈", "9": "₉" };
+  const sup = (s) => String(s).split("").map((c) => SUP[c] || c).join("");
+  const sub = (s) => String(s).split("").map((c) => SUB[c] || c).join("");
+  // charge as superscript, e.g. 2+ -> ²⁺, 1- -> ⁻
+  const charge = (q) => (q === 0 ? "" : sup((Math.abs(q) === 1 ? "" : Math.abs(q)) + (q > 0 ? "+" : "-")));
+  // typical ion charge of a main-group element (null for noble gases and group 4)
+  const ionCharge = (e) => (e.cls === "e" ? null : e.group <= 3 ? e.group : e.group >= 5 ? e.group - 8 : null);
+  // Bohr shell model as SVG; electrons spread evenly on each shell
+  function bohr(e, opt = {}) {
+    const q = opt.charge || 0, size = opt.size || 220, c = size / 2;
+    const sh = opt.shells || e.shells.slice();
+    if (q > 0) { let left = q; for (let i = sh.length - 1; i >= 0 && left > 0; i--) { const t = Math.min(left, sh[i]); sh[i] -= t; left -= t; } while (sh.length > 1 && sh[sh.length - 1] === 0) sh.pop(); }
+    if (q < 0) sh[sh.length - 1] -= q;
+    const n = sh.length, rStep = (c - 14) / (n + 0.6);
+    let g = `<svg class="bohr" viewBox="0 0 ${size} ${size}" role="img" aria-label="Schalenmodell ${e.name}">`;
+    sh.forEach((cnt, i) => {
+      const r = rStep * (i + 1.6);
+      g += `<circle class="shell" cx="${c}" cy="${c}" r="${r.toFixed(1)}"/>`;
+      for (let k = 0; k < cnt; k++) { const a = -Math.PI / 2 + (2 * Math.PI * k) / cnt + i * 0.35; g += `<circle class="el${i === n - 1 ? " val" : ""}" cx="${(c + r * Math.cos(a)).toFixed(1)}" cy="${(c + r * Math.sin(a)).toFixed(1)}" r="${Math.max(2.6, Math.min(5, size / 48)).toFixed(1)}"/>`; }
+    });
+    g += `<circle class="core" cx="${c}" cy="${c}" r="${(rStep * 0.95).toFixed(1)}"/><text class="coret" x="${c}" y="${c + 4}">${opt.coreLabel || e.z + "p⁺"}</text></svg>`;
+    return g;
+  }
+  return { els, bySym, groupNames, className, shells, sup, sub, charge, ionCharge, bohr };
+})();
+
+(function () {
+  "use strict";
+  const { $, $$, pick, fmt, gcd, shuffle } = LK;
+  const C = window.CHEM;
+  // "Al2O3" -> Al<sub>2</sub>O<sub>3</sub>
+  const fh = (f) => f.replace(/([A-Za-z)])(\d+)/g, "$1<sub>$2</sub>");
+  const reduce = (m) => (typeof matchMedia === "function" && matchMedia("(prefers-reduced-motion: reduce)").matches);
+
+  // ---------- metals: electron gas ----------
+  const mCores = []; for (let r = 0; r < 4; r++) for (let c = 0; c < 6; c++) mCores.push({ r, c });
+  const mE = Array.from({ length: 30 }, () => ({ x: 30 + Math.random() * 360, y: 30 + Math.random() * 200, vx: (Math.random() - 0.5) * 1.4, vy: (Math.random() - 0.5) * 1.4 }));
+  let volt = false, shift = 0, mRaf = null;
+  function drawMetal() {
+    let g = `<rect class="bg" x="10" y="10" width="400" height="230" rx="10"/>`;
+    mCores.forEach(({ r, c }) => { const x = 42 + c * 58 + (r === 0 ? shift : 0), y = 45 + r * 58; g += `<circle class="core" cx="${x}" cy="${y}" r="20"/><text class="lbl" x="${x}" y="${y}">+</text>`; });
+    mE.forEach((e) => { g += `<circle class="eg" cx="${e.x.toFixed(1)}" cy="${e.y.toFixed(1)}" r="4"/>`; });
+    if (volt) g += `<text class="cap" x="20" y="255">− Pol</text><text class="cap" x="360" y="255">+ Pol →</text>`;
+    $("#mSvg").innerHTML = g;
+  }
+  function stepMetal() {
+    mE.forEach((e) => {
+      e.x += e.vx + (volt ? 1.6 : 0); e.y += e.vy;
+      if (e.y < 18 || e.y > 232) e.vy *= -1;
+      if (e.x > 402) e.x = volt ? 18 : 402, e.vx = volt ? e.vx : -Math.abs(e.vx);
+      if (e.x < 18) e.vx = Math.abs(e.vx);
+    });
+    drawMetal();
+    // stop the animation while the tab is hidden
+    mRaf = $("#view-metalle").hidden ? null : requestAnimationFrame(stepMetal);
+  }
+  $("#mVolt").addEventListener("click", () => { volt = !volt; if (reduce()) { for (let i = 0; i < 40; i++) mE.forEach((e) => { e.x += volt ? 1.6 : 0; if (e.x > 402) e.x = 18; }); drawMetal(); } $("#mVolt").setAttribute("aria-pressed", String(volt)); $("#mVolt").textContent = volt ? "Spannung abschalten" : "Spannung anlegen"; $("#mText").innerHTML = volt ? "Die Elektronen driften zum Pluspol: <strong>elektrischer Strom</strong>. Die Atomrümpfe bleiben an ihren Plätzen." : "Die gelben Punkte sind die frei beweglichen Valenzelektronen."; });
+  $("#mHit").addEventListener("click", () => { shift = shift ? 0 : 58; $("#mText").innerHTML = shift ? "Die oberste Schicht ist um eine Position verschoben. Das Elektronengas hält sie weiter fest: Das Metall <strong>verformt sich</strong>, statt zu brechen." : "Zurück in der Ausgangslage."; drawMetal(); });
+  drawMetal();
+
+  // ---------- ionic lattice and dissolving ----------
+  // lattice 5 x 4; ion type by parity; positions in px
+  const lat = []; for (let r = 0; r < 4; r++) for (let c = 0; c < 5; c++) lat.push({ r, c, cat: (r + c) % 2 === 0, x: 120 + c * 44, y: 70 + r * 44 });
+  const freed = [lat[4], lat[15]]; // corner ions that get dissolved
+  const goal = [[395, 60], [60, 225]];
+  let step = 0, hit = false;
+  function water(x, y, toward, ox, oy) {
+    // toward: true = O points to (ox, oy), false = H atoms point to it
+    const a = Math.atan2(oy - y, ox - x), d = toward ? a : a + Math.PI;
+    const hx = (k) => x - Math.cos(d + k) * 9, hy = (k) => y - Math.sin(d + k) * 9;
+    return `<circle class="hw" cx="${hx(0.9).toFixed(1)}" cy="${hy(0.9).toFixed(1)}" r="4"/><circle class="hw" cx="${hx(-0.9).toFixed(1)}" cy="${hy(-0.9).toFixed(1)}" r="4"/><circle class="ow" cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="7"/>`;
+  }
+  function drawIon() {
+    let g = `<rect class="bg" x="6" y="6" width="428" height="258" rx="10"/>`;
+    const sh = hit ? 44 : 0;
+    lat.forEach((p, k) => {
+      let x = p.x + (hit && p.r === 0 ? sh : 0), y = p.y;
+      const fi = freed.indexOf(p);
+      if (fi >= 0 && step >= 3) { x = goal[fi][0]; y = goal[fi][1]; }
+      else if (fi >= 0 && step === 2) { x += (goal[fi][0] - x) * 0.35; y += (goal[fi][1] - y) * 0.35; }
+      g += `<circle class="${p.cat ? "cat" : "an"}" cx="${x}" cy="${y}" r="${p.cat ? 13 : 18}"/><text class="lbl" x="${x}" y="${y}">${p.cat ? "Na⁺" : "Cl⁻"}</text>`;
+      if (fi >= 0 && step >= 2) { for (let w = 0; w < 6; w++) { const a = (w / 6) * 2 * Math.PI, rr = p.cat ? 30 : 36; g += water(x + rr * Math.cos(a), y + rr * Math.sin(a), p.cat, x, y); } }
+      void k;
+    });
+    if (step === 1) lat.filter((p) => p.r === 0 || p.c === 4 || p.c === 0 || p.r === 3).forEach((p, i) => { if (i % 2) return; const dx = p.c === 0 ? -1 : p.c === 4 ? 1 : 0, dy = p.r === 0 ? -1 : p.r === 3 ? 1 : 0; const wx = p.x + dx * 36, wy = p.y + dy * 36; g += water(wx, wy, p.cat, p.x, p.y); });
+    if (step === 0) for (let i = 0; i < 9; i++) { const x = 30 + ((i * 97) % 380), y = 22 + ((i * 53) % 230); if (x > 100 && x < 340 && y > 40 && y < 220) continue; g += water(x, y, true, x + 10, y + 3); }
+    if (hit) { lat.filter((p) => p.r === 0).forEach((p) => { const x = p.x + 44; if (x > 300) return; g += `<path class="rep" d="M${x - 4} ${p.y + 18} L${x - 4} ${p.y + 26} M${x + 4} ${p.y + 18} L${x + 4} ${p.y + 26}"/>`; }); g += `<text class="cap" x="24" y="250">gleiche Ladungen nebeneinander: Abstoßung, der Kristall bricht</text>`; }
+    $("#iSvg").innerHTML = g;
+    $$("#iSteps li").forEach((li, i) => li.classList.toggle("on", i === step));
+    $("#iNext").disabled = step >= 3;
+  }
+  $("#iNext").addEventListener("click", () => { hit = false; step = Math.min(3, step + 1); drawIon(); $("#iText").textContent = ""; });
+  $("#iReset").addEventListener("click", () => { hit = false; step = 0; drawIon(); $("#iText").textContent = ""; });
+  $("#iHit").addEventListener("click", () => { step = 0; hit = !hit; drawIon(); $("#iText").innerHTML = hit ? "Die oberste Ionenschicht wurde um einen Platz verschoben: Jetzt liegen Na⁺ über Na⁺ und Cl⁻ über Cl⁻. Die Abstoßung spaltet den Kristall: <strong>Ionensubstanzen sind spröde</strong>." : ""; });
+  drawIon();
+
+  // formula builder
+  const CAT = [["Natrium", "Na", 1], ["Kalium", "K", 1], ["Lithium", "Li", 1], ["Ammonium", "NH4", 1], ["Magnesium", "Mg", 2], ["Calcium", "Ca", 2], ["Barium", "Ba", 2], ["Zink", "Zn", 2], ["Eisen(II)", "Fe", 2], ["Kupfer(II)", "Cu", 2], ["Aluminium", "Al", 3], ["Eisen(III)", "Fe", 3]];
+  const AN = [["Fluorid", "F", -1], ["Chlorid", "Cl", -1], ["Bromid", "Br", -1], ["Iodid", "I", -1], ["Hydroxid", "OH", -1], ["Nitrat", "NO3", -1], ["Oxid", "O", -2], ["Sulfid", "S", -2], ["Sulfat", "SO4", -2], ["Carbonat", "CO3", -2], ["Nitrid", "N", -3], ["Phosphat", "PO4", -3]];
+  const poly = (f) => /[A-Z].*[A-Z]|\d/.test(f);
+  const part = (f, n) => (n === 1 ? f : poly(f) ? `(${f})${n}` : f + n);
+  const ionStr = (f, q) => fh(f) + C.charge(q);
+  // rough solubility rules for the ions used here (oxides, sulfides and nitrides react or are insoluble)
+  function soluble(c, a) {
+    const cs = c[1], an = a[1];
+    if (["Cl", "Br", "I", "NO3"].includes(an)) return true;
+    if (an === "SO4") return !["Ba", "Ca"].includes(cs);
+    if (an === "OH") return ["Na", "K", "Li", "Ba"].includes(cs);
+    if (["CO3", "PO4", "F"].includes(an)) return ["Na", "K", "NH4"].includes(cs);
+    return false;
+  }
+  function salt(c, a) {
+    const g = gcd(c[2], -a[2]), nc = -a[2] / g, na = c[2] / g;
+    const name = c[0] + (c[0].endsWith(")") ? "-" : "") + (c[0].endsWith(")") ? a[0].toLowerCase() : a[0].toLowerCase());
+    return { f: part(c[1], nc) + part(a[1], na), nc, na, name };
+  }
+  $("#fCat").innerHTML = CAT.map((c, i) => `<option value="${i}">${c[0]} ${c[1].replace(/\d/g, (d) => "₀₁₂₃₄₅₆₇₈₉"[d])}${C.charge(c[2])}</option>`).join("");
+  $("#fAn").innerHTML = AN.map((a, i) => `<option value="${i}">${a[0]} ${a[1].replace(/\d/g, (d) => "₀₁₂₃₄₅₆₇₈₉"[d])}${C.charge(a[2])}</option>`).join("");
+  $("#fCat").value = "10"; $("#fAn").value = "6";
+  function drawSalt() {
+    const c = CAT[+$("#fCat").value], a = AN[+$("#fAn").value], s = salt(c, a);
+    $("#fOut").innerHTML = fh(s.f);
+    $("#fText").innerHTML = `${s.name}: ${s.nc} · (+${c[2]}) + ${s.na} · (−${-a[2]}) = 0. Die Ladungen gleichen sich aus. ` + (soluble(c, a) ? `Lösen in Wasser: ${fh(s.f)}(s) → ${s.nc > 1 ? s.nc + " " : ""}${ionStr(c[1], c[2])}(aq) + ${s.na > 1 ? s.na + " " : ""}${ionStr(a[1], a[2])}(aq)` : "Dieser Stoff ist in Wasser schwer löslich oder reagiert mit Wasser, statt sich einfach zu lösen.");
+  }
+  ["#fCat", "#fAn"].forEach((id) => $(id).addEventListener("change", drawSalt));
+  drawSalt();
+
+  // ---------- molecules: EN difference ----------
+  const enEls = C.els.filter((e) => e.en !== null);
+  const enOpts = enEls.map((e) => `<option value="${e.sym}">${e.sym} – ${e.name} (EN ${fmt(e.en, 2)})</option>`).join("");
+  $("#eA").innerHTML = enOpts; $("#eB").innerHTML = enOpts; $("#eA").value = "H"; $("#eB").value = "Cl";
+  const bondType = (d) => (d < 0.4 ? "unpolar" : d <= 1.7 ? "polar" : "ionisch");
+  function drawEN() {
+    const a = C.bySym[$("#eA").value], b = C.bySym[$("#eB").value], d = Math.abs(a.en - b.en), t = bondType(d);
+    $("#enMark").style.left = `calc(${Math.min(d, 3.3) / 3.3 * 100}% - 2px)`;
+    const neg = a.en > b.en ? a : b, pos = neg === a ? b : a;
+    const both = (x) => x.cls === "m";
+    let txt = `ΔEN = |${fmt(a.en, 2)} − ${fmt(b.en, 2)}| = <b>${fmt(d, 2)}</b>: `;
+    txt += t === "unpolar" ? "<b>unpolare Elektronenpaarbindung</b>, die Elektronen werden gleichmäßig geteilt." :
+      t === "polar" ? `<b>polare Elektronenpaarbindung</b>. ${neg.sym} zieht das Elektronenpaar stärker an und trägt eine negative Teilladung δ⁻, ${pos.sym} ist δ⁺.` :
+        `<b>Ionenbindung</b>: ${neg.sym} nimmt die Elektronen ganz auf und wird zum Anion, ${pos.sym} zum Kation.`;
+    if (both(a) && both(b)) txt += " Achtung: Zwei Metalle bilden eine <b>Metallbindung</b>, die ΔEN-Regel gilt hier nicht.";
+    else if (t === "ionisch" && !(both(a) || both(b))) txt += " (Grenzfall: Die Regel ist eine Faustregel.)";
+    $("#enText").innerHTML = txt;
+  }
+  ["#eA", "#eB"].forEach((id) => $(id).addEventListener("change", drawEN));
+  drawEN();
+
+  // molecule cards: geometry and dipole
+  const MOL = [
+    { n: "Wasser H₂O", g: "gewinkelt (104,5°)", dip: true, svg: `<line x1="70" y1="40" x2="35" y2="80"/><line x1="70" y1="40" x2="105" y2="80"/><text x="70" y="45">O</text><text x="30" y="95">H</text><text x="110" y="95">H</text><text class="d" x="70" y="22">δ⁻</text><text class="d dp" x="30" y="115">δ⁺</text><text class="d dp" x="110" y="115">δ⁺</text>` },
+    { n: "Kohlenstoffdioxid CO₂", g: "linear", dip: false, svg: `<line x1="40" y1="62" x2="62" y2="62"/><line x1="40" y1="68" x2="62" y2="68"/><line x1="78" y1="62" x2="100" y2="62"/><line x1="78" y1="68" x2="100" y2="68"/><text x="30" y="70">O</text><text x="70" y="70">C</text><text x="110" y="70">O</text><text class="d" x="30" y="45">δ⁻</text><text class="d dp" x="70" y="45">δ⁺</text><text class="d" x="110" y="45">δ⁻</text>` },
+    { n: "Ammoniak NH₃", g: "pyramidal", dip: true, svg: `<line x1="70" y1="45" x2="30" y2="85"/><line x1="70" y1="45" x2="110" y2="85"/><line x1="70" y1="45" x2="70" y2="95"/><text x="70" y="45">N</text><text x="25" y="100">H</text><text x="115" y="100">H</text><text x="70" y="112">H</text><text class="d" x="70" y="22">δ⁻</text>` },
+    { n: "Methan CH₄", g: "tetraedrisch", dip: false, svg: `<line x1="70" y1="65" x2="70" y2="28"/><line x1="70" y1="65" x2="32" y2="92"/><line x1="70" y1="65" x2="108" y2="92"/><line x1="70" y1="65" x2="85" y2="105"/><text x="70" y="70">C</text><text x="70" y="22">H</text><text x="26" y="104">H</text><text x="114" y="104">H</text><text x="90" y="120">H</text>` },
+    { n: "Chlorwasserstoff HCl", g: "linear, zwei verschiedene Atome", dip: true, svg: `<line x1="48" y1="65" x2="88" y2="65"/><text x="38" y="70">H</text><text x="102" y="70">Cl</text><text class="d dp" x="38" y="45">δ⁺</text><text class="d" x="102" y="45">δ⁻</text>` }
+  ];
+  $("#molCards").innerHTML = MOL.map((m) => `<div class="panel stack"><svg viewBox="0 0 140 125" aria-hidden="true">${m.svg}</svg><strong>${m.n}</strong><span class="small">${m.g}: ${m.dip ? "<b>Dipolmolekül</b>, die Ladungsschwerpunkte fallen nicht zusammen." : "<b>kein Dipol</b>, die Teilladungen heben sich durch den symmetrischen Bau auf."}</span></div>`).join("");
+
+  // ---------- intermolecular forces ----------
+  // k: l = London only, d = additional dipole-dipole, h = hydrogen bonds; M = molar mass in g/mol; bp in °C
+  const SUB = {
+    H2: ["Wasserstoff", -253, "l", 2], N2: ["Stickstoff", -196, "l", 28], O2: ["Sauerstoff", -183, "l", 32], F2: ["Fluor", -188, "l", 38], Cl2: ["Chlor", -34, "l", 71], Br2: ["Brom", 59, "l", 160], I2: ["Iod", 184, "l", 254],
+    CH4: ["Methan", -162, "l", 16], C2H6: ["Ethan", -89, "l", 30], C3H8: ["Propan", -42, "l", 44], C4H10: ["Butan", -1, "l", 58], C5H12: ["Pentan", 36, "l", 72], C6H14: ["Hexan", 69, "l", 86], C8H18: ["Octan", 126, "l", 114],
+    HF: ["Fluorwasserstoff", 20, "h", 20], HCl: ["Chlorwasserstoff", -85, "d", 36.5], HBr: ["Bromwasserstoff", -67, "d", 81], HI: ["Iodwasserstoff", -35, "d", 128],
+    H2O: ["Wasser", 100, "h", 18], H2S: ["Schwefelwasserstoff", -60, "d", 34], H2Se: ["Selenwasserstoff", -41, "d", 81], H2Te: ["Tellurwasserstoff", -2, "d", 130],
+    SiH4: ["Silan", -112, "l", 32], GeH4: ["German", -88, "l", 77], SnH4: ["Stannan", -52, "l", 123], NH3: ["Ammoniak", -33, "h", 17],
+    C2H5OH: ["Ethanol", 78, "h", 46], CH3OCH3: ["Dimethylether", -24, "d", 46], CH3OH: ["Methanol", 65, "h", 32], C3H6O: ["Aceton", 56, "d", 58]
+  };
+  const SER = {
+    alk: [["CH4", "C2H6", "C3H8", "C4H10", "C5H12", "C6H14", "C8H18"], "Je länger die Kette, desto mehr Elektronen und desto größer die Oberfläche: Die London-Kräfte und damit die Siedetemperaturen steigen."],
+    hal: [["F2", "Cl2", "Br2", "I2"], "Nur London-Kräfte. Mit der Größe der Moleküle steigen sie stark: F₂ und Cl₂ sind Gase, Br₂ flüssig, I₂ fest."],
+    hx: [["HF", "HCl", "HBr", "HI"], "Von HCl zu HI steigt die Siedetemperatur durch zunehmende London-Kräfte. HF fällt aus der Reihe: Wasserstoffbrücken."],
+    h6: [["CH4", "SiH4", "GeH4", "SnH4", "H2O", "H2S", "H2Se", "H2Te"], "IV. Hauptgruppe: regelmäßiger Anstieg (nur London). VI. Hauptgruppe: Wasser müsste nach dem Trend bei etwa −80 °C sieden, siedet aber dank Wasserstoffbrücken bei 100 °C."],
+    iso: [["C2H5OH", "CH3OCH3", "C3H8"], "Alle drei haben fast die gleiche Masse (44 bis 46 g/mol). Ethanol bildet Wasserstoffbrücken (O–H), Dimethylether hat nur Dipol-Dipol-Kräfte, Propan nur London-Kräfte."]
+  };
+  let ser = "alk";
+  function drawBars() {
+    const [list, txt] = SER[ser], lo = -270, hi = 200, H = 200, top = 20, y0 = (v) => top + (hi - v) / (hi - lo) * H;
+    const w = 410 / list.length;
+    let g = `<line class="zero" x1="40" x2="450" y1="${y0(0)}" y2="${y0(0)}"/><text x="4" y="${y0(0) + 4}">0 °C</text>`;
+    list.forEach((f, i) => { const [, bp, k] = SUB[f], x = 42 + i * w, ya = y0(Math.max(bp, 0)), yb = y0(Math.min(bp, 0));
+      g += `<rect class="${k}" x="${(x + w * 0.18).toFixed(1)}" y="${ya.toFixed(1)}" width="${(w * 0.64).toFixed(1)}" height="${Math.max(2, yb - ya).toFixed(1)}" rx="3"/><text x="${(x + w / 2).toFixed(1)}" y="${(bp >= 0 ? ya - 5 : yb + 13).toFixed(1)}" text-anchor="middle">${String(bp).replace("-", "−")}</text><text class="lbl" x="${(x + w / 2).toFixed(1)}" y="250" text-anchor="middle">${fh(f).replace(/<sub>(\d+)<\/sub>/g, (_, d) => d.split("").map((c) => "₀₁₂₃₄₅₆₇₈₉"[c]).join(""))}</text>`; });
+    $("#wSvg").innerHTML = g;
+    $("#wText").innerHTML = txt + " Werte: Siedetemperatur in °C.";
+  }
+  $$("[data-s]").forEach((b) => b.addEventListener("click", () => { ser = b.dataset.s; $$("[data-s]").forEach((x) => x.setAttribute("aria-pressed", String(x === b))); drawBars(); }));
+  drawBars();
+
+  // ---------- structure-property detective ----------
+  const DET = [
+    { f: "NaCl", n: "Natriumchlorid (Kochsalz)", k: "i", mp: "801 °C", sol: "gut löslich in Wasser" },
+    { f: "MgO", n: "Magnesiumoxid", k: "i", mp: "2852 °C", sol: "kaum löslich (sehr starke Gitterenergie)" },
+    { f: "CaCl2", n: "Calciumchlorid", k: "i", mp: "772 °C", sol: "sehr gut löslich" },
+    { f: "Cu", n: "Kupfer", k: "m", mp: "1085 °C", sol: "unlöslich" },
+    { f: "Fe", n: "Eisen", k: "m", mp: "1538 °C", sol: "unlöslich" },
+    { f: "Na", n: "Natrium", k: "m", mp: "98 °C", sol: "reagiert heftig mit Wasser" },
+    { f: "Hg", n: "Quecksilber", k: "m", mp: "−39 °C (bei Raumtemperatur flüssig)", sol: "unlöslich" },
+    { f: "H2O", n: "Wasser", k: "mol", mp: "0 °C", sol: "–", ww: "Wasserstoffbrücken" },
+    { f: "I2", n: "Iod", k: "mol", mp: "114 °C", sol: "kaum in Wasser, gut in Benzin (unpolar)", ww: "London-Kräfte" },
+    { f: "CH4", n: "Methan", k: "mol", mp: "−182 °C", sol: "kaum löslich in Wasser", ww: "London-Kräfte" },
+    { f: "C2H5OH", n: "Ethanol", k: "mol", mp: "−114 °C", sol: "mischbar mit Wasser (Wasserstoffbrücken)", ww: "Wasserstoffbrücken" },
+    { f: "C12H22O11", n: "Saccharose (Zucker)", k: "mol", mp: "≈ 186 °C (zersetzt sich)", sol: "gut löslich (viele O–H-Gruppen)", ww: "Wasserstoffbrücken" }
+  ];
+  const KN = { m: "Metall", i: "Ionensubstanz", mol: "Molekülsubstanz" };
+  const PROPS = {
+    m: (d) => [["Teilchen", "Atomrümpfe und Elektronengas"], ["Schmelztemperatur", d.mp], ["Leitfähigkeit", "fest und flüssig, freie Elektronen"], ["Verformbarkeit", "verformbar, Schichten gleiten im Elektronengas"], ["Wasser", d.sol]],
+    i: (d) => [["Teilchen", "Kationen und Anionen im Ionengitter"], ["Schmelztemperatur", d.mp + ": starke Anziehung in alle Richtungen"], ["Leitfähigkeit", "fest nicht, als Schmelze und Lösung ja (bewegliche Ionen)"], ["Verformbarkeit", "spröde, gleich geladene Ionen stoßen sich ab"], ["Wasser", d.sol]],
+    mol: (d) => [["Teilchen", "Moleküle"], ["Schmelztemperatur", d.mp + ": nur zwischenmolekulare Kräfte (" + d.ww + ") müssen überwunden werden"], ["Leitfähigkeit", "keine (keine freien Ladungsträger)"], ["Verformbarkeit", "Feststoff weich oder spröde, oft flüssig oder gasförmig"], ["Wasser", d.sol]]
+  };
+  let det = DET[0], guessed = false;
+  $("#dChips").innerHTML = DET.map((d, i) => `<button type="button" data-i="${i}" aria-pressed="false">${fh(d.f)}</button>`).join("");
+  function drawDet() {
+    $$("#dChips button").forEach((b) => b.setAttribute("aria-pressed", String(DET[+b.dataset.i] === det)));
+    $("#dName").innerHTML = `${det.n}, ${fh(det.f)}`;
+    $$("#dOpts button").forEach((b) => b.classList.remove("right", "wrong"));
+    $("#dOut").innerHTML = guessed ? "" : "Zu welcher Stoffklasse gehört der Stoff?";
+  }
+  function reveal(k) {
+    $$("#dOpts button").forEach((b) => b.classList.toggle("right", b.dataset.k === det.k));
+    if (k !== det.k) $(`#dOpts [data-k="${k}"]`).classList.add("wrong");
+    $("#dOut").innerHTML = `<p>${k === det.k ? "Richtig" : "Nicht ganz"}: <b>${KN[det.k]}</b>.</p><table class="ptab">${PROPS[det.k](det).map(([a, b]) => `<tr><td>${a}</td><td>${b}</td></tr>`).join("")}</table>`;
+  }
+  $$("#dChips button").forEach((b) => b.addEventListener("click", () => { det = DET[+b.dataset.i]; drawDet(); }));
+  $$("#dOpts button").forEach((b) => b.addEventListener("click", () => reveal(b.dataset.k)));
+  drawDet();
+
+  // ---------- trainer ----------
+  const norm = (s) => String(s).replace(/\s/g, "").replace(/[₀-₉]/g, (c) => "₀₁₂₃₄₅₆₇₈₉".indexOf(c));
+  const KL = [["Cu", "m"], ["Fe", "m"], ["Al", "m"], ["Mg", "m"], ["Zn", "m"], ["Ag", "m"], ["NaCl", "i"], ["KBr", "i"], ["MgO", "i"], ["CaCl2", "i"], ["Al2O3", "i"], ["Na2S", "i"], ["LiF", "i"], ["K2O", "i"], ["H2O", "mol"], ["CO2", "mol"], ["CH4", "mol"], ["NH3", "mol"], ["Cl2", "mol"], ["O2", "mol"], ["HCl", "mol"], ["C2H5OH", "mol"], ["I2", "mol"], ["SO2", "mol"]];
+  function genKlasse() { const [f, k] = pick(KL);
+    return { html: `Zu welcher Stoffklasse gehört <b>${fh(f)}</b>?`, label: "Stoffklasse:", placeholder: "Metall, Ionen- oder Molekülsubstanz", answer: KN[k],
+      check: (raw) => { const t = raw.trim().toLowerCase(); const v = /metall/.test(t) ? "m" : /ion|salz/.test(t) ? "i" : /mol/.test(t) ? "mol" : null; if (!v) return { ok: false, msg: "Antworte mit <code>Metall</code>, <code>Ionensubstanz</code> oder <code>Molekülsubstanz</code>." }; return v === k ? { ok: true } : { ok: false, msg: "Schau, ob Metalle, Nichtmetalle oder beide beteiligt sind." }; },
+      solution: `<b>${KN[k]}</b>: ${k === "m" ? "nur Metallatome" : k === "i" ? "Metall und Nichtmetall" : "nur Nichtmetalle"}` }; }
+  function genFormel() { const c = pick(CAT), a = pick(AN), s = salt(c, a);
+    return { html: `Verhältnisformel von <b>${s.name}</b> (${ionStr(c[1], c[2])} und ${ionStr(a[1], a[2])})?`, label: "Formel:", placeholder: "z. B. Al2O3", answer: s.f,
+      check: (raw) => (norm(raw) === s.f ? { ok: true } : { ok: false, msg: "Die Summe der Ladungen muss null ergeben. Mehratomige Ionen in Klammern setzen." }),
+      solution: `${s.nc} · (+${c[2]}) + ${s.na} · (−${-a[2]}) = 0: <b>${fh(s.f)}</b>` }; }
+  function genLoesen() { let c, a; do { c = pick(CAT); a = pick(AN); } while (!soluble(c, a)); const s = salt(c, a), n = s.nc + s.na;
+    return { html: `Wie viele Ionen entstehen aus einer Formeleinheit <b>${fh(s.f)}</b> beim Lösen in Wasser?`, label: "Anzahl Ionen:", answer: String(n), check: LK.check.num(n, { abs: 0 }),
+      solution: `${fh(s.f)}(s) → ${s.nc > 1 ? s.nc + " " : ""}${ionStr(c[1], c[2])}(aq) + ${s.na > 1 ? s.na + " " : ""}${ionStr(a[1], a[2])}(aq): <b>${n} Ionen</b>` }; }
+  function genBindung() {
+    for (;;) { const a = pick(enEls), b = pick(enEls); const d = Math.abs(a.en - b.en); if ((a.cls === "m" || b.cls === "m") && !((a.cls === "m" && b.cls === "n" || a.cls === "n" && b.cls === "m") && d > 1.8)) continue; if (Math.abs(d - 0.4) < 0.08 || Math.abs(d - 1.7) < 0.1) continue; const t = bondType(d);
+      return { html: `Welche Bindung liegt zwischen <b>${a.sym}</b> (EN ${fmt(a.en, 2)}) und <b>${b.sym}</b> (EN ${fmt(b.en, 2)}) vor?`, label: "Bindung:", placeholder: "unpolar, polar oder ionisch", answer: t,
+        check: (raw) => { const r = raw.trim().toLowerCase(); const v = /unpol/.test(r) ? "unpolar" : /pol/.test(r) ? "polar" : /ion/.test(r) ? "ionisch" : null; if (!v) return { ok: false, msg: "Antworte mit <code>unpolar</code>, <code>polar</code> oder <code>ionisch</code>." }; return v === t ? { ok: true } : { ok: false, msg: "Berechne ΔEN: unter 0,4, bis 1,7, darüber." }; },
+        solution: `ΔEN = ${fmt(d, 2)}: <b>${t === "unpolar" ? "unpolare Elektronenpaarbindung" : t === "polar" ? "polare Elektronenpaarbindung" : "Ionenbindung"}</b>` }; } }
+  const WWN = { l: "nur London-Kräfte", d: "Dipol-Dipol-Kräfte", h: "Wasserstoffbrücken" };
+  function genWW() { const f = pick(Object.keys(SUB)), [n, , k] = SUB[f];
+    return { html: `Welche zwischenmolekularen Kräfte wirken in <b>${n}</b> (${fh(f)}) zusätzlich zu den London-Kräften?`, label: "Antwort:", placeholder: "keine, Dipol oder Wasserstoffbrücken", answer: k === "l" ? "keine" : k === "d" ? "Dipol-Dipol" : "Wasserstoffbrücken",
+      check: (raw) => { const r = raw.trim().toLowerCase(); const v = /keine|nur|london/.test(r) ? "l" : /brück|brueck|h-br|wasserstoff/.test(r) ? "h" : /dipol/.test(r) ? "d" : null; if (!v) return { ok: false, msg: "Antworte mit <code>keine</code>, <code>Dipol</code> oder <code>Wasserstoffbrücken</code>." }; return v === k ? { ok: true } : { ok: false, msg: "Ist das Molekül ein Dipol? Hat es H an N, O oder F?" }; },
+      solution: `<b>${WWN[k]}</b>${k === "h" ? " (H an N, O oder F)" : k === "d" ? " (Dipolmolekül)" : " (unpolares Molekül)"}` }; }
+  const PAIRS = [["H2O", "H2S"], ["C2H5OH", "CH3OCH3"], ["HF", "HCl"], ["Cl2", "Br2"], ["CH4", "C4H10"], ["HCl", "F2"], ["NH3", "CH4"], ["C5H12", "C8H18"], ["Br2", "I2"], ["CH3OH", "C2H6"], ["H2Te", "H2Se"], ["SnH4", "SiH4"]];
+  function genSiede() { const pr = shuffle(pick(PAIRS).slice()), [a, b] = pr, hi = SUB[a][1] > SUB[b][1] ? a : b, lo = hi === a ? b : a;
+    const why = SUB[hi][2] === "h" && SUB[lo][2] !== "h" ? "Wasserstoffbrücken" : SUB[hi][2] === "d" && SUB[lo][2] === "l" ? "Dipol-Dipol-Kräfte" : "größere London-Kräfte (mehr Elektronen, größere Oberfläche)";
+    return { html: `Welcher Stoff hat die höhere Siedetemperatur: <b>${fh(a)}</b> oder <b>${fh(b)}</b>?`, label: "Formel:", placeholder: "z. B. H2O", answer: hi,
+      check: (raw) => (norm(raw) === hi ? { ok: true } : norm(raw) === lo ? { ok: false, msg: "Vergleiche die Art und Stärke der zwischenmolekularen Kräfte." } : { ok: false, msg: `Gib <code>${hi}</code> oder <code>${lo}</code> ein.` }),
+      solution: `<b>${fh(hi)}</b> (${SUB[hi][1]} °C gegenüber ${SUB[lo][1]} °C): ${why}` }; }
+  LK.trainer({ el: "#trainer", modes: [
+    { id: "klasse", label: "Stoffklasse", gen: genKlasse },
+    { id: "formel", label: "Verhältnisformel", gen: genFormel },
+    { id: "loesen", label: "Lösen in Wasser", gen: genLoesen },
+    { id: "bindung", label: "Bindungsart (ΔEN)", gen: genBindung },
+    { id: "ww", label: "Wechselwirkungen", gen: genWW },
+    { id: "siede", label: "Siedetemperaturen", gen: genSiede }
+  ] });
+
+  LK.quiz({ box: "#quizBox", bar: "#qBar", progress: "#qProgress", key: "stoffkl.best", n: 10, questions: [
+    { q: "Warum leiten Metalle den elektrischen Strom?", o: ["Sie enthalten Ionen, die wandern", "Sie enthalten frei bewegliche Elektronen", "Sie sind hart", "Ihre Atomrümpfe sind negativ"], a: 1, e: "Elektronengasmodell." },
+    { q: "Warum ist Kochsalz spröde?", o: ["Es ist ein Metall", "Beim Verschieben liegen gleich geladene Ionen nebeneinander und stoßen sich ab", "Es enthält Wasser", "Die Moleküle sind klein"], a: 1, e: "Abstoßung spaltet den Kristall." },
+    { q: "Wann leitet Natriumchlorid den Strom?", o: ["Nie", "Nur als Feststoff", "Als Schmelze und in Lösung", "Immer"], a: 2, e: "Dann sind die Ionen beweglich." },
+    { q: "Verhältnisformel von Aluminiumoxid?", o: ["AlO", "Al₃O₂", "Al₂O₃", "AlO₃"], a: 2, e: "2 · (+3) + 3 · (−2) = 0." },
+    { q: "Was ist eine Hydrathülle?", o: ["Eine Eisschicht", "Wassermoleküle, die ein gelöstes Ion umgeben", "Eine Elektronenschale", "Ein Ionengitter"], a: 1, e: "Die Dipole richten sich zum Ion aus." },
+    { q: "ΔEN zwischen H (2,20) und Cl (3,16) beträgt 0,96. Bindungsart?", o: ["unpolar", "polar", "Ionenbindung", "Metallbindung"], a: 1, e: "0,4 bis 1,7." },
+    { q: "Warum ist CO₂ kein Dipolmolekül, obwohl die C=O-Bindungen polar sind?", o: ["Es ist linear gebaut, die Teilladungen heben sich auf", "Es enthält keine Elektronen", "C und O haben die gleiche EN", "Es ist ein Salz"], a: 0, e: "Symmetrischer Bau." },
+    { q: "Welche Kräfte wirken zwischen allen Molekülen?", o: ["Wasserstoffbrücken", "Ionenbindungen", "London-Kräfte", "Metallbindungen"], a: 2, e: "Durch kurzzeitige Dipole." },
+    { q: "Warum siedet Wasser viel höher als Schwefelwasserstoff?", o: ["Wasser ist schwerer", "Wasserstoffbrücken zwischen H₂O-Molekülen", "H₂S ist ein Salz", "Wasser ist unpolar"], a: 1, e: "O–H ist stark polar, freie Elektronenpaare am O." },
+    { q: "Was löst sich gut in Benzin?", o: ["Kochsalz", "Zucker", "Iod", "Calciumchlorid"], a: 2, e: "Unpolar löst sich in unpolar." },
+    { q: "Ethanol und Dimethylether haben die gleiche Masse. Wer siedet höher?", o: ["Dimethylether", "Ethanol", "Beide gleich", "Keiner siedet"], a: 1, e: "Ethanol bildet Wasserstoffbrücken (78 °C gegen −24 °C)." }
+  ] });
+
+  LK.views(["ueberblick", "metalle", "ionen", "molekuele", "ww", "struktur", "ueben", "alltag", "quiz"], {
+    metalle: () => { if (!mRaf && !reduce()) mRaf = requestAnimationFrame(stepMetal); }
+  });
+})();
+</script>
+<script>
+(function () {
+  "use strict";
+  // Light/dark switch shared by all LearningDesk pages; the choice is remembered in this browser
+  var KEY = "learningdesk.theme", root = document.documentElement;
+  var header = document.querySelector("header");
+  if (!header) return;
+  function effective() {
+    var t = root.getAttribute("data-theme");
+    if (t === "dark" || t === "light") return t;
+    return window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+  }
+  var btn = document.createElement("button");
+  btn.type = "button"; btn.className = "theme-toggle";
+  function paint() {
+    var dark = effective() === "dark";
+    var label = dark ? "Helles Design einschalten" : "Dunkles Design einschalten";
+    btn.textContent = dark ? "\u2600" : "\u263E";
+    btn.setAttribute("aria-label", label); btn.title = label;
+  }
+  btn.addEventListener("click", function () {
+    var next = effective() === "dark" ? "light" : "dark";
+    root.setAttribute("data-theme", next);
+    try { localStorage.setItem(KEY, next); } catch (e) { /* storage unavailable */ }
+    paint();
+    // canvases read the colour tokens when they draw, so ask them to redraw
+    window.dispatchEvent(new Event("resize"));
+  });
+  header.classList.add("has-theme-toggle");
+  header.appendChild(btn);
+  paint();
+  try { window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", paint); } catch (e) { /* old browsers */ }
+})();
+</script>
+<script>
+(function () {
+  "use strict";
+  // keep the last breadcrumb in sync with the active section tab
+  var last = document.querySelector("nav.crumbs [data-crumb-section]");
+  if (!last) return;
+  function update() {
+    var a = document.querySelector('nav.tabs a[aria-current="page"]');
+    if (!a) { last.hidden = true; return; }
+    var t = a.cloneNode(true); var n = t.querySelector(".n"); if (n) n.remove();
+    last.querySelector("span").textContent = t.textContent.trim();
+    last.hidden = false;
+  }
+  window.addEventListener("hashchange", function () { setTimeout(update, 0); });
+  setTimeout(update, 0);
+})();
+</script>
+
+<p style="text-align:center;margin-top:32px"><a href="klasse-11.html" style="color:inherit">← Zurück zur Themenübersicht</a></p>
+</body>
+</html>

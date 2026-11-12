@@ -2099,6 +2099,56 @@ SHEETS["periodensystem"] = dict(title="Periodensystem, Atombau und Eigenschaften
     </div>
   </div>''')
 
+SHEETS["stoffklassen"] = dict(title="Stoffklassen", eyebrow="Chemie · Klasse 11 · Stoffklassen", accent=CH11, body=f'''
+  <div class="kern">Die Eigenschaften eines Stoffes folgen aus seinen <strong>Teilchen</strong> und den <strong>Kräften</strong> zwischen ihnen (Struktur-Eigenschafts-Beziehung). Faustregel ΔEN: unter 0,4 unpolare, 0,4 bis 1,7 polare Elektronenpaarbindung, über 1,7 Ionenbindung.</div>
+  <div class="cols">
+    <div class="box full">
+      <h2>Drei Stoffklassen</h2>
+      <table>
+        <tr><th></th><th>Metalle</th><th>Ionensubstanzen</th><th>Molekülsubstanzen</th></tr>
+        <tr><td>Elemente</td><td>Metall + Metall</td><td>Metall + Nichtmetall</td><td>Nichtmetall + Nichtmetall</td></tr>
+        <tr><td>Teilchen</td><td>Atomrümpfe, Elektronengas</td><td>Kationen, Anionen (Ionengitter)</td><td>Moleküle</td></tr>
+        <tr><td>Schmelztemperatur</td><td>meist hoch</td><td>hoch (Gitterenergie)</td><td>niedrig</td></tr>
+        <tr><td>Leitfähigkeit</td><td>fest und flüssig</td><td>Schmelze, Lösung</td><td>keine</td></tr>
+        <tr><td>Verformbarkeit</td><td>verformbar</td><td>spröde</td><td>weich, oft flüssig/gasförmig</td></tr>
+      </table>
+    </div>
+    <div class="box">
+      <h2>Ionensubstanzen</h2>
+      <ul>
+        <li>Verhältnisformel: Ladungssumme null, z. B. Al³⁺ + O²⁻ ⇒ Al₂O₃.</li>
+        <li>Lösen: Wasser-Dipole bilden eine <strong>Hydrathülle</strong> (O zum Kation, H zum Anion).</li>
+        <li>NaCl(s) → Na⁺(aq) + Cl⁻(aq)</li>
+        <li>Gitterenergie nötig, Hydratationsenergie wird frei.</li>
+      </ul>
+    </div>
+    <div class="box">
+      <h2>Zwischenmolekulare Kräfte</h2>
+      <ul>
+        <li><strong>London-Kräfte</strong>: alle Moleküle, stärker bei großen Molekülen.</li>
+        <li><strong>Dipol-Dipol</strong>: zwischen Dipolmolekülen (HCl).</li>
+        <li><strong>Wasserstoffbrücken</strong>: H an N, O, F zu freiem Elektronenpaar (H₂O, NH₃).</li>
+        <li>Dipol nur bei unsymmetrischem Bau: H₂O ja, CO₂ nein.</li>
+      </ul>
+    </div>
+    <div class="box">
+      <h2>Im Alltag</h2>
+      <ul>
+        <li>Salz- vs. Zuckerlösung: nur eine leitet.</li>
+        <li>Kühlpack, Streusalz, Tenside.</li>
+        <li>Wasser siedet dank H-Brücken bei 100 °C.</li>
+      </ul>
+    </div>
+    <div class="box warn">
+      <h2>Typische Fehler</h2>
+      <ul>
+        <li>Festes Salz „leitet, weil Ionen“.</li>
+        <li>Polare Bindung = Dipolmolekül (Bau beachten!).</li>
+        <li>Bindungen im Molekül mit Kräften zwischen Molekülen verwechselt.</li>
+      </ul>
+    </div>
+  </div>''')
+
 OUT = sys.argv[1] if len(sys.argv) > 1 else os.path.join(os.path.dirname(__file__), "_build")
 os.makedirs(OUT, exist_ok=True)
 shutil.copyfile(os.path.join(os.path.dirname(os.path.abspath(__file__)), "factsheet.css"), os.path.join(OUT, "factsheet.css"))

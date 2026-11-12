@@ -40,6 +40,9 @@ Interaktive Lern-Apps für die Schule, sortiert nach Klassenstufe. Alles läuft 
 | Klasse 11 · Biologie | Natrium-Kalium-Pumpe | Pumpzyklus, Simulation von Gradienten und Membranpotential, Fallbeispiele, Quiz |
 | Klasse 11 · Biologie | Symport und Antiport | Uni-, Sym-, Antiport, primär/sekundär aktiv, Transporter-Simulation, Trainer, Quiz |
 | Klasse 11 · Biologie | Endocytose und Exocytose | Phagocytose, Pinocytose, rezeptorvermittelte Endocytose, Exocytose Schritt für Schritt, Trainer, Quiz |
+| Klasse 11 · Chemie | Atombau und Schalenmodell | Elementarteilchen, Isotope, Ionen, Atom-Baukasten, Schalenmodell nach Bohr, Lewis-Schreibweise, Trainer, Quiz |
+| Klasse 11 · Chemie | Periodensystem, Atombau und Eigenschaften | Perioden und Hauptgruppen, interaktives Periodensystem, Trends (Atomradius, EN, Ionisierungsenergie), Trainer, Quiz |
+| Klasse 11 · Chemie | Stoffklassen | Metalle, Ionensubstanzen und Lösen in Wasser, Molekülsubstanzen, zwischenmolekulare Wechselwirkungen, Struktur-Eigenschafts-Beziehungen, Trainer, Quiz |
 | Klasse 11 · Mathematik | Ableiten | Sekante/Tangente, grafisches Ableiten, Regeln mit Trainer, Tangentengleichung, Quiz |
 | Werkzeuge | ClassPad-Simulator | Übungsrechner nach dem Vorbild des CASIO fx-CP400 mit 16 Lektionen (unabhängiges Lernprojekt) |
 
@@ -56,7 +59,7 @@ src/
   config.py            Themenliste: Klassenstufen, Fächer, Themen (Menüs und Breadcrumbs entstehen daraus)
   build.py             Generator
   apps/<thema>/        style.css, body.html, script.js einer App
-  shared/              Bausteine für alle Seiten: Breadcrumbs, Hell/Dunkel-Schalter, Menü-Stil
+  shared/              Bausteine für alle Seiten: Breadcrumbs, Hell/Dunkel-Schalter, Menü-Stil, LearnKit, Elementdaten für Chemie (chemdata.js)
                        learnkit.css/.js: Baukasten für neue Themen (Layout, Bereiche, Quiz, Trainer, Umformungs-Werkstatt)
   templates/           Jinja2-Vorlagen (App, Seitenhülle, Menüseiten)
   factsheets/          Factsheet-Inhalte (sources.py), Stylesheet, PDF-Renderer

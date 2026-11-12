@@ -9,6 +9,15 @@ Schema **MAJOR.MINOR.PATCH**:
 
 Neue Version: oben einen Eintrag `## [x.y.z] – JJJJ-MM-TT` ergänzen und `python3 src/build.py` ausführen.
 
+## [1.12.0] – 2026-11-12
+
+- Neues Fach **Chemie** in Klasse 11 mit drei Themen:
+  - Atombau und Schalenmodell nach Bohr (Atom-Baukasten, Schalenmodell mit Lewis-Schreibweise)
+  - Periodensystem, Atombau und Eigenschaften (interaktives Periodensystem, Trends im Diagramm, Elementvergleich)
+  - Stoffklassen: Metalle, Ionensubstanzen und Lösen in Wasser, Molekülsubstanzen, zwischenmolekulare Wechselwirkungen, Struktur-Eigenschafts-Beziehungen (Simulationen, Stoff-Detektiv)
+- Zu jedem Thema Factsheet und sechsseitiges Übungs-PDF mit Grafik-Aufgabe.
+- Gemeinsame Elementdaten für alle Chemie-Apps (`src/shared/chemdata.js`).
+
 ## [1.11.0] – 2026-11-06
 
 - Klassenseiten: Fächer und Buchkapitel lassen sich auf- und zuklappen, mit Themenanzahl und „Alle öffnen / Alle schließen“. Der Zustand wird im Browser gemerkt; Links auf ein Fach (z. B. aus den Breadcrumbs) öffnen es automatisch.

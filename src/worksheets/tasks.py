@@ -1,3 +1,4 @@
+import re
 """Task pools for the worksheets.
 
 Every generator returns {1: [...], 2: [...], 3: [...]} with (task_html, solution_html)
@@ -2696,6 +2697,144 @@ def periodensystem():
     return L
 
 
+def stoffklassen():
+    r = random.Random(203)
+    L = {1: [], 2: [], 3: []}
+    seen = set()
+    de = lambda v: f"{v:.2f}".replace(".", ",")
+    fh = lambda f: re.sub(r"([A-Za-z)])(\d+)", r"\1<sub>\2</sub>", f)
+    CAT = [("Natrium", "Na", 1), ("Kalium", "K", 1), ("Lithium", "Li", 1), ("Ammonium", "NH4", 1), ("Magnesium", "Mg", 2), ("Calcium", "Ca", 2), ("Barium", "Ba", 2), ("Zink", "Zn", 2), ("Eisen(II)", "Fe", 2), ("Kupfer(II)", "Cu", 2), ("Aluminium", "Al", 3), ("Eisen(III)", "Fe", 3)]
+    AN = [("Fluorid", "F", -1), ("Chlorid", "Cl", -1), ("Bromid", "Br", -1), ("Iodid", "I", -1), ("Hydroxid", "OH", -1), ("Nitrat", "NO3", -1), ("Oxid", "O", -2), ("Sulfid", "S", -2), ("Sulfat", "SO4", -2), ("Carbonat", "CO3", -2), ("Nitrid", "N", -3), ("Phosphat", "PO4", -3)]
+    poly = lambda f: bool(re.search(r"[A-Z].*[A-Z]|\d", f))
+    part = lambda f, n: f if n == 1 else (f"({f}){n}" if poly(f) else f"{f}{n}")
+
+    def salt(c, a):
+        g = math.gcd(c[2], -a[2])
+        nc, na = -a[2] // g, c[2] // g
+        name = c[0] + ("-" if c[0].endswith(")") else "") + a[0].lower()
+        return part(c[1], nc) + part(a[1], na), nc, na, name
+    ion = lambda f, q: fh(f) + chg(q)
+
+    def soluble(c, a):
+        """Rough solubility rules for the ions used here (oxides, sulfides, nitrides react or are insoluble)."""
+        cs, an = c[1], a[1]
+        if an in ("Cl", "Br", "I", "NO3"):
+            return True
+        if an == "SO4":
+            return cs not in ("Ba", "Ca")
+        if an == "OH":
+            return cs in ("Na", "K", "Li", "Ba")
+        if an in ("CO3", "PO4", "F"):
+            return cs in ("Na", "K", "NH4")
+        return False
+    SOL = [(c, a) for c in CAT for a in AN if soluble(c, a)]
+
+    def diss(c, a):
+        f, nc, na, _ = salt(c, a)
+        return f"{fh(f)}(s) → {str(nc) + ' ' if nc > 1 else ''}{ion(c[1], c[2])}(aq) + {str(na) + ' ' if na > 1 else ''}{ion(a[1], a[2])}(aq)"
+    KL = [("Cu", "m"), ("Fe", "m"), ("Al", "m"), ("Mg", "m"), ("Zn", "m"), ("Ag", "m"), ("Messing (Cu, Zn)", "m"), ("NaCl", "i"), ("KBr", "i"), ("MgO", "i"), ("CaCl2", "i"), ("Al2O3", "i"), ("Na2S", "i"), ("LiF", "i"), ("K2O", "i"),
+          ("H2O", "mol"), ("CO2", "mol"), ("CH4", "mol"), ("NH3", "mol"), ("Cl2", "mol"), ("O2", "mol"), ("HCl", "mol"), ("C2H5OH", "mol"), ("I2", "mol"), ("SO2", "mol"), ("N2", "mol")]
+    KN = {"m": "Metall (Metallbindung)", "i": "Ionensubstanz (Ionenbindung)", "mol": "Molekülsubstanz (Elektronenpaarbindung)"}
+    WHY = {"m": "nur Metallatome", "i": "Metall und Nichtmetall", "mol": "nur Nichtmetallatome"}
+    SUB = {"H2": ("Wasserstoff", -253, "l"), "N2": ("Stickstoff", -196, "l"), "O2": ("Sauerstoff", -183, "l"), "F2": ("Fluor", -188, "l"), "Cl2": ("Chlor", -34, "l"), "Br2": ("Brom", 59, "l"), "I2": ("Iod", 184, "l"),
+           "CH4": ("Methan", -162, "l"), "C2H6": ("Ethan", -89, "l"), "C3H8": ("Propan", -42, "l"), "C4H10": ("Butan", -1, "l"), "C5H12": ("Pentan", 36, "l"), "C6H14": ("Hexan", 69, "l"), "C8H18": ("Octan", 126, "l"),
+           "HF": ("Fluorwasserstoff", 20, "h"), "HCl": ("Chlorwasserstoff", -85, "d"), "HBr": ("Bromwasserstoff", -67, "d"), "HI": ("Iodwasserstoff", -35, "d"), "H2O": ("Wasser", 100, "h"), "H2S": ("Schwefelwasserstoff", -60, "d"),
+           "NH3": ("Ammoniak", -33, "h"), "C2H5OH": ("Ethanol", 78, "h"), "CH3OCH3": ("Dimethylether", -24, "d"), "CH3OH": ("Methanol", 65, "h"), "SiH4": ("Silan", -112, "l"), "SnH4": ("Stannan", -52, "l"), "H2Se": ("Selenwasserstoff", -41, "d"), "H2Te": ("Tellurwasserstoff", -2, "d")}
+    WWN = {"l": "nur London-Kräfte (unpolares Molekül)", "d": "London- und Dipol-Dipol-Kräfte (Dipolmolekül)", "h": "London-Kräfte, Dipol-Dipol-Kräfte und Wasserstoffbrücken (H an N, O oder F)"}
+    en_els = [e for e in CHEM_ELS if e["en"] is not None]
+
+    def add(lvl, q, a):
+        if q not in seen and len(L[lvl]) < 120:
+            seen.add(q)
+            L[lvl].append((q, a))
+    for i in range(1500):
+        t = i % 5
+        if t == 0:
+            f, k = r.choice(KL)
+            add(1, f"Zu welcher Stoffklasse gehört {fh(f)}?", f"<b>{KN[k]}</b>: {WHY[k]}")
+        elif t == 1:
+            c, a = r.choice(CAT[:3] + CAT[4:8] + CAT[10:11]), r.choice(AN[:4] + AN[6:8])
+            f, nc, na, name = salt(c, a)
+            add(1, f"Verhältnisformel von {name}?", f"{ion(c[1], c[2])} und {ion(a[1], a[2])}: <b>{fh(f)}</b>")
+        elif t == 2:
+            fm = r.choice(list(SUB))
+            n, bp, k = SUB[fm]
+            add(1, f"Welche Kräfte wirken zwischen {n}-Molekülen ({fh(fm)})?", f"<b>{WWN[k]}</b>")
+        elif t == 3:
+            c, a = r.choice(SOL)
+            add(1, f"Gleichung für das Lösen von {fh(salt(c, a)[0])} in Wasser?", f"<b>{diss(c, a)}</b>")
+        else:
+            qa = r.choice([("Leitet festes Kupfer den Strom?", "<b>ja</b>: frei bewegliche Elektronen"), ("Leitet festes Kochsalz den Strom?", "<b>nein</b>: Ionen fest im Gitter"),
+                           ("Leitet eine Kochsalzlösung den Strom?", "<b>ja</b>: bewegliche Ionen"), ("Leitet Zuckerlösung den Strom?", "<b>nein</b>: nur Moleküle, keine Ionen"),
+                           ("Ist ein Kupferdraht verformbar oder spröde?", "<b>verformbar</b> (Metallbindung)"), ("Ist ein Salzkristall verformbar oder spröde?", "<b>spröde</b> (Ionengitter)"),
+                           ("Hat Methan eine hohe oder niedrige Siedetemperatur?", "<b>niedrig</b> (−162 °C), nur schwache London-Kräfte"), ("Leitet geschmolzenes Natriumchlorid den Strom?", "<b>ja</b>: Ionen sind in der Schmelze beweglich"),
+                           ("Leitet destilliertes Wasser den Strom?", "<b>praktisch nicht</b>: Moleküle, kaum Ionen"), ("Welche Teilchen bilden ein Metallgitter?", "<b>Atomrümpfe</b> (positiv) und <b>freie Elektronen</b>")])
+            add(1, *qa)
+    for i in range(2000):
+        t = i % 5
+        if t == 0:
+            a, b = r.sample(en_els, 2)
+            d = abs(a["en"] - b["en"])
+            # metals only together with a nonmetal and a clear ionic bond
+            if (a["cls"] == "m" or b["cls"] == "m") and not ({a["cls"], b["cls"]} == {"m", "n"} and d > 1.8):
+                continue
+            if abs(d - 0.4) < 0.08 or abs(d - 1.7) < 0.1:
+                continue
+            neg, pos = (a, b) if a["en"] > b["en"] else (b, a)
+            kind = "unpolare Elektronenpaarbindung" if d < 0.4 else "polare Elektronenpaarbindung" if d <= 1.7 else "Ionenbindung"
+            extra = "" if d < 0.4 else f", {neg['sym']} δ⁻, {pos['sym']} δ⁺" if d <= 1.7 else f": {neg['sym']} bildet das Anion"
+            add(2, f"Bestimme die Bindungsart zwischen {a['sym']} (EN {de(a['en'])}) und {b['sym']} (EN {de(b['en'])}).", f"ΔEN = {de(d)}: <b>{kind}</b>{extra}")
+        elif t == 1:
+            c, a = r.choice(SOL)
+            f, nc, na, name = salt(c, a)
+            add(2, f"Formel und Lösegleichung von {name}?", f"{nc} · (+{c[2]}) + {na} · (−{-a[2]}) = 0: <b>{fh(f)}</b>; {diss(c, a)}")
+        elif t == 2:
+            x, y = r.choice([("H2O", "H2S"), ("C2H5OH", "CH3OCH3"), ("HF", "HCl"), ("Cl2", "Br2"), ("CH4", "C4H10"), ("HCl", "F2"), ("NH3", "CH4"), ("C5H12", "C8H18"), ("Br2", "I2"), ("CH3OH", "C2H6"), ("H2Te", "H2Se"), ("SnH4", "SiH4"), ("HI", "HBr"), ("C3H8", "C6H14")])
+            hi, lo = (x, y) if SUB[x][1] > SUB[y][1] else (y, x)
+            why = "Wasserstoffbrücken" if SUB[hi][2] == "h" and SUB[lo][2] != "h" else "Dipol-Dipol-Kräfte" if SUB[hi][2] == "d" and SUB[lo][2] == "l" else "stärkere London-Kräfte (größeres Molekül, mehr Elektronen)"
+            add(2, f"Welcher Stoff siedet höher: {fh(x)} oder {fh(y)}? Begründe.", f"<b>{fh(hi)}</b> ({SUB[hi][1]} °C / {SUB[lo][1]} °C): {why}".replace(" -", " −").replace("(-", "(−"))
+        elif t == 3:
+            m_, dip, why = r.choice([("H2O", True, "gewinkelt, Ladungsschwerpunkte getrennt"), ("CO2", False, "linear, Teilladungen heben sich auf"), ("NH3", True, "pyramidal, freies Elektronenpaar am N"),
+                                     ("CH4", False, "tetraedrisch, C–H kaum polar und symmetrisch"), ("HCl", True, "polare Bindung, nur zwei Atome"), ("CCl4", False, "tetraedrisch, die vier Dipole heben sich auf"),
+                                     ("CHCl3", True, "tetraedrisch, aber unsymmetrisch besetzt"), ("O2", False, "gleiche Atome, unpolare Bindung"), ("HF", True, "sehr polare Bindung, zwei Atome"), ("H2S", True, "gewinkelt wie Wasser")])
+            add(2, f"Ist {fh(m_)} ein Dipolmolekül? Begründe mit dem räumlichen Bau.", f"<b>{'ja' if dip else 'nein'}</b>: {why}")
+        else:
+            qa = r.choice([("Warum leitet eine Lösung von Chlorwasserstoff in Wasser den Strom, reiner Chlorwasserstoff aber nicht?", "HCl reagiert mit Wasser: <b>HCl + H₂O → H₃O⁺ + Cl⁻</b>. Erst dabei entstehen bewegliche Ionen."),
+                           ("Warum schmilzt Natrium (98 °C) viel niedriger als Magnesium (650 °C)?", "Mg gibt <b>2 Valenzelektronen</b> ab, seine Rümpfe sind zweifach geladen und kleiner: <b>stärkere Metallbindung</b>."),
+                           ("Ordne nach steigender Siedetemperatur: Ethan, Ethanol, Dimethylether.", "<b>Ethan (−89 °C) < Dimethylether (−24 °C) < Ethanol (78 °C)</b>: London < Dipol-Dipol < Wasserstoffbrücken."),
+                           ("Warum löst sich Iod kaum in Wasser, aber gut in Benzin?", "I₂ ist <b>unpolar</b>. Mit Benzin (unpolar) entstehen ähnliche London-Kräfte, Wasser bevorzugt Wasserstoffbrücken untereinander: <b>Ähnliches löst sich in Ähnlichem</b>."),
+                           ("Wie unterscheiden sich Elektronenpaarbindung und zwischenmolekulare Kräfte?", "Elektronenpaarbindungen halten Atome <b>im Molekül</b> zusammen und sind stark; zwischenmolekulare Kräfte wirken <b>zwischen Molekülen</b> und sind viel schwächer."),
+                           ("Ein Stoff schmilzt bei 1083 °C, glänzt und leitet fest den Strom. Stoffklasse?", "<b>Metall</b> (es ist Kupfer): freie Elektronen, starke Metallbindung."),
+                           ("Ein Stoff schmilzt bei 770 °C, leitet fest nicht, aber gelöst. Stoffklasse?", "<b>Ionensubstanz</b> (z. B. KCl): Ionen werden erst in Lösung oder Schmelze beweglich."),
+                           ("Ein Stoff siedet bei −34 °C und leitet nicht. Stoffklasse?", "<b>Molekülsubstanz</b> (z. B. Cl₂): nur schwache Kräfte zwischen den Molekülen.")])
+            add(2, *qa)
+    fixed = [
+        ("Beschreibe den Lösevorgang von Calciumchlorid in Wasser auf Teilchenebene und stelle die Gleichung auf.", "Wasser-Dipole lagern sich an: <b>O-Atome (δ⁻) an Ca²⁺, H-Atome (δ⁺) an Cl⁻</b>. Ionen an Ecken und Kanten werden herausgelöst und von einer <b>Hydrathülle</b> umgeben. CaCl₂(s) → Ca²⁺(aq) + 2 Cl⁻(aq)"),
+        ("Vergleiche, was passiert, wenn man mit dem Hammer auf ein Metall und auf einen Salzkristall schlägt.", "Metall: Schichten von Atomrümpfen <b>gleiten</b>, das Elektronengas hält sie weiter zusammen: verformbar. Salz: Nach der Verschiebung liegen <b>gleich geladene Ionen</b> nebeneinander, Abstoßung: <b>spröde</b>, der Kristall bricht."),
+        ("Begründe, warum Magnesiumoxid (2852 °C) viel höher schmilzt als Natriumchlorid (801 °C).", "Mg²⁺ und O²⁻ sind <b>zweifach geladen</b> und <b>kleiner</b> als Na⁺ und Cl⁻. Die Anziehung (Gitterenergie) ist dadurch viel größer."),
+        ("Beim Lösen von Ammoniumnitrat wird die Lösung kalt, beim Lösen von Calciumchlorid warm. Erkläre mit den Energien beim Lösen.", "Zum Abbau des Gitters wird <b>Gitterenergie</b> benötigt, bei der Bildung der Hydrathüllen wird <b>Hydratationsenergie</b> frei. NH₄NO₃: Gitterenergie überwiegt, Wärme wird der Umgebung entzogen. CaCl₂: Hydratationsenergie überwiegt."),
+        ("Wasser müsste nach dem Trend der Wasserstoffverbindungen der VI. Hauptgruppe bei etwa −80 °C sieden. Erkläre den tatsächlichen Wert von 100 °C.", "Das O-Atom ist sehr elektronegativ und klein, die O–H-Bindung stark polar. Zwischen den Molekülen bilden sich <b>Wasserstoffbrücken</b> (H an O zu freiem Elektronenpaar am O), die viel Energie zum Trennen brauchen. H₂S, H₂Se, H₂Te bilden keine."),
+        ("Erkläre, warum die Siedetemperaturen der Alkane mit der Kettenlänge steigen.", "Alkane sind unpolar, es wirken nur <b>London-Kräfte</b>. Längere Moleküle haben <b>mehr Elektronen</b> und eine <b>größere Oberfläche</b>, die kurzzeitigen Dipole sind stärker."),
+        ("Warum leitet festes Natriumchlorid keinen Strom, obwohl es aus geladenen Teilchen besteht?", "Strom ist die Bewegung von Ladungsträgern. Im Ionengitter sind die Ionen an <b>feste Plätze gebunden</b>. Erst in der Schmelze oder in Lösung werden sie beweglich."),
+        ("Ordne H₂O, CO₂ und CH₄ nach ihrer Löslichkeit in Wasser und erkläre.", "H₂O mischt sich selbst (Wasserstoffbrücken); CO₂ hat polare Bindungen, ist aber unpolar, löst sich mäßig (auch durch Reaktion zu Kohlensäure); <b>CH₄</b> ist unpolar und löst sich am schlechtesten."),
+        ("Entscheide mit ΔEN, welche der Verbindungen KF, HF, F₂ eine Ionenbindung, eine polare und eine unpolare Elektronenpaarbindung enthält.", "KF: ΔEN = 3,16 ⇒ <b>Ionenbindung</b>; HF: ΔEN = 1,78, an der Grenze, aber zwei Nichtmetalle ⇒ <b>sehr polare Elektronenpaarbindung</b>; F₂: ΔEN = 0 ⇒ <b>unpolar</b>."),
+        ("Warum ist Kohlenstoffdioxid ein Gas, Siliciumdioxid (Quarz) aber ein harter Feststoff mit 1713 °C Schmelztemperatur?", "CO₂ bildet <b>einzelne Moleküle</b> mit schwachen London-Kräften. SiO₂ bildet ein <b>Atomgitter</b>, in dem alle Atome durch Elektronenpaarbindungen verknüpft sind: Zum Schmelzen müssen echte Bindungen gelöst werden."),
+        ("Erkläre, wie Tenside Fett und Wasser verbinden.", "Tensidmoleküle haben einen <b>polaren (hydrophilen) Kopf</b> und einen <b>unpolaren (hydrophoben) Schwanz</b>. Der Schwanz löst sich im Fett, der Kopf im Wasser: Fetttröpfchen werden umhüllt und ausgewaschen."),
+        ("Warum gefriert Salzwasser erst unter 0 °C?", "Die gelösten, hydratisierten Ionen stören den geordneten Aufbau des Eisgitters aus Wassermolekülen. Die Wassermoleküle müssen stärker abgekühlt werden, bis sie ins Gitter einrasten: <b>Gefrierpunktserniedrigung</b>."),
+        ("Ethanol ist mit Wasser und mit Benzin mischbar. Erkläre mit dem Bau des Moleküls.", "C₂H₅OH hat eine <b>polare OH-Gruppe</b> (Wasserstoffbrücken zu Wasser) und einen <b>unpolaren Ethylrest</b> (London-Kräfte zu Benzin)."),
+        ("Ein Stoff X ist bei Raumtemperatur fest, schmilzt bei 186 °C unter Zersetzung, löst sich gut in Wasser, die Lösung leitet nicht. Bestimme die Stoffklasse und begründe.", "<b>Molekülsubstanz</b> (z. B. Zucker): Lösung ohne Ionen leitet nicht; gut löslich wegen vieler polarer OH-Gruppen (Wasserstoffbrücken); relativ niedrige Schmelztemperatur."),
+        ("Erkläre, warum Metalle Wärme gut leiten und glänzen.", "Die frei beweglichen Elektronen des <b>Elektronengases</b> nehmen Energie auf und transportieren sie schnell weiter; einfallendes Licht wird von ihnen zurückgestrahlt: <b>Metallglanz</b>."),
+        ("Welche Teilchen und Kräfte müssen beim Schmelzen von Eis, Kochsalz und Eisen jeweils überwunden werden?", "Eis: <b>Wasserstoffbrücken</b> zwischen H₂O-Molekülen (0 °C). Kochsalz: <b>Ionenbindung</b> im Gitter (801 °C). Eisen: <b>Metallbindung</b> zwischen Atomrümpfen und Elektronengas (1538 °C)."),
+    ]
+    for q_, a_ in fixed:
+        add(3, q_, a_)
+    for c, a in r.sample([(c, a) for c, a in SOL if a[2] != -1 or c[2] != 1], 6):
+        f, nc, na, name = salt(c, a)
+        add(3, f"Leite die Formel von {name} aus der Stellung der Elemente bzw. den Ionenladungen her und gib an, wie viele Ionen eine Formeleinheit beim Lösen liefert.", f"{ion(c[1], c[2])}, {ion(a[1], a[2])}: kleinstes gemeinsames Vielfaches der Ladungen ⇒ <b>{fh(f)}</b>; {diss(c, a)}: <b>{nc + na} Ionen</b>")
+    r.shuffle(L[3])
+    return L
+
+
 M8, PH = "#1f6e8c", "#b4531f"
 TOPICS = {
     "osmose": ({"title": "Osmose", "eyebrow": "Biologie · Klasse 11", "accent": "#0d6f74", "cols": [1, 1, 1], "sol_cols": [1, 1, 1]}, osmose),
@@ -2724,6 +2863,7 @@ TOPICS = {
     "strahlensaetze": ({"title": "Strahlensätze", "eyebrow": "Mathematik · Klasse 8", "accent": M8, "cols": [2, 2, 1], "sol_cols": [2, 2, 1]}, strahlensaetze),
     "atombau": ({"title": "Atombau und Schalenmodell", "eyebrow": "Chemie · Klasse 11", "accent": "#6a3fa0", "cols": [2, 2, 1], "sol_cols": [2, 2, 1]}, atombau),
     "periodensystem": ({"title": "Periodensystem, Atombau und Eigenschaften", "eyebrow": "Chemie · Klasse 11", "accent": "#6a3fa0", "cols": [2, 2, 1], "sol_cols": [2, 2, 1]}, periodensystem),
+    "stoffklassen": ({"title": "Stoffklassen", "eyebrow": "Chemie · Klasse 11", "accent": "#6a3fa0", "cols": [2, 1, 1], "sol_cols": [2, 1, 1]}, stoffklassen),
     "binomische-formeln": ({"title": "Binomische Formeln", "eyebrow": "Mathematik · Klasse 8", "accent": M8, "cols": 2, "sol_cols": 2}, binomische_formeln),
     "bruchterme": ({"title": "Bruchterme", "eyebrow": "Mathematik · Klasse 8", "accent": "#2d6a4f", "cols": 3, "sol_cols": 3}, bruchterme),
     "ausmultiplizieren-faktorisieren": ({"title": "Ausmultiplizieren und Faktorisieren", "eyebrow": "Mathematik · Klasse 8", "accent": M8, "cols": 3, "sol_cols": 3}, ausmultiplizieren),
