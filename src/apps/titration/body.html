@@ -1,0 +1,68 @@
+  <nav class="tabs" aria-label="Bereiche">
+    <a href="#verstehen" data-view="verstehen"><span class="n">1</span>Verstehen</a>
+    <a href="#indikatoren" data-view="indikatoren"><span class="n">2</span>Indikatoren</a>
+    <a href="#titrieren" data-view="titrieren"><span class="n">3</span>Titrieren</a>
+    <a href="#leitfaehigkeit" data-view="leitfaehigkeit"><span class="n">4</span>Leitfähigkeit</a>
+    <a href="#ueben" data-view="ueben"><span class="n">5</span>Üben</a>
+    <a href="#alltag" data-view="alltag"><span class="n">6</span>Im Alltag</a>
+    <a href="#quiz" data-view="quiz"><span class="n">7</span>Quiz</a>
+  </nav>
+
+  <section class="view" id="view-verstehen">
+    <div class="einfach">
+      <span class="eyebrow">Einfach erklärt</span>
+      <p>Wie viel Säure ist in einer Probe? Man tropft eine <strong>Maßlösung</strong> mit genau bekannter Konzentration (z. B. Natronlauge) aus einer <strong>Bürette</strong> dazu, bis die Säure gerade vollständig neutralisiert ist. Aus dem verbrauchten Volumen berechnet man die unbekannte Konzentration. Das nennt man <strong>Titration</strong>.</p>
+    </div>
+    <div class="grid-2">
+      <div class="panel stack"><h3>Äquivalenzpunkt</h3><p class="small">Am Äquivalenzpunkt (ÄP) ist genau so viel Base zugegeben, wie Säure vorhanden war: <strong>n(Säure) · z = n(Base)</strong> (z = Zahl der abgegebenen Protonen).</p><p class="small"><strong>c(Säure) = c(Lauge) · V(Lauge) / (z · V(Säure))</strong></p><p class="small">Beispiel: 20 mL Salzsäure brauchen 12,5 mL NaOH (c = 0,1 mol/L) ⇒ c(HCl) = 0,1 · 12,5 / 20 = 0,0625 mol/L.</p></div>
+      <div class="panel stack"><h3>Titrationskurven auswerten</h3><ul class="list small"><li><strong>Starke Säure + starke Base</strong>: ÄP bei <strong>pH 7</strong>, sehr großer pH-Sprung.</li><li><strong>Schwache Säure + starke Base</strong>: ÄP im <strong>Basischen</strong> (z. B. 8,7 bei Essigsäure), kleinerer Sprung, flacher Anstieg davor.</li><li>Am <strong>Halbäquivalenzpunkt</strong> einer schwachen Säure gilt <strong>pH = pK<sub>S</sub></strong>. So bestimmt man pK<sub>S</sub>-Werte.</li><li>Der ÄP ist der <strong>Wendepunkt</strong> der Kurve (steilste Stelle).</li></ul></div>
+    </div>
+    <div class="panel stack"><h3>Leitfähigkeitstitration</h3><p class="small">Statt des pH misst man die elektrische Leitfähigkeit. H₃O⁺ und OH⁻ leiten besonders gut. Bei der Titration von Salzsäure mit Natronlauge werden H₃O⁺ durch schlechter leitende Na⁺ ersetzt: Die Leitfähigkeit <strong>sinkt</strong> bis zum ÄP, danach <strong>steigt</strong> sie durch überschüssige OH⁻. Der Knick ist der ÄP. Vorteil: geht auch bei trüben oder farbigen Lösungen.</p></div>
+    <div class="merksatz"><span class="eyebrow">Merke</span><p>Der Äquivalenzpunkt ist nicht immer der Neutralpunkt (pH 7). Bei schwachen Säuren liegt er im Basischen, weil dort die korrespondierende Base (z. B. Acetat) vorliegt.</p></div>
+    <div class="panel stack"><h3>Typische Fehler</h3><ul class="list small"><li>Bei Schwefelsäure (zweiprotonig) den Faktor 2 vergessen.</li><li>Indikator mit Umschlagbereich weit weg vom ÄP gewählt.</li><li>Vorlage und Maßlösung verwechselt.</li></ul></div>
+  </section>
+
+  <section class="view" id="view-indikatoren" hidden>
+    <div class="stack"><span class="eyebrow">Säuren und Basen nachweisen</span><h2>Indikatoren</h2><p class="muted">Indikatoren sind selbst schwache Säuren, deren Säure- und Baseform verschieden gefärbt sind: HInd ⇌ H⁺ + Ind⁻. Der Farbumschlag liegt etwa bei pH = pK<sub>S</sub>(HInd) ± 1.</p></div>
+    <div class="panel stack"><table class="ptab" id="iTab"></table><div class="ctl"><label for="iR">pH = <b id="iV"></b></label><input type="range" id="iR" min="0" max="14" step="0.5" value="7"></div><div class="grid3" id="iSw"></div></div>
+  </section>
+
+  <section class="view" id="view-titrieren" hidden>
+    <div class="stack"><span class="eyebrow">Simulation</span><h2>Titrationskurve aufnehmen</h2><p class="muted">20 mL Säure werden mit Natronlauge (0,1 mol/L) titriert. Gib Lauge zu und beobachte pH und Indikatorfarbe.</p></div>
+    <div class="sim-layout">
+      <div class="figure"><svg class="plot" id="tSvg" viewBox="0 0 460 300" role="img" aria-label="Titrationskurve"></svg></div>
+      <div class="panel stack ctl">
+        <label>Probe<select id="tA"><option value="hcl">Salzsäure, c = 0,1 mol/L</option><option value="hac">Essigsäure, c = 0,1 mol/L</option><option value="hcl2">Salzsäure, c = 0,05 mol/L</option><option value="hac2">Essigsäure, c = 0,05 mol/L</option></select></label>
+        <label>Indikator<select id="tI"></select></label>
+        <label for="tV">V(NaOH) = <b id="tVV"></b> mL</label><input type="range" id="tV" min="0" max="40" step="0.1" value="0">
+        <div class="row"><button type="button" id="tM">−1 mL</button><button type="button" id="tP">+1 mL</button><button type="button" id="tD">+1 Tropfen</button></div>
+        <svg class="flask" id="tF" viewBox="0 0 120 120" aria-hidden="true"></svg>
+        <p class="big" id="tOut"></p><p class="small" id="tText"></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="view" id="view-leitfaehigkeit" hidden>
+    <div class="stack"><span class="eyebrow">Konzentrationsermittlung</span><h2>Leitfähigkeitstitration</h2><p class="muted">Die Kurve zeigt die berechnete Leitfähigkeit. Der Knick markiert den Äquivalenzpunkt.</p></div>
+    <div class="panel stack ctl"><label>Probe<select id="lA"><option value="hcl">Salzsäure, 0,1 mol/L</option><option value="hac">Essigsäure, 0,1 mol/L</option></select></label><svg class="plot" id="lSvg" viewBox="0 0 460 260" role="img" aria-label="Leitfähigkeitskurve"></svg><p class="small" id="lText"></p></div>
+  </section>
+
+  <section class="view" id="view-ueben" hidden>
+    <div class="stack"><span class="eyebrow">Methode: Titrationskurven auswerten</span><h2>Titration üben</h2><p class="muted">Konzentrationen in mol/L auf drei Nachkommastellen.</p></div>
+    <div id="trainer" class="stack"></div>
+  </section>
+
+  <section class="view" id="view-alltag" hidden>
+    <div class="stack"><span class="eyebrow">Im Alltag</span><h2>Titration in der Praxis</h2></div>
+    <div class="grid-2">
+      <div class="panel stack"><span class="eyebrow">Lebensmittel</span><h3>Säuregehalt von Essig und Wein</h3><p class="small">Lebensmittellabore titrieren den Gesamtsäuregehalt, z. B. muss Speiseessig mindestens 5 % Essigsäure enthalten.</p></div>
+      <div class="panel stack"><span class="eyebrow">Umwelt</span><h3>Wasseranalytik</h3><p class="small">Säure- und Basekapazität von Gewässern geben Auskunft über ihre Pufferung gegen sauren Regen.</p></div>
+      <div class="panel stack"><span class="eyebrow">Medizin</span><h3>Arzneimittel</h3><p class="small">Der Wirkstoffgehalt von Tabletten (z. B. Acetylsalicylsäure) wird durch Titration geprüft.</p></div>
+      <div class="panel stack"><span class="eyebrow">Garten</span><h3>Rotkohl als Indikator</h3><p class="small">Rotkohlsaft ist rot im Sauren, violett im Neutralen und grün-gelb im Basischen: ein Universalindikator aus der Küche.</p></div>
+    </div>
+  </section>
+
+  <section class="view" id="view-quiz" hidden>
+    <div class="stack"><span class="eyebrow">Selbsttest</span><h2>Quiz</h2><div class="progress-line"><div class="bar" aria-hidden="true"><i id="qBar"></i></div><span class="score-line" id="qProgress"></span></div></div>
+    <div class="panel quiz" id="quizBox" aria-live="polite"></div>
+  </section>

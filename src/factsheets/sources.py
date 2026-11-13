@@ -2533,6 +2533,37 @@ SHEETS["saeurestaerke"] = dict(title="Säure- und Basenstärke", eyebrow="Chemie
     </div>
   </div>''')
 
+SHEETS["titration"] = dict(title="Indikatoren und Titration", eyebrow="Chemie · Klasse 11 · Säure-Base-Gleichgewichte", accent=CH11, body=f'''
+  <div class="kern">Bei der <strong>Titration</strong> gibt man eine Maßlösung aus der Bürette zu, bis der <strong>Äquivalenzpunkt</strong> erreicht ist: n(Säure) · z = n(Base). Daraus folgt <strong>c(Säure) = c(Lauge) · V(Lauge) / (z · V(Säure))</strong>.</div>
+  <div class="cols">
+    <div class="box">
+      <h2>Titrationskurven</h2>
+      <ul><li>stark/stark: ÄP pH 7, großer Sprung</li><li>schwach/stark: ÄP im Basischen</li><li>Halbäquivalenzpunkt: pH = pK<sub>S</sub></li><li>ÄP = Wendepunkt</li></ul>
+    </div>
+    <div class="box">
+      <h2>Leitfähigkeitstitration</h2>
+      <ul><li>HCl + NaOH: H₃O⁺ wird durch Na⁺ ersetzt ⇒ Leitfähigkeit sinkt</li><li>nach ÄP: OH⁻ ⇒ steigt</li><li>Knick = ÄP; auch bei trüben Lösungen</li></ul>
+    </div>
+    <div class="box full">
+      <h2>Indikatoren</h2>
+      <table>
+        <tr><th>Indikator</th><th>Umschlag</th><th>Farben</th><th>geeignet für</th></tr>
+        <tr><td>Methylorange</td><td>3,1–4,4</td><td>rot → gelb</td><td>starke Säure / schwache Base</td></tr>
+        <tr><td>Methylrot</td><td>4,4–6,2</td><td>rot → gelb</td><td>NH₃ mit HCl</td></tr>
+        <tr><td>Bromthymolblau</td><td>6,0–7,6</td><td>gelb → blau</td><td>HCl mit NaOH</td></tr>
+        <tr><td>Phenolphthalein</td><td>8,2–10</td><td>farblos → pink</td><td>Essigsäure mit NaOH</td></tr>
+      </table>
+    </div>
+    <div class="box">
+      <h2>Beispiel</h2>
+      <p>20 mL HCl brauchen 12,5 mL NaOH (0,1 mol/L): c(HCl) = 0,1 · 12,5 / 20 = 0,0625 mol/L.</p>
+    </div>
+    <div class="box warn">
+      <h2>Typische Fehler</h2>
+      <ul><li>ÄP ≠ immer pH 7.</li><li>Faktor z bei H₂SO₄ vergessen.</li><li>Falscher Indikator.</li></ul>
+    </div>
+  </div>''')
+
 OUT = sys.argv[1] if len(sys.argv) > 1 else os.path.join(os.path.dirname(__file__), "_build")
 os.makedirs(OUT, exist_ok=True)
 shutil.copyfile(os.path.join(os.path.dirname(os.path.abspath(__file__)), "factsheet.css"), os.path.join(OUT, "factsheet.css"))

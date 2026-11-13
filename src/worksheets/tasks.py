@@ -3753,6 +3753,80 @@ def saeurestaerke():
     return L
 
 
+def titration():
+    r = random.Random(215)
+    L = {1: [], 2: [], 3: []}
+    seen = set()
+    de = lambda v, n=3: f"{v:.{n}f}".replace(".", ",")
+
+    def add(lvl, q, a):
+        if q not in seen and len(L[lvl]) < 120:
+            seen.add(q)
+            L[lvl].append((q, a))
+    facts = [("Was ist eine Maßlösung?", "Lösung mit <b>genau bekannter Konzentration</b>"), ("Was ist der Äquivalenzpunkt?", "Punkt, an dem <b>n(Säure) · z = n(Base)</b>"), ("Wo liegt der ÄP bei HCl/NaOH?", "bei <b>pH 7</b>"),
+             ("Wo liegt der ÄP bei CH₃COOH/NaOH?", "im <b>Basischen</b> (≈ 8,7)"), ("Was gilt am Halbäquivalenzpunkt?", "<b>pH = pK<sub>S</sub></b>"), ("Umschlagbereich von Phenolphthalein?", "pH <b>8,2 bis 10</b>, farblos → pink"),
+             ("Umschlagbereich von Bromthymolblau?", "pH <b>6,0 bis 7,6</b>, gelb → blau"), ("Umschlagbereich von Methylorange?", "pH <b>3,1 bis 4,4</b>, rot → gelb"), ("Was ist ein Indikator?", "schwache Säure, deren <b>Säure- und Baseform verschieden gefärbt</b> sind"),
+             ("Woran erkennt man den ÄP in der Titrationskurve?", "am <b>Wendepunkt</b> (steilster Anstieg)"), ("Welches Gerät enthält die Maßlösung?", "die <b>Bürette</b>"), ("Was misst man bei der Leitfähigkeitstitration?", "die <b>elektrische Leitfähigkeit</b> der Lösung"),
+             ("Warum leiten H₃O⁺-Ionen besonders gut?", "Protonen werden über Wasserstoffbrücken <b>weitergereicht</b> (hohe Ionenbeweglichkeit)"), ("Wie verläuft die Leitfähigkeit bei HCl + NaOH bis zum ÄP?", "sie <b>sinkt</b>")]
+    for q_, a_ in facts:
+        add(1, q_, a_)
+    for i in range(400):
+        vA, cB, vB = r.choice([10, 20, 25, 50]), r.choice([0.1, 0.05, 0.2]), r.choice([8.4, 10.0, 12.5, 15.0, 17.6, 20.0, 22.3, 9.8, 13.2, 18.4])
+        z = r.choice([1, 1, 2])
+        c = cB * vB / (z * vA)
+        nm = "Schwefelsäure" if z == 2 else r.choice(["Salzsäure", "Salpetersäure", "Essigsäure"])
+        lvl = 1 if z == 1 else 2
+        add(lvl, f"{vA} mL {nm} verbrauchen {de(vB, 1)} mL NaOH (c = {de(cB, 2)} mol/L). c(Säure)?", f"am ÄP: {'2 · ' if z == 2 else ''}n(Säure) = n(NaOH) ⇒ c = c(NaOH) · V(NaOH) / ({'2 · ' if z == 2 else ''}V(Säure)) = {de(cB, 2)} · {de(vB, 1)} / ({'2 · ' if z == 2 else ''}{vA}) = <b>{de(c, 4)} mol/L</b>")
+    for i in range(300):
+        t = i % 3
+        if t == 0:
+            cA, vA, cB = r.choice([0.1, 0.05, 0.08, 0.12, 0.2]), r.choice([10, 20, 25]), r.choice([0.1, 0.2, 0.5])
+            add(2, f"Wie viel mL NaOH (c = {de(cB, 1)} mol/L) braucht man für {vA} mL Salzsäure mit c = {de(cA, 2)} mol/L?", f"V = c(HCl) · V(HCl) / c(NaOH) = {de(cA, 2)} · {vA} / {de(cB, 1)} = <b>{de(cA * vA / cB, 2)} mL</b>")
+        elif t == 1:
+            v = r.choice([8.3, 10.6, 12.4, 14.1, 16.7, 9.2, 11.5])
+            add(2, f"Eine Essigprobe verbraucht {de(v, 1)} mL NaOH (c = 0,1 mol/L). Masse an Essigsäure (M = 60,05 g/mol)?", f"n = 0,1 · {de(v, 1)} mmol = {de(0.1 * v, 2)} mmol; m = <b>{de(0.1 * v * 60.05, 1)} mg</b>")
+        else:
+            sc = r.choice([("Salzsäure mit Natronlauge", "Bromthymolblau", "ÄP bei pH 7"), ("Essigsäure mit Natronlauge", "Phenolphthalein", "ÄP bei pH ≈ 8,7"), ("Ammoniak mit Salzsäure", "Methylrot", "ÄP bei pH ≈ 5,3"),
+                           ("Natronlauge mit Salzsäure", "Bromthymolblau", "ÄP bei pH 7"), ("Methansäure mit Kalilauge", "Phenolphthalein", "ÄP im Basischen")])
+            add(2, f"Welcher Indikator eignet sich für die Titration von {sc[0]}? Begründe.", f"<b>{sc[1]}</b>: {sc[2]}, liegt im Umschlagbereich")
+    for pk, nm in [(4.75, "Essigsäure"), (3.75, "Methansäure"), (4.87, "Propansäure"), (4.2, "Benzoesäure"), (9.25, "Ammonium-Ion"), (2.86, "Chloressigsäure")]:
+        add(2, f"Bei der Titration von {nm} mit NaOH beträgt der pH am Halbäquivalenzpunkt {de(pk, 2)}. pK<sub>S</sub>?", f"c(HA) = c(A⁻) ⇒ <b>pK<sub>S</sub> = {de(pk, 2)}</b>")
+    for ca, vb in [(0.1, 0), (0.1, 10), (0.1, 19.9), (0.1, 20), (0.1, 25), (0.1, 30)]:
+        nA, nB, V = ca * 20 / 1000, 0.1 * vb / 1000, (20 + vb) / 1000
+        if nA > nB:
+            ph = -math.log10((nA - nB) / V)
+            sol = f"Überschuss H₃O⁺ = {_sci((nA - nB) / V)} mol/L ⇒ <b>pH = {de(ph, 2)}</b>"
+        elif nA == nB:
+            sol = "Äquivalenzpunkt: <b>pH = 7</b>"
+        else:
+            ph = 14 + math.log10((nB - nA) / V)
+            sol = f"Überschuss OH⁻ = {_sci((nB - nA) / V)} mol/L ⇒ <b>pH = {de(ph, 2)}</b>"
+        add(3, f"20 mL Salzsäure (c = 0,1 mol/L) werden mit {vb} mL Natronlauge (c = 0,1 mol/L) versetzt. Berechne den pH.", sol)
+    for vb in [5, 10, 15]:
+        ph = 4.75 + math.log10(vb / (20 - vb))
+        add(3, f"20 mL Essigsäure (c = 0,1 mol/L, pK<sub>S</sub> 4,75) werden mit {vb} mL Natronlauge (0,1 mol/L) versetzt. Berechne den pH.", f"n(A⁻) = {de(vb * 0.1, 1)} mmol, n(HA) = {de((20 - vb) * 0.1, 1)} mmol ⇒ pH = pK<sub>S</sub> + lg(n(A⁻)/n(HA)) = <b>{de(ph, 2)}</b> (Puffergleichung)")
+    fixed = [
+        ("Skizziere und vergleiche die Titrationskurven von je 0,1 mol/L Salzsäure und Essigsäure mit Natronlauge.", "Gleicher Verbrauch bis zum ÄP. HCl: Start pH 1, flach, <b>großer Sprung</b> um pH 7. Essigsäure: Start pH 2,9, flacher <b>Pufferbereich</b> um pH 4,75, kleinerer Sprung, ÄP bei pH ≈ 8,7."),
+        ("Begründe, warum der Äquivalenzpunkt der Titration Essigsäure/Natronlauge bei pH ≈ 8,7 liegt.", "Am ÄP liegt eine Lösung von <b>Natriumacetat</b> vor. Acetat ist eine schwache Base: CH₃COO⁻ + H₂O ⇌ CH₃COOH + OH⁻ ⇒ basische Lösung."),
+        ("Warum ist Methylorange für die Titration von Essigsäure mit Natronlauge ungeeignet?", "Es schlägt bei pH 3,1–4,4 um, also <b>lange vor dem ÄP</b> (8,7); man würde viel zu wenig Lauge ablesen."),
+        ("Erkläre den Verlauf der Leitfähigkeitskurve bei der Titration von Salzsäure mit Natronlauge.", "Bis zum ÄP werden <b>H₃O⁺ (sehr gut leitend) durch Na⁺</b> ersetzt: Leitfähigkeit sinkt. Danach kommen <b>OH⁻</b> hinzu: steiler Anstieg. Der Knick (Schnittpunkt der Geraden) ist der ÄP."),
+        ("Nenne zwei Vorteile der Leitfähigkeitstitration gegenüber der Titration mit Indikator.", "Funktioniert bei <b>farbigen oder trüben</b> Lösungen; ÄP wird aus vielen Messpunkten (Geraden) bestimmt, kein Farbumschlag muss beurteilt werden."),
+        ("Ein Speiseessig (10 mL) verbraucht 42 mL Natronlauge (c = 0,2 mol/L). Berechne den Massenanteil an Essigsäure (ρ ≈ 1 g/mL).", "n = 0,2 · 42 = 8,4 mmol; m = 8,4 · 60,05 = 504 mg = 0,504 g in 10 g ⇒ <b>w ≈ 5,0 %</b>."),
+        ("Wie erhält man aus einer Titrationskurve den pK<sub>S</sub>-Wert einer schwachen Säure?", "ÄP-Volumen ablesen, halbieren und den pH bei diesem Volumen ablesen: am <b>Halbäquivalenzpunkt</b> gilt pH = pK<sub>S</sub>."),
+        ("Warum zeigt die Titration von Phosphorsäure mehrere Sprünge?", "H₃PO₄ ist <b>dreiprotonig</b>; die Protonen werden schrittweise abgegeben (pK<sub>S</sub> 2,0; 7,2; 12,4). Zwei Sprünge sind deutlich sichtbar."),
+        ("Wie viel mL Schwefelsäure (c = 0,05 mol/L) neutralisieren 25 mL Natronlauge (c = 0,1 mol/L)?", "n(NaOH) = 2,5 mmol; H₂SO₄ gibt 2 H⁺ ab ⇒ n(H₂SO₄) = 1,25 mmol ⇒ V = 1,25 : 0,05 = <b>25 mL</b>."),
+        ("Bei einer Titration wurde zu schnell titriert und 0,5 mL über den ÄP hinaus Lauge zugegeben. Wie wirkt sich das auf das Ergebnis aus?", "Das abgelesene Volumen ist zu groß: Die berechnete Säurekonzentration ist <b>zu hoch</b> (systematischer Fehler). Gegen Ende tropfenweise titrieren."),
+        ("Warum spült man die Bürette vor der Titration mit der Maßlösung und nicht mit Wasser?", "Wasserreste würden die Maßlösung <b>verdünnen</b>; ihre Konzentration wäre kleiner als angenommen, das Ergebnis falsch."),
+        ("Eine Tablette mit Acetylsalicylsäure (M = 180 g/mol, einprotonig) verbraucht 27,8 mL NaOH (c = 0,1 mol/L). Wie viel mg Wirkstoff enthält sie?", "n = 2,78 mmol; m = 2,78 · 180 = <b>500 mg</b>."),
+        ("Erkläre, warum ein Indikator nur in sehr kleinen Mengen zugegeben wird.", "Der Indikator ist selbst eine <b>Säure</b> und würde Lauge verbrauchen; außerdem soll die Farbe gut erkennbar, nicht zu intensiv sein."),
+        ("Leite aus der Gleichung des Indikators HInd ⇌ H⁺ + Ind⁻ ab, warum der Umschlag bei pH ≈ pK<sub>S</sub>(HInd) liegt.", "Bei pH = pK<sub>S</sub> gilt c(HInd) = c(Ind⁻): <b>Mischfarbe</b>. Eine Farbe dominiert ab etwa dem 10-fachen Überschuss, also bei pH = pK<sub>S</sub> ± 1."),
+    ]
+    for q_, a_ in fixed:
+        add(3, q_, a_)
+    r.shuffle(L[3])
+    return L
+
+
 M8, PH = "#1f6e8c", "#b4531f"
 TOPICS = {
     "osmose": ({"title": "Osmose", "eyebrow": "Biologie · Klasse 11", "accent": "#0d6f74", "cols": [1, 1, 1], "sol_cols": [1, 1, 1]}, osmose),
@@ -3793,6 +3867,7 @@ TOPICS = {
     "saeuren-basen": ({"title": "Säuren und Basen nach Brønsted", "eyebrow": "Chemie · Klasse 11", "accent": "#6a3fa0", "cols": [2, 1, 1], "sol_cols": [2, 1, 1]}, saeuren_basen),
     "ph-wert": ({"title": "Autoprotolyse des Wassers und pH-Wert", "eyebrow": "Chemie · Klasse 11", "accent": "#6a3fa0", "cols": [2, 2, 1], "sol_cols": [2, 2, 1]}, ph_wert),
     "saeurestaerke": ({"title": "Säure- und Basenstärke", "eyebrow": "Chemie · Klasse 11", "accent": "#6a3fa0", "cols": [2, 1, 1], "sol_cols": [2, 1, 1]}, saeurestaerke),
+    "titration": ({"title": "Indikatoren und Titration", "eyebrow": "Chemie · Klasse 11", "accent": "#6a3fa0", "cols": [2, 1, 1], "sol_cols": [2, 1, 1]}, titration),
     "binomische-formeln": ({"title": "Binomische Formeln", "eyebrow": "Mathematik · Klasse 8", "accent": M8, "cols": 2, "sol_cols": 2}, binomische_formeln),
     "bruchterme": ({"title": "Bruchterme", "eyebrow": "Mathematik · Klasse 8", "accent": "#2d6a4f", "cols": 3, "sol_cols": 3}, bruchterme),
     "ausmultiplizieren-faktorisieren": ({"title": "Ausmultiplizieren und Faktorisieren", "eyebrow": "Mathematik · Klasse 8", "accent": M8, "cols": 3, "sol_cols": 3}, ausmultiplizieren),

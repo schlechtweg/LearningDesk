@@ -357,6 +357,14 @@ TOPICS = [
         "fonts": "base", "first_view": "verstehen", "factsheet": "Factsheet als PDF ↓",
     },
     {
+        "slug": "titration", "grade": "11", "subject": "chemie", "chapter": "4", "order": 4, "kit": True, "accent": ACCENT_CHEM,
+        "title": "Indikatoren und Titration", "short": "Titration", "tag": "Säure-Base",
+        "card": "Indikatoren mit Farbumschlag, Neutralisationstitration als Simulation, Titrationskurven auswerten, Halbäquivalenzpunkt, Leitfähigkeitstitration, Trainer, Quiz",
+        "description": "Interaktive Lernhilfe zu Indikatoren, Neutralisations- und Leitfähigkeitstitration (Chemie, Klasse 11)",
+        "intro": "Wie man Säuren und Basen nachweist, ihre Konzentration durch Titration bestimmt und Titrationskurven auswertet.",
+        "fonts": "base", "first_view": "verstehen", "factsheet": "Factsheet als PDF ↓",
+    },
+    {
         "slug": "binomische-formeln", "grade": "8", "subject": "mathematik", "chapter": "I", "order": 4,
         "title": "Binomische Formeln", "short": "Binomische Formeln", "tag": "Terme",
         "card": "Die drei Formeln, Erklärung mit Flächen, Trainer mit Lückenaufgaben, Kopfrechen-Trick, Quiz",

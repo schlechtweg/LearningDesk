@@ -1079,10 +1079,42 @@ def saeurestaerke():
     return {"title": "pKs-Skala", "stars": "★☆☆", "task": (svg("0 10 320 72", g), task), "sol": (svg("0 10 320 72", sol), soltxt)}
 
 
+def titration():
+    import math as _m
+
+    def ph(vb):
+        nA, nB, V = 0.1 * 20 / 1000, 0.1 * vb / 1000, (20 + vb) / 1000
+        Ka, cT, cNa = 10 ** -4.75, nA / V, nB / V
+        lo, hi = -14.0, 0.0
+        for _ in range(60):
+            m = (lo + hi) / 2
+            h = 10 ** m
+            f = h + cNa - 1e-14 / h - cT * Ka / (Ka + h)
+            if f > 0:
+                hi = m
+            else:
+                lo = m
+        return -(lo + hi) / 2
+    ox, oy, ux, uy = 35, 175, 6, 11
+    g = "".join(f'<line class="gl" x1="{ox}" y1="{oy - p * uy}" x2="{ox + 40 * ux}" y2="{oy - p * uy}"/>' + text(ox - 5, oy - p * uy + 3, str(p), "ft tiny", "end") for p in range(0, 15, 2))
+    g += "".join(f'<line class="gl" x1="{ox + v * ux}" y1="{oy}" x2="{ox + v * ux}" y2="{oy - 14 * uy}"/>' + text(ox + v * ux, oy + 11, str(v), "ft tiny") for v in range(0, 41, 5))
+    g += text(ox + 40 * ux, oy + 22, "V(NaOH) in mL", "ft tiny", "end") + text(ox + 2, oy - 14 * uy - 4, "pH", "ft tiny", "start")
+    curve = "M" + " L".join(f"{ox + v / 4 * ux:.1f} {oy - ph(v / 4) * uy:.1f}" for v in range(0, 161))
+    g += f'<path class="fg" d="{curve}"/>'
+    sol = g + f'<line x1="{ox + 20 * ux}" y1="{oy}" x2="{ox + 20 * ux}" y2="{oy - 14 * uy}" stroke="#c0392b" stroke-dasharray="4 3"/><circle cx="{ox + 10 * ux}" cy="{oy - 4.75 * uy:.1f}" r="3.5" fill="#c0392b"/>' + text(ox + 10 * ux + 5, oy - 4.75 * uy - 6, "pKs", "ft tiny sol", "start") + text(ox + 20 * ux + 4, oy - 8.7 * uy, "ÄP", "ft tiny sol", "start")
+    task = ('<p>20 mL Essigsäure wurden mit Natronlauge (c = 0,1 mol/L) titriert.</p>'
+            '<p class="q">V am ÄP: <span class="blank"></span> pH am ÄP: <span class="blank"></span></p>'
+            '<p class="q">c(Essigsäure): <span class="blank"></span> pK<sub>S</sub>: <span class="blank"></span></p>'
+            '<p class="q">Geeigneter Indikator: <span class="blank wide"></span></p>')
+    soltxt = ('<p class="q">ÄP bei <b>20 mL</b>, pH ≈ <b>8,7</b>; c = 0,1 · 20 / 20 = <b>0,1 mol/L</b>.</p>'
+              '<p class="q">Halbäquivalenzpunkt (10 mL): <b>pK<sub>S</sub> ≈ 4,75</b>. Indikator: <b>Phenolphthalein</b> (8,2–10).</p>')
+    return {"title": "Titrationskurve auswerten", "stars": "★★☆", "task": (svg("0 10 290 195", g), task), "sol": (svg("0 10 290 195", sol), soltxt)}
+
+
 FIGS = {
     "osmose": osmose, "natrium-kalium-pumpe": nak, "symport-antiport": symport, "endocytose-exocytose": endo,
     "ableiten": ableiten, "nervensystem": nerven, "auge": auge,
-    "termstruktur": termstruktur, "zufallsexperimente": zufallsexperimente, "laplace": laplace, "baumdiagramme": baumdiagramme, "unabhaengige-ereignisse": unabhaengig, "funktionsbegriff": funktionsbegriff, "eigenschaften-funktionen": eigenschaften, "lineare-funktionen": lineare_funktionen, "funktionsgleichungen": funktionsgleichungen, "lgs-grafisch": lgs_grafisch, "gleichsetzungsverfahren": gleichsetzungsverfahren, "additionsverfahren": additionsverfahren, "lgs-anwendungen": lgs_anwendungen, "zentrische-streckung": zentrische_streckung, "aehnliche-dreiecke": aehnliche_dreiecke, "flaeche-volumen-aehnlich": flaeche_volumen_aehnlich, "strahlensaetze": strahlensaetze, "atombau": atombau, "periodensystem": periodensystem, "stoffklassen": stoffklassen, "orbitalmodell": orbitalmodell, "redoxreaktionen": redoxreaktionen, "gebrauchsmetalle": gebrauchsmetalle, "komplexverbindungen": komplexverbindungen, "reaktionsgeschwindigkeit": reaktionsgeschwindigkeit, "chemisches-gleichgewicht": chemisches_gleichgewicht, "massenwirkungsgesetz": massenwirkungsgesetz, "loeslichkeitsgleichgewichte": loeslichkeitsgleichgewichte, "saeuren-basen": saeuren_basen, "ph-wert": ph_wert, "saeurestaerke": saeurestaerke, "binomische-formeln": binom, "bruchterme": bruchterme, "ausmultiplizieren-faktorisieren": ausmult, "terme-vereinfachen": terme,
+    "termstruktur": termstruktur, "zufallsexperimente": zufallsexperimente, "laplace": laplace, "baumdiagramme": baumdiagramme, "unabhaengige-ereignisse": unabhaengig, "funktionsbegriff": funktionsbegriff, "eigenschaften-funktionen": eigenschaften, "lineare-funktionen": lineare_funktionen, "funktionsgleichungen": funktionsgleichungen, "lgs-grafisch": lgs_grafisch, "gleichsetzungsverfahren": gleichsetzungsverfahren, "additionsverfahren": additionsverfahren, "lgs-anwendungen": lgs_anwendungen, "zentrische-streckung": zentrische_streckung, "aehnliche-dreiecke": aehnliche_dreiecke, "flaeche-volumen-aehnlich": flaeche_volumen_aehnlich, "strahlensaetze": strahlensaetze, "atombau": atombau, "periodensystem": periodensystem, "stoffklassen": stoffklassen, "orbitalmodell": orbitalmodell, "redoxreaktionen": redoxreaktionen, "gebrauchsmetalle": gebrauchsmetalle, "komplexverbindungen": komplexverbindungen, "reaktionsgeschwindigkeit": reaktionsgeschwindigkeit, "chemisches-gleichgewicht": chemisches_gleichgewicht, "massenwirkungsgesetz": massenwirkungsgesetz, "loeslichkeitsgleichgewichte": loeslichkeitsgleichgewichte, "saeuren-basen": saeuren_basen, "ph-wert": ph_wert, "saeurestaerke": saeurestaerke, "titration": titration, "binomische-formeln": binom, "bruchterme": bruchterme, "ausmultiplizieren-faktorisieren": ausmult, "terme-vereinfachen": terme,
     "gleichungen": gleichungen, "ungleichungen": ungleichungen,
     "druck": druck, "hydraulik": hydraulik, "schweredruck": schweredruck, "auftrieb": auftrieb, "luftdruck": luftdruck,
 }

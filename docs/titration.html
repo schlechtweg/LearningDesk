@@ -1,0 +1,893 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<title>Indikatoren und Titration</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Interaktive Lernhilfe zu Indikatoren, Neutralisations- und Leitfähigkeitstitration (Chemie, Klasse 11)">
+<script>try{var t=localStorage.getItem("learningdesk.theme");if(t==="dark"||t==="light")document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* LearnKit: shared layout for LearningDesk topic apps.
+   Colour tokens come in three blocks (light, dark via system, dark via switch);
+   each app sets its accent colours through config.py. */
+:root {
+  --bg: #f2f4f7;
+  --surface: #ffffff;
+  --surface-2: #e6ebf1;
+  --ink: #18222d;
+  --muted: #55626f;
+  --line: #d0d8e1;
+  --accent: #24539c;
+  --accent-ink: #ffffff;
+  --accent-soft: rgba(36, 83, 156, 0.12);
+  --c1: #2f5fb3;
+  --c2: #c4561c;
+  --c3: #3d8a4c;
+  --c4: #8e44ad;
+  --good: #1f7f4b;
+  --good-soft: rgba(31, 127, 75, 0.12);
+  --bad: #b5372e;
+  --bad-soft: rgba(181, 55, 46, 0.10);
+  --font-display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --font-body: "Atkinson Hyperlegible", "Segoe UI", system-ui, sans-serif;
+  --font-math: "STIX Two Text", "Cambria Math", "Times New Roman", serif;
+  --font-mono: "JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
+  --step--1: 0.875rem;
+  --step-0: 1.0625rem;
+  --step-1: 1.25rem;
+  --step-2: 1.6rem;
+  --step-3: 2.3rem;
+  --radius: 10px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0f1419; --surface: #161e26; --surface-2: #1e2832; --ink: #e4ebf1; --muted: #98a7b5; --line: #2b3946;
+    --accent-ink: #0b1220; --c1: #7ea6f0; --c2: #f09a5e; --c3: #6fc47f; --c4: #c39bdf;
+    --good: #5fd194; --good-soft: rgba(95, 209, 148, 0.14); --bad: #f07a70; --bad-soft: rgba(240, 122, 112, 0.14);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0f1419; --surface: #161e26; --surface-2: #1e2832; --ink: #e4ebf1; --muted: #98a7b5; --line: #2b3946;
+  --accent-ink: #0b1220; --c1: #7ea6f0; --c2: #f09a5e; --c3: #6fc47f; --c4: #c39bdf;
+  --good: #5fd194; --good-soft: rgba(95, 209, 148, 0.14); --bad: #f07a70; --bad-soft: rgba(240, 122, 112, 0.14);
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+body {
+  background: var(--bg); color: var(--ink);
+  font-family: var(--font-body); font-size: var(--step-0); line-height: 1.6;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 0 48px;
+}
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--bg); }
+.wrap { max-width: 980px; margin: 0 auto; }
+h1, h2, h3 { font-family: var(--font-display); line-height: 1.15; text-wrap: balance; margin: 0; }
+h1 { font-size: var(--step-3); font-weight: 800; letter-spacing: -0.02em; overflow-wrap: break-word; hyphens: auto; }
+h2 { font-size: var(--step-2); font-weight: 700; }
+h3 { font-size: var(--step-1); font-weight: 700; }
+p { margin: 0; max-width: 70ch; }
+.muted { color: var(--muted); }
+.small { font-size: var(--step--1); }
+.eyebrow { font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); }
+.c1 { color: var(--c1); font-weight: 700; } .c2 { color: var(--c2); font-weight: 700; } .c3 { color: var(--c3); font-weight: 700; } .c4 { color: var(--c4); font-weight: 700; }
+
+/* Header and tabs */
+header.top { padding-block: 28px 8px; display: grid; gap: 6px; }
+header.top p { color: var(--muted); }
+nav.tabs { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--bg); display: flex; gap: 6px; overflow-x: auto; padding-block: 12px; margin-bottom: 8px; border-bottom: 1px solid var(--line); }
+nav.tabs a { flex: 0 0 auto; text-decoration: none; color: var(--ink); font-weight: 700; padding: 8px 14px; border-radius: 999px; border: 1px solid var(--line); background: var(--surface); font-size: var(--step--1); }
+nav.tabs a .n { font-family: var(--font-mono); color: var(--muted); margin-right: 6px; font-weight: 400; }
+nav.tabs a[aria-current="page"] { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+nav.tabs a[aria-current="page"] .n { color: var(--accent-ink); opacity: 0.75; }
+a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible { outline: 3px solid var(--c2); outline-offset: 2px; }
+
+/* Layout blocks */
+section.view { display: grid; gap: 28px; padding-top: 16px; }
+.stack { display: grid; gap: 12px; }
+.panel { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 20px; min-width: 0; }
+.grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; align-items: start; }
+.grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 16px; align-items: start; }
+.merksatz { border-left: 4px solid var(--accent); background: var(--surface); padding: 16px 20px; border-radius: 0 var(--radius) var(--radius) 0; display: grid; gap: 4px; }
+.merksatz .eyebrow { display: block; margin-bottom: 4px; }
+.merksatz p { font-family: var(--font-display); font-size: var(--step-1); font-weight: 500; line-height: 1.35; }
+.einfach { background: var(--surface-2); border-radius: var(--radius); padding: 16px 20px; display: grid; gap: 8px; }
+.formel { font-family: var(--font-math); font-size: 1.5rem; line-height: 1.6; }
+ul.list, ol.list { margin: 0; padding-left: 1.2em; display: grid; gap: 8px; max-width: 70ch; }
+.sim-layout { display: grid; grid-template-columns: minmax(0, 1fr) 300px; gap: 16px; align-items: start; }
+@media (max-width: 800px) { .sim-layout { grid-template-columns: 1fr; } }
+.figure { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 10px; min-width: 0; }
+.figure svg { width: 100%; height: auto; display: block; }
+.table-scroll { overflow-x: auto; }
+table.data { width: 100%; border-collapse: collapse; font-size: var(--step--1); }
+table.data th, table.data td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--line); vertical-align: top; overflow-wrap: anywhere; hyphens: auto; }
+table.data th { font-family: var(--font-display); font-size: var(--step-0); }
+table.data td.num, table.data th.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+details.profi { border: 1px dashed var(--line); border-radius: var(--radius); padding: 12px 16px; background: var(--surface); }
+details.profi summary { cursor: pointer; font-weight: 700; font-size: var(--step--1); }
+details.profi[open] summary { margin-bottom: 8px; }
+details.profi p, details.profi li { font-size: var(--step--1); }
+
+/* Math typesetting */
+.math { font-family: var(--font-math); font-size: 1.12em; }
+.math i { font-style: italic; }
+.math sup { font-size: 0.7em; line-height: 0; }
+.frac { display: inline-flex; flex-direction: column; vertical-align: middle; text-align: center; margin: 0 2px; line-height: 1.2; font-size: 0.95em; }
+.frac > span { padding: 0 3px; }
+.frac > span:first-child { border-bottom: 1.5px solid currentColor; }
+.unit { font-family: var(--font-body); font-style: normal; font-size: 0.92em; }
+
+/* Controls */
+button, .btn { font: inherit; font-weight: 700; font-size: var(--step--1); cursor: pointer; text-decoration: none; display: inline-block; padding: 9px 16px; border-radius: 8px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); }
+button:hover, .btn:hover { border-color: var(--accent); }
+button.primary, .btn.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+button[aria-pressed="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+button:disabled { opacity: 0.5; cursor: default; }
+.row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+select, input[type="text"] { font: inherit; padding: 8px 10px; border-radius: 8px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); min-width: 0; max-width: 100%; }
+input[type="text"] { font-family: var(--font-mono); }
+input[type="range"] { width: 100%; accent-color: var(--accent); }
+label.lbl { display: flex; justify-content: space-between; gap: 8px; font-weight: 700; font-size: var(--step--1); }
+label.lbl output, label.lbl .val { font-family: var(--font-mono); font-weight: 400; }
+.controls { display: grid; gap: 14px; align-content: start; }
+.readout { display: grid; grid-template-columns: 1fr auto; gap: 4px 12px; font-size: var(--step--1); margin: 0; }
+.readout dt { color: var(--muted); }
+.readout dd { margin: 0; font-family: var(--font-mono); font-variant-numeric: tabular-nums; text-align: right; }
+.readout dd.big { font-size: 1.15rem; font-weight: 600; color: var(--accent); }
+.status-box { padding: 12px 14px; border-radius: 8px; background: var(--surface-2); font-size: var(--step--1); }
+
+/* Trainer */
+.modes { display: flex; flex-wrap: wrap; gap: 6px; }
+.task { font-size: var(--step-0); line-height: 1.7; }
+.task .math { font-size: 1.35em; }
+.answer-row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.answer-row input { flex: 1 1 220px; font-size: var(--step-0); }
+.answer-row label { white-space: nowrap; }
+.hint { font-size: var(--step--1); color: var(--muted); }
+.hint code, .feedback code { font-family: var(--font-mono); background: var(--surface-2); padding: 1px 5px; border-radius: 4px; }
+.feedback { padding: 14px 16px; border-radius: 8px; background: var(--surface-2); display: grid; gap: 8px; }
+.feedback ol { margin: 0; padding-left: 1.3em; display: grid; gap: 6px; }
+b.ok { color: var(--good); } b.no { color: var(--bad); }
+.score-line { font-family: var(--font-mono); font-size: var(--step--1); color: var(--muted); }
+
+/* Equation lab */
+.lab-eq { font-family: var(--font-math); font-size: 1.9rem; text-align: center; padding: 10px 4px; overflow-x: auto; }
+.lab-log { margin: 0; padding: 0; list-style: none; display: grid; gap: 2px; font-family: var(--font-math); font-size: 1.15rem; }
+.lab-log li { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 12px; padding: 4px 8px; border-bottom: 1px solid var(--line); }
+.lab-log li .op { font-family: var(--font-mono); font-size: 0.85rem; color: var(--accent); align-self: center; white-space: nowrap; }
+.lab-log li.flip .op { color: var(--bad); }
+.lab-msg.ok { color: var(--good); font-weight: 700; }
+.lab-msg.no { color: var(--bad); }
+
+/* Quiz */
+.progress-line { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+.bar { flex: 1 1 200px; height: 8px; background: var(--surface-2); border-radius: 999px; overflow: hidden; }
+.bar i { display: block; height: 100%; background: var(--accent); width: 0; transition: width 0.3s; }
+.quiz { display: grid; gap: 16px; }
+.quiz .qtext { font-family: var(--font-display); font-size: var(--step-1); font-weight: 700; line-height: 1.3; }
+.quiz .opts { display: grid; gap: 8px; }
+.quiz .opts button { text-align: left; font-weight: 400; font-size: var(--step-0); padding: 12px 16px; display: flex; gap: 12px; align-items: center; }
+.quiz .opts button .k { font-family: var(--font-mono); color: var(--muted); }
+.quiz .opts button.right { border-color: var(--good); background: var(--good-soft); }
+.quiz .opts button.wrong { border-color: var(--bad); background: var(--bad-soft); }
+.score-big { font-family: var(--font-display); font-size: 3.2rem; font-weight: 800; line-height: 1; }
+
+/* Prediction cards ("Was passiert, wenn ...") */
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
+.card { display: grid; gap: 10px; align-content: start; }
+.card .ctx { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+.card .opts { display: grid; gap: 6px; }
+.card .opts button { text-align: left; font-weight: 400; }
+.card .opts button.right { border-color: var(--good); background: var(--good-soft); font-weight: 700; }
+.card .opts button.wrong { border-color: var(--bad); background: var(--bad-soft); }
+.card .answer { font-size: var(--step--1); padding: 12px; border-radius: 8px; background: var(--surface-2); }
+
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+</style>
+<style>
+:root { --accent: #6a3fa0; --accent-soft: rgba(106, 63, 160, 0.12); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --accent: #b79be0; } }
+:root[data-theme="dark"] { --accent: #b79be0; }
+</style>
+<style>
+.ptab { width: 100%; border-collapse: collapse; font-size: var(--step--1); }
+.ptab th, .ptab td { padding: 5px 7px; border-bottom: 1px solid var(--line); text-align: left; overflow-wrap: anywhere; }
+.ptab th { color: var(--muted); }
+.plot { width: 100%; height: auto; display: block; }
+.plot .ax { stroke: var(--ink); stroke-width: 1.4; }
+.plot .gl { stroke: var(--line); stroke-width: .7; }
+.plot .cv { stroke: var(--accent); stroke-width: 3; fill: none; }
+.plot .ghost { stroke: var(--muted); stroke-width: 1.5; fill: none; stroke-dasharray: 4 4; opacity: .6; }
+.plot .ep { stroke: #c62828; stroke-width: 1.5; stroke-dasharray: 4 3; }
+.plot .band { opacity: .25; }
+.plot text { font: 11px var(--font-mono); fill: var(--muted); }
+.ctl input[type=range], .ctl select { width: 100%; }
+.flask { width: 100%; max-width: 160px; height: auto; display: block; margin: 0 auto; }
+.big { font-family: var(--font-display); font-size: 1.4rem; font-weight: 800; margin: 0; }
+.grid3 { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 8px; }
+@media (max-width: 560px) { .grid3 { grid-template-columns: 1fr; } }
+.plot { max-height: 380px; }
+</style>
+<style>
+nav.crumbs ol { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 2px 6px; font-size: 0.85rem; line-height: 1.5; }
+nav.crumbs li { display: inline-flex; align-items: center; gap: 6px; min-width: 0; }
+nav.crumbs li + li::before { content: "›"; color: var(--muted); }
+nav.crumbs a { color: var(--accent); text-decoration: none; font-weight: 700; }
+nav.crumbs a:hover { text-decoration: underline; }
+nav.crumbs [aria-current] { color: var(--muted); }
+header.has-theme-toggle { position: relative; padding-right: 54px; }
+.theme-toggle { position: absolute; top: 18px; right: 0; width: 40px; height: 40px; border-radius: 999px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); font-size: 18px; line-height: 1; cursor: pointer; display: grid; place-items: center; padding: 0; }
+header:not(.top) > .theme-toggle { top: 0; }
+.theme-toggle:hover { border-color: var(--accent, currentColor); }
+.theme-toggle:focus-visible { outline: 3px solid var(--accent, currentColor); outline-offset: 2px; }
+
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <nav class="crumbs" aria-label="Brotkrümelnavigation"><ol><li><a href="index.html">LearningDesk</a></li><li><a href="klasse-11.html">Klasse 11</a></li><li><a href="klasse-11.html#chemie">Chemie</a></li><li><a href="#verstehen">Indikatoren und Titration</a></li><li data-crumb-section hidden><span aria-current="location"></span></li></ol></nav>
+    <h1>Indikatoren und Titration</h1>
+    <p>Wie man Säuren und Basen nachweist, ihre Konzentration durch Titration bestimmt und Titrationskurven auswertet.</p>
+    <p style="display:flex; flex-wrap:wrap; gap:8px"><a class="btn" href="factsheets/titration.pdf" target="_blank" rel="noopener">Factsheet als PDF ↓</a><a class="btn" href="aufgaben/titration.pdf" target="_blank" rel="noopener">Übungsaufgaben als PDF ↓</a></p>
+  </header>
+  <nav class="tabs" aria-label="Bereiche">
+    <a href="#verstehen" data-view="verstehen"><span class="n">1</span>Verstehen</a>
+    <a href="#indikatoren" data-view="indikatoren"><span class="n">2</span>Indikatoren</a>
+    <a href="#titrieren" data-view="titrieren"><span class="n">3</span>Titrieren</a>
+    <a href="#leitfaehigkeit" data-view="leitfaehigkeit"><span class="n">4</span>Leitfähigkeit</a>
+    <a href="#ueben" data-view="ueben"><span class="n">5</span>Üben</a>
+    <a href="#alltag" data-view="alltag"><span class="n">6</span>Im Alltag</a>
+    <a href="#quiz" data-view="quiz"><span class="n">7</span>Quiz</a>
+  </nav>
+
+  <section class="view" id="view-verstehen">
+    <div class="einfach">
+      <span class="eyebrow">Einfach erklärt</span>
+      <p>Wie viel Säure ist in einer Probe? Man tropft eine <strong>Maßlösung</strong> mit genau bekannter Konzentration (z. B. Natronlauge) aus einer <strong>Bürette</strong> dazu, bis die Säure gerade vollständig neutralisiert ist. Aus dem verbrauchten Volumen berechnet man die unbekannte Konzentration. Das nennt man <strong>Titration</strong>.</p>
+    </div>
+    <div class="grid-2">
+      <div class="panel stack"><h3>Äquivalenzpunkt</h3><p class="small">Am Äquivalenzpunkt (ÄP) ist genau so viel Base zugegeben, wie Säure vorhanden war: <strong>n(Säure) · z = n(Base)</strong> (z = Zahl der abgegebenen Protonen).</p><p class="small"><strong>c(Säure) = c(Lauge) · V(Lauge) / (z · V(Säure))</strong></p><p class="small">Beispiel: 20 mL Salzsäure brauchen 12,5 mL NaOH (c = 0,1 mol/L) ⇒ c(HCl) = 0,1 · 12,5 / 20 = 0,0625 mol/L.</p></div>
+      <div class="panel stack"><h3>Titrationskurven auswerten</h3><ul class="list small"><li><strong>Starke Säure + starke Base</strong>: ÄP bei <strong>pH 7</strong>, sehr großer pH-Sprung.</li><li><strong>Schwache Säure + starke Base</strong>: ÄP im <strong>Basischen</strong> (z. B. 8,7 bei Essigsäure), kleinerer Sprung, flacher Anstieg davor.</li><li>Am <strong>Halbäquivalenzpunkt</strong> einer schwachen Säure gilt <strong>pH = pK<sub>S</sub></strong>. So bestimmt man pK<sub>S</sub>-Werte.</li><li>Der ÄP ist der <strong>Wendepunkt</strong> der Kurve (steilste Stelle).</li></ul></div>
+    </div>
+    <div class="panel stack"><h3>Leitfähigkeitstitration</h3><p class="small">Statt des pH misst man die elektrische Leitfähigkeit. H₃O⁺ und OH⁻ leiten besonders gut. Bei der Titration von Salzsäure mit Natronlauge werden H₃O⁺ durch schlechter leitende Na⁺ ersetzt: Die Leitfähigkeit <strong>sinkt</strong> bis zum ÄP, danach <strong>steigt</strong> sie durch überschüssige OH⁻. Der Knick ist der ÄP. Vorteil: geht auch bei trüben oder farbigen Lösungen.</p></div>
+    <div class="merksatz"><span class="eyebrow">Merke</span><p>Der Äquivalenzpunkt ist nicht immer der Neutralpunkt (pH 7). Bei schwachen Säuren liegt er im Basischen, weil dort die korrespondierende Base (z. B. Acetat) vorliegt.</p></div>
+    <div class="panel stack"><h3>Typische Fehler</h3><ul class="list small"><li>Bei Schwefelsäure (zweiprotonig) den Faktor 2 vergessen.</li><li>Indikator mit Umschlagbereich weit weg vom ÄP gewählt.</li><li>Vorlage und Maßlösung verwechselt.</li></ul></div>
+  </section>
+
+  <section class="view" id="view-indikatoren" hidden>
+    <div class="stack"><span class="eyebrow">Säuren und Basen nachweisen</span><h2>Indikatoren</h2><p class="muted">Indikatoren sind selbst schwache Säuren, deren Säure- und Baseform verschieden gefärbt sind: HInd ⇌ H⁺ + Ind⁻. Der Farbumschlag liegt etwa bei pH = pK<sub>S</sub>(HInd) ± 1.</p></div>
+    <div class="panel stack"><table class="ptab" id="iTab"></table><div class="ctl"><label for="iR">pH = <b id="iV"></b></label><input type="range" id="iR" min="0" max="14" step="0.5" value="7"></div><div class="grid3" id="iSw"></div></div>
+  </section>
+
+  <section class="view" id="view-titrieren" hidden>
+    <div class="stack"><span class="eyebrow">Simulation</span><h2>Titrationskurve aufnehmen</h2><p class="muted">20 mL Säure werden mit Natronlauge (0,1 mol/L) titriert. Gib Lauge zu und beobachte pH und Indikatorfarbe.</p></div>
+    <div class="sim-layout">
+      <div class="figure"><svg class="plot" id="tSvg" viewBox="0 0 460 300" role="img" aria-label="Titrationskurve"></svg></div>
+      <div class="panel stack ctl">
+        <label>Probe<select id="tA"><option value="hcl">Salzsäure, c = 0,1 mol/L</option><option value="hac">Essigsäure, c = 0,1 mol/L</option><option value="hcl2">Salzsäure, c = 0,05 mol/L</option><option value="hac2">Essigsäure, c = 0,05 mol/L</option></select></label>
+        <label>Indikator<select id="tI"></select></label>
+        <label for="tV">V(NaOH) = <b id="tVV"></b> mL</label><input type="range" id="tV" min="0" max="40" step="0.1" value="0">
+        <div class="row"><button type="button" id="tM">−1 mL</button><button type="button" id="tP">+1 mL</button><button type="button" id="tD">+1 Tropfen</button></div>
+        <svg class="flask" id="tF" viewBox="0 0 120 120" aria-hidden="true"></svg>
+        <p class="big" id="tOut"></p><p class="small" id="tText"></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="view" id="view-leitfaehigkeit" hidden>
+    <div class="stack"><span class="eyebrow">Konzentrationsermittlung</span><h2>Leitfähigkeitstitration</h2><p class="muted">Die Kurve zeigt die berechnete Leitfähigkeit. Der Knick markiert den Äquivalenzpunkt.</p></div>
+    <div class="panel stack ctl"><label>Probe<select id="lA"><option value="hcl">Salzsäure, 0,1 mol/L</option><option value="hac">Essigsäure, 0,1 mol/L</option></select></label><svg class="plot" id="lSvg" viewBox="0 0 460 260" role="img" aria-label="Leitfähigkeitskurve"></svg><p class="small" id="lText"></p></div>
+  </section>
+
+  <section class="view" id="view-ueben" hidden>
+    <div class="stack"><span class="eyebrow">Methode: Titrationskurven auswerten</span><h2>Titration üben</h2><p class="muted">Konzentrationen in mol/L auf drei Nachkommastellen.</p></div>
+    <div id="trainer" class="stack"></div>
+  </section>
+
+  <section class="view" id="view-alltag" hidden>
+    <div class="stack"><span class="eyebrow">Im Alltag</span><h2>Titration in der Praxis</h2></div>
+    <div class="grid-2">
+      <div class="panel stack"><span class="eyebrow">Lebensmittel</span><h3>Säuregehalt von Essig und Wein</h3><p class="small">Lebensmittellabore titrieren den Gesamtsäuregehalt, z. B. muss Speiseessig mindestens 5 % Essigsäure enthalten.</p></div>
+      <div class="panel stack"><span class="eyebrow">Umwelt</span><h3>Wasseranalytik</h3><p class="small">Säure- und Basekapazität von Gewässern geben Auskunft über ihre Pufferung gegen sauren Regen.</p></div>
+      <div class="panel stack"><span class="eyebrow">Medizin</span><h3>Arzneimittel</h3><p class="small">Der Wirkstoffgehalt von Tabletten (z. B. Acetylsalicylsäure) wird durch Titration geprüft.</p></div>
+      <div class="panel stack"><span class="eyebrow">Garten</span><h3>Rotkohl als Indikator</h3><p class="small">Rotkohlsaft ist rot im Sauren, violett im Neutralen und grün-gelb im Basischen: ein Universalindikator aus der Küche.</p></div>
+    </div>
+  </section>
+
+  <section class="view" id="view-quiz" hidden>
+    <div class="stack"><span class="eyebrow">Selbsttest</span><h2>Quiz</h2><div class="progress-line"><div class="bar" aria-hidden="true"><i id="qBar"></i></div><span class="score-line" id="qProgress"></span></div></div>
+    <div class="panel quiz" id="quizBox" aria-live="polite"></div>
+  </section>
+</div>
+
+<script>
+/* LearnKit: shared building blocks for LearningDesk topic apps.
+   Exposes window.LK with: DOM helpers, number/expression parsing, rationals,
+   views (tab routing), quiz, trainer (task generators + checkers),
+   prediction cards and the equation lab for equations and inequalities. */
+(function () {
+  "use strict";
+  const $ = (s, r = document) => r.querySelector(s);
+  const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
+  const store = {
+    get(k) { try { return JSON.parse(localStorage.getItem(k)); } catch (e) { return null; } },
+    set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) { /* storage unavailable */ } }
+  };
+  const rnd = (a, b) => a + Math.floor(Math.random() * (b - a + 1));
+  const pick = (a) => a[Math.floor(Math.random() * a.length)];
+  const nz = (a, b) => { let v = 0; while (v === 0) v = rnd(a, b); return v; };
+  function shuffle(a) { const b = a.slice(); for (let i = b.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [b[i], b[j]] = [b[j], b[i]]; } return b; }
+  const gcd = (a, b) => { a = Math.abs(a); b = Math.abs(b); while (b) [a, b] = [b, a % b]; return a; };
+  const esc = (s) => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  const minus = (s) => String(s).replace(/-/g, "−");
+  const frac = (n, d) => `<span class="frac"><span>${n}</span><span>${d}</span></span>`;
+
+  // ---------- numbers ----------
+  // German formatting with at most d decimals
+  function fmt(v, d = 2) {
+    if (!isFinite(v)) return "–";
+    const r = Math.round(v * 10 ** d) / 10 ** d || 0;
+    return minus(r.toLocaleString("de-DE", { maximumFractionDigits: d }));
+  }
+  // accepts "3,5", "-2", "7/2", "x = 4", "1.013,25"
+  function parseNum(raw) {
+    let s = String(raw).trim().replace(/\s+/g, "").replace(/[−–]/g, "-").replace(/^[a-zA-Z]+=/, "");
+    if (s.includes(",") && s.includes(".")) s = s.replace(/\./g, "");
+    else if (/^-?\d{1,3}(\.\d{3})+$/.test(s)) s = s.replace(/\./g, ""); // German thousands separator: 1.013
+    s = s.replace(",", ".");
+    const m = s.match(/^(-?\d+(?:\.\d+)?)\/(-?\d+(?:\.\d+)?)$/);
+    if (m) return Number(m[1]) / Number(m[2]);
+    if (!/^-?(\d+\.?\d*|\.\d+)(e-?\d+)?$/i.test(s)) return NaN;
+    return Number(s);
+  }
+
+  // ---------- rationals ----------
+  class R {
+    constructor(n, d = 1) {
+      if (d === 0) throw new Error("Division durch 0");
+      if (d < 0) { n = -n; d = -d; }
+      const g = gcd(n, d) || 1; this.n = n / g; this.d = d / g;
+    }
+    static of(x) { if (x instanceof R) return x; if (Number.isInteger(x)) return new R(x); const k = 1e6; return new R(Math.round(x * k), k); }
+    add(o) { o = R.of(o); return new R(this.n * o.d + o.n * this.d, this.d * o.d); }
+    sub(o) { o = R.of(o); return new R(this.n * o.d - o.n * this.d, this.d * o.d); }
+    mul(o) { o = R.of(o); return new R(this.n * o.n, this.d * o.d); }
+    div(o) { o = R.of(o); return new R(this.n * o.d, this.d * o.n); }
+    neg() { return new R(-this.n, this.d); }
+    isZero() { return this.n === 0; }
+    eq(o) { o = R.of(o); return this.n === o.n && this.d === o.d; }
+    val() { return this.n / this.d; }
+    sign() { return Math.sign(this.n); }
+    abs() { return new R(Math.abs(this.n), this.d); }
+    text() { return this.d === 1 ? String(this.n) : `${this.n}/${this.d}`; }
+    html() { const a = Math.abs(this.n); const body = this.d === 1 ? String(a) : frac(a, this.d); return (this.n < 0 ? "−" : "") + body; }
+  }
+  // a·x + b as HTML, e.g. "3x − 2", "−x", "5"
+  function linHtml(x, c, v = "x") {
+    x = R.of(x); c = R.of(c);
+    const vx = `<i>${v}</i>`;
+    let s = "";
+    if (!x.isZero()) {
+      const a = x.abs();
+      s = (x.sign() < 0 ? "−" : "") + (a.eq(1) ? "" : a.html()) + vx;
+    }
+    if (!c.isZero() || !s) {
+      if (!s) s = c.html();
+      else s += (c.sign() < 0 ? " − " : " + ") + c.abs().html();
+    }
+    return s;
+  }
+
+  // ---------- polynomials: terms are {c: coefficient, v: {x: 2, y: 1}} ----------
+  function monoParts(v) {
+    const keys = Object.keys(v || {}).filter((k) => v[k] > 0).sort();
+    return { vh: keys.map((k) => `<i>${k}</i>` + (v[k] > 1 ? `<sup>${v[k]}</sup>` : "")).join(""), vt: keys.map((k) => k + (v[k] > 1 ? "^" + v[k] : "")).join("") };
+  }
+  function poly(terms) {
+    let h = "", t = "";
+    terms.filter((m) => m.c !== 0).forEach((m, i) => {
+      const { vh, vt } = monoParts(m.v), a = Math.abs(m.c);
+      const ch = a === 1 && vh ? "" : fmt(a, 4), ct = a === 1 && vt ? "" : String(a);
+      if (i === 0) { h += (m.c < 0 ? "−" : "") + ch + vh; t += (m.c < 0 ? "-" : "") + ct + vt; }
+      else { h += (m.c < 0 ? " − " : " + ") + ch + vh; t += (m.c < 0 ? "-" : "+") + ct + vt; }
+    });
+    return h ? { html: h, text: t } : { html: "0", text: "0" };
+  }
+  const polyFn = (terms) => (e) => terms.reduce((s, m) => s + m.c * Object.entries(m.v || {}).reduce((p, [k, ex]) => p * Math.pow(e[k], ex), 1), 0);
+  // collect like terms: returns new term list sorted by degree
+  function collect(terms) {
+    const map = new Map();
+    terms.forEach((m) => { const key = monoParts(m.v).vt; const cur = map.get(key); if (cur) cur.c += m.c; else map.set(key, { c: m.c, v: { ...(m.v || {}) } }); });
+    const deg = (m) => Object.values(m.v).reduce((a, b) => a + b, 0);
+    return [...map.values()].filter((m) => m.c !== 0).sort((a, b) => deg(b) - deg(a) || monoParts(a.v).vt.localeCompare(monoParts(b.v).vt));
+  }
+
+  // ---------- expressions ----------
+  // single-letter variables, implicit multiplication, ^, ², ³, ·, ×, :, ÷, decimal comma
+  function parse(src) {
+    const s = String(src).toLowerCase().replace(/\s+/g, "").replace(/[−–]/g, "-").replace(/[·⋅×]/g, "*").replace(/[:÷]/g, "/")
+      .replace(/²/g, "^2").replace(/³/g, "^3").replace(/(\d),(\d)/g, "$1.$2");
+    if (!s) throw new Error("leer");
+    const toks = [];
+    for (let i = 0; i < s.length;) {
+      const ch = s[i];
+      if (/[0-9.]/.test(ch)) { let j = i; while (j < s.length && /[0-9.]/.test(s[j])) j++; const n = parseFloat(s.slice(i, j)); if (isNaN(n)) throw new Error("Zahl"); toks.push({ t: "num", v: n }); i = j; continue; }
+      if ("+-*/^()".includes(ch)) { toks.push({ t: ch }); i++; continue; }
+      if (/[a-z]/.test(ch)) { toks.push({ t: "var", v: ch }); i++; continue; }
+      throw new Error("Zeichen");
+    }
+    let p = 0;
+    const peek = () => toks[p];
+    const starts = (tk) => tk && (tk.t === "num" || tk.t === "var" || tk.t === "(");
+    function expr() { let a = term(); while (peek() && (peek().t === "+" || peek().t === "-")) { const op = toks[p++].t, b = term(), l = a; a = op === "+" ? (e) => l(e) + b(e) : (e) => l(e) - b(e); } return a; }
+    function term() {
+      let a = unary();
+      for (;;) {
+        const tk = peek();
+        if (tk && (tk.t === "*" || tk.t === "/")) { p++; const b = unary(), l = a; a = tk.t === "*" ? (e) => l(e) * b(e) : (e) => l(e) / b(e); }
+        else if (starts(tk)) { const b = power(), l = a; a = (e) => l(e) * b(e); }
+        else break;
+      }
+      return a;
+    }
+    function unary() { const tk = peek(); if (tk && tk.t === "-") { p++; const a = unary(); return (e) => -a(e); } if (tk && tk.t === "+") { p++; return unary(); } return power(); }
+    function power() { const b = primary(); if (peek() && peek().t === "^") { p++; const ex = unary(); return (e) => Math.pow(b(e), ex(e)); } return b; }
+    function primary() {
+      const tk = toks[p++];
+      if (!tk) throw new Error("unvollständig");
+      if (tk.t === "num") { const v = tk.v; return () => v; }
+      if (tk.t === "var") { const v = tk.v; return (e) => (v in e ? e[v] : NaN); }
+      if (tk.t === "(") { const a = expr(); if (!peek() || peek().t !== ")") throw new Error("Klammer"); p++; return a; }
+      throw new Error("Syntax");
+    }
+    const f = expr();
+    if (p < toks.length) throw new Error("Syntax");
+    return f;
+  }
+  const SAMPLE = [1.37, -2.11, 0.73, 3.29, -0.58, 2.47, -1.63];
+  function sameFn(f, g, vars = "abcxyz") {
+    for (let k = 0; k < 6; k++) {
+      const env = {}; [...vars].forEach((v, i) => { env[v] = SAMPLE[(k + 2 * i) % SAMPLE.length] + 0.1 * i; });
+      const u = f(env), w = g(env);
+      if (!isFinite(u) || !isFinite(w) || Math.abs(u - w) > 1e-7 * Math.max(1, Math.abs(w))) return false;
+    }
+    return true;
+  }
+  // number of top-level summands of an input, e.g. "3a+2b-(a+b)" -> 3
+  function countSummands(raw) {
+    const s = String(raw).replace(/\s+/g, "").replace(/[−–]/g, "-");
+    let depth = 0, n = 1;
+    for (let i = 0; i < s.length; i++) {
+      const c = s[i];
+      if (c === "(") depth++; else if (c === ")") depth--;
+      else if ((c === "+" || c === "-") && depth === 0 && i > 0 && !"*/^(:·×÷+-".includes(s[i - 1])) n++;
+    }
+    return n;
+  }
+
+  // ---------- checkers for the trainer ----------
+  const check = {
+    // numeric answer with relative tolerance (default 1 %)
+    num(value, { tol = 0.01, abs = null, unit = "" } = {}) {
+      return (raw) => {
+        const v = parseNum(String(raw).replace(new RegExp(unit.replace(/[.*+?^${}()|[\]\\]/g, "\\$&") + "$"), ""));
+        if (isNaN(v)) return { ok: false, msg: "Bitte gib eine Zahl ein, z. B. <code>12,5</code>." };
+        const lim = abs !== null ? abs : Math.max(Math.abs(value) * tol, 1e-9);
+        return Math.abs(v - value) <= lim ? { ok: true } : { ok: false, msg: "Der Wert stimmt noch nicht. Prüfe Formel, Einheiten und Rechnung." };
+      };
+    },
+    // algebraic expression, equivalent to f; optional form check and hints for typical mistakes
+    expr(f, { vars = "abcxyz", form = null, hints = [], fallback = "Der Term ist noch nicht gleichwertig. Rechne Schritt für Schritt nach." } = {}) {
+      return (raw) => {
+        let g;
+        try { g = parse(raw); } catch (e) { return { ok: false, msg: "Das kann ich nicht lesen. Prüfe Klammern und Zeichen, z. B. <code>3a+2b</code> oder <code>2x(x-3)</code>." }; }
+        const eq = sameFn(g, f, vars);
+        if (eq && form) { const m = form(raw); if (m) return { ok: false, msg: m }; }
+        if (eq) return { ok: true };
+        for (const h of hints) if (h.f && sameFn(g, h.f, vars)) return { ok: false, msg: h.msg };
+        return { ok: false, msg: fallback };
+      };
+    }
+  };
+
+  // ---------- views (tab routing) ----------
+  function views(names, onShow = {}) {
+    function show() {
+      const h = location.hash.slice(1);
+      const v = names.includes(h) ? h : names[0];
+      names.forEach((n) => { const el = $("#view-" + n); if (el) el.hidden = n !== v; });
+      $$("nav.tabs a").forEach((a) => { if (a.dataset.view === v) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current"); });
+      window.scrollTo({ top: 0 });
+      if (onShow[v]) requestAnimationFrame(onShow[v]);
+    }
+    window.addEventListener("hashchange", show);
+    show();
+    return show;
+  }
+
+  // ---------- quiz ----------
+  function quiz({ box, bar, progress, questions, n = 10, key, mathOptions = false }) {
+    const B = $(box), BAR = $(bar), P = $(progress);
+    const N = Math.min(n, questions.length);
+    let order = [], idx = 0, score = 0, answered = false;
+    function start() {
+      order = shuffle(questions).slice(0, N).map((q) => { const perm = shuffle(q.o.map((_, i) => i)); return { q: q.q, o: perm.map((i) => q.o[i]), a: perm.indexOf(q.a), e: q.e }; });
+      idx = 0; score = 0; render();
+    }
+    function render() {
+      BAR.style.width = (idx / N) * 100 + "%";
+      if (idx >= N) {
+        const best = Math.max(score, store.get(key) || 0); store.set(key, best);
+        const msg = score >= N - 1 ? "Super! Du hast das Thema sicher drauf." : score >= Math.ceil(N * 0.6) ? "Gut gemacht! Schau dir die Erklärungen zu deinen Fehlern noch einmal an." : "Wiederhole die Erklärungen und übe im Trainer. Dann klappt es beim nächsten Mal besser.";
+        P.textContent = `fertig · Bestwert ${best} / ${N}`;
+        B.innerHTML = `<span class="eyebrow">Ergebnis</span><div class="score-big">${score} / ${N}</div><p>${msg}</p><div class="row"><button type="button" class="primary lk-again">Neue Runde</button></div>`;
+        $(".lk-again", B).addEventListener("click", start);
+        return;
+      }
+      const q = order[idx]; answered = false;
+      P.textContent = `Frage ${idx + 1} von ${N} · ${score} richtig`;
+      B.innerHTML = `<div class="qtext"></div><div class="opts"></div><div class="feedback" hidden></div><div class="row"><button type="button" class="primary lk-next" hidden>${idx + 1 < N ? "Nächste Frage" : "Ergebnis anzeigen"}</button></div>`;
+      $(".qtext", B).textContent = q.q;
+      q.o.forEach((t, i) => {
+        const b = document.createElement("button"); b.type = "button";
+        b.innerHTML = `<span class="k">${"ABCD"[i]}</span><span${mathOptions ? ' class="math"' : ""}></span>`; b.lastChild.textContent = t;
+        b.addEventListener("click", () => choose(i));
+        $(".opts", B).appendChild(b);
+      });
+      $(".lk-next", B).addEventListener("click", () => { idx++; render(); });
+    }
+    function choose(i) {
+      if (answered) return; answered = true;
+      const q = order[idx];
+      $$(".opts button", B).forEach((b, j) => { b.disabled = true; if (j === q.a) b.classList.add("right"); else if (j === i) b.classList.add("wrong"); });
+      const ok = i === q.a; if (ok) score++;
+      const fb = $(".feedback", B); fb.hidden = false;
+      fb.innerHTML = ok ? '<span><b class="ok">Richtig!</b> </span>' : '<span><b class="no">Leider falsch.</b> </span>';
+      fb.firstChild.appendChild(document.createTextNode(q.e));
+      const nb = $(".lk-next", B); nb.hidden = false; nb.focus();
+      P.textContent = `Frage ${idx + 1} von ${N} · ${score} richtig`;
+    }
+    start();
+  }
+
+  // ---------- trainer ----------
+  const trainers = [];
+  function trainer({ el, modes, id = "tr" }) {
+    const root = $(el);
+    root.innerHTML = `
+      ${modes.length > 1 ? `<div class="modes" role="group" aria-label="Übungsart">${modes.map((m, i) => `<button type="button" data-mode="${m.id}" aria-pressed="${i === 0}">${m.label}</button>`).join("")}</div>` : ""}
+      <div class="panel stack">
+        <p class="small muted lk-instr"></p>
+        <form class="stack lk-form" autocomplete="off">
+          <div class="task lk-task"></div>
+          <div class="answer-row"><label class="math lk-label" for="${id}-in"></label><input type="text" id="${id}-in" class="lk-in" spellcheck="false"></div>
+          <div class="row"><button type="submit" class="primary">Prüfen</button><button type="button" class="lk-show">Lösung zeigen</button><button type="button" class="lk-new">Neue Aufgabe</button></div>
+        </form>
+        <p class="hint lk-hint"></p>
+        <div class="feedback lk-fb" hidden aria-live="polite"></div>
+        <span class="score-line lk-score"></span>
+      </div>`;
+    let mode = modes[0], task = null;
+    const score = { right: 0, total: 0 };
+    const fb = $(".lk-fb", root), input = $(".lk-in", root);
+    function updateScore() { $(".lk-score", root).textContent = `${score.right} von ${score.total} Aufgaben auf Anhieb richtig`; }
+    function next() {
+      task = mode.gen(); task.attempted = false;
+      $(".lk-instr", root).innerHTML = task.instr || mode.instr || "";
+      $(".lk-task", root).innerHTML = task.html;
+      $(".lk-label", root).innerHTML = task.label || "";
+      input.placeholder = task.placeholder || "";
+      $(".lk-hint", root).innerHTML = task.hint || mode.hint || "";
+      input.value = ""; fb.hidden = true;
+      return task;
+    }
+    function solutionHtml() { return task.solution ? `<div>${task.solution}</div>` : ""; }
+    function submit(raw) {
+      const r = task.check(raw);
+      if (!task.attempted) { task.attempted = true; score.total++; if (r.ok) score.right++; updateScore(); }
+      fb.hidden = false;
+      fb.innerHTML = r.ok ? `<span><b class="ok">Richtig!</b></span>${solutionHtml()}` : `<span><b class="no">Noch nicht richtig.</b> ${r.msg || ""}</span>`;
+      return r;
+    }
+    $(".lk-form", root).addEventListener("submit", (ev) => { ev.preventDefault(); submit(input.value); });
+    $(".lk-show", root).addEventListener("click", () => {
+      if (!task.attempted) { task.attempted = true; score.total++; updateScore(); }
+      fb.hidden = false; fb.innerHTML = `<span>Eine mögliche Lösung: <code>${esc(task.answer)}</code></span>${solutionHtml()}`;
+    });
+    $(".lk-new", root).addEventListener("click", () => { next(); input.focus(); });
+    $$("[data-mode]", root).forEach((b) => b.addEventListener("click", () => {
+      mode = modes.find((m) => m.id === b.dataset.mode);
+      $$("[data-mode]", root).forEach((x) => x.setAttribute("aria-pressed", String(x === b)));
+      next();
+    }));
+    next();
+    const api = { modes, next, submit, get task() { return task; }, setMode(i) { mode = modes[i]; return next(); } };
+    trainers.push(api);
+    return api;
+  }
+
+  // ---------- prediction cards ----------
+  function cards({ el, items, key }) {
+    const root = $(el);
+    let answers = store.get(key) || {};
+    function renderAll() {
+      root.innerHTML = "";
+      items.forEach((c, idx) => {
+        const card = document.createElement("article");
+        card.className = "panel card";
+        card.innerHTML = `<span class="ctx"></span><h3></h3><p class="small"></p><div class="opts"></div><div class="answer" hidden></div>`;
+        $(".ctx", card).textContent = c.ctx; $("h3", card).textContent = c.title; $("p", card).textContent = c.text;
+        const opts = $(".opts", card), ans = $(".answer", card);
+        c.o.forEach((t, i) => {
+          const b = document.createElement("button"); b.type = "button"; b.textContent = t;
+          b.addEventListener("click", () => { answers[idx] = i; store.set(key, answers); paint(); });
+          opts.appendChild(b);
+        });
+        function paint() {
+          const ch = answers[idx];
+          $$("button", opts).forEach((b, i) => { b.classList.remove("right", "wrong"); b.disabled = ch !== undefined; if (ch !== undefined) { if (i === c.a) b.classList.add("right"); else if (i === ch) b.classList.add("wrong"); } });
+          if (ch !== undefined) { ans.hidden = false; ans.innerHTML = ch === c.a ? '<b class="ok">Richtig.</b> ' : '<b class="no">Nicht ganz.</b> '; ans.appendChild(document.createTextNode(c.e)); }
+          else ans.hidden = true;
+        }
+        root.appendChild(card); paint();
+      });
+    }
+    renderAll();
+    return { reset() { answers = {}; store.set(key, answers); renderAll(); } };
+  }
+
+  // ---------- equation lab (equations and inequalities) ----------
+  const REL_FLIP = { "<": ">", ">": "<", "≤": "≥", "≥": "≤", "=": "=" };
+  function equationLab({ el, gen, inequality = false }) {
+    const root = $(el);
+    root.innerHTML = `
+      <div class="panel stack">
+        <div class="lab-eq lk-eq" aria-live="polite"></div>
+        <ol class="lab-log lk-log"></ol>
+        <form class="answer-row lk-form" autocomplete="off">
+          <label for="${el.slice(1)}-op" class="small"><strong>Umformung für beide Seiten:</strong></label>
+          <input type="text" id="${el.slice(1)}-op" class="lk-op" placeholder="z. B. −3 oder −2x oder :4" spellcheck="false">
+          <button type="submit" class="primary">Ausführen</button>
+        </form>
+        <p class="hint">Schreibweise: <code>-3</code>, <code>+5</code>, <code>-2x</code>, <code>+x</code>, <code>:4</code>, <code>*2</code>, <code>:(-3)</code>. Brüche als <code>1/2</code>.</p>
+        <p class="lab-msg lk-msg" aria-live="polite"></p>
+        <div class="row"><button type="button" class="lk-undo">Rückgängig</button><button type="button" class="lk-new">Neue ${inequality ? "Ungleichung" : "Gleichung"}</button></div>
+      </div>`;
+    let hist = [], st = null;
+    const eqHtml = (s) => `${linHtml(s.L.x, s.L.c)} ${s.rel} ${linHtml(s.R.x, s.R.c)}`;
+    function setMsg(t, cls = "") { const m = $(".lk-msg", root); m.className = "lab-msg lk-msg " + cls; m.innerHTML = t; }
+    function render() {
+      $(".lk-eq", root).innerHTML = eqHtml(st);
+      // the operation is written next to the line it is applied to (school notation)
+      $(".lk-log", root).innerHTML = hist.map((h, i) => { const nx = hist[i + 1]; return `<li class="${nx && nx.flip ? "flip" : ""}"><span>${eqHtml(h.s)}</span><span class="op">${nx ? "| " + esc(nx.op) : ""}</span></li>`; }).join("");
+      const s = st, xL = !s.L.x.isZero(), xR = !s.R.x.isZero();
+      if (!xL && !xR) {
+        const l = s.L.c.val(), r = s.R.c.val();
+        const truth = { "=": l === r, "<": l < r, ">": l > r, "≤": l <= r, "≥": l >= r }[s.rel];
+        setMsg(truth ? "Die Variable ist verschwunden und die Aussage ist immer wahr: Jede Zahl ist eine Lösung (L = ℚ)." : "Die Variable ist verschwunden und die Aussage ist falsch: Es gibt keine Lösung (L = { }).", "ok");
+        return;
+      }
+      const solvedL = s.L.x.eq(1) && s.L.c.isZero() && !xR, solvedR = s.R.x.eq(1) && s.R.c.isZero() && !xL;
+      if (solvedL || solvedR) {
+        const v = solvedL ? s.R.c : s.L.c, rel = solvedL ? s.rel : REL_FLIP[s.rel];
+        setMsg(inequality && rel !== "=" ? `Gelöst! Alle Zahlen mit <span class="math"><i>x</i> ${rel} ${v.html()}</span> erfüllen die Ungleichung: <span class="math">L = {<i>x</i> | <i>x</i> ${rel} ${v.html()}}</span>` : `Gelöst! <span class="math"><i>x</i> = ${v.html()}</span>, also <span class="math">L = {${v.html()}}</span>. Mach zur Sicherheit die Probe.`, "ok");
+      } else setMsg("Forme weiter um, bis <i>x</i> allein auf einer Seite steht.");
+    }
+    function start(s) { st = s || gen(); hist = [{ s: st, op: "" }]; render(); }
+    function apply(raw) {
+      let s = String(raw).replace(/\s+/g, "").replace(/[−–]/g, "-").replace(/[·⋅×]/g, "*").replace(/[÷/]/g, (m, i) => (i === 0 ? ":" : m)).replace(/^\//, ":");
+      const m = s.match(/^([+\-*:])\(?(-?)(\d*(?:[.,]\d+)?(?:\/\d+)?)(x?)\)?$/);
+      if (!m || (m[3] === "" && m[4] === "")) { setMsg("Das verstehe ich nicht. Beginne mit + − * oder :, z. B. <code>-3</code> oder <code>:2</code>.", "no"); return false; }
+      const [, op, sg, numTxt, hasX] = m;
+      let k; try { k = R.of(numTxt === "" ? 1 : parseNum(numTxt)); if (numTxt.includes("/")) { const [a, b] = numTxt.split("/").map(Number); k = new R(a, b); } } catch (e) { setMsg("Ungültige Zahl.", "no"); return false; }
+      if (sg) k = k.neg();
+      const next = { L: { ...st.L }, R: { ...st.R }, rel: st.rel };
+      let flip = false;
+      const label = `${op === "*" ? "·" : op === ":" ? ":" : op === "-" ? "−" : "+"}${op === "*" || op === ":" ? (k.sign() < 0 ? `(${k.text().replace("-", "−")})` : k.text()) : (k.sign() < 0 ? `(${k.text().replace("-", "−")})` : k.text())}${hasX ? "x" : ""}`.replace(/^([+−])1x$/, "$1x");
+      if (op === "+" || op === "-") {
+        const kk = op === "-" ? k.neg() : k;
+        for (const side of ["L", "R"]) { if (hasX) next[side].x = next[side].x.add(kk); else next[side].c = next[side].c.add(kk); }
+      } else {
+        if (hasX) { setMsg("Mit <i>x</i> malnehmen oder durch <i>x</i> teilen ist keine erlaubte Umformung, weil <i>x</i> null sein könnte.", "no"); return false; }
+        if (k.isZero()) { setMsg(op === ":" ? "Durch 0 darf man nicht teilen." : "Mal 0 macht beide Seiten zu 0. Dabei geht die Information verloren, das ist keine Äquivalenzumformung.", "no"); return false; }
+        for (const side of ["L", "R"]) {
+          next[side].x = op === "*" ? next[side].x.mul(k) : next[side].x.div(k);
+          next[side].c = op === "*" ? next[side].c.mul(k) : next[side].c.div(k);
+        }
+        if (inequality && k.sign() < 0 && next.rel !== "=") { next.rel = REL_FLIP[next.rel]; flip = true; }
+      }
+      st = next; hist.push({ s: st, op: label + (flip ? "  Zeichen umdrehen!" : ""), flip }); render();
+      if (flip) setMsg("Achtung: Du hast mit einer negativen Zahl multipliziert oder durch sie geteilt. Deshalb dreht sich das Ungleichheitszeichen um! " + $(".lk-msg", root).innerHTML, "no");
+      return true;
+    }
+    $(".lk-form", root).addEventListener("submit", (ev) => { ev.preventDefault(); const i = $(".lk-op", root); if (apply(i.value)) i.value = ""; i.focus(); });
+    $(".lk-undo", root).addEventListener("click", () => { if (hist.length > 1) { hist.pop(); st = hist[hist.length - 1].s; render(); } });
+    $(".lk-new", root).addEventListener("click", () => start());
+    start();
+    return { apply, start, get state() { return st; } };
+  }
+  // random linear equation a x + b (rel) c x + d with a "nice" solution
+  function genLinear({ rel = "=", fractions = false } = {}) {
+    let a, c; do { a = nz(-6, 7); c = rnd(-4, 4); } while (a === c);
+    const x0 = fractions ? new R(nz(-9, 9), pick([1, 2, 3])) : new R(nz(-6, 6));
+    const b = R.of(rnd(-9, 9)), d = x0.mul(a - c).add(b);
+    return { L: { x: R.of(a), c: b }, R: { x: R.of(c), c: d }, rel, x0 };
+  }
+
+  // number as plain answer text with decimal comma, e.g. 1013,25
+  const numText = (v, d = 2) => String(Math.round(v * 10 ** d) / 10 ** d || 0).replace(".", ",");
+
+  window.LK = { $, $$, store, rnd, pick, nz, shuffle, gcd, esc, minus, frac, fmt, parseNum, numText, R, linHtml, poly, polyFn, collect, monoParts, parse, sameFn, countSummands, check, views, quiz, trainer, trainers, cards, equationLab, genLinear, REL_FLIP };
+})();
+</script>
+<script>
+(function () {
+  "use strict";
+  const { $, $$, pick, fmt } = LK;
+  // indicators: name, from pH, to pH, acid colour, base colour
+  const IND = [["Methylorange", 3.1, 4.4, "#d7301f", "#f4c20d"], ["Methylrot", 4.4, 6.2, "#d7301f", "#f4c20d"], ["Bromthymolblau", 6.0, 7.6, "#e8c21a", "#2563c9", "#3f9a45"], ["Phenolphthalein", 8.2, 10.0, "rgba(255,255,255,0)", "#d0368a"], ["Thymolphthalein", 9.3, 10.5, "rgba(255,255,255,0)", "#2c58c7"]];
+  const mix = (a, b, t) => { const p = (c) => (c.startsWith("#") ? [1, 3, 5].map((i) => parseInt(c.slice(i, i + 2), 16)).concat(1) : [255, 255, 255, 0]); const A = p(a), B = p(b); const m = A.map((v, i) => v + (B[i] - v) * t); return `rgba(${m[0] | 0},${m[1] | 0},${m[2] | 0},${m[3].toFixed(2)})`; };
+  const indCol = (ind, pH) => { const t = Math.min(1, Math.max(0, (pH - ind[1]) / (ind[2] - ind[1]))); if (ind[5]) return t < 0.5 ? mix(ind[3], ind[5], t * 2) : mix(ind[5], ind[4], t * 2 - 1); return mix(ind[3], ind[4], t); };
+  $("#iTab").innerHTML = "<tr><th>Indikator</th><th>Umschlagbereich</th><th>Säureform</th><th>Baseform</th></tr>" + IND.map((i) => `<tr><td>${i[0]}</td><td>pH ${fmt(i[1], 1)} bis ${fmt(i[2], 1)}</td><td><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:${i[3].startsWith("rgba") ? "#fff" : i[3]};border:1px solid var(--line)"></span> ${i[3].startsWith("rgba") ? "farblos" : i[0] === "Bromthymolblau" ? "gelb" : "rot"}</td><td><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:${i[4]}"></span> ${i[0] === "Phenolphthalein" ? "pink" : /blau|Thymolph/.test(i[0]) ? "blau" : "gelb"}</td></tr>`).join("");
+  function drawI() { const pH = +$("#iR").value; $("#iV").textContent = fmt(pH, 1); $("#iSw").innerHTML = IND.slice(0, 4).map((i) => `<div class="panel stack" style="align-items:center"><div style="width:60px;height:60px;border-radius:50%;border:2px solid var(--line);background:${indCol(i, pH)}"></div><span class="small">${i[0]}</span></div>`).join(""); }
+  $("#iR").addEventListener("input", drawI); drawI();
+
+  // ---------- titration model ----------
+  const VA = 20, CB = 0.1, KW = 1e-14;
+  function pHof(acid, ca, vb) {
+    const nA = (ca * VA) / 1000, nB = (CB * vb) / 1000, V = (VA + vb) / 1000;
+    if (acid === "hcl") { // exact charge balance: h - Kw/h = (nA - nB)/V
+      const d = (nA - nB) / V, h = (d + Math.sqrt(d * d + 4 * KW)) / 2; return -Math.log10(h);
+    }
+    const Ka = 10 ** -4.75, cT = nA / V, cNa = nB / V;
+    // solve h + cNa = Kw/h + cT*Ka/(Ka+h) by bisection on log h
+    let lo = -14, hi = 0;
+    for (let i = 0; i < 80; i++) { const m = (lo + hi) / 2, h = 10 ** m, f = h + cNa - KW / h - (cT * Ka) / (Ka + h); if (f > 0) hi = m; else lo = m; }
+    return -(lo + hi) / 2;
+  }
+  const cOf = { hcl: 0.1, hac: 0.1, hcl2: 0.05, hac2: 0.05 };
+  $("#tI").innerHTML = IND.map((i, k) => `<option value="${k}"${k === 3 ? " selected" : ""}>${i[0]} (${fmt(i[1], 1)}–${fmt(i[2], 1)})</option>`).join("");
+  function drawT() {
+    const key = $("#tA").value, acid = key.startsWith("hcl") ? "hcl" : "hac", ca = cOf[key], vb = +$("#tV").value, ind = IND[+$("#tI").value];
+    $("#tVV").textContent = fmt(vb, 1);
+    const vEP = (ca * VA) / CB, X = (v) => 40 + (v / 40) * 405, Y = (p) => 270 - (p / 14) * 255;
+    let g = "";
+    for (let p = 0; p <= 14; p += 2) g += `<line class="gl" x1="40" x2="445" y1="${Y(p)}" y2="${Y(p)}"/><text x="34" y="${Y(p) + 4}" text-anchor="end">${p}</text>`;
+    for (let v = 0; v <= 40; v += 5) g += `<text x="${X(v)}" y="286" text-anchor="middle">${v}</text>`;
+    g += `<rect class="band" x="40" width="405" y="${Y(ind[2])}" height="${Y(ind[1]) - Y(ind[2])}" fill="${ind[4]}"/>`;
+    g += `<line class="ax" x1="40" y1="270" x2="448" y2="270"/><line class="ax" x1="40" y1="270" x2="40" y2="10"/><text x="445" y="262" text-anchor="end">V(NaOH) in mL</text><text x="44" y="12">pH</text>`;
+    const pts = (to) => { const a = []; for (let v = 0; v <= to + 1e-9; v += 0.1) a.push(`${X(v).toFixed(1)} ${Y(pHof(acid, ca, v)).toFixed(1)}`); return "M" + a.join(" L"); };
+    g += `<path class="ghost" d="${pts(40)}"/>`;
+    if (vb > 0) g += `<path class="cv" d="${pts(vb)}"/>`;
+    g += `<line class="ep" x1="${X(vEP)}" x2="${X(vEP)}" y1="270" y2="10"/><text x="${X(vEP) + 4}" y="24" style="fill:#c62828">ÄP ${fmt(vEP, 1)} mL</text>`;
+    if (acid === "hac") g += `<circle cx="${X(vEP / 2)}" cy="${Y(4.75)}" r="4" fill="#c62828"/><text x="${X(vEP / 2) + 6}" y="${Y(4.75) - 6}" style="fill:#c62828">pH = pKs</text>`;
+    $("#tSvg").innerHTML = g;
+    const pH = pHof(acid, ca, vb);
+    $("#tF").innerHTML = `<path d="M45 10 V45 L15 100 Q12 110 25 110 H95 Q108 110 105 100 L75 45 V10" fill="none" stroke="currentColor" stroke-width="2"/><path d="M32 70 L88 70 L103 100 Q105 108 95 108 H25 Q15 108 17 100 Z" fill="${indCol(ind, pH)}" stroke="none"/><path d="M32 70 L88 70 L103 100 Q105 108 95 108 H25 Q15 108 17 100 Z" fill="none" stroke="var(--line)"/>`;
+    $("#tOut").textContent = `pH = ${fmt(pH, 2)}`;
+    const pheq = pHof(acid, ca, vEP);
+    $("#tText").innerHTML = `Äquivalenzpunkt bei ${fmt(vEP, 1)} mL, pH dort ${fmt(pheq, 2)}. ${acid === "hac" ? "Der ÄP liegt im Basischen, weil Acetat eine Base ist. Bei der Hälfte (Halbäquivalenzpunkt) gilt pH = pK<sub>S</sub> = 4,75." : "Starke Säure: ÄP bei pH 7, großer Sprung."} ${ind[1] <= pheq + 1 && ind[2] >= pheq - 1.5 ? `<b>${ind[0]}</b> ist hier geeignet.` : `<b>${ind[0]}</b> schlägt nicht am ÄP um und ist hier ungeeignet.`}`;
+  }
+  ["#tA", "#tI", "#tV"].forEach((id) => $(id).addEventListener("input", drawT));
+  $("#tP").addEventListener("click", () => { $("#tV").value = Math.min(40, +$("#tV").value + 1); drawT(); });
+  $("#tM").addEventListener("click", () => { $("#tV").value = Math.max(0, +$("#tV").value - 1); drawT(); });
+  $("#tD").addEventListener("click", () => { $("#tV").value = Math.min(40, +$("#tV").value + 0.1); drawT(); });
+  drawT();
+
+  // ---------- conductivity ----------
+  const LAM = { H: 350, OH: 198, Na: 50, Cl: 76, Ac: 41 };
+  function kappa(acid, vb) {
+    const nA = (0.1 * VA) / 1000, nB = (CB * vb) / 1000, V = (VA + vb) / 1000;
+    if (acid === "hcl") { const h = Math.max(nA - nB, 0) / V, oh = Math.max(nB - nA, 0) / V; return h * LAM.H + oh * LAM.OH + (nB / V) * LAM.Na + (nA / V) * LAM.Cl; }
+    const pH = pHof("hac", 0.1, vb), h = 10 ** -pH, ac = Math.min(nA, nB) / V + (vb === 0 ? h : 0), oh = Math.max(nB - nA, 0) / V;
+    return h * LAM.H + ac * LAM.Ac + (nB / V) * LAM.Na + oh * LAM.OH;
+  }
+  function drawL() {
+    const acid = $("#lA").value, X = (v) => 40 + (v / 40) * 405; const vals = []; for (let v = 0; v <= 40; v += 0.25) vals.push([v, kappa(acid, v)]);
+    const max = Math.max(...vals.map((x) => x[1])), Y = (k) => 240 - (k / max) * 220;
+    let g = `<line class="ax" x1="40" y1="240" x2="448" y2="240"/><line class="ax" x1="40" y1="240" x2="40" y2="10"/><text x="445" y="232" text-anchor="end">V(NaOH) in mL</text><text x="44" y="12">Leitfähigkeit</text>`;
+    for (let v = 0; v <= 40; v += 5) g += `<text x="${X(v)}" y="252" text-anchor="middle">${v}</text>`;
+    g += `<path class="cv" d="M${vals.map(([v, k]) => `${X(v).toFixed(1)} ${Y(k).toFixed(1)}`).join(" L")}"/><line class="ep" x1="${X(20)}" x2="${X(20)}" y1="240" y2="10"/><text x="${X(20) + 4}" y="24" style="fill:#c62828">ÄP 20 mL</text>`;
+    $("#lSvg").innerHTML = g;
+    $("#lText").innerHTML = acid === "hcl" ? "Bis zum ÄP werden gut leitende H₃O⁺ durch schlechter leitende Na⁺ ersetzt: Die Leitfähigkeit <b>sinkt</b>. Danach kommen gut leitende OH⁻ hinzu: Sie <b>steigt</b> steil. Schnittpunkt der beiden Geraden = ÄP." : "Essigsäure ist kaum protolysiert und leitet anfangs schlecht. Bei Zugabe entstehen Na⁺ und Acetat-Ionen: Die Leitfähigkeit <b>steigt langsam</b>. Nach dem ÄP steigt sie durch OH⁻ <b>steiler</b>. Der Knick zeigt den ÄP.";
+  }
+  $("#lA").addEventListener("change", drawL); drawL();
+
+  // ---------- trainer ----------
+  function genC() { const vA = pick([10, 20, 25, 50]), cB = pick([0.1, 0.1, 0.05, 0.2]), z = pick([1, 1, 2]), vB = pick([8.4, 12.5, 15.0, 17.6, 20.0, 22.3, 9.8]); const c = (cB * vB) / (z * vA);
+    return { html: `${vA} mL ${z === 2 ? "Schwefelsäure" : "Salzsäure"} werden mit Natronlauge (c = ${fmt(cB, 2)} mol/L) titriert. Verbrauch bis zum ÄP: ${fmt(vB, 1)} mL. Konzentration der Säure?`, label: "c in mol/L:", answer: fmt(c, 4), check: LK.check.num(c, { abs: 0.0006 }), solution: `c = c(NaOH) · V(NaOH) / (${z === 2 ? "2 · " : ""}V(Säure)) = ${fmt(cB, 2)} · ${fmt(vB, 1)} / (${z === 2 ? "2 · " : ""}${vA}) = <b>${fmt(c, 4)} mol/L</b>` }; }
+  function genV() { const cA = pick([0.1, 0.05, 0.08, 0.12]), vA = pick([10, 20, 25]), cB = pick([0.1, 0.2]); const v = (cA * vA) / cB;
+    return { html: `Wie viel mL Natronlauge (c = ${fmt(cB, 1)} mol/L) braucht man, um ${vA} mL Salzsäure (c = ${fmt(cA, 2)} mol/L) zu neutralisieren?`, label: "V in mL:", answer: fmt(v, 2), check: LK.check.num(v, { abs: 0.02 }), solution: `V = ${fmt(cA, 2)} · ${vA} / ${fmt(cB, 1)} = <b>${fmt(v, 2)} mL</b>` }; }
+  const SCEN = [["Salzsäure mit Natronlauge (ÄP pH 7)", "Bromthymolblau"], ["Essigsäure mit Natronlauge (ÄP pH 8,7)", "Phenolphthalein"], ["Ammoniak mit Salzsäure (ÄP pH 5,3)", "Methylrot"], ["Natronlauge mit Salzsäure (ÄP pH 7)", "Bromthymolblau"]];
+  function genInd() { const [s, i] = pick(SCEN); return { html: `Welcher Indikator eignet sich am besten für die Titration von ${s}? (Methylorange 3,1–4,4; Methylrot 4,4–6,2; Bromthymolblau 6,0–7,6; Phenolphthalein 8,2–10)`, label: "Indikator:", answer: i, check: (raw) => (raw.trim().toLowerCase().slice(0, 6) === i.toLowerCase().slice(0, 6) ? { ok: true } : { ok: false, msg: "Der Umschlagbereich muss den pH am ÄP enthalten." }), solution: `<b>${i}</b>` }; }
+  function genHalf() { const t = pick([["Essigsäure", 4.75], ["Methansäure", 3.75], ["Ammonium-Ion", 9.25], ["Propansäure", 4.87], ["Benzoesäure", 4.2]]);
+    return { html: `Bei der Titration von ${t[0]} beträgt der pH am Halbäquivalenzpunkt ${fmt(t[1], 2)}. Welchen pK<sub>S</sub> hat die Säure?`, label: "pK<sub>S</sub>:", answer: fmt(t[1], 2), check: LK.check.num(t[1], { abs: 0.01 }), solution: `Am Halbäquivalenzpunkt gilt c(HA) = c(A⁻) ⇒ <b>pK<sub>S</sub> = pH = ${fmt(t[1], 2)}</b>` }; }
+  function genMass() { const v = pick([8.3, 10.6, 12.4, 14.1, 16.7]), c = 0.1; const n = (c * v) / 1000, m = n * 60.05;
+    return { html: `Eine Essigprobe verbraucht ${fmt(v, 1)} mL Natronlauge (c = 0,1 mol/L). Wie viel mg Essigsäure (M = 60,05 g/mol) enthält sie?`, label: "m in mg:", answer: fmt(m * 1000, 1), check: LK.check.num(m * 1000, { abs: 0.6 }), solution: `n = 0,1 · ${fmt(v, 1)} mL = ${fmt(n * 1000, 3)} mmol; m = n · M = <b>${fmt(m * 1000, 1)} mg</b>` }; }
+  LK.trainer({ el: "#trainer", modes: [
+    { id: "c", label: "Konzentration", gen: genC },
+    { id: "v", label: "Volumen", gen: genV },
+    { id: "ind", label: "Indikator wählen", gen: genInd },
+    { id: "half", label: "Halbäquivalenzpunkt", gen: genHalf },
+    { id: "masse", label: "Masse in der Probe", gen: genMass }
+  ] });
+
+  LK.quiz({ box: "#quizBox", bar: "#qBar", progress: "#qProgress", key: "titr.best", n: 8, questions: [
+    { q: "Was gilt am Äquivalenzpunkt?", o: ["pH = 7 immer", "n(Säure) · z = n(Base)", "Die Bürette ist leer", "pH = pKs"], a: 1, e: "Stoffmengen äquivalent." },
+    { q: "Wo liegt der ÄP bei Essigsäure mit Natronlauge?", o: ["im Sauren", "bei pH 7", "im Basischen", "bei pH 14"], a: 2, e: "Acetat ist eine Base." },
+    { q: "Was gilt am Halbäquivalenzpunkt einer schwachen Säure?", o: ["pH = 7", "pH = pKs", "pH = 14 − pKs", "pH = 0"], a: 1, e: "c(HA) = c(A⁻)." },
+    { q: "Welcher Indikator passt zur Titration Essigsäure/Natronlauge?", o: ["Methylorange", "Methylrot", "Phenolphthalein", "keiner"], a: 2, e: "Umschlag 8,2–10." },
+    { q: "Warum sinkt die Leitfähigkeit bei der Titration von HCl mit NaOH zuerst?", o: ["H₃O⁺ wird durch schlechter leitende Na⁺ ersetzt", "Wasser leitet nicht", "Cl⁻ verschwindet", "Die Temperatur sinkt"], a: 0, e: "H₃O⁺ hat die höchste Ionenbeweglichkeit." },
+    { q: "20 mL HCl brauchen 10 mL NaOH (0,1 mol/L). c(HCl)?", o: ["0,05 mol/L", "0,1 mol/L", "0,2 mol/L", "0,5 mol/L"], a: 0, e: "0,1 · 10 / 20." },
+    { q: "Woran erkennt man den ÄP in einer pH-Titrationskurve?", o: ["Am Maximum", "Am Wendepunkt (steilste Stelle)", "Am Anfang", "Bei pH 0"], a: 1, e: "Größte Steigung." },
+    { q: "Was ist ein Indikator chemisch?", o: ["Ein Salz", "Eine schwache Säure mit verschieden gefärbter Säure- und Baseform", "Ein Metall", "Ein Katalysator"], a: 1, e: "HInd ⇌ H⁺ + Ind⁻." }
+  ] });
+
+  LK.views(["verstehen", "indikatoren", "titrieren", "leitfaehigkeit", "ueben", "alltag", "quiz"], {});
+})();
+</script>
+<script>
+(function () {
+  "use strict";
+  // Light/dark switch shared by all LearningDesk pages; the choice is remembered in this browser
+  var KEY = "learningdesk.theme", root = document.documentElement;
+  var header = document.querySelector("header");
+  if (!header) return;
+  function effective() {
+    var t = root.getAttribute("data-theme");
+    if (t === "dark" || t === "light") return t;
+    return window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+  }
+  var btn = document.createElement("button");
+  btn.type = "button"; btn.className = "theme-toggle";
+  function paint() {
+    var dark = effective() === "dark";
+    var label = dark ? "Helles Design einschalten" : "Dunkles Design einschalten";
+    btn.textContent = dark ? "\u2600" : "\u263E";
+    btn.setAttribute("aria-label", label); btn.title = label;
+  }
+  btn.addEventListener("click", function () {
+    var next = effective() === "dark" ? "light" : "dark";
+    root.setAttribute("data-theme", next);
+    try { localStorage.setItem(KEY, next); } catch (e) { /* storage unavailable */ }
+    paint();
+    // canvases read the colour tokens when they draw, so ask them to redraw
+    window.dispatchEvent(new Event("resize"));
+  });
+  header.classList.add("has-theme-toggle");
+  header.appendChild(btn);
+  paint();
+  try { window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", paint); } catch (e) { /* old browsers */ }
+})();
+</script>
+<script>
+(function () {
+  "use strict";
+  // keep the last breadcrumb in sync with the active section tab
+  var last = document.querySelector("nav.crumbs [data-crumb-section]");
+  if (!last) return;
+  function update() {
+    var a = document.querySelector('nav.tabs a[aria-current="page"]');
+    if (!a) { last.hidden = true; return; }
+    var t = a.cloneNode(true); var n = t.querySelector(".n"); if (n) n.remove();
+    last.querySelector("span").textContent = t.textContent.trim();
+    last.hidden = false;
+  }
+  window.addEventListener("hashchange", function () { setTimeout(update, 0); });
+  setTimeout(update, 0);
+})();
+</script>
+
+<p style="text-align:center;margin-top:32px"><a href="klasse-11.html" style="color:inherit">← Zurück zur Themenübersicht</a></p>
+</body>
+</html>
