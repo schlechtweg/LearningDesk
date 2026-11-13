@@ -1,0 +1,16 @@
+.ptab { width: 100%; border-collapse: collapse; font-size: var(--step--1); }
+.ptab th, .ptab td { padding: 6px 8px; border-bottom: 1px solid var(--line); text-align: left; overflow-wrap: anywhere; }
+.ptab th { color: var(--muted); }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chips button { font-family: var(--font-mono); padding: 6px 10px; font-size: .88rem; }
+.pt { width: 100%; height: auto; display: block; }
+.pt text { font: 700 15px var(--font-body); fill: var(--ink); text-anchor: middle; }
+.pt .s { fill: #c62828; } .pt .b { fill: #2b6fb8; }
+.pt .hp { fill: #e0a400; stroke: var(--ink); stroke-width: 1; }
+.pt .arr { stroke: #e0a400; stroke-width: 2.4; fill: none; }
+.pt .pair1 { stroke: #c62828; stroke-width: 1.5; fill: none; stroke-dasharray: 4 3; }
+.pt .pair2 { stroke: #2b6fb8; stroke-width: 1.5; fill: none; stroke-dasharray: 4 3; }
+.pt .small { font: 11px var(--font-body); }
+.time { display: grid; gap: 10px; }
+.time > div { display: grid; grid-template-columns: 90px 1fr; gap: 10px; align-items: start; }
+.time b { font-family: var(--font-mono); color: var(--accent); }

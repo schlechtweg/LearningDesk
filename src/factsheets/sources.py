@@ -2438,6 +2438,38 @@ SHEETS["loeslichkeitsgleichgewichte"] = dict(title="Löslichkeitsgleichgewichte"
     </div>
   </div>''')
 
+SHEETS["saeuren-basen"] = dict(title="Säuren und Basen nach Brønsted", eyebrow="Chemie · Klasse 11 · Säure-Base-Gleichgewichte", accent=CH11, body=f'''
+  <div class="kern"><strong>Säure</strong> = Protonendonator, <strong>Base</strong> = Protonenakzeptor (Brønsted). Eine Säure-Base-Reaktion ist eine <strong>Protolyse</strong> mit zwei korrespondierenden Säure-Base-Paaren: Säure 1 + Base 2 ⇌ Base 1 + Säure 2.</div>
+  <div class="cols">
+    <div class="box">
+      <h2>Beispiele</h2>
+      <ul><li>HCl + H₂O → H₃O⁺ + Cl⁻</li><li>NH₃ + H₂O ⇌ NH₄⁺ + OH⁻</li><li>HCl + NH₃ → NH₄⁺ + Cl⁻</li><li>H₃O⁺ + OH⁻ → 2 H₂O</li></ul>
+    </div>
+    <div class="box">
+      <h2>Begriffe</h2>
+      <ul><li>H₃O⁺: Oxonium-Ion (sauer)</li><li>OH⁻: Hydroxid-Ion (basisch)</li><li>Ampholyt: H₂O, HCO₃⁻, HSO₄⁻</li><li>mehrprotonig: H₂SO₄, H₃PO₄</li></ul>
+    </div>
+    <div class="box full">
+      <h2>Begriffe im Wandel</h2>
+      <table>
+        <tr><th>Zeit</th><th>Modell</th></tr>
+        <tr><td>Boyle 1663</td><td>Indikatoren: Säure rot, Lauge blau</td></tr>
+        <tr><td>Lavoisier 1777</td><td>Sauerstoff als Säurebildner (widerlegt)</td></tr>
+        <tr><td>Arrhenius 1887</td><td>Säure bildet H⁺, Base OH⁻ in Wasser</td></tr>
+        <tr><td>Brønsted 1923</td><td>Protonendonator/-akzeptor, auch ohne Wasser</td></tr>
+        <tr><td>Lewis 1923</td><td>Elektronenpaar-Akzeptor/-Donator</td></tr>
+      </table>
+    </div>
+    <div class="box">
+      <h2>Im Alltag</h2>
+      <ul><li>Abflussreiniger (NaOH), Zitronensaft.</li><li>Magensäure, Antazida.</li><li>Kalk gegen sauren Boden.</li></ul>
+    </div>
+    <div class="box warn">
+      <h2>Typische Fehler</h2>
+      <ul><li>Base braucht kein OH⁻ (NH₃!).</li><li>Paare unterscheiden sich um genau ein H⁺.</li><li>Keine freien H⁺ in Wasser.</li></ul>
+    </div>
+  </div>''')
+
 OUT = sys.argv[1] if len(sys.argv) > 1 else os.path.join(os.path.dirname(__file__), "_build")
 os.makedirs(OUT, exist_ok=True)
 shutil.copyfile(os.path.join(os.path.dirname(os.path.abspath(__file__)), "factsheet.css"), os.path.join(OUT, "factsheet.css"))

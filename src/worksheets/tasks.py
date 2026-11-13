@@ -3552,6 +3552,67 @@ def loeslichkeitsgleichgewichte():
     return L
 
 
+def saeuren_basen():
+    r = random.Random(212)
+    L = {1: [], 2: [], 3: []}
+    seen = set()
+    fh = lambda f: re.sub(r"(\d+)", lambda m: m.group(1).translate(_SUB), f.split("^")[0]) + (f.split("^")[1].translate(_SUP) if "^" in f else "")
+    PAIRS = [("HCl", "Cl^-"), ("H2SO4", "HSO4^-"), ("HSO4^-", "SO4^2-"), ("HNO3", "NO3^-"), ("CH3COOH", "CH3COO^-"), ("H3O^+", "H2O"), ("H2O", "OH^-"), ("NH4^+", "NH3"),
+             ("H2CO3", "HCO3^-"), ("HCO3^-", "CO3^2-"), ("H3PO4", "H2PO4^-"), ("H2PO4^-", "HPO4^2-"), ("HPO4^2-", "PO4^3-"), ("HF", "F^-"), ("H2S", "HS^-"), ("HS^-", "S^2-"), ("HCOOH", "HCOO^-"), ("HBr", "Br^-")]
+
+    def add(lvl, q, a):
+        if q not in seen and len(L[lvl]) < 120:
+            seen.add(q)
+            L[lvl].append((q, a))
+    for a, b in PAIRS:
+        add(1, f"Korrespondierende Base von {fh(a)}?", f"<b>{fh(b)}</b>")
+        add(1, f"Korrespondierende Säure von {fh(b)}?", f"<b>{fh(a)}</b>")
+    facts = [("Was ist eine Säure nach Brønsted?", "<b>Protonendonator</b>"), ("Was ist eine Base nach Brønsted?", "<b>Protonenakzeptor</b>"), ("Was ist eine Protolyse?", "<b>Protonenübergang</b> von einer Säure auf eine Base"),
+             ("Welches Ion verursacht saure Lösungen?", "<b>H₃O⁺</b> (Oxonium-Ion)"), ("Welches Ion verursacht basische Lösungen?", "<b>OH⁻</b> (Hydroxid-Ion)"), ("Was ist ein Ampholyt?", "Teilchen, das H⁺ <b>abgeben und aufnehmen</b> kann"),
+             ("Nenne drei Ampholyte.", "<b>H₂O, HCO₃⁻, HSO₄⁻</b> (auch H₂PO₄⁻, HPO₄²⁻)"), ("Gleichung der Neutralisation?", "<b>H₃O⁺ + OH⁻ → 2 H₂O</b>"), ("Wie viele Protonen kann H₃PO₄ abgeben?", "<b>drei</b> (dreiprotonig)"),
+             ("Wer beschrieb Säuren als H⁺-Bildner in Wasser?", "<b>Arrhenius</b> (1887)"), ("Wer definierte Säuren als Protonendonatoren?", "<b>Brønsted</b> (und Lowry), 1923"), ("Warum war Lavoisiers Säurebegriff falsch?", "HCl ist eine Säure <b>ohne Sauerstoff</b>"), ("Ist Cl⁻ eine Säure oder eine Base?", "(sehr schwache) <b>Base</b>"), ("Welche Rolle hat H₂O gegenüber HCl?", "<b>Base</b>"), ("Welche Rolle hat H₂O gegenüber NH₃?", "<b>Säure</b>"),
+             ("Wie heißt die Säure im Magensaft?", "<b>Salzsäure</b> (HCl)"), ("Welche Säure steckt im Essig?", "<b>Essigsäure</b> CH₃COOH"), ("Welcher Stoff ist im Abflussreiniger?", "<b>Natriumhydroxid</b> NaOH"),
+             ("Färbt eine Säure Lackmus rot oder blau?", "<b>rot</b>"), ("Wie viele Protonen kann H₂SO₄ abgeben?", "<b>zwei</b> (zweiprotonig)"), ("Was entsteht, wenn HCO₃⁻ ein Proton abgibt?", "<b>CO₃²⁻</b>"), ("Was entsteht, wenn HCO₃⁻ ein Proton aufnimmt?", "<b>H₂CO₃</b>")]
+    for q_, a_ in facts:
+        add(1, q_, a_)
+    # (acid, base, conj. acid of base, conj. base of acid, arrow)
+    PROD = [("HCl", "H2O", "H3O^+", "Cl^-", "→"), ("HNO3", "H2O", "H3O^+", "NO3^-", "→"), ("H2O", "NH3", "NH4^+", "OH^-", "⇌"), ("CH3COOH", "H2O", "H3O^+", "CH3COO^-", "⇌"), ("HF", "H2O", "H3O^+", "F^-", "⇌"),
+            ("H2O", "CO3^2-", "HCO3^-", "OH^-", "⇌"), ("HCl", "NH3", "NH4^+", "Cl^-", "→"), ("H2SO4", "H2O", "H3O^+", "HSO4^-", "→"), ("HSO4^-", "H2O", "H3O^+", "SO4^2-", "⇌"), ("H2O", "CH3COO^-", "CH3COOH", "OH^-", "⇌"),
+            ("H3O^+", "HCO3^-", "H2CO3", "H2O", "⇌"), ("NH4^+", "OH^-", "H2O", "NH3", "⇌"), ("H2S", "H2O", "H3O^+", "HS^-", "⇌"), ("H2O", "PO4^3-", "HPO4^2-", "OH^-", "⇌"), ("HCOOH", "H2O", "H3O^+", "HCOO^-", "⇌"),
+            ("NH4^+", "H2O", "H3O^+", "NH3", "⇌"), ("H3O^+", "OH^-", "H2O", "H2O", "→"), ("CH3COOH", "NH3", "NH4^+", "CH3COO^-", "⇌")]
+    for s1, b2, s2, b1, ar in PROD:
+        add(2, f"Ergänze die Produkte und benenne Säure, Base und die Säure-Base-Paare: {fh(s1)} + {fh(b2)} {ar} ?", f"<b>{fh(s1)} + {fh(b2)} {ar} {fh(s2)} + {fh(b1)}</b>; Säure {fh(s1)}, Base {fh(b2)}; Paare <b>{fh(s1)}/{fh(b1)}</b> und <b>{fh(s2)}/{fh(b2)}</b>")
+        if ar == "⇌":
+            add(2, f"Benenne in der Rückreaktion {fh(s2)} + {fh(b1)} → {fh(s1)} + {fh(b2)} die Säure und die Base.", f"Säure: <b>{fh(s2)}</b>, Base: <b>{fh(b1)}</b>")
+    for f, steps in [("H₂SO₄", "H₂SO₄ + H₂O → H₃O⁺ + HSO₄⁻; HSO₄⁻ + H₂O ⇌ H₃O⁺ + SO₄²⁻"), ("H₃PO₄", "H₃PO₄ + H₂O ⇌ H₃O⁺ + H₂PO₄⁻; H₂PO₄⁻ + H₂O ⇌ H₃O⁺ + HPO₄²⁻; HPO₄²⁻ + H₂O ⇌ H₃O⁺ + PO₄³⁻"),
+                     ("H₂CO₃", "H₂CO₃ + H₂O ⇌ H₃O⁺ + HCO₃⁻; HCO₃⁻ + H₂O ⇌ H₃O⁺ + CO₃²⁻"), ("H₂S", "H₂S + H₂O ⇌ H₃O⁺ + HS⁻; HS⁻ + H₂O ⇌ H₃O⁺ + S²⁻")]:
+        add(2, f"Formuliere die schrittweise Protolyse von {f} mit Wasser.", f"<b>{steps}</b>")
+    for amph, s_, b_ in [("H₂O", "NH₃ + H₂O ⇌ NH₄⁺ + OH⁻", "HCl + H₂O → H₃O⁺ + Cl⁻"), ("HCO₃⁻", "HCO₃⁻ + H₂O ⇌ CO₃²⁻ + H₃O⁺", "HCO₃⁻ + H₃O⁺ ⇌ H₂CO₃ + H₂O"), ("HSO₄⁻", "HSO₄⁻ + H₂O ⇌ SO₄²⁻ + H₃O⁺", "HSO₄⁻ + H₃O⁺ ⇌ H₂SO₄ + H₂O"), ("H₂PO₄⁻", "H₂PO₄⁻ + H₂O ⇌ HPO₄²⁻ + H₃O⁺", "H₂PO₄⁻ + H₃O⁺ ⇌ H₃PO₄ + H₂O")]:
+        add(3, f"Zeige mit je einer Reaktionsgleichung, dass {amph} ein Ampholyt ist.", f"als Säure: <b>{s_}</b>; als Base: <b>{b_}</b>")
+    fixed = [
+        ("Vergleiche den Säure-Base-Begriff von Arrhenius und Brønsted. Welche Beobachtungen erklärt nur Brønsted?", "Arrhenius: Säuren bilden H⁺, Basen OH⁻ <b>in Wasser</b>. Brønsted: Protonendonator/-akzeptor, auch ohne Wasser (HCl + NH₃ in der Gasphase → NH₄Cl), erklärt <b>NH₃ als Base</b>, Ampholyte und korrespondierende Paare."),
+        ("Erkläre, warum Chlorwasserstoff gelöst in Wasser den Strom leitet, gelöst in Benzin aber nicht.", "In Wasser findet eine <b>Protolyse</b> statt: HCl + H₂O → H₃O⁺ + Cl⁻, es entstehen Ionen. Benzin nimmt keine Protonen auf; HCl bleibt als Molekül gelöst."),
+        ("Warum spricht man vom Oxonium-Ion H₃O⁺ und nicht von freien Protonen H⁺ in Wasser?", "Ein Proton ist ein nackter Atomkern mit extrem hoher Ladungsdichte; es lagert sich sofort an ein <b>freies Elektronenpaar</b> eines Wassermoleküls an."),
+        ("Erkläre die Wirkung eines Antazidums mit Magnesiumhydroxid gegen Sodbrennen.", "OH⁻ aus Mg(OH)₂ nimmt Protonen der Magensäure auf: <b>H₃O⁺ + OH⁻ → 2 H₂O</b>; die Säure wird teilweise neutralisiert."),
+        ("Beschreibe, warum Backpulver beim Backen wirkt.", "Natron NaHCO₃ und eine feste Säure reagieren mit Wasser: <b>HCO₃⁻ + H₃O⁺ → CO₂ + 2 H₂O</b>; das entstehende CO₂ lockert den Teig."),
+        ("Warum ist Abflussreiniger gefährlicher für die Augen als Essig?", "Er enthält <b>Natriumhydroxid</b> in hoher Konzentration (stark basisch); OH⁻ zerstört Eiweiße und Fette (Verseifung), Augengewebe wird schnell geschädigt."),
+        ("Gib zu jedem Teilchen an, ob es als Säure, Base oder Ampholyt reagieren kann: NH₄⁺, Cl⁻, H₂O, HSO₄⁻, CO₃²⁻.", "NH₄⁺ <b>Säure</b>; Cl⁻ (sehr schwache) <b>Base</b>; H₂O <b>Ampholyt</b>; HSO₄⁻ <b>Ampholyt</b>; CO₃²⁻ <b>Base</b>."),
+        ("Erkläre, wie die Bildung von Ammoniumchlorid-Rauch beweist, dass Säure-Base-Reaktionen ohne Wasser möglich sind.", "Gasförmiges HCl und NH₃ reagieren direkt: <b>HCl + NH₃ → NH₄Cl</b> (weißer Rauch). HCl gibt das Proton an NH₃ ab: eine Protolyse ohne Wasser, nur mit Brønsted erklärbar."),
+        ("Welche Gemeinsamkeit haben Redoxreaktionen und Säure-Base-Reaktionen nach Brønsted?", "Beide sind <b>Donator-Akzeptor-Reaktionen</b>: Redox überträgt Elektronen, Protolyse Protonen; jeweils zwei korrespondierende Paare."),
+        ("Kalk wird gegen sauren Boden eingesetzt. Formuliere die Reaktion und erkläre.", "<b>CaCO₃ + 2 H₃O⁺ → Ca²⁺ + CO₂ + 3 H₂O</b>: Das Carbonat-Ion nimmt als Base Protonen auf, die Konzentration an H₃O⁺ sinkt."),
+        ("Warum färbt eine wässrige Lösung von Natriumcarbonat Indikator blau, obwohl Natriumcarbonat kein OH⁻ enthält?", "CO₃²⁻ ist eine <b>Base</b>: CO₃²⁻ + H₂O ⇌ HCO₃⁻ + OH⁻; es entstehen Hydroxid-Ionen."),
+        ("Formuliere die Reaktion von Essigsäure mit Ammoniak und gib die Säure-Base-Paare an.", "<b>CH₃COOH + NH₃ ⇌ CH₃COO⁻ + NH₄⁺</b>; Paare CH₃COOH/CH₃COO⁻ und NH₄⁺/NH₃."),
+        ("Erkläre, warum reine Schwefelsäure kaum leitet, verdünnte aber sehr gut.", "Erst mit Wasser findet die <b>Protolyse</b> statt (H₂SO₄ + H₂O → H₃O⁺ + HSO₄⁻); in der reinen Säure gibt es kaum Ionen."),
+        ("Warum muss man beim Verdünnen konzentrierter Säuren „erst das Wasser, dann die Säure“ beachten?", "Die Protolyse ist <b>stark exotherm</b>. Gibt man Wasser in die Säure, kann es lokal sieden und Säure verspritzen. Säure langsam ins Wasser geben."),
+        ("Beschreibe, wie Ameisensäure bei einem Ameisenbiss wirkt und wie man die Haut behandeln könnte.", "Ameisensäure gibt Protonen ab (HCOOH + H₂O ⇌ HCOO⁻ + H₃O⁺) und reizt die Haut. Eine schwach basische Lösung (z. B. Natron) <b>neutralisiert</b> teilweise."),
+        ("Zeige, dass Hydrogencarbonat im Blut sowohl Säure als auch Base abfangen kann.", "Gegen Säure: <b>HCO₃⁻ + H₃O⁺ → H₂CO₃ + H₂O</b>; gegen Base: <b>HCO₃⁻ + OH⁻ → CO₃²⁻ + H₂O</b> (Ampholyt, Grundlage des Blutpuffers)."),
+    ]
+    for q_, a_ in fixed:
+        add(3, q_, a_)
+    r.shuffle(L[3])
+    return L
+
+
 M8, PH = "#1f6e8c", "#b4531f"
 TOPICS = {
     "osmose": ({"title": "Osmose", "eyebrow": "Biologie · Klasse 11", "accent": "#0d6f74", "cols": [1, 1, 1], "sol_cols": [1, 1, 1]}, osmose),
@@ -3589,6 +3650,7 @@ TOPICS = {
     "chemisches-gleichgewicht": ({"title": "Chemisches Gleichgewicht und Le Chatelier", "eyebrow": "Chemie · Klasse 11", "accent": "#6a3fa0", "cols": [2, 2, 1], "sol_cols": [2, 2, 1]}, chemisches_gleichgewicht),
     "massenwirkungsgesetz": ({"title": "Gleichgewichtskonstante und Massenwirkungsgesetz", "eyebrow": "Chemie · Klasse 11", "accent": "#6a3fa0", "cols": [2, 1, 1], "sol_cols": [2, 1, 1]}, massenwirkungsgesetz),
     "loeslichkeitsgleichgewichte": ({"title": "Löslichkeitsgleichgewichte", "eyebrow": "Chemie · Klasse 11 · Wahlpflicht", "accent": "#6a3fa0", "cols": [2, 1, 1], "sol_cols": [2, 1, 1]}, loeslichkeitsgleichgewichte),
+    "saeuren-basen": ({"title": "Säuren und Basen nach Brønsted", "eyebrow": "Chemie · Klasse 11", "accent": "#6a3fa0", "cols": [2, 1, 1], "sol_cols": [2, 1, 1]}, saeuren_basen),
     "binomische-formeln": ({"title": "Binomische Formeln", "eyebrow": "Mathematik · Klasse 8", "accent": M8, "cols": 2, "sol_cols": 2}, binomische_formeln),
     "bruchterme": ({"title": "Bruchterme", "eyebrow": "Mathematik · Klasse 8", "accent": "#2d6a4f", "cols": 3, "sol_cols": 3}, bruchterme),
     "ausmultiplizieren-faktorisieren": ({"title": "Ausmultiplizieren und Faktorisieren", "eyebrow": "Mathematik · Klasse 8", "accent": M8, "cols": 3, "sol_cols": 3}, ausmultiplizieren),

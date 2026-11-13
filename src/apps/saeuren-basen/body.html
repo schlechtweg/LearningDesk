@@ -1,0 +1,65 @@
+  <nav class="tabs" aria-label="Bereiche">
+    <a href="#verstehen" data-view="verstehen"><span class="n">1</span>Verstehen</a>
+    <a href="#protolyse" data-view="protolyse"><span class="n">2</span>Protolysen</a>
+    <a href="#geschichte" data-view="geschichte"><span class="n">3</span>Begriffe im Wandel</a>
+    <a href="#ueben" data-view="ueben"><span class="n">4</span>Üben</a>
+    <a href="#alltag" data-view="alltag"><span class="n">5</span>Im Alltag</a>
+    <a href="#quiz" data-view="quiz"><span class="n">6</span>Quiz</a>
+  </nav>
+
+  <section class="view" id="view-verstehen">
+    <div class="einfach">
+      <span class="eyebrow">Einfach erklärt</span>
+      <p>Nach <strong>Brønsted</strong> geht es bei Säuren und Basen um ein einziges Teilchen: das <strong>Proton H⁺</strong>. Eine <strong>Säure</strong> gibt ein Proton ab (Protonendonator), eine <strong>Base</strong> nimmt es auf (Protonenakzeptor). Wie bei Redox braucht es immer beide: Ohne Abnehmer gibt keine Säure ihr Proton ab.</p>
+    </div>
+    <div class="grid-2">
+      <div class="panel stack"><h3>Protolyse</h3><p class="small">Eine Säure-Base-Reaktion heißt <strong>Protolyse</strong>: HCl + H₂O → H₃O⁺ + Cl⁻. HCl gibt ein Proton an Wasser. Es entstehen <strong>Oxonium-Ionen H₃O⁺</strong> (sie machen eine Lösung sauer) und Chlorid-Ionen.</p><p class="small">NH₃ + H₂O ⇌ NH₄⁺ + OH⁻. Hier ist Wasser die Säure. Es entstehen <strong>Hydroxid-Ionen OH⁻</strong> (sie machen eine Lösung basisch/alkalisch).</p></div>
+      <div class="panel stack"><h3>Korrespondierende Säure-Base-Paare</h3><p class="small">Gibt eine Säure ihr Proton ab, bleibt ihre <strong>korrespondierende Base</strong> übrig: HCl/Cl⁻, H₃O⁺/H₂O, NH₄⁺/NH₃. Jede Protolyse enthält <strong>zwei</strong> solche Paare.</p><p class="small">Säure 1 + Base 2 ⇌ Base 1 + Säure 2</p></div>
+    </div>
+    <div class="panel stack"><h3>Ampholyte</h3><p class="small">Manche Teilchen können je nach Partner Proton abgeben <strong>oder</strong> aufnehmen: <strong>Ampholyte</strong>. Das wichtigste ist Wasser: gegenüber HCl Base, gegenüber NH₃ Säure. Weitere: HCO₃⁻, HSO₄⁻, H₂PO₄⁻, HPO₄²⁻.</p></div>
+    <div class="panel stack"><h3>Wichtige Säuren und Basen</h3><table class="ptab"><tr><th>Säure</th><th>Formel</th><th>korrespondierende Base</th></tr><tr><td>Salzsäure (Chlorwasserstoff)</td><td>HCl</td><td>Cl⁻ (Chlorid)</td></tr><tr><td>Schwefelsäure</td><td>H₂SO₄</td><td>HSO₄⁻ → SO₄²⁻</td></tr><tr><td>Salpetersäure</td><td>HNO₃</td><td>NO₃⁻ (Nitrat)</td></tr><tr><td>Essigsäure</td><td>CH₃COOH</td><td>CH₃COO⁻ (Acetat)</td></tr><tr><td>Kohlensäure</td><td>H₂CO₃</td><td>HCO₃⁻ → CO₃²⁻</td></tr><tr><td>Phosphorsäure</td><td>H₃PO₄</td><td>H₂PO₄⁻ → HPO₄²⁻ → PO₄³⁻</td></tr><tr><td>Ammonium-Ion</td><td>NH₄⁺</td><td>NH₃ (Ammoniak)</td></tr></table>
+      <p class="small">Säuren mit mehreren abgebbaren Protonen (H₂SO₄, H₃PO₄) heißen <strong>mehrprotonig</strong>. Sie geben ihre Protonen schrittweise ab.</p></div>
+    <div class="merksatz"><span class="eyebrow">Merke</span><p>„Sauer“ bedeutet: Es gibt mehr H₃O⁺ als OH⁻. „Basisch“ bedeutet: mehr OH⁻ als H₃O⁺. Eine <strong>Neutralisation</strong> ist H₃O⁺ + OH⁻ → 2 H₂O.</p></div>
+    <div class="panel stack"><h3>Typische Fehler</h3><ul class="list small"><li>„Eine Base enthält immer OH⁻“: NH₃ ist eine Base, obwohl es kein OH⁻ enthält. Es bildet OH⁻ erst mit Wasser.</li><li>Säure und korrespondierende Base nicht um genau ein H⁺ unterschieden.</li><li>Freie H⁺-Ionen in Wasser angenommen: Das Proton sitzt immer an einem Wassermolekül (H₃O⁺).</li></ul></div>
+  </section>
+
+  <section class="view" id="view-protolyse" hidden>
+    <div class="stack"><span class="eyebrow">Interaktiv</span><h2>Wer gibt, wer nimmt?</h2><p class="muted">Wähle eine Protolyse. Das wandernde Proton ist gelb, die beiden Säure-Base-Paare sind farbig verbunden.</p></div>
+    <div class="chips" id="pChips"></div>
+    <div class="panel stack"><svg class="pt" id="pSvg" viewBox="0 0 520 170" role="img" aria-label="Protolyse"></svg><p class="small" id="pText"></p></div>
+  </section>
+
+  <section class="view" id="view-geschichte" hidden>
+    <div class="stack"><span class="eyebrow">Wissenschaftsgeschichte</span><h2>Säure und Base: Begriffe im Wandel der Zeit</h2><p class="muted">Jedes Modell erklärte mehr als das vorige. Das zeigt, wie Naturwissenschaft arbeitet: Modelle werden verbessert, wenn Beobachtungen nicht mehr passen.</p></div>
+    <div class="panel time">
+      <div><b>bis 1600</b><span class="small">Säuren schmecken sauer, lösen Kalk, färben Pflanzenfarbstoffe rot. Laugen fühlen sich seifig an und heben die Wirkung der Säuren auf. Eine Beschreibung nach Eigenschaften.</span></div>
+      <div><b>1663 Boyle</b><span class="small">Indikatoren: Säuren färben Lackmus rot, Laugen blau. Erste systematische Unterscheidung.</span></div>
+      <div><b>1777 Lavoisier</b><span class="small">Vermutete Sauerstoff als „Säurebildner“ (daher der Name Oxygenium). Widerlegt: Salzsäure HCl enthält keinen Sauerstoff.</span></div>
+      <div><b>1838 Liebig</b><span class="small">Säuren enthalten Wasserstoff, der durch Metalle ersetzt werden kann (Zn + 2 HCl → ZnCl₂ + H₂).</span></div>
+      <div><b>1887 Arrhenius</b><span class="small">Säuren bilden in Wasser H⁺-Ionen, Basen OH⁻-Ionen. Erklärt Leitfähigkeit und Neutralisation, gilt aber nur in Wasser und erklärt nicht, warum NH₃ basisch ist.</span></div>
+      <div><b>1923 Brønsted</b><span class="small">Säure = Protonendonator, Base = Protonenakzeptor (gleichzeitig auch Lowry). Gilt auch ohne Wasser, erklärt Ampholyte und korrespondierende Paare. Das heutige Schulmodell.</span></div>
+      <div><b>1923 Lewis</b><span class="small">Base = Elektronenpaardonator, Säure = Elektronenpaarakzeptor. Noch allgemeiner, umfasst z. B. Komplexbildung.</span></div>
+    </div>
+  </section>
+
+  <section class="view" id="view-ueben" hidden>
+    <div class="stack"><span class="eyebrow">Trainer</span><h2>Protolysen üben</h2><p class="muted">Formeln mit normalen Ziffern und Ladung am Ende, z. B. <code>NH4+</code> oder <code>HSO4-</code>.</p></div>
+    <div id="trainer" class="stack"></div>
+  </section>
+
+  <section class="view" id="view-alltag" hidden>
+    <div class="stack"><span class="eyebrow">Von A wie Abflussfrei bis Z wie Zitronensaft</span><h2>Säuren und Basen im Alltag</h2></div>
+    <div class="grid-2">
+      <div class="panel stack"><span class="eyebrow">Bad</span><h3>Abflussreiniger</h3><p class="small">Enthält Natriumhydroxid (stark basisch). Er zersetzt Haare und Fette. Augen schützen!</p></div>
+      <div class="panel stack"><span class="eyebrow">Küche</span><h3>Zitronensaft und Essig</h3><p class="small">Zitronensäure und Essigsäure geben Protonen an Wasser ab. Sie schmecken sauer und lösen Kalkflecken.</p></div>
+      <div class="panel stack"><span class="eyebrow">Körper</span><h3>Magensäure</h3><p class="small">Salzsäure im Magen (pH 1–2) tötet Keime und hilft bei der Verdauung. Gegen Sodbrennen helfen Antazida, die Protonen aufnehmen.</p></div>
+      <div class="panel stack"><span class="eyebrow">Getränke</span><h3>Cola</h3><p class="small">Enthält Phosphorsäure und Kohlensäure. Der saure Geschmack wird durch viel Zucker überdeckt.</p></div>
+      <div class="panel stack"><span class="eyebrow">Garten</span><h3>Kalk gegen sauren Boden</h3><p class="small">Kalk (CaCO₃) nimmt Protonen auf: CO₃²⁻ + 2 H₃O⁺ → CO₂ + 3 H₂O. Der Boden wird weniger sauer.</p></div>
+      <div class="panel stack"><span class="eyebrow">Backen</span><h3>Backpulver</h3><p class="small">Natron (HCO₃⁻) reagiert mit einer Säure zu CO₂: Der Teig geht auf.</p></div>
+    </div>
+  </section>
+
+  <section class="view" id="view-quiz" hidden>
+    <div class="stack"><span class="eyebrow">Selbsttest</span><h2>Quiz</h2><div class="progress-line"><div class="bar" aria-hidden="true"><i id="qBar"></i></div><span class="score-line" id="qProgress"></span></div></div>
+    <div class="panel quiz" id="quizBox" aria-live="polite"></div>
+  </section>

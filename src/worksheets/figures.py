@@ -1038,10 +1038,25 @@ def loeslichkeitsgleichgewichte():
                     extra_sol='<p class="q">K<sub>L</sub> = c(Ag⁺) · c(Cl⁻) = L² ⇒ <b>L = 1,34 · 10⁻⁵ mol/L</b> (≈ 1,9 mg/L).</p>', cols=1)
 
 
+def saeuren_basen():
+    xs = [40, 115, 210, 290]
+    base = "".join(text(x, 50, t, "ft big") for x, t in zip([40, 77, 115, 160, 210, 250, 290], ["HCl", "+", "H₂O", "→", "H₃O⁺", "+", "Cl⁻"]))
+    base += "".join(f'<rect x="{x - 32}" y="62" width="64" height="20" fill="#fff" stroke="#9aa4ad" rx="3"/>' for x in xs)
+    base += f'<rect x="10" y="100" width="310" height="22" fill="#fff" stroke="#9aa4ad" rx="3"/><rect x="10" y="128" width="310" height="22" fill="#fff" stroke="#9aa4ad" rx="3"/>'
+    base += text(14, 96, "Säure-Base-Paare:", "ft tiny", "start")
+    sol = base + "".join(text(x, 76, t, "ft tiny sol") for x, t in zip(xs, ["Säure 1", "Base 2", "Säure 2", "Base 1"]))
+    sol += text(165, 115, "Paar 1: HCl / Cl⁻", "ft small sol") + text(165, 143, "Paar 2: H₃O⁺ / H₂O", "ft small sol")
+    sol += arrow(40, 30, 108, 30, "arr sol") + text(74, 24, "H⁺", "ft small sol")
+    task = ('<p>Trage unter jedes Teilchen seine Rolle (Säure 1, Base 1, Säure 2, Base 2) ein, zeichne den Weg des Protons ein und gib die beiden Säure-Base-Paare an.</p>'
+            '<p class="q">Warum leitet die Lösung den Strom? <span class="blank wide"></span></p>')
+    soltxt = '<p class="q">HCl gibt ein <b>Proton an H₂O</b> ab. Es entstehen die <b>Ionen H₃O⁺ und Cl⁻</b>, die beweglich sind und den Strom leiten.</p>'
+    return {"title": "Protolyse von Chlorwasserstoff", "stars": "★☆☆", "task": (svg("0 10 330 150", base), task), "sol": (svg("0 10 330 150", sol), soltxt)}
+
+
 FIGS = {
     "osmose": osmose, "natrium-kalium-pumpe": nak, "symport-antiport": symport, "endocytose-exocytose": endo,
     "ableiten": ableiten, "nervensystem": nerven, "auge": auge,
-    "termstruktur": termstruktur, "zufallsexperimente": zufallsexperimente, "laplace": laplace, "baumdiagramme": baumdiagramme, "unabhaengige-ereignisse": unabhaengig, "funktionsbegriff": funktionsbegriff, "eigenschaften-funktionen": eigenschaften, "lineare-funktionen": lineare_funktionen, "funktionsgleichungen": funktionsgleichungen, "lgs-grafisch": lgs_grafisch, "gleichsetzungsverfahren": gleichsetzungsverfahren, "additionsverfahren": additionsverfahren, "lgs-anwendungen": lgs_anwendungen, "zentrische-streckung": zentrische_streckung, "aehnliche-dreiecke": aehnliche_dreiecke, "flaeche-volumen-aehnlich": flaeche_volumen_aehnlich, "strahlensaetze": strahlensaetze, "atombau": atombau, "periodensystem": periodensystem, "stoffklassen": stoffklassen, "orbitalmodell": orbitalmodell, "redoxreaktionen": redoxreaktionen, "gebrauchsmetalle": gebrauchsmetalle, "komplexverbindungen": komplexverbindungen, "reaktionsgeschwindigkeit": reaktionsgeschwindigkeit, "chemisches-gleichgewicht": chemisches_gleichgewicht, "massenwirkungsgesetz": massenwirkungsgesetz, "loeslichkeitsgleichgewichte": loeslichkeitsgleichgewichte, "binomische-formeln": binom, "bruchterme": bruchterme, "ausmultiplizieren-faktorisieren": ausmult, "terme-vereinfachen": terme,
+    "termstruktur": termstruktur, "zufallsexperimente": zufallsexperimente, "laplace": laplace, "baumdiagramme": baumdiagramme, "unabhaengige-ereignisse": unabhaengig, "funktionsbegriff": funktionsbegriff, "eigenschaften-funktionen": eigenschaften, "lineare-funktionen": lineare_funktionen, "funktionsgleichungen": funktionsgleichungen, "lgs-grafisch": lgs_grafisch, "gleichsetzungsverfahren": gleichsetzungsverfahren, "additionsverfahren": additionsverfahren, "lgs-anwendungen": lgs_anwendungen, "zentrische-streckung": zentrische_streckung, "aehnliche-dreiecke": aehnliche_dreiecke, "flaeche-volumen-aehnlich": flaeche_volumen_aehnlich, "strahlensaetze": strahlensaetze, "atombau": atombau, "periodensystem": periodensystem, "stoffklassen": stoffklassen, "orbitalmodell": orbitalmodell, "redoxreaktionen": redoxreaktionen, "gebrauchsmetalle": gebrauchsmetalle, "komplexverbindungen": komplexverbindungen, "reaktionsgeschwindigkeit": reaktionsgeschwindigkeit, "chemisches-gleichgewicht": chemisches_gleichgewicht, "massenwirkungsgesetz": massenwirkungsgesetz, "loeslichkeitsgleichgewichte": loeslichkeitsgleichgewichte, "saeuren-basen": saeuren_basen, "binomische-formeln": binom, "bruchterme": bruchterme, "ausmultiplizieren-faktorisieren": ausmult, "terme-vereinfachen": terme,
     "gleichungen": gleichungen, "ungleichungen": ungleichungen,
     "druck": druck, "hydraulik": hydraulik, "schweredruck": schweredruck, "auftrieb": auftrieb, "luftdruck": luftdruck,
 }

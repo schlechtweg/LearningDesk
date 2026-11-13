@@ -333,6 +333,14 @@ TOPICS = [
         "fonts": "base", "first_view": "verstehen", "factsheet": "Factsheet als PDF ↓",
     },
     {
+        "slug": "saeuren-basen", "grade": "11", "subject": "chemie", "chapter": "4", "order": 1, "kit": True, "accent": ACCENT_CHEM,
+        "title": "Säuren und Basen nach Brønsted", "short": "Säuren und Basen", "tag": "Säure-Base",
+        "card": "Protonendonator und -akzeptor, Protolysen mit wanderndem Proton, korrespondierende Paare, Ampholyte, Begriffe im Wandel der Zeit, Alltag, Trainer, Quiz",
+        "description": "Interaktive Lernhilfe zum Säure-Base-Begriff nach Brønsted (Chemie, Klasse 11)",
+        "intro": "Was Säuren und Basen nach Brønsted sind, wie Protolysen ablaufen und wie sich der Säurebegriff entwickelt hat.",
+        "fonts": "base", "first_view": "verstehen", "factsheet": "Factsheet als PDF ↓",
+    },
+    {
         "slug": "binomische-formeln", "grade": "8", "subject": "mathematik", "chapter": "I", "order": 4,
         "title": "Binomische Formeln", "short": "Binomische Formeln", "tag": "Terme",
         "card": "Die drei Formeln, Erklärung mit Flächen, Trainer mit Lückenaufgaben, Kopfrechen-Trick, Quiz",
