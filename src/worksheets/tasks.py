@@ -3377,6 +3377,98 @@ def chemisches_gleichgewicht():
     return L
 
 
+def massenwirkungsgesetz():
+    r = random.Random(210)
+    L = {1: [], 2: [], 3: []}
+    seen = set()
+
+    def sig(v):
+        if v == 0:
+            return "0"
+        d = max(0, 2 - math.floor(math.log10(abs(v))))
+        t = f"{float(f'{v:.3g}'):.{min(d, 8)}f}"
+        if "." in t:
+            t = t.rstrip("0").rstrip(".")
+        return t.replace(".", ",")
+
+    def solve(K, a, b, c=0.0, d=0.0):
+        A2, B2, C2 = 1 - K, c + d + K * (a + b), c * d - K * a * b
+        lo, hi = -min(c, d), min(a, b)
+        if abs(A2) < 1e-12:
+            return -C2 / B2
+        D = B2 * B2 - 4 * A2 * C2
+        for x in ((-B2 + math.sqrt(D)) / (2 * A2), (-B2 - math.sqrt(D)) / (2 * A2)):
+            if lo - 1e-9 <= x <= hi + 1e-9:
+                return x
+
+    def add(lvl, q, a):
+        if q not in seen and len(L[lvl]) < 120:
+            seen.add(q)
+            L[lvl].append((q, a))
+    MW = [("N₂ + 3 H₂ ⇌ 2 NH₃", "c(NH₃)² / (c(N₂) · c(H₂)³)", "L²/mol²"), ("H₂ + I₂ ⇌ 2 HI", "c(HI)² / (c(H₂) · c(I₂))", "ohne Einheit"), ("2 SO₂ + O₂ ⇌ 2 SO₃", "c(SO₃)² / (c(SO₂)² · c(O₂))", "L/mol"),
+          ("N₂O₄ ⇌ 2 NO₂", "c(NO₂)² / c(N₂O₄)", "mol/L"), ("PCl₅ ⇌ PCl₃ + Cl₂", "c(PCl₃) · c(Cl₂) / c(PCl₅)", "mol/L"), ("2 NO + O₂ ⇌ 2 NO₂", "c(NO₂)² / (c(NO)² · c(O₂))", "L/mol"),
+          ("CO + 2 H₂ ⇌ CH₃OH", "c(CH₃OH) / (c(CO) · c(H₂)²)", "L²/mol²"), ("CaCO₃(s) ⇌ CaO(s) + CO₂(g)", "c(CO₂) (Feststoffe entfallen)", "mol/L"), ("Fe³⁺ + SCN⁻ ⇌ FeSCN²⁺", "c(FeSCN²⁺) / (c(Fe³⁺) · c(SCN⁻))", "L/mol"),
+          ("CH₃COOH + C₂H₅OH ⇌ CH₃COOC₂H₅ + H₂O", "c(Ester) · c(H₂O) / (c(Säure) · c(Alkohol))", "ohne Einheit"), ("2 HI ⇌ H₂ + I₂", "c(H₂) · c(I₂) / c(HI)²", "ohne Einheit"), ("N₂ + O₂ ⇌ 2 NO", "c(NO)² / (c(N₂) · c(O₂))", "ohne Einheit"),
+          ("C(s) + CO₂ ⇌ 2 CO", "c(CO)² / c(CO₂) (C entfällt)", "mol/L"), ("2 NO₂ ⇌ N₂O₄", "c(N₂O₄) / c(NO₂)²", "L/mol"), ("Ag⁺ + 2 NH₃ ⇌ [Ag(NH₃)₂]⁺", "c([Ag(NH₃)₂]⁺) / (c(Ag⁺) · c(NH₃)²)", "L²/mol²")]
+    for eq, k, u in MW:
+        add(1, f"Stelle das MWG auf: {eq}", f"K = <b>{k}</b>")
+        add(2, f"Stelle das MWG für {eq} auf und gib die Einheit von K an.", f"K = {k}; Einheit: <b>{u}</b>")
+    facts = [("Was bedeutet K ≫ 1?", "Gleichgewicht liegt auf der <b>Produktseite</b>"), ("Was bedeutet K ≪ 1?", "Gleichgewicht liegt auf der <b>Eduktseite</b>"), ("Wovon hängt K ab?", "nur von der <b>Temperatur</b> (bei gegebener Reaktion)"),
+             ("Ändert ein Katalysator K?", "<b>nein</b>"), ("Was ist Q?", "MWG-Quotient mit <b>momentanen</b> Konzentrationen"), ("Q < K: In welche Richtung läuft die Reaktion?", "<b>nach rechts</b>"), ("Q > K: Richtung?", "<b>nach links</b>"),
+             ("Werden reine Feststoffe ins MWG eingesetzt?", "<b>nein</b>, ihre Konzentration ist konstant"), ("Wie ändert sich K einer endothermen Reaktion beim Erwärmen?", "K <b>steigt</b>"), ("Welche Konzentrationen setzt man ins MWG ein?", "die <b>Gleichgewichtskonzentrationen</b>")]
+    for q_, a_ in facts:
+        add(1, q_, a_)
+
+    for i in range(400):
+        t = i % 3
+        if t == 0:
+            ca, cb = r.randint(1, 20) / 10, r.randint(1, 20) / 10
+            add(1, f"A ⇌ B: c(A) = {sig(ca)}, c(B) = {sig(cb)} mol/L im Gleichgewicht. K?", f"K = c(B)/c(A) = <b>{sig(cb / ca)}</b>")
+        elif t == 1:
+            c = [r.randint(1, 9) / 10 for _ in range(4)]
+            K = c[2] * c[3] / (c[0] * c[1])
+            add(1, f"A + B ⇌ C + D: c(A) = {sig(c[0])}, c(B) = {sig(c[1])}, c(C) = {sig(c[2])}, c(D) = {sig(c[3])} mol/L. K?", f"K = {sig(c[2])} · {sig(c[3])} / ({sig(c[0])} · {sig(c[1])}) = <b>{sig(K)}</b>")
+        else:
+            K = r.choice([1e-5, 0.01, 1, 100, 1e8])
+            add(1, f"K = {sig(K) if K >= 0.01 else '10⁻⁵'}{' ' if K < 1e6 else ''}{'' if K < 1e6 else ''}: Liegt das Gleichgewicht eher auf der Edukt- oder Produktseite?".replace("100000000", "10⁸"), f"<b>{'Produktseite' if K > 1 else 'Eduktseite' if K < 1 else 'etwa ausgeglichen'}</b>")
+    for i in range(500):
+        t = i % 3
+        if t == 0:
+            h, io, hi = r.randint(1, 9) / 10, r.randint(1, 9) / 100, r.randint(5, 30) / 100
+            K = hi * hi / (h * io)
+            add(2, f"H₂ + I₂ ⇌ 2 HI: c(H₂) = {sig(h)}, c(I₂) = {sig(io)}, c(HI) = {sig(hi)} mol/L. Berechne K.", f"K = {sig(hi)}² / ({sig(h)} · {sig(io)}) = <b>{sig(K)}</b>")
+        elif t == 1:
+            n, hh, a = r.randint(2, 8) / 10, r.randint(5, 15) / 10, r.randint(1, 8) / 10
+            K = a * a / (n * hh ** 3)
+            add(2, f"N₂ + 3 H₂ ⇌ 2 NH₃: c(N₂) = {sig(n)}, c(H₂) = {sig(hh)}, c(NH₃) = {sig(a)} mol/L. Berechne K.", f"K = {sig(a)}² / ({sig(n)} · {sig(hh)}³) = <b>{sig(K)} L²/mol²</b>")
+        else:
+            K = r.choice([4, 10, 0.5, 50])
+            c = [r.randint(1, 9) / 10 for _ in range(4)]
+            Q = c[2] * c[3] / (c[0] * c[1])
+            if abs(Q - K) / K < 0.1:
+                continue
+            add(2, f"A + B ⇌ C + D, K = {sig(K)}. Momentan c(A) = {sig(c[0])}, c(B) = {sig(c[1])}, c(C) = {sig(c[2])}, c(D) = {sig(c[3])} mol/L. Richtung?", f"Q = {sig(Q)} {'< K: <b>nach rechts</b>' if Q < K else '> K: <b>nach links</b>'}")
+    for K, a, b in [(4, 1, 1), (4, 1, 2), (4, 1, 3), (4, 2, 1), (1, 1, 1), (9, 1, 1), (4, 0.5, 1), (0.25, 1, 1), (4, 1, 5), (10, 1, 1)]:
+        x = solve(K, a, b)
+        add(3, f"A + B ⇌ C + D mit K = {sig(K)}. Start: {sig(a)} mol A und {sig(b)} mol B. Stelle die Gleichgewichtstabelle auf und berechne die Gleichgewichtsstoffmengen.",
+            f"x² / (({sig(a)} − x)({sig(b)} − x)) = {sig(K)} ⇒ <b>x = {sig(x)} mol</b>: A {sig(a - x)}, B {sig(b - x)}, C = D = {sig(x)} mol; Ausbeute {sig(x / min(a, b) * 100)} %")
+    for e, s_ in [(0.67, 1), (0.85, 2), (0.9, 3), (0.5, 1), (0.75, 1.5)]:
+        K = e * e / ((1 - e) * (s_ - e))
+        add(3, f"Bei der Veresterung (Start 1 mol Säure, {sig(s_)} mol Alkohol) entstehen {sig(e)} mol Ester. Berechne K und begründe, warum ein Alkoholüberschuss sinnvoll ist.", f"K = {sig(e)}² / ({sig(1 - e)} · {sig(s_ - e)}) = <b>{sig(K)}</b>. Überschuss eines Edukts verschiebt das Gleichgewicht nach rechts: höhere Ausbeute bezogen auf die Säure.")
+    fixed = [
+        ("2 mol HI werden in einem 1-L-Gefäß erhitzt: 2 HI ⇌ H₂ + I₂, K = 0,02. Berechne die Gleichgewichtskonzentrationen.", "x² / (2 − 2x)² = 0,02 ⇒ x / (2 − 2x) = 0,1414 ⇒ <b>x = 0,22 mol/L</b>: c(H₂) = c(I₂) = 0,22, c(HI) = 1,56 mol/L."),
+        ("Erkläre, warum sich bei der Reaktion A + B ⇌ C + D das Volumen aus dem MWG herauskürzt, bei N₂ + 3 H₂ ⇌ 2 NH₃ aber nicht.", "Bei A + B ⇌ C + D stehen im Zähler und Nenner <b>gleich viele Konzentrationsfaktoren</b> (2 und 2), die 1/V heben sich auf. Beim Ammoniak 2 im Zähler, 4 im Nenner: K hat eine Einheit, das Volumen bleibt."),
+        ("Zeige mit Q, warum Druckerhöhung beim Ammoniak-Gleichgewicht zu mehr NH₃ führt.", "Halbiertes Volumen verdoppelt alle c: Q = (2c₃)² / (2c₁ · (2c₂)³) = Q/4 < K ⇒ Reaktion läuft <b>nach rechts</b> bis Q = K."),
+        ("Leite aus K = 4 für die Veresterung ab, wie viel Ester aus 1 mol Säure und 1 mol Alkohol entsteht.", "x² / (1 − x)² = 4 ⇒ x / (1 − x) = 2 ⇒ <b>x = 2/3 mol</b> (66,7 % Ausbeute)."),
+        ("Bei 25 °C ist K für N₂ + O₂ ⇌ 2 NO etwa 10⁻³⁰, bei 2000 °C etwa 10⁻². Was folgt daraus für Verbrennungsmotoren?", "Die Reaktion ist <b>endotherm</b>; bei hohen Verbrennungstemperaturen entsteht merklich NO. Beim Abkühlen zerfällt es nur langsam: Stickoxide gelangen ins Abgas (Katalysator nötig)."),
+        ("Wie verändert sich K, wenn man die Reaktionsgleichung umkehrt oder verdoppelt?", "Umkehren: K' = <b>1/K</b>; Verdoppeln aller Koeffizienten: K' = <b>K²</b>."),
+    ]
+    for q_, a_ in fixed:
+        add(3, q_, a_)
+    r.shuffle(L[3])
+    return L
+
+
 M8, PH = "#1f6e8c", "#b4531f"
 TOPICS = {
     "osmose": ({"title": "Osmose", "eyebrow": "Biologie · Klasse 11", "accent": "#0d6f74", "cols": [1, 1, 1], "sol_cols": [1, 1, 1]}, osmose),
@@ -3412,6 +3504,7 @@ TOPICS = {
     "komplexverbindungen": ({"title": "Komplexverbindungen", "eyebrow": "Chemie · Klasse 11 · Wahlpflicht", "accent": "#6a3fa0", "cols": [2, 2, 1], "sol_cols": [2, 2, 1]}, komplexverbindungen),
     "reaktionsgeschwindigkeit": ({"title": "Reaktionsgeschwindigkeit und Katalysatoren", "eyebrow": "Chemie · Klasse 11", "accent": "#6a3fa0", "cols": [2, 1, 1], "sol_cols": [2, 1, 1]}, reaktionsgeschwindigkeit),
     "chemisches-gleichgewicht": ({"title": "Chemisches Gleichgewicht und Le Chatelier", "eyebrow": "Chemie · Klasse 11", "accent": "#6a3fa0", "cols": [2, 2, 1], "sol_cols": [2, 2, 1]}, chemisches_gleichgewicht),
+    "massenwirkungsgesetz": ({"title": "Gleichgewichtskonstante und Massenwirkungsgesetz", "eyebrow": "Chemie · Klasse 11", "accent": "#6a3fa0", "cols": [2, 1, 1], "sol_cols": [2, 1, 1]}, massenwirkungsgesetz),
     "binomische-formeln": ({"title": "Binomische Formeln", "eyebrow": "Mathematik · Klasse 8", "accent": M8, "cols": 2, "sol_cols": 2}, binomische_formeln),
     "bruchterme": ({"title": "Bruchterme", "eyebrow": "Mathematik · Klasse 8", "accent": "#2d6a4f", "cols": 3, "sol_cols": 3}, bruchterme),
     "ausmultiplizieren-faktorisieren": ({"title": "Ausmultiplizieren und Faktorisieren", "eyebrow": "Mathematik · Klasse 8", "accent": M8, "cols": 3, "sol_cols": 3}, ausmultiplizieren),

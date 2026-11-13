@@ -1002,10 +1002,32 @@ def chemisches_gleichgewicht():
     return {"title": "Konzentration und Zeit", "stars": "★☆☆", "task": (svg("0 10 270 185", g), task), "sol": (svg("0 10 270 185", sol), soltxt)}
 
 
+def massenwirkungsgesetz():
+    # ICE table to fill in for the esterification with K = 4, start 1 mol / 1 mol
+    w, h, x0, y0 = 62, 28, 10, 20
+    cols = ["", "Säure", "Alkohol", "Ester", "Wasser"]
+    rows = ["Anfang", "Änderung", "Gleichgew."]
+    vals = [["1", "1", "0", "0"], ["−x", "−x", "+x", "+x"], ["1 − x", "1 − x", "x", "x"]]
+    g = ""
+    for i, c in enumerate(cols):
+        g += f'<rect x="{x0 + i * w}" y="{y0}" width="{w}" height="{h}" fill="#ece3f6" stroke="#56626d"/>' + text(x0 + i * w + w / 2, y0 + 18, c, "ft small")
+    for j, rr in enumerate(rows):
+        y = y0 + (j + 1) * h
+        g += f'<rect x="{x0}" y="{y}" width="{w}" height="{h}" fill="#f4f6f8" stroke="#56626d"/>' + text(x0 + w / 2, y + 18, rr, "ft tiny")
+        for i in range(4):
+            g += f'<rect x="{x0 + (i + 1) * w}" y="{y}" width="{w}" height="{h}" fill="#fff" stroke="#56626d"/>'
+    base = g + "".join(text(x0 + (i + 1.5) * w, y0 + h + 18, v, "ft small") for i, v in enumerate(vals[0]))
+    sol = base + "".join(text(x0 + (i + 1.5) * w, y0 + (j + 1) * h + 18, v, "ft small sol") for j in (1, 2) for i, v in enumerate(vals[j]))
+    task = ('<p>Veresterung mit K = 4: Fülle die Tabelle aus und berechne x.</p>'
+            '<p class="q">MWG: <span class="blank wide"></span></p><p class="q">x = <span class="blank"></span> Ausbeute: <span class="blank"></span></p>')
+    soltxt = ('<p class="q">K = x² / (1 − x)² = 4 ⇒ x / (1 − x) = 2</p><p class="q"><b>x = 2/3 mol ≈ 0,667 mol</b>, Ausbeute <b>66,7 %</b>.</p>')
+    return {"title": "Gleichgewichtstabelle", "stars": "★★☆", "task": (svg("0 10 330 130", base), task), "sol": (svg("0 10 330 130", sol), soltxt)}
+
+
 FIGS = {
     "osmose": osmose, "natrium-kalium-pumpe": nak, "symport-antiport": symport, "endocytose-exocytose": endo,
     "ableiten": ableiten, "nervensystem": nerven, "auge": auge,
-    "termstruktur": termstruktur, "zufallsexperimente": zufallsexperimente, "laplace": laplace, "baumdiagramme": baumdiagramme, "unabhaengige-ereignisse": unabhaengig, "funktionsbegriff": funktionsbegriff, "eigenschaften-funktionen": eigenschaften, "lineare-funktionen": lineare_funktionen, "funktionsgleichungen": funktionsgleichungen, "lgs-grafisch": lgs_grafisch, "gleichsetzungsverfahren": gleichsetzungsverfahren, "additionsverfahren": additionsverfahren, "lgs-anwendungen": lgs_anwendungen, "zentrische-streckung": zentrische_streckung, "aehnliche-dreiecke": aehnliche_dreiecke, "flaeche-volumen-aehnlich": flaeche_volumen_aehnlich, "strahlensaetze": strahlensaetze, "atombau": atombau, "periodensystem": periodensystem, "stoffklassen": stoffklassen, "orbitalmodell": orbitalmodell, "redoxreaktionen": redoxreaktionen, "gebrauchsmetalle": gebrauchsmetalle, "komplexverbindungen": komplexverbindungen, "reaktionsgeschwindigkeit": reaktionsgeschwindigkeit, "chemisches-gleichgewicht": chemisches_gleichgewicht, "binomische-formeln": binom, "bruchterme": bruchterme, "ausmultiplizieren-faktorisieren": ausmult, "terme-vereinfachen": terme,
+    "termstruktur": termstruktur, "zufallsexperimente": zufallsexperimente, "laplace": laplace, "baumdiagramme": baumdiagramme, "unabhaengige-ereignisse": unabhaengig, "funktionsbegriff": funktionsbegriff, "eigenschaften-funktionen": eigenschaften, "lineare-funktionen": lineare_funktionen, "funktionsgleichungen": funktionsgleichungen, "lgs-grafisch": lgs_grafisch, "gleichsetzungsverfahren": gleichsetzungsverfahren, "additionsverfahren": additionsverfahren, "lgs-anwendungen": lgs_anwendungen, "zentrische-streckung": zentrische_streckung, "aehnliche-dreiecke": aehnliche_dreiecke, "flaeche-volumen-aehnlich": flaeche_volumen_aehnlich, "strahlensaetze": strahlensaetze, "atombau": atombau, "periodensystem": periodensystem, "stoffklassen": stoffklassen, "orbitalmodell": orbitalmodell, "redoxreaktionen": redoxreaktionen, "gebrauchsmetalle": gebrauchsmetalle, "komplexverbindungen": komplexverbindungen, "reaktionsgeschwindigkeit": reaktionsgeschwindigkeit, "chemisches-gleichgewicht": chemisches_gleichgewicht, "massenwirkungsgesetz": massenwirkungsgesetz, "binomische-formeln": binom, "bruchterme": bruchterme, "ausmultiplizieren-faktorisieren": ausmult, "terme-vereinfachen": terme,
     "gleichungen": gleichungen, "ungleichungen": ungleichungen,
     "druck": druck, "hydraulik": hydraulik, "schweredruck": schweredruck, "auftrieb": auftrieb, "luftdruck": luftdruck,
 }

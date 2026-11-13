@@ -1,0 +1,59 @@
+  <nav class="tabs" aria-label="Bereiche">
+    <a href="#verstehen" data-view="verstehen"><span class="n">1</span>Verstehen</a>
+    <a href="#aufstellen" data-view="aufstellen"><span class="n">2</span>MWG aufstellen</a>
+    <a href="#rechner" data-view="rechner"><span class="n">3</span>Gleichgewichtsrechner</a>
+    <a href="#ueben" data-view="ueben"><span class="n">4</span>Üben</a>
+    <a href="#alltag" data-view="alltag"><span class="n">5</span>Im Alltag</a>
+    <a href="#quiz" data-view="quiz"><span class="n">6</span>Quiz</a>
+  </nav>
+
+  <section class="view" id="view-verstehen">
+    <div class="einfach">
+      <span class="eyebrow">Einfach erklärt</span>
+      <p>Im Gleichgewicht stehen die Konzentrationen in einem <strong>festen Verhältnis</strong> zueinander, egal mit welchen Mengen man startet. Dieses Verhältnis ist die <strong>Gleichgewichtskonstante K</strong>. Sie hängt nur von der Reaktion und der <strong>Temperatur</strong> ab.</p>
+    </div>
+    <div class="panel stack">
+      <h3>Massenwirkungsgesetz (MWG)</h3>
+      <p class="small">Für a A + b B ⇌ c C + d D gilt im Gleichgewicht:</p>
+      <div class="mwg"><span>K<sub>c</sub> =</span><span class="frac"><span>c(C)<sup>c</sup> · c(D)<sup>d</sup></span><span>c(A)<sup>a</sup> · c(B)<sup>b</sup></span></span></div>
+      <ul class="list small"><li>Produkte stehen im <strong>Zähler</strong>, Edukte im <strong>Nenner</strong>.</li><li>Die Koeffizienten der Gleichung werden zu <strong>Hochzahlen</strong>.</li><li>Reine Feststoffe und das Lösemittel Wasser werden nicht eingesetzt (ihre „Konzentration“ ist konstant).</li><li>Die Einheit ergibt sich aus den Hochzahlen, z. B. L²/mol² bei der Ammoniaksynthese.</li></ul>
+    </div>
+    <div class="grid-2">
+      <div class="panel stack"><h3>Was K verrät</h3><ul class="list small"><li><strong>K ≫ 1</strong>: Gleichgewicht liegt weit auf der <strong>Produktseite</strong>.</li><li><strong>K ≪ 1</strong>: Gleichgewicht liegt auf der <strong>Eduktseite</strong>.</li><li>K ≈ 1: Edukte und Produkte in ähnlichen Mengen.</li></ul></div>
+      <div class="panel stack"><h3>Reaktionsquotient Q</h3><p class="small">Setzt man <strong>beliebige</strong> (Nicht-Gleichgewichts-)Konzentrationen ins MWG ein, erhält man Q.</p><ul class="list small"><li>Q &lt; K: Reaktion läuft <strong>nach rechts</strong>.</li><li>Q &gt; K: Reaktion läuft <strong>nach links</strong>.</li><li>Q = K: Gleichgewicht.</li></ul></div>
+    </div>
+    <div class="merksatz"><span class="eyebrow">Temperatur</span><p>Nur die <strong>Temperatur</strong> ändert K. Bei exothermen Reaktionen wird K mit steigender Temperatur kleiner, bei endothermen größer. Konzentrations- und Druckänderungen ändern K nicht, das System stellt sich neu ein, bis Q wieder K ist.</p></div>
+    <div class="panel stack"><h3>Typische Fehler</h3><ul class="list small"><li>Koeffizienten als Faktoren statt als Hochzahlen eingesetzt.</li><li>Anfangskonzentrationen statt Gleichgewichtskonzentrationen eingesetzt.</li><li>Zähler und Nenner vertauscht.</li></ul></div>
+  </section>
+
+  <section class="view" id="view-aufstellen" hidden>
+    <div class="stack"><span class="eyebrow">Werkstatt</span><h2>MWG aufstellen</h2><p class="muted">Wähle eine Reaktion. Überlege zuerst selbst, dann sieh dir das MWG und die Einheit an.</p></div>
+    <div class="chips" id="aChips"></div>
+    <div class="panel stack"><p class="big" id="aEq"></p><div class="mwg" id="aMwg"></div><p class="small" id="aInfo"></p></div>
+  </section>
+
+  <section class="view" id="view-rechner" hidden>
+    <div class="stack"><span class="eyebrow">Berechnen</span><h2>Gleichgewicht berechnen: A + B ⇌ C + D</h2><p class="muted">Gib K und die Anfangsstoffmengen ein. Der Rechner stellt die Gleichgewichtstabelle auf (Anfang, Änderung, Gleichgewicht) und löst die quadratische Gleichung. Beispiel Veresterung: Essigsäure + Ethanol ⇌ Ethylacetat + Wasser, K = 4.</p></div>
+    <div class="panel stack"><div class="calc"><label>K<input type="number" id="rK" value="4" min="0.01" step="0.1"></label><label>n(A) in mol<input type="number" id="rA" value="1" min="0" step="0.1"></label><label>n(B) in mol<input type="number" id="rB" value="1" min="0" step="0.1"></label><label>n(C) in mol<input type="number" id="rC" value="0" min="0" step="0.1"></label><label>n(D) in mol<input type="number" id="rD" value="0" min="0" step="0.1"></label></div>
+      <div style="overflow-x:auto"><table class="ptab ice" id="rTab"></table></div><div id="rSteps" class="small"></div></div>
+  </section>
+
+  <section class="view" id="view-ueben" hidden>
+    <div class="stack"><span class="eyebrow">Trainer</span><h2>Mit dem MWG rechnen</h2><p class="muted">Zahlen mit Komma oder Punkt, Ergebnisse auf drei geltende Stellen.</p></div>
+    <div id="trainer" class="stack"></div>
+  </section>
+
+  <section class="view" id="view-alltag" hidden>
+    <div class="stack"><span class="eyebrow">Im Alltag</span><h2>Wozu man K braucht</h2></div>
+    <div class="grid-2">
+      <div class="panel stack"><span class="eyebrow">Industrie</span><h3>Ausbeute planen</h3><p class="small">Mit K berechnen Chemiker, wie viel Produkt maximal möglich ist und wie viel Überschuss eines Edukts sich lohnt.</p></div>
+      <div class="panel stack"><span class="eyebrow">Duft</span><h3>Fruchtester</h3><p class="small">Ester riechen nach Obst. Mit K = 4 entstehen aus je 1 mol Säure und Alkohol nur 2/3 mol Ester, mit Alkohol im Überschuss mehr.</p></div>
+      <div class="panel stack"><span class="eyebrow">Umwelt</span><h3>Stickoxide im Motor</h3><p class="small">N₂ + O₂ ⇌ 2 NO hat bei Raumtemperatur ein winziges K, bei 2000 °C im Motor ein viel größeres. Deshalb entstehen Stickoxide in heißen Verbrennungen.</p></div>
+      <div class="panel stack"><span class="eyebrow">Körper</span><h3>Säuren und Puffer</h3><p class="small">Die Säurekonstante Kₛ ist ein MWG für Säuren. Sie erklärt, wie Puffer im Blut den pH-Wert stabil halten.</p></div>
+    </div>
+  </section>
+
+  <section class="view" id="view-quiz" hidden>
+    <div class="stack"><span class="eyebrow">Selbsttest</span><h2>Quiz</h2><div class="progress-line"><div class="bar" aria-hidden="true"><i id="qBar"></i></div><span class="score-line" id="qProgress"></span></div></div>
+    <div class="panel quiz" id="quizBox" aria-live="polite"></div>
+  </section>

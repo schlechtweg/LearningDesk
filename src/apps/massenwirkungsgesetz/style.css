@@ -1,0 +1,15 @@
+.ptab { width: 100%; border-collapse: collapse; font-size: var(--step--1); }
+.ptab th, .ptab td { padding: 6px 8px; border-bottom: 1px solid var(--line); text-align: left; overflow-wrap: anywhere; }
+.ptab th { color: var(--muted); }
+.ice td, .ice th { text-align: center; font-family: var(--font-mono); }
+.mwg { display: flex; align-items: center; gap: 10px; font-family: var(--font-math, serif); font-size: 1.4rem; flex-wrap: wrap; }
+.frac { display: inline-grid; text-align: center; }
+.frac span:first-child { border-bottom: 2px solid var(--ink); padding: 0 6px 2px; }
+.frac span:last-child { padding: 2px 6px 0; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chips button { font-family: var(--font-mono); padding: 6px 10px; font-size: .85rem; }
+.calc { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 8px; align-items: end; }
+.calc label { display: grid; gap: 4px; font-size: var(--step--1); }
+.calc input { width: 100%; }
+.big { font-family: var(--font-display); font-size: 1.4rem; font-weight: 800; margin: 0; }
+@media (max-width: 560px) { .calc { grid-template-columns: 1fr 1fr; } }

@@ -317,6 +317,14 @@ TOPICS = [
         "fonts": "base", "first_view": "verstehen", "factsheet": "Factsheet als PDF ↓",
     },
     {
+        "slug": "massenwirkungsgesetz", "grade": "11", "subject": "chemie", "chapter": "3", "order": 3, "kit": True, "accent": ACCENT_CHEM,
+        "title": "Gleichgewichtskonstante und Massenwirkungsgesetz", "short": "Massenwirkungsgesetz", "tag": "Gleichgewicht",
+        "card": "Gleichgewichtskonstante K, MWG aufstellen, Reaktionsquotient Q, Gleichgewichtsrechner mit Tabelle, Veresterung, Trainer, Quiz",
+        "description": "Interaktive Lernhilfe zum Massenwirkungsgesetz und zu Gleichgewichtsberechnungen (Chemie, Klasse 11)",
+        "intro": "Wie man die Lage eines Gleichgewichts mit einer Zahl beschreibt und Gleichgewichtskonzentrationen berechnet.",
+        "fonts": "math", "first_view": "verstehen", "factsheet": "Factsheet als PDF ↓",
+    },
+    {
         "slug": "binomische-formeln", "grade": "8", "subject": "mathematik", "chapter": "I", "order": 4,
         "title": "Binomische Formeln", "short": "Binomische Formeln", "tag": "Terme",
         "card": "Die drei Formeln, Erklärung mit Flächen, Trainer mit Lückenaufgaben, Kopfrechen-Trick, Quiz",

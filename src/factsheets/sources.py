@@ -2376,6 +2376,37 @@ SHEETS["chemisches-gleichgewicht"] = dict(title="Chemisches Gleichgewicht und Le
     </div>
   </div>''')
 
+SHEETS["massenwirkungsgesetz"] = dict(title="Gleichgewichtskonstante und Massenwirkungsgesetz", eyebrow="Chemie · Klasse 11 · Chemische Gleichgewichte", accent=CH11, body=f'''
+  <div class="kern">Für a A + b B ⇌ c C + d D gilt im Gleichgewicht: <strong>K = c(C)<sup>c</sup> · c(D)<sup>d</sup> / (c(A)<sup>a</sup> · c(B)<sup>b</sup>)</strong>. K hängt nur von der Reaktion und der <strong>Temperatur</strong> ab.</div>
+  <div class="cols">
+    <div class="box">
+      <h2>Regeln</h2>
+      <ul><li>Produkte oben, Edukte unten</li><li>Koeffizienten = Hochzahlen</li><li>Feststoffe, Lösemittel entfallen</li><li>Einheit aus den Hochzahlen</li></ul>
+    </div>
+    <div class="box">
+      <h2>Bedeutung</h2>
+      <ul><li>K ≫ 1: Produktseite</li><li>K ≪ 1: Eduktseite</li><li>Q &lt; K: nach rechts; Q &gt; K: nach links</li><li>T ↑: K sinkt (exo), steigt (endo)</li></ul>
+    </div>
+    <div class="box full">
+      <h2>Rechnen mit der Gleichgewichtstabelle</h2>
+      <table>
+        <tr><th></th><th>Säure</th><th>Alkohol</th><th>Ester</th><th>Wasser</th></tr>
+        <tr><td>Anfang</td><td>1</td><td>1</td><td>0</td><td>0</td></tr>
+        <tr><td>Änderung</td><td>−x</td><td>−x</td><td>+x</td><td>+x</td></tr>
+        <tr><td>Gleichgewicht</td><td>1 − x</td><td>1 − x</td><td>x</td><td>x</td></tr>
+      </table>
+      <p>K = 4 = x² / (1 − x)² ⇒ x = 2/3 mol. Bei ungleichen Mengen quadratische Gleichung lösen.</p>
+    </div>
+    <div class="box">
+      <h2>Beispiele</h2>
+      <ul><li>N₂ + 3 H₂ ⇌ 2 NH₃: K = c(NH₃)² / (c(N₂) · c(H₂)³)</li><li>CaCO₃ ⇌ CaO + CO₂: K = c(CO₂)</li></ul>
+    </div>
+    <div class="box warn">
+      <h2>Typische Fehler</h2>
+      <ul><li>Koeffizienten als Faktoren.</li><li>Anfangs- statt Gleichgewichtswerte.</li><li>Zähler und Nenner vertauscht.</li></ul>
+    </div>
+  </div>''')
+
 OUT = sys.argv[1] if len(sys.argv) > 1 else os.path.join(os.path.dirname(__file__), "_build")
 os.makedirs(OUT, exist_ok=True)
 shutil.copyfile(os.path.join(os.path.dirname(os.path.abspath(__file__)), "factsheet.css"), os.path.join(OUT, "factsheet.css"))
