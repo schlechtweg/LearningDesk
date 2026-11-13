@@ -301,6 +301,14 @@ TOPICS = [
         "fonts": "base", "first_view": "verstehen", "factsheet": "Factsheet als PDF ↓",
     },
     {
+        "slug": "reaktionsgeschwindigkeit", "grade": "11", "subject": "chemie", "chapter": "3", "order": 1, "kit": True, "accent": ACCENT_CHEM,
+        "title": "Reaktionsgeschwindigkeit und Katalysatoren", "short": "Reaktionsgeschwindigkeit", "tag": "Kinetik",
+        "card": "Geschwindigkeit messen und berechnen, Konzentration, Temperatur (RGT-Regel), Stoßmodell zum Ausprobieren, Katalysator im Energiediagramm, Trainer, Quiz",
+        "description": "Interaktive Lernhilfe zur Reaktionsgeschwindigkeit und zu Katalysatoren (Chemie, Klasse 11)",
+        "intro": "Wie man die Geschwindigkeit einer Reaktion misst, warum Konzentration und Temperatur sie verändern und wie Katalysatoren Zeit und Energie sparen.",
+        "fonts": "base", "first_view": "verstehen", "factsheet": "Factsheet als PDF ↓",
+    },
+    {
         "slug": "binomische-formeln", "grade": "8", "subject": "mathematik", "chapter": "I", "order": 4,
         "title": "Binomische Formeln", "short": "Binomische Formeln", "tag": "Terme",
         "card": "Die drei Formeln, Erklärung mit Flächen, Trainer mit Lückenaufgaben, Kopfrechen-Trick, Quiz",

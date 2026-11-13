@@ -2314,6 +2314,37 @@ SHEETS["komplexverbindungen"] = dict(title="Komplexverbindungen", eyebrow="Chemi
     </div>
   </div>''')
 
+SHEETS["reaktionsgeschwindigkeit"] = dict(title="Reaktionsgeschwindigkeit und Katalysatoren", eyebrow="Chemie · Klasse 11 · Chemische Gleichgewichte", accent=CH11, body=f'''
+  <div class="kern">Die <strong>Reaktionsgeschwindigkeit</strong> ist die Konzentrationsänderung pro Zeit: <strong>v = Δc / Δt</strong> (für Edukte mit Minus). Nach der <strong>Stoßtheorie</strong> reagieren Teilchen nur bei Zusammenstößen mit ausreichender Energie (≥ Eₐ) und passender Ausrichtung.</div>
+  <div class="cols">
+    <div class="box">
+      <h2>Messen</h2>
+      <ul><li>Gasvolumen (Kolbenprober)</li><li>Massenverlust (Waage)</li><li>Farbe (Fotometer), Leitfähigkeit</li><li>Mittlere v: Sekante; momentane v: Tangente</li></ul>
+    </div>
+    <div class="box">
+      <h2>Einflüsse</h2>
+      <ul><li><strong>Konzentration</strong> ↑: mehr Stöße</li><li><strong>Temperatur</strong> ↑: RGT-Regel, +10 K ≈ ·2</li><li><strong>Oberfläche</strong> ↑: Pulver schneller</li><li><strong>Katalysator</strong>: Eₐ sinkt</li></ul>
+    </div>
+    <div class="box full">
+      <h2>Katalysatoren</h2>
+      <table>
+        <tr><th>Merkmal</th><th>Erklärung</th></tr>
+        <tr><td>Wirkung</td><td>neuer Reaktionsweg mit kleinerer Aktivierungsenergie</td></tr>
+        <tr><td>bleibt unverändert</td><td>wird nicht verbraucht</td></tr>
+        <tr><td>ändert nicht</td><td>ΔH und die Lage des Gleichgewichts</td></tr>
+        <tr><td>Beispiele</td><td>Pt/Rh im Autokatalysator, Enzyme, MnO₂ bei H₂O₂, Fe bei NH₃</td></tr>
+      </table>
+    </div>
+    <div class="box">
+      <h2>Im Alltag</h2>
+      <ul><li>Kühlschrank, Schnellkochtopf.</li><li>Mehlstaubexplosion.</li><li>Enzyme in Verdauung und Waschmittel.</li></ul>
+    </div>
+    <div class="box warn">
+      <h2>Typische Fehler</h2>
+      <ul><li>Schneller ≠ mehr Produkt.</li><li>Katalysator liefert keine Energie.</li><li>Vorzeichen bei Δc der Edukte.</li></ul>
+    </div>
+  </div>''')
+
 OUT = sys.argv[1] if len(sys.argv) > 1 else os.path.join(os.path.dirname(__file__), "_build")
 os.makedirs(OUT, exist_ok=True)
 shutil.copyfile(os.path.join(os.path.dirname(os.path.abspath(__file__)), "factsheet.css"), os.path.join(OUT, "factsheet.css"))

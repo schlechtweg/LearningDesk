@@ -1,0 +1,15 @@
+.ptab { width: 100%; border-collapse: collapse; font-size: var(--step--1); }
+.ptab th, .ptab td { padding: 6px 8px; border-bottom: 1px solid var(--line); text-align: left; overflow-wrap: anywhere; }
+.ptab th { color: var(--muted); }
+.plot { width: 100%; height: auto; display: block; }
+.plot .ax { stroke: var(--ink); stroke-width: 1.4; }
+.plot .gl { stroke: var(--line); stroke-width: .7; }
+.plot .c1 { stroke: var(--accent); stroke-width: 3; fill: none; }
+.plot .c2 { stroke: #e0a400; stroke-width: 3; fill: none; }
+.plot .ref { stroke: var(--muted); stroke-width: 2; fill: none; stroke-dasharray: 5 4; }
+.plot .tan { stroke: #c62828; stroke-width: 2; stroke-dasharray: 4 3; }
+.plot text { font: 11px var(--font-mono); fill: var(--muted); }
+.plot .lb { font: 700 12px var(--font-body); fill: var(--ink); }
+.ctl input[type=range] { width: 100%; }
+.box2 { width: 100%; height: auto; display: block; border-radius: 10px; background: color-mix(in srgb, var(--accent) 6%, transparent); }
+.kv { font-family: var(--font-display); font-size: 1.3rem; font-weight: 800; margin: 0; }

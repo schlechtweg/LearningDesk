@@ -3210,6 +3210,90 @@ def komplexverbindungen():
     return L
 
 
+def reaktionsgeschwindigkeit():
+    r = random.Random(208)
+    L = {1: [], 2: [], 3: []}
+    seen = set()
+    de = lambda v, n=3: (f"{v:.{n}f}".rstrip("0").rstrip(".") if "." in f"{v:.{n}f}" else f"{v:.{n}f}").replace(".", ",")
+
+    def add(lvl, q, a):
+        if q not in seen and len(L[lvl]) < 120:
+            seen.add(q)
+            L[lvl].append((q, a))
+    for i in range(1500):
+        t = i % 4
+        if t == 0:
+            c1 = r.randint(6, 20) / 10
+            dc = r.randint(1, int(c1 * 10) - 2) / 10
+            dt = r.choice([10, 20, 25, 40, 50, 100])
+            add(1, f"c(A) sinkt in {dt} s von {de(c1, 1)} auf {de(c1 - dc, 1)} mol/L. Mittlere Reaktionsgeschwindigkeit?", f"v = −Δc/Δt = −({de(c1 - dc, 1)} − {de(c1, 1)}) : {dt} = {de(dc, 1)} : {dt} = <b>{de(dc / dt, 4)} mol/(L·s)</b>")
+        elif t == 1:
+            dT = r.choice([10, 20, 30, 40])
+            add(1, f"Um welchen Faktor steigt v nach der RGT-Regel, wenn T um {dT} K erhöht wird?", f"je 10 K Faktor 2: 2<sup>{dT // 10}</sup> = <b>{2 ** (dT // 10)}</b>, die Reaktion ist {2 ** (dT // 10)}-mal so schnell")
+        elif t == 2:
+            V, tt = r.choice([10, 20, 30, 40, 50, 60]), r.choice([5, 10, 20, 30])
+            add(1, f"In {tt} s entstehen {V} mL Gas. Mittlere Bildungsgeschwindigkeit?", f"v = ΔV/Δt = {V} mL : {tt} s = <b>{de(V / tt, 2)} mL/s</b>")
+        else:
+            q_, a_ = r.choice([("Wie ändert sich v, wenn ein Stück Marmor durch Marmorpulver ersetzt wird?", "<b>schneller</b>: größere Oberfläche"), ("Wie ändert sich v beim Verdünnen der Säure?", "<b>langsamer</b>: weniger Stöße"),
+                               ("Was senkt ein Katalysator?", "die <b>Aktivierungsenergie</b>"), ("Wird ein Katalysator verbraucht?", "<b>nein</b>, er liegt nach der Reaktion unverändert vor"),
+                               ("Nenne drei Bedingungen für einen wirksamen Stoß.", "Teilchen <b>stoßen zusammen</b>, mit <b>E ≥ Eₐ</b>, in <b>passender Ausrichtung</b>"), ("Wie misst man v bei Mg + HCl?", "<b>Volumen des Wasserstoffs</b> über die Zeit (Kolbenprober)"),
+                               ("Wie misst man v bei CaCO₃ + HCl?", "<b>Massenverlust</b> durch entweichendes CO₂ (Waage)"), ("Wann ist v meist am größten?", "<b>zu Beginn</b>, bei höchster Eduktkonzentration"),
+                               ("Ändert ein Katalysator ΔH?", "<b>nein</b>, nur Eₐ"), ("Was ist ein Enzym?", "ein <b>Biokatalysator</b> (Protein)"), ("Warum lagert man Lebensmittel kühl?", "Verderbnisreaktionen laufen <b>langsamer</b> (RGT-Regel)"),
+                               ("Wie heißt der Katalysator für die Zersetzung von H₂O₂ im Schulversuch?", "<b>Braunstein MnO₂</b>")])
+            add(1, q_, a_)
+    for i in range(1500):
+        t = i % 4
+        if t == 0:
+            # gas volume table, two intervals
+            k = r.choice([0.05, 0.08, 0.1])
+            Vm = r.choice([40, 50, 60, 80])
+            ts = [0, 10, 20, 30, 40]
+            Vs = [round(Vm * (1 - math.exp(-k * x))) for x in ts]
+            add(2, f"Gasvolumen (mL) bei t = 0, 10, 20, 30, 40 s: {', '.join(map(str, Vs))}. Berechne v in den Intervallen 0–10 s und 30–40 s und erkläre den Unterschied.", f"{de((Vs[1] - Vs[0]) / 10, 2)} mL/s bzw. {de((Vs[4] - Vs[3]) / 10, 2)} mL/s: <b>v nimmt ab</b>, weil die Eduktkonzentration sinkt.")
+        elif t == 1:
+            c0, f = r.choice([0.1, 0.2, 0.5]), r.choice([2, 3, 4])
+            v0 = r.choice([0.002, 0.005, 0.01, 0.02])
+            add(2, f"Bei c₀ = {de(c0, 1)} mol/L beträgt v₀ = {de(v0, 3)} mol/(L·s). Wie groß ist v₀ bei {de(c0 * f, 1)} mol/L, wenn v proportional zu c ist?", f"c · {f} ⇒ v · {f}: <b>{de(v0 * f, 3)} mol/(L·s)</b>")
+        elif t == 2:
+            tmin, dT = r.choice([20, 40, 60, 80, 120]), r.choice([10, 20, 30])
+            up = r.random() < 0.6
+            f = 2 ** (dT // 10)
+            add(2, f"Eine Reaktion dauert bei 20 °C {tmin} min. Wie lange dauert sie etwa bei {20 + dT if up else 20 - dT} °C?", f"Geschwindigkeit {'· ' + str(f) if up else ': ' + str(f)} ⇒ Zeit {': ' + str(f) if up else '· ' + str(f)} = <b>{de(tmin / f if up else tmin * f, 1)} min</b>")
+        else:
+            q_, a_ = r.choice([("Zeichne ein Energiediagramm einer exothermen Reaktion mit und ohne Katalysator.", "Edukte höher als Produkte (ΔH < 0); katalysierter Weg mit <b>niedrigerem Maximum</b>, gleiche Anfangs- und Endniveaus"),
+                               ("Erkläre mit der Stoßtheorie, warum Temperaturerhöhung stärker wirkt als nur die Zahl der Stöße vermuten lässt.", "Bei höherer T haben <b>überproportional viele Teilchen E ≥ Eₐ</b>; die Zahl wirksamer Stöße steigt stark, nicht nur die Stoßzahl."),
+                               ("Unterscheide mittlere und momentane Reaktionsgeschwindigkeit.", "Mittlere: Steigung der <b>Sekante</b> zwischen zwei Zeitpunkten; momentane: Steigung der <b>Tangente</b> in einem Punkt."),
+                               ("Warum wird beim Abgaskatalysator Platin fein auf einem Keramikträger verteilt?", "<b>Große Oberfläche</b> bei wenig teurem Edelmetall; heterogene Katalyse findet an der Oberfläche statt."),
+                               ("Unterscheide homogene und heterogene Katalyse mit Beispielen.", "Homogen: Katalysator in derselben Phase (H⁺ bei der Esterbildung); heterogen: andere Phase (Pt im Abgaskatalysator, Fe bei der NH₃-Synthese)."),
+                               ("Erkläre, warum Fieber über 42 °C gefährlich ist.", "Enzyme <b>denaturieren</b>, ihre Struktur und Wirkung gehen verloren; Stoffwechselreaktionen laufen nicht mehr ab.")])
+            add(2, q_, a_)
+    fixed = [
+        ("Plane ein Experiment, mit dem man den Einfluss der Säurekonzentration auf die Reaktion von Magnesium mit Salzsäure untersucht. Was muss konstant bleiben?", "Gleiche Mg-Bänder, gleiche Temperatur und Säurevolumen; nur c(HCl) variieren (z. B. 0,5/1/2 mol/L); <b>Wasserstoffvolumen</b> im Kolbenprober über die Zeit messen; Anfangsgeschwindigkeiten vergleichen."),
+        ("Die Halbwertszeit einer Reaktion 1. Ordnung beträgt bei 25 °C 60 s. Schätze sie für 45 °C mit der RGT-Regel.", "+20 K ⇒ v · 4 ⇒ Halbwertszeit : 4 = <b>15 s</b>."),
+        ("Begründe, warum eine Kerze an der Luft nicht von selbst brennt, obwohl die Reaktion exotherm ist.", "Die <b>Aktivierungsenergie</b> ist zu hoch; erst die Flamme des Streichholzes liefert sie, danach hält die frei werdende Wärme die Reaktion in Gang."),
+        ("Warum ist ein Katalysator für die Industrie so wertvoll, obwohl er die Ausbeute im Gleichgewicht nicht erhöht?", "Das Gleichgewicht stellt sich <b>schneller</b> und bei <b>niedrigerer Temperatur</b> ein: Zeit- und Energieersparnis, kleinere Anlagen, oft bessere Ausbeute bei Gleichgewichten, die bei niedriger T günstiger liegen."),
+        ("Erkläre, warum Kohlenstaub explosiv sein kann, ein Kohlestück aber nur langsam brennt.", "Feiner Staub hat eine <b>riesige Oberfläche</b>; sehr viele Teilchen reagieren gleichzeitig, die Wärme wird schlagartig frei."),
+        ("Bei 20 °C entstehen in der ersten Minute 30 mL CO₂, bei 30 °C 58 mL. Prüfe, ob die RGT-Regel gilt.", "58 : 30 ≈ <b>1,9</b>, also etwa Verdopplung bei +10 K: Die RGT-Regel ist erfüllt."),
+        ("Warum verlaufen Reaktionen in Lösung meist schneller als zwischen Feststoffen?", "In Lösung sind die Teilchen <b>beweglich</b> und fein verteilt; Feststoffe berühren sich nur an der Oberfläche."),
+        ("Erkläre am Energiediagramm, warum ein Katalysator Hin- und Rückreaktion gleichermaßen beschleunigt.", "Er senkt den gemeinsamen <b>Energieberg</b> (Übergangszustand) für beide Richtungen um denselben Betrag; die Lage des Gleichgewichts bleibt gleich."),
+        ("Wie lange braucht eine Reaktion, die bei 60 °C 30 s dauert, ungefähr bei 20 °C?", "−40 K ⇒ v : 2⁴ = : 16 ⇒ Zeit · 16 = <b>480 s = 8 min</b>."),
+        ("Beschreibe zwei Messverfahren für die Reaktionsgeschwindigkeit, wenn kein Gas entsteht.", "<b>Fotometrie</b> (Farbintensität, z. B. Iod), <b>Leitfähigkeitsmessung</b> (Ionenkonzentration), Trübungsmessung (Thiosulfat + Säure: Schwefel)."),
+        ("Warum werden Lebensmittel durch Einfrieren auf −18 °C lange haltbar?", "Gegenüber 22 °C ist das 40 K kälter: v sinkt nach RGT etwa auf <b>1/16</b>; außerdem ist Wasser gefroren, Mikroorganismen und Enzyme arbeiten kaum."),
+        ("Erkläre die Wirkungsweise eines Enzyms mit dem Schlüssel-Schloss-Prinzip.", "Das Substrat passt in das <b>aktive Zentrum</b>; dort wird es so gebunden, dass die Aktivierungsenergie sinkt; das Enzym geht unverändert aus der Reaktion hervor."),
+        ("Skizziere den zeitlichen Verlauf von c(Edukt) und c(Produkt) einer vollständig ablaufenden Reaktion A → B und begründe die Kurvenform.", "c(A) fällt zuerst steil, dann immer flacher gegen 0; c(B) steigt spiegelbildlich. Die Steigung (v) nimmt ab, weil <b>weniger Edukt-Teilchen</b> für Stöße vorhanden sind."),
+        ("Warum muss man bei Messungen der Reaktionsgeschwindigkeit die Temperatur konstant halten?", "Schon wenige Kelvin ändern v deutlich (RGT-Regel); sonst wären Unterschiede nicht eindeutig einem anderen Faktor zuzuordnen (<b>Variablenkontrolle</b>)."),
+        ("Erkläre, warum Wasserstoff und Sauerstoff bei Raumtemperatur jahrelang nebeneinander bestehen können, mit Platinpulver aber sofort reagieren.", "Die Knallgasreaktion hat eine hohe <b>Aktivierungsenergie</b>; Platin als Katalysator senkt sie so weit, dass bereits bei Raumtemperatur viele Stöße wirksam sind."),
+        ("Eine Reaktion hat bei c = 0,5 mol/L die Anfangsgeschwindigkeit 0,01 mol/(L·s), bei c = 1 mol/L 0,04 mol/(L·s). Welcher Zusammenhang besteht?", "Doppelte Konzentration, vierfache Geschwindigkeit: <b>v ~ c²</b> (Reaktion 2. Ordnung bezüglich dieses Stoffes)."),
+    ]
+    for q_, a_ in fixed:
+        add(3, q_, a_)
+    for tmin, Tf, Tt in [(40, 20, 50), (90, 25, 45), (12, 60, 30), (256, 10, 50)]:
+        f = 2 ** ((Tt - Tf) / 10)
+        add(3, f"Eine Reaktion dauert bei {Tf} °C {tmin} min. Wie lange dauert sie nach der RGT-Regel bei {Tt} °C? Wie zuverlässig ist diese Abschätzung?", f"Faktor 2<sup>{(Tt - Tf) // 10}</sup> = {de(f, 3)} ⇒ <b>{de(tmin / f, 1)} min</b>. Nur eine <b>Faustregel</b>; der Faktor liegt real meist zwischen 2 und 4.")
+    r.shuffle(L[3])
+    return L
+
+
 M8, PH = "#1f6e8c", "#b4531f"
 TOPICS = {
     "osmose": ({"title": "Osmose", "eyebrow": "Biologie · Klasse 11", "accent": "#0d6f74", "cols": [1, 1, 1], "sol_cols": [1, 1, 1]}, osmose),
@@ -3243,6 +3327,7 @@ TOPICS = {
     "redoxreaktionen": ({"title": "Redoxreaktionen und Oxidationszahlen", "eyebrow": "Chemie · Klasse 11", "accent": "#6a3fa0", "cols": [2, 1, 1], "sol_cols": [2, 1, 1]}, redoxreaktionen),
     "gebrauchsmetalle": ({"title": "Gebrauchsmetalle", "eyebrow": "Chemie · Klasse 11", "accent": "#6a3fa0", "cols": [2, 1, 1], "sol_cols": [2, 1, 1]}, gebrauchsmetalle),
     "komplexverbindungen": ({"title": "Komplexverbindungen", "eyebrow": "Chemie · Klasse 11 · Wahlpflicht", "accent": "#6a3fa0", "cols": [2, 2, 1], "sol_cols": [2, 2, 1]}, komplexverbindungen),
+    "reaktionsgeschwindigkeit": ({"title": "Reaktionsgeschwindigkeit und Katalysatoren", "eyebrow": "Chemie · Klasse 11", "accent": "#6a3fa0", "cols": [2, 1, 1], "sol_cols": [2, 1, 1]}, reaktionsgeschwindigkeit),
     "binomische-formeln": ({"title": "Binomische Formeln", "eyebrow": "Mathematik · Klasse 8", "accent": M8, "cols": 2, "sol_cols": 2}, binomische_formeln),
     "bruchterme": ({"title": "Bruchterme", "eyebrow": "Mathematik · Klasse 8", "accent": "#2d6a4f", "cols": 3, "sol_cols": 3}, bruchterme),
     "ausmultiplizieren-faktorisieren": ({"title": "Ausmultiplizieren und Faktorisieren", "eyebrow": "Mathematik · Klasse 8", "accent": M8, "cols": 3, "sol_cols": 3}, ausmultiplizieren),

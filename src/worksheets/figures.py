@@ -962,10 +962,31 @@ def komplexverbindungen():
                     extra_sol='<p class="q"><b>[Cu(NH₃)₄(H₂O)₂]²⁺</b>: Ladung 2 + 0 = <b>2+</b>, <b>KZ 6</b> (oktaedrisch).</p>', cols=1)
 
 
+def reaktionsgeschwindigkeit():
+    # measured hydrogen volume: V = 60 (1 - e^(-t/20)), points at 0..80 s
+    import math as _m
+    ox, oy, ux, uy = 40, 180, 2.6, 2.4
+    g = "".join(f'<line class="gl" x1="{ox + t * ux}" y1="{oy}" x2="{ox + t * ux}" y2="{oy - 64 * uy}"/>' + text(ox + t * ux, oy + 12, str(t), "ft tiny") for t in range(0, 81, 10))
+    g += "".join(f'<line class="gl" x1="{ox}" y1="{oy - v * uy}" x2="{ox + 80 * ux}" y2="{oy - v * uy}"/>' + text(ox - 5, oy - v * uy + 3, str(v), "ft tiny", "end") for v in range(0, 61, 10))
+    g += arrow(ox, oy, ox + 84 * ux, oy, "arr thin") + arrow(ox, oy, ox, oy - 66 * uy, "arr thin") + text(ox + 84 * ux, oy - 6, "t in s", "ft tiny", "end") + text(ox + 4, oy - 66 * uy, "V(H₂) in mL", "ft tiny", "start")
+    pts = [(t, 60 * (1 - _m.exp(-t / 20))) for t in range(0, 81, 10)]
+    g += "".join(f'<circle cx="{ox + t * ux:.1f}" cy="{oy - v * uy:.1f}" r="3" fill="#1b2228"/>' for t, v in pts)
+    curve = "M" + " L".join(f"{ox + t * ux:.1f} {oy - 60 * (1 - _m.exp(-t / 20)) * uy:.1f}" for t in range(0, 81, 2))
+    sol = g + f'<path class="fs" d="{curve}"/>' + f'<line x1="{ox}" y1="{oy}" x2="{ox + 20 * ux}" y2="{oy - 60 * uy}" stroke="#c0392b" stroke-width="1.6" stroke-dasharray="4 3"/>'
+    v10, v20 = 60 * (1 - _m.exp(-0.5)), 60 * (1 - _m.exp(-1))
+    task = ('<p>Magnesium reagiert mit Salzsäure. Die Punkte zeigen das gemessene Wasserstoffvolumen.</p>'
+            '<p class="q">Zeichne die Messkurve und die Tangente bei t = 0 ein.</p>'
+            '<p class="q">mittlere Geschwindigkeit 0–20 s: <span class="blank"></span> 60–80 s: <span class="blank"></span></p>'
+            '<p class="q">Anfangsgeschwindigkeit (Tangente): <span class="blank"></span></p>')
+    soltxt = (f'<p class="q">0–20 s: {v20:.1f} mL : 20 s ≈ <b>{v20 / 20:.2f} mL/s</b>; 60–80 s: ≈ <b>{(60 * (_m.exp(-3) - _m.exp(-4))) / 20:.2f} mL/s</b>. Die Geschwindigkeit nimmt ab.</p>'.replace(".", ",")
+               + '<p class="q">Tangente bei t = 0: Steigung ≈ 60 mL : 20 s = <b>3 mL/s</b>.</p>')
+    return {"title": "Messkurve auswerten", "stars": "★★☆", "task": (svg("0 10 270 185", g), task), "sol": (svg("0 10 270 185", sol), soltxt)}
+
+
 FIGS = {
     "osmose": osmose, "natrium-kalium-pumpe": nak, "symport-antiport": symport, "endocytose-exocytose": endo,
     "ableiten": ableiten, "nervensystem": nerven, "auge": auge,
-    "termstruktur": termstruktur, "zufallsexperimente": zufallsexperimente, "laplace": laplace, "baumdiagramme": baumdiagramme, "unabhaengige-ereignisse": unabhaengig, "funktionsbegriff": funktionsbegriff, "eigenschaften-funktionen": eigenschaften, "lineare-funktionen": lineare_funktionen, "funktionsgleichungen": funktionsgleichungen, "lgs-grafisch": lgs_grafisch, "gleichsetzungsverfahren": gleichsetzungsverfahren, "additionsverfahren": additionsverfahren, "lgs-anwendungen": lgs_anwendungen, "zentrische-streckung": zentrische_streckung, "aehnliche-dreiecke": aehnliche_dreiecke, "flaeche-volumen-aehnlich": flaeche_volumen_aehnlich, "strahlensaetze": strahlensaetze, "atombau": atombau, "periodensystem": periodensystem, "stoffklassen": stoffklassen, "orbitalmodell": orbitalmodell, "redoxreaktionen": redoxreaktionen, "gebrauchsmetalle": gebrauchsmetalle, "komplexverbindungen": komplexverbindungen, "binomische-formeln": binom, "bruchterme": bruchterme, "ausmultiplizieren-faktorisieren": ausmult, "terme-vereinfachen": terme,
+    "termstruktur": termstruktur, "zufallsexperimente": zufallsexperimente, "laplace": laplace, "baumdiagramme": baumdiagramme, "unabhaengige-ereignisse": unabhaengig, "funktionsbegriff": funktionsbegriff, "eigenschaften-funktionen": eigenschaften, "lineare-funktionen": lineare_funktionen, "funktionsgleichungen": funktionsgleichungen, "lgs-grafisch": lgs_grafisch, "gleichsetzungsverfahren": gleichsetzungsverfahren, "additionsverfahren": additionsverfahren, "lgs-anwendungen": lgs_anwendungen, "zentrische-streckung": zentrische_streckung, "aehnliche-dreiecke": aehnliche_dreiecke, "flaeche-volumen-aehnlich": flaeche_volumen_aehnlich, "strahlensaetze": strahlensaetze, "atombau": atombau, "periodensystem": periodensystem, "stoffklassen": stoffklassen, "orbitalmodell": orbitalmodell, "redoxreaktionen": redoxreaktionen, "gebrauchsmetalle": gebrauchsmetalle, "komplexverbindungen": komplexverbindungen, "reaktionsgeschwindigkeit": reaktionsgeschwindigkeit, "binomische-formeln": binom, "bruchterme": bruchterme, "ausmultiplizieren-faktorisieren": ausmult, "terme-vereinfachen": terme,
     "gleichungen": gleichungen, "ungleichungen": ungleichungen,
     "druck": druck, "hydraulik": hydraulik, "schweredruck": schweredruck, "auftrieb": auftrieb, "luftdruck": luftdruck,
 }

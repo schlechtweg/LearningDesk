@@ -1,0 +1,87 @@
+  <nav class="tabs" aria-label="Bereiche">
+    <a href="#verstehen" data-view="verstehen"><span class="n">1</span>Verstehen</a>
+    <a href="#labor" data-view="labor"><span class="n">2</span>Labor</a>
+    <a href="#teilchen" data-view="teilchen"><span class="n">3</span>Stoßmodell</a>
+    <a href="#katalysator" data-view="katalysator"><span class="n">4</span>Katalysator</a>
+    <a href="#ueben" data-view="ueben"><span class="n">5</span>Üben</a>
+    <a href="#alltag" data-view="alltag"><span class="n">6</span>Im Alltag</a>
+    <a href="#quiz" data-view="quiz"><span class="n">7</span>Quiz</a>
+  </nav>
+
+  <section class="view" id="view-verstehen">
+    <div class="einfach">
+      <span class="eyebrow">Einfach erklärt</span>
+      <p>Manche Reaktionen gehen blitzschnell (Knallgas), andere dauern Jahre (Rosten). Die <strong>Reaktionsgeschwindigkeit</strong> sagt, wie schnell sich die Konzentration eines Stoffes ändert: <span class="math">v = Δc / Δt</span>, zum Beispiel in mol/(L·s).</p>
+    </div>
+    <div class="grid-2">
+      <div class="panel stack"><h3>So misst man sie</h3><ul class="list small"><li><strong>Gasvolumen</strong> mit Kolbenprober oder Messzylinder (Mg + HCl → H₂).</li><li><strong>Massenverlust</strong> auf der Waage, wenn ein Gas entweicht (CaCO₃ + HCl → CO₂).</li><li><strong>Farbänderung</strong> oder Trübung mit dem Fotometer.</li><li><strong>Leitfähigkeit</strong> oder pH-Wert, wenn sich Ionen bilden oder verschwinden.</li></ul></div>
+      <div class="panel stack"><h3>Mittlere und momentane Geschwindigkeit</h3><p class="small">Aus zwei Messpunkten erhält man die <strong>mittlere</strong> Geschwindigkeit (Steigung der Sekante). Die <strong>momentane</strong> Geschwindigkeit ist die Steigung der Tangente. Am Anfang ist sie am größten, weil noch viel Ausgangsstoff da ist.</p></div>
+    </div>
+    <div class="panel stack"><h3>Stoßtheorie</h3><p class="small">Teilchen reagieren nur, wenn sie <strong>zusammenstoßen</strong>, und zwar mit <strong>genug Energie</strong> (mindestens der Aktivierungsenergie Eₐ) und in der <strong>richtigen Ausrichtung</strong>. Alles, was die Zahl wirksamer Stöße erhöht, macht die Reaktion schneller.</p>
+      <table class="ptab"><tr><th>Einflussgröße</th><th>Wirkung</th><th>Erklärung</th></tr>
+        <tr><td>Konzentration ↑</td><td>schneller</td><td>mehr Teilchen pro Volumen, mehr Stöße. Oft gilt v ~ c.</td></tr>
+        <tr><td>Temperatur ↑</td><td>deutlich schneller</td><td>Teilchen schneller, viel mehr Stöße mit E ≥ Eₐ. <strong>RGT-Regel</strong>: +10 K etwa doppelt so schnell.</td></tr>
+        <tr><td>Zerteilungsgrad ↑</td><td>schneller</td><td>größere Oberfläche (Pulver statt Stück)</td></tr>
+        <tr><td>Katalysator</td><td>schneller</td><td>neuer Reaktionsweg mit kleinerer Aktivierungsenergie</td></tr></table></div>
+    <div class="merksatz"><span class="eyebrow">Katalysator</span><p>Ein Katalysator senkt die Aktivierungsenergie und beschleunigt die Reaktion, <strong>ohne selbst verbraucht zu werden</strong>. Er ändert nicht die Reaktionsenthalpie und nicht die Lage eines Gleichgewichts, sondern nur, wie schnell es erreicht wird. Spart Zeit und Energie.</p></div>
+    <div class="panel stack"><h3>Typische Fehler</h3><ul class="list small"><li>Geschwindigkeit mit Ausbeute verwechselt: Schneller heißt nicht mehr Produkt.</li><li>„Der Katalysator liefert Energie“: Er senkt nur die Schwelle.</li><li>Δc mit falschem Vorzeichen: Ausgangsstoffe nehmen ab, deshalb v = −Δc(A)/Δt.</li></ul></div>
+  </section>
+
+  <section class="view" id="view-labor" hidden>
+    <div class="stack"><span class="eyebrow">Simulation</span><h2>Konzentration und Temperatur</h2><p class="muted">Ein Stoff A zerfällt (Reaktion 1. Ordnung). Ändere Startkonzentration, Temperatur und Katalysator. Die gestrichelte Kurve ist der Ausgangszustand zum Vergleich.</p></div>
+    <div class="sim-layout">
+      <div class="figure"><svg class="plot" id="lSvg" viewBox="0 0 460 300" role="img" aria-label="Konzentration gegen Zeit"></svg></div>
+      <div class="panel stack ctl">
+        <label for="lc">c₀(A) = <b id="lcV"></b> mol/L</label><input type="range" id="lc" min="0.2" max="2" step="0.1" value="1">
+        <label for="lT">Temperatur = <b id="lTV"></b> °C</label><input type="range" id="lT" min="10" max="60" step="5" value="20">
+        <label><input type="checkbox" id="lK"> Katalysator</label>
+        <p class="kv" id="lOut"></p><p class="small" id="lText"></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="view" id="view-teilchen" hidden>
+    <div class="stack"><span class="eyebrow">Modell</span><h2>Stöße zählen</h2><p class="muted">Blaue und gelbe Teilchen reagieren nur, wenn sie mit genug Energie zusammenstoßen. Erfolgreiche Stöße blitzen rot auf.</p></div>
+    <div class="sim-layout">
+      <div class="figure"><svg class="box2" id="pSvg" viewBox="0 0 400 260" role="img" aria-label="Teilchenmodell"></svg></div>
+      <div class="panel stack ctl">
+        <label for="pn">Teilchenzahl = <b id="pnV"></b></label><input type="range" id="pn" min="6" max="40" step="2" value="16">
+        <label for="pT">Temperatur = <b id="pTV"></b></label><input type="range" id="pT" min="1" max="3" step="0.5" value="1.5">
+        <label><input type="checkbox" id="pK"> Katalysator (niedrigere Schwelle)</label>
+        <button type="button" id="pReset">Neu starten</button>
+        <p class="small" id="pOut"></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="view" id="view-katalysator" hidden>
+    <div class="stack"><span class="eyebrow">Energiediagramm</span><h2>Wie ein Katalysator wirkt</h2><p class="muted">Schalte zwischen exothermer und endothermer Reaktion um und zeige den katalysierten Weg.</p></div>
+    <div class="row"><div class="modes" role="group" aria-label="Reaktionsart"><button type="button" data-e="exo" aria-pressed="true">exotherm</button><button type="button" data-e="endo" aria-pressed="false">endotherm</button></div><label><input type="checkbox" id="eK" checked> mit Katalysator</label></div>
+    <div class="panel stack"><svg class="plot" id="eSvg" viewBox="0 0 460 280" role="img" aria-label="Energiediagramm"></svg><p class="small" id="eText"></p></div>
+    <div class="grid-2">
+      <div class="panel stack"><h3>Beispiele</h3><ul class="list small"><li><strong>Autoabgaskatalysator</strong> (Pt, Rh): 2 CO + 2 NO → 2 CO₂ + N₂</li><li><strong>Enzyme</strong> sind Biokatalysatoren: Amylase spaltet Stärke im Mund.</li><li><strong>Braunstein</strong> MnO₂ zersetzt Wasserstoffperoxid: 2 H₂O₂ → 2 H₂O + O₂</li><li><strong>Eisen</strong> bei der Ammoniaksynthese.</li></ul></div>
+      <div class="panel stack"><h3>Homogen und heterogen</h3><p class="small"><strong>Heterogene</strong> Katalysatoren liegen in einer anderen Phase vor (fester Platin-Kontakt, Gase reagieren an der Oberfläche). <strong>Homogene</strong> Katalysatoren sind im Reaktionsgemisch gelöst (Säure bei der Veresterung).</p></div>
+    </div>
+  </section>
+
+  <section class="view" id="view-ueben" hidden>
+    <div class="stack"><span class="eyebrow">Trainer</span><h2>Reaktionsgeschwindigkeit berechnen</h2><p class="muted">Dezimalzahlen mit Komma oder Punkt, auf drei Stellen gerundet.</p></div>
+    <div id="trainer" class="stack"></div>
+  </section>
+
+  <section class="view" id="view-alltag" hidden>
+    <div class="stack"><span class="eyebrow">Im Alltag</span><h2>Schneller oder langsamer?</h2></div>
+    <div class="grid-2">
+      <div class="panel stack"><span class="eyebrow">Küche</span><h3>Kühlschrank</h3><p class="small">Bei 5 °C statt 25 °C laufen Verderbnisreaktionen nach der RGT-Regel etwa 4-mal langsamer.</p></div>
+      <div class="panel stack"><span class="eyebrow">Kochen</span><h3>Schnellkochtopf</h3><p class="small">Bei 120 °C statt 100 °C garen Speisen etwa viermal schneller.</p></div>
+      <div class="panel stack"><span class="eyebrow">Gefahr</span><h3>Mehlstaubexplosion</h3><p class="small">Fein verteilter Staub hat eine riesige Oberfläche. Ein Funke reicht für eine explosionsartige Verbrennung.</p></div>
+      <div class="panel stack"><span class="eyebrow">Auto</span><h3>Katalysator</h3><p class="small">Giftige Abgase (CO, NO, Kohlenwasserstoffe) werden am heißen Platin in Sekundenbruchteilen umgesetzt.</p></div>
+      <div class="panel stack"><span class="eyebrow">Körper</span><h3>Enzyme</h3><p class="small">Ohne Enzyme würde die Verdauung bei 37 °C Jahre dauern. Fieber über 42 °C zerstört die Enzyme.</p></div>
+      <div class="panel stack"><span class="eyebrow">Feuer</span><h3>Lagerfeuer anzünden</h3><p class="small">Kleine Späne zuerst: große Oberfläche, schnelle Erwärmung.</p></div>
+    </div>
+  </section>
+
+  <section class="view" id="view-quiz" hidden>
+    <div class="stack"><span class="eyebrow">Selbsttest</span><h2>Quiz</h2><div class="progress-line"><div class="bar" aria-hidden="true"><i id="qBar"></i></div><span class="score-line" id="qProgress"></span></div></div>
+    <div class="panel quiz" id="quizBox" aria-live="polite"></div>
+  </section>
