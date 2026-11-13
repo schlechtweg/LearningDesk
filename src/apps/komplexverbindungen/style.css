@@ -1,0 +1,13 @@
+.ptab { width: 100%; border-collapse: collapse; font-size: var(--step--1); }
+.ptab th, .ptab td { padding: 6px 8px; border-bottom: 1px solid var(--line); text-align: left; overflow-wrap: anywhere; }
+.ptab th { color: var(--muted); }
+.kb { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.kb select { width: 100%; }
+.kx { width: 100%; max-width: 300px; height: auto; display: block; margin: 0 auto; }
+.kx .bond { stroke: var(--muted); stroke-width: 2; }
+.kx .z { stroke: var(--ink); stroke-width: 1.5; }
+.kx .lig { fill: var(--accent-soft); stroke: var(--accent); stroke-width: 1.5; }
+.kx text { font: 700 11px var(--font-body); fill: var(--ink); text-anchor: middle; dominant-baseline: central; }
+.kf { font-family: var(--font-display); font-size: 1.9rem; font-weight: 800; margin: 0; overflow-wrap: anywhere; }
+.swatch { display: inline-block; width: 18px; height: 18px; border-radius: 4px; vertical-align: -4px; border: 1px solid var(--line); margin-right: 6px; }
+@media (max-width: 520px) { .kb { grid-template-columns: 1fr; } }

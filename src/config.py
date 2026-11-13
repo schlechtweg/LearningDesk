@@ -293,6 +293,14 @@ TOPICS = [
         "fonts": "base", "first_view": "verstehen", "factsheet": "Factsheet als PDF ↓",
     },
     {
+        "slug": "komplexverbindungen", "grade": "11", "subject": "chemie", "chapter": "2", "order": 3, "kit": True, "accent": ACCENT_CHEM,
+        "title": "Aufbau und Benennung von Komplexverbindungen", "short": "Komplexverbindungen*", "tag": "Wahlpflicht",
+        "card": "Zentralion, Liganden, Koordinationszahl, Ladung, Nomenklatur, Komplex-Baukasten mit Farben, Nachweise und Fotografie, Trainer, Quiz",
+        "description": "Interaktive Lernhilfe zu Aufbau und Benennung von Komplexverbindungen (Chemie, Klasse 11, Wahlpflicht)",
+        "intro": "Wie Metall-Ionen und Liganden Komplexe bilden, wie man sie benennt und wozu man sie im Labor und im Alltag nutzt.",
+        "fonts": "base", "first_view": "verstehen", "factsheet": "Factsheet als PDF ↓",
+    },
+    {
         "slug": "binomische-formeln", "grade": "8", "subject": "mathematik", "chapter": "I", "order": 4,
         "title": "Binomische Formeln", "short": "Binomische Formeln", "tag": "Terme",
         "card": "Die drei Formeln, Erklärung mit Flächen, Trainer mit Lückenaufgaben, Kopfrechen-Trick, Quiz",

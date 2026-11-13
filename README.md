@@ -46,6 +46,7 @@ Interaktive Lern-Apps für die Schule, sortiert nach Klassenstufe. Alles läuft 
 | Klasse 11 · Chemie | Stoffklassen | Metalle, Ionensubstanzen und Lösen in Wasser, Molekülsubstanzen, zwischenmolekulare Wechselwirkungen, Struktur-Eigenschafts-Beziehungen, Trainer, Quiz |
 | Klasse 11 · Chemie | Redoxreaktionen und Oxidationszahlen | Elektronenübergänge, Oxidationszahlen mit Rechenweg, Redoxgleichungen Schritt für Schritt, Redoxreihe, Trainer, Quiz |
 | Klasse 11 · Chemie | Gebrauchsmetalle | Erze, Hochofen zum Anklicken, Stahl, Aluminium-Elektrolyse, Kupferraffination, Metallmasse berechnen, Recycling, Trainer, Quiz |
+| Klasse 11 · Chemie | Komplexverbindungen* | Zentralion, Liganden, Koordinationszahl, Nomenklatur, Komplex-Baukasten mit Farben, Nachweise, Fotografie, Trainer, Quiz |
 | Klasse 11 · Mathematik | Ableiten | Sekante/Tangente, grafisches Ableiten, Regeln mit Trainer, Tangentengleichung, Quiz |
 | Werkzeuge | ClassPad-Simulator | Übungsrechner nach dem Vorbild des CASIO fx-CP400 mit 16 Lektionen (unabhängiges Lernprojekt) |
 

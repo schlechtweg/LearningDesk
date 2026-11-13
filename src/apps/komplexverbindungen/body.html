@@ -1,0 +1,59 @@
+  <nav class="tabs" aria-label="Bereiche">
+    <a href="#verstehen" data-view="verstehen"><span class="n">1</span>Verstehen</a>
+    <a href="#baukasten" data-view="baukasten"><span class="n">2</span>Komplex-Baukasten</a>
+    <a href="#namen" data-view="namen"><span class="n">3</span>Benennen</a>
+    <a href="#ueben" data-view="ueben"><span class="n">4</span>Üben</a>
+    <a href="#alltag" data-view="alltag"><span class="n">5</span>Im Alltag</a>
+    <a href="#quiz" data-view="quiz"><span class="n">6</span>Quiz</a>
+  </nav>
+
+  <section class="view" id="view-verstehen">
+    <div class="einfach">
+      <span class="eyebrow">Einfach erklärt</span>
+      <p>Ein <strong>Komplex</strong> besteht aus einem <strong>Zentralteilchen</strong> (meist ein Metall-Ion der Nebengruppen) und mehreren <strong>Liganden</strong>, die sich darum anordnen. Die Liganden „spenden“ dem Zentralion je ein freies Elektronenpaar. So entsteht eine <strong>koordinative Bindung</strong>, bei der beide Bindungselektronen vom Liganden kommen.</p>
+    </div>
+    <div class="grid-2">
+      <div class="panel stack"><h3>Bausteine</h3><ul class="list small"><li><strong>Zentralion</strong>: Elektronenpaar-Akzeptor mit freien Orbitalen, z. B. Cu²⁺, Fe³⁺, Ag⁺.</li><li><strong>Liganden</strong>: Teilchen mit freiem Elektronenpaar, z. B. H₂O, NH₃, Cl⁻, CN⁻, OH⁻.</li><li><strong>Koordinationszahl (KZ)</strong>: Zahl der gebundenen Liganden, meist 2, 4 oder 6.</li></ul></div>
+      <div class="panel stack"><h3>Ladung eines Komplexes</h3><p class="small">Ladung = Ladung des Zentralions + Summe der Ligandenladungen.</p><p class="small">[Fe(CN)₆]: Fe³⁺ + 6 · (−1) = <strong>−3</strong> ⇒ [Fe(CN)₆]³⁻</p><p class="small">[Cu(NH₃)₄]: Cu²⁺ + 4 · 0 = <strong>+2</strong> ⇒ [Cu(NH₃)₄]²⁺</p></div>
+    </div>
+    <div class="panel stack"><h3>Räumlicher Bau</h3><table class="ptab"><tr><th>KZ</th><th>Gestalt</th><th>Beispiel</th></tr><tr><td>2</td><td>linear</td><td>[Ag(NH₃)₂]⁺</td></tr><tr><td>4</td><td>tetraedrisch oder quadratisch-planar</td><td>[Zn(OH)₄]²⁻, [Cu(NH₃)₄]²⁺</td></tr><tr><td>6</td><td>oktaedrisch</td><td>[Fe(CN)₆]³⁻, [Cu(H₂O)₆]²⁺</td></tr></table></div>
+    <div class="merksatz"><span class="eyebrow">Ligandenaustausch</span><p>Liganden können gegeneinander ausgetauscht werden. Gibt man Ammoniak zu hellblauer Kupfersulfatlösung, wird sie tiefblau: [Cu(H₂O)₄]²⁺ + 4 NH₃ ⇌ [Cu(NH₃)₄]²⁺ + 4 H₂O. Farbwechsel verraten solche Reaktionen, deshalb nutzt man Komplexe als <strong>Nachweise</strong>.</p></div>
+    <div class="panel stack"><h3>Typische Fehler</h3><ul class="list small"><li>Neutrale Liganden (H₂O, NH₃) bei der Ladung mitgezählt: Sie haben Ladung 0.</li><li>Bei negativ geladenen Komplexen die Endung „-at“ vergessen (Ferrat, Cuprat, Argentat).</li><li>Die Oxidationszahl des Zentralions mit der Komplexladung verwechselt.</li></ul></div>
+  </section>
+
+  <section class="view" id="view-baukasten" hidden>
+    <div class="stack"><span class="eyebrow">Interaktiv</span><h2>Komplex-Baukasten</h2><p class="muted">Wähle Zentralion, Ligand und Koordinationszahl. Formel, Ladung, Name und Gestalt ergeben sich.</p></div>
+    <div class="panel stack"><div class="kb"><select id="kM" aria-label="Zentralion"></select><select id="kL" aria-label="Ligand"></select><select id="kN" aria-label="Koordinationszahl"><option value="2">KZ 2</option><option value="4">KZ 4</option><option value="6" selected>KZ 6</option></select></div></div>
+    <div class="sim-layout">
+      <div class="figure"><svg class="kx" id="kSvg" viewBox="0 0 220 220" role="img" aria-label="Räumlicher Bau des Komplexes"></svg></div>
+      <div class="panel stack"><p class="kf" id="kF"></p><p id="kName"></p><div id="kInfo" class="small"></div></div>
+    </div>
+  </section>
+
+  <section class="view" id="view-namen" hidden>
+    <div class="stack"><span class="eyebrow">Nomenklatur</span><h2>Komplexe benennen</h2></div>
+    <div class="panel stack"><ol class="list small"><li><strong>Zahl der Liganden</strong> als griechisches Zahlwort: di (2), tri (3), tetra (4), penta (5), hexa (6).</li><li><strong>Liganden</strong> alphabetisch: aqua (H₂O), ammin (NH₃), chlorido (Cl⁻), cyanido (CN⁻), fluorido (F⁻), hydroxido (OH⁻), thiocyanato (SCN⁻), thiosulfato (S₂O₃²⁻).</li><li><strong>Zentralion</strong> mit Oxidationszahl in römischen Ziffern: Tetraamminkupfer(II).</li><li>Ist der Komplex ein <strong>Anion</strong>, bekommt das Zentralteilchen die Endung <strong>-at</strong>, oft mit lateinischem Namen: Ferrat (Fe), Cuprat (Cu), Argentat (Ag), Zinkat, Aluminat, Cobaltat.</li><li>In Salzen wird das Kation zuerst genannt: K₃[Fe(CN)₆] = Kaliumhexacyanidoferrat(III).</li></ol></div>
+    <div class="panel stack"><h3>Beispiele</h3><table class="ptab" id="nTab"></table></div>
+  </section>
+
+  <section class="view" id="view-ueben" hidden>
+    <div class="stack"><span class="eyebrow">Trainer</span><h2>Komplexe üben</h2><p class="muted">Ladungen als <code>2+</code> oder <code>3-</code>, Oxidationszahlen als Zahl, z. B. <code>+3</code>.</p></div>
+    <div id="trainer" class="stack"></div>
+  </section>
+
+  <section class="view" id="view-alltag" hidden>
+    <div class="stack"><span class="eyebrow">Im Alltag</span><h2>Komplexe im Alltag</h2></div>
+    <div class="grid-2">
+      <div class="panel stack"><span class="eyebrow">Blut</span><h3>Hämoglobin</h3><p class="small">Im roten Blutfarbstoff ist ein Fe²⁺-Ion komplex gebunden und bindet Sauerstoff als Ligand. Kohlenstoffmonooxid bindet viel fester, deshalb ist CO so giftig.</p></div>
+      <div class="panel stack"><span class="eyebrow">Pflanzen</span><h3>Chlorophyll</h3><p class="small">Das Blattgrün ist ein Magnesium-Komplex. Ohne ihn keine Fotosynthese.</p></div>
+      <div class="panel stack"><span class="eyebrow">Fotografie</span><h3>Fixieren</h3><p class="small">Unbelichtetes Silberbromid wird mit Thiosulfat als löslicher Komplex [Ag(S₂O₃)₂]³⁻ aus dem Film gewaschen. Das Bild ist dann lichtecht.</p></div>
+      <div class="panel stack"><span class="eyebrow">Farbe</span><h3>Berliner Blau</h3><p class="small">Ein Eisen-Cyanido-Komplex, eines der ersten synthetischen Pigmente und heute ein Gegenmittel bei Thallium-Vergiftungen.</p></div>
+      <div class="panel stack"><span class="eyebrow">Haushalt</span><h3>Wasserenthärter</h3><p class="small">Komplexbildner im Waschmittel binden Ca²⁺ und Mg²⁺, sodass kein Kalk ausfällt.</p></div>
+      <div class="panel stack"><span class="eyebrow">Labor</span><h3>Nachweise</h3><p class="small">Fe³⁺ + SCN⁻ ergibt blutrot, Cu²⁺ + NH₃ ergibt tiefblau. Kleinste Mengen werden so sichtbar.</p></div>
+    </div>
+  </section>
+
+  <section class="view" id="view-quiz" hidden>
+    <div class="stack"><span class="eyebrow">Selbsttest</span><h2>Quiz</h2><div class="progress-line"><div class="bar" aria-hidden="true"><i id="qBar"></i></div><span class="score-line" id="qProgress"></span></div></div>
+    <div class="panel quiz" id="quizBox" aria-live="polite"></div>
+  </section>

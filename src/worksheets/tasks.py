@@ -3134,6 +3134,82 @@ def gebrauchsmetalle():
     return L
 
 
+def komplexverbindungen():
+    r = random.Random(207)
+    L = {1: [], 2: [], 3: []}
+    seen = set()
+    MET = [("Cu", 2, "kupfer", "cuprat"), ("Cu", 1, "kupfer", "cuprat"), ("Fe", 2, "eisen", "ferrat"), ("Fe", 3, "eisen", "ferrat"), ("Ag", 1, "silber", "argentat"), ("Zn", 2, "zink", "zinkat"),
+           ("Co", 2, "cobalt", "cobaltat"), ("Co", 3, "cobalt", "cobaltat"), ("Ni", 2, "nickel", "nickelat"), ("Al", 3, "aluminium", "aluminat"), ("Cr", 3, "chrom", "chromat")]
+    LIG = [("H2O", 0, "aqua"), ("NH3", 0, "ammin"), ("Cl", -1, "chlorido"), ("CN", -1, "cyanido"), ("OH", -1, "hydroxido"), ("F", -1, "fluorido"), ("SCN", -1, "thiocyanato"), ("S2O3", -2, "thiosulfato")]
+    NUM = {2: "di", 4: "tetra", 6: "hexa"}
+    ROM = ["0", "I", "II", "III"]
+    sub = lambda f: re.sub(r"(\d+)", r"<sub>\1</sub>", f)
+
+    def build(m, l, n):
+        q = m[1] + n * l[1]
+        lf = f"({sub(l[0])})<sub>{n}</sub>" if (len(l[0]) > 2 or re.search(r"\d", l[0])) else f"{sub(l[0])}<sub>{n}</sub>"
+        name = (NUM[n] + l[2] + (m[3] if q < 0 else m[2])) + f"({ROM[m[1]]})"
+        return q, f"[{m[0]}{lf}]{chg(q)}", name[0].upper() + name[1:] + ("" if q == 0 else "-Ion")
+
+    def add(lvl, q, a):
+        if q not in seen and len(L[lvl]) < 120:
+            seen.add(q)
+            L[lvl].append((q, a))
+    for i in range(1500):
+        m, l, n = r.choice(MET), r.choice(LIG), r.choice([2, 4, 6])
+        if l[0] == "S2O3" and n > 2:
+            continue
+        q, f, name = build(m, l, n)
+        t = i % 4
+        if t == 0:
+            add(1, f"Ladung des Komplexes aus {m[0]}{chg(m[1])} und {n} {sub(l[0])}{chg(l[1])}?", f"{m[1]} + {n}·({l[1]}) = <b>{q}</b>: {f}".replace("+-", "−").replace("(-", "(−"))
+        elif t == 1:
+            add(1, f"Koordinationszahl und Gestalt von {f}?", f"KZ <b>{n}</b>, {'linear' if n == 2 else 'tetraedrisch/quadratisch-planar' if n == 4 else 'oktaedrisch'}")
+        elif t == 2:
+            add(1, f"Oxidationszahl des Zentralions in {f}?", f"{q} − {n}·({l[1]}) = <b>+{ROM[m[1]]}</b>".replace("(-", "(−"))
+        else:
+            add(2, f"Benenne {f}.", f"<b>{name}</b>{' (Anion: Endung -at)' if q < 0 else ''}")
+            add(2, f"Formel von {name}?", f"<b>{f}</b>; Ladung {m[1]} + {n}·({l[1]}) = {q}".replace("(-", "(−"))
+    salts = [("K₃[Fe(CN)₆]", "Kaliumhexacyanidoferrat(III)", "Fe +III, Komplex 3−"), ("K₄[Fe(CN)₆]", "Kaliumhexacyanidoferrat(II)", "Fe +II, Komplex 4−"),
+             ("[Cu(NH₃)₄]SO₄", "Tetraamminkupfer(II)-sulfat", "Cu +II, Komplex 2+"), ("[Ag(NH₃)₂]Cl", "Diamminsilber(I)-chlorid", "Ag +I, Komplex 1+"),
+             ("Na₃[Ag(S₂O₃)₂]", "Natriumdithiosulfatoargentat(I)", "Ag +I, Komplex 3−"), ("Na[Al(OH)₄]", "Natriumtetrahydroxidoaluminat(III)", "Al +III, Komplex 1−"),
+             ("[Co(NH₃)₆]Cl₃", "Hexaammincobalt(III)-chlorid", "Co +III, Komplex 3+"), ("K₂[Zn(OH)₄]", "Kaliumtetrahydroxidozinkat(II)", "Zn +II, Komplex 2−")]
+    for f, n_, info in salts:
+        add(2, f"Benenne das Komplexsalz {f} und bestimme die Oxidationszahl des Zentralions.", f"<b>{n_}</b>: {info}")
+    exch = [("Kupfersulfatlösung (hellblau) + Ammoniak → tiefblau", "[Cu(H₂O)₄]²⁺ + 4 NH₃ ⇌ [Cu(NH₃)₄]²⁺ + 4 H₂O"),
+            ("Eisen(III)-Lösung + Thiocyanat → blutrot", "[Fe(H₂O)₆]³⁺ + SCN⁻ ⇌ [Fe(SCN)(H₂O)₅]²⁺ + H₂O"),
+            ("Silberchlorid löst sich in Ammoniakwasser", "AgCl + 2 NH₃ ⇌ [Ag(NH₃)₂]⁺ + Cl⁻"),
+            ("Fixieren: Silberbromid löst sich in Thiosulfat", "AgBr + 2 S₂O₃²⁻ ⇌ [Ag(S₂O₃)₂]³⁻ + Br⁻"),
+            ("Cobaltchlorid-Papier wird bei Feuchtigkeit rosa", "[CoCl₄]²⁻ (blau) + 6 H₂O ⇌ [Co(H₂O)₆]²⁺ (rosa) + 4 Cl⁻"),
+            ("Zinkhydroxid löst sich in Natronlauge", "Zn(OH)₂ + 2 OH⁻ ⇌ [Zn(OH)₄]²⁻"),
+            ("Aluminiumhydroxid löst sich in Natronlauge", "Al(OH)₃ + OH⁻ ⇌ [Al(OH)₄]⁻"),
+            ("Kupfer(II)-chlorid-Lösung wird mit konz. Salzsäure gelbgrün", "[Cu(H₂O)₄]²⁺ + 4 Cl⁻ ⇌ [CuCl₄]²⁻ + 4 H₂O")]
+    for k, e in exch:
+        add(3, f"Formuliere die Gleichung des Ligandenaustauschs und benenne die Komplexe: {k}.", f"<b>{e}</b>")
+    fixed = [
+        ("Erkläre die koordinative Bindung am Beispiel [Cu(NH₃)₄]²⁺.", "Jedes NH₃ stellt sein <b>freies Elektronenpaar</b> am N-Atom zur Verfügung; Cu²⁺ hat freie Orbitale und nimmt es auf. Beide Bindungselektronen stammen vom Liganden (<b>Donor-Akzeptor-Bindung</b>)."),
+        ("Warum können Ammoniak und Wasser Liganden sein, Methan aber nicht?", "NH₃ und H₂O besitzen <b>freie Elektronenpaare</b> (am N bzw. O). CH₄ hat alle Valenzelektronen in Bindungen, <b>kein freies Paar</b>."),
+        ("Erkläre den Nachweis von Fe³⁺-Ionen mit Thiocyanat.", "SCN⁻ verdrängt H₂O-Liganden, es bildet sich der <b>blutrote</b> Komplex [Fe(SCN)(H₂O)₅]²⁺. Schon sehr geringe Konzentrationen sind sichtbar."),
+        ("Beschreibe die Rolle von Komplexen beim Fixieren eines Schwarz-Weiß-Films.", "Unbelichtetes, schwer lösliches <b>AgBr</b> bleibt nach dem Entwickeln im Film. Thiosulfat bildet den <b>löslichen Komplex [Ag(S₂O₃)₂]³⁻</b>, der ausgewaschen wird; das Bild wird lichtunempfindlich."),
+        ("Warum ist Kohlenstoffmonooxid giftig? Argumentiere mit Komplexen.", "CO bindet als Ligand <b>viel fester</b> an das Fe²⁺ des Hämoglobins als O₂ (etwa 200-mal). Die Bindungsstellen sind blockiert, der Sauerstofftransport bricht zusammen."),
+        ("Ein Komplex [Co(NH₃)₅Cl]Cl₂: Bestimme Ladung, Oxidationszahl und Koordinationszahl.", "Gegenionen 2 Cl⁻ ⇒ Komplex <b>2+</b>; 5 · 0 + (−1) + x = +2 ⇒ <b>Co +III</b>; 6 Liganden: <b>KZ 6</b>, oktaedrisch."),
+        ("Wie wirken Komplexbildner in Waschmitteln?", "Sie binden <b>Ca²⁺ und Mg²⁺</b> (Wasserhärte) in stabilen, löslichen Komplexen; so fällt kein Kalk aus und Tenside werden nicht gebunden."),
+        ("Warum sind viele Komplexe farbig, Zn²⁺-Komplexe aber farblos?", "Farbe entsteht durch Elektronenübergänge in <b>teilweise besetzten d-Orbitalen</b>. Zn²⁺ hat [Ar] 3d¹⁰ (voll), deshalb keine Absorption im Sichtbaren."),
+        ("Bestimme für K₃[Fe(CN)₆] und K₄[Fe(CN)₆] jeweils Komplexladung, Oxidationszahl des Eisens und die Elektronenkonfiguration des Zentralions.", "K₃[…]: Komplex 3−, <b>Fe +III</b> ([Ar] 3d⁵); K₄[…]: Komplex 4−, <b>Fe +II</b> ([Ar] 3d⁶). Beide KZ 6, oktaedrisch."),
+        ("Zeichne den räumlichen Bau von [Ag(NH₃)₂]⁺ und [Zn(OH)₄]²⁻ und benenne beide.", "<b>Diamminsilber(I)-Ion</b>: linear (H₃N–Ag–NH₃); <b>Tetrahydroxidozinkat(II)-Ion</b>: tetraedrisch."),
+        ("Warum löst sich Silberchlorid in Ammoniakwasser, aber nicht in reinem Wasser?", "Ammoniak bindet Ag⁺ als <b>[Ag(NH₃)₂]⁺</b>. Dadurch sinkt die Konzentration freier Ag⁺-Ionen, das Löslichkeitsgleichgewicht AgCl ⇌ Ag⁺ + Cl⁻ verschiebt sich nach rechts."),
+        ("Ein Komplex hat die Formel [CrCl₂(H₂O)₄]⁺. Bestimme die Oxidationszahl des Chroms und benenne den Komplex.", "x + 2·(−1) + 0 = +1 ⇒ <b>Cr +III</b>; <b>Tetraaquadichloridochrom(III)-Ion</b> (Liganden alphabetisch: aqua vor chlorido)."),
+        ("Erkläre, warum Cobaltchlorid-Papier als Feuchtigkeitsanzeiger dient.", "Trocken liegt der <b>blaue</b> [CoCl₄]²⁻-Komplex vor; mit Wasser tauschen die Liganden aus zum <b>rosa</b> [Co(H₂O)₆]²⁺. Der Farbwechsel zeigt Feuchtigkeit an."),
+        ("Begründe, warum Komplexbildung eine Säure-Base-Reaktion nach Lewis ist.", "Das Zentralion ist <b>Elektronenpaar-Akzeptor</b> (Lewis-Säure), der Ligand <b>Elektronenpaar-Donator</b> (Lewis-Base)."),
+        ("Was versteht man unter einem Chelatkomplex? Nenne ein Beispiel.", "Ein Ligand bindet mit <b>mehreren freien Elektronenpaaren</b> gleichzeitig an dasselbe Zentralion (Zange), z. B. EDTA mit Ca²⁺; besonders stabile Komplexe."),
+        ("Wie kann man Eisen(III)-Ionen in einer Probe Leitungswasser nachweisen? Beschreibe Durchführung und Beobachtung.", "Probe ansäuern, Kaliumthiocyanat-Lösung zugeben: <b>Rotfärbung</b> zeigt Fe³⁺ an ([Fe(SCN)(H₂O)₅]²⁺)."),
+    ]
+    for q_, a_ in fixed:
+        add(3, q_, a_)
+    r.shuffle(L[3])
+    return L
+
+
 M8, PH = "#1f6e8c", "#b4531f"
 TOPICS = {
     "osmose": ({"title": "Osmose", "eyebrow": "Biologie · Klasse 11", "accent": "#0d6f74", "cols": [1, 1, 1], "sol_cols": [1, 1, 1]}, osmose),
@@ -3166,6 +3242,7 @@ TOPICS = {
     "orbitalmodell": ({"title": "Orbitalmodell und Elektronenkonfiguration", "eyebrow": "Chemie · Klasse 11", "accent": "#6a3fa0", "cols": [2, 2, 1], "sol_cols": [2, 2, 1]}, orbitalmodell),
     "redoxreaktionen": ({"title": "Redoxreaktionen und Oxidationszahlen", "eyebrow": "Chemie · Klasse 11", "accent": "#6a3fa0", "cols": [2, 1, 1], "sol_cols": [2, 1, 1]}, redoxreaktionen),
     "gebrauchsmetalle": ({"title": "Gebrauchsmetalle", "eyebrow": "Chemie · Klasse 11", "accent": "#6a3fa0", "cols": [2, 1, 1], "sol_cols": [2, 1, 1]}, gebrauchsmetalle),
+    "komplexverbindungen": ({"title": "Komplexverbindungen", "eyebrow": "Chemie · Klasse 11 · Wahlpflicht", "accent": "#6a3fa0", "cols": [2, 2, 1], "sol_cols": [2, 2, 1]}, komplexverbindungen),
     "binomische-formeln": ({"title": "Binomische Formeln", "eyebrow": "Mathematik · Klasse 8", "accent": M8, "cols": 2, "sol_cols": 2}, binomische_formeln),
     "bruchterme": ({"title": "Bruchterme", "eyebrow": "Mathematik · Klasse 8", "accent": "#2d6a4f", "cols": 3, "sol_cols": 3}, bruchterme),
     "ausmultiplizieren-faktorisieren": ({"title": "Ausmultiplizieren und Faktorisieren", "eyebrow": "Mathematik · Klasse 8", "accent": M8, "cols": 3, "sol_cols": 3}, ausmultiplizieren),

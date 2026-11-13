@@ -2274,6 +2274,46 @@ SHEETS["gebrauchsmetalle"] = dict(title="Gebrauchsmetalle", eyebrow="Chemie · K
     </div>
   </div>''')
 
+SHEETS["komplexverbindungen"] = dict(title="Komplexverbindungen", eyebrow="Chemie · Klasse 11 · Wahlpflicht", accent=CH11, body=f'''
+  <div class="kern">Ein <strong>Komplex</strong> besteht aus einem <strong>Zentralion</strong> (Elektronenpaar-Akzeptor) und <strong>Liganden</strong> (Elektronenpaar-Donatoren), verbunden durch <strong>koordinative Bindungen</strong>. Die Zahl der Liganden ist die <strong>Koordinationszahl</strong>.</div>
+  <div class="cols">
+    <div class="box">
+      <h2>Ladung und Bau</h2>
+      <ul>
+        <li>Ladung = Zentralion + Σ Liganden</li>
+        <li>[Fe(CN)₆]: +3 + 6·(−1) = 3−</li>
+        <li>KZ 2 linear, 4 tetraedrisch/quadratisch, 6 oktaedrisch</li>
+      </ul>
+    </div>
+    <div class="box">
+      <h2>Benennen</h2>
+      <ol>
+        <li>Zahlwort: di, tri, tetra, hexa</li>
+        <li>Ligand: aqua, ammin, chlorido, cyanido, hydroxido</li>
+        <li>Zentralion (OZ römisch)</li>
+        <li>Anion: -at (Ferrat, Cuprat, Argentat)</li>
+      </ol>
+    </div>
+    <div class="box full">
+      <h2>Wichtige Komplexe</h2>
+      <table>
+        <tr><th>Formel</th><th>Name</th><th>Farbe / Nutzen</th></tr>
+        <tr><td>[Cu(NH₃)₄]²⁺</td><td>Tetraamminkupfer(II)-Ion</td><td>tiefblau, Cu²⁺-Nachweis</td></tr>
+        <tr><td>[Fe(SCN)(H₂O)₅]²⁺</td><td>Thiocyanatopentaaquaeisen(III)-Ion</td><td>blutrot, Fe³⁺-Nachweis</td></tr>
+        <tr><td>[Fe(CN)₆]³⁻</td><td>Hexacyanidoferrat(III)-Ion</td><td>rotes Blutlaugensalz</td></tr>
+        <tr><td>[Ag(S₂O₃)₂]³⁻</td><td>Dithiosulfatoargentat(I)-Ion</td><td>Fixieren in der Fotografie</td></tr>
+      </table>
+    </div>
+    <div class="box">
+      <h2>Im Alltag</h2>
+      <ul><li>Hämoglobin (Fe), Chlorophyll (Mg).</li><li>Wasserenthärter in Waschmitteln.</li><li>Berliner Blau.</li></ul>
+    </div>
+    <div class="box warn">
+      <h2>Typische Fehler</h2>
+      <ul><li>Neutrale Liganden mit Ladung gerechnet.</li><li>-at bei Anionen vergessen.</li><li>OZ mit Komplexladung verwechselt.</li></ul>
+    </div>
+  </div>''')
+
 OUT = sys.argv[1] if len(sys.argv) > 1 else os.path.join(os.path.dirname(__file__), "_build")
 os.makedirs(OUT, exist_ok=True)
 shutil.copyfile(os.path.join(os.path.dirname(os.path.abspath(__file__)), "factsheet.css"), os.path.join(OUT, "factsheet.css"))

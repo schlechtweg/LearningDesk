@@ -948,10 +948,24 @@ def gebrauchsmetalle():
                     extra_sol='<p class="q"><b>Fe₂O₃ + 3 CO → 2 Fe + 3 CO₂</b>; Fe wird reduziert (+III → 0), C oxidiert (+II → +IV).</p>', cols=1)
 
 
+def komplexverbindungen():
+    c = (130, 110)
+    pts = [(130, 25), (130, 195), (45, 110), (215, 110), (80, 70), (180, 150)]
+    d = "".join(f'<line x1="{c[0]}" y1="{c[1]}" x2="{x}" y2="{y}" stroke="#56626d" stroke-width="2"/>' for x, y in pts)
+    d += f'<circle cx="{c[0]}" cy="{c[1]}" r="22" fill="#2a3fbf"/>' + text(c[0], c[1] + 4, "?", "ft white")
+    d += "".join(f'<circle cx="{x}" cy="{y}" r="15" fill="#ece3f6" stroke="#6a3fa0" stroke-width="1.5"/>' + text(x, y + 4, "NH₃" if i < 4 else "H₂O", "ft tiny") for i, (x, y) in enumerate(pts))
+    items = [(1, 130, 110, 250, 30), (2, 130, 25, 40, 20), (3, 130, 65, 250, 80), (4, 80, 70, 20, 60)]
+    names = ["Zentralion (Cu²⁺)", "Ligand NH₃", "koordinative Bindung", "Ligand H₂O"]
+    return labeling("Ein oktaedrischer Komplex", "★☆☆", "0 0 280 215", d, items, names,
+                    "Der Komplex enthält Cu²⁺, vier NH₃ und zwei H₂O-Liganden. Beschrifte.",
+                    extra_task='<p class="q">Formel, Ladung, KZ: <span class="blank wide"></span></p>',
+                    extra_sol='<p class="q"><b>[Cu(NH₃)₄(H₂O)₂]²⁺</b>: Ladung 2 + 0 = <b>2+</b>, <b>KZ 6</b> (oktaedrisch).</p>', cols=1)
+
+
 FIGS = {
     "osmose": osmose, "natrium-kalium-pumpe": nak, "symport-antiport": symport, "endocytose-exocytose": endo,
     "ableiten": ableiten, "nervensystem": nerven, "auge": auge,
-    "termstruktur": termstruktur, "zufallsexperimente": zufallsexperimente, "laplace": laplace, "baumdiagramme": baumdiagramme, "unabhaengige-ereignisse": unabhaengig, "funktionsbegriff": funktionsbegriff, "eigenschaften-funktionen": eigenschaften, "lineare-funktionen": lineare_funktionen, "funktionsgleichungen": funktionsgleichungen, "lgs-grafisch": lgs_grafisch, "gleichsetzungsverfahren": gleichsetzungsverfahren, "additionsverfahren": additionsverfahren, "lgs-anwendungen": lgs_anwendungen, "zentrische-streckung": zentrische_streckung, "aehnliche-dreiecke": aehnliche_dreiecke, "flaeche-volumen-aehnlich": flaeche_volumen_aehnlich, "strahlensaetze": strahlensaetze, "atombau": atombau, "periodensystem": periodensystem, "stoffklassen": stoffklassen, "orbitalmodell": orbitalmodell, "redoxreaktionen": redoxreaktionen, "gebrauchsmetalle": gebrauchsmetalle, "binomische-formeln": binom, "bruchterme": bruchterme, "ausmultiplizieren-faktorisieren": ausmult, "terme-vereinfachen": terme,
+    "termstruktur": termstruktur, "zufallsexperimente": zufallsexperimente, "laplace": laplace, "baumdiagramme": baumdiagramme, "unabhaengige-ereignisse": unabhaengig, "funktionsbegriff": funktionsbegriff, "eigenschaften-funktionen": eigenschaften, "lineare-funktionen": lineare_funktionen, "funktionsgleichungen": funktionsgleichungen, "lgs-grafisch": lgs_grafisch, "gleichsetzungsverfahren": gleichsetzungsverfahren, "additionsverfahren": additionsverfahren, "lgs-anwendungen": lgs_anwendungen, "zentrische-streckung": zentrische_streckung, "aehnliche-dreiecke": aehnliche_dreiecke, "flaeche-volumen-aehnlich": flaeche_volumen_aehnlich, "strahlensaetze": strahlensaetze, "atombau": atombau, "periodensystem": periodensystem, "stoffklassen": stoffklassen, "orbitalmodell": orbitalmodell, "redoxreaktionen": redoxreaktionen, "gebrauchsmetalle": gebrauchsmetalle, "komplexverbindungen": komplexverbindungen, "binomische-formeln": binom, "bruchterme": bruchterme, "ausmultiplizieren-faktorisieren": ausmult, "terme-vereinfachen": terme,
     "gleichungen": gleichungen, "ungleichungen": ungleichungen,
     "druck": druck, "hydraulik": hydraulik, "schweredruck": schweredruck, "auftrieb": auftrieb, "luftdruck": luftdruck,
 }
