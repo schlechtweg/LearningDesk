@@ -2943,6 +2943,110 @@ def orbitalmodell():
     return L
 
 
+def _rom(n):
+    return "0" if n == 0 else ("+" if n > 0 else "−") + ["", "I", "II", "III", "IV", "V", "VI", "VII", "VIII"][abs(n)]
+
+
+REDOX_SP = [("Wasser", [("H", 2, 1), ("O", 1, -2)], 0), ("Wasserstoffperoxid", [("H", 2, 1), ("O", 2, -1)], 0), ("Kohlenstoffdioxid", [("C", 1, 4), ("O", 2, -2)], 0),
+            ("Kohlenstoffmonooxid", [("C", 1, 2), ("O", 1, -2)], 0), ("Methan", [("C", 1, -4), ("H", 4, 1)], 0), ("Ammoniak", [("N", 1, -3), ("H", 3, 1)], 0),
+            ("Ammonium-Ion", [("N", 1, -3), ("H", 4, 1)], 1), ("Salpetersäure", [("H", 1, 1), ("N", 1, 5), ("O", 3, -2)], 0), ("Nitrit-Ion", [("N", 1, 3), ("O", 2, -2)], -1),
+            ("Stickstoffmonooxid", [("N", 1, 2), ("O", 1, -2)], 0), ("Schwefeldioxid", [("S", 1, 4), ("O", 2, -2)], 0), ("Sulfat-Ion", [("S", 1, 6), ("O", 4, -2)], -2),
+            ("Sulfit-Ion", [("S", 1, 4), ("O", 3, -2)], -2), ("Schwefelwasserstoff", [("H", 2, 1), ("S", 1, -2)], 0), ("Permanganat-Ion", [("Mn", 1, 7), ("O", 4, -2)], -1),
+            ("Mangandioxid", [("Mn", 1, 4), ("O", 2, -2)], 0), ("Dichromat-Ion", [("Cr", 2, 6), ("O", 7, -2)], -2), ("Chromat-Ion", [("Cr", 1, 6), ("O", 4, -2)], -2),
+            ("Eisen(III)-oxid", [("Fe", 2, 3), ("O", 3, -2)], 0), ("Kupfer(I)-oxid", [("Cu", 2, 1), ("O", 1, -2)], 0), ("Chlorat-Ion", [("Cl", 1, 5), ("O", 3, -2)], -1),
+            ("Perchlorat-Ion", [("Cl", 1, 7), ("O", 4, -2)], -1), ("Hypochlorit-Ion", [("Cl", 1, 1), ("O", 1, -2)], -1), ("Natriumhydrid", [("Na", 1, 1), ("H", 1, -1)], 0),
+            ("Phosphorsäure", [("H", 3, 1), ("P", 1, 5), ("O", 4, -2)], 0), ("Thiosulfat-Ion", [("S", 2, 2), ("O", 3, -2)], -2), ("Methanol", [("C", 1, -2), ("H", 4, 1), ("O", 1, -2)], 0),
+            ("Ethanol", [("C", 2, -2), ("H", 6, 1), ("O", 1, -2)], 0), ("Methanal", [("C", 1, 0), ("H", 2, 1), ("O", 1, -2)], 0), ("Ameisensäure", [("C", 1, 2), ("H", 2, 1), ("O", 2, -2)], 0)]
+
+
+def _sp_formula(at, q):
+    return "".join(e + (f"<sub>{c}</sub>" if c > 1 else "") for e, c, _ in at) + chg(q)
+
+
+def redoxreaktionen():
+    r = random.Random(205)
+    L = {1: [], 2: [], 3: []}
+    seen = set()
+
+    def add(lvl, q, a):
+        if q not in seen and len(L[lvl]) < 120:
+            seen.add(q)
+            L[lvl].append((q, a))
+    SER = ["K", "Ca", "Na", "Mg", "Al", "Zn", "Fe", "Ni", "Sn", "Pb", "Cu", "Ag", "Au"]
+    ION = {"Mg": ("Mg", 2), "Al": ("Al", 3), "Zn": ("Zn", 2), "Fe": ("Fe", 2), "Ni": ("Ni", 2), "Sn": ("Sn", 2), "Pb": ("Pb", 2), "Cu": ("Cu", 2), "Ag": ("Ag", 1), "Au": ("Au", 3)}
+    for name, at, q in REDOX_SP:
+        for e, c, oz in at:
+            if e in ("H", "O") and not (name in ("Wasserstoffperoxid", "Natriumhydrid")):
+                continue
+            add(1, f"Oxidationszahl von {e} in {_sp_formula(at, q)} ({name})?", f"<b>{_rom(oz)}</b>")
+    for i in range(400):
+        t = i % 3
+        if t == 0:
+            m = r.choice(SER[3:])
+            e, qq = ION.get(m, (m, 1))
+            add(1, f"Stelle die Teilgleichung für die Oxidation von {m} auf.", f"<b>{m} → {e}{chg(qq)} + {'' if qq == 1 else qq} e⁻</b>")
+        elif t == 1:
+            x = r.choice([("Cl₂", "2 Cl⁻", 2), ("Br₂", "2 Br⁻", 2), ("O₂", "2 O²⁻", 4), ("Cu²⁺", "Cu", 2), ("Ag⁺", "Ag", 1), ("Fe³⁺", "Fe²⁺", 1), ("I₂", "2 I⁻", 2), ("Au³⁺", "Au", 3)])
+            add(1, f"Reduktion: {x[0]} → {x[1]}. Ergänze die Elektronen.", f"<b>{x[0]} + {'' if x[2] == 1 else x[2]} e⁻ → {x[1]}</b>")
+        else:
+            a, b = r.sample(SER[3:], 2)
+            yes = SER.index(a) < SER.index(b)
+            e, qq = ION[b]
+            add(1, f"Reagiert {a} mit einer Lösung von {e}{chg(qq)}-Ionen?", f"<b>{'ja' if yes else 'nein'}</b>: {a} ist {'unedler' if yes else 'edler'} als {b}")
+    rx = [("Zn + Cu²⁺ → Zn²⁺ + Cu", "Zn", "Cu²⁺"), ("Fe + Cu²⁺ → Fe²⁺ + Cu", "Fe", "Cu²⁺"), ("2 Na + Cl₂ → 2 NaCl", "Na", "Cl₂"), ("2 Al + 3 Cl₂ → 2 AlCl₃", "Al", "Cl₂"),
+          ("Cl₂ + 2 Br⁻ → 2 Cl⁻ + Br₂", "Br⁻", "Cl₂"), ("2 Mg + O₂ → 2 MgO", "Mg", "O₂"), ("CuO + H₂ → Cu + H₂O", "H₂", "CuO"), ("Fe₂O₃ + 2 Al → 2 Fe + Al₂O₃", "Al", "Fe₂O₃"),
+          ("2 Fe³⁺ + 2 I⁻ → 2 Fe²⁺ + I₂", "I⁻", "Fe³⁺"), ("Zn + 2 H⁺ → Zn²⁺ + H₂", "Zn", "H⁺"), ("C + O₂ → CO₂", "C", "O₂"), ("2 H₂O₂ → 2 H₂O + O₂", "H₂O₂ (ein Teil)", "H₂O₂ (anderer Teil)")]
+    for eq, ox, red in rx:
+        add(2, f"Bestimme Oxidationsmittel und Reduktionsmittel: {eq}", f"oxidiert: <b>{ox}</b> (Reduktionsmittel), reduziert: <b>{red}</b> (Oxidationsmittel)" + (" – Disproportionierung: O von −I auf −II und 0" if "H₂O₂ →" in eq else ""))
+    eqs = [("Al + O₂", "Ox: Al → Al³⁺ + 3 e⁻ (·4); Red: O₂ + 4 e⁻ → 2 O²⁻ (·3)", "4 Al + 3 O₂ → 2 Al₂O₃"),
+           ("Cu + Ag⁺", "Ox: Cu → Cu²⁺ + 2 e⁻; Red: Ag⁺ + e⁻ → Ag (·2)", "Cu + 2 Ag⁺ → Cu²⁺ + 2 Ag"),
+           ("Al + Cu²⁺", "Ox: Al → Al³⁺ + 3 e⁻ (·2); Red: Cu²⁺ + 2 e⁻ → Cu (·3)", "2 Al + 3 Cu²⁺ → 2 Al³⁺ + 3 Cu"),
+           ("Fe³⁺ + Zn", "Ox: Zn → Zn²⁺ + 2 e⁻; Red: Fe³⁺ + e⁻ → Fe²⁺ (·2)", "Zn + 2 Fe³⁺ → Zn²⁺ + 2 Fe²⁺"),
+           ("Cl₂ + I⁻", "Ox: 2 I⁻ → I₂ + 2 e⁻; Red: Cl₂ + 2 e⁻ → 2 Cl⁻", "Cl₂ + 2 I⁻ → 2 Cl⁻ + I₂"),
+           ("Fe₂O₃ + CO", "Fe +III → 0 (je 3 e⁻), C +II → +IV (je 2 e⁻): 6 e⁻ pro Formel", "Fe₂O₃ + 3 CO → 2 Fe + 3 CO₂"),
+           ("Na + H₂O", "Ox: Na → Na⁺ + e⁻ (·2); Red: 2 H₂O + 2 e⁻ → H₂ + 2 OH⁻", "2 Na + 2 H₂O → 2 Na⁺ + 2 OH⁻ + H₂"),
+           ("Mg + H⁺", "Ox: Mg → Mg²⁺ + 2 e⁻; Red: 2 H⁺ + 2 e⁻ → H₂", "Mg + 2 H⁺ → Mg²⁺ + H₂")]
+    for k, steps, res in eqs:
+        add(2, f"Stelle die Redoxgleichung mit Teilgleichungen auf: {k}", f"{steps}: <b>{res}</b>")
+    for name, at, q in r.sample(REDOX_SP, 12):
+        u = next(i for i, (e, c, oz) in enumerate(at) if e not in ("H", "O")) if any(e not in ("H", "O") for e, _, _ in at) else 1
+        e, c, oz = at[u]
+        known = " + ".join(f"{cc}·({o:+d})" for i, (ee, cc, o) in enumerate(at) if i != u)
+        add(2, f"Berechne die Oxidationszahl von {e} in {_sp_formula(at, q)} und schreibe den Rechenweg auf.", f"{c}·x + {known} = {q} ⇒ <b>x = {_rom(oz)}</b>".replace("+-", "−").replace("(-", "(−"))
+    big = [("MnO₄⁻ + Fe²⁺ (sauer)", "Red: MnO₄⁻ + 8 H⁺ + 5 e⁻ → Mn²⁺ + 4 H₂O; Ox: Fe²⁺ → Fe³⁺ + e⁻ (·5)", "MnO₄⁻ + 5 Fe²⁺ + 8 H⁺ → Mn²⁺ + 5 Fe³⁺ + 4 H₂O"),
+           ("Cr₂O₇²⁻ + I⁻ (sauer)", "Red: Cr₂O₇²⁻ + 14 H⁺ + 6 e⁻ → 2 Cr³⁺ + 7 H₂O; Ox: 2 I⁻ → I₂ + 2 e⁻ (·3)", "Cr₂O₇²⁻ + 6 I⁻ + 14 H⁺ → 2 Cr³⁺ + 3 I₂ + 7 H₂O"),
+           ("MnO₄⁻ + SO₃²⁻ (sauer)", "Red: MnO₄⁻ + 8 H⁺ + 5 e⁻ → Mn²⁺ + 4 H₂O (·2); Ox: SO₃²⁻ + H₂O → SO₄²⁻ + 2 H⁺ + 2 e⁻ (·5)", "2 MnO₄⁻ + 5 SO₃²⁻ + 6 H⁺ → 2 Mn²⁺ + 5 SO₄²⁻ + 3 H₂O"),
+           ("Cu + HNO₃ (NO entsteht)", "Ox: Cu → Cu²⁺ + 2 e⁻ (·3); Red: NO₃⁻ + 4 H⁺ + 3 e⁻ → NO + 2 H₂O (·2)", "3 Cu + 2 NO₃⁻ + 8 H⁺ → 3 Cu²⁺ + 2 NO + 4 H₂O"),
+           ("H₂O₂ + I⁻ (sauer)", "Red: H₂O₂ + 2 H⁺ + 2 e⁻ → 2 H₂O; Ox: 2 I⁻ → I₂ + 2 e⁻", "H₂O₂ + 2 I⁻ + 2 H⁺ → 2 H₂O + I₂"),
+           ("MnO₄⁻ + H₂O₂ (sauer)", "Red: MnO₄⁻ + 8 H⁺ + 5 e⁻ → Mn²⁺ + 4 H₂O (·2); Ox: H₂O₂ → O₂ + 2 H⁺ + 2 e⁻ (·5)", "2 MnO₄⁻ + 5 H₂O₂ + 6 H⁺ → 2 Mn²⁺ + 5 O₂ + 8 H₂O"),
+           ("MnO₄⁻ + I⁻ (basisch, MnO₂ entsteht)", "Red: MnO₄⁻ + 2 H₂O + 3 e⁻ → MnO₂ + 4 OH⁻ (·2); Ox: 2 I⁻ → I₂ + 2 e⁻ (·3)", "2 MnO₄⁻ + 6 I⁻ + 4 H₂O → 2 MnO₂ + 3 I₂ + 8 OH⁻"),
+           ("Fe²⁺ + Cr₂O₇²⁻ (sauer)", "Red: Cr₂O₇²⁻ + 14 H⁺ + 6 e⁻ → 2 Cr³⁺ + 7 H₂O; Ox: Fe²⁺ → Fe³⁺ + e⁻ (·6)", "Cr₂O₇²⁻ + 6 Fe²⁺ + 14 H⁺ → 2 Cr³⁺ + 6 Fe³⁺ + 7 H₂O"),
+           ("Zn + NO₃⁻ (sauer, NH₄⁺ entsteht)", "Ox: Zn → Zn²⁺ + 2 e⁻ (·4); Red: NO₃⁻ + 10 H⁺ + 8 e⁻ → NH₄⁺ + 3 H₂O", "4 Zn + NO₃⁻ + 10 H⁺ → 4 Zn²⁺ + NH₄⁺ + 3 H₂O"),
+           ("Cu + konz. H₂SO₄ (SO₂ entsteht)", "Ox: Cu → Cu²⁺ + 2 e⁻; Red: SO₄²⁻ + 4 H⁺ + 2 e⁻ → SO₂ + 2 H₂O", "Cu + SO₄²⁻ + 4 H⁺ → Cu²⁺ + SO₂ + 2 H₂O"),
+           ("Ethanol + Dichromat (sauer, Ethanal entsteht)", "Ox: C₂H₅OH → CH₃CHO + 2 H⁺ + 2 e⁻ (·3); Red: Cr₂O₇²⁻ + 14 H⁺ + 6 e⁻ → 2 Cr³⁺ + 7 H₂O", "3 C₂H₅OH + Cr₂O₇²⁻ + 8 H⁺ → 3 CH₃CHO + 2 Cr³⁺ + 7 H₂O"),
+           ("Al + OH⁻ + H₂O (Wasserstoff entsteht, [Al(OH)₄]⁻)", "Ox: Al + 4 OH⁻ → [Al(OH)₄]⁻ + 3 e⁻ (·2); Red: 2 H₂O + 2 e⁻ → H₂ + 2 OH⁻ (·3)", "2 Al + 2 OH⁻ + 6 H₂O → 2 [Al(OH)₄]⁻ + 3 H₂"),
+           ("Fe²⁺ + H₂O₂ (sauer)", "Ox: Fe²⁺ → Fe³⁺ + e⁻ (·2); Red: H₂O₂ + 2 H⁺ + 2 e⁻ → 2 H₂O", "2 Fe²⁺ + H₂O₂ + 2 H⁺ → 2 Fe³⁺ + 2 H₂O"),
+           ("Cl₂ in Natronlauge (Disproportionierung)", "Cl₂ + 2 e⁻ → 2 Cl⁻; Cl₂ + 4 OH⁻ → 2 ClO⁻ + 2 H₂O + 2 e⁻", "Cl₂ + 2 OH⁻ → Cl⁻ + ClO⁻ + H₂O")]
+    for k, steps, res in big:
+        add(3, f"Stelle die vollständige Redoxgleichung mit Oxidationszahlen, Teilgleichungen sowie Ladungs- und Stoffausgleich auf: {k}.", f"{steps} ⇒ <b>{res}</b>")
+    fixed = [
+        ("Erkläre, warum Oxidation und Reduktion immer gleichzeitig ablaufen.", "Elektronen können nicht frei existieren: Die von einem Teilchen <b>abgegebenen</b> Elektronen müssen von einem anderen <b>aufgenommen</b> werden. Deshalb ist jede Oxidation mit einer Reduktion gekoppelt."),
+        ("Leite die höchste und niedrigste Oxidationszahl von Stickstoff, Schwefel und Chlor aus dem PSE ab und nenne je ein Beispiel.", "Höchste = Gruppennummer, niedrigste = Gruppe − 8: <b>N +V (HNO₃) / −III (NH₃)</b>, <b>S +VI (SO₄²⁻) / −II (H₂S)</b>, <b>Cl +VII (ClO₄⁻) / −I (Cl⁻)</b>."),
+        ("Warum schützt eine Zinkschicht Eisen vor Rost, auch wenn sie beschädigt ist?", "Zink ist <b>unedler</b> als Eisen und gibt seine Elektronen bevorzugt ab: Es wird an Stelle des Eisens oxidiert (<b>Opferanode</b>)."),
+        ("Ordne die Metalle Cu, Zn, Ag, Fe nach ihrer Fähigkeit, Elektronen abzugeben. Begründe mit Versuchen.", "<b>Zn > Fe > Cu > Ag</b>: Zn überzieht sich in Fe²⁺-Lösung mit Eisen, Fe in Cu²⁺-Lösung mit Kupfer, Cu in Ag⁺-Lösung mit Silber, umgekehrt passiert nichts."),
+        ("In der Glucoseoxidation C₆H₁₂O₆ + 6 O₂ → 6 CO₂ + 6 H₂O: Wie ändern sich die Oxidationszahlen von C und O? Wie viele Elektronen werden pro Glucosemolekül übertragen?", "C: 0 → +IV (je 4 e⁻, 6 C ⇒ <b>24 e⁻</b>); O in O₂: 0 → −II (12 O-Atome nehmen 24 e⁻ auf)."),
+        ("Was ist eine Disproportionierung? Gib ein Beispiel.", "Ein Element mit mittlerer OZ wird <b>gleichzeitig oxidiert und reduziert</b>, z. B. 2 H₂O₂ → 2 H₂O + O₂ (O: −I → −II und 0)."),
+        ("Prüfe mit Oxidationszahlen, ob die Reaktion CaCO₃ → CaO + CO₂ eine Redoxreaktion ist.", "Ca +II, C +IV, O −II bleiben überall gleich: <b>keine Redoxreaktion</b> (Zersetzung)."),
+        ("Berechne die Oxidationszahlen von C in Methan, Methanol, Methanal, Ameisensäure und CO₂. Was fällt auf?", "−IV, −II, 0, +II, +IV: Die Reihe zeigt eine <b>schrittweise Oxidation</b> des Kohlenstoffs um je zwei Elektronen."),
+        ("Begründe, warum Fluor das stärkste Oxidationsmittel unter den Elementen ist.", "Fluor hat die <b>höchste Elektronegativität</b>; es nimmt Elektronen am stärksten auf und wird dabei zu F⁻ reduziert."),
+        ("Warum kann man Silberbesteck in einer Aluminiumschale mit heißem Salzwasser reinigen?", "Al ist unedel und reduziert das schwarze Ag₂S: <b>3 Ag₂S + 2 Al → 6 Ag + Al₂S₃</b> (Ag +I → 0, Al 0 → +III)."),
+    ]
+    for q_, a_ in fixed:
+        add(3, q_, a_)
+    r.shuffle(L[3])
+    return L
+
+
 M8, PH = "#1f6e8c", "#b4531f"
 TOPICS = {
     "osmose": ({"title": "Osmose", "eyebrow": "Biologie · Klasse 11", "accent": "#0d6f74", "cols": [1, 1, 1], "sol_cols": [1, 1, 1]}, osmose),
@@ -2973,6 +3077,7 @@ TOPICS = {
     "periodensystem": ({"title": "Periodensystem, Atombau und Eigenschaften", "eyebrow": "Chemie · Klasse 11", "accent": "#6a3fa0", "cols": [2, 2, 1], "sol_cols": [2, 2, 1]}, periodensystem),
     "stoffklassen": ({"title": "Stoffklassen", "eyebrow": "Chemie · Klasse 11", "accent": "#6a3fa0", "cols": [2, 1, 1], "sol_cols": [2, 1, 1]}, stoffklassen),
     "orbitalmodell": ({"title": "Orbitalmodell und Elektronenkonfiguration", "eyebrow": "Chemie · Klasse 11", "accent": "#6a3fa0", "cols": [2, 2, 1], "sol_cols": [2, 2, 1]}, orbitalmodell),
+    "redoxreaktionen": ({"title": "Redoxreaktionen und Oxidationszahlen", "eyebrow": "Chemie · Klasse 11", "accent": "#6a3fa0", "cols": [2, 1, 1], "sol_cols": [2, 1, 1]}, redoxreaktionen),
     "binomische-formeln": ({"title": "Binomische Formeln", "eyebrow": "Mathematik · Klasse 8", "accent": M8, "cols": 2, "sol_cols": 2}, binomische_formeln),
     "bruchterme": ({"title": "Bruchterme", "eyebrow": "Mathematik · Klasse 8", "accent": "#2d6a4f", "cols": 3, "sol_cols": 3}, bruchterme),
     "ausmultiplizieren-faktorisieren": ({"title": "Ausmultiplizieren und Faktorisieren", "eyebrow": "Mathematik · Klasse 8", "accent": M8, "cols": 3, "sol_cols": 3}, ausmultiplizieren),

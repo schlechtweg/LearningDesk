@@ -921,10 +921,26 @@ def orbitalmodell():
     return {"title": "Kästchenschema", "stars": "★☆☆", "task": (svg("0 30 250 155", g), task), "sol": (svg("0 30 250 155", g + sol_e), soltxt)}
 
 
+def redoxreaktionen():
+    # zinc strip in copper(II) sulfate solution
+    d = ('<path d="M60 60 V190 Q60 200 70 200 H230 Q240 200 240 190 V60" fill="none" stroke="#56626d" stroke-width="2.5"/>'
+         '<rect x="62" y="95" width="176" height="103" fill="#cfe4f6"/>'
+         '<rect x="138" y="30" width="24" height="150" fill="#b9c2ca" stroke="#56626d" stroke-width="1.5"/>'
+         + "".join(f'<circle cx="{x}" cy="{y}" r="4" fill="#b87333"/>' for x, y in [(136, 120), (136, 140), (164, 130), (164, 155), (136, 165), (164, 110), (136, 100)])
+         + "".join(f'<circle cx="{x}" cy="{y}" r="8" fill="#9fb8e8" stroke="#2b4f8f"/><text x="{x}" y="{y + 3}" font-size="7" text-anchor="middle">Cu²⁺</text>' for x, y in [(90, 130), (210, 170), (100, 175), (205, 120)])
+         + '<circle cx="185" cy="150" r="8" fill="#e0e0e0" stroke="#56626d"/><text x="185" y="153" font-size="7" text-anchor="middle">Zn²⁺</text>')
+    items = [(1, 150, 45, 270, 40), (2, 136, 140, 20, 110), (3, 90, 130, 20, 160), (4, 185, 150, 275, 150), (5, 230, 100, 275, 95)]
+    names = ["Zinkblech", "Kupferüberzug (Cu)", "Kupfer(II)-Ion", "Zink-Ion", "blaue Kupfersulfatlösung (wird heller)"]
+    return labeling("Zink in Kupfersulfatlösung", "★☆☆", "0 20 300 190", d, items, names,
+                    "Ein Zinkblech steht in Kupfersulfatlösung. Beschrifte und stelle die Teilgleichungen auf.",
+                    extra_task='<p class="q">Oxidation: <span class="blank wide"></span></p><p class="q">Reduktion: <span class="blank wide"></span></p>',
+                    extra_sol='<p class="q"><b>Ox: Zn → Zn²⁺ + 2 e⁻</b>; <b>Red: Cu²⁺ + 2 e⁻ → Cu</b>. Zn ist unedler und Reduktionsmittel.</p>', cols=1)
+
+
 FIGS = {
     "osmose": osmose, "natrium-kalium-pumpe": nak, "symport-antiport": symport, "endocytose-exocytose": endo,
     "ableiten": ableiten, "nervensystem": nerven, "auge": auge,
-    "termstruktur": termstruktur, "zufallsexperimente": zufallsexperimente, "laplace": laplace, "baumdiagramme": baumdiagramme, "unabhaengige-ereignisse": unabhaengig, "funktionsbegriff": funktionsbegriff, "eigenschaften-funktionen": eigenschaften, "lineare-funktionen": lineare_funktionen, "funktionsgleichungen": funktionsgleichungen, "lgs-grafisch": lgs_grafisch, "gleichsetzungsverfahren": gleichsetzungsverfahren, "additionsverfahren": additionsverfahren, "lgs-anwendungen": lgs_anwendungen, "zentrische-streckung": zentrische_streckung, "aehnliche-dreiecke": aehnliche_dreiecke, "flaeche-volumen-aehnlich": flaeche_volumen_aehnlich, "strahlensaetze": strahlensaetze, "atombau": atombau, "periodensystem": periodensystem, "stoffklassen": stoffklassen, "orbitalmodell": orbitalmodell, "binomische-formeln": binom, "bruchterme": bruchterme, "ausmultiplizieren-faktorisieren": ausmult, "terme-vereinfachen": terme,
+    "termstruktur": termstruktur, "zufallsexperimente": zufallsexperimente, "laplace": laplace, "baumdiagramme": baumdiagramme, "unabhaengige-ereignisse": unabhaengig, "funktionsbegriff": funktionsbegriff, "eigenschaften-funktionen": eigenschaften, "lineare-funktionen": lineare_funktionen, "funktionsgleichungen": funktionsgleichungen, "lgs-grafisch": lgs_grafisch, "gleichsetzungsverfahren": gleichsetzungsverfahren, "additionsverfahren": additionsverfahren, "lgs-anwendungen": lgs_anwendungen, "zentrische-streckung": zentrische_streckung, "aehnliche-dreiecke": aehnliche_dreiecke, "flaeche-volumen-aehnlich": flaeche_volumen_aehnlich, "strahlensaetze": strahlensaetze, "atombau": atombau, "periodensystem": periodensystem, "stoffklassen": stoffklassen, "orbitalmodell": orbitalmodell, "redoxreaktionen": redoxreaktionen, "binomische-formeln": binom, "bruchterme": bruchterme, "ausmultiplizieren-faktorisieren": ausmult, "terme-vereinfachen": terme,
     "gleichungen": gleichungen, "ungleichungen": ungleichungen,
     "druck": druck, "hydraulik": hydraulik, "schweredruck": schweredruck, "auftrieb": auftrieb, "luftdruck": luftdruck,
 }

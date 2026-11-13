@@ -1,0 +1,75 @@
+  <nav class="tabs" aria-label="Bereiche">
+    <a href="#verstehen" data-view="verstehen"><span class="n">1</span>Verstehen</a>
+    <a href="#oz" data-view="oz"><span class="n">2</span>Oxidationszahlen</a>
+    <a href="#gleichungen" data-view="gleichungen"><span class="n">3</span>Gleichungen aufstellen</a>
+    <a href="#ueben" data-view="ueben"><span class="n">4</span>Üben</a>
+    <a href="#alltag" data-view="alltag"><span class="n">5</span>Im Alltag</a>
+    <a href="#quiz" data-view="quiz"><span class="n">6</span>Quiz</a>
+  </nav>
+
+  <section class="view" id="view-verstehen">
+    <div class="einfach">
+      <span class="eyebrow">Einfach erklärt</span>
+      <p>Bei einer Redoxreaktion <strong>wandern Elektronen</strong> von einem Teilchen zu einem anderen. Wer Elektronen <strong>abgibt</strong>, wird <strong>oxidiert</strong>. Wer Elektronen <strong>aufnimmt</strong>, wird <strong>reduziert</strong>. Beides passiert immer gleichzeitig: Ohne Geber kein Nehmer.</p>
+      <p class="small">Eselsbrücke: <strong>OIL RIG</strong> – <em>Oxidation Is Loss, Reduction Is Gain</em> (of electrons).</p>
+    </div>
+    <div class="grid-2">
+      <div class="panel stack"><h3>Beispiel: Zink in Kupfersulfatlösung</h3><p class="small">Ein Zinkblech überzieht sich mit Kupfer, die blaue Lösung entfärbt sich.</p>
+        <p class="eq"><span class="ox">Oxidation: Zn → Zn²⁺ + 2 e⁻</span><br><span class="red">Reduktion: Cu²⁺ + 2 e⁻ → Cu</span><br>Redox: Zn + Cu²⁺ → Zn²⁺ + Cu</p></div>
+      <div class="panel stack"><h3>Wer macht was?</h3><ul class="list small"><li><strong>Reduktionsmittel</strong> (Elektronendonator): gibt Elektronen ab und wird dabei selbst oxidiert, hier Zn.</li><li><strong>Oxidationsmittel</strong> (Elektronenakzeptor): nimmt Elektronen auf und wird selbst reduziert, hier Cu²⁺.</li><li>Zn/Zn²⁺ und Cu/Cu²⁺ heißen <strong>korrespondierende Redoxpaare</strong>.</li></ul></div>
+    </div>
+    <div class="panel stack">
+      <h3>Oxidationszahlen: Buchhaltung für Elektronen</h3>
+      <p class="small">Bei Molekülen werden Elektronen nicht ganz übergeben, sondern verschoben. Deshalb tut man so, als wären alle Bindungen Ionenbindungen: Die Bindungselektronen bekommt das <strong>elektronegativere</strong> Atom. Die gedachte Ladung ist die <strong>Oxidationszahl (OZ)</strong>, geschrieben als römische Zahl über dem Symbol.</p>
+      <table class="ptab">
+        <tr><th>Regel</th><th>Beispiel</th></tr>
+        <tr><td>Elemente (Atome in Elementarstoffen): 0</td><td>Fe, O₂, Cl₂: 0</td></tr>
+        <tr><td>Einatomige Ionen: Ionenladung</td><td>Na⁺: +I, S²⁻: −II</td></tr>
+        <tr><td>Fluor immer −I</td><td>HF</td></tr>
+        <tr><td>Wasserstoff meist +I (in Metallhydriden −I)</td><td>H₂O: +I, NaH: −I</td></tr>
+        <tr><td>Sauerstoff meist −II (in Peroxiden −I)</td><td>CO₂: −II, H₂O₂: −I</td></tr>
+        <tr><td>Summe aller OZ = Ladung des Teilchens</td><td>SO₄²⁻: S + 4·(−2) = −2 ⇒ S = +VI</td></tr>
+      </table>
+      <p class="small">Aus dem PSE: Die höchste OZ eines Hauptgruppenelements ist meist seine <strong>Gruppennummer</strong> (S: +VI), die niedrigste Gruppennummer − 8 (S: −II).</p>
+    </div>
+    <div class="merksatz"><span class="eyebrow">Merke</span><p>Steigt die Oxidationszahl, liegt eine <strong>Oxidation</strong> vor. Sinkt sie, liegt eine <strong>Reduktion</strong> vor. Die Änderung entspricht der Zahl der übertragenen Elektronen.</p></div>
+    <div class="panel stack"><h3>Redoxreihe der Metalle</h3><p class="small">Unedle Metalle geben Elektronen leicht ab, edle schwer. Ein Metall reduziert die Ionen aller Metalle, die <strong>rechts</strong> von ihm stehen.</p>
+      <div class="series"><span>K</span><span>Ca</span><span>Na</span><span>Mg</span><span>Al</span><span>Zn</span><span>Fe</span><span>Ni</span><span>Sn</span><span>Pb</span><span>(H₂)</span><span>Cu</span><span>Ag</span><span>Au</span></div>
+      <p class="small muted">← unedel, starke Reduktionsmittel · edel →</p></div>
+    <div class="panel stack"><h3>Typische Fehler</h3><ul class="list small"><li>Oxidation mit „Reaktion mit Sauerstoff“ gleichgesetzt: Es geht um Elektronenabgabe.</li><li>Oxidationsmittel und oxidiertes Teilchen verwechselt: Das Oxidationsmittel wird selbst reduziert.</li><li>Elektronenzahlen der Teilgleichungen nicht ausgeglichen.</li></ul></div>
+  </section>
+
+  <section class="view" id="view-oz" hidden>
+    <div class="stack"><span class="eyebrow">Interaktiv</span><h2>Oxidationszahlen bestimmen</h2><p class="muted">Wähle ein Teilchen. Die App zeigt den Rechenweg.</p></div>
+    <div class="chips" id="ozChips"></div>
+    <div class="panel stack"><p class="ozf" id="ozF"></p><ol class="steps" id="ozSteps"></ol></div>
+  </section>
+
+  <section class="view" id="view-gleichungen" hidden>
+    <div class="stack"><span class="eyebrow">Methode</span><h2>Redoxgleichungen Schritt für Schritt</h2><p class="muted">Wähle eine Reaktion und decke die Schritte nacheinander auf. Überlege vorher selbst.</p></div>
+    <div class="chips" id="rChips"></div>
+    <div class="panel stack"><p class="eq" id="rTask"></p><ol class="steps" id="rSteps"></ol><div class="row"><button type="button" class="primary" id="rNext">Nächster Schritt</button><button type="button" id="rAll">Alles zeigen</button></div></div>
+    <div class="panel stack"><h3>Das Vorgehen</h3><ol class="list small"><li>Oxidationszahlen bestimmen: Wer wird oxidiert, wer reduziert?</li><li>Teilgleichungen für Oxidation und Reduktion mit Elektronen aufstellen.</li><li>In Lösung: Ladungen mit H⁺ (sauer) oder OH⁻ (basisch) ausgleichen, dann Sauerstoff und Wasserstoff mit H₂O.</li><li>Elektronenzahlen auf das kleinste gemeinsame Vielfache bringen.</li><li>Teilgleichungen addieren und kürzen. Probe: Atome und Ladungen links = rechts.</li></ol></div>
+  </section>
+
+  <section class="view" id="view-ueben" hidden>
+    <div class="stack"><span class="eyebrow">Trainer</span><h2>Redoxreaktionen üben</h2><p class="muted">Oxidationszahlen als Zahl mit Vorzeichen, z. B. <code>+4</code> oder <code>-2</code>. Teilchen als Formel, z. B. <code>Zn</code> oder <code>Cu2+</code>.</p></div>
+    <div id="trainer" class="stack"></div>
+  </section>
+
+  <section class="view" id="view-alltag" hidden>
+    <div class="stack"><span class="eyebrow">Im Alltag</span><h2>Redoxreaktionen überall</h2></div>
+    <div class="grid-2">
+      <div class="panel stack"><span class="eyebrow">Rost</span><h3>Eisen rostet</h3><p class="small">Eisen wird von Sauerstoff zu Fe²⁺ und Fe³⁺ oxidiert. Wasser und Salz beschleunigen das. Zink als Überzug (Verzinken) opfert sich, weil es unedler ist.</p></div>
+      <div class="panel stack"><span class="eyebrow">Energie</span><h3>Batterien und Akkus</h3><p class="small">Getrennte Oxidation und Reduktion: Die Elektronen fließen durch das Kabel und treiben das Handy an.</p></div>
+      <div class="panel stack"><span class="eyebrow">Körper</span><h3>Zellatmung</h3><p class="small">Glucose wird zu CO₂ oxidiert (C von 0 auf +IV), Sauerstoff zu Wasser reduziert. Die frei werdende Energie nutzt die Zelle.</p></div>
+      <div class="panel stack"><span class="eyebrow">Haushalt</span><h3>Bleichen und Desinfizieren</h3><p class="small">Chlorbleiche und Wasserstoffperoxid sind Oxidationsmittel: Sie zerstören Farbstoffe und Keime.</p></div>
+      <div class="panel stack"><span class="eyebrow">Labor</span><h3>Kaliumpermanganat</h3><p class="small">Violettes MnO₄⁻ (Mn +VII) wird zu fast farblosem Mn²⁺ reduziert: Damit kann man Eisen-Ionen titrieren.</p></div>
+      <div class="panel stack"><span class="eyebrow">Silber</span><h3>Angelaufenes Silber</h3><p class="small">In Alufolie und heißer Salzlösung wird schwarzes Silbersulfid wieder zu Silber reduziert, Aluminium wird oxidiert.</p></div>
+    </div>
+  </section>
+
+  <section class="view" id="view-quiz" hidden>
+    <div class="stack"><span class="eyebrow">Selbsttest</span><h2>Quiz</h2><div class="progress-line"><div class="bar" aria-hidden="true"><i id="qBar"></i></div><span class="score-line" id="qProgress"></span></div></div>
+    <div class="panel quiz" id="quizBox" aria-live="polite"></div>
+  </section>

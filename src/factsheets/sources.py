@@ -2190,6 +2190,48 @@ SHEETS["orbitalmodell"] = dict(title="Orbitalmodell und Elektronenkonfiguration"
     </div>
   </div>''')
 
+SHEETS["redoxreaktionen"] = dict(title="Redoxreaktionen und Oxidationszahlen", eyebrow="Chemie · Klasse 11 · Redox", accent=CH11, body=f'''
+  <div class="kern"><strong>Oxidation</strong> = Elektronenabgabe (OZ steigt), <strong>Reduktion</strong> = Elektronenaufnahme (OZ sinkt). Beide laufen immer gekoppelt ab. Das <strong>Reduktionsmittel</strong> gibt Elektronen ab, das <strong>Oxidationsmittel</strong> nimmt sie auf.</div>
+  <div class="cols">
+    <div class="box">
+      <h2>Regeln für Oxidationszahlen</h2>
+      <ul>
+        <li>Element: 0; einatomiges Ion: Ladung</li>
+        <li>F: −I; H: +I (Hydride −I); O: −II (Peroxide −I)</li>
+        <li>Summe = Ladung des Teilchens</li>
+        <li>PSE: max. OZ = Gruppe, min. = Gruppe − 8</li>
+      </ul>
+    </div>
+    <div class="box">
+      <h2>Gleichungen aufstellen</h2>
+      <ol>
+        <li>OZ bestimmen.</li>
+        <li>Teilgleichungen mit e⁻.</li>
+        <li>Ladung mit H⁺ / OH⁻, dann H₂O.</li>
+        <li>Elektronen auf kgV bringen.</li>
+        <li>Addieren, Probe.</li>
+      </ol>
+    </div>
+    <div class="box full">
+      <h2>Beispiel</h2>
+      <table>
+        <tr><th>Schritt</th><th>MnO₄⁻ + Fe²⁺ in saurer Lösung</th></tr>
+        <tr><td>Reduktion</td><td>MnO₄⁻ + 8 H⁺ + 5 e⁻ → Mn²⁺ + 4 H₂O</td></tr>
+        <tr><td>Oxidation (·5)</td><td>5 Fe²⁺ → 5 Fe³⁺ + 5 e⁻</td></tr>
+        <tr><td>Gesamt</td><td>MnO₄⁻ + 5 Fe²⁺ + 8 H⁺ → Mn²⁺ + 5 Fe³⁺ + 4 H₂O</td></tr>
+      </table>
+      <p>Redoxreihe: K, Ca, Na, Mg, Al, Zn, Fe, Ni, Sn, Pb, (H₂), Cu, Ag, Au – ein Metall reduziert die Ionen der rechts stehenden Metalle.</p>
+    </div>
+    <div class="box">
+      <h2>Im Alltag</h2>
+      <ul><li>Rosten und Verzinken.</li><li>Batterien und Akkus.</li><li>Zellatmung, Bleichmittel.</li></ul>
+    </div>
+    <div class="box warn">
+      <h2>Typische Fehler</h2>
+      <ul><li>Oxidationsmittel wird selbst reduziert!</li><li>Elektronen nicht ausgeglichen.</li><li>Peroxide und Hydride übersehen.</li></ul>
+    </div>
+  </div>''')
+
 OUT = sys.argv[1] if len(sys.argv) > 1 else os.path.join(os.path.dirname(__file__), "_build")
 os.makedirs(OUT, exist_ok=True)
 shutil.copyfile(os.path.join(os.path.dirname(os.path.abspath(__file__)), "factsheet.css"), os.path.join(OUT, "factsheet.css"))
