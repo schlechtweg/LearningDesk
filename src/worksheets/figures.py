@@ -895,10 +895,36 @@ def stoffklassen():
                     extra_sol='<p class="q"><b>NaCl(s) → Na⁺(aq) + Cl⁻(aq)</b>. Die Wasser-Dipole richten sich nach der Ladung der Ionen aus.</p>', cols=1)
 
 
+def orbitalmodell():
+    # empty box diagram for phosphorus (1s2 2s2 2p6 3s2 3p3)
+    Y = {"1s": 168, "2s": 132, "2p": 116, "3s": 80, "3p": 64}
+    g = '<line x1="12" y1="180" x2="12" y2="40" stroke="#56626d"/>' + text(16, 44, "Energie", "ft tiny", "start")
+    sol_e = ""
+    fill = {"1s": 2, "2s": 2, "2p": 6, "3s": 2, "3p": 3}
+    for l, y in Y.items():
+        o = 1 if l[1] == "s" else 3
+        x0 = 50 if l[1] == "s" else 110
+        g += text(30 if l[1] == "s" else x0 + o * 34 + 6, y + 4, l, "ft small", "start" if l[1] == "p" else "middle")
+        for k in range(o):
+            x = x0 + k * 34
+            g += f'<rect x="{x}" y="{y - 11}" width="30" height="22" fill="#fff" stroke="#1b2228"/>'
+            n = fill[l]
+            e = 2 if n >= o + k + 1 else 1 if n >= k + 1 else 0
+            if e >= 1:
+                sol_e += f'<path class="arr sol" d="M{x + 10} {y + 7} V{y - 7} M{x + 7} {y - 3} L{x + 10} {y - 7} L{x + 13} {y - 3}"/>'
+            if e == 2:
+                sol_e += f'<path class="arr sol" d="M{x + 20} {y - 7} V{y + 7} M{x + 17} {y + 3} L{x + 20} {y + 7} L{x + 23} {y + 3}"/>'
+    task = ('<p>Trage die 15 Elektronen des <b>Phosphors</b> als Pfeile in das Kästchenschema ein.</p>'
+            '<p class="q">Konfiguration: <span class="blank wide"></span></p><p class="q">ungepaarte Elektronen: <span class="blank"></span> Regel: <span class="blank"></span></p>')
+    soltxt = ('<p class="q"><b>1s² 2s² 2p⁶ 3s² 3p³</b> = [Ne] 3s² 3p³</p>'
+              '<p class="q"><b>3 ungepaarte</b> Elektronen in 3p (je ein Pfeil nach oben): <b>Hund\'sche Regel</b>.</p>')
+    return {"title": "Kästchenschema", "stars": "★☆☆", "task": (svg("0 30 250 155", g), task), "sol": (svg("0 30 250 155", g + sol_e), soltxt)}
+
+
 FIGS = {
     "osmose": osmose, "natrium-kalium-pumpe": nak, "symport-antiport": symport, "endocytose-exocytose": endo,
     "ableiten": ableiten, "nervensystem": nerven, "auge": auge,
-    "termstruktur": termstruktur, "zufallsexperimente": zufallsexperimente, "laplace": laplace, "baumdiagramme": baumdiagramme, "unabhaengige-ereignisse": unabhaengig, "funktionsbegriff": funktionsbegriff, "eigenschaften-funktionen": eigenschaften, "lineare-funktionen": lineare_funktionen, "funktionsgleichungen": funktionsgleichungen, "lgs-grafisch": lgs_grafisch, "gleichsetzungsverfahren": gleichsetzungsverfahren, "additionsverfahren": additionsverfahren, "lgs-anwendungen": lgs_anwendungen, "zentrische-streckung": zentrische_streckung, "aehnliche-dreiecke": aehnliche_dreiecke, "flaeche-volumen-aehnlich": flaeche_volumen_aehnlich, "strahlensaetze": strahlensaetze, "atombau": atombau, "periodensystem": periodensystem, "stoffklassen": stoffklassen, "binomische-formeln": binom, "bruchterme": bruchterme, "ausmultiplizieren-faktorisieren": ausmult, "terme-vereinfachen": terme,
+    "termstruktur": termstruktur, "zufallsexperimente": zufallsexperimente, "laplace": laplace, "baumdiagramme": baumdiagramme, "unabhaengige-ereignisse": unabhaengig, "funktionsbegriff": funktionsbegriff, "eigenschaften-funktionen": eigenschaften, "lineare-funktionen": lineare_funktionen, "funktionsgleichungen": funktionsgleichungen, "lgs-grafisch": lgs_grafisch, "gleichsetzungsverfahren": gleichsetzungsverfahren, "additionsverfahren": additionsverfahren, "lgs-anwendungen": lgs_anwendungen, "zentrische-streckung": zentrische_streckung, "aehnliche-dreiecke": aehnliche_dreiecke, "flaeche-volumen-aehnlich": flaeche_volumen_aehnlich, "strahlensaetze": strahlensaetze, "atombau": atombau, "periodensystem": periodensystem, "stoffklassen": stoffklassen, "orbitalmodell": orbitalmodell, "binomische-formeln": binom, "bruchterme": bruchterme, "ausmultiplizieren-faktorisieren": ausmult, "terme-vereinfachen": terme,
     "gleichungen": gleichungen, "ungleichungen": ungleichungen,
     "druck": druck, "hydraulik": hydraulik, "schweredruck": schweredruck, "auftrieb": auftrieb, "luftdruck": luftdruck,
 }

@@ -42,6 +42,10 @@ CHAPTERS = {
         ("I", "Terme und Gleichungen"), ("II", "Zufallsversuche"), ("III", "Funktionen"),
         ("IV", "Lineare Gleichungssysteme"), ("V", "Ähnlichkeit"),
     ],
+    ("11", "chemie"): [
+        ("1", "Stoffe – von der Vielfalt zur Ordnung – PSE"), ("2", "Redoxreaktionen der Nebengruppenelemente"),
+        ("3", "Chemische Gleichgewichte"), ("4", "Säure-Base-Gleichgewichte"),
+    ],
 }
 
 # Tools appear on the start page under "Werkzeuge" instead of a grade.
@@ -241,7 +245,7 @@ TOPICS = [
         "fonts": "math", "first_view": "verstehen", "factsheet": "Factsheet als PDF ↓",
     },
     {
-        "slug": "atombau", "grade": "11", "subject": "chemie", "kit": True, "accent": ACCENT_CHEM, "prelude": ["chemdata.js"],
+        "slug": "atombau", "grade": "11", "subject": "chemie", "chapter": "1", "order": 1, "kit": True, "accent": ACCENT_CHEM, "prelude": ["chemdata.js"],
         "title": "Atombau und Schalenmodell", "short": "Atombau", "tag": "Atome",
         "card": "Protonen, Neutronen, Elektronen, Isotope und Ionen, Atom-Baukasten, Schalenmodell nach Bohr, Lewis-Schreibweise, Trainer, Quiz",
         "description": "Interaktive Lernhilfe zum Atombau und zum Schalenmodell nach Bohr (Chemie, Klasse 11)",
@@ -249,7 +253,7 @@ TOPICS = [
         "fonts": "base", "first_view": "verstehen", "factsheet": "Factsheet als PDF ↓",
     },
     {
-        "slug": "periodensystem", "grade": "11", "subject": "chemie", "kit": True, "accent": ACCENT_CHEM, "prelude": ["chemdata.js"],
+        "slug": "periodensystem", "grade": "11", "subject": "chemie", "chapter": "1", "order": 3, "kit": True, "accent": ACCENT_CHEM, "prelude": ["chemdata.js"],
         "title": "Periodensystem, Atombau und Eigenschaften", "short": "Periodensystem", "tag": "PSE",
         "card": "Perioden und Hauptgruppen aus dem Atombau, interaktives Periodensystem, Trends bei Atomradius, Elektronegativität und Ionisierungsenergie, Trainer, Quiz",
         "description": "Interaktive Lernhilfe zum Zusammenhang von Periodensystem, Atombau und Eigenschaften (Chemie, Klasse 11)",
@@ -257,12 +261,20 @@ TOPICS = [
         "fonts": "base", "first_view": "verstehen", "factsheet": "Factsheet als PDF ↓",
     },
     {
-        "slug": "stoffklassen", "grade": "11", "subject": "chemie", "kit": True, "accent": ACCENT_CHEM, "prelude": ["chemdata.js"],
+        "slug": "stoffklassen", "grade": "11", "subject": "chemie", "chapter": "1", "order": 4, "kit": True, "accent": ACCENT_CHEM, "prelude": ["chemdata.js"],
         "title": "Stoffklassen", "short": "Stoffklassen", "tag": "Stoffklassen",
         "card": "Metalle, Ionensubstanzen und ihr Lösen in Wasser, Molekülsubstanzen, zwischenmolekulare Wechselwirkungen, Struktur-Eigenschafts-Beziehungen, Simulationen, Trainer, Quiz",
         "description": "Interaktive Lernhilfe zu Metallen, Ionen- und Molekülsubstanzen und ihren Eigenschaften (Chemie, Klasse 11)",
         "intro": "Wie Teilchen und Bindungen die Eigenschaften von Metallen, Salzen und Molekülsubstanzen bestimmen.",
         "fonts": "base", "first_view": "ueberblick", "factsheet": "Factsheet als PDF ↓",
+    },
+    {
+        "slug": "orbitalmodell", "grade": "11", "subject": "chemie", "chapter": "1", "order": 2, "kit": True, "accent": ACCENT_CHEM,
+        "title": "Orbitalmodell und Elektronenkonfiguration", "short": "Orbitalmodell", "tag": "Atommodelle",
+        "card": "Warum ein neues Atommodell, s-, p- und d-Orbitale, Energieprinzip, Pauli-Prinzip, Hund'sche Regel, Kästchenschreibweise zum Ausprobieren, Trainer, Quiz",
+        "description": "Interaktive Lernhilfe zum Orbitalmodell und zu Elektronenkonfigurationen (Chemie, Klasse 11)",
+        "intro": "Wo Elektronen sich aufhalten, nach welchen Regeln sie Orbitale besetzen und wie das den Aufbau des Periodensystems erklärt.",
+        "fonts": "base", "first_view": "verstehen", "factsheet": "Factsheet als PDF ↓",
     },
     {
         "slug": "binomische-formeln", "grade": "8", "subject": "mathematik", "chapter": "I", "order": 4,

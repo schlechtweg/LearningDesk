@@ -41,6 +41,7 @@ Interaktive Lern-Apps für die Schule, sortiert nach Klassenstufe. Alles läuft 
 | Klasse 11 · Biologie | Symport und Antiport | Uni-, Sym-, Antiport, primär/sekundär aktiv, Transporter-Simulation, Trainer, Quiz |
 | Klasse 11 · Biologie | Endocytose und Exocytose | Phagocytose, Pinocytose, rezeptorvermittelte Endocytose, Exocytose Schritt für Schritt, Trainer, Quiz |
 | Klasse 11 · Chemie | Atombau und Schalenmodell | Elementarteilchen, Isotope, Ionen, Atom-Baukasten, Schalenmodell nach Bohr, Lewis-Schreibweise, Trainer, Quiz |
+| Klasse 11 · Chemie | Orbitalmodell und Elektronenkonfiguration | s-, p-, d-Orbitale, Energieprinzip, Pauli-Prinzip, Hund'sche Regel, Kästchenschema zum Ausprobieren, Trainer, Quiz |
 | Klasse 11 · Chemie | Periodensystem, Atombau und Eigenschaften | Perioden und Hauptgruppen, interaktives Periodensystem, Trends (Atomradius, EN, Ionisierungsenergie), Trainer, Quiz |
 | Klasse 11 · Chemie | Stoffklassen | Metalle, Ionensubstanzen und Lösen in Wasser, Molekülsubstanzen, zwischenmolekulare Wechselwirkungen, Struktur-Eigenschafts-Beziehungen, Trainer, Quiz |
 | Klasse 11 · Mathematik | Ableiten | Sekante/Tangente, grafisches Ableiten, Regeln mit Trainer, Tangentengleichung, Quiz |

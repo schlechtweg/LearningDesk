@@ -2835,6 +2835,114 @@ def stoffklassen():
     return L
 
 
+ORB_ORDER = [("1s", 1), ("2s", 1), ("2p", 3), ("3s", 1), ("3p", 3), ("4s", 1), ("3d", 5), ("4p", 3)]
+ORB_WRITE = ["1s", "2s", "2p", "3s", "3p", "3d", "4s", "4p"]
+ORB_SYM = ["", "H", "He", "Li", "Be", "B", "C", "N", "O", "F", "Ne", "Na", "Mg", "Al", "Si", "P", "S", "Cl", "Ar", "K", "Ca", "Sc", "Ti", "V", "Cr", "Mn", "Fe", "Co", "Ni", "Cu", "Zn", "Ga", "Ge", "As", "Se", "Br", "Kr"]
+ORB_NAME = ["", "Wasserstoff", "Helium", "Lithium", "Beryllium", "Bor", "Kohlenstoff", "Stickstoff", "Sauerstoff", "Fluor", "Neon", "Natrium", "Magnesium", "Aluminium", "Silicium", "Phosphor", "Schwefel", "Chlor", "Argon", "Kalium", "Calcium", "Scandium", "Titan", "Vanadium", "Chrom", "Mangan", "Eisen", "Cobalt", "Nickel", "Kupfer", "Zink", "Gallium", "Germanium", "Arsen", "Selen", "Brom", "Krypton"]
+
+
+def orb_fill(z):
+    res, left = {}, z
+    for l, o in ORB_ORDER:
+        res[l] = min(left, 2 * o)
+        left -= res[l]
+    if z == 24:
+        res["4s"], res["3d"] = 1, 5
+    if z == 29:
+        res["4s"], res["3d"] = 1, 10
+    return res
+
+
+def orb_conf(z, short=False):
+    f = orb_fill(z)
+    sup = lambda n: str(n).translate(_SUP)
+    if short and z > 2:
+        core = 18 if z > 18 else 10 if z > 10 else 2
+        fc = orb_fill(core)
+        return f"[{ORB_SYM[core]}] " + " ".join(l + sup(f[l]) for l in ORB_WRITE if f[l] and f[l] != fc[l])
+    return " ".join(l + sup(f[l]) for l in ORB_WRITE if f[l])
+
+
+def orb_unpaired(z):
+    f = orb_fill(z)
+    return sum(f[l] if f[l] <= o else 2 * o - f[l] for l, o in ORB_ORDER)
+
+
+def orbitalmodell():
+    r = random.Random(204)
+    L = {1: [], 2: [], 3: []}
+    seen = set()
+
+    def add(lvl, q, a):
+        if q not in seen and len(L[lvl]) < 120:
+            seen.add(q)
+            L[lvl].append((q, a))
+    for i in range(800):
+        t = i % 4
+        z = r.randint(1, 20)
+        if t == 0:
+            add(1, f"Elektronenkonfiguration von {ORB_NAME[z]} (Z = {z})?", f"<b>{orb_conf(z)}</b>")
+        elif t == 1:
+            l = r.choice(["1s", "2s", "2p", "3s", "3p", "3d", "4s", "4p", "4d", "4f"])
+            n = {"s": 1, "p": 3, "d": 5, "f": 7}[l[1]]
+            add(1, f"Wie viele Orbitale hat das Niveau {l}, wie viele Elektronen passen hinein?", f"<b>{n} Orbital{'e' if n > 1 else ''}, {2 * n} Elektronen</b>")
+        elif t == 2:
+            add(1, f"Welches Element hat die Konfiguration {orb_conf(z)}?", f"{z} Elektronen: <b>{ORB_NAME[z]} ({ORB_SYM[z]})</b>")
+        else:
+            a, b = r.sample(["1s", "2s", "2p", "3s", "3p", "4s", "3d", "4p"], 2)
+            idx = [x for x, _ in ORB_ORDER]
+            first = a if idx.index(a) < idx.index(b) else b
+            add(1, f"Welches Niveau wird zuerst besetzt: {a} oder {b}?", f"<b>{first}</b> (niedrigere Energie)")
+    for i in range(800):
+        t = i % 4
+        z = r.randint(3, 36)
+        if t == 0:
+            add(2, f"Konfiguration von {ORB_NAME[z]} (Z = {z}) in ausführlicher und in Edelgas-Kurzschreibweise?", f"Reihenfolge 1s, 2s, 2p, 3s, 3p, 4s, 3d, 4p: <b>{orb_conf(z)}</b>; Edelgaskern ersetzt die inneren Elektronen: <b>{orb_conf(z, True)}</b>")
+        elif t == 1:
+            add(2, f"Wie viele ungepaarte Elektronen hat {ORB_NAME[z]}? Begründe mit der Hund'schen Regel.", f"{orb_conf(z, True)}: <b>{orb_unpaired(z)} ungepaarte</b>; gleichwertige Orbitale werden zuerst einzeln besetzt.")
+        elif t == 2:
+            f = orb_fill(z)
+            blk = "d" if 21 <= z <= 30 else "s" if f["4p"] == 0 and z in (3, 4, 11, 12, 19, 20) else "p"
+            if z in (10, 18, 36):
+                blk = "p"
+            add(2, f"In welchem Block, welcher Periode und (Haupt- oder Neben-)Gruppe steht {ORB_NAME[z]}?", f"{orb_conf(z, True)}: <b>{blk}-Block, {4 if z > 18 else 3 if z > 10 else 2}. Periode</b>{', Nebengruppenelement' if blk == 'd' else ''}")
+        else:
+            ions = [(11, 1), (12, 2), (13, 3), (8, -2), (9, -1), (17, -1), (16, -2), (19, 1), (20, 2), (7, -3)]
+            zz, q = r.choice(ions)
+            add(2, f"Konfiguration des Ions {ORB_SYM[zz]}{chg(q)}? Mit welchem Edelgas stimmt sie überein?", f"{ORB_SYM[zz]} hat {zz} e⁻, {'gibt' if q > 0 else 'nimmt'} {abs(q)} {'ab' if q > 0 else 'auf'} ⇒ {zz - q} Elektronen: <b>{orb_conf(zz - q)}</b>, Edelgaskonfiguration wie <b>{ORB_NAME[zz - q]}</b>")
+
+    # transition-metal ions lose the 4s electrons first
+    tm = [(26, 2, "Eisen(II)"), (26, 3, "Eisen(III)"), (29, 2, "Kupfer(II)"), (29, 1, "Kupfer(I)"), (30, 2, "Zink"), (25, 2, "Mangan(II)"), (24, 3, "Chrom(III)"), (27, 2, "Cobalt(II)"), (28, 2, "Nickel(II)"), (22, 4, "Titan(IV)")]
+    for z, q, nm in tm:
+        d = z - 18 - q  # all 4s electrons leave first
+        dd = d
+        unp = dd if dd <= 5 else 10 - dd
+        add(3, f"Gib die Elektronenkonfiguration des {nm}-Ions {ORB_SYM[z]}{chg(q)} an und bestimme die Zahl ungepaarter Elektronen. Beachte: Bei Ionen werden zuerst die 4s-Elektronen abgegeben.",
+            f"{ORB_SYM[z]}: {orb_conf(z, True)}; {ORB_SYM[z]}{chg(q)}: <b>[Ar] 3d{str(d).translate(_SUP) if d else '⁰'}</b>, <b>{unp} ungepaarte</b> Elektronen" + (" (halb gefülltes d-Niveau, besonders stabil)" if d == 5 else " (volles d-Niveau: farblos, nicht magnetisch)" if d == 10 else ""))
+    fixed = [
+        ("Warum wird beim Kalium (Z = 19) das 19. Elektron in das 4s- und nicht in das 3d-Orbital eingebaut?", "Das <b>4s-Niveau hat eine niedrigere Energie</b> als 3d. Nach dem Energieprinzip wird immer zuerst das energieärmste freie Orbital besetzt."),
+        ("Erkläre die Ausnahmen bei Chrom ([Ar] 3d⁵ 4s¹) und Kupfer ([Ar] 3d¹⁰ 4s¹).", "Ein <b>halb gefülltes</b> (d⁵) bzw. <b>vollständig gefülltes</b> (d¹⁰) d-Niveau ist besonders stabil. Dafür wechselt ein 4s-Elektron ins 3d-Niveau."),
+        ("Nenne zwei Beobachtungen, die das Bohr-Modell nicht erklären kann, das Orbitalmodell aber schon.", "Z. B. die <b>Nebengruppen</b> (Auffüllen von 3d nach 4s), die räumliche Gestalt von Molekülen (Bindungswinkel), Feinstrukturen in Atomspektren, magnetische Eigenschaften (ungepaarte Elektronen)."),
+        ("Formuliere das Pauli-Prinzip und zeige an Helium, wie es angewendet wird.", "Ein Orbital fasst <b>höchstens zwei Elektronen mit entgegengesetztem Spin</b>. He: 1s² als ↑↓ in einem Kästchen; ein drittes Elektron müsste in 2s."),
+        ("Begründe, warum die Hauptgruppen I und II s-Block und die Hauptgruppen III bis VIII p-Block heißen.", "Bei ihnen wird als letztes ein <b>s-Orbital</b> bzw. ein <b>p-Orbital</b> der Valenzschale besetzt. Da s 2 und p 6 Elektronen fasst, ist der s-Block 2 und der p-Block 6 Gruppen breit."),
+        ("Warum ist die Periode 4 achtzehn Elemente lang, die Periode 3 aber nur acht?", "In Periode 4 wird zwischen 4s und 4p das <b>3d-Niveau</b> (10 Elektronen) aufgefüllt: 2 + 10 + 6 = <b>18</b>. In Periode 3 nur 3s und 3p: 2 + 6 = 8."),
+        ("Erkläre, warum Eisen magnetisch ist, Zink aber nicht.", "Fe: [Ar] 3d⁶ 4s² hat <b>4 ungepaarte Elektronen</b>, deren Spins sich ausrichten können. Zn: [Ar] 3d¹⁰ 4s², alle Elektronen <b>gepaart</b>."),
+        ("Warum sind viele Verbindungen der Nebengruppenelemente farbig?", "In <b>teilweise besetzten d-Orbitalen</b> können Elektronen Licht bestimmter Wellenlängen absorbieren; die Komplementärfarbe sehen wir (Cu²⁺: blau)."),
+        ("Was bedeutet die Aussage: Ein Orbital ist der Raum, in dem sich ein Elektron mit 90 % Wahrscheinlichkeit aufhält?", "Der Ort eines Elektrons ist <b>nicht exakt bestimmbar</b>. Man kann nur angeben, mit welcher Wahrscheinlichkeit es in einem Raumbereich anzutreffen ist; das Orbital ist der Bereich, der 90 % davon umfasst."),
+        ("Vergleiche 1s- und 2s-Orbital.", "Beide sind <b>kugelförmig</b>. Das 2s-Orbital ist <b>größer</b> und energiereicher, seine Elektronen sind im Mittel weiter vom Kern entfernt."),
+        ("Warum ist Fe³⁺ stabiler als Fe²⁺? Argumentiere mit der Elektronenkonfiguration.", "Fe²⁺: [Ar] 3d⁶, Fe³⁺: [Ar] <b>3d⁵</b>. Das halb gefüllte d-Niveau (je ein Elektron in allen fünf d-Orbitalen) ist besonders energiearm."),
+        ("Wie viele Elektronen besitzen in einem Bromatom (Z = 35) die Hauptquantenzahl n = 4? Wie viele Valenzelektronen hat es?", "[Ar] 3d¹⁰ 4s² 4p⁵: n = 4 hat <b>2 + 5 = 7 Elektronen</b>; das sind die <b>7 Valenzelektronen</b> (VII. Hauptgruppe)."),
+        ("Begründe mit Orbitalen, warum Edelgase reaktionsträge sind.", "Alle besetzten s- und p-Orbitale der Valenzschale sind <b>voll (ns² np⁶)</b>; es gibt keine ungepaarten Elektronen und keine energetisch günstigen freien Plätze."),
+        ("Kohlenstoff hat die Konfiguration 1s² 2s² 2p². Wie viele Bindungen erwartest du danach, wie viele bildet C tatsächlich? Nenne eine Erklärung.", "Nach dem Schema nur <b>2 ungepaarte</b> Elektronen, tatsächlich bildet C aber <b>4 Bindungen</b> (CH₄). Ein 2s-Elektron wird in das freie 2p-Orbital angehoben (Hybridisierung, sp³), dann sind 4 Elektronen ungepaart."),
+    ]
+    for q_, a_ in fixed:
+        add(3, q_, a_)
+    for z in r.sample(range(21, 31), 6):
+        add(3, f"Zeichne das Kästchenschema für {ORB_NAME[z]} (Z = {z}) ab 3d und 4s. Wie viele ungepaarte Elektronen gibt es?", f"<b>{orb_conf(z, True)}</b>: <b>{orb_unpaired(z)} ungepaarte</b> Elektronen (3d erst einzeln, dann doppelt){'; Ausnahme!' if z in (24, 29) else ''}")
+    r.shuffle(L[3])
+    return L
+
+
 M8, PH = "#1f6e8c", "#b4531f"
 TOPICS = {
     "osmose": ({"title": "Osmose", "eyebrow": "Biologie · Klasse 11", "accent": "#0d6f74", "cols": [1, 1, 1], "sol_cols": [1, 1, 1]}, osmose),
@@ -2864,6 +2972,7 @@ TOPICS = {
     "atombau": ({"title": "Atombau und Schalenmodell", "eyebrow": "Chemie · Klasse 11", "accent": "#6a3fa0", "cols": [2, 2, 1], "sol_cols": [2, 2, 1]}, atombau),
     "periodensystem": ({"title": "Periodensystem, Atombau und Eigenschaften", "eyebrow": "Chemie · Klasse 11", "accent": "#6a3fa0", "cols": [2, 2, 1], "sol_cols": [2, 2, 1]}, periodensystem),
     "stoffklassen": ({"title": "Stoffklassen", "eyebrow": "Chemie · Klasse 11", "accent": "#6a3fa0", "cols": [2, 1, 1], "sol_cols": [2, 1, 1]}, stoffklassen),
+    "orbitalmodell": ({"title": "Orbitalmodell und Elektronenkonfiguration", "eyebrow": "Chemie · Klasse 11", "accent": "#6a3fa0", "cols": [2, 2, 1], "sol_cols": [2, 2, 1]}, orbitalmodell),
     "binomische-formeln": ({"title": "Binomische Formeln", "eyebrow": "Mathematik · Klasse 8", "accent": M8, "cols": 2, "sol_cols": 2}, binomische_formeln),
     "bruchterme": ({"title": "Bruchterme", "eyebrow": "Mathematik · Klasse 8", "accent": "#2d6a4f", "cols": 3, "sol_cols": 3}, bruchterme),
     "ausmultiplizieren-faktorisieren": ({"title": "Ausmultiplizieren und Faktorisieren", "eyebrow": "Mathematik · Klasse 8", "accent": M8, "cols": 3, "sol_cols": 3}, ausmultiplizieren),

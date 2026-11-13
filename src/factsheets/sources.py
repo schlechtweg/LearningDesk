@@ -2149,6 +2149,47 @@ SHEETS["stoffklassen"] = dict(title="Stoffklassen", eyebrow="Chemie · Klasse 11
     </div>
   </div>''')
 
+SHEETS["orbitalmodell"] = dict(title="Orbitalmodell und Elektronenkonfiguration", eyebrow="Chemie · Klasse 11 · Atommodelle", accent=CH11, body=f'''
+  <div class="kern">Ein <strong>Orbital</strong> ist der Raum, in dem sich ein Elektron mit großer Wahrscheinlichkeit (90 %) aufhält. Schalen bestehen aus Unterniveaus s, p, d, f mit 1, 3, 5, 7 Orbitalen; jedes Orbital fasst <strong>höchstens 2 Elektronen</strong>.</div>
+  <div class="cols">
+    <div class="box">
+      <h2>Drei Regeln</h2>
+      <ol>
+        <li><strong>Energieprinzip</strong>: 1s, 2s, 2p, 3s, 3p, <strong>4s, 3d</strong>, 4p …</li>
+        <li><strong>Pauli-Prinzip</strong>: max. 2 Elektronen pro Orbital, entgegengesetzter Spin ↑↓.</li>
+        <li><strong>Hund'sche Regel</strong>: gleichwertige Orbitale erst einzeln, dann doppelt.</li>
+      </ol>
+    </div>
+    <div class="box">
+      <h2>Orbitalformen</h2>
+      <ul>
+        <li>s: kugelförmig (1 pro Schale)</li>
+        <li>p: hantelförmig (3, ab n = 2)</li>
+        <li>d: meist vierblättrig (5, ab n = 3)</li>
+        <li>Schale n fasst 2n² Elektronen.</li>
+      </ul>
+    </div>
+    <div class="box full">
+      <h2>Beispiele</h2>
+      <table>
+        <tr><th>Element</th><th>Konfiguration</th><th>kurz</th><th>ungepaart</th></tr>
+        <tr><td>N (7)</td><td>1s² 2s² 2p³</td><td>[He] 2s² 2p³</td><td>3</td></tr>
+        <tr><td>Na (11)</td><td>1s² 2s² 2p⁶ 3s¹</td><td>[Ne] 3s¹</td><td>1</td></tr>
+        <tr><td>Fe (26)</td><td>… 3p⁶ 3d⁶ 4s²</td><td>[Ar] 3d⁶ 4s²</td><td>4</td></tr>
+        <tr><td>Cu (29)</td><td>Ausnahme</td><td>[Ar] 3d¹⁰ 4s¹</td><td>1</td></tr>
+      </table>
+      <p>PSE: Gruppen I, II = s-Block; III bis VIII = p-Block; Nebengruppen = d-Block.</p>
+    </div>
+    <div class="box">
+      <h2>Im Alltag</h2>
+      <ul><li>Farbige Kupfer- und Eisensalze (d-Elektronen).</li><li>Magnetismus von Eisen.</li><li>Leuchtfarben im Feuerwerk.</li></ul>
+    </div>
+    <div class="box warn">
+      <h2>Typische Fehler</h2>
+      <ul><li>3d vor 4s besetzt.</li><li>p-Orbitale sofort doppelt besetzt.</li><li>Ausnahmen Cr und Cu vergessen.</li></ul>
+    </div>
+  </div>''')
+
 OUT = sys.argv[1] if len(sys.argv) > 1 else os.path.join(os.path.dirname(__file__), "_build")
 os.makedirs(OUT, exist_ok=True)
 shutil.copyfile(os.path.join(os.path.dirname(os.path.abspath(__file__)), "factsheet.css"), os.path.join(OUT, "factsheet.css"))

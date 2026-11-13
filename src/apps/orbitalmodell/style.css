@@ -1,0 +1,18 @@
+.ptab { width: 100%; border-collapse: collapse; font-size: var(--step--1); }
+.ptab th, .ptab td { padding: 6px 8px; border-bottom: 1px solid var(--line); text-align: left; overflow-wrap: anywhere; }
+.ptab th { color: var(--muted); }
+.elgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(46px, 1fr)); gap: 5px; }
+.elgrid button { padding: 5px 0; font-family: var(--font-mono); display: grid; line-height: 1.15; }
+.elgrid button small { font-size: 0.62rem; opacity: .75; }
+.lv { width: 100%; height: auto; display: block; }
+.lv .box { fill: var(--surface); stroke: var(--ink); stroke-width: 1.4; }
+.lv .lab { font: 700 13px var(--font-mono); fill: var(--ink); }
+.lv .en { font: 11px var(--font-body); fill: var(--muted); }
+.lv .up, .lv .dn { stroke: var(--accent); stroke-width: 2.4; fill: none; }
+.lv .ax { stroke: var(--muted); stroke-width: 1.2; }
+.conf { font-family: var(--font-mono); font-size: 1.15rem; overflow-wrap: anywhere; }
+.orbs { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; }
+.orbs svg { width: 100%; height: auto; }
+.orbs .lobe { fill: color-mix(in srgb, var(--accent) 35%, transparent); stroke: var(--accent); stroke-width: 1.5; }
+.orbs .lobe2 { fill: color-mix(in srgb, #e0a400 35%, transparent); stroke: #b8860b; stroke-width: 1.5; }
+.orbs .axis { stroke: var(--muted); stroke-width: 1; stroke-dasharray: 3 3; }
