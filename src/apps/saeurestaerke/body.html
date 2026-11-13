@@ -1,0 +1,60 @@
+  <nav class="tabs" aria-label="Bereiche">
+    <a href="#verstehen" data-view="verstehen"><span class="n">1</span>Verstehen</a>
+    <a href="#tabelle" data-view="tabelle"><span class="n">2</span>pKs-Tabelle</a>
+    <a href="#vergleich" data-view="vergleich"><span class="n">3</span>Stark und schwach</a>
+    <a href="#ueben" data-view="ueben"><span class="n">4</span>Üben</a>
+    <a href="#alltag" data-view="alltag"><span class="n">5</span>Im Alltag</a>
+    <a href="#quiz" data-view="quiz"><span class="n">6</span>Quiz</a>
+  </nav>
+
+  <section class="view" id="view-verstehen">
+    <div class="einfach">
+      <span class="eyebrow">Einfach erklärt</span>
+      <p>Salzsäure und Essigsäure mit gleicher Konzentration sind unterschiedlich sauer. Salzsäure gibt <strong>alle</strong> Protonen an Wasser ab (<strong>starke Säure</strong>). Essigsäure gibt nur <strong>etwa jedes hundertste</strong> ab (<strong>schwache Säure</strong>). Wie gern eine Säure ihr Proton abgibt, beschreibt die <strong>Säurekonstante K<sub>S</sub></strong>.</p>
+    </div>
+    <div class="panel stack">
+      <h3>Säurekonstante und pK<sub>S</sub></h3>
+      <p class="small">Für HA + H₂O ⇌ H₃O⁺ + A⁻ gilt (Wasser als Lösemittel steckt in der Konstante):</p>
+      <p class="small"><strong>K<sub>S</sub> = c(H₃O⁺) · c(A⁻) / c(HA)</strong>, <strong>pK<sub>S</sub> = −lg K<sub>S</sub></strong></p>
+      <ul class="list small"><li><strong>Je kleiner der pK<sub>S</sub>, desto stärker die Säure.</strong></li><li>pK<sub>S</sub> &lt; 0: sehr starke Säuren (HCl, H₂SO₄), praktisch vollständige Protolyse.</li><li>pK<sub>S</sub> 4 bis 10: schwache Säuren (Essigsäure 4,75, Ammonium 9,25).</li></ul>
+      <p class="small">Für Basen gilt entsprechend K<sub>B</sub> und pK<sub>B</sub>. Für ein korrespondierendes Paar gilt: <strong>pK<sub>S</sub> + pK<sub>B</sub> = 14</strong>. Eine starke Säure hat also eine sehr schwache korrespondierende Base.</p>
+    </div>
+    <div class="grid-2">
+      <div class="panel stack"><h3>pH schwacher Säuren</h3><p class="small">Näherung, gültig wenn nur wenig protolysiert (pK<sub>S</sub> &gt; 4, c nicht zu klein):</p><p class="small"><strong>pH = ½ · (pK<sub>S</sub> − lg c₀)</strong></p><p class="small">Essigsäure c = 0,1 mol/L: pH = ½ (4,75 + 1) = 2,88. Salzsäure gleicher Konzentration: pH 1.</p></div>
+      <div class="panel stack"><h3>pH schwacher Basen</h3><p class="small"><strong>pOH = ½ · (pK<sub>B</sub> − lg c₀)</strong>, dann pH = 14 − pOH.</p><p class="small">Ammoniak c = 0,1 mol/L: pK<sub>B</sub> = 4,75 ⇒ pOH 2,88 ⇒ pH 11,12.</p></div>
+    </div>
+    <div class="panel stack"><h3>Protolysen verschieden starker Säuren und Basen</h3><p class="small">Eine Protolyse läuft bevorzugt in die Richtung, in der die <strong>schwächere Säure und schwächere Base</strong> entstehen. Faustregel: Eine Säure gibt ihr Proton an die Base eines Paares mit <strong>größerem</strong> pK<sub>S</sub> ab.</p><p class="small">Beispiel: CH₃COOH (pK<sub>S</sub> 4,75) + NH₃ → CH₃COO⁻ + NH₄⁺ (pK<sub>S</sub> 9,25): läuft weitgehend ab.</p><p class="small"><strong>Salzlösungen</strong>: Natriumacetat-Lösung ist basisch (Acetat ist eine Base), Ammoniumchlorid-Lösung sauer (NH₄⁺ ist eine Säure), Kochsalzlösung neutral.</p></div>
+    <div class="merksatz"><span class="eyebrow">Merke</span><p>„Stark“ und „konzentriert“ sind verschiedene Dinge: Die Stärke ist eine Eigenschaft des Stoffes (pK<sub>S</sub>), die Konzentration sagt, wie viel davon gelöst ist. Verdünnte Salzsäure ist stark, aber verdünnt.</p></div>
+    <div class="panel stack"><h3>Typische Fehler</h3><ul class="list small"><li>Großer pK<sub>S</sub> = starke Säure: Es ist umgekehrt.</li><li>Für schwache Säuren pH = −lg c₀ gerechnet: Das gilt nur für starke Säuren.</li><li>Gedacht, eine schwache Säure verbrauche bei der Titration weniger Lauge: Gleiche Stoffmenge braucht gleich viel Lauge.</li></ul></div>
+  </section>
+
+  <section class="view" id="view-tabelle" hidden>
+    <div class="stack"><span class="eyebrow">Daten</span><h2>pK<sub>S</sub>- und pK<sub>B</sub>-Werte (25 °C)</h2><p class="muted">Oben stehen die stärksten Säuren, unten die stärksten Basen.</p></div>
+    <div class="panel"><table class="ptab" id="tTab"></table></div>
+  </section>
+
+  <section class="view" id="view-vergleich" hidden>
+    <div class="stack"><span class="eyebrow">Interaktiv</span><h2>Stark und schwach im Vergleich</h2><p class="muted">Wähle zwei Säuren und eine Konzentration. Die Kreise stehen für 50 Säureteilchen: rot = protolysiert (A⁻ + H₃O⁺), grau = HA.</p></div>
+    <div class="panel stack ctl"><div class="cmp"><select id="vA" aria-label="Säure 1"></select><select id="vB" aria-label="Säure 2"></select></div><label for="vC">c₀ = <b id="vCV"></b> mol/L</label><input type="range" id="vC" min="-4" max="0" step="0.5" value="-1"></div>
+    <div class="cmp"><div class="panel stack"><svg class="beaker" id="vS1" viewBox="0 0 200 140" aria-hidden="true"></svg><p class="small" id="vT1"></p></div><div class="panel stack"><svg class="beaker" id="vS2" viewBox="0 0 200 140" aria-hidden="true"></svg><p class="small" id="vT2"></p></div></div>
+  </section>
+
+  <section class="view" id="view-ueben" hidden>
+    <div class="stack"><span class="eyebrow">Trainer</span><h2>Säure- und Basenstärke üben</h2><p class="muted">pH-Werte auf zwei Nachkommastellen.</p></div>
+    <div id="trainer" class="stack"></div>
+  </section>
+
+  <section class="view" id="view-alltag" hidden>
+    <div class="stack"><span class="eyebrow">Im Alltag</span><h2>Stark oder schwach im Alltag</h2></div>
+    <div class="grid-2">
+      <div class="panel stack"><span class="eyebrow">Küche</span><h3>Essig statt Salzsäure</h3><p class="small">Essigsäure ist schwach: Selbst Essigessenz (25 %) hat pH um 2. Salzsäure gleicher Konzentration wäre ätzend.</p></div>
+      <div class="panel stack"><span class="eyebrow">Getränke</span><h3>Kohlensäure</h3><p class="small">H₂CO₃ ist schwach (pK<sub>S</sub> 6,35). Sprudel hat nur pH um 5.</p></div>
+      <div class="panel stack"><span class="eyebrow">Labor</span><h3>Flusssäure</h3><p class="small">HF ist eine schwache Säure, aber hochgiftig und löst Glas. Schwach heißt nicht harmlos.</p></div>
+      <div class="panel stack"><span class="eyebrow">Reinigung</span><h3>Salmiakgeist</h3><p class="small">Ammoniak ist eine schwache Base und deshalb ein mildes Reinigungsmittel für Fenster.</p></div>
+    </div>
+  </section>
+
+  <section class="view" id="view-quiz" hidden>
+    <div class="stack"><span class="eyebrow">Selbsttest</span><h2>Quiz</h2><div class="progress-line"><div class="bar" aria-hidden="true"><i id="qBar"></i></div><span class="score-line" id="qProgress"></span></div></div>
+    <div class="panel quiz" id="quizBox" aria-live="polite"></div>
+  </section>

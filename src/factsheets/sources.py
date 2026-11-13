@@ -2501,6 +2501,38 @@ SHEETS["ph-wert"] = dict(title="Autoprotolyse des Wassers und pH-Wert", eyebrow=
     </div>
   </div>''')
 
+SHEETS["saeurestaerke"] = dict(title="Säure- und Basenstärke", eyebrow="Chemie · Klasse 11 · Säure-Base-Gleichgewichte", accent=CH11, body=f'''
+  <div class="kern">HA + H₂O ⇌ H₃O⁺ + A⁻: <strong>K<sub>S</sub> = c(H₃O⁺) · c(A⁻) / c(HA)</strong>, pK<sub>S</sub> = −lg K<sub>S</sub>. <strong>Je kleiner pK<sub>S</sub>, desto stärker die Säure.</strong> Für korrespondierende Paare gilt pK<sub>S</sub> + pK<sub>B</sub> = 14.</div>
+  <div class="cols">
+    <div class="box">
+      <h2>pH-Berechnung</h2>
+      <ul><li>stark: pH = −lg c₀</li><li>schwache Säure: pH = ½ (pK<sub>S</sub> − lg c₀)</li><li>schwache Base: pOH = ½ (pK<sub>B</sub> − lg c₀)</li></ul>
+    </div>
+    <div class="box">
+      <h2>Protolysen</h2>
+      <ul><li>Es entstehen bevorzugt die schwächere Säure und die schwächere Base.</li><li>Acetat-Lösung basisch, NH₄Cl-Lösung sauer, NaCl neutral.</li></ul>
+    </div>
+    <div class="box full">
+      <h2>pK<sub>S</sub>-Werte (25 °C)</h2>
+      <table>
+        <tr><th>Säure</th><th>pK<sub>S</sub></th><th>Base</th><th>pK<sub>B</sub></th></tr>
+        <tr><td>HCl</td><td>−6</td><td>Cl⁻</td><td>20</td></tr>
+        <tr><td>CH₃COOH</td><td>4,75</td><td>CH₃COO⁻</td><td>9,25</td></tr>
+        <tr><td>H₂CO₃</td><td>6,35</td><td>HCO₃⁻</td><td>7,65</td></tr>
+        <tr><td>NH₄⁺</td><td>9,25</td><td>NH₃</td><td>4,75</td></tr>
+        <tr><td>HCO₃⁻</td><td>10,33</td><td>CO₃²⁻</td><td>3,67</td></tr>
+      </table>
+    </div>
+    <div class="box">
+      <h2>Beispiel</h2>
+      <p>Essigsäure 0,1 mol/L: pH = ½ (4,75 + 1) = 2,88; Protolysegrad ≈ 1,3 %.</p>
+    </div>
+    <div class="box warn">
+      <h2>Typische Fehler</h2>
+      <ul><li>Großer pK<sub>S</sub> = stark (falsch).</li><li>Stärke mit Konzentration verwechselt.</li><li>Starke-Säure-Formel für schwache Säuren.</li></ul>
+    </div>
+  </div>''')
+
 OUT = sys.argv[1] if len(sys.argv) > 1 else os.path.join(os.path.dirname(__file__), "_build")
 os.makedirs(OUT, exist_ok=True)
 shutil.copyfile(os.path.join(os.path.dirname(os.path.abspath(__file__)), "factsheet.css"), os.path.join(OUT, "factsheet.css"))

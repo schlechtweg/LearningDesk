@@ -53,6 +53,7 @@ Interaktive Lern-Apps für die Schule, sortiert nach Klassenstufe. Alles läuft 
 | Klasse 11 · Chemie | Löslichkeitsgleichgewichte* | Löslichkeitsprodukt, Löslichkeit, Fällungsrechner, gleichioniger Zusatz, Wasseruntersuchung, Trainer, Quiz |
 | Klasse 11 · Chemie | Säuren und Basen nach Brønsted | Protolysen mit wanderndem Proton, korrespondierende Paare, Ampholyte, Begriffe im Wandel der Zeit, Trainer, Quiz |
 | Klasse 11 · Chemie | Autoprotolyse des Wassers und pH-Wert | Ionenprodukt, pH und pOH, interaktive pH-Skala, pH-Rechner für starke Säuren und Basen, Trainer, Quiz |
+| Klasse 11 · Chemie | Säure- und Basenstärke | Ks, pKs, pKb, pKs-Tabelle, stark und schwach im Teilchenvergleich, pH schwacher Säuren und Basen, Salzlösungen, Trainer, Quiz |
 | Klasse 11 · Mathematik | Ableiten | Sekante/Tangente, grafisches Ableiten, Regeln mit Trainer, Tangentengleichung, Quiz |
 | Werkzeuge | ClassPad-Simulator | Übungsrechner nach dem Vorbild des CASIO fx-CP400 mit 16 Lektionen (unabhängiges Lernprojekt) |
 

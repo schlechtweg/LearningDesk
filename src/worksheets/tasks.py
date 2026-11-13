@@ -3691,6 +3691,68 @@ def ph_wert():
     return L
 
 
+PKS = [("Chlorwasserstoff", "HCl", "Cl⁻", -6), ("Schwefelsäure", "H₂SO₄", "HSO₄⁻", -3), ("Salpetersäure", "HNO₃", "NO₃⁻", -1.32), ("Hydrogensulfat", "HSO₄⁻", "SO₄²⁻", 1.92),
+       ("Phosphorsäure", "H₃PO₄", "H₂PO₄⁻", 1.96), ("Flusssäure", "HF", "F⁻", 3.14), ("Methansäure", "HCOOH", "HCOO⁻", 3.75), ("Essigsäure", "CH₃COOH", "CH₃COO⁻", 4.75),
+       ("Kohlensäure", "H₂CO₃", "HCO₃⁻", 6.35), ("Schwefelwasserstoff", "H₂S", "HS⁻", 6.92), ("Dihydrogenphosphat", "H₂PO₄⁻", "HPO₄²⁻", 7.2), ("Ammonium-Ion", "NH₄⁺", "NH₃", 9.25),
+       ("Blausäure", "HCN", "CN⁻", 9.4), ("Hydrogencarbonat", "HCO₃⁻", "CO₃²⁻", 10.33), ("Hydrogenphosphat", "HPO₄²⁻", "PO₄³⁻", 12.36)]
+
+
+def saeurestaerke():
+    r = random.Random(214)
+    L = {1: [], 2: [], 3: []}
+    seen = set()
+    de = lambda v, n=2: f"{v:.{n}f}".replace(".", ",").replace("-", "−")
+    W = [t for t in PKS if 3 <= t[3] <= 10.5]
+
+    def add(lvl, q, a):
+        if q not in seen and len(L[lvl]) < 120:
+            seen.add(q)
+            L[lvl].append((q, a))
+    for i in range(400):
+        a, b = r.sample(PKS, 2)
+        st = a if a[3] < b[3] else b
+        add(1, f"Welche Säure ist stärker: {a[1]} (pK<sub>S</sub> {de(a[3])}) oder {b[1]} (pK<sub>S</sub> {de(b[3])})?", f"<b>{st[1]}</b>: kleinerer pK<sub>S</sub>, K<sub>S</sub> ist um den Faktor 10<sup>{de(abs(a[3] - b[3]), 1)}</sup> größer; die korrespondierende Base {st[2]} ist entsprechend schwächer.")
+    for t in PKS:
+        add(1, f"pK<sub>B</sub> der korrespondierenden Base von {t[1]} (pK<sub>S</sub> {de(t[3])})?", f"{t[2]}: pK<sub>B</sub> = 14 − {de(t[3])} = <b>{de(14 - t[3])}</b>")
+        add(1, f"Gleichung des K<sub>S</sub> für {t[1]}?", f"{t[1]} + H₂O ⇌ H₃O⁺ + {t[2]}; K<sub>S</sub> = c(H₃O⁺) · c({t[2]}) / c({t[1]}) = 10<sup>−{de(t[3])}</sup> mol/L".replace("−−", ""))
+    for i in range(400):
+        t = i % 3
+        if t == 0:
+            x = r.choice(W)
+            c = r.choice([1, 0.5, 0.1, 0.05, 0.01, 0.001])
+            pH = 0.5 * (x[3] - math.log10(c))
+            add(2, f"pH einer Lösung von {x[1]} (pK<sub>S</sub> {de(x[3])}), c₀ = {de(c, 3).rstrip('0').rstrip(',')} mol/L?", f"pH = ½ (pK<sub>S</sub> − lg c₀) = ½ ({de(x[3])} − ({de(math.log10(c))})) = <b>{de(pH)}</b>")
+        elif t == 1:
+            x = r.choice(W)
+            c = r.choice([1, 0.5, 0.1, 0.05, 0.01])
+            pKb = 14 - x[3]
+            pOH = 0.5 * (pKb - math.log10(c))
+            add(2, f"pH einer Lösung der Base {x[2]} (pK<sub>S</sub> von {x[1]}: {de(x[3])}), c₀ = {de(c, 2).rstrip('0').rstrip(',')} mol/L?", f"pK<sub>B</sub> = {de(pKb)}; pOH = ½ ({de(pKb)} − lg c₀) = {de(pOH)}; <b>pH = {de(14 - pOH)}</b>")
+        else:
+            a, b = r.sample(PKS, 2)
+            if abs(a[3] - b[3]) < 1:
+                continue
+            ok = a[3] < b[3]
+            add(2, f"Läuft die Reaktion {a[1]} + {b[2]} → {a[2]} + {b[1]} weitgehend ab?", f"pK<sub>S</sub>({a[1]}) = {de(a[3])} {'<' if ok else '>'} pK<sub>S</sub>({b[1]}) = {de(b[3])}: <b>{'ja' if ok else 'nein'}</b>, {'es entstehen die schwächere Säure und Base' if ok else 'die Edukte sind schon die schwächeren'}")
+    for x in W:
+        for c in (0.1, 0.01):
+            K = 10 ** -x[3]
+            xx = (-K + math.sqrt(K * K + 4 * K * c)) / 2
+            add(3, f"Berechne für {x[1]} (pK<sub>S</sub> {de(x[3])}, c₀ = {de(c, 2)} mol/L) den pH-Wert und den Protolysegrad.", f"pH ≈ ½ ({de(x[3])} + {de(-math.log10(c), 0)}) = <b>{de(-math.log10(xx))}</b>; c(H₃O⁺) = {_sci(xx)} mol/L; Protolysegrad = {_sci(xx)} : {de(c, 2)} = <b>{de(xx / c * 100, 2)} %</b>")
+    fixed = [
+        ("Begründe, warum 0,1 mol/L Salzsäure pH 1, 0,1 mol/L Essigsäure aber pH 2,88 hat, obwohl beide gleich viel Natronlauge zur Neutralisation brauchen.", "HCl protolysiert <b>vollständig</b>, Essigsäure nur zu etwa 1,3 %. Bei der Neutralisation werden aber nach und nach <b>alle</b> Essigsäuremoleküle umgesetzt (das Gleichgewicht verschiebt sich): gleiche Stoffmenge, gleicher Laugenverbrauch."),
+        ("Leite die Näherungsformel pH = ½ (pK<sub>S</sub> − lg c₀) her und nenne die Bedingung.", "K<sub>S</sub> = c(H₃O⁺)² / (c₀ − c(H₃O⁺)) ≈ c(H₃O⁺)² / c₀, weil kaum protolysiert ⇒ c(H₃O⁺) = √(K<sub>S</sub> · c₀) ⇒ logarithmieren. Gilt bei <b>schwachen Säuren</b> (pK<sub>S</sub> > 4) und nicht zu kleiner c₀."),
+        ("Ordne die Lösungen (je 0,1 mol/L) nach steigendem pH: NaCl, NH₄Cl, CH₃COONa, HCl, NaOH, CH₃COOH.", "<b>HCl (1) < CH₃COOH (2,9) < NH₄Cl (5,1) < NaCl (7) < CH₃COONa (8,9) < NaOH (13)</b>."),
+        ("Warum hat eine 0,1 mol/L Natriumcarbonat-Lösung einen pH von etwa 11,7?", "CO₃²⁻ ist eine Base: pK<sub>B</sub> = 14 − 10,33 = 3,67; pOH = ½ (3,67 + 1) = 2,34 ⇒ <b>pH ≈ 11,7</b>."),
+        ("Erkläre, warum die Säurestärke der Halogenwasserstoffe von HF nach HI zunimmt.", "Die H–X-Bindung wird nach unten <b>länger und schwächer</b>; das große Iodid-Ion verteilt die negative Ladung besser. HF ist daher schwach (pK<sub>S</sub> 3,14), HCl, HBr, HI sind sehr stark."),
+        ("Die Essigsäure (pK<sub>S</sub> 4,75) ist stärker als Ethanol (pK<sub>S</sub> ≈ 16). Erkläre mit dem Bau der korrespondierenden Basen.", "Im <b>Acetat-Ion</b> verteilt sich die negative Ladung auf zwei O-Atome (Mesomerie); es ist stabiler als das Ethanolat-Ion. Deshalb gibt Essigsäure ihr Proton leichter ab."),
+    ]
+    for q_, a_ in fixed:
+        add(3, q_, a_)
+    r.shuffle(L[3])
+    return L
+
+
 M8, PH = "#1f6e8c", "#b4531f"
 TOPICS = {
     "osmose": ({"title": "Osmose", "eyebrow": "Biologie · Klasse 11", "accent": "#0d6f74", "cols": [1, 1, 1], "sol_cols": [1, 1, 1]}, osmose),
@@ -3730,6 +3792,7 @@ TOPICS = {
     "loeslichkeitsgleichgewichte": ({"title": "Löslichkeitsgleichgewichte", "eyebrow": "Chemie · Klasse 11 · Wahlpflicht", "accent": "#6a3fa0", "cols": [2, 1, 1], "sol_cols": [2, 1, 1]}, loeslichkeitsgleichgewichte),
     "saeuren-basen": ({"title": "Säuren und Basen nach Brønsted", "eyebrow": "Chemie · Klasse 11", "accent": "#6a3fa0", "cols": [2, 1, 1], "sol_cols": [2, 1, 1]}, saeuren_basen),
     "ph-wert": ({"title": "Autoprotolyse des Wassers und pH-Wert", "eyebrow": "Chemie · Klasse 11", "accent": "#6a3fa0", "cols": [2, 2, 1], "sol_cols": [2, 2, 1]}, ph_wert),
+    "saeurestaerke": ({"title": "Säure- und Basenstärke", "eyebrow": "Chemie · Klasse 11", "accent": "#6a3fa0", "cols": [2, 1, 1], "sol_cols": [2, 1, 1]}, saeurestaerke),
     "binomische-formeln": ({"title": "Binomische Formeln", "eyebrow": "Mathematik · Klasse 8", "accent": M8, "cols": 2, "sol_cols": 2}, binomische_formeln),
     "bruchterme": ({"title": "Bruchterme", "eyebrow": "Mathematik · Klasse 8", "accent": "#2d6a4f", "cols": 3, "sol_cols": 3}, bruchterme),
     "ausmultiplizieren-faktorisieren": ({"title": "Ausmultiplizieren und Faktorisieren", "eyebrow": "Mathematik · Klasse 8", "accent": M8, "cols": 3, "sol_cols": 3}, ausmultiplizieren),

@@ -349,6 +349,14 @@ TOPICS = [
         "fonts": "base", "first_view": "verstehen", "factsheet": "Factsheet als PDF ↓",
     },
     {
+        "slug": "saeurestaerke", "grade": "11", "subject": "chemie", "chapter": "4", "order": 3, "kit": True, "accent": ACCENT_CHEM,
+        "title": "Säure- und Basenstärke", "short": "Säurestärke", "tag": "Säure-Base",
+        "card": "Ks und pKs, Kb und pKb, pKs-Tabelle, starke und schwache Säuren im Teilchenvergleich, pH schwacher Säuren und Basen, Salzlösungen, Trainer, Quiz",
+        "description": "Interaktive Lernhilfe zu Säure- und Basenstärke und zum pH schwacher Säuren und Basen (Chemie, Klasse 11)",
+        "intro": "Warum Säuren unterschiedlich stark sind, wie man das mit pKs-Werten beschreibt und den pH schwacher Säuren und Basen berechnet.",
+        "fonts": "base", "first_view": "verstehen", "factsheet": "Factsheet als PDF ↓",
+    },
+    {
         "slug": "binomische-formeln", "grade": "8", "subject": "mathematik", "chapter": "I", "order": 4,
         "title": "Binomische Formeln", "short": "Binomische Formeln", "tag": "Terme",
         "card": "Die drei Formeln, Erklärung mit Flächen, Trainer mit Lückenaufgaben, Kopfrechen-Trick, Quiz",

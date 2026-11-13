@@ -1065,10 +1065,24 @@ def ph_wert():
     return {"title": "pH-Skala", "stars": "★☆☆", "task": (svg("0 10 320 95", g), task), "sol": (svg("0 10 320 95", sol), soltxt)}
 
 
+def saeurestaerke():
+    # pKs scale from -6 to 16 with acids to place
+    x0, w = 20, 13
+    g = f'<line x1="{x0}" y1="40" x2="{x0 + 22 * w}" y2="40" stroke="#1b2228" stroke-width="2"/>'
+    g += "".join(f'<line x1="{x0 + (p + 6) * w}" y1="36" x2="{x0 + (p + 6) * w}" y2="44" stroke="#1b2228"/>' + text(x0 + (p + 6) * w, 56, str(p).replace("-", "−"), "ft tiny") for p in range(-6, 17, 2))
+    g += text(x0, 22, "starke Säuren", "ft tiny", "start") + text(x0 + 22 * w, 22, "schwache Säuren", "ft tiny", "end") + text(x0 + 11 * w, 74, "pKs", "ft small")
+    items = [("HCl", -6), ("H₃PO₄", 1.96), ("CH₃COOH", 4.75), ("NH₄⁺", 9.25), ("HCO₃⁻", 10.33), ("H₂O", 15.74)]
+    sol = g + "".join(f'<circle cx="{x0 + (p + 6) * w:.1f}" cy="40" r="3.5" fill="#c0392b"/>' + text(x0 + (p + 6) * w, 30 - (k % 2) * 10, n, "ft tiny sol") for k, (n, p) in enumerate(items))
+    task = ('<p>Markiere auf der pK<sub>S</sub>-Skala: HCl (−6), H₃PO₄ (1,96), CH₃COOH (4,75), NH₄⁺ (9,25), HCO₃⁻ (10,33), H₂O (15,74).</p>'
+            '<p class="q">Stärkste korrespondierende Base: <span class="blank"></span> Begründung: <span class="blank wide"></span></p>')
+    soltxt = '<p class="q"><b>OH⁻</b> (Base von H₂O): Je schwächer die Säure, desto stärker ihre korrespondierende Base (pK<sub>B</sub> = 14 − 15,74 = −1,74).</p>'
+    return {"title": "pKs-Skala", "stars": "★☆☆", "task": (svg("0 10 320 72", g), task), "sol": (svg("0 10 320 72", sol), soltxt)}
+
+
 FIGS = {
     "osmose": osmose, "natrium-kalium-pumpe": nak, "symport-antiport": symport, "endocytose-exocytose": endo,
     "ableiten": ableiten, "nervensystem": nerven, "auge": auge,
-    "termstruktur": termstruktur, "zufallsexperimente": zufallsexperimente, "laplace": laplace, "baumdiagramme": baumdiagramme, "unabhaengige-ereignisse": unabhaengig, "funktionsbegriff": funktionsbegriff, "eigenschaften-funktionen": eigenschaften, "lineare-funktionen": lineare_funktionen, "funktionsgleichungen": funktionsgleichungen, "lgs-grafisch": lgs_grafisch, "gleichsetzungsverfahren": gleichsetzungsverfahren, "additionsverfahren": additionsverfahren, "lgs-anwendungen": lgs_anwendungen, "zentrische-streckung": zentrische_streckung, "aehnliche-dreiecke": aehnliche_dreiecke, "flaeche-volumen-aehnlich": flaeche_volumen_aehnlich, "strahlensaetze": strahlensaetze, "atombau": atombau, "periodensystem": periodensystem, "stoffklassen": stoffklassen, "orbitalmodell": orbitalmodell, "redoxreaktionen": redoxreaktionen, "gebrauchsmetalle": gebrauchsmetalle, "komplexverbindungen": komplexverbindungen, "reaktionsgeschwindigkeit": reaktionsgeschwindigkeit, "chemisches-gleichgewicht": chemisches_gleichgewicht, "massenwirkungsgesetz": massenwirkungsgesetz, "loeslichkeitsgleichgewichte": loeslichkeitsgleichgewichte, "saeuren-basen": saeuren_basen, "ph-wert": ph_wert, "binomische-formeln": binom, "bruchterme": bruchterme, "ausmultiplizieren-faktorisieren": ausmult, "terme-vereinfachen": terme,
+    "termstruktur": termstruktur, "zufallsexperimente": zufallsexperimente, "laplace": laplace, "baumdiagramme": baumdiagramme, "unabhaengige-ereignisse": unabhaengig, "funktionsbegriff": funktionsbegriff, "eigenschaften-funktionen": eigenschaften, "lineare-funktionen": lineare_funktionen, "funktionsgleichungen": funktionsgleichungen, "lgs-grafisch": lgs_grafisch, "gleichsetzungsverfahren": gleichsetzungsverfahren, "additionsverfahren": additionsverfahren, "lgs-anwendungen": lgs_anwendungen, "zentrische-streckung": zentrische_streckung, "aehnliche-dreiecke": aehnliche_dreiecke, "flaeche-volumen-aehnlich": flaeche_volumen_aehnlich, "strahlensaetze": strahlensaetze, "atombau": atombau, "periodensystem": periodensystem, "stoffklassen": stoffklassen, "orbitalmodell": orbitalmodell, "redoxreaktionen": redoxreaktionen, "gebrauchsmetalle": gebrauchsmetalle, "komplexverbindungen": komplexverbindungen, "reaktionsgeschwindigkeit": reaktionsgeschwindigkeit, "chemisches-gleichgewicht": chemisches_gleichgewicht, "massenwirkungsgesetz": massenwirkungsgesetz, "loeslichkeitsgleichgewichte": loeslichkeitsgleichgewichte, "saeuren-basen": saeuren_basen, "ph-wert": ph_wert, "saeurestaerke": saeurestaerke, "binomische-formeln": binom, "bruchterme": bruchterme, "ausmultiplizieren-faktorisieren": ausmult, "terme-vereinfachen": terme,
     "gleichungen": gleichungen, "ungleichungen": ungleichungen,
     "druck": druck, "hydraulik": hydraulik, "schweredruck": schweredruck, "auftrieb": auftrieb, "luftdruck": luftdruck,
 }
