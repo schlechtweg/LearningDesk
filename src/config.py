@@ -365,6 +365,14 @@ TOPICS = [
         "fonts": "base", "first_view": "verstehen", "factsheet": "Factsheet als PDF ↓",
     },
     {
+        "slug": "puffersysteme", "grade": "11", "subject": "chemie", "chapter": "4", "order": 5, "kit": True, "accent": ACCENT_CHEM,
+        "title": "Puffersysteme", "short": "Puffersysteme*", "tag": "Wahlpflicht",
+        "card": "Wie Puffer wirken, Henderson-Hasselbalch, Puffer gegen Wasser im Versuch, Blutpuffer mit Atmung und Niere, Trainer, Quiz",
+        "description": "Interaktive Lernhilfe zu Puffersystemen und zum Blutpuffer (Chemie, Klasse 11, Wahlpflicht)",
+        "intro": "Warum Pufferlösungen ihren pH-Wert halten, wie man ihn berechnet und wie der Körper sein Blut puffert.",
+        "fonts": "base", "first_view": "verstehen", "factsheet": "Factsheet als PDF ↓",
+    },
+    {
         "slug": "binomische-formeln", "grade": "8", "subject": "mathematik", "chapter": "I", "order": 4,
         "title": "Binomische Formeln", "short": "Binomische Formeln", "tag": "Terme",
         "card": "Die drei Formeln, Erklärung mit Flächen, Trainer mit Lückenaufgaben, Kopfrechen-Trick, Quiz",

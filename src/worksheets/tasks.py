@@ -3827,6 +3827,81 @@ def titration():
     return L
 
 
+def puffersysteme():
+    r = random.Random(216)
+    L = {1: [], 2: [], 3: []}
+    seen = set()
+    de = lambda v, n=2: f"{v:.{n}f}".replace(".", ",").replace("-", "−")
+    BUF = [("Essigsäure/Acetat", "CH₃COOH", "CH₃COO⁻", 4.75), ("Ammonium/Ammoniak", "NH₄⁺", "NH₃", 9.25), ("Dihydrogenphosphat/Hydrogenphosphat", "H₂PO₄⁻", "HPO₄²⁻", 7.2),
+           ("Kohlensäure/Hydrogencarbonat", "H₂CO₃", "HCO₃⁻", 6.35), ("Methansäure/Formiat", "HCOOH", "HCOO⁻", 3.75)]
+
+    def add(lvl, q, a):
+        if q not in seen and len(L[lvl]) < 120:
+            seen.add(q)
+            L[lvl].append((q, a))
+    for n, a, b, pk in BUF:
+        add(1, f"Wie reagiert der {n}-Puffer auf zugegebene H₃O⁺-Ionen?", f"<b>{b} + H₃O⁺ → {a} + H₂O</b>")
+        add(1, f"Wie reagiert der {n}-Puffer auf zugegebene OH⁻-Ionen?", f"<b>{a} + OH⁻ → {b} + H₂O</b>")
+        add(1, f"pH des {n}-Puffers mit gleichen Konzentrationen?", f"pH = pK<sub>S</sub> = <b>{de(pk)}</b>")
+        add(1, f"Pufferbereich des {n}-Puffers?", f"etwa pH <b>{de(pk - 1)} bis {de(pk + 1)}</b>")
+
+    for n, a, b, pk in BUF:
+        for ratio, lg in [(10, 1), (0.1, -1), (1, 0), (100, 2), (0.01, -2)]:
+            add(1, f"{n}-Puffer (pK<sub>S</sub> {de(pk)}), c({b}) : c({a}) = {de(ratio, 2).rstrip('0').rstrip(',')} : 1. pH?", f"pH = {de(pk)} + lg {de(ratio, 2).rstrip('0').rstrip(',')} = {de(pk)} {'+' if lg >= 0 else '−'} {abs(lg)} = <b>{de(pk + lg)}</b>")
+    facts = [("Was ist ein Puffer?", "Lösung aus <b>schwacher Säure und korrespondierender Base</b>, die den pH bei Säure-/Basezugabe kaum ändert"), ("Henderson-Hasselbalch-Gleichung?", "<b>pH = pK<sub>S</sub> + lg(c(A⁻)/c(HA))</b>"),
+             ("Was ist die Pufferkapazität?", "Menge Säure/Base, die ein Puffer abfangen kann, bevor der pH springt"), ("Normaler Blut-pH?", "<b>7,35 bis 7,45</b>"), ("Wichtigster Blutpuffer?", "<b>Kohlensäure/Hydrogencarbonat</b>"),
+             ("Was ist eine Azidose?", "Blut-pH <b>unter 7,35</b>"), ("Was ist eine Alkalose?", "Blut-pH <b>über 7,45</b>"), ("Puffern HCl und NaCl?", "<b>nein</b>, Cl⁻ ist keine wirksame Base"), ("Welche Organe regeln den Blut-pH?", "<b>Lunge</b> (CO₂) und <b>Niere</b> (H⁺, HCO₃⁻)")]
+    for q_, a_ in facts:
+        add(1, q_, a_)
+    for i in range(400):
+        t = i % 3
+        n, a, b, pk = r.choice(BUF)
+        if t == 0:
+            ca, cb = r.choice([0.05, 0.1, 0.2, 0.5]), r.choice([0.05, 0.1, 0.2, 0.5])
+            add(2, f"{n}-Puffer: c({a}) = {de(ca)} mol/L, c({b}) = {de(cb)} mol/L. pH?", f"pH = {de(pk)} + lg({de(cb)}/{de(ca)}) = <b>{de(pk + math.log10(cb / ca))}</b>")
+        elif t == 1:
+            target = round(pk + r.choice([-1, -0.5, -0.3, 0.3, 0.5, 1]), 2)
+            ratio = 10 ** (target - pk)
+            add(2, f"Welches Verhältnis c({b}) : c({a}) braucht man für einen Puffer mit pH {de(target)}?", f"lg(Verhältnis) = {de(target - pk)} ⇒ <b>{de(ratio)} : 1</b>")
+        else:
+            nb, x = r.choice([10, 20, 50, 100]), r.choice([1, 2, 5, 10])
+            if x >= nb:
+                continue
+            acid = r.random() < 0.5
+            ph = 4.75 + math.log10((nb - x) / (nb + x) if acid else (nb + x) / (nb - x))
+            add(2, f"Acetatpuffer mit je {nb} mmol Säure und Base. Zugabe von {x} mmol {'HCl' if acid else 'NaOH'}. Neuer pH?", f"Acetat {nb - x if acid else nb + x}, Säure {nb + x if acid else nb - x} mmol ⇒ <b>pH = {de(ph)}</b> (Änderung nur {de(abs(ph - 4.75))})")
+    for co2, h in [(1.2, 24), (1.8, 24), (0.8, 24), (1.2, 18), (1.2, 30), (1.5, 20)]:
+        ph = 6.1 + math.log10(h / co2)
+        add(3, f"Berechne den Blut-pH für c(HCO₃⁻) = {h} mmol/L und c(CO₂) = {de(co2, 1)} mmol/L (pK<sub>S</sub> = 6,1) und beurteile ihn.", f"pH = 6,1 + lg({h}/{de(co2, 1)}) = <b>{de(ph)}</b>: {'Azidose' if ph < 7.35 else 'Alkalose' if ph > 7.45 else 'Normalbereich'}" + (" (respiratorisch: zu viel CO₂)" if co2 > 1.4 and ph < 7.35 else " (respiratorisch: zu wenig CO₂, Hyperventilation)" if co2 < 1.0 else " (metabolisch: Hydrogencarbonat verändert)" if h != 24 else ""))
+    for nb, x in [(10, 1), (10, 5), (10, 9), (10, 10)]:
+        V = 0.1 + x * 0.001
+        if x < nb:
+            ph = 4.75 + math.log10((nb - x) / (nb + x))
+            sol = f"Acetat {nb - x}, Säure {nb + x} mmol ⇒ pH = <b>{de(ph)}</b>"
+        else:
+            c = 2 * nb / 1000 / V
+            sol = f"Acetat aufgebraucht: nur noch {2 * nb} mmol Essigsäure in {de(V * 1000, 0)} mL ⇒ pH = ½ (4,75 − lg {de(c, 3)}) = <b>{de(0.5 * (4.75 - math.log10(c)))}</b>; <b>Pufferkapazität erschöpft</b>"
+        add(3, f"100 mL Acetatpuffer (je {nb} mmol Säure und Acetat) werden mit {x} mL Salzsäure (c = 1 mol/L) versetzt. Berechne den pH und vergleiche mit 100 mL Wasser.", f"{sol}. Wasser: pH = {de(-math.log10(x / 1000 / V))}.")
+    fixed = [
+        ("Erkläre, warum ein Gemisch aus Essigsäure und Natriumacetat puffert, eine reine Essigsäurelösung aber nicht.", "Im Puffer sind <b>beide</b> Partner in großer Menge vorhanden: Acetat fängt H₃O⁺, Essigsäure fängt OH⁻ ab. In reiner Essigsäure fehlt die Base; zugegebene H₃O⁺ verändern den pH stark."),
+        ("Leite die Henderson-Hasselbalch-Gleichung aus dem K<sub>S</sub>-Ausdruck her.", "K<sub>S</sub> = c(H₃O⁺) · c(A⁻)/c(HA) ⇒ c(H₃O⁺) = K<sub>S</sub> · c(HA)/c(A⁻) ⇒ −lg: <b>pH = pK<sub>S</sub> + lg(c(A⁻)/c(HA))</b>."),
+        ("Wie stellt man 1 L Acetatpuffer mit pH 5,05 her, wenn 0,1 mol Essigsäure eingesetzt werden?", "lg(A⁻/HA) = 0,3 ⇒ Verhältnis 2 : 1 ⇒ <b>0,2 mol Natriumacetat</b> zugeben und auf 1 L auffüllen."),
+        ("Warum verwendet der Körper das Kohlensäure-Hydrogencarbonat-System, obwohl sein pK<sub>S</sub> (6,1) weit von 7,4 entfernt ist?", "Es ist ein <b>offenes System</b>: CO₂ wird über die <b>Lunge</b> schnell abgeatmet, HCO₃⁻ über die <b>Niere</b> reguliert; so kann der Körper das Verhältnis aktiv einstellen."),
+        ("Erkläre, warum man bei Hyperventilation in eine Tüte atmen soll.", "Beim schnellen Atmen wird zu viel CO₂ abgeatmet, der pH steigt (<b>Alkalose</b>). Durch Rückatmen der eigenen Luft steigt der CO₂-Gehalt wieder."),
+        ("Begründe, warum ein Puffer mit 1 mol/L Säure und Base mehr Säure abfangen kann als einer mit 0,01 mol/L, obwohl beide den gleichen pH haben.", "Der pH hängt nur vom <b>Verhältnis</b> ab, die <b>Pufferkapazität</b> aber von der Stoffmenge der Pufferpartner; der konzentrierte Puffer hat 100-mal mehr Acetat zum Abfangen."),
+        ("Warum ist ein Phosphatpuffer für Zellen besonders geeignet?", "H₂PO₄⁻/HPO₄²⁻ hat pK<sub>S</sub> 7,2, nahe am pH im Zellinneren (≈ 7,0–7,2): <b>beste Pufferwirkung</b>."),
+        ("Erkläre, wie das Meer saure Einträge puffert und warum die Ozeanversauerung trotzdem ein Problem ist.", "HCO₃⁻ und CO₃²⁻ nehmen Protonen auf (CO₃²⁻ + H₃O⁺ → HCO₃⁻ + H₂O). Steigender CO₂-Eintrag <b>verbraucht Carbonat</b>; der pH sinkt langsam, Kalkbildner leiden."),
+        ("Warum sind Puffer beim Messen mit dem pH-Meter wichtig?", "Zum <b>Kalibrieren</b>: Pufferlösungen haben einen genau bekannten, stabilen pH (z. B. 4,00; 7,00; 10,00), auch wenn sie mit Luft-CO₂ in Kontakt kommen."),
+        ("Ein Patient hat c(HCO₃⁻) = 24 mmol/L und c(CO₂) = 2,0 mmol/L. Berechne den pH und erkläre, wie die Niere gegensteuert.", "pH = 6,1 + lg 12 = <b>7,18</b> (respiratorische Azidose). Die Niere scheidet vermehrt H⁺ aus und hält <b>HCO₃⁻ zurück</b>, bis das Verhältnis wieder etwa 20 : 1 ist."),
+        ("Begründe, warum ein Ammoniumchlorid/Ammoniak-Puffer nicht für biologische Systeme geeignet ist.", "Sein Pufferbereich liegt bei pH <b>8,3 bis 10,3</b>, weit weg vom physiologischen pH ≈ 7,4; außerdem ist Ammoniak giftig."),
+        ("Wie viel mmol HCl kann ein Puffer aus 50 mmol Essigsäure und 50 mmol Acetat aufnehmen, bis der pH auf 3,75 gesunken ist?", "pH = pK<sub>S</sub> − 1 ⇒ A⁻/HA = 1/10: (50 − x)/(50 + x) = 0,1 ⇒ <b>x ≈ 40,9 mmol</b>."),
+    ]
+    for q_, a_ in fixed:
+        add(3, q_, a_)
+    r.shuffle(L[3])
+    return L
+
+
 M8, PH = "#1f6e8c", "#b4531f"
 TOPICS = {
     "osmose": ({"title": "Osmose", "eyebrow": "Biologie · Klasse 11", "accent": "#0d6f74", "cols": [1, 1, 1], "sol_cols": [1, 1, 1]}, osmose),
@@ -3868,6 +3943,7 @@ TOPICS = {
     "ph-wert": ({"title": "Autoprotolyse des Wassers und pH-Wert", "eyebrow": "Chemie · Klasse 11", "accent": "#6a3fa0", "cols": [2, 2, 1], "sol_cols": [2, 2, 1]}, ph_wert),
     "saeurestaerke": ({"title": "Säure- und Basenstärke", "eyebrow": "Chemie · Klasse 11", "accent": "#6a3fa0", "cols": [2, 1, 1], "sol_cols": [2, 1, 1]}, saeurestaerke),
     "titration": ({"title": "Indikatoren und Titration", "eyebrow": "Chemie · Klasse 11", "accent": "#6a3fa0", "cols": [2, 1, 1], "sol_cols": [2, 1, 1]}, titration),
+    "puffersysteme": ({"title": "Puffersysteme", "eyebrow": "Chemie · Klasse 11 · Wahlpflicht", "accent": "#6a3fa0", "cols": [2, 1, 1], "sol_cols": [2, 1, 1]}, puffersysteme),
     "binomische-formeln": ({"title": "Binomische Formeln", "eyebrow": "Mathematik · Klasse 8", "accent": M8, "cols": 2, "sol_cols": 2}, binomische_formeln),
     "bruchterme": ({"title": "Bruchterme", "eyebrow": "Mathematik · Klasse 8", "accent": "#2d6a4f", "cols": 3, "sol_cols": 3}, bruchterme),
     "ausmultiplizieren-faktorisieren": ({"title": "Ausmultiplizieren und Faktorisieren", "eyebrow": "Mathematik · Klasse 8", "accent": M8, "cols": 3, "sol_cols": 3}, ausmultiplizieren),

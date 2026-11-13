@@ -2564,6 +2564,37 @@ SHEETS["titration"] = dict(title="Indikatoren und Titration", eyebrow="Chemie ·
     </div>
   </div>''')
 
+SHEETS["puffersysteme"] = dict(title="Puffersysteme", eyebrow="Chemie · Klasse 11 · Wahlpflicht", accent=CH11, body=f'''
+  <div class="kern">Ein <strong>Puffer</strong> enthält eine <strong>schwache Säure und ihre korrespondierende Base</strong> in ähnlicher Menge und hält den pH bei Zugabe von Säure oder Base fast konstant. <strong>pH = pK<sub>S</sub> + lg(c(A⁻)/c(HA))</strong> (Henderson-Hasselbalch).</div>
+  <div class="cols">
+    <div class="box">
+      <h2>Wirkung (Acetatpuffer)</h2>
+      <ul><li>Säure: CH₃COO⁻ + H₃O⁺ → CH₃COOH + H₂O</li><li>Base: CH₃COOH + OH⁻ → CH₃COO⁻ + H₂O</li><li>Pufferbereich pK<sub>S</sub> ± 1</li><li>Kapazität hängt von der Menge ab</li></ul>
+    </div>
+    <div class="box">
+      <h2>Blutpuffer</h2>
+      <ul><li>CO₂ + H₂O ⇌ H₂CO₃ ⇌ HCO₃⁻ + H⁺</li><li>pH = 6,1 + lg(c(HCO₃⁻)/c(CO₂)), normal 20 : 1 ⇒ 7,4</li><li>Lunge regelt CO₂, Niere HCO₃⁻</li><li>Azidose &lt; 7,35, Alkalose &gt; 7,45</li></ul>
+    </div>
+    <div class="box full">
+      <h2>Wichtige Puffer</h2>
+      <table>
+        <tr><th>Puffer</th><th>pK<sub>S</sub></th><th>Einsatz</th></tr>
+        <tr><td>CH₃COOH / CH₃COO⁻</td><td>4,75</td><td>Labor</td></tr>
+        <tr><td>H₂CO₃ / HCO₃⁻</td><td>6,35 (Blut 6,1)</td><td>Blut, Meer</td></tr>
+        <tr><td>H₂PO₄⁻ / HPO₄²⁻</td><td>7,2</td><td>Zellen</td></tr>
+        <tr><td>NH₄⁺ / NH₃</td><td>9,25</td><td>Labor</td></tr>
+      </table>
+    </div>
+    <div class="box">
+      <h2>Beispiel</h2>
+      <p>Je 10 mmol Acetat/Essigsäure + 1 mmol HCl: pH = 4,75 + lg(9/11) = 4,66 (Wasser: pH 2).</p>
+    </div>
+    <div class="box warn">
+      <h2>Typische Fehler</h2>
+      <ul><li>Bruch vertauscht (Base oben!).</li><li>HCl/NaCl ist kein Puffer.</li><li>Kapazität mit pH verwechselt.</li></ul>
+    </div>
+  </div>''')
+
 OUT = sys.argv[1] if len(sys.argv) > 1 else os.path.join(os.path.dirname(__file__), "_build")
 os.makedirs(OUT, exist_ok=True)
 shutil.copyfile(os.path.join(os.path.dirname(os.path.abspath(__file__)), "factsheet.css"), os.path.join(OUT, "factsheet.css"))

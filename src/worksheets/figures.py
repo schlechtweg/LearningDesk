@@ -1111,10 +1111,32 @@ def titration():
     return {"title": "Titrationskurve auswerten", "stars": "★★☆", "task": (svg("0 10 290 195", g), task), "sol": (svg("0 10 290 195", sol), soltxt)}
 
 
+def puffersysteme():
+    # pH change of water vs. acetate buffer when HCl is added (100 mL, 10 mmol each, 1 mol/L HCl)
+    import math as _m
+    ox, oy, ux, uy = 35, 170, 18, 11
+    g = "".join(f'<line class="gl" x1="{ox}" y1="{oy - p * uy}" x2="{ox + 12 * ux}" y2="{oy - p * uy}"/>' + text(ox - 5, oy - p * uy + 3, str(p), "ft tiny", "end") for p in range(0, 15, 2))
+    g += "".join(text(ox + v * ux, oy + 11, str(v), "ft tiny") for v in range(0, 13, 2)) + text(ox + 12 * ux, oy + 22, "V(HCl) in mL", "ft tiny", "end") + text(ox + 2, oy - 14 * uy - 4, "pH", "ft tiny", "start")
+
+    def buf(x):
+        if x < 10:
+            return 4.75 + _m.log10((10 - x) / (10 + x))
+        V = 0.1 + x * 0.001
+        return -_m.log10((x - 10) / 1000 / V + _m.sqrt(10 ** -4.75 * 0.02 / V))
+    water = lambda x: 7 if x == 0 else -_m.log10(x / 1000 / (0.1 + x * 0.001))
+    pts = [i / 10 for i in range(0, 121)]
+    sol = g + f'<path class="fs" d="M{" L".join(f"{ox + x * ux:.1f} {oy - water(x) * uy:.1f}" for x in pts)}"/>' + f'<path class="fg" d="M{" L".join(f"{ox + x * ux:.1f} {oy - buf(x) * uy:.1f}" for x in pts)}"/>'
+    sol += text(ox + 3 * ux, oy - 3 * uy, "Wasser", "ft tiny sol", "start") + text(ox + 3 * ux, oy - 5.4 * uy, "Puffer", "ft tiny", "start")
+    task = ('<p>Zu 100 mL Wasser und zu 100 mL Acetatpuffer (je 10 mmol Säure und Base) wird Salzsäure (c = 1 mol/L) getropft. Skizziere beide pH-Kurven.</p>'
+            '<p class="q">pH des Puffers nach 5 mL: <span class="blank"></span> Wann ist der Puffer erschöpft? <span class="blank"></span></p>')
+    soltxt = '<p class="q">Puffer nach 5 mL: pH = 4,75 + lg(5/15) = <b>4,27</b>. Wasser fällt sofort auf pH ≈ 1,3. Bei <b>10 mL</b> ist das Acetat aufgebraucht, danach fällt auch der pH des Puffers steil.</p>'
+    return {"title": "Puffer gegen Wasser", "stars": "★★☆", "task": (svg("0 10 270 190", g), task), "sol": (svg("0 10 270 190", sol), soltxt)}
+
+
 FIGS = {
     "osmose": osmose, "natrium-kalium-pumpe": nak, "symport-antiport": symport, "endocytose-exocytose": endo,
     "ableiten": ableiten, "nervensystem": nerven, "auge": auge,
-    "termstruktur": termstruktur, "zufallsexperimente": zufallsexperimente, "laplace": laplace, "baumdiagramme": baumdiagramme, "unabhaengige-ereignisse": unabhaengig, "funktionsbegriff": funktionsbegriff, "eigenschaften-funktionen": eigenschaften, "lineare-funktionen": lineare_funktionen, "funktionsgleichungen": funktionsgleichungen, "lgs-grafisch": lgs_grafisch, "gleichsetzungsverfahren": gleichsetzungsverfahren, "additionsverfahren": additionsverfahren, "lgs-anwendungen": lgs_anwendungen, "zentrische-streckung": zentrische_streckung, "aehnliche-dreiecke": aehnliche_dreiecke, "flaeche-volumen-aehnlich": flaeche_volumen_aehnlich, "strahlensaetze": strahlensaetze, "atombau": atombau, "periodensystem": periodensystem, "stoffklassen": stoffklassen, "orbitalmodell": orbitalmodell, "redoxreaktionen": redoxreaktionen, "gebrauchsmetalle": gebrauchsmetalle, "komplexverbindungen": komplexverbindungen, "reaktionsgeschwindigkeit": reaktionsgeschwindigkeit, "chemisches-gleichgewicht": chemisches_gleichgewicht, "massenwirkungsgesetz": massenwirkungsgesetz, "loeslichkeitsgleichgewichte": loeslichkeitsgleichgewichte, "saeuren-basen": saeuren_basen, "ph-wert": ph_wert, "saeurestaerke": saeurestaerke, "titration": titration, "binomische-formeln": binom, "bruchterme": bruchterme, "ausmultiplizieren-faktorisieren": ausmult, "terme-vereinfachen": terme,
+    "termstruktur": termstruktur, "zufallsexperimente": zufallsexperimente, "laplace": laplace, "baumdiagramme": baumdiagramme, "unabhaengige-ereignisse": unabhaengig, "funktionsbegriff": funktionsbegriff, "eigenschaften-funktionen": eigenschaften, "lineare-funktionen": lineare_funktionen, "funktionsgleichungen": funktionsgleichungen, "lgs-grafisch": lgs_grafisch, "gleichsetzungsverfahren": gleichsetzungsverfahren, "additionsverfahren": additionsverfahren, "lgs-anwendungen": lgs_anwendungen, "zentrische-streckung": zentrische_streckung, "aehnliche-dreiecke": aehnliche_dreiecke, "flaeche-volumen-aehnlich": flaeche_volumen_aehnlich, "strahlensaetze": strahlensaetze, "atombau": atombau, "periodensystem": periodensystem, "stoffklassen": stoffklassen, "orbitalmodell": orbitalmodell, "redoxreaktionen": redoxreaktionen, "gebrauchsmetalle": gebrauchsmetalle, "komplexverbindungen": komplexverbindungen, "reaktionsgeschwindigkeit": reaktionsgeschwindigkeit, "chemisches-gleichgewicht": chemisches_gleichgewicht, "massenwirkungsgesetz": massenwirkungsgesetz, "loeslichkeitsgleichgewichte": loeslichkeitsgleichgewichte, "saeuren-basen": saeuren_basen, "ph-wert": ph_wert, "saeurestaerke": saeurestaerke, "titration": titration, "puffersysteme": puffersysteme, "binomische-formeln": binom, "bruchterme": bruchterme, "ausmultiplizieren-faktorisieren": ausmult, "terme-vereinfachen": terme,
     "gleichungen": gleichungen, "ungleichungen": ungleichungen,
     "druck": druck, "hydraulik": hydraulik, "schweredruck": schweredruck, "auftrieb": auftrieb, "luftdruck": luftdruck,
 }

@@ -9,6 +9,11 @@ Schema **MAJOR.MINOR.PATCH**:
 
 Neue Version: oben einen Eintrag `## [x.y.z] – JJJJ-MM-TT` ergänzen und `python3 src/build.py` ausführen.
 
+## [1.15.0] – 2026-11-13
+
+- Chemie Klasse 11, Kapitel 4 „Säure-Base-Gleichgewichte“: Säuren und Basen nach Brønsted, Autoprotolyse und pH-Wert, Säure- und Basenstärke, Indikatoren und Titration (mit Leitfähigkeitstitration), Puffersysteme*.
+- Damit sind alle vier Kapitel des Chemiebuchs Klasse 11 abgedeckt.
+
 ## [1.14.0] – 2026-11-13
 
 - Chemie Klasse 11, Kapitel 3 „Chemische Gleichgewichte“: Reaktionsgeschwindigkeit und Katalysatoren, Chemisches Gleichgewicht und Le Chatelier (mit Ammoniaksynthese), Massenwirkungsgesetz, Löslichkeitsgleichgewichte*.

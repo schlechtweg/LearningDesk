@@ -1,0 +1,58 @@
+  <nav class="tabs" aria-label="Bereiche">
+    <a href="#verstehen" data-view="verstehen"><span class="n">1</span>Verstehen</a>
+    <a href="#versuch" data-view="versuch"><span class="n">2</span>Puffer gegen Wasser</a>
+    <a href="#blut" data-view="blut"><span class="n">3</span>Puffer im Körper</a>
+    <a href="#ueben" data-view="ueben"><span class="n">4</span>Üben</a>
+    <a href="#alltag" data-view="alltag"><span class="n">5</span>Im Alltag</a>
+    <a href="#quiz" data-view="quiz"><span class="n">6</span>Quiz</a>
+  </nav>
+
+  <section class="view" id="view-verstehen">
+    <div class="einfach">
+      <span class="eyebrow">Einfach erklärt</span>
+      <p>Ein <strong>Puffer</strong> ist eine Lösung, die ihren pH-Wert fast nicht ändert, wenn man etwas Säure oder Base zugibt. Er enthält eine <strong>schwache Säure</strong> und ihre <strong>korrespondierende Base</strong> in ähnlicher Menge. Kommt Säure dazu, fängt die Base die Protonen ab. Kommt Base dazu, gibt die Säure Protonen ab.</p>
+    </div>
+    <div class="grid-2">
+      <div class="panel stack"><h3>Beispiel: Essigsäure/Acetat-Puffer</h3><p class="small">Zugabe von Säure: <strong>CH₃COO⁻ + H₃O⁺ → CH₃COOH + H₂O</strong></p><p class="small">Zugabe von Base: <strong>CH₃COOH + OH⁻ → CH₃COO⁻ + H₂O</strong></p><p class="small">Die starke Säure bzw. Base wird in die schwache umgewandelt. Nur das Verhältnis Säure : Base ändert sich etwas.</p></div>
+      <div class="panel stack"><h3>Henderson-Hasselbalch-Gleichung</h3><p class="formula"><strong>pH = pK<sub>S</sub> + lg ( c(A⁻) / c(HA) )</strong></p><ul class="list small"><li>Gleiche Mengen Säure und Base: pH = pK<sub>S</sub>.</li><li>Pufferbereich: etwa pK<sub>S</sub> ± 1.</li><li>Die <strong>Pufferkapazität</strong> ist umso größer, je mehr Puffer gelöst ist.</li></ul></div>
+    </div>
+    <div class="panel stack"><h3>Wichtige Puffer</h3><table class="ptab"><tr><th>Puffer</th><th>pK<sub>S</sub></th><th>puffert um pH</th></tr><tr><td>Essigsäure / Acetat</td><td>4,75</td><td>3,8 bis 5,8</td></tr><tr><td>Kohlensäure / Hydrogencarbonat</td><td>6,35 (im Blut 6,1)</td><td>Blut 7,4</td></tr><tr><td>Dihydrogenphosphat / Hydrogenphosphat</td><td>7,2</td><td>6,2 bis 8,2 (Zellen)</td></tr><tr><td>Ammonium / Ammoniak</td><td>9,25</td><td>8,3 bis 10,3</td></tr></table></div>
+    <div class="merksatz"><span class="eyebrow">Merke</span><p>Ein Puffer braucht immer <strong>beide</strong> Partner eines Säure-Base-Paares. Eine reine schwache Säure oder reines Salz puffert nicht. Ist ein Partner aufgebraucht, ist die Pufferkapazität erschöpft und der pH springt.</p></div>
+    <div class="panel stack"><h3>Typische Fehler</h3><ul class="list small"><li>Verhältnis in der Gleichung vertauscht: Base steht im Zähler.</li><li>Gedacht, Puffer halten den pH absolut konstant: Er ändert sich nur wenig.</li><li>Starke Säure und ihr Salz (HCl/NaCl) als Puffer angesehen: Cl⁻ ist keine wirksame Base.</li></ul></div>
+  </section>
+
+  <section class="view" id="view-versuch" hidden>
+    <div class="stack"><span class="eyebrow">Praktikum</span><h2>Puffer gegen Wasser</h2><p class="muted">Links 100 mL Wasser, rechts 100 mL Acetat-Puffer. Gib zu beiden die gleichen Mengen Salzsäure oder Natronlauge (je 1 mL, c = 1 mol/L).</p></div>
+    <div class="panel stack ctl"><label for="vB">Puffermenge: je <b id="vBV"></b> mmol Essigsäure und Acetat</label><input type="range" id="vB" min="1" max="20" step="1" value="10"><div class="btns"><button type="button" data-a="1">+1 mL Salzsäure</button><button type="button" data-a="-1">+1 mL Natronlauge</button><button type="button" data-a="0">Zurücksetzen</button></div></div>
+    <div class="cmp"><div class="panel meter"><h3>Wasser</h3><div class="val" id="vW"></div><div class="bar"><i id="vWi"></i></div></div><div class="panel meter"><h3>Puffer</h3><div class="val" id="vP"></div><div class="bar"><i id="vPi"></i></div></div></div>
+    <div class="einfach"><p id="vText"></p></div>
+  </section>
+
+  <section class="view" id="view-blut" hidden>
+    <div class="stack"><span class="eyebrow">Projekt</span><h2>Puffersysteme im menschlichen Körper</h2><p class="muted">Das Blut muss pH 7,35 bis 7,45 halten. Der wichtigste Puffer ist das Kohlensäure-Hydrogencarbonat-System.</p></div>
+    <div class="panel stack ctl"><p class="small">CO₂ + H₂O ⇌ H₂CO₃ ⇌ HCO₃⁻ + H⁺. Im Blut gilt pH = 6,1 + lg ( c(HCO₃⁻) / c(CO₂) ). Normal: 24 mmol/L HCO₃⁻ und 1,2 mmol/L gelöstes CO₂ (Verhältnis 20 : 1).</p>
+      <label for="bC">gelöstes CO₂ = <b id="bCV"></b> mmol/L (Atmung)</label><input type="range" id="bC" min="0.6" max="2.4" step="0.1" value="1.2">
+      <label for="bH">Hydrogencarbonat = <b id="bHV"></b> mmol/L (Niere)</label><input type="range" id="bH" min="12" max="36" step="1" value="24">
+      <div class="meter"><div class="val" id="bOut"></div><div class="bar"><i id="bI"></i></div></div><p class="small" id="bText"></p></div>
+    <div class="grid-2"><div class="panel stack"><h3>Wie der Körper regelt</h3><ul class="list small"><li><strong>Lunge</strong>: schnellere Atmung atmet mehr CO₂ ab, der pH steigt (Minuten).</li><li><strong>Niere</strong>: scheidet H⁺ aus und hält HCO₃⁻ zurück (Stunden bis Tage).</li><li>Weitere Puffer: Phosphat (in Zellen), Proteine wie Hämoglobin.</li></ul></div><div class="panel stack"><h3>Störungen</h3><ul class="list small"><li><strong>Azidose</strong> (pH &lt; 7,35): z. B. bei Atemnot oder Diabetes.</li><li><strong>Alkalose</strong> (pH &gt; 7,45): z. B. durch Hyperventilation, wenn man vor Aufregung zu schnell atmet.</li></ul></div></div>
+  </section>
+
+  <section class="view" id="view-ueben" hidden>
+    <div class="stack"><span class="eyebrow">Trainer</span><h2>Puffer berechnen</h2><p class="muted">pH-Werte auf zwei Nachkommastellen.</p></div>
+    <div id="trainer" class="stack"></div>
+  </section>
+
+  <section class="view" id="view-alltag" hidden>
+    <div class="stack"><span class="eyebrow">Im Alltag</span><h2>Puffer im Alltag</h2></div>
+    <div class="grid-2">
+      <div class="panel stack"><span class="eyebrow">Meer</span><h3>Ozean als Puffer</h3><p class="small">Hydrogencarbonat und Carbonat puffern das Meer bei pH ≈ 8,1. Mehr CO₂ belastet diese Pufferkapazität.</p></div>
+      <div class="panel stack"><span class="eyebrow">Boden</span><h3>Bodenpuffer</h3><p class="small">Kalk und Tonminerale puffern saure Niederschläge. Kalkarme Böden versauern schneller.</p></div>
+      <div class="panel stack"><span class="eyebrow">Kosmetik</span><h3>Shampoo und Cremes</h3><p class="small">Citrat-Puffer halten den pH hautfreundlich bei etwa 5,5.</p></div>
+      <div class="panel stack"><span class="eyebrow">Labor</span><h3>pH-Meter eichen</h3><p class="small">Pufferlösungen mit genau bekanntem pH (4, 7, 10) dienen zum Kalibrieren.</p></div>
+    </div>
+  </section>
+
+  <section class="view" id="view-quiz" hidden>
+    <div class="stack"><span class="eyebrow">Selbsttest</span><h2>Quiz</h2><div class="progress-line"><div class="bar" aria-hidden="true"><i id="qBar"></i></div><span class="score-line" id="qProgress"></span></div></div>
+    <div class="panel quiz" id="quizBox" aria-live="polite"></div>
+  </section>

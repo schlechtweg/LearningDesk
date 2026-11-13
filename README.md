@@ -55,6 +55,7 @@ Interaktive Lern-Apps für die Schule, sortiert nach Klassenstufe. Alles läuft 
 | Klasse 11 · Chemie | Autoprotolyse des Wassers und pH-Wert | Ionenprodukt, pH und pOH, interaktive pH-Skala, pH-Rechner für starke Säuren und Basen, Trainer, Quiz |
 | Klasse 11 · Chemie | Säure- und Basenstärke | Ks, pKs, pKb, pKs-Tabelle, stark und schwach im Teilchenvergleich, pH schwacher Säuren und Basen, Salzlösungen, Trainer, Quiz |
 | Klasse 11 · Chemie | Indikatoren und Titration | Indikatoren, Titrationssimulator mit Kurve und Farbumschlag, Halbäquivalenzpunkt, Leitfähigkeitstitration, Trainer, Quiz |
+| Klasse 11 · Chemie | Puffersysteme* | Pufferwirkung, Henderson-Hasselbalch, Puffer gegen Wasser, Blutpuffer mit Atmung und Niere, Trainer, Quiz |
 | Klasse 11 · Mathematik | Ableiten | Sekante/Tangente, grafisches Ableiten, Regeln mit Trainer, Tangentengleichung, Quiz |
 | Werkzeuge | ClassPad-Simulator | Übungsrechner nach dem Vorbild des CASIO fx-CP400 mit 16 Lektionen (unabhängiges Lernprojekt) |
 
