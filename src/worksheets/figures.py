@@ -1024,10 +1024,24 @@ def massenwirkungsgesetz():
     return {"title": "Gleichgewichtstabelle", "stars": "★★☆", "task": (svg("0 10 330 130", base), task), "sol": (svg("0 10 330 130", sol), soltxt)}
 
 
+def loeslichkeitsgleichgewichte():
+    d = ('<path d="M60 20 V170 Q60 190 80 190 H220 Q240 190 240 170 V20" fill="none" stroke="#56626d" stroke-width="2.5"/>'
+         '<rect x="62" y="60" width="176" height="128" fill="#cfe4f6"/>'
+         '<path d="M70 188 Q110 160 150 175 Q190 160 230 188 Z" fill="#f4f4f4" stroke="#9aa4ad"/>'
+         + "".join(f'<circle cx="{x}" cy="{y}" r="7" fill="#9fb8e8" stroke="#2b4f8f"/>' for x, y in [(90, 90), (180, 110), (130, 130), (210, 80)])
+         + "".join(f'<circle cx="{x}" cy="{y}" r="9" fill="#b8e3b0" stroke="#2f7a3a"/>' for x, y in [(110, 105), (160, 85), (200, 140), (85, 140)])
+         + arrow(150, 150, 150, 125, "arr thin") + arrow(160, 125, 160, 150, "arr thin"))
+    items = [(1, 150, 178, 30, 200), (2, 90, 90, 20, 60), (3, 110, 105, 280, 60), (4, 155, 138, 280, 140), (5, 150, 40, 280, 20)]
+    names = ["Bodenkörper AgCl(s)", "Silber-Ion Ag⁺", "Chlorid-Ion Cl⁻", "Lösen und Abscheiden gleich schnell (Gleichgewicht)", "gesättigte Lösung"]
+    return labeling("Gesättigte Silberchloridlösung", "★☆☆", "0 0 310 210", d, items, names, "Beschrifte die gesättigte Lösung über dem Bodenkörper.",
+                    extra_task='<p class="q">K<sub>L</sub>-Ausdruck und Löslichkeit (K<sub>L</sub> = 1,8 · 10⁻¹⁰): <span class="blank wide"></span></p>',
+                    extra_sol='<p class="q">K<sub>L</sub> = c(Ag⁺) · c(Cl⁻) = L² ⇒ <b>L = 1,34 · 10⁻⁵ mol/L</b> (≈ 1,9 mg/L).</p>', cols=1)
+
+
 FIGS = {
     "osmose": osmose, "natrium-kalium-pumpe": nak, "symport-antiport": symport, "endocytose-exocytose": endo,
     "ableiten": ableiten, "nervensystem": nerven, "auge": auge,
-    "termstruktur": termstruktur, "zufallsexperimente": zufallsexperimente, "laplace": laplace, "baumdiagramme": baumdiagramme, "unabhaengige-ereignisse": unabhaengig, "funktionsbegriff": funktionsbegriff, "eigenschaften-funktionen": eigenschaften, "lineare-funktionen": lineare_funktionen, "funktionsgleichungen": funktionsgleichungen, "lgs-grafisch": lgs_grafisch, "gleichsetzungsverfahren": gleichsetzungsverfahren, "additionsverfahren": additionsverfahren, "lgs-anwendungen": lgs_anwendungen, "zentrische-streckung": zentrische_streckung, "aehnliche-dreiecke": aehnliche_dreiecke, "flaeche-volumen-aehnlich": flaeche_volumen_aehnlich, "strahlensaetze": strahlensaetze, "atombau": atombau, "periodensystem": periodensystem, "stoffklassen": stoffklassen, "orbitalmodell": orbitalmodell, "redoxreaktionen": redoxreaktionen, "gebrauchsmetalle": gebrauchsmetalle, "komplexverbindungen": komplexverbindungen, "reaktionsgeschwindigkeit": reaktionsgeschwindigkeit, "chemisches-gleichgewicht": chemisches_gleichgewicht, "massenwirkungsgesetz": massenwirkungsgesetz, "binomische-formeln": binom, "bruchterme": bruchterme, "ausmultiplizieren-faktorisieren": ausmult, "terme-vereinfachen": terme,
+    "termstruktur": termstruktur, "zufallsexperimente": zufallsexperimente, "laplace": laplace, "baumdiagramme": baumdiagramme, "unabhaengige-ereignisse": unabhaengig, "funktionsbegriff": funktionsbegriff, "eigenschaften-funktionen": eigenschaften, "lineare-funktionen": lineare_funktionen, "funktionsgleichungen": funktionsgleichungen, "lgs-grafisch": lgs_grafisch, "gleichsetzungsverfahren": gleichsetzungsverfahren, "additionsverfahren": additionsverfahren, "lgs-anwendungen": lgs_anwendungen, "zentrische-streckung": zentrische_streckung, "aehnliche-dreiecke": aehnliche_dreiecke, "flaeche-volumen-aehnlich": flaeche_volumen_aehnlich, "strahlensaetze": strahlensaetze, "atombau": atombau, "periodensystem": periodensystem, "stoffklassen": stoffklassen, "orbitalmodell": orbitalmodell, "redoxreaktionen": redoxreaktionen, "gebrauchsmetalle": gebrauchsmetalle, "komplexverbindungen": komplexverbindungen, "reaktionsgeschwindigkeit": reaktionsgeschwindigkeit, "chemisches-gleichgewicht": chemisches_gleichgewicht, "massenwirkungsgesetz": massenwirkungsgesetz, "loeslichkeitsgleichgewichte": loeslichkeitsgleichgewichte, "binomische-formeln": binom, "bruchterme": bruchterme, "ausmultiplizieren-faktorisieren": ausmult, "terme-vereinfachen": terme,
     "gleichungen": gleichungen, "ungleichungen": ungleichungen,
     "druck": druck, "hydraulik": hydraulik, "schweredruck": schweredruck, "auftrieb": auftrieb, "luftdruck": luftdruck,
 }

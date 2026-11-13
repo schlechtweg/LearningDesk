@@ -3469,6 +3469,89 @@ def massenwirkungsgesetz():
     return L
 
 
+def _sci(v):
+    if v == 0:
+        return "0"
+    e = math.floor(math.log10(abs(v)))
+    if -2 <= e <= 3:
+        t = f"{v:.{max(0, 3 - e)}f}".rstrip("0").rstrip(".")
+        return t.replace(".", ",")
+    m = v / 10 ** e
+    return f"{m:.2f}".rstrip("0").rstrip(".").replace(".", ",") + " · 10" + str(e).translate(_SUP)
+
+
+def loeslichkeitsgleichgewichte():
+    r = random.Random(211)
+    L = {1: [], 2: [], 3: []}
+    seen = set()
+    S = [("Silberchlorid", "AgCl", 1.8e-10, "AB", 143.32, "Ag⁺", "Cl⁻"), ("Silberbromid", "AgBr", 5.0e-13, "AB", 187.77, "Ag⁺", "Br⁻"), ("Silberiodid", "AgI", 8.3e-17, "AB", 234.77, "Ag⁺", "I⁻"),
+         ("Bariumsulfat", "BaSO₄", 1.1e-10, "AB", 233.39, "Ba²⁺", "SO₄²⁻"), ("Calciumcarbonat", "CaCO₃", 4.8e-9, "AB", 100.09, "Ca²⁺", "CO₃²⁻"), ("Calciumsulfat", "CaSO₄", 2.5e-5, "AB", 136.14, "Ca²⁺", "SO₄²⁻"),
+         ("Calciumfluorid", "CaF₂", 3.9e-11, "AB2", 78.07, "Ca²⁺", "F⁻"), ("Bleiiodid", "PbI₂", 7.1e-9, "AB2", 461.0, "Pb²⁺", "I⁻"), ("Magnesiumhydroxid", "Mg(OH)₂", 5.6e-12, "AB2", 58.32, "Mg²⁺", "OH⁻"),
+         ("Calciumhydroxid", "Ca(OH)₂", 5.5e-6, "AB2", 74.09, "Ca²⁺", "OH⁻"), ("Silberchromat", "Ag₂CrO₄", 1.1e-12, "A2B", 331.73, "Ag⁺", "CrO₄²⁻")]
+    Lf = lambda s: math.sqrt(s[2]) if s[3] == "AB" else (s[2] / 4) ** (1 / 3)
+    kx = lambda s: f"c({s[5]}) · c({s[6]})" if s[3] == "AB" else f"c({s[5]}) · c({s[6]})²" if s[3] == "AB2" else f"c({s[5]})² · c({s[6]})"
+    diss = lambda s: f"{s[1]}(s) ⇌ {'2 ' if s[3] == 'A2B' else ''}{s[5]}(aq) + {'2 ' if s[3] == 'AB2' else ''}{s[6]}(aq)"
+
+    def add(lvl, q, a):
+        if q not in seen and len(L[lvl]) < 120:
+            seen.add(q)
+            L[lvl].append((q, a))
+    for s in S:
+        add(1, f"Stelle die Gleichung des Löslichkeitsgleichgewichts und K<sub>L</sub> für {s[0]} auf.", f"<b>{diss(s)}</b>; K<sub>L</sub> = <b>{kx(s)}</b>")
+    facts = [("Was ist eine gesättigte Lösung?", "Lösung im <b>Gleichgewicht</b> mit dem Bodenkörper; Q = K<sub>L</sub>"), ("Was bedeutet ein kleines K<sub>L</sub>?", "<b>schwer löslich</b>"),
+             ("Q > K<sub>L</sub>: Was passiert?", "es <b>fällt aus</b>"), ("Q < K<sub>L</sub>: Was passiert?", "Lösung ungesättigt, es <b>löst sich weiter</b>"), ("Was ist gleichioniger Zusatz?", "Zugabe eines Ions, das schon im Salz enthalten ist: Löslichkeit <b>sinkt</b>"),
+             ("Nachweis für Chlorid-Ionen?", "<b>Silbernitrat</b>: weißer Niederschlag AgCl"), ("Nachweis für Sulfat-Ionen?", "<b>Bariumchlorid</b>: weißer Niederschlag BaSO₄"), ("Nachweis für Calcium-Ionen?", "<b>Ammoniumoxalat</b>: weißer Niederschlag"),
+             ("Nachweis für Eisen(III)-Ionen?", "<b>Kaliumthiocyanat</b>: blutrot"), ("Wird der Bodenkörper ins K<sub>L</sub> eingesetzt?", "<b>nein</b>")]
+    for q_, a_ in facts:
+        add(1, q_, a_)
+
+    for s in S:
+        n = 2 if s[3] == "AB" else 3
+        add(1, f"In wie viele Ionen zerfällt eine Formeleinheit {s[1]} beim Lösen? Welche?", f"<b>{n}</b>: {'2 ' if s[3] == 'A2B' else ''}{s[5]} und {'2 ' if s[3] == 'AB2' else ''}{s[6]}")
+    for i in range(200):
+        e1, e2 = r.choice([-2, -3, -4, -5]), r.choice([-2, -3, -4, -5])
+        add(1, f"Berechne das Ionenprodukt Q = c(Ag⁺) · c(Cl⁻) für c(Ag⁺) = 10{str(e1).translate(_SUP)} und c(Cl⁻) = 10{str(e2).translate(_SUP)} mol/L. Fällt AgCl aus (K<sub>L</sub> = 1,8 · 10⁻¹⁰)?", f"Q = 10{str(e1 + e2).translate(_SUP)} {'> K<sub>L</sub>: <b>ja</b>' if 10 ** (e1 + e2) > 1.8e-10 else '< K<sub>L</sub>: <b>nein</b>'}")
+    for s in S:
+        l = Lf(s)
+        add(2, f"Berechne die Löslichkeit von {s[0]} (K<sub>L</sub> = {_sci(s[2])}) in mol/L und g/L.", f"{'L = √K<sub>L</sub>' if s[3] == 'AB' else 'K<sub>L</sub> = 4L³ ⇒ L = ∛(K<sub>L</sub>/4)'} = <b>{_sci(l)} mol/L</b>; · {s[4]:.2f} g/mol = <b>{_sci(l * s[4])} g/L</b>".replace(".", ",", 1) if False else f"{'L = √K<sub>L</sub>' if s[3] == 'AB' else 'K<sub>L</sub> = 4L³ ⇒ L = ∛(K<sub>L</sub>/4)'} = <b>{_sci(l)} mol/L</b>; · M = <b>{_sci(l * s[4])} g/L</b>")
+        lr = float(f"{l:.2g}")
+        K = lr * lr if s[3] == "AB" else 4 * lr ** 3
+        add(2, f"Eine gesättigte {s[1]}-Lösung enthält {_sci(lr)} mol/L gelöstes Salz. Berechne K<sub>L</sub>.", f"{'K<sub>L</sub> = L²' if s[3] == 'AB' else 'K<sub>L</sub> = L · (2L)² = 4L³'} = <b>{_sci(K)}</b>")
+    for i in range(300):
+        s = r.choice([x for x in S if x[3] == "AB"])
+        c1 = r.choice([1, 2, 5]) * 10 ** r.choice([-2, -3, -4, -5, -6])
+        c2 = r.choice([1, 2, 5]) * 10 ** r.choice([-2, -3, -4, -5, -6])
+        Q = c1 * c2
+        if abs(math.log10(Q / s[2])) < 0.3:
+            continue
+        add(2, f"c({s[5]}) = {_sci(c1)}, c({s[6]}) = {_sci(c2)} mol/L. Fällt {s[1]} aus (K<sub>L</sub> = {_sci(s[2])})?", f"Q = {_sci(Q)} {'> K<sub>L</sub>: <b>ja</b>' if Q > s[2] else '< K<sub>L</sub>: <b>nein</b>'}")
+    for s, add_c in [(S[0], 0.1), (S[3], 0.01), (S[0], 0.01), (S[4], 0.1)]:
+        l2 = s[2] / add_c
+        add(3, f"Berechne die Löslichkeit von {s[1]} in reinem Wasser und in einer Lösung mit c({s[6]}) = {_sci(add_c)} mol/L. Erkläre den Unterschied.", f"Rein: L = √K<sub>L</sub> = {_sci(math.sqrt(s[2]))} mol/L. Mit Zusatz: L = K<sub>L</sub> / {_sci(add_c)} = <b>{_sci(l2)} mol/L</b>; <b>gleichioniger Zusatz</b> verschiebt das Gleichgewicht nach links.")
+    for v1, c1, v2, c2, s in [(50, 0.002, 50, 0.002, S[0]), (100, 1e-4, 100, 1e-5, S[3]), (20, 0.01, 80, 0.001, S[5]), (50, 2e-6, 50, 2e-6, S[0])]:
+        cc1, cc2 = c1 * v1 / (v1 + v2), c2 * v2 / (v1 + v2)
+        Q = cc1 * cc2
+        add(3, f"{v1} mL Lösung mit c({s[5]}) = {_sci(c1)} mol/L werden mit {v2} mL Lösung mit c({s[6]}) = {_sci(c2)} mol/L gemischt. Fällt {s[1]} aus?", f"Nach dem Mischen: c({s[5]}) = {_sci(cc1)}, c({s[6]}) = {_sci(cc2)} mol/L; Q = {_sci(Q)} {'> K<sub>L</sub>: <b>Niederschlag</b>' if Q > s[2] else '< K<sub>L</sub>: <b>kein Niederschlag</b>'} (K<sub>L</sub> = {_sci(s[2])})")
+    fixed = [
+        ("Warum darf man die K<sub>L</sub>-Werte von AgCl (1,8 · 10⁻¹⁰) und CaF₂ (3,9 · 10⁻¹¹) nicht direkt vergleichen? Welches Salz ist besser löslich?", "Verschiedene Salztypen (AB und AB₂), andere Formeln für L. AgCl: L = 1,3 · 10⁻⁵ mol/L; CaF₂: L = ∛(K<sub>L</sub>/4) = 2,1 · 10⁻⁴ mol/L: <b>CaF₂ ist besser löslich</b>, obwohl sein K<sub>L</sub> kleiner ist."),
+        ("Erkläre, warum Bariumsulfat als Röntgenkontrastmittel verwendet werden kann, obwohl Ba²⁺ giftig ist.", "K<sub>L</sub> = 1,1 · 10⁻¹⁰ ⇒ L ≈ 1 · 10⁻⁵ mol/L: Es sind <b>kaum freie Ba²⁺-Ionen</b> gelöst; zusätzlich gibt man oft Sulfat zu (gleichioniger Zusatz)."),
+        ("Warum bildet sich beim Erhitzen von hartem Wasser Kesselstein?", "Ca²⁺ + 2 HCO₃⁻ ⇌ CaCO₃ + CO₂ + H₂O. Beim Erhitzen entweicht <b>CO₂</b>, das Gleichgewicht verschiebt sich nach rechts, schwer lösliches <b>CaCO₃</b> fällt aus."),
+        ("Beschreibe, wie man in einer Wasserprobe Chlorid- und Sulfat-Ionen nebeneinander nachweist.", "Zwei Proben: Probe 1 ansäuern (HNO₃), <b>Silbernitrat</b>: weißer Niederschlag ⇒ Cl⁻. Probe 2 ansäuern (HCl), <b>Bariumchlorid</b>: weißer Niederschlag ⇒ SO₄²⁻."),
+        ("Warum wirkt Fluorid in Zahnpasta gegen Karies?", "Aus Hydroxylapatit wird teilweise <b>Fluoridapatit</b>; dieser ist schwerer löslich und wird von Säuren aus Bakterien weniger angegriffen."),
+        ("In welcher Reihenfolge fallen AgI, AgBr und AgCl aus, wenn man Silbernitrat langsam zu einer Lösung mit je 0,01 mol/L I⁻, Br⁻ und Cl⁻ gibt?", "Zuerst das Salz mit dem kleinsten K<sub>L</sub> (alle Typ AB): <b>AgI (8,3 · 10⁻¹⁷), dann AgBr, dann AgCl</b> (fraktionierte Fällung)."),
+        ("Wie viel Gramm Calciumsulfat (K<sub>L</sub> = 2,5 · 10⁻⁵) lösen sich in 2 L Wasser?", "L = √(2,5 · 10⁻⁵) = 5 · 10⁻³ mol/L; in 2 L: 0,01 mol · 136,14 g/mol = <b>1,36 g</b>."),
+        ("Erkläre die Bildung von Tropfsteinen als Fällungsreaktion mit dem Begriff Ionenprodukt.", "Entweicht CO₂ aus dem Tropfen, entsteht mehr CO₃²⁻ aus HCO₃⁻; das <b>Ionenprodukt c(Ca²⁺) · c(CO₃²⁻) überschreitet K<sub>L</sub></b>, CaCO₃ fällt aus."),
+        ("Warum löst sich Magnesiumhydroxid in Säuren gut, in Wasser aber kaum?", "Säure entfernt OH⁻-Ionen (H⁺ + OH⁻ → H₂O); das Ionenprodukt sinkt unter K<sub>L</sub>, das <b>Gleichgewicht verschiebt sich nach rechts</b>, bis sich alles löst."),
+        ("Warum gefriert Leitungswasser nicht schon wegen der gelösten Ionen bei deutlich unter 0 °C, Meerwasser aber schon bei etwa −2 °C?", "Leitungswasser enthält nur wenige mg/L Ionen, Meerwasser etwa 35 g/L Salz: viel mehr gelöste Teilchen ⇒ <b>stärkere Gefrierpunktserniedrigung</b>."),
+        ("Die Löslichkeit von AgCl in 0,1 mol/L Ammoniaklösung ist viel größer als in Wasser. Erkläre.", "NH₃ bildet den Komplex <b>[Ag(NH₃)₂]⁺</b>; freie Ag⁺-Ionen werden entzogen, Q sinkt unter K<sub>L</sub>, weiteres AgCl löst sich."),
+        ("Begründe, warum man beim Sulfatnachweis mit Bariumchlorid vorher ansäuert.", "In neutraler Lösung könnten auch Carbonat- oder Sulfit-Ionen mit Ba²⁺ einen weißen Niederschlag geben. Säure zerstört diese (CO₂, SO₂); <b>nur BaSO₄</b> bleibt."),
+    ]
+    for q_, a_ in fixed:
+        add(3, q_, a_)
+    r.shuffle(L[3])
+    return L
+
+
 M8, PH = "#1f6e8c", "#b4531f"
 TOPICS = {
     "osmose": ({"title": "Osmose", "eyebrow": "Biologie · Klasse 11", "accent": "#0d6f74", "cols": [1, 1, 1], "sol_cols": [1, 1, 1]}, osmose),
@@ -3505,6 +3588,7 @@ TOPICS = {
     "reaktionsgeschwindigkeit": ({"title": "Reaktionsgeschwindigkeit und Katalysatoren", "eyebrow": "Chemie · Klasse 11", "accent": "#6a3fa0", "cols": [2, 1, 1], "sol_cols": [2, 1, 1]}, reaktionsgeschwindigkeit),
     "chemisches-gleichgewicht": ({"title": "Chemisches Gleichgewicht und Le Chatelier", "eyebrow": "Chemie · Klasse 11", "accent": "#6a3fa0", "cols": [2, 2, 1], "sol_cols": [2, 2, 1]}, chemisches_gleichgewicht),
     "massenwirkungsgesetz": ({"title": "Gleichgewichtskonstante und Massenwirkungsgesetz", "eyebrow": "Chemie · Klasse 11", "accent": "#6a3fa0", "cols": [2, 1, 1], "sol_cols": [2, 1, 1]}, massenwirkungsgesetz),
+    "loeslichkeitsgleichgewichte": ({"title": "Löslichkeitsgleichgewichte", "eyebrow": "Chemie · Klasse 11 · Wahlpflicht", "accent": "#6a3fa0", "cols": [2, 1, 1], "sol_cols": [2, 1, 1]}, loeslichkeitsgleichgewichte),
     "binomische-formeln": ({"title": "Binomische Formeln", "eyebrow": "Mathematik · Klasse 8", "accent": M8, "cols": 2, "sol_cols": 2}, binomische_formeln),
     "bruchterme": ({"title": "Bruchterme", "eyebrow": "Mathematik · Klasse 8", "accent": "#2d6a4f", "cols": 3, "sol_cols": 3}, bruchterme),
     "ausmultiplizieren-faktorisieren": ({"title": "Ausmultiplizieren und Faktorisieren", "eyebrow": "Mathematik · Klasse 8", "accent": M8, "cols": 3, "sol_cols": 3}, ausmultiplizieren),

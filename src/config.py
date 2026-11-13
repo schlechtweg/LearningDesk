@@ -325,6 +325,14 @@ TOPICS = [
         "fonts": "math", "first_view": "verstehen", "factsheet": "Factsheet als PDF ↓",
     },
     {
+        "slug": "loeslichkeitsgleichgewichte", "grade": "11", "subject": "chemie", "chapter": "3", "order": 4, "kit": True, "accent": ACCENT_CHEM,
+        "title": "Löslichkeitsgleichgewichte", "short": "Löslichkeitsgleichgewichte*", "tag": "Wahlpflicht",
+        "card": "Löslichkeitsprodukt, Löslichkeit berechnen, Fällungsrechner, gleichioniger Zusatz, Wasseruntersuchung mit Nachweisen, Trainer, Quiz",
+        "description": "Interaktive Lernhilfe zu Löslichkeitsgleichgewichten und Wasseruntersuchungen (Chemie, Klasse 11, Wahlpflicht)",
+        "intro": "Warum sich auch schwerlösliche Salze ein wenig lösen, wie man das mit dem Löslichkeitsprodukt berechnet und Ionen im Wasser nachweist.",
+        "fonts": "base", "first_view": "verstehen", "factsheet": "Factsheet als PDF ↓",
+    },
+    {
         "slug": "binomische-formeln", "grade": "8", "subject": "mathematik", "chapter": "I", "order": 4,
         "title": "Binomische Formeln", "short": "Binomische Formeln", "tag": "Terme",
         "card": "Die drei Formeln, Erklärung mit Flächen, Trainer mit Lückenaufgaben, Kopfrechen-Trick, Quiz",

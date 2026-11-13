@@ -9,6 +9,10 @@ Schema **MAJOR.MINOR.PATCH**:
 
 Neue Version: oben einen Eintrag `## [x.y.z] – JJJJ-MM-TT` ergänzen und `python3 src/build.py` ausführen.
 
+## [1.14.0] – 2026-11-13
+
+- Chemie Klasse 11, Kapitel 3 „Chemische Gleichgewichte“: Reaktionsgeschwindigkeit und Katalysatoren, Chemisches Gleichgewicht und Le Chatelier (mit Ammoniaksynthese), Massenwirkungsgesetz, Löslichkeitsgleichgewichte*.
+
 ## [1.13.0] – 2026-11-13
 
 - Chemie Klasse 11 nach Buchkapiteln gegliedert (1 Stoffe/PSE, 2 Redox, 3 Gleichgewichte, 4 Säure-Base).

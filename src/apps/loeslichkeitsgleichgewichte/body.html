@@ -1,0 +1,67 @@
+  <nav class="tabs" aria-label="Bereiche">
+    <a href="#verstehen" data-view="verstehen"><span class="n">1</span>Verstehen</a>
+    <a href="#loeslichkeit" data-view="loeslichkeit"><span class="n">2</span>Löslichkeit berechnen</a>
+    <a href="#faellung" data-view="faellung"><span class="n">3</span>Fällt etwas aus?</a>
+    <a href="#wasser" data-view="wasser"><span class="n">4</span>Wasseruntersuchung</a>
+    <a href="#ueben" data-view="ueben"><span class="n">5</span>Üben</a>
+    <a href="#alltag" data-view="alltag"><span class="n">6</span>Im Alltag</a>
+    <a href="#quiz" data-view="quiz"><span class="n">7</span>Quiz</a>
+  </nav>
+
+  <section class="view" id="view-verstehen">
+    <div class="einfach">
+      <span class="eyebrow">Einfach erklärt</span>
+      <p>Auch „unlösliche“ Salze lösen sich ein winziges bisschen. In einer <strong>gesättigten Lösung</strong> gehen pro Sekunde genauso viele Ionen in Lösung, wie sich wieder am Kristall abscheiden: ein Gleichgewicht zwischen Feststoff und gelösten Ionen.</p>
+      <p class="small">AgCl(s) ⇌ Ag⁺(aq) + Cl⁻(aq)</p>
+    </div>
+    <div class="panel stack">
+      <h3>Löslichkeitsprodukt K<sub>L</sub></h3>
+      <p class="small">Da der Feststoff im MWG nicht vorkommt, bleibt das Produkt der Ionenkonzentrationen: <strong>K<sub>L</sub> = c(Ag⁺) · c(Cl⁻)</strong> = 1,8 · 10⁻¹⁰ mol²/L² (25 °C).</p>
+      <table class="ptab"><tr><th>Salztyp</th><th>K<sub>L</sub></th><th>Löslichkeit L (mol/L)</th></tr><tr><td>AB (AgCl, BaSO₄)</td><td>c(A) · c(B) = L²</td><td>L = √K<sub>L</sub></td></tr><tr><td>AB₂ (CaF₂, PbI₂)</td><td>c(A) · c(B)² = L · (2L)² = 4L³</td><td>L = ∛(K<sub>L</sub> / 4)</td></tr><tr><td>A₂B (Ag₂CrO₄)</td><td>c(A)² · c(B) = 4L³</td><td>L = ∛(K<sub>L</sub> / 4)</td></tr></table>
+      <p class="small">Je <strong>kleiner</strong> K<sub>L</sub>, desto schwerer löslich. Vergleichen darf man K<sub>L</sub>-Werte direkt aber nur bei gleichem Salztyp.</p>
+    </div>
+    <div class="grid-2">
+      <div class="panel stack"><h3>Wann fällt ein Niederschlag?</h3><p class="small">Man berechnet das Ionenprodukt Q mit den <strong>vorhandenen</strong> Konzentrationen:</p><ul class="list small"><li>Q &gt; K<sub>L</sub>: übersättigt, es <strong>fällt aus</strong>, bis Q = K<sub>L</sub>.</li><li>Q = K<sub>L</sub>: gesättigt.</li><li>Q &lt; K<sub>L</sub>: ungesättigt, es löst sich noch mehr.</li></ul></div>
+      <div class="panel stack"><h3>Gleichioniger Zusatz</h3><p class="small">Gibt man zu einer gesättigten AgCl-Lösung Kochsalz (mehr Cl⁻), verschiebt sich das Gleichgewicht nach links (Le Chatelier): Es fällt AgCl aus, die Löslichkeit <strong>sinkt</strong>. So fällt man Ionen möglichst vollständig.</p></div>
+    </div>
+    <div class="merksatz"><span class="eyebrow">Nachweise</span><p>Schwerlösliche Salze sind ideale Nachweise: Cl⁻ mit Silbernitrat (weiß, AgCl), SO₄²⁻ mit Bariumchlorid (weiß, BaSO₄), Ca²⁺ mit Ammoniumoxalat (weiß, CaC₂O₄).</p></div>
+    <div class="panel stack"><h3>Typische Fehler</h3><ul class="list small"><li>Bei AB₂-Salzen die Konzentration 2L nicht quadriert.</li><li>K<sub>L</sub> verschiedener Salztypen direkt verglichen.</li><li>Beim Mischen zweier Lösungen die Verdünnung vergessen.</li></ul></div>
+  </section>
+
+  <section class="view" id="view-loeslichkeit" hidden>
+    <div class="stack"><span class="eyebrow">Rechner</span><h2>Löslichkeit aus K<sub>L</sub></h2><p class="muted">Wähle ein Salz. Die App berechnet die Löslichkeit in mol/L und g/L.</p></div>
+    <div class="panel stack"><select id="lSalt" aria-label="Salz"></select><p class="big" id="lOut"></p><div id="lSteps" class="small"></div><table class="ptab" id="lTab"></table></div>
+  </section>
+
+  <section class="view" id="view-faellung" hidden>
+    <div class="stack"><span class="eyebrow">Rechner</span><h2>Fällt etwas aus?</h2><p class="muted">Gib die Ionenkonzentrationen nach dem Mischen ein.</p></div>
+    <div class="panel stack"><div class="calc"><label>Salz<select id="fSalt"></select></label><label><span id="fL1">c(Kation) in mol/L</span><input type="number" id="fC1" value="0.001" min="0" step="any"></label><label><span id="fL2">c(Anion) in mol/L</span><input type="number" id="fC2" value="0.001" min="0" step="any"></label></div><p class="big" id="fOut"></p><div id="fSteps" class="small"></div></div>
+  </section>
+
+  <section class="view" id="view-wasser" hidden>
+    <div class="stack"><span class="eyebrow">Praktikum</span><h2>Wasseruntersuchung</h2><p class="muted">Wähle eine Wasserprobe und ein Nachweisreagenz.</p></div>
+    <div class="panel stack"><div class="chips" id="wProbe"></div><div class="chips" id="wReag"></div></div>
+    <div class="sim-layout"><div class="figure"><svg class="tube" id="wSvg" viewBox="0 0 200 220" role="img" aria-label="Reagenzglas"></svg></div><div class="panel stack"><h3 id="wTitle"></h3><p id="wObs"></p><p class="small" id="wEq"></p></div></div>
+  </section>
+
+  <section class="view" id="view-ueben" hidden>
+    <div class="stack"><span class="eyebrow">Trainer</span><h2>Löslichkeit üben</h2><p class="muted">Zehnerpotenzen als <code>1.3e-5</code> eingeben.</p></div>
+    <div id="trainer" class="stack"></div>
+  </section>
+
+  <section class="view" id="view-alltag" hidden>
+    <div class="stack"><span class="eyebrow">Im Alltag</span><h2>Lösen und Fällen im Alltag</h2></div>
+    <div class="grid-2">
+      <div class="panel stack"><span class="eyebrow">Medizin</span><h3>Bariumbrei beim Röntgen</h3><p class="small">Ba²⁺ ist giftig. BaSO₄ ist aber so schwer löslich, dass man es trinken kann: Es macht den Darm im Röntgenbild sichtbar.</p></div>
+      <div class="panel stack"><span class="eyebrow">Zähne</span><h3>Fluorid in der Zahnpasta</h3><p class="small">Fluoridapatit ist schwerer löslich als der natürliche Hydroxylapatit des Zahnschmelzes und widersteht Säuren besser.</p></div>
+      <div class="panel stack"><span class="eyebrow">Haushalt</span><h3>Kalk im Wasserkocher</h3><p class="small">Beim Erhitzen entweicht CO₂, das Gleichgewicht verschiebt sich und CaCO₃ fällt aus.</p></div>
+      <div class="panel stack"><span class="eyebrow">Körper</span><h3>Nierensteine</h3><p class="small">Ist das Ionenprodukt von Calcium und Oxalat im Urin zu groß, fallen Kristalle aus. Viel trinken senkt die Konzentrationen.</p></div>
+      <div class="panel stack"><span class="eyebrow">Umwelt</span><h3>Phosphatfällung in Kläranlagen</h3><p class="small">Eisen- oder Aluminiumsalze fällen Phosphat als schwerlösliches Salz und schützen Seen vor Überdüngung.</p></div>
+      <div class="panel stack"><span class="eyebrow">Labor</span><h3>Wasserhärte</h3><p class="small">Ca²⁺- und Mg²⁺-Ionen bilden mit Seife schwerlösliche Kalkseife. Hartes Wasser schäumt deshalb schlechter.</p></div>
+    </div>
+  </section>
+
+  <section class="view" id="view-quiz" hidden>
+    <div class="stack"><span class="eyebrow">Selbsttest</span><h2>Quiz</h2><div class="progress-line"><div class="bar" aria-hidden="true"><i id="qBar"></i></div><span class="score-line" id="qProgress"></span></div></div>
+    <div class="panel quiz" id="quizBox" aria-live="polite"></div>
+  </section>

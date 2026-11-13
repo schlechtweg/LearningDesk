@@ -2407,6 +2407,37 @@ SHEETS["massenwirkungsgesetz"] = dict(title="Gleichgewichtskonstante und Massenw
     </div>
   </div>''')
 
+SHEETS["loeslichkeitsgleichgewichte"] = dict(title="Löslichkeitsgleichgewichte", eyebrow="Chemie · Klasse 11 · Wahlpflicht", accent=CH11, body=f'''
+  <div class="kern">In einer <strong>gesättigten Lösung</strong> besteht ein Gleichgewicht zwischen Bodenkörper und Ionen, z. B. AgCl(s) ⇌ Ag⁺ + Cl⁻. Das <strong>Löslichkeitsprodukt</strong> K<sub>L</sub> = c(Ag⁺) · c(Cl⁻) ist bei gegebener Temperatur konstant.</div>
+  <div class="cols">
+    <div class="box">
+      <h2>Löslichkeit L</h2>
+      <ul><li>AB: K<sub>L</sub> = L² ⇒ L = √K<sub>L</sub></li><li>AB₂, A₂B: K<sub>L</sub> = 4L³ ⇒ L = ∛(K<sub>L</sub>/4)</li><li>Nur gleiche Salztypen über K<sub>L</sub> vergleichen.</li></ul>
+    </div>
+    <div class="box">
+      <h2>Fällung</h2>
+      <ul><li>Q &gt; K<sub>L</sub>: Niederschlag</li><li>Q = K<sub>L</sub>: gesättigt</li><li>Q &lt; K<sub>L</sub>: ungesättigt</li><li>Gleichioniger Zusatz senkt L</li></ul>
+    </div>
+    <div class="box full">
+      <h2>Nachweise (Wasseruntersuchung)</h2>
+      <table>
+        <tr><th>Ion</th><th>Reagenz</th><th>Beobachtung</th></tr>
+        <tr><td>Cl⁻</td><td>Silbernitrat</td><td>weißer Niederschlag AgCl</td></tr>
+        <tr><td>SO₄²⁻</td><td>Bariumchlorid</td><td>weißer Niederschlag BaSO₄</td></tr>
+        <tr><td>Ca²⁺</td><td>Ammoniumoxalat</td><td>weißer Niederschlag CaC₂O₄</td></tr>
+        <tr><td>Fe³⁺</td><td>Kaliumthiocyanat</td><td>blutrote Färbung</td></tr>
+      </table>
+    </div>
+    <div class="box">
+      <h2>Im Alltag</h2>
+      <ul><li>BaSO₄ beim Röntgen.</li><li>Fluorid und Zahnschmelz.</li><li>Kesselstein, Nierensteine.</li></ul>
+    </div>
+    <div class="box warn">
+      <h2>Typische Fehler</h2>
+      <ul><li>2L nicht quadriert.</li><li>Verdünnung beim Mischen vergessen.</li><li>Bodenkörper ins K<sub>L</sub> eingesetzt.</li></ul>
+    </div>
+  </div>''')
+
 OUT = sys.argv[1] if len(sys.argv) > 1 else os.path.join(os.path.dirname(__file__), "_build")
 os.makedirs(OUT, exist_ok=True)
 shutil.copyfile(os.path.join(os.path.dirname(os.path.abspath(__file__)), "factsheet.css"), os.path.join(OUT, "factsheet.css"))
