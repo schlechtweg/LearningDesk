@@ -1053,10 +1053,22 @@ def saeuren_basen():
     return {"title": "Protolyse von Chlorwasserstoff", "stars": "★☆☆", "task": (svg("0 10 330 150", base), task), "sol": (svg("0 10 330 150", sol), soltxt)}
 
 
+def ph_wert():
+    cols = ["#c0262d", "#e2412c", "#ef6a2a", "#f39a2c", "#f6c72f", "#e8df31", "#b9d636", "#79c043", "#3fa54d", "#2c8f7a", "#2a6fb0", "#3150a8", "#47399c", "#5a2f8f", "#6a2780"]
+    g = "".join(f'<rect x="{10 + i * 20}" y="20" width="20" height="18" fill="{c}"/>' + text(20 + i * 20, 52, str(i), "ft tiny") for i, c in enumerate(cols))
+    items = [("Magensaft", 1), ("Essig", 3), ("Wasser", 7), ("Blut", 7.4), ("Seife", 10), ("Abflussreiniger", 13.5)]
+    sol = g + "".join(f'<line x1="{20 + p * 20}" y1="58" x2="{20 + p * 20}" y2="{68 + (k % 2) * 16}" stroke="#c0392b"/>' + text(20 + p * 20, 80 + (k % 2) * 16, n, "ft tiny sol") for k, (n, p) in enumerate(items))
+    task = ('<p>Ordne die Stoffe auf der pH-Skala ein: Magensaft, Essig, Wasser, Blut, Seife, Abflussreiniger.</p>'
+            '<p class="q">c(H₃O⁺) in Essig (pH 3): <span class="blank"></span> in Seife (pH 10): <span class="blank"></span></p>'
+            '<p class="q">Wievielmal mehr H₃O⁺ enthält Essig als Seife? <span class="blank"></span></p>')
+    soltxt = '<p class="q">Essig: <b>10⁻³ mol/L</b>, Seife: <b>10⁻¹⁰ mol/L</b>; Verhältnis 10⁷: <b>10 Millionen Mal</b> mehr.</p>'
+    return {"title": "pH-Skala", "stars": "★☆☆", "task": (svg("0 10 320 95", g), task), "sol": (svg("0 10 320 95", sol), soltxt)}
+
+
 FIGS = {
     "osmose": osmose, "natrium-kalium-pumpe": nak, "symport-antiport": symport, "endocytose-exocytose": endo,
     "ableiten": ableiten, "nervensystem": nerven, "auge": auge,
-    "termstruktur": termstruktur, "zufallsexperimente": zufallsexperimente, "laplace": laplace, "baumdiagramme": baumdiagramme, "unabhaengige-ereignisse": unabhaengig, "funktionsbegriff": funktionsbegriff, "eigenschaften-funktionen": eigenschaften, "lineare-funktionen": lineare_funktionen, "funktionsgleichungen": funktionsgleichungen, "lgs-grafisch": lgs_grafisch, "gleichsetzungsverfahren": gleichsetzungsverfahren, "additionsverfahren": additionsverfahren, "lgs-anwendungen": lgs_anwendungen, "zentrische-streckung": zentrische_streckung, "aehnliche-dreiecke": aehnliche_dreiecke, "flaeche-volumen-aehnlich": flaeche_volumen_aehnlich, "strahlensaetze": strahlensaetze, "atombau": atombau, "periodensystem": periodensystem, "stoffklassen": stoffklassen, "orbitalmodell": orbitalmodell, "redoxreaktionen": redoxreaktionen, "gebrauchsmetalle": gebrauchsmetalle, "komplexverbindungen": komplexverbindungen, "reaktionsgeschwindigkeit": reaktionsgeschwindigkeit, "chemisches-gleichgewicht": chemisches_gleichgewicht, "massenwirkungsgesetz": massenwirkungsgesetz, "loeslichkeitsgleichgewichte": loeslichkeitsgleichgewichte, "saeuren-basen": saeuren_basen, "binomische-formeln": binom, "bruchterme": bruchterme, "ausmultiplizieren-faktorisieren": ausmult, "terme-vereinfachen": terme,
+    "termstruktur": termstruktur, "zufallsexperimente": zufallsexperimente, "laplace": laplace, "baumdiagramme": baumdiagramme, "unabhaengige-ereignisse": unabhaengig, "funktionsbegriff": funktionsbegriff, "eigenschaften-funktionen": eigenschaften, "lineare-funktionen": lineare_funktionen, "funktionsgleichungen": funktionsgleichungen, "lgs-grafisch": lgs_grafisch, "gleichsetzungsverfahren": gleichsetzungsverfahren, "additionsverfahren": additionsverfahren, "lgs-anwendungen": lgs_anwendungen, "zentrische-streckung": zentrische_streckung, "aehnliche-dreiecke": aehnliche_dreiecke, "flaeche-volumen-aehnlich": flaeche_volumen_aehnlich, "strahlensaetze": strahlensaetze, "atombau": atombau, "periodensystem": periodensystem, "stoffklassen": stoffklassen, "orbitalmodell": orbitalmodell, "redoxreaktionen": redoxreaktionen, "gebrauchsmetalle": gebrauchsmetalle, "komplexverbindungen": komplexverbindungen, "reaktionsgeschwindigkeit": reaktionsgeschwindigkeit, "chemisches-gleichgewicht": chemisches_gleichgewicht, "massenwirkungsgesetz": massenwirkungsgesetz, "loeslichkeitsgleichgewichte": loeslichkeitsgleichgewichte, "saeuren-basen": saeuren_basen, "ph-wert": ph_wert, "binomische-formeln": binom, "bruchterme": bruchterme, "ausmultiplizieren-faktorisieren": ausmult, "terme-vereinfachen": terme,
     "gleichungen": gleichungen, "ungleichungen": ungleichungen,
     "druck": druck, "hydraulik": hydraulik, "schweredruck": schweredruck, "auftrieb": auftrieb, "luftdruck": luftdruck,
 }

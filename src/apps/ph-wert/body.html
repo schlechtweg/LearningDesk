@@ -1,0 +1,62 @@
+  <nav class="tabs" aria-label="Bereiche">
+    <a href="#verstehen" data-view="verstehen"><span class="n">1</span>Verstehen</a>
+    <a href="#skala" data-view="skala"><span class="n">2</span>pH-Skala</a>
+    <a href="#rechner" data-view="rechner"><span class="n">3</span>pH berechnen</a>
+    <a href="#ueben" data-view="ueben"><span class="n">4</span>Üben</a>
+    <a href="#alltag" data-view="alltag"><span class="n">5</span>Im Alltag</a>
+    <a href="#quiz" data-view="quiz"><span class="n">6</span>Quiz</a>
+  </nav>
+
+  <section class="view" id="view-verstehen">
+    <div class="einfach">
+      <span class="eyebrow">Einfach erklärt</span>
+      <p>Auch reines Wasser enthält ein paar Ionen: Wassermoleküle reichen sich gegenseitig Protonen weiter. Daraus ergibt sich eine handliche Zahl, der <strong>pH-Wert</strong>. Er sagt, wie sauer oder basisch eine Lösung ist. Kleiner pH = sauer, 7 = neutral, großer pH = basisch.</p>
+    </div>
+    <div class="panel stack">
+      <h3>Autoprotolyse des Wassers</h3>
+      <p class="small">H₂O + H₂O ⇌ H₃O⁺ + OH⁻. Das Gleichgewicht liegt weit links: Bei 25 °C ist nur etwa jedes 550-millionste Wassermolekül protolysiert.</p>
+      <p class="small"><strong>Ionenprodukt des Wassers</strong>: K<sub>W</sub> = c(H₃O⁺) · c(OH⁻) = <strong>10⁻¹⁴ mol²/L²</strong> (25 °C). In reinem Wasser: c(H₃O⁺) = c(OH⁻) = 10⁻⁷ mol/L.</p>
+      <p class="small">K<sub>W</sub> gilt in <strong>jeder</strong> wässrigen Lösung: Steigt c(H₃O⁺), sinkt c(OH⁻) im gleichen Maß.</p>
+    </div>
+    <div class="grid-2">
+      <div class="panel stack"><h3>pH und pOH</h3><ul class="list small"><li><strong>pH = −lg c(H₃O⁺)</strong> (c in mol/L)</li><li>pOH = −lg c(OH⁻)</li><li><strong>pH + pOH = 14</strong></li><li>c(H₃O⁺) = 10<sup>−pH</sup></li></ul></div>
+      <div class="panel stack"><h3>Was eine Stufe bedeutet</h3><p class="small">Die pH-Skala ist <strong>logarithmisch</strong>: pH 3 ist <strong>10-mal</strong> so sauer wie pH 4 und 100-mal so sauer wie pH 5. Verdünnt man eine starke Säure 1 : 10, steigt der pH um 1.</p></div>
+    </div>
+    <div class="panel stack"><h3>pH starker Säuren und Basen</h3><p class="small">Starke Säuren (HCl, HNO₃) protolysieren vollständig: <strong>c(H₃O⁺) = c₀(Säure)</strong>. Beispiel: c(HCl) = 0,01 mol/L ⇒ pH = 2.</p><p class="small">Starke Basen (NaOH, KOH): <strong>c(OH⁻) = c₀(Base)</strong> ⇒ pOH berechnen, dann pH = 14 − pOH. Beispiel: c(NaOH) = 0,01 mol/L ⇒ pOH 2 ⇒ pH 12.</p><p class="small">Mehrwertige: c(Ba(OH)₂) = 0,005 mol/L ⇒ c(OH⁻) = 0,01 mol/L.</p></div>
+    <div class="merksatz"><span class="eyebrow">Merke</span><p>Ein kleiner pH bedeutet eine <strong>große</strong> H₃O⁺-Konzentration. Wegen des Minuszeichens im Logarithmus läuft die Skala „verkehrt herum“.</p></div>
+    <div class="panel stack"><h3>Typische Fehler</h3><ul class="list small"><li>Bei Basen direkt −lg c(OH⁻) als pH angegeben: Das ist der pOH.</li><li>pH 4 für „doppelt so sauer“ wie pH 8 gehalten: Es ist das 10 000-fache.</li><li>Bei sehr verdünnten Säuren (pH über 6) die Autoprotolyse vergessen: Säure wird durch Verdünnen nie basisch.</li></ul></div>
+  </section>
+
+  <section class="view" id="view-skala" hidden>
+    <div class="stack"><span class="eyebrow">Interaktiv</span><h2>Die pH-Skala</h2><p class="muted">Verschiebe den Regler. Beobachte, wie sich die Ionenkonzentrationen ändern.</p></div>
+    <div class="panel stack"><svg class="scale" id="sSvg" viewBox="0 0 460 125" role="img" aria-label="pH-Skala mit Alltagsbeispielen"></svg>
+      <div class="ctl"><label for="sR">pH = <b id="sV"></b></label><input type="range" id="sR" min="0" max="14" step="0.5" value="3"></div>
+      <div class="bars2" id="sBars"></div><p class="small" id="sText"></p></div>
+  </section>
+
+  <section class="view" id="view-rechner" hidden>
+    <div class="stack"><span class="eyebrow">Rechner</span><h2>pH starker Säuren und Basen</h2></div>
+    <div class="panel stack"><div class="calc"><label>Stoff<select id="cS"></select></label><label>Konzentration c₀ in mol/L<input type="number" id="cC" value="0.01" min="0" step="any"></label><label>Verdünnung 1 :<input type="number" id="cV" value="1" min="1" step="1"></label></div><p class="big" id="cOut"></p><ol class="list small" id="cSteps"></ol></div>
+  </section>
+
+  <section class="view" id="view-ueben" hidden>
+    <div class="stack"><span class="eyebrow">Methode: pH-Werte berechnen</span><h2>pH berechnen üben</h2><p class="muted">pH-Werte auf zwei Nachkommastellen, Konzentrationen als <code>1e-3</code> oder <code>0.001</code>.</p></div>
+    <div id="trainer" class="stack"></div>
+  </section>
+
+  <section class="view" id="view-alltag" hidden>
+    <div class="stack"><span class="eyebrow">Im Alltag</span><h2>pH-Werte im Alltag</h2></div>
+    <div class="grid-2">
+      <div class="panel stack"><span class="eyebrow">Körper</span><h3>Blut pH 7,4</h3><p class="small">Schon Abweichungen um 0,2 sind lebensgefährlich. Puffer halten den Wert stabil.</p></div>
+      <div class="panel stack"><span class="eyebrow">Haut</span><h3>Säureschutzmantel</h3><p class="small">Die Haut hat einen pH um 5,5. Er hemmt Bakterien. Seifen sind basisch, deshalb gibt es pH-hautneutrale Waschmittel.</p></div>
+      <div class="panel stack"><span class="eyebrow">Umwelt</span><h3>Saurer Regen</h3><p class="small">Regen hat wegen gelöstem CO₂ etwa pH 5,6. Durch Schwefel- und Stickoxide sank er früher teils unter 4, Wälder und Seen litten.</p></div>
+      <div class="panel stack"><span class="eyebrow">Schwimmbad</span><h3>pH 7,0 bis 7,4</h3><p class="small">In diesem Bereich wirkt das Chlor am besten und die Augen brennen wenig.</p></div>
+      <div class="panel stack"><span class="eyebrow">Garten</span><h3>Hortensien</h3><p class="small">In saurem Boden blühen manche Hortensien blau, in basischem rosa.</p></div>
+      <div class="panel stack"><span class="eyebrow">Zähne</span><h3>Karies</h3><p class="small">Bakterien bilden aus Zucker Säuren. Unter pH 5,5 wird der Zahnschmelz angegriffen.</p></div>
+    </div>
+  </section>
+
+  <section class="view" id="view-quiz" hidden>
+    <div class="stack"><span class="eyebrow">Selbsttest</span><h2>Quiz</h2><div class="progress-line"><div class="bar" aria-hidden="true"><i id="qBar"></i></div><span class="score-line" id="qProgress"></span></div></div>
+    <div class="panel quiz" id="quizBox" aria-live="polite"></div>
+  </section>

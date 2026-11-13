@@ -341,6 +341,14 @@ TOPICS = [
         "fonts": "base", "first_view": "verstehen", "factsheet": "Factsheet als PDF ↓",
     },
     {
+        "slug": "ph-wert", "grade": "11", "subject": "chemie", "chapter": "4", "order": 2, "kit": True, "accent": ACCENT_CHEM,
+        "title": "Autoprotolyse des Wassers und pH-Wert", "short": "pH-Wert", "tag": "Säure-Base",
+        "card": "Autoprotolyse und Ionenprodukt, pH und pOH, interaktive pH-Skala, pH starker Säuren und Basen berechnen, Verdünnen, Trainer, Quiz",
+        "description": "Interaktive Lernhilfe zur Autoprotolyse des Wassers und zum pH-Wert (Chemie, Klasse 11)",
+        "intro": "Wie die Eigenprotolyse des Wassers zum pH-Wert führt und wie man pH-Werte starker Säuren und Basen berechnet.",
+        "fonts": "base", "first_view": "verstehen", "factsheet": "Factsheet als PDF ↓",
+    },
+    {
         "slug": "binomische-formeln", "grade": "8", "subject": "mathematik", "chapter": "I", "order": 4,
         "title": "Binomische Formeln", "short": "Binomische Formeln", "tag": "Terme",
         "card": "Die drei Formeln, Erklärung mit Flächen, Trainer mit Lückenaufgaben, Kopfrechen-Trick, Quiz",

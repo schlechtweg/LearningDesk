@@ -2470,6 +2470,37 @@ SHEETS["saeuren-basen"] = dict(title="Säuren und Basen nach Brønsted", eyebrow
     </div>
   </div>''')
 
+SHEETS["ph-wert"] = dict(title="Autoprotolyse des Wassers und pH-Wert", eyebrow="Chemie · Klasse 11 · Säure-Base-Gleichgewichte", accent=CH11, body=f'''
+  <div class="kern"><strong>Autoprotolyse</strong>: 2 H₂O ⇌ H₃O⁺ + OH⁻. <strong>Ionenprodukt</strong> K<sub>W</sub> = c(H₃O⁺) · c(OH⁻) = 10⁻¹⁴ mol²/L² (25 °C). <strong>pH = −lg c(H₃O⁺)</strong>, pOH = −lg c(OH⁻), pH + pOH = 14.</div>
+  <div class="cols">
+    <div class="box">
+      <h2>Skala</h2>
+      <ul><li>pH &lt; 7 sauer, 7 neutral, &gt; 7 basisch</li><li>1 pH-Stufe = Faktor 10</li><li>Verdünnung 1 : 10 einer starken Säure: pH + 1</li></ul>
+    </div>
+    <div class="box">
+      <h2>Starke Säuren/Basen</h2>
+      <ul><li>c(H₃O⁺) = c₀(Säure) ⇒ pH = −lg c₀</li><li>c(OH⁻) = c₀(Base) ⇒ pH = 14 + lg c₀</li><li>Ba(OH)₂: c(OH⁻) = 2 c₀</li></ul>
+    </div>
+    <div class="box full">
+      <h2>Beispiele</h2>
+      <table>
+        <tr><th>Lösung</th><th>c</th><th>pH</th></tr>
+        <tr><td>HCl</td><td>0,1 mol/L</td><td>1</td></tr>
+        <tr><td>HCl</td><td>0,002 mol/L</td><td>2,70</td></tr>
+        <tr><td>NaOH</td><td>0,01 mol/L</td><td>12</td></tr>
+        <tr><td>reines Wasser</td><td>10⁻⁷ mol/L H₃O⁺</td><td>7</td></tr>
+      </table>
+    </div>
+    <div class="box">
+      <h2>Im Alltag</h2>
+      <ul><li>Magen 1–2, Haut 5,5, Blut 7,4.</li><li>Saurer Regen, Schwimmbad.</li></ul>
+    </div>
+    <div class="box warn">
+      <h2>Typische Fehler</h2>
+      <ul><li>Bei Basen pOH statt pH angegeben.</li><li>Stufen linear gedacht.</li><li>Verdünnte Säure „basisch“.</li></ul>
+    </div>
+  </div>''')
+
 OUT = sys.argv[1] if len(sys.argv) > 1 else os.path.join(os.path.dirname(__file__), "_build")
 os.makedirs(OUT, exist_ok=True)
 shutil.copyfile(os.path.join(os.path.dirname(os.path.abspath(__file__)), "factsheet.css"), os.path.join(OUT, "factsheet.css"))

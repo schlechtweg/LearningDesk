@@ -3613,6 +3613,84 @@ def saeuren_basen():
     return L
 
 
+def ph_wert():
+    r = random.Random(213)
+    L = {1: [], 2: [], 3: []}
+    seen = set()
+    de = lambda v, n=2: f"{v:.{n}f}".replace(".", ",")
+    p10 = lambda e: "10" + str(e).translate(_SUP)
+
+    def add(lvl, q, a):
+        if q not in seen and len(L[lvl]) < 120:
+            seen.add(q)
+            L[lvl].append((q, a))
+    for e in range(1, 14):
+        add(1, f"c(H₃O⁺) = {p10(-e)} mol/L. pH?", f"pH = <b>{e}</b> ({'sauer' if e < 7 else 'neutral' if e == 7 else 'basisch'})")
+        add(1, f"pH = {e}. c(H₃O⁺) und c(OH⁻)?", f"c(H₃O⁺) = <b>{p10(-e)}</b>, c(OH⁻) = <b>{p10(e - 14)}</b> mol/L")
+        add(1, f"pOH = {e}. pH?", f"pH = 14 − {e} = <b>{14 - e}</b>")
+    for e in range(1, 5):
+        add(1, f"pH von Salzsäure mit c = {p10(-e)} mol/L?", f"vollständige Protolyse: c(H₃O⁺) = {p10(-e)} ⇒ <b>pH = {e}</b>")
+        add(1, f"pH von Natronlauge mit c = {p10(-e)} mol/L?", f"pOH = {e} ⇒ <b>pH = {14 - e}</b>")
+    facts = [("Gleichung der Autoprotolyse?", "<b>2 H₂O ⇌ H₃O⁺ + OH⁻</b>"), ("Ionenprodukt des Wassers (25 °C)?", "K<sub>W</sub> = c(H₃O⁺) · c(OH⁻) = <b>10⁻¹⁴ mol²/L²</b>"), ("Definition des pH-Werts?", "<b>pH = −lg c(H₃O⁺)</b>"),
+             ("Wie viel saurer ist pH 2 als pH 4?", "<b>100-mal</b>"), ("Welchen pH hat Blut?", "<b>7,4</b>"), ("Welchen pH hat die Haut?", "etwa <b>5,5</b>")]
+    for q_, a_ in facts:
+        add(1, q_, a_)
+    for i in range(300):
+        t = i % 4
+        if t == 0:
+            m, e = r.choice([2, 3, 4, 5, 6, 7, 8, 9]), r.randint(1, 6)
+            c = m * 10 ** -e
+            add(2, f"c(H₃O⁺) = {m} · {p10(-e)} mol/L. Berechne pH und pOH.", f"pH = −lg({m} · {p10(-e)}) = <b>{de(-math.log10(c))}</b>; pOH = <b>{de(14 + math.log10(c))}</b>")
+        elif t == 1:
+            pH = r.choice([1.5, 2.5, 3.2, 3.8, 4.7, 5.5, 6.3, 8.4, 9.1, 9.7, 10.6, 11.2, 12.3, 13.1])
+            add(2, f"Eine Lösung hat pH {de(pH, 1)}. Berechne c(H₃O⁺) und c(OH⁻).", f"c(H₃O⁺) = 10<sup>−{de(pH, 1)}</sup> = <b>{_sci(10 ** -pH)} mol/L</b>; c(OH⁻) = <b>{_sci(10 ** (pH - 14))} mol/L</b>")
+        elif t == 2:
+            c, z, nm = r.choice([0.02, 0.05, 0.005, 0.2, 0.025, 0.03, 0.004, 0.08]), r.choice([1, 2]), ""
+            nm = "Ba(OH)₂" if z == 2 else "KOH"
+            pOH = -math.log10(c * z)
+            add(2, f"Berechne den pH einer {nm}-Lösung mit c = {de(c, 3).rstrip('0').rstrip(',')} mol/L.", f"c(OH⁻) = {'2 · ' if z == 2 else ''}c = {_sci(c * z)}; pOH = {de(pOH)}; <b>pH = {de(14 - pOH)}</b>")
+        else:
+            pH0, f = r.choice([1, 2, 3]), r.choice([10, 100, 1000])
+            base = r.random() < 0.4
+            if base:
+                add(2, f"Natronlauge mit pH {14 - pH0} wird 1 : {f} verdünnt. Neuer pH?", f"c(OH⁻) : {f} ⇒ pOH + {int(math.log10(f))} ⇒ <b>pH = {14 - pH0 - int(math.log10(f))}</b>")
+            else:
+                add(2, f"Salzsäure mit pH {pH0} wird 1 : {f} verdünnt. Neuer pH?", f"c(H₃O⁺) : {f} ⇒ <b>pH = {pH0 + int(math.log10(f))}</b>")
+    calc3 = []
+    for v_ac, c_ac, v_b, c_b in [(50, 0.1, 40, 0.1), (20, 0.2, 30, 0.1), (100, 0.01, 50, 0.03), (25, 0.1, 25, 0.12), (10, 0.5, 10, 0.4), (40, 0.05, 60, 0.05), (30, 0.1, 10, 0.2), (15, 0.2, 35, 0.1)]:
+        nH, nOH = v_ac * c_ac / 1000, v_b * c_b / 1000
+        V = (v_ac + v_b) / 1000
+        if nH > nOH:
+            res = f"Überschuss H₃O⁺: ({_sci(nH)} − {_sci(nOH)}) mol : {_sci(V)} L = {_sci((nH - nOH) / V)} mol/L ⇒ <b>pH = {de(-math.log10((nH - nOH) / V))}</b>"
+        elif nOH > nH:
+            res = f"Überschuss OH⁻: {_sci((nOH - nH) / V)} mol/L ⇒ pOH {de(-math.log10((nOH - nH) / V))} ⇒ <b>pH = {de(14 + math.log10((nOH - nH) / V))}</b>"
+        else:
+            res = "<b>pH = 7</b>"
+        calc3.append((f"{v_ac} mL Salzsäure (c = {de(c_ac, 2)} mol/L) werden mit {v_b} mL Natronlauge (c = {de(c_b, 2)} mol/L) gemischt. Berechne den pH der Mischung.", f"n(H₃O⁺) = {_sci(nH)} mol, n(OH⁻) = {_sci(nOH)} mol; {res}"))
+    for q_, a_ in calc3:
+        add(3, q_, a_)
+    fixed = [
+        ("Begründe, warum reines Wasser bei 25 °C den pH 7 hat.", "Bei der Autoprotolyse entstehen gleich viele H₃O⁺ und OH⁻: c² = 10⁻¹⁴ ⇒ c(H₃O⁺) = <b>10⁻⁷ mol/L</b> ⇒ pH = 7."),
+        ("Bei 50 °C ist K<sub>W</sub> = 5,5 · 10⁻¹⁴. Welchen pH hat reines Wasser? Ist es sauer?", "c(H₃O⁺) = √(5,5 · 10⁻¹⁴) = 2,3 · 10⁻⁷ ⇒ <b>pH ≈ 6,6</b>. Trotzdem <b>neutral</b>, denn c(H₃O⁺) = c(OH⁻). Die Autoprotolyse ist endotherm."),
+        ("Warum hat Salzsäure mit c = 10⁻⁸ mol/L nicht pH 8?", "Die Autoprotolyse liefert schon 10⁻⁷ mol/L H₃O⁺, mehr als die Säure. Gesamt etwas über 10⁻⁷ mol/L: <b>pH knapp unter 7</b> (≈ 6,98). Säuren werden durch Verdünnen nie basisch."),
+        ("Wie viel Wasser muss man zu 1 L Salzsäure (pH 1) geben, um pH 3 zu erhalten?", "pH + 2 ⇒ Verdünnung 1 : 100 ⇒ Endvolumen 100 L ⇒ <b>99 L Wasser</b>."),
+        ("Erkläre, warum die Leitfähigkeit von reinem Wasser sehr gering, aber nicht null ist.", "Durch die Autoprotolyse gibt es je <b>10⁻⁷ mol/L H₃O⁺ und OH⁻</b>: wenige, aber bewegliche Ionen."),
+        ("Warum ist Regenwasser auch ohne Luftverschmutzung leicht sauer (pH ≈ 5,6)?", "Gelöstes <b>CO₂</b> bildet Kohlensäure: CO₂ + 2 H₂O ⇌ HCO₃⁻ + H₃O⁺."),
+        ("Berechne den pH von Schwefelsäure mit c = 0,005 mol/L (vollständige Protolyse beider Stufen angenommen).", "c(H₃O⁺) = 2 · 0,005 = 0,01 mol/L ⇒ <b>pH = 2</b>."),
+        ("Ein Schwimmbad (500 m³) hat pH 8,0 und soll auf pH 7,0 gebracht werden. Wie viel mol OH⁻ müssen etwa neutralisiert werden (ohne Puffer)?", "c(OH⁻) sinkt von 10⁻⁶ auf 10⁻⁷ mol/L: Δc = 9 · 10⁻⁷ mol/L · 5 · 10⁵ L ≈ <b>0,45 mol</b> (real deutlich mehr wegen gelöster Puffer)."),
+        ("Begründe, warum man den pH-Wert als logarithmische Größe definiert hat.", "c(H₃O⁺) überspannt in der Praxis <b>14 Zehnerpotenzen</b> (1 bis 10⁻¹⁴ mol/L); der Logarithmus macht daraus eine handliche Skala von 0 bis 14."),
+        ("Wie ändert sich der pH, wenn man zu 1 L Wasser (pH 7) einen Tropfen (0,05 mL) Salzsäure mit c = 1 mol/L gibt?", "n = 5 · 10⁻⁵ mol in ≈ 1 L ⇒ c(H₃O⁺) = 5 · 10⁻⁵ mol/L ⇒ <b>pH ≈ 4,3</b>. Ungepuffertes Wasser reagiert sehr empfindlich."),
+        ("Wie viel Gramm NaOH braucht man für 500 mL Natronlauge mit pH 13?", "pOH = 1 ⇒ c = 0,1 mol/L; n = 0,05 mol; m = 0,05 · 40 g/mol = <b>2,0 g</b>."),
+        ("Wie viel mL konzentrierte Salzsäure (c = 10 mol/L) braucht man für 1 L Salzsäure mit pH 2?", "c = 0,01 mol/L ⇒ n = 0,01 mol ⇒ V = 0,01 : 10 L = <b>1 mL</b>."),
+        ("Erkläre mit K<sub>W</sub>, warum in einer sauren Lösung trotzdem OH⁻-Ionen vorhanden sind.", "K<sub>W</sub> = c(H₃O⁺) · c(OH⁻) ist immer 10⁻¹⁴: Bei pH 3 ist c(OH⁻) = <b>10⁻¹¹ mol/L</b>, klein, aber nicht null."),
+        ("Warum nimmt man für pH-Messungen genauer ein pH-Meter als Indikatorpapier?", "Indikatorpapier zeigt nur ganze bis halbe Stufen über die <b>Farbe</b>; ein pH-Meter misst die H₃O⁺-Aktivität elektrisch auf <b>0,01 pH</b> genau."),
+    ]
+    for q_, a_ in fixed:
+        add(3, q_, a_)
+    r.shuffle(L[3])
+    return L
+
+
 M8, PH = "#1f6e8c", "#b4531f"
 TOPICS = {
     "osmose": ({"title": "Osmose", "eyebrow": "Biologie · Klasse 11", "accent": "#0d6f74", "cols": [1, 1, 1], "sol_cols": [1, 1, 1]}, osmose),
@@ -3651,6 +3729,7 @@ TOPICS = {
     "massenwirkungsgesetz": ({"title": "Gleichgewichtskonstante und Massenwirkungsgesetz", "eyebrow": "Chemie · Klasse 11", "accent": "#6a3fa0", "cols": [2, 1, 1], "sol_cols": [2, 1, 1]}, massenwirkungsgesetz),
     "loeslichkeitsgleichgewichte": ({"title": "Löslichkeitsgleichgewichte", "eyebrow": "Chemie · Klasse 11 · Wahlpflicht", "accent": "#6a3fa0", "cols": [2, 1, 1], "sol_cols": [2, 1, 1]}, loeslichkeitsgleichgewichte),
     "saeuren-basen": ({"title": "Säuren und Basen nach Brønsted", "eyebrow": "Chemie · Klasse 11", "accent": "#6a3fa0", "cols": [2, 1, 1], "sol_cols": [2, 1, 1]}, saeuren_basen),
+    "ph-wert": ({"title": "Autoprotolyse des Wassers und pH-Wert", "eyebrow": "Chemie · Klasse 11", "accent": "#6a3fa0", "cols": [2, 2, 1], "sol_cols": [2, 2, 1]}, ph_wert),
     "binomische-formeln": ({"title": "Binomische Formeln", "eyebrow": "Mathematik · Klasse 8", "accent": M8, "cols": 2, "sol_cols": 2}, binomische_formeln),
     "bruchterme": ({"title": "Bruchterme", "eyebrow": "Mathematik · Klasse 8", "accent": "#2d6a4f", "cols": 3, "sol_cols": 3}, bruchterme),
     "ausmultiplizieren-faktorisieren": ({"title": "Ausmultiplizieren und Faktorisieren", "eyebrow": "Mathematik · Klasse 8", "accent": M8, "cols": 3, "sol_cols": 3}, ausmultiplizieren),

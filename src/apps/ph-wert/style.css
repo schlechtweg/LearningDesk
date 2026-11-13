@@ -1,0 +1,16 @@
+.ptab { width: 100%; border-collapse: collapse; font-size: var(--step--1); }
+.ptab th, .ptab td { padding: 6px 8px; border-bottom: 1px solid var(--line); text-align: left; overflow-wrap: anywhere; }
+.ptab th { color: var(--muted); }
+.scale { width: 100%; height: auto; display: block; }
+.scale text { font: 11px var(--font-mono); fill: var(--ink); text-anchor: middle; }
+.scale .ex { font: 11px var(--font-body); fill: var(--muted); }
+.scale .mk { fill: var(--ink); }
+.ctl input[type=range] { width: 100%; }
+.big { font-family: var(--font-display); font-size: 1.6rem; font-weight: 800; margin: 0; }
+.calc { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; align-items: end; }
+.calc label { display: grid; gap: 4px; font-size: var(--step--1); }
+.calc select, .calc input { width: 100%; }
+.bars2 { display: grid; gap: 6px; font-family: var(--font-mono); font-size: var(--step--1); }
+.bars2 div { display: grid; grid-template-columns: 70px 1fr; gap: 8px; align-items: center; }
+.bars2 i { display: block; height: 14px; border-radius: 4px; }
+@media (max-width: 560px) { .calc { grid-template-columns: 1fr; } }
