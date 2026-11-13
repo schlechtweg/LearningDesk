@@ -1,0 +1,85 @@
+  <nav class="tabs" aria-label="Bereiche">
+    <a href="#verstehen" data-view="verstehen"><span class="n">1</span>Verstehen</a>
+    <a href="#dynamisch" data-view="dynamisch"><span class="n">2</span>Dynamisches Gleichgewicht</a>
+    <a href="#verschieben" data-view="verschieben"><span class="n">3</span>Verschieben</a>
+    <a href="#ammoniak" data-view="ammoniak"><span class="n">4</span>Ammoniaksynthese</a>
+    <a href="#ueben" data-view="ueben"><span class="n">5</span>Üben</a>
+    <a href="#alltag" data-view="alltag"><span class="n">6</span>In der Natur</a>
+    <a href="#quiz" data-view="quiz"><span class="n">7</span>Quiz</a>
+  </nav>
+
+  <section class="view" id="view-verstehen">
+    <div class="einfach">
+      <span class="eyebrow">Einfach erklärt</span>
+      <p>Viele Reaktionen laufen nicht vollständig ab. Die Produkte reagieren teilweise wieder zurück. Irgendwann laufen <strong>Hin- und Rückreaktion gleich schnell</strong>: Es bilden sich pro Sekunde genauso viele Produkte, wie zerfallen. Von außen ändert sich nichts mehr, obwohl die Teilchen weiter reagieren. Das ist ein <strong>dynamisches Gleichgewicht</strong>. Man schreibt einen Doppelpfeil: A + B ⇌ C + D.</p>
+    </div>
+    <div class="grid-2">
+      <div class="panel stack"><h3>Merkmale</h3><ul class="list small"><li>Nur im <strong>geschlossenen System</strong> (nichts entweicht).</li><li>v(hin) = v(rück) ≠ 0.</li><li>Die Konzentrationen bleiben konstant, sind aber meist <strong>nicht gleich groß</strong>.</li><li>Das Gleichgewicht stellt sich von beiden Seiten ein.</li><li>Ein Katalysator beschleunigt die Einstellung, ändert aber die Lage nicht.</li></ul></div>
+      <div class="panel stack"><h3>Bild: Zwei Aquarien</h3><p class="small">Zwei Personen schöpfen mit gleich großen Bechern Wasser von einem Aquarium ins andere und zurück. Anfangs ist ein Becken voll. Mit der Zeit stellt sich ein Pegel ein, bei dem pro Durchgang gleich viel hin- und herwandert. Die Pegel bleiben, obwohl weiter geschöpft wird.</p></div>
+    </div>
+    <div class="panel stack"><h3>Prinzip von Le Chatelier</h3><p class="small">Übt man auf ein System im Gleichgewicht einen <strong>Zwang</strong> aus, verschiebt sich das Gleichgewicht so, dass der Zwang <strong>verringert</strong> wird (Prinzip vom kleinsten Zwang).</p>
+      <table class="ptab"><tr><th>Zwang</th><th>Das Gleichgewicht verschiebt sich …</th></tr>
+        <tr><td>Konzentration eines Stoffes erhöhen</td><td>weg von diesem Stoff (er wird verbraucht)</td></tr>
+        <tr><td>Produkt entfernen</td><td>zu den Produkten (es wird nachgebildet)</td></tr>
+        <tr><td>Druck erhöhen (Gase)</td><td>zur Seite mit <strong>weniger Gasteilchen</strong></td></tr>
+        <tr><td>Temperatur erhöhen</td><td>in Richtung der <strong>endothermen</strong> Reaktion</td></tr>
+        <tr><td>Temperatur senken</td><td>in Richtung der <strong>exothermen</strong> Reaktion</td></tr>
+        <tr><td>Katalysator</td><td>gar nicht, das Gleichgewicht stellt sich nur schneller ein</td></tr></table></div>
+    <div class="merksatz"><span class="eyebrow">Merke</span><p>Le Chatelier sagt nur die <strong>Richtung</strong> der Verschiebung voraus. Wie weit sie geht, berechnet man mit dem Massenwirkungsgesetz.</p></div>
+    <div class="panel stack"><h3>Typische Fehler</h3><ul class="list small"><li>„Im Gleichgewicht ist die Reaktion zu Ende“: Hin- und Rückreaktion laufen weiter.</li><li>„Im Gleichgewicht sind alle Konzentrationen gleich“: Sie sind nur konstant.</li><li>Bei der Druckregel feste Stoffe oder Flüssigkeiten mitgezählt: Nur Gasteilchen zählen.</li></ul></div>
+  </section>
+
+  <section class="view" id="view-dynamisch" hidden>
+    <div class="stack"><span class="eyebrow">Modell</span><h2>Gleichgewicht stellt sich ein</h2><p class="muted">Teilchen A (blau) werden zu B (gelb) und umgekehrt, jeweils mit einer bestimmten Wahrscheinlichkeit pro Zeitschritt. Beobachte die Anzahlen.</p></div>
+    <div class="sim-layout">
+      <div class="figure stack"><svg class="dyn" id="dSvg" viewBox="0 0 400 200" role="img" aria-label="Teilchen A und B"></svg><svg class="plot" id="dPlot" viewBox="0 0 400 180" role="img" aria-label="Anzahl A und B über die Zeit"></svg></div>
+      <div class="panel stack ctl">
+        <label for="dk1">Hinreaktion A → B: <b id="dk1V"></b> % pro Schritt</label><input type="range" id="dk1" min="1" max="20" value="6">
+        <label for="dk2">Rückreaktion B → A: <b id="dk2V"></b> % pro Schritt</label><input type="range" id="dk2" min="1" max="20" value="3">
+        <div class="btns"><button type="button" id="dStartA">Start: nur A</button><button type="button" id="dStartB">Start: nur B</button></div>
+        <p class="small" id="dText"></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="view" id="view-verschieben" hidden>
+    <div class="stack"><span class="eyebrow">Versuch</span><h2>2 NO₂ ⇌ N₂O₄ im Kolbenprober</h2><p class="muted">Braunes Stickstoffdioxid und farbloses Distickstofftetraoxid stehen im Gleichgewicht. Die Hinreaktion ist exotherm (ΔH = −57 kJ/mol). Übe einen Zwang aus und beobachte Farbe und Konzentrationen.</p></div>
+    <div class="sim-layout">
+      <div class="figure stack"><svg class="flask" id="vFlask" viewBox="0 0 200 160" role="img" aria-label="Kolbenprober mit Gasgemisch"></svg><svg class="plot" id="vPlot" viewBox="0 0 400 200" role="img" aria-label="Konzentrationen über die Zeit"></svg></div>
+      <div class="panel stack">
+        <div class="btns"><button type="button" data-z="p+">Druck erhöhen</button><button type="button" data-z="p-">Druck senken</button><button type="button" data-z="t+">Erwärmen</button><button type="button" data-z="t-">Abkühlen</button><button type="button" data-z="no2">NO₂ zugeben</button><button type="button" data-z="reset">Zurücksetzen</button></div>
+        <p class="small" id="vState"></p><p class="small" id="vText"></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="view" id="view-ammoniak" hidden>
+    <div class="stack"><span class="eyebrow">Chemie angewandt</span><h2>Ammoniaksynthese (Haber-Bosch-Verfahren)</h2><p class="muted">N₂ + 3 H₂ ⇌ 2 NH₃, ΔH = −92 kJ/mol. Wähle Druck und Temperatur. Die Tabelle zeigt den Ammoniakanteil im Gleichgewicht (Volumenprozent).</p></div>
+    <div class="panel stack"><table class="ptab heat" id="aTab"></table><p class="small" id="aText"></p></div>
+    <div class="grid-2">
+      <div class="panel stack"><h3>Der Kompromiss</h3><ul class="list small"><li><strong>Hoher Druck</strong> (≈ 200–300 bar): links 4 Gasteilchen, rechts 2, also mehr NH₃.</li><li><strong>Niedrige Temperatur</strong> wäre für die Ausbeute besser (exotherm), aber dann ist die Reaktion viel zu langsam.</li><li>Deshalb ≈ <strong>450 °C</strong> mit <strong>Eisen-Katalysator</strong>: ausreichend schnell, ordentliche Ausbeute.</li><li>Ammoniak wird <strong>herausgekühlt</strong> (verflüssigt) und das Restgas im Kreislauf zurückgeführt: Produkt entfernen verschiebt das Gleichgewicht.</li></ul></div>
+      <div class="panel stack"><h3>Bedeutung</h3><p class="small">Aus Ammoniak werden Düngemittel hergestellt. Etwa die Hälfte der Menschheit wird mit Nahrung versorgt, die mit Haber-Bosch-Dünger gewachsen ist. Das Verfahren verbraucht aber etwa 1–2 % der Weltenergie.</p></div>
+    </div>
+  </section>
+
+  <section class="view" id="view-ueben" hidden>
+    <div class="stack"><span class="eyebrow">Trainer</span><h2>Le Chatelier anwenden</h2><p class="muted">Antworte mit <code>rechts</code> (zu den Produkten), <code>links</code> (zu den Edukten) oder <code>keine</code>.</p></div>
+    <div id="trainer" class="stack"></div>
+  </section>
+
+  <section class="view" id="view-alltag" hidden>
+    <div class="stack"><span class="eyebrow">Chemie angewandt</span><h2>Gleichgewichte in der Natur</h2></div>
+    <div class="grid-2">
+      <div class="panel stack"><span class="eyebrow">Höhlen</span><h3>Tropfsteine</h3><p class="small">CaCO₃ + CO₂ + H₂O ⇌ Ca²⁺ + 2 HCO₃⁻. CO₂-reiches Wasser löst Kalk. In der Höhle entweicht CO₂, das Gleichgewicht verschiebt sich nach links und Kalk scheidet sich als Tropfstein ab.</p></div>
+      <div class="panel stack"><span class="eyebrow">Blut</span><h3>Sauerstofftransport</h3><p class="small">Hb + O₂ ⇌ HbO₂. In der Lunge (viel O₂) nach rechts, im Gewebe (wenig O₂) nach links: Der Sauerstoff wird abgegeben.</p></div>
+      <div class="panel stack"><span class="eyebrow">Getränke</span><h3>Sprudel</h3><p class="small">CO₂(g) ⇌ CO₂(aq). Beim Öffnen sinkt der Druck, CO₂ perlt aus. Warmer Sprudel verliert schneller seine Kohlensäure.</p></div>
+      <div class="panel stack"><span class="eyebrow">Meer</span><h3>Versauerung der Ozeane</h3><p class="small">Mehr CO₂ in der Luft verschiebt das Kohlensäure-Gleichgewicht im Meer. Muscheln und Korallen können schlechter Kalkschalen bilden.</p></div>
+      <div class="panel stack"><span class="eyebrow">Berg</span><h3>Höhentraining</h3><p class="small">In großer Höhe ist der O₂-Partialdruck gering. Der Körper bildet mehr Hämoglobin, um das Gleichgewicht zugunsten von HbO₂ auszugleichen.</p></div>
+      <div class="panel stack"><span class="eyebrow">Labor</span><h3>Veresterung</h3><p class="small">Säure + Alkohol ⇌ Ester + Wasser. Entfernt man das Wasser, steigt die Esterausbeute.</p></div>
+    </div>
+  </section>
+
+  <section class="view" id="view-quiz" hidden>
+    <div class="stack"><span class="eyebrow">Selbsttest</span><h2>Quiz</h2><div class="progress-line"><div class="bar" aria-hidden="true"><i id="qBar"></i></div><span class="score-line" id="qProgress"></span></div></div>
+    <div class="panel quiz" id="quizBox" aria-live="polite"></div>
+  </section>

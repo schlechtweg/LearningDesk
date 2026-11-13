@@ -3294,6 +3294,89 @@ def reaktionsgeschwindigkeit():
     return L
 
 
+def chemisches_gleichgewicht():
+    r = random.Random(209)
+    L = {1: [], 2: [], 3: []}
+    seen = set()
+    RX = [("N₂ + 3 H₂ ⇌ 2 NH₃", -1, 4, 2), ("2 SO₂ + O₂ ⇌ 2 SO₃", -1, 3, 2), ("N₂O₄ ⇌ 2 NO₂", 1, 1, 2), ("CO + H₂O(g) ⇌ CO₂ + H₂", -1, 2, 2), ("N₂ + O₂ ⇌ 2 NO", 1, 2, 2),
+          ("CaCO₃(s) ⇌ CaO(s) + CO₂(g)", 1, 0, 1), ("C(s) + CO₂ ⇌ 2 CO", 1, 1, 2), ("PCl₅ ⇌ PCl₃ + Cl₂", 1, 1, 2), ("2 NO + O₂ ⇌ 2 NO₂", -1, 3, 2), ("H₂ + I₂(g) ⇌ 2 HI", -1, 2, 2),
+          ("CH₄ + H₂O(g) ⇌ CO + 3 H₂", 1, 2, 4), ("2 H₂ + CO ⇌ CH₃OH(g)", -1, 3, 1)]
+    D = {"T+": "Temperaturerhöhung", "T-": "Temperatursenkung", "p+": "Druckerhöhung", "p-": "Drucksenkung", "addE": "Zugabe eines Edukts", "remP": "Entfernen eines Produkts", "addP": "Zugabe eines Produkts", "kat": "Zugabe eines Katalysators"}
+
+    def ans(rx, d):
+        _, dh, gl, gr = rx
+        if d == "kat":
+            return "keine Verschiebung", "Katalysator beschleunigt Hin- und Rückreaktion gleich"
+        if d in ("addE", "remP"):
+            return "nach rechts", "Edukt wird verbraucht bzw. Produkt nachgebildet"
+        if d == "addP":
+            return "nach links", "Produkt wird verbraucht"
+        if d in ("T+", "T-"):
+            right = (dh > 0) if d == "T+" else (dh < 0)
+            return ("nach rechts" if right else "nach links"), f"Hinreaktion {'exotherm' if dh < 0 else 'endotherm'}; {'Wärme begünstigt die endotherme' if d == 'T+' else 'Kälte begünstigt die exotherme'} Richtung"
+        if gl == gr:
+            return "keine Verschiebung", f"gleich viele Gasteilchen ({gl})"
+        right = (gr < gl) if d == "p+" else (gr > gl)
+        return ("nach rechts" if right else "nach links"), f"Gasteilchen {gl} → {gr}; {'weniger' if d == 'p+' else 'mehr'} Gasteilchen bevorzugt"
+
+    def add(lvl, q, a):
+        if q not in seen and len(L[lvl]) < 120:
+            seen.add(q)
+            L[lvl].append((q, a))
+    for rx in RX:
+        for d in D:
+            a, why = ans(rx, d)
+            lvl = 1 if d in ("addE", "remP", "addP", "kat", "T+", "T-") else 2
+            add(lvl, f"{rx[0]}, ΔH {'< 0' if rx[1] < 0 else '> 0'}: {D[d]}. Verschiebung?", f"<b>{a}</b> ({why})")
+
+    for rx in RX:
+        for d1, d2 in [("p+", "T-"), ("p+", "T+"), ("p-", "T+"), ("remP", "T+")]:
+            a1, _ = ans(rx, d1)
+            a2, _ = ans(rx, d2)
+            dirs = {a1, a2} - {"keine Verschiebung"}
+            res = "nicht eindeutig (Wirkungen entgegengesetzt; nur mit K berechenbar)" if len(dirs) == 2 else (dirs.pop() if dirs else "keine Verschiebung")
+            add(2, f"{rx[0]} (ΔH {'< 0' if rx[1] < 0 else '> 0'}): gleichzeitig {D[d1]} und {D[d2]}. Wirkung auf die Produktmenge?", f"{D[d1]}: {a1}; {D[d2]}: {a2} ⇒ <b>{res}</b>")
+    facts = [("Was bedeutet „dynamisches“ Gleichgewicht?", "Hin- und Rückreaktion laufen <b>weiter, gleich schnell</b>; Konzentrationen bleiben konstant"),
+             ("Welche Voraussetzung braucht ein Gleichgewicht?", "ein <b>geschlossenes System</b>"), ("Sind im Gleichgewicht alle Konzentrationen gleich?", "<b>nein</b>, sie sind nur konstant"),
+             ("Wie lautet das Prinzip von Le Chatelier?", "Ein Zwang verschiebt das Gleichgewicht so, dass der <b>Zwang verringert</b> wird"), ("Was bewirkt ein Katalysator im Gleichgewicht?", "schnellere <b>Einstellung</b>, keine Verschiebung"),
+             ("Welches Zeichen kennzeichnet eine Gleichgewichtsreaktion?", "den <b>Doppelpfeil ⇌</b>"), ("Kann sich ein Gleichgewicht von beiden Seiten einstellen?", "<b>ja</b>, aus Edukten und aus Produkten"),
+             ("Welche Stoffe zählen beim Druckeinfluss?", "nur <b>Gase</b>"), ("Was passiert beim Öffnen einer Sprudelflasche?", "Druck sinkt: CO₂(aq) → CO₂(g), es <b>perlt aus</b>"),
+             ("Bei welcher Temperatur arbeitet das Haber-Bosch-Verfahren etwa?", "etwa <b>450 °C</b>, 200–300 bar, Fe-Katalysator")]
+    for q_, a_ in facts:
+        add(1, q_, a_)
+    for rx in RX:
+        if rx[2] != rx[3]:
+            hi = "hoher" if rx[3] < rx[2] else "niedriger"
+            tt = "niedrige" if rx[1] < 0 else "hohe"
+            add(2, f"Welche Bedingungen (Druck, Temperatur) ergeben bei {rx[0]} (ΔH {'< 0' if rx[1] < 0 else '> 0'}) eine hohe Produktausbeute?", f"<b>{hi} Druck</b> ({rx[2]} → {rx[3]} Gasteilchen) und <b>{tt} Temperatur</b> ({'exotherm' if rx[1] < 0 else 'endotherm'})")
+    fixed = [
+        ("Begründe, warum beim Haber-Bosch-Verfahren nicht bei 200 °C gearbeitet wird, obwohl dort über 80 % NH₃ im Gleichgewicht vorlägen.", "Bei 200 °C ist die Reaktion selbst mit Katalysator <b>viel zu langsam</b>. 450 °C sind ein <b>Kompromiss</b> aus akzeptabler Ausbeute und Geschwindigkeit; NH₃ wird herausgekühlt, das Restgas zurückgeführt."),
+        ("Erkläre die Bildung von Tropfsteinen mit dem Gleichgewicht CaCO₃ + CO₂ + H₂O ⇌ Ca²⁺ + 2 HCO₃⁻.", "Im Boden nimmt Sickerwasser viel CO₂ auf und löst Kalk (nach rechts). In der Höhle <b>entweicht CO₂</b> aus dem Tropfen: Das Gleichgewicht verschiebt sich nach links, <b>CaCO₃ fällt aus</b>."),
+        ("Beschreibe den Versuch mit NO₂/N₂O₄ im Kolbenprober beim schnellen Zusammendrücken und erkläre die Beobachtungen.", "Zuerst wird das Gas <b>dunkler</b> (gleiche Teilchen, kleineres Volumen, höhere Konzentration), dann <b>heller</b>: Das Gleichgewicht verschiebt sich zum farblosen N₂O₄ (weniger Gasteilchen)."),
+        ("Erkläre den Sauerstofftransport im Blut mit Hb + O₂ ⇌ HbO₂.", "In der Lunge hohe O₂-Konzentration: Verschiebung <b>nach rechts</b>, O₂ wird gebunden. Im Gewebe niedrige O₂-Konzentration: <b>nach links</b>, O₂ wird abgegeben."),
+        ("Warum führt man die Veresterung Säure + Alkohol ⇌ Ester + Wasser oft unter Entfernen des Wassers durch?", "Das Entfernen eines Produkts verschiebt das Gleichgewicht <b>nach rechts</b>; die Esterausbeute steigt über den Gleichgewichtswert hinaus."),
+        ("Ein Gleichgewicht stellt sich ohne Katalysator in 2 h, mit Katalysator in 5 min ein. Vergleiche die Gleichgewichtszusammensetzungen.", "<b>Gleich</b>: Der Katalysator senkt die Aktivierungsenergie beider Richtungen gleich; er verkürzt nur die Zeit bis zum Gleichgewicht."),
+        ("Erkläre am Modell der zwei Aquarien, warum im Gleichgewicht weiter Wasser transportiert wird, die Pegel aber konstant bleiben.", "Pro Durchgang wird in beide Richtungen <b>gleich viel</b> geschöpft (v hin = v rück); die Mengen ändern sich nicht, obwohl der Austausch weiterläuft."),
+        ("Warum gelten Ozeane als CO₂-Speicher und warum versauern sie?", "CO₂(g) ⇌ CO₂(aq) und CO₂ + H₂O ⇌ H⁺ + HCO₃⁻: Steigender CO₂-Gehalt der Luft verschiebt die Gleichgewichte nach rechts; mehr H⁺: <b>pH sinkt</b>, Kalkschalen werden schlechter gebildet."),
+        ("Beim Kalkbrennen CaCO₃ ⇌ CaO + CO₂ (endotherm) arbeitet man bei 900 °C im offenen Ofen. Begründe beide Bedingungen.", "Hohe Temperatur begünstigt die <b>endotherme</b> Zersetzung; im offenen Ofen <b>entweicht CO₂</b> laufend (kein Gleichgewicht), der Kalk wird vollständig gebrannt."),
+        ("Erkläre, warum Le Chatelier vorhersagt, in welche Richtung, aber nicht wie weit sich ein Gleichgewicht verschiebt.", "Das Prinzip ist <b>qualitativ</b>; das Ausmaß folgt aus der Gleichgewichtskonstante K (<b>Massenwirkungsgesetz</b>) und hängt von den Zahlenwerten ab."),
+        ("Welche Wirkung hat eine Temperaturerhöhung auf die Gleichgewichtskonstante einer exothermen Reaktion?", "K <b>sinkt</b>: Die Produkte werden im Gleichgewicht weniger begünstigt."),
+        ("Nenne drei Maßnahmen der Ammoniakfabrik, mit denen sie die Ausbeute pro Zeit erhöht, und ordne sie Le Chatelier bzw. Kinetik zu.", "<b>Hoher Druck</b> (Le Chatelier), <b>NH₃ herauskühlen und Kreislauf</b> (Le Chatelier, Produkt entfernen), <b>Eisenkatalysator und 450 °C</b> (Kinetik, schnelle Einstellung)."),
+        ("Nutze die Tabelle: Bei 300 bar liegen bei 400 °C 47 % NH₃, bei 500 °C 26,4 % NH₃ vor. Erkläre den Unterschied und warum die Industrie trotzdem bei etwa 450 °C arbeitet.", "Die Bildung ist <b>exotherm</b>: Höhere T verschiebt nach links. Bei niedrigerer T ist die Ausbeute höher, die Reaktion aber <b>zu langsam</b>; 450 °C ist der Kompromiss."),
+        ("Bei der Synthese von Methanol 2 H₂ + CO ⇌ CH₃OH(g) (exotherm): Welche Bedingungen wählst du? Begründe.", "<b>Hoher Druck</b> (3 → 1 Gasteilchen), möglichst <b>niedrige Temperatur</b> (exotherm) mit Katalysator für ausreichende Geschwindigkeit, Methanol abtrennen."),
+        ("Zeichne qualitativ den Verlauf von v(hin) und v(rück) gegen die Zeit, wenn man mit reinen Edukten startet.", "v(hin) startet hoch und <b>fällt</b>, v(rück) startet bei 0 und <b>steigt</b>; beide Kurven laufen auf denselben Wert zu: Gleichgewicht."),
+        ("Warum stellt sich beim Kalkbrennen im offenen Ofen kein Gleichgewicht ein?", "Das gasförmige CO₂ <b>entweicht</b>; das System ist offen, die Rückreaktion findet praktisch nicht statt, die Zersetzung läuft vollständig ab."),
+        ("Ein Glas Mineralwasser wird erwärmt. Erkläre mit dem Gleichgewicht CO₂(g) ⇌ CO₂(aq), was passiert.", "Die Löslichkeit von Gasen <b>sinkt mit steigender Temperatur</b> (Lösen ist exotherm): Das Gleichgewicht verschiebt sich nach links, CO₂ perlt aus."),
+        ("Wie kann man experimentell zeigen, dass ein Gleichgewicht dynamisch ist?", "Mit <b>Isotopen-Markierung</b>: Gibt man z. B. radioaktives ¹⁴CO₂ zu einem CaCO₃/CO₂-Gleichgewicht, findet man später ¹⁴C auch im festen CaCO₃, obwohl sich die Mengen nicht ändern."),
+        ("Erkläre den Unterschied zwischen einer vollständig ablaufenden Reaktion und einer Gleichgewichtsreaktion an je einem Beispiel.", "Vollständig: z. B. Verbrennung von Methan an offener Luft (Produkte entweichen, Rückreaktion vernachlässigbar). Gleichgewicht: z. B. Veresterung im geschlossenen Kolben (Edukte und Produkte liegen nebeneinander vor)."),
+        ("Bei der Kontaktverfahren-Reaktion 2 SO₂ + O₂ ⇌ 2 SO₃ (exotherm) setzt man Luft im Überschuss ein. Warum?", "Ein <b>Edukt im Überschuss</b> verschiebt das Gleichgewicht nach rechts; das teure SO₂ wird möglichst vollständig umgesetzt."),
+    ]
+    for q_, a_ in fixed:
+        add(3, q_, a_)
+    r.shuffle(L[3])
+    return L
+
+
 M8, PH = "#1f6e8c", "#b4531f"
 TOPICS = {
     "osmose": ({"title": "Osmose", "eyebrow": "Biologie · Klasse 11", "accent": "#0d6f74", "cols": [1, 1, 1], "sol_cols": [1, 1, 1]}, osmose),
@@ -3328,6 +3411,7 @@ TOPICS = {
     "gebrauchsmetalle": ({"title": "Gebrauchsmetalle", "eyebrow": "Chemie · Klasse 11", "accent": "#6a3fa0", "cols": [2, 1, 1], "sol_cols": [2, 1, 1]}, gebrauchsmetalle),
     "komplexverbindungen": ({"title": "Komplexverbindungen", "eyebrow": "Chemie · Klasse 11 · Wahlpflicht", "accent": "#6a3fa0", "cols": [2, 2, 1], "sol_cols": [2, 2, 1]}, komplexverbindungen),
     "reaktionsgeschwindigkeit": ({"title": "Reaktionsgeschwindigkeit und Katalysatoren", "eyebrow": "Chemie · Klasse 11", "accent": "#6a3fa0", "cols": [2, 1, 1], "sol_cols": [2, 1, 1]}, reaktionsgeschwindigkeit),
+    "chemisches-gleichgewicht": ({"title": "Chemisches Gleichgewicht und Le Chatelier", "eyebrow": "Chemie · Klasse 11", "accent": "#6a3fa0", "cols": [2, 2, 1], "sol_cols": [2, 2, 1]}, chemisches_gleichgewicht),
     "binomische-formeln": ({"title": "Binomische Formeln", "eyebrow": "Mathematik · Klasse 8", "accent": M8, "cols": 2, "sol_cols": 2}, binomische_formeln),
     "bruchterme": ({"title": "Bruchterme", "eyebrow": "Mathematik · Klasse 8", "accent": "#2d6a4f", "cols": 3, "sol_cols": 3}, bruchterme),
     "ausmultiplizieren-faktorisieren": ({"title": "Ausmultiplizieren und Faktorisieren", "eyebrow": "Mathematik · Klasse 8", "accent": M8, "cols": 3, "sol_cols": 3}, ausmultiplizieren),

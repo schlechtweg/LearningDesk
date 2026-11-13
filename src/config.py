@@ -309,6 +309,14 @@ TOPICS = [
         "fonts": "base", "first_view": "verstehen", "factsheet": "Factsheet als PDF ↓",
     },
     {
+        "slug": "chemisches-gleichgewicht", "grade": "11", "subject": "chemie", "chapter": "3", "order": 2, "kit": True, "accent": ACCENT_CHEM,
+        "title": "Chemisches Gleichgewicht und Le Chatelier", "short": "Chemisches Gleichgewicht", "tag": "Gleichgewicht",
+        "card": "Dynamisches Gleichgewicht als Teilchenmodell, Prinzip von Le Chatelier, NO₂/N₂O₄-Versuch zum Ausprobieren, Ammoniaksynthese, Gleichgewichte in der Natur, Trainer, Quiz",
+        "description": "Interaktive Lernhilfe zum chemischen Gleichgewicht, zum Prinzip von Le Chatelier und zur Ammoniaksynthese (Chemie, Klasse 11)",
+        "intro": "Warum viele Reaktionen nicht vollständig ablaufen, wie man Gleichgewichte verschiebt und wie die Industrie das nutzt.",
+        "fonts": "base", "first_view": "verstehen", "factsheet": "Factsheet als PDF ↓",
+    },
+    {
         "slug": "binomische-formeln", "grade": "8", "subject": "mathematik", "chapter": "I", "order": 4,
         "title": "Binomische Formeln", "short": "Binomische Formeln", "tag": "Terme",
         "card": "Die drei Formeln, Erklärung mit Flächen, Trainer mit Lückenaufgaben, Kopfrechen-Trick, Quiz",

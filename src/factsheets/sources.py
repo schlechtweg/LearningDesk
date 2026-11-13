@@ -2345,6 +2345,37 @@ SHEETS["reaktionsgeschwindigkeit"] = dict(title="Reaktionsgeschwindigkeit und Ka
     </div>
   </div>''')
 
+SHEETS["chemisches-gleichgewicht"] = dict(title="Chemisches Gleichgewicht und Le Chatelier", eyebrow="Chemie · Klasse 11 · Chemische Gleichgewichte", accent=CH11, body=f'''
+  <div class="kern">Im <strong>dynamischen Gleichgewicht</strong> (geschlossenes System) laufen Hin- und Rückreaktion <strong>gleich schnell</strong>; die Konzentrationen bleiben konstant, sind aber nicht gleich. <strong>Le Chatelier</strong>: Ein Zwang verschiebt das Gleichgewicht so, dass der Zwang verringert wird.</div>
+  <div class="cols">
+    <div class="box full">
+      <h2>Zwänge</h2>
+      <table>
+        <tr><th>Zwang</th><th>Verschiebung</th><th>Beispiel N₂ + 3 H₂ ⇌ 2 NH₃ (exotherm)</th></tr>
+        <tr><td>Edukt zugeben / Produkt entfernen</td><td>zu den Produkten</td><td>NH₃ herauskühlen ⇒ mehr NH₃</td></tr>
+        <tr><td>Druck erhöhen</td><td>zur Seite mit weniger Gasteilchen</td><td>4 → 2: mehr NH₃</td></tr>
+        <tr><td>Temperatur erhöhen</td><td>Richtung endotherm</td><td>weniger NH₃</td></tr>
+        <tr><td>Katalysator</td><td>keine</td><td>nur schneller (Fe)</td></tr>
+      </table>
+    </div>
+    <div class="box">
+      <h2>Haber-Bosch</h2>
+      <ul><li>200–300 bar, ca. 450 °C, Fe-Katalysator</li><li>Kompromiss: Ausbeute gegen Geschwindigkeit</li><li>NH₃ auskondensieren, Kreislauf</li></ul>
+    </div>
+    <div class="box">
+      <h2>In der Natur</h2>
+      <ul><li>Tropfsteine: CO₂ entweicht</li><li>Blut: Hb + O₂ ⇌ HbO₂</li><li>Sprudel, Ozeanversauerung</li></ul>
+    </div>
+    <div class="box">
+      <h2>Versuch NO₂/N₂O₄</h2>
+      <ul><li>2 NO₂ (braun) ⇌ N₂O₄ (farblos), exotherm</li><li>Kälte, Druck: heller</li><li>Wärme: dunkler</li></ul>
+    </div>
+    <div class="box warn">
+      <h2>Typische Fehler</h2>
+      <ul><li>Gleichgewicht ≠ Stillstand.</li><li>Konzentrationen nicht gleich.</li><li>Nur Gase beim Druck zählen.</li></ul>
+    </div>
+  </div>''')
+
 OUT = sys.argv[1] if len(sys.argv) > 1 else os.path.join(os.path.dirname(__file__), "_build")
 os.makedirs(OUT, exist_ok=True)
 shutil.copyfile(os.path.join(os.path.dirname(os.path.abspath(__file__)), "factsheet.css"), os.path.join(OUT, "factsheet.css"))

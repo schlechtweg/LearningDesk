@@ -983,10 +983,29 @@ def reaktionsgeschwindigkeit():
     return {"title": "Messkurve auswerten", "stars": "★★☆", "task": (svg("0 10 270 185", g), task), "sol": (svg("0 10 270 185", sol), soltxt)}
 
 
+def chemisches_gleichgewicht():
+    # concentration-time diagram: A <=> B starting with only A, equilibrium at t = 40
+    import math as _m
+    ox, oy, ux, uy = 40, 170, 2.6, 140
+    g = arrow(ox, oy, ox + 82 * ux, oy, "arr thin") + arrow(ox, oy, ox, oy - 1.08 * uy, "arr thin") + text(ox + 82 * ux, oy + 14, "t", "ft it", "end") + text(ox + 4, oy - 1.08 * uy, "c", "ft it", "start")
+    cA = lambda t: 0.35 + 0.65 * _m.exp(-t / 10)
+    pa = "M" + " L".join(f"{ox + t * ux:.1f} {oy - cA(t) * uy:.1f}" for t in range(0, 81))
+    pb = "M" + " L".join(f"{ox + t * ux:.1f} {oy - (1 - cA(t)) * uy:.1f}" for t in range(0, 81))
+    g += f'<path class="fg" d="{pa}"/><path class="fg" d="{pb}" stroke-dasharray="6 3"/>' + text(ox + 82 * ux, oy - 0.65 * uy - 4, "B", "ft it", "end") + text(ox + 82 * ux, oy - 0.35 * uy + 14, "A", "ft it", "end")
+    sol = g + f'<line x1="{ox + 40 * ux}" y1="{oy}" x2="{ox + 40 * ux}" y2="{oy - uy}" stroke="#c0392b" stroke-width="1.5" stroke-dasharray="4 3"/>' + text(ox + 40 * ux + 4, oy - uy + 10, "Gleichgewicht", "ft tiny sol", "start")
+    task = ('<p>Das Diagramm zeigt die Reaktion A ⇌ B, gestartet mit reinem A.</p>'
+            '<p class="q">Markiere, ab wann das Gleichgewicht erreicht ist.</p>'
+            '<p class="q">Was gilt dort für v(hin) und v(rück)? <span class="blank wide"></span></p>'
+            '<p class="q">Liegt das Gleichgewicht eher auf der Seite von A oder B? <span class="blank"></span></p>')
+    soltxt = ('<p class="q">Ab etwa t ≈ 40 bleiben die Konzentrationen <b>konstant</b>.</p>'
+              '<p class="q"><b>v(hin) = v(rück) ≠ 0</b> (dynamisches Gleichgewicht).</p><p class="q">c(B) > c(A): eher auf der Seite von <b>B</b> (Produkte).</p>')
+    return {"title": "Konzentration und Zeit", "stars": "★☆☆", "task": (svg("0 10 270 185", g), task), "sol": (svg("0 10 270 185", sol), soltxt)}
+
+
 FIGS = {
     "osmose": osmose, "natrium-kalium-pumpe": nak, "symport-antiport": symport, "endocytose-exocytose": endo,
     "ableiten": ableiten, "nervensystem": nerven, "auge": auge,
-    "termstruktur": termstruktur, "zufallsexperimente": zufallsexperimente, "laplace": laplace, "baumdiagramme": baumdiagramme, "unabhaengige-ereignisse": unabhaengig, "funktionsbegriff": funktionsbegriff, "eigenschaften-funktionen": eigenschaften, "lineare-funktionen": lineare_funktionen, "funktionsgleichungen": funktionsgleichungen, "lgs-grafisch": lgs_grafisch, "gleichsetzungsverfahren": gleichsetzungsverfahren, "additionsverfahren": additionsverfahren, "lgs-anwendungen": lgs_anwendungen, "zentrische-streckung": zentrische_streckung, "aehnliche-dreiecke": aehnliche_dreiecke, "flaeche-volumen-aehnlich": flaeche_volumen_aehnlich, "strahlensaetze": strahlensaetze, "atombau": atombau, "periodensystem": periodensystem, "stoffklassen": stoffklassen, "orbitalmodell": orbitalmodell, "redoxreaktionen": redoxreaktionen, "gebrauchsmetalle": gebrauchsmetalle, "komplexverbindungen": komplexverbindungen, "reaktionsgeschwindigkeit": reaktionsgeschwindigkeit, "binomische-formeln": binom, "bruchterme": bruchterme, "ausmultiplizieren-faktorisieren": ausmult, "terme-vereinfachen": terme,
+    "termstruktur": termstruktur, "zufallsexperimente": zufallsexperimente, "laplace": laplace, "baumdiagramme": baumdiagramme, "unabhaengige-ereignisse": unabhaengig, "funktionsbegriff": funktionsbegriff, "eigenschaften-funktionen": eigenschaften, "lineare-funktionen": lineare_funktionen, "funktionsgleichungen": funktionsgleichungen, "lgs-grafisch": lgs_grafisch, "gleichsetzungsverfahren": gleichsetzungsverfahren, "additionsverfahren": additionsverfahren, "lgs-anwendungen": lgs_anwendungen, "zentrische-streckung": zentrische_streckung, "aehnliche-dreiecke": aehnliche_dreiecke, "flaeche-volumen-aehnlich": flaeche_volumen_aehnlich, "strahlensaetze": strahlensaetze, "atombau": atombau, "periodensystem": periodensystem, "stoffklassen": stoffklassen, "orbitalmodell": orbitalmodell, "redoxreaktionen": redoxreaktionen, "gebrauchsmetalle": gebrauchsmetalle, "komplexverbindungen": komplexverbindungen, "reaktionsgeschwindigkeit": reaktionsgeschwindigkeit, "chemisches-gleichgewicht": chemisches_gleichgewicht, "binomische-formeln": binom, "bruchterme": bruchterme, "ausmultiplizieren-faktorisieren": ausmult, "terme-vereinfachen": terme,
     "gleichungen": gleichungen, "ungleichungen": ungleichungen,
     "druck": druck, "hydraulik": hydraulik, "schweredruck": schweredruck, "auftrieb": auftrieb, "luftdruck": luftdruck,
 }
