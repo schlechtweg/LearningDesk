@@ -1,0 +1,861 @@
+<title>Gebrauchsmetalle werden großtechnisch hergestellt</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Interaktive Lernhilfe zur großtechnischen Herstellung von Eisen, Aluminium und Kupfer (Chemie, Klasse 11)">
+<script>try{var t=localStorage.getItem("learningdesk.theme");if(t==="dark"||t==="light")document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* LearnKit: shared layout for LearningDesk topic apps.
+   Colour tokens come in three blocks (light, dark via system, dark via switch);
+   each app sets its accent colours through config.py. */
+:root {
+  --bg: #f2f4f7;
+  --surface: #ffffff;
+  --surface-2: #e6ebf1;
+  --ink: #18222d;
+  --muted: #55626f;
+  --line: #d0d8e1;
+  --accent: #24539c;
+  --accent-ink: #ffffff;
+  --accent-soft: rgba(36, 83, 156, 0.12);
+  --c1: #2f5fb3;
+  --c2: #c4561c;
+  --c3: #3d8a4c;
+  --c4: #8e44ad;
+  --good: #1f7f4b;
+  --good-soft: rgba(31, 127, 75, 0.12);
+  --bad: #b5372e;
+  --bad-soft: rgba(181, 55, 46, 0.10);
+  --font-display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --font-body: "Atkinson Hyperlegible", "Segoe UI", system-ui, sans-serif;
+  --font-math: "STIX Two Text", "Cambria Math", "Times New Roman", serif;
+  --font-mono: "JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
+  --step--1: 0.875rem;
+  --step-0: 1.0625rem;
+  --step-1: 1.25rem;
+  --step-2: 1.6rem;
+  --step-3: 2.3rem;
+  --radius: 10px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0f1419; --surface: #161e26; --surface-2: #1e2832; --ink: #e4ebf1; --muted: #98a7b5; --line: #2b3946;
+    --accent-ink: #0b1220; --c1: #7ea6f0; --c2: #f09a5e; --c3: #6fc47f; --c4: #c39bdf;
+    --good: #5fd194; --good-soft: rgba(95, 209, 148, 0.14); --bad: #f07a70; --bad-soft: rgba(240, 122, 112, 0.14);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0f1419; --surface: #161e26; --surface-2: #1e2832; --ink: #e4ebf1; --muted: #98a7b5; --line: #2b3946;
+  --accent-ink: #0b1220; --c1: #7ea6f0; --c2: #f09a5e; --c3: #6fc47f; --c4: #c39bdf;
+  --good: #5fd194; --good-soft: rgba(95, 209, 148, 0.14); --bad: #f07a70; --bad-soft: rgba(240, 122, 112, 0.14);
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+body {
+  background: var(--bg); color: var(--ink);
+  font-family: var(--font-body); font-size: var(--step-0); line-height: 1.6;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 0 48px;
+}
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--bg); }
+.wrap { max-width: 980px; margin: 0 auto; }
+h1, h2, h3 { font-family: var(--font-display); line-height: 1.15; text-wrap: balance; margin: 0; }
+h1 { font-size: var(--step-3); font-weight: 800; letter-spacing: -0.02em; overflow-wrap: break-word; hyphens: auto; }
+h2 { font-size: var(--step-2); font-weight: 700; }
+h3 { font-size: var(--step-1); font-weight: 700; }
+p { margin: 0; max-width: 70ch; }
+.muted { color: var(--muted); }
+.small { font-size: var(--step--1); }
+.eyebrow { font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); }
+.c1 { color: var(--c1); font-weight: 700; } .c2 { color: var(--c2); font-weight: 700; } .c3 { color: var(--c3); font-weight: 700; } .c4 { color: var(--c4); font-weight: 700; }
+
+/* Header and tabs */
+header.top { padding-block: 28px 8px; display: grid; gap: 6px; }
+header.top p { color: var(--muted); }
+nav.tabs { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--bg); display: flex; gap: 6px; overflow-x: auto; padding-block: 12px; margin-bottom: 8px; border-bottom: 1px solid var(--line); }
+nav.tabs a { flex: 0 0 auto; text-decoration: none; color: var(--ink); font-weight: 700; padding: 8px 14px; border-radius: 999px; border: 1px solid var(--line); background: var(--surface); font-size: var(--step--1); }
+nav.tabs a .n { font-family: var(--font-mono); color: var(--muted); margin-right: 6px; font-weight: 400; }
+nav.tabs a[aria-current="page"] { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+nav.tabs a[aria-current="page"] .n { color: var(--accent-ink); opacity: 0.75; }
+a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible { outline: 3px solid var(--c2); outline-offset: 2px; }
+
+/* Layout blocks */
+section.view { display: grid; gap: 28px; padding-top: 16px; }
+.stack { display: grid; gap: 12px; }
+.panel { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 20px; min-width: 0; }
+.grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; align-items: start; }
+.grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 16px; align-items: start; }
+.merksatz { border-left: 4px solid var(--accent); background: var(--surface); padding: 16px 20px; border-radius: 0 var(--radius) var(--radius) 0; display: grid; gap: 4px; }
+.merksatz .eyebrow { display: block; margin-bottom: 4px; }
+.merksatz p { font-family: var(--font-display); font-size: var(--step-1); font-weight: 500; line-height: 1.35; }
+.einfach { background: var(--surface-2); border-radius: var(--radius); padding: 16px 20px; display: grid; gap: 8px; }
+.formel { font-family: var(--font-math); font-size: 1.5rem; line-height: 1.6; }
+ul.list, ol.list { margin: 0; padding-left: 1.2em; display: grid; gap: 8px; max-width: 70ch; }
+.sim-layout { display: grid; grid-template-columns: minmax(0, 1fr) 300px; gap: 16px; align-items: start; }
+@media (max-width: 800px) { .sim-layout { grid-template-columns: 1fr; } }
+.figure { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 10px; min-width: 0; }
+.figure svg { width: 100%; height: auto; display: block; }
+.table-scroll { overflow-x: auto; }
+table.data { width: 100%; border-collapse: collapse; font-size: var(--step--1); }
+table.data th, table.data td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--line); vertical-align: top; overflow-wrap: anywhere; hyphens: auto; }
+table.data th { font-family: var(--font-display); font-size: var(--step-0); }
+table.data td.num, table.data th.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+details.profi { border: 1px dashed var(--line); border-radius: var(--radius); padding: 12px 16px; background: var(--surface); }
+details.profi summary { cursor: pointer; font-weight: 700; font-size: var(--step--1); }
+details.profi[open] summary { margin-bottom: 8px; }
+details.profi p, details.profi li { font-size: var(--step--1); }
+
+/* Math typesetting */
+.math { font-family: var(--font-math); font-size: 1.12em; }
+.math i { font-style: italic; }
+.math sup { font-size: 0.7em; line-height: 0; }
+.frac { display: inline-flex; flex-direction: column; vertical-align: middle; text-align: center; margin: 0 2px; line-height: 1.2; font-size: 0.95em; }
+.frac > span { padding: 0 3px; }
+.frac > span:first-child { border-bottom: 1.5px solid currentColor; }
+.unit { font-family: var(--font-body); font-style: normal; font-size: 0.92em; }
+
+/* Controls */
+button, .btn { font: inherit; font-weight: 700; font-size: var(--step--1); cursor: pointer; text-decoration: none; display: inline-block; padding: 9px 16px; border-radius: 8px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); }
+button:hover, .btn:hover { border-color: var(--accent); }
+button.primary, .btn.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+button[aria-pressed="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+button:disabled { opacity: 0.5; cursor: default; }
+.row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+select, input[type="text"] { font: inherit; padding: 8px 10px; border-radius: 8px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); min-width: 0; max-width: 100%; }
+input[type="text"] { font-family: var(--font-mono); }
+input[type="range"] { width: 100%; accent-color: var(--accent); }
+label.lbl { display: flex; justify-content: space-between; gap: 8px; font-weight: 700; font-size: var(--step--1); }
+label.lbl output, label.lbl .val { font-family: var(--font-mono); font-weight: 400; }
+.controls { display: grid; gap: 14px; align-content: start; }
+.readout { display: grid; grid-template-columns: 1fr auto; gap: 4px 12px; font-size: var(--step--1); margin: 0; }
+.readout dt { color: var(--muted); }
+.readout dd { margin: 0; font-family: var(--font-mono); font-variant-numeric: tabular-nums; text-align: right; }
+.readout dd.big { font-size: 1.15rem; font-weight: 600; color: var(--accent); }
+.status-box { padding: 12px 14px; border-radius: 8px; background: var(--surface-2); font-size: var(--step--1); }
+
+/* Trainer */
+.modes { display: flex; flex-wrap: wrap; gap: 6px; }
+.task { font-size: var(--step-0); line-height: 1.7; }
+.task .math { font-size: 1.35em; }
+.answer-row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.answer-row input { flex: 1 1 220px; font-size: var(--step-0); }
+.answer-row label { white-space: nowrap; }
+.hint { font-size: var(--step--1); color: var(--muted); }
+.hint code, .feedback code { font-family: var(--font-mono); background: var(--surface-2); padding: 1px 5px; border-radius: 4px; }
+.feedback { padding: 14px 16px; border-radius: 8px; background: var(--surface-2); display: grid; gap: 8px; }
+.feedback ol { margin: 0; padding-left: 1.3em; display: grid; gap: 6px; }
+b.ok { color: var(--good); } b.no { color: var(--bad); }
+.score-line { font-family: var(--font-mono); font-size: var(--step--1); color: var(--muted); }
+
+/* Equation lab */
+.lab-eq { font-family: var(--font-math); font-size: 1.9rem; text-align: center; padding: 10px 4px; overflow-x: auto; }
+.lab-log { margin: 0; padding: 0; list-style: none; display: grid; gap: 2px; font-family: var(--font-math); font-size: 1.15rem; }
+.lab-log li { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 12px; padding: 4px 8px; border-bottom: 1px solid var(--line); }
+.lab-log li .op { font-family: var(--font-mono); font-size: 0.85rem; color: var(--accent); align-self: center; white-space: nowrap; }
+.lab-log li.flip .op { color: var(--bad); }
+.lab-msg.ok { color: var(--good); font-weight: 700; }
+.lab-msg.no { color: var(--bad); }
+
+/* Quiz */
+.progress-line { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+.bar { flex: 1 1 200px; height: 8px; background: var(--surface-2); border-radius: 999px; overflow: hidden; }
+.bar i { display: block; height: 100%; background: var(--accent); width: 0; transition: width 0.3s; }
+.quiz { display: grid; gap: 16px; }
+.quiz .qtext { font-family: var(--font-display); font-size: var(--step-1); font-weight: 700; line-height: 1.3; }
+.quiz .opts { display: grid; gap: 8px; }
+.quiz .opts button { text-align: left; font-weight: 400; font-size: var(--step-0); padding: 12px 16px; display: flex; gap: 12px; align-items: center; }
+.quiz .opts button .k { font-family: var(--font-mono); color: var(--muted); }
+.quiz .opts button.right { border-color: var(--good); background: var(--good-soft); }
+.quiz .opts button.wrong { border-color: var(--bad); background: var(--bad-soft); }
+.score-big { font-family: var(--font-display); font-size: 3.2rem; font-weight: 800; line-height: 1; }
+
+/* Prediction cards ("Was passiert, wenn ...") */
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
+.card { display: grid; gap: 10px; align-content: start; }
+.card .ctx { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+.card .opts { display: grid; gap: 6px; }
+.card .opts button { text-align: left; font-weight: 400; }
+.card .opts button.right { border-color: var(--good); background: var(--good-soft); font-weight: 700; }
+.card .opts button.wrong { border-color: var(--bad); background: var(--bad-soft); }
+.card .answer { font-size: var(--step--1); padding: 12px; border-radius: 8px; background: var(--surface-2); }
+
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+</style>
+<style>
+:root { --accent: #6a3fa0; --accent-soft: rgba(106, 63, 160, 0.12); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --accent: #b79be0; } }
+:root[data-theme="dark"] { --accent: #b79be0; }
+</style>
+<style>
+.ptab { width: 100%; border-collapse: collapse; font-size: var(--step--1); }
+.ptab th, .ptab td { padding: 6px 8px; border-bottom: 1px solid var(--line); text-align: left; overflow-wrap: anywhere; }
+.ptab th { color: var(--muted); }
+.scene { width: 100%; height: auto; display: block; max-height: 460px; }
+.scene .zone { cursor: pointer; stroke: #56626d; stroke-width: 1.2; transition: opacity .2s; }
+.scene .zone:hover, .scene .zone.on { opacity: .75; stroke-width: 3; stroke: var(--ink); }
+.scene text { font: 12px var(--font-body); fill: #15232d; pointer-events: none; }
+.scene .t { font-weight: 700; }
+.scene .wall { fill: #8a8f96; }
+.scene .arr { stroke: #56626d; stroke-width: 2; fill: none; }
+.eq { font-family: var(--font-mono); font-size: 0.95rem; overflow-wrap: anywhere; }
+.calc { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.calc select, .calc input { width: 100%; }
+.big { font-family: var(--font-display); font-size: 1.8rem; font-weight: 800; margin: 0; }
+</style>
+<style>
+nav.crumbs ol { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 2px 6px; font-size: 0.85rem; line-height: 1.5; }
+nav.crumbs li { display: inline-flex; align-items: center; gap: 6px; min-width: 0; }
+nav.crumbs li + li::before { content: "›"; color: var(--muted); }
+nav.crumbs a { color: var(--accent); text-decoration: none; font-weight: 700; }
+nav.crumbs a:hover { text-decoration: underline; }
+nav.crumbs [aria-current] { color: var(--muted); }
+header.has-theme-toggle { position: relative; padding-right: 54px; }
+.theme-toggle { position: absolute; top: 18px; right: 0; width: 40px; height: 40px; border-radius: 999px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); font-size: 18px; line-height: 1; cursor: pointer; display: grid; place-items: center; padding: 0; }
+header:not(.top) > .theme-toggle { top: 0; }
+.theme-toggle:hover { border-color: var(--accent, currentColor); }
+.theme-toggle:focus-visible { outline: 3px solid var(--accent, currentColor); outline-offset: 2px; }
+
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <nav class="crumbs" aria-label="Brotkrümelnavigation"><ol><li><a href="https://schlechtweg.github.io/LearningDesk/index.html">LearningDesk</a></li><li><a href="https://schlechtweg.github.io/LearningDesk/klasse-11.html">Klasse 11</a></li><li><a href="https://schlechtweg.github.io/LearningDesk/klasse-11.html#chemie">Chemie</a></li><li><a href="#verstehen">Gebrauchsmetalle werden großtechnisch hergestellt</a></li><li data-crumb-section hidden><span aria-current="location"></span></li></ol></nav>
+    <h1>Gebrauchsmetalle werden großtechnisch hergestellt</h1>
+    <p>Wie Eisen, Aluminium und Kupfer aus Erzen gewonnen werden und warum das immer eine Reduktion ist.</p>
+    <p style="display:flex; flex-wrap:wrap; gap:8px"><a class="btn" href="https://schlechtweg.github.io/LearningDesk/factsheets/gebrauchsmetalle.pdf" target="_blank" rel="noopener">Factsheet als PDF ↓</a><a class="btn" href="https://schlechtweg.github.io/LearningDesk/aufgaben/gebrauchsmetalle.pdf" target="_blank" rel="noopener">Übungsaufgaben als PDF ↓</a></p>
+  </header>
+  <nav class="tabs" aria-label="Bereiche">
+    <a href="#verstehen" data-view="verstehen"><span class="n">1</span>Verstehen</a>
+    <a href="#hochofen" data-view="hochofen"><span class="n">2</span>Hochofen</a>
+    <a href="#elektrolyse" data-view="elektrolyse"><span class="n">3</span>Elektrolyse</a>
+    <a href="#rechnen" data-view="rechnen"><span class="n">4</span>Rechnen</a>
+    <a href="#ueben" data-view="ueben"><span class="n">5</span>Üben</a>
+    <a href="#alltag" data-view="alltag"><span class="n">6</span>Im Alltag</a>
+    <a href="#quiz" data-view="quiz"><span class="n">7</span>Quiz</a>
+  </nav>
+
+  <section class="view" id="view-verstehen">
+    <div class="einfach">
+      <span class="eyebrow">Einfach erklärt</span>
+      <p>In der Natur kommen die meisten Metalle nicht rein vor, sondern als <strong>Erze</strong>, also Oxide, Sulfide oder Carbonate. Darin sind die Metalle Kationen. Um das Metall zu gewinnen, muss man es <strong>reduzieren</strong>: Die Metall-Ionen müssen Elektronen zurückbekommen.</p>
+    </div>
+    <div class="panel stack">
+      <h3>Welches Verfahren für welches Metall?</h3>
+      <table class="ptab">
+        <tr><th>Metall</th><th>Erz</th><th>Reduktion mit</th><th>Warum?</th></tr>
+        <tr><td>Gold, Silber</td><td>oft gediegen (rein)</td><td>kaum nötig</td><td>sehr edel</td></tr>
+        <tr><td>Kupfer</td><td>Kupferkies CuFeS₂</td><td>Rösten, dann elektrolytische Reinigung</td><td>edel, leicht zu reduzieren</td></tr>
+        <tr><td>Eisen, Zink</td><td>Hämatit Fe₂O₃, Zinkblende ZnS</td><td><strong>Kohlenstoff / CO</strong> (Hochofen)</td><td>mittlere Stellung in der Redoxreihe</td></tr>
+        <tr><td>Aluminium, Magnesium, Natrium</td><td>Bauxit (Al₂O₃), Salze</td><td><strong>Elektrolyse</strong> (Strom)</td><td>sehr unedel, Kohlenstoff reicht nicht</td></tr>
+      </table>
+      <p class="small">Faustregel: Je <strong>unedler</strong> ein Metall ist, desto fester hält es an seinem Partner fest und desto <strong>mehr Energie</strong> braucht die Gewinnung.</p>
+    </div>
+    <div class="grid-2">
+      <div class="panel stack"><h3>Eisen: der Hochofen</h3><p class="small">Koks verbrennt zu CO. Kohlenstoffmonooxid reduziert das Eisenoxid: <span class="eq">Fe₂O₃ + 3 CO → 2 Fe + 3 CO₂</span>. Heraus kommt <strong>Roheisen</strong> mit etwa 4 % Kohlenstoff. Beim <strong>Frischen</strong> wird Sauerstoff eingeblasen, der den Kohlenstoff verbrennt: Aus Roheisen wird <strong>Stahl</strong>.</p></div>
+      <div class="panel stack"><h3>Aluminium: Schmelzflusselektrolyse</h3><p class="small">Aluminiumoxid wird in geschmolzenem Kryolith gelöst (senkt die Schmelztemperatur von 2050 °C auf etwa 950 °C). Strom zwingt die Al³⁺-Ionen, Elektronen aufzunehmen: <span class="eq">Al³⁺ + 3 e⁻ → Al</span>. Sehr energieaufwendig: etwa 13 kWh pro kg.</p></div>
+    </div>
+    <div class="merksatz"><span class="eyebrow">Merke</span><p>Metallgewinnung ist immer eine <strong>Reduktion</strong> der Metall-Ionen. Das Reduktionsmittel muss unedler sein als das Metall, sonst braucht man den elektrischen Strom.</p></div>
+    <div class="panel stack"><h3>Typische Fehler</h3><ul class="list small"><li>„Eisen wird im Hochofen oxidiert“: Das Eisenoxid wird reduziert, CO wird oxidiert.</li><li>Roheisen und Stahl verwechselt: Stahl enthält höchstens etwa 2 % Kohlenstoff.</li><li>Aluminium mit Kohlenstoff reduzieren wollen: Aluminium ist dafür zu unedel.</li></ul></div>
+  </section>
+
+  <section class="view" id="view-hochofen" hidden>
+    <div class="stack"><span class="eyebrow">Interaktiv</span><h2>Im Hochofen</h2><p class="muted">Tippe auf eine Zone. Oben werden Erz, Koks und Kalk eingefüllt, unten wird heiße Luft eingeblasen.</p></div>
+    <div class="sim-layout">
+      <div class="figure"><svg class="scene" id="hSvg" viewBox="0 0 300 420" role="img" aria-label="Querschnitt eines Hochofens"></svg></div>
+      <div class="panel stack"><h3 id="hTitle"></h3><p class="eq" id="hEq"></p><p class="small" id="hText"></p></div>
+    </div>
+  </section>
+
+  <section class="view" id="view-elektrolyse" hidden>
+    <div class="stack"><span class="eyebrow">Strom als Reduktionsmittel</span><h2>Elektrolyse</h2><p class="muted">Bei der Elektrolyse erzwingt eine Spannungsquelle die Redoxreaktion. Am Minuspol (Kathode) werden Elektronen aufgenommen (Reduktion), am Pluspol (Anode) abgegeben (Oxidation).</p></div>
+    <div class="grid-2">
+      <div class="panel stack"><h3>Aluminium (Schmelzflusselektrolyse)</h3><svg class="scene" viewBox="0 0 260 200" aria-hidden="true"><rect x="20" y="60" width="220" height="120" fill="#f2d9b8" stroke="#56626d"/><rect x="20" y="150" width="220" height="30" fill="#c5c9ce"/><rect x="60" y="20" width="30" height="85" fill="#3b3f44"/><rect x="170" y="20" width="30" height="85" fill="#3b3f44"/><text x="130" y="132" text-anchor="middle">Al₂O₃ in Kryolith (950 °C)</text><text x="130" y="170" text-anchor="middle">flüssiges Aluminium = Kathode (−)</text><text x="75" y="15" text-anchor="middle">Anode (+)</text><text x="185" y="15" text-anchor="middle">Anode (+)</text></svg>
+        <p class="eq">Kathode (−): Al³⁺ + 3 e⁻ → Al<br>Anode (+): 2 O²⁻ → O₂ + 4 e⁻ (O₂ verbrennt die Kohleanoden zu CO₂)<br>Gesamt: 2 Al₂O₃ → 4 Al + 3 O₂</p></div>
+      <div class="panel stack"><h3>Kupfer-Raffination</h3><svg class="scene" viewBox="0 0 260 200" aria-hidden="true"><rect x="20" y="50" width="220" height="130" fill="#cfe4f6" stroke="#56626d"/><rect x="55" y="20" width="22" height="140" fill="#b87333"/><rect x="183" y="20" width="10" height="140" fill="#d38a4a"/><text x="66" y="15" text-anchor="middle">Rohkupfer (+)</text><text x="188" y="15" text-anchor="middle">Reinkupfer (−)</text><text x="30" y="175">Anodenschlamm (Ag, Au)</text><path class="arr" d="M90 110 H170 M162 104 L170 110 L162 116"/><text x="130" y="100" text-anchor="middle">Cu²⁺</text></svg>
+        <p class="eq">Anode (+): Cu → Cu²⁺ + 2 e⁻<br>Kathode (−): Cu²⁺ + 2 e⁻ → Cu</p>
+        <p class="small">Unedlere Verunreinigungen (Zn, Fe) bleiben als Ionen gelöst, edlere (Ag, Au) fallen als <strong>Anodenschlamm</strong> herunter und werden verkauft. So entsteht Kupfer mit 99,99 % Reinheit.</p></div>
+    </div>
+  </section>
+
+  <section class="view" id="view-rechnen" hidden>
+    <div class="stack"><span class="eyebrow">Stöchiometrie</span><h2>Wie viel Metall steckt im Erz?</h2><p class="muted">Wähle ein Erz und eine Masse. Die App rechnet über die Stoffmenge n = m / M.</p></div>
+    <div class="panel stack"><div class="calc"><select id="cOre" aria-label="Erz"></select><input id="cMass" type="number" min="1" step="1" value="1000" aria-label="Masse in kg"></div><p class="big" id="cOut"></p><ol class="list small" id="cSteps"></ol></div>
+  </section>
+
+  <section class="view" id="view-ueben" hidden>
+    <div class="stack"><span class="eyebrow">Trainer</span><h2>Metallgewinnung üben</h2><p class="muted">Massen auf ganze kg oder eine Nachkommastelle runden.</p></div>
+    <div id="trainer" class="stack"></div>
+  </section>
+
+  <section class="view" id="view-alltag" hidden>
+    <div class="stack"><span class="eyebrow">Im Alltag</span><h2>Wohin mit den Althandys?</h2></div>
+    <div class="grid-2">
+      <div class="panel stack"><span class="eyebrow">Recycling</span><h3>Urban Mining</h3><p class="small">Eine Tonne Althandys enthält etwa 250 g Gold, eine Tonne Golderz nur etwa 5 g. Altgeräte sind eine reiche „Mine“ in der Stadt.</p></div>
+      <div class="panel stack"><span class="eyebrow">Energie</span><h3>Aluminium recyceln</h3><p class="small">Altaluminium einzuschmelzen braucht nur etwa 5 % der Energie der Elektrolyse. Jede Getränkedose zählt.</p></div>
+      <div class="panel stack"><span class="eyebrow">Industrie</span><h3>Grüner Stahl</h3><p class="small">Statt Koks soll Wasserstoff das Eisenoxid reduzieren: Fe₂O₃ + 3 H₂ → 2 Fe + 3 H₂O. Dann entsteht Wasser statt CO₂.</p></div>
+      <div class="panel stack"><span class="eyebrow">Thermit</span><h3>Schienen schweißen</h3><p class="small">Aluminium reduziert Eisenoxid so heftig, dass flüssiges Eisen entsteht: Fe₂O₃ + 2 Al → 2 Fe + Al₂O₃.</p></div>
+      <div class="panel stack"><span class="eyebrow">Kupfer</span><h3>Kabel und Leitungen</h3><p class="small">Für Stromkabel braucht man sehr reines Kupfer, denn schon Spuren anderer Metalle verschlechtern die Leitfähigkeit. Deshalb die Raffination.</p></div>
+      <div class="panel stack"><span class="eyebrow">Umwelt</span><h3>Bergbau</h3><p class="small">Für 1 t Kupfer müssen etwa 100 t Gestein bewegt werden. Recycling schont Landschaft und Klima.</p></div>
+    </div>
+  </section>
+
+  <section class="view" id="view-quiz" hidden>
+    <div class="stack"><span class="eyebrow">Selbsttest</span><h2>Quiz</h2><div class="progress-line"><div class="bar" aria-hidden="true"><i id="qBar"></i></div><span class="score-line" id="qProgress"></span></div></div>
+    <div class="panel quiz" id="quizBox" aria-live="polite"></div>
+  </section>
+</div>
+
+<script>
+/* LearnKit: shared building blocks for LearningDesk topic apps.
+   Exposes window.LK with: DOM helpers, number/expression parsing, rationals,
+   views (tab routing), quiz, trainer (task generators + checkers),
+   prediction cards and the equation lab for equations and inequalities. */
+(function () {
+  "use strict";
+  const $ = (s, r = document) => r.querySelector(s);
+  const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
+  const store = {
+    get(k) { try { return JSON.parse(localStorage.getItem(k)); } catch (e) { return null; } },
+    set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) { /* storage unavailable */ } }
+  };
+  const rnd = (a, b) => a + Math.floor(Math.random() * (b - a + 1));
+  const pick = (a) => a[Math.floor(Math.random() * a.length)];
+  const nz = (a, b) => { let v = 0; while (v === 0) v = rnd(a, b); return v; };
+  function shuffle(a) { const b = a.slice(); for (let i = b.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [b[i], b[j]] = [b[j], b[i]]; } return b; }
+  const gcd = (a, b) => { a = Math.abs(a); b = Math.abs(b); while (b) [a, b] = [b, a % b]; return a; };
+  const esc = (s) => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  const minus = (s) => String(s).replace(/-/g, "−");
+  const frac = (n, d) => `<span class="frac"><span>${n}</span><span>${d}</span></span>`;
+
+  // ---------- numbers ----------
+  // German formatting with at most d decimals
+  function fmt(v, d = 2) {
+    if (!isFinite(v)) return "–";
+    const r = Math.round(v * 10 ** d) / 10 ** d || 0;
+    return minus(r.toLocaleString("de-DE", { maximumFractionDigits: d }));
+  }
+  // accepts "3,5", "-2", "7/2", "x = 4", "1.013,25"
+  function parseNum(raw) {
+    let s = String(raw).trim().replace(/\s+/g, "").replace(/[−–]/g, "-").replace(/^[a-zA-Z]+=/, "");
+    if (s.includes(",") && s.includes(".")) s = s.replace(/\./g, "");
+    else if (/^-?\d{1,3}(\.\d{3})+$/.test(s)) s = s.replace(/\./g, ""); // German thousands separator: 1.013
+    s = s.replace(",", ".");
+    const m = s.match(/^(-?\d+(?:\.\d+)?)\/(-?\d+(?:\.\d+)?)$/);
+    if (m) return Number(m[1]) / Number(m[2]);
+    if (!/^-?(\d+\.?\d*|\.\d+)(e-?\d+)?$/i.test(s)) return NaN;
+    return Number(s);
+  }
+
+  // ---------- rationals ----------
+  class R {
+    constructor(n, d = 1) {
+      if (d === 0) throw new Error("Division durch 0");
+      if (d < 0) { n = -n; d = -d; }
+      const g = gcd(n, d) || 1; this.n = n / g; this.d = d / g;
+    }
+    static of(x) { if (x instanceof R) return x; if (Number.isInteger(x)) return new R(x); const k = 1e6; return new R(Math.round(x * k), k); }
+    add(o) { o = R.of(o); return new R(this.n * o.d + o.n * this.d, this.d * o.d); }
+    sub(o) { o = R.of(o); return new R(this.n * o.d - o.n * this.d, this.d * o.d); }
+    mul(o) { o = R.of(o); return new R(this.n * o.n, this.d * o.d); }
+    div(o) { o = R.of(o); return new R(this.n * o.d, this.d * o.n); }
+    neg() { return new R(-this.n, this.d); }
+    isZero() { return this.n === 0; }
+    eq(o) { o = R.of(o); return this.n === o.n && this.d === o.d; }
+    val() { return this.n / this.d; }
+    sign() { return Math.sign(this.n); }
+    abs() { return new R(Math.abs(this.n), this.d); }
+    text() { return this.d === 1 ? String(this.n) : `${this.n}/${this.d}`; }
+    html() { const a = Math.abs(this.n); const body = this.d === 1 ? String(a) : frac(a, this.d); return (this.n < 0 ? "−" : "") + body; }
+  }
+  // a·x + b as HTML, e.g. "3x − 2", "−x", "5"
+  function linHtml(x, c, v = "x") {
+    x = R.of(x); c = R.of(c);
+    const vx = `<i>${v}</i>`;
+    let s = "";
+    if (!x.isZero()) {
+      const a = x.abs();
+      s = (x.sign() < 0 ? "−" : "") + (a.eq(1) ? "" : a.html()) + vx;
+    }
+    if (!c.isZero() || !s) {
+      if (!s) s = c.html();
+      else s += (c.sign() < 0 ? " − " : " + ") + c.abs().html();
+    }
+    return s;
+  }
+
+  // ---------- polynomials: terms are {c: coefficient, v: {x: 2, y: 1}} ----------
+  function monoParts(v) {
+    const keys = Object.keys(v || {}).filter((k) => v[k] > 0).sort();
+    return { vh: keys.map((k) => `<i>${k}</i>` + (v[k] > 1 ? `<sup>${v[k]}</sup>` : "")).join(""), vt: keys.map((k) => k + (v[k] > 1 ? "^" + v[k] : "")).join("") };
+  }
+  function poly(terms) {
+    let h = "", t = "";
+    terms.filter((m) => m.c !== 0).forEach((m, i) => {
+      const { vh, vt } = monoParts(m.v), a = Math.abs(m.c);
+      const ch = a === 1 && vh ? "" : fmt(a, 4), ct = a === 1 && vt ? "" : String(a);
+      if (i === 0) { h += (m.c < 0 ? "−" : "") + ch + vh; t += (m.c < 0 ? "-" : "") + ct + vt; }
+      else { h += (m.c < 0 ? " − " : " + ") + ch + vh; t += (m.c < 0 ? "-" : "+") + ct + vt; }
+    });
+    return h ? { html: h, text: t } : { html: "0", text: "0" };
+  }
+  const polyFn = (terms) => (e) => terms.reduce((s, m) => s + m.c * Object.entries(m.v || {}).reduce((p, [k, ex]) => p * Math.pow(e[k], ex), 1), 0);
+  // collect like terms: returns new term list sorted by degree
+  function collect(terms) {
+    const map = new Map();
+    terms.forEach((m) => { const key = monoParts(m.v).vt; const cur = map.get(key); if (cur) cur.c += m.c; else map.set(key, { c: m.c, v: { ...(m.v || {}) } }); });
+    const deg = (m) => Object.values(m.v).reduce((a, b) => a + b, 0);
+    return [...map.values()].filter((m) => m.c !== 0).sort((a, b) => deg(b) - deg(a) || monoParts(a.v).vt.localeCompare(monoParts(b.v).vt));
+  }
+
+  // ---------- expressions ----------
+  // single-letter variables, implicit multiplication, ^, ², ³, ·, ×, :, ÷, decimal comma
+  function parse(src) {
+    const s = String(src).toLowerCase().replace(/\s+/g, "").replace(/[−–]/g, "-").replace(/[·⋅×]/g, "*").replace(/[:÷]/g, "/")
+      .replace(/²/g, "^2").replace(/³/g, "^3").replace(/(\d),(\d)/g, "$1.$2");
+    if (!s) throw new Error("leer");
+    const toks = [];
+    for (let i = 0; i < s.length;) {
+      const ch = s[i];
+      if (/[0-9.]/.test(ch)) { let j = i; while (j < s.length && /[0-9.]/.test(s[j])) j++; const n = parseFloat(s.slice(i, j)); if (isNaN(n)) throw new Error("Zahl"); toks.push({ t: "num", v: n }); i = j; continue; }
+      if ("+-*/^()".includes(ch)) { toks.push({ t: ch }); i++; continue; }
+      if (/[a-z]/.test(ch)) { toks.push({ t: "var", v: ch }); i++; continue; }
+      throw new Error("Zeichen");
+    }
+    let p = 0;
+    const peek = () => toks[p];
+    const starts = (tk) => tk && (tk.t === "num" || tk.t === "var" || tk.t === "(");
+    function expr() { let a = term(); while (peek() && (peek().t === "+" || peek().t === "-")) { const op = toks[p++].t, b = term(), l = a; a = op === "+" ? (e) => l(e) + b(e) : (e) => l(e) - b(e); } return a; }
+    function term() {
+      let a = unary();
+      for (;;) {
+        const tk = peek();
+        if (tk && (tk.t === "*" || tk.t === "/")) { p++; const b = unary(), l = a; a = tk.t === "*" ? (e) => l(e) * b(e) : (e) => l(e) / b(e); }
+        else if (starts(tk)) { const b = power(), l = a; a = (e) => l(e) * b(e); }
+        else break;
+      }
+      return a;
+    }
+    function unary() { const tk = peek(); if (tk && tk.t === "-") { p++; const a = unary(); return (e) => -a(e); } if (tk && tk.t === "+") { p++; return unary(); } return power(); }
+    function power() { const b = primary(); if (peek() && peek().t === "^") { p++; const ex = unary(); return (e) => Math.pow(b(e), ex(e)); } return b; }
+    function primary() {
+      const tk = toks[p++];
+      if (!tk) throw new Error("unvollständig");
+      if (tk.t === "num") { const v = tk.v; return () => v; }
+      if (tk.t === "var") { const v = tk.v; return (e) => (v in e ? e[v] : NaN); }
+      if (tk.t === "(") { const a = expr(); if (!peek() || peek().t !== ")") throw new Error("Klammer"); p++; return a; }
+      throw new Error("Syntax");
+    }
+    const f = expr();
+    if (p < toks.length) throw new Error("Syntax");
+    return f;
+  }
+  const SAMPLE = [1.37, -2.11, 0.73, 3.29, -0.58, 2.47, -1.63];
+  function sameFn(f, g, vars = "abcxyz") {
+    for (let k = 0; k < 6; k++) {
+      const env = {}; [...vars].forEach((v, i) => { env[v] = SAMPLE[(k + 2 * i) % SAMPLE.length] + 0.1 * i; });
+      const u = f(env), w = g(env);
+      if (!isFinite(u) || !isFinite(w) || Math.abs(u - w) > 1e-7 * Math.max(1, Math.abs(w))) return false;
+    }
+    return true;
+  }
+  // number of top-level summands of an input, e.g. "3a+2b-(a+b)" -> 3
+  function countSummands(raw) {
+    const s = String(raw).replace(/\s+/g, "").replace(/[−–]/g, "-");
+    let depth = 0, n = 1;
+    for (let i = 0; i < s.length; i++) {
+      const c = s[i];
+      if (c === "(") depth++; else if (c === ")") depth--;
+      else if ((c === "+" || c === "-") && depth === 0 && i > 0 && !"*/^(:·×÷+-".includes(s[i - 1])) n++;
+    }
+    return n;
+  }
+
+  // ---------- checkers for the trainer ----------
+  const check = {
+    // numeric answer with relative tolerance (default 1 %)
+    num(value, { tol = 0.01, abs = null, unit = "" } = {}) {
+      return (raw) => {
+        const v = parseNum(String(raw).replace(new RegExp(unit.replace(/[.*+?^${}()|[\]\\]/g, "\\$&") + "$"), ""));
+        if (isNaN(v)) return { ok: false, msg: "Bitte gib eine Zahl ein, z. B. <code>12,5</code>." };
+        const lim = abs !== null ? abs : Math.max(Math.abs(value) * tol, 1e-9);
+        return Math.abs(v - value) <= lim ? { ok: true } : { ok: false, msg: "Der Wert stimmt noch nicht. Prüfe Formel, Einheiten und Rechnung." };
+      };
+    },
+    // algebraic expression, equivalent to f; optional form check and hints for typical mistakes
+    expr(f, { vars = "abcxyz", form = null, hints = [], fallback = "Der Term ist noch nicht gleichwertig. Rechne Schritt für Schritt nach." } = {}) {
+      return (raw) => {
+        let g;
+        try { g = parse(raw); } catch (e) { return { ok: false, msg: "Das kann ich nicht lesen. Prüfe Klammern und Zeichen, z. B. <code>3a+2b</code> oder <code>2x(x-3)</code>." }; }
+        const eq = sameFn(g, f, vars);
+        if (eq && form) { const m = form(raw); if (m) return { ok: false, msg: m }; }
+        if (eq) return { ok: true };
+        for (const h of hints) if (h.f && sameFn(g, h.f, vars)) return { ok: false, msg: h.msg };
+        return { ok: false, msg: fallback };
+      };
+    }
+  };
+
+  // ---------- views (tab routing) ----------
+  function views(names, onShow = {}) {
+    function show() {
+      const h = location.hash.slice(1);
+      const v = names.includes(h) ? h : names[0];
+      names.forEach((n) => { const el = $("#view-" + n); if (el) el.hidden = n !== v; });
+      $$("nav.tabs a").forEach((a) => { if (a.dataset.view === v) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current"); });
+      window.scrollTo({ top: 0 });
+      if (onShow[v]) requestAnimationFrame(onShow[v]);
+    }
+    window.addEventListener("hashchange", show);
+    show();
+    return show;
+  }
+
+  // ---------- quiz ----------
+  function quiz({ box, bar, progress, questions, n = 10, key, mathOptions = false }) {
+    const B = $(box), BAR = $(bar), P = $(progress);
+    const N = Math.min(n, questions.length);
+    let order = [], idx = 0, score = 0, answered = false;
+    function start() {
+      order = shuffle(questions).slice(0, N).map((q) => { const perm = shuffle(q.o.map((_, i) => i)); return { q: q.q, o: perm.map((i) => q.o[i]), a: perm.indexOf(q.a), e: q.e }; });
+      idx = 0; score = 0; render();
+    }
+    function render() {
+      BAR.style.width = (idx / N) * 100 + "%";
+      if (idx >= N) {
+        const best = Math.max(score, store.get(key) || 0); store.set(key, best);
+        const msg = score >= N - 1 ? "Super! Du hast das Thema sicher drauf." : score >= Math.ceil(N * 0.6) ? "Gut gemacht! Schau dir die Erklärungen zu deinen Fehlern noch einmal an." : "Wiederhole die Erklärungen und übe im Trainer. Dann klappt es beim nächsten Mal besser.";
+        P.textContent = `fertig · Bestwert ${best} / ${N}`;
+        B.innerHTML = `<span class="eyebrow">Ergebnis</span><div class="score-big">${score} / ${N}</div><p>${msg}</p><div class="row"><button type="button" class="primary lk-again">Neue Runde</button></div>`;
+        $(".lk-again", B).addEventListener("click", start);
+        return;
+      }
+      const q = order[idx]; answered = false;
+      P.textContent = `Frage ${idx + 1} von ${N} · ${score} richtig`;
+      B.innerHTML = `<div class="qtext"></div><div class="opts"></div><div class="feedback" hidden></div><div class="row"><button type="button" class="primary lk-next" hidden>${idx + 1 < N ? "Nächste Frage" : "Ergebnis anzeigen"}</button></div>`;
+      $(".qtext", B).textContent = q.q;
+      q.o.forEach((t, i) => {
+        const b = document.createElement("button"); b.type = "button";
+        b.innerHTML = `<span class="k">${"ABCD"[i]}</span><span${mathOptions ? ' class="math"' : ""}></span>`; b.lastChild.textContent = t;
+        b.addEventListener("click", () => choose(i));
+        $(".opts", B).appendChild(b);
+      });
+      $(".lk-next", B).addEventListener("click", () => { idx++; render(); });
+    }
+    function choose(i) {
+      if (answered) return; answered = true;
+      const q = order[idx];
+      $$(".opts button", B).forEach((b, j) => { b.disabled = true; if (j === q.a) b.classList.add("right"); else if (j === i) b.classList.add("wrong"); });
+      const ok = i === q.a; if (ok) score++;
+      const fb = $(".feedback", B); fb.hidden = false;
+      fb.innerHTML = ok ? '<span><b class="ok">Richtig!</b> </span>' : '<span><b class="no">Leider falsch.</b> </span>';
+      fb.firstChild.appendChild(document.createTextNode(q.e));
+      const nb = $(".lk-next", B); nb.hidden = false; nb.focus();
+      P.textContent = `Frage ${idx + 1} von ${N} · ${score} richtig`;
+    }
+    start();
+  }
+
+  // ---------- trainer ----------
+  const trainers = [];
+  function trainer({ el, modes, id = "tr" }) {
+    const root = $(el);
+    root.innerHTML = `
+      ${modes.length > 1 ? `<div class="modes" role="group" aria-label="Übungsart">${modes.map((m, i) => `<button type="button" data-mode="${m.id}" aria-pressed="${i === 0}">${m.label}</button>`).join("")}</div>` : ""}
+      <div class="panel stack">
+        <p class="small muted lk-instr"></p>
+        <form class="stack lk-form" autocomplete="off">
+          <div class="task lk-task"></div>
+          <div class="answer-row"><label class="math lk-label" for="${id}-in"></label><input type="text" id="${id}-in" class="lk-in" spellcheck="false"></div>
+          <div class="row"><button type="submit" class="primary">Prüfen</button><button type="button" class="lk-show">Lösung zeigen</button><button type="button" class="lk-new">Neue Aufgabe</button></div>
+        </form>
+        <p class="hint lk-hint"></p>
+        <div class="feedback lk-fb" hidden aria-live="polite"></div>
+        <span class="score-line lk-score"></span>
+      </div>`;
+    let mode = modes[0], task = null;
+    const score = { right: 0, total: 0 };
+    const fb = $(".lk-fb", root), input = $(".lk-in", root);
+    function updateScore() { $(".lk-score", root).textContent = `${score.right} von ${score.total} Aufgaben auf Anhieb richtig`; }
+    function next() {
+      task = mode.gen(); task.attempted = false;
+      $(".lk-instr", root).innerHTML = task.instr || mode.instr || "";
+      $(".lk-task", root).innerHTML = task.html;
+      $(".lk-label", root).innerHTML = task.label || "";
+      input.placeholder = task.placeholder || "";
+      $(".lk-hint", root).innerHTML = task.hint || mode.hint || "";
+      input.value = ""; fb.hidden = true;
+      return task;
+    }
+    function solutionHtml() { return task.solution ? `<div>${task.solution}</div>` : ""; }
+    function submit(raw) {
+      const r = task.check(raw);
+      if (!task.attempted) { task.attempted = true; score.total++; if (r.ok) score.right++; updateScore(); }
+      fb.hidden = false;
+      fb.innerHTML = r.ok ? `<span><b class="ok">Richtig!</b></span>${solutionHtml()}` : `<span><b class="no">Noch nicht richtig.</b> ${r.msg || ""}</span>`;
+      return r;
+    }
+    $(".lk-form", root).addEventListener("submit", (ev) => { ev.preventDefault(); submit(input.value); });
+    $(".lk-show", root).addEventListener("click", () => {
+      if (!task.attempted) { task.attempted = true; score.total++; updateScore(); }
+      fb.hidden = false; fb.innerHTML = `<span>Eine mögliche Lösung: <code>${esc(task.answer)}</code></span>${solutionHtml()}`;
+    });
+    $(".lk-new", root).addEventListener("click", () => { next(); input.focus(); });
+    $$("[data-mode]", root).forEach((b) => b.addEventListener("click", () => {
+      mode = modes.find((m) => m.id === b.dataset.mode);
+      $$("[data-mode]", root).forEach((x) => x.setAttribute("aria-pressed", String(x === b)));
+      next();
+    }));
+    next();
+    const api = { modes, next, submit, get task() { return task; }, setMode(i) { mode = modes[i]; return next(); } };
+    trainers.push(api);
+    return api;
+  }
+
+  // ---------- prediction cards ----------
+  function cards({ el, items, key }) {
+    const root = $(el);
+    let answers = store.get(key) || {};
+    function renderAll() {
+      root.innerHTML = "";
+      items.forEach((c, idx) => {
+        const card = document.createElement("article");
+        card.className = "panel card";
+        card.innerHTML = `<span class="ctx"></span><h3></h3><p class="small"></p><div class="opts"></div><div class="answer" hidden></div>`;
+        $(".ctx", card).textContent = c.ctx; $("h3", card).textContent = c.title; $("p", card).textContent = c.text;
+        const opts = $(".opts", card), ans = $(".answer", card);
+        c.o.forEach((t, i) => {
+          const b = document.createElement("button"); b.type = "button"; b.textContent = t;
+          b.addEventListener("click", () => { answers[idx] = i; store.set(key, answers); paint(); });
+          opts.appendChild(b);
+        });
+        function paint() {
+          const ch = answers[idx];
+          $$("button", opts).forEach((b, i) => { b.classList.remove("right", "wrong"); b.disabled = ch !== undefined; if (ch !== undefined) { if (i === c.a) b.classList.add("right"); else if (i === ch) b.classList.add("wrong"); } });
+          if (ch !== undefined) { ans.hidden = false; ans.innerHTML = ch === c.a ? '<b class="ok">Richtig.</b> ' : '<b class="no">Nicht ganz.</b> '; ans.appendChild(document.createTextNode(c.e)); }
+          else ans.hidden = true;
+        }
+        root.appendChild(card); paint();
+      });
+    }
+    renderAll();
+    return { reset() { answers = {}; store.set(key, answers); renderAll(); } };
+  }
+
+  // ---------- equation lab (equations and inequalities) ----------
+  const REL_FLIP = { "<": ">", ">": "<", "≤": "≥", "≥": "≤", "=": "=" };
+  function equationLab({ el, gen, inequality = false }) {
+    const root = $(el);
+    root.innerHTML = `
+      <div class="panel stack">
+        <div class="lab-eq lk-eq" aria-live="polite"></div>
+        <ol class="lab-log lk-log"></ol>
+        <form class="answer-row lk-form" autocomplete="off">
+          <label for="${el.slice(1)}-op" class="small"><strong>Umformung für beide Seiten:</strong></label>
+          <input type="text" id="${el.slice(1)}-op" class="lk-op" placeholder="z. B. −3 oder −2x oder :4" spellcheck="false">
+          <button type="submit" class="primary">Ausführen</button>
+        </form>
+        <p class="hint">Schreibweise: <code>-3</code>, <code>+5</code>, <code>-2x</code>, <code>+x</code>, <code>:4</code>, <code>*2</code>, <code>:(-3)</code>. Brüche als <code>1/2</code>.</p>
+        <p class="lab-msg lk-msg" aria-live="polite"></p>
+        <div class="row"><button type="button" class="lk-undo">Rückgängig</button><button type="button" class="lk-new">Neue ${inequality ? "Ungleichung" : "Gleichung"}</button></div>
+      </div>`;
+    let hist = [], st = null;
+    const eqHtml = (s) => `${linHtml(s.L.x, s.L.c)} ${s.rel} ${linHtml(s.R.x, s.R.c)}`;
+    function setMsg(t, cls = "") { const m = $(".lk-msg", root); m.className = "lab-msg lk-msg " + cls; m.innerHTML = t; }
+    function render() {
+      $(".lk-eq", root).innerHTML = eqHtml(st);
+      // the operation is written next to the line it is applied to (school notation)
+      $(".lk-log", root).innerHTML = hist.map((h, i) => { const nx = hist[i + 1]; return `<li class="${nx && nx.flip ? "flip" : ""}"><span>${eqHtml(h.s)}</span><span class="op">${nx ? "| " + esc(nx.op) : ""}</span></li>`; }).join("");
+      const s = st, xL = !s.L.x.isZero(), xR = !s.R.x.isZero();
+      if (!xL && !xR) {
+        const l = s.L.c.val(), r = s.R.c.val();
+        const truth = { "=": l === r, "<": l < r, ">": l > r, "≤": l <= r, "≥": l >= r }[s.rel];
+        setMsg(truth ? "Die Variable ist verschwunden und die Aussage ist immer wahr: Jede Zahl ist eine Lösung (L = ℚ)." : "Die Variable ist verschwunden und die Aussage ist falsch: Es gibt keine Lösung (L = { }).", "ok");
+        return;
+      }
+      const solvedL = s.L.x.eq(1) && s.L.c.isZero() && !xR, solvedR = s.R.x.eq(1) && s.R.c.isZero() && !xL;
+      if (solvedL || solvedR) {
+        const v = solvedL ? s.R.c : s.L.c, rel = solvedL ? s.rel : REL_FLIP[s.rel];
+        setMsg(inequality && rel !== "=" ? `Gelöst! Alle Zahlen mit <span class="math"><i>x</i> ${rel} ${v.html()}</span> erfüllen die Ungleichung: <span class="math">L = {<i>x</i> | <i>x</i> ${rel} ${v.html()}}</span>` : `Gelöst! <span class="math"><i>x</i> = ${v.html()}</span>, also <span class="math">L = {${v.html()}}</span>. Mach zur Sicherheit die Probe.`, "ok");
+      } else setMsg("Forme weiter um, bis <i>x</i> allein auf einer Seite steht.");
+    }
+    function start(s) { st = s || gen(); hist = [{ s: st, op: "" }]; render(); }
+    function apply(raw) {
+      let s = String(raw).replace(/\s+/g, "").replace(/[−–]/g, "-").replace(/[·⋅×]/g, "*").replace(/[÷/]/g, (m, i) => (i === 0 ? ":" : m)).replace(/^\//, ":");
+      const m = s.match(/^([+\-*:])\(?(-?)(\d*(?:[.,]\d+)?(?:\/\d+)?)(x?)\)?$/);
+      if (!m || (m[3] === "" && m[4] === "")) { setMsg("Das verstehe ich nicht. Beginne mit + − * oder :, z. B. <code>-3</code> oder <code>:2</code>.", "no"); return false; }
+      const [, op, sg, numTxt, hasX] = m;
+      let k; try { k = R.of(numTxt === "" ? 1 : parseNum(numTxt)); if (numTxt.includes("/")) { const [a, b] = numTxt.split("/").map(Number); k = new R(a, b); } } catch (e) { setMsg("Ungültige Zahl.", "no"); return false; }
+      if (sg) k = k.neg();
+      const next = { L: { ...st.L }, R: { ...st.R }, rel: st.rel };
+      let flip = false;
+      const label = `${op === "*" ? "·" : op === ":" ? ":" : op === "-" ? "−" : "+"}${op === "*" || op === ":" ? (k.sign() < 0 ? `(${k.text().replace("-", "−")})` : k.text()) : (k.sign() < 0 ? `(${k.text().replace("-", "−")})` : k.text())}${hasX ? "x" : ""}`.replace(/^([+−])1x$/, "$1x");
+      if (op === "+" || op === "-") {
+        const kk = op === "-" ? k.neg() : k;
+        for (const side of ["L", "R"]) { if (hasX) next[side].x = next[side].x.add(kk); else next[side].c = next[side].c.add(kk); }
+      } else {
+        if (hasX) { setMsg("Mit <i>x</i> malnehmen oder durch <i>x</i> teilen ist keine erlaubte Umformung, weil <i>x</i> null sein könnte.", "no"); return false; }
+        if (k.isZero()) { setMsg(op === ":" ? "Durch 0 darf man nicht teilen." : "Mal 0 macht beide Seiten zu 0. Dabei geht die Information verloren, das ist keine Äquivalenzumformung.", "no"); return false; }
+        for (const side of ["L", "R"]) {
+          next[side].x = op === "*" ? next[side].x.mul(k) : next[side].x.div(k);
+          next[side].c = op === "*" ? next[side].c.mul(k) : next[side].c.div(k);
+        }
+        if (inequality && k.sign() < 0 && next.rel !== "=") { next.rel = REL_FLIP[next.rel]; flip = true; }
+      }
+      st = next; hist.push({ s: st, op: label + (flip ? "  Zeichen umdrehen!" : ""), flip }); render();
+      if (flip) setMsg("Achtung: Du hast mit einer negativen Zahl multipliziert oder durch sie geteilt. Deshalb dreht sich das Ungleichheitszeichen um! " + $(".lk-msg", root).innerHTML, "no");
+      return true;
+    }
+    $(".lk-form", root).addEventListener("submit", (ev) => { ev.preventDefault(); const i = $(".lk-op", root); if (apply(i.value)) i.value = ""; i.focus(); });
+    $(".lk-undo", root).addEventListener("click", () => { if (hist.length > 1) { hist.pop(); st = hist[hist.length - 1].s; render(); } });
+    $(".lk-new", root).addEventListener("click", () => start());
+    start();
+    return { apply, start, get state() { return st; } };
+  }
+  // random linear equation a x + b (rel) c x + d with a "nice" solution
+  function genLinear({ rel = "=", fractions = false } = {}) {
+    let a, c; do { a = nz(-6, 7); c = rnd(-4, 4); } while (a === c);
+    const x0 = fractions ? new R(nz(-9, 9), pick([1, 2, 3])) : new R(nz(-6, 6));
+    const b = R.of(rnd(-9, 9)), d = x0.mul(a - c).add(b);
+    return { L: { x: R.of(a), c: b }, R: { x: R.of(c), c: d }, rel, x0 };
+  }
+
+  // number as plain answer text with decimal comma, e.g. 1013,25
+  const numText = (v, d = 2) => String(Math.round(v * 10 ** d) / 10 ** d || 0).replace(".", ",");
+
+  window.LK = { $, $$, store, rnd, pick, nz, shuffle, gcd, esc, minus, frac, fmt, parseNum, numText, R, linHtml, poly, polyFn, collect, monoParts, parse, sameFn, countSummands, check, views, quiz, trainer, trainers, cards, equationLab, genLinear, REL_FLIP };
+})();
+</script>
+<script>
+(function () {
+  "use strict";
+  const { $, $$, pick, fmt } = LK;
+  // ---------- blast furnace ----------
+  const Z = [
+    { y: 30, h: 70, c: "#d9d2c3", t: "Gicht (oben, ca. 200 °C)", eq: "Erz, Koks, Kalk werden eingefüllt; Gichtgas (CO, CO₂, N₂) entweicht", x: "Die Beschickung rutscht langsam nach unten und wird vom aufsteigenden heißen Gas vorgewärmt und getrocknet." },
+    { y: 100, h: 80, c: "#e8c39a", t: "Reduktionszone (400–900 °C)", eq: "3 Fe₂O₃ + CO → 2 Fe₃O₄ + CO₂\nFe₃O₄ + CO → 3 FeO + CO₂\nFeO + CO → Fe + CO₂", x: "Indirekte Reduktion: Kohlenstoffmonooxid reduziert das Eisenoxid stufenweise. Fe geht von +III über +II auf 0." },
+    { y: 180, h: 80, c: "#f0a868", t: "Kohlungszone (900–1200 °C)", eq: "CO₂ + C → 2 CO (Boudouard-Gleichgewicht)\nFeO + C → Fe + CO", x: "Das entstandene CO₂ wird an glühendem Koks wieder zu CO. Das Eisen nimmt Kohlenstoff auf, dadurch sinkt seine Schmelztemperatur." },
+    { y: 260, h: 70, c: "#e86f4a", t: "Schmelzzone (1200–2000 °C)", eq: "C + O₂ → CO₂ (stark exotherm)\nCaCO₃ → CaO + CO₂; CaO + SiO₂ → CaSiO₃ (Schlacke)", x: "Heiße Luft (Wind) verbrennt den Koks und liefert die Wärme. Der Kalk bindet Gestein (Gangart) zu Schlacke." },
+    { y: 330, h: 60, c: "#b54a3c", t: "Gestell (Roheisen und Schlacke)", eq: "Abstich: flüssiges Roheisen (unten), Schlacke schwimmt darauf", x: "Roheisen enthält etwa 4 % C und ist spröde. Im Stahlwerk wird Sauerstoff eingeblasen (Frischen): C wird zu CO₂ oxidiert, es entsteht Stahl." }
+  ];
+  let cur = 1;
+  function drawH() {
+    let g = "";
+    Z.forEach((z, i) => { const w1 = 70 + (i === 0 ? 0 : i < 3 ? i * 18 : (4 - i) * 20 + 30), w2 = 70 + (i < 2 ? (i + 1) * 18 : (3 - i) * 20 + 30); g += `<polygon class="zone${i === cur ? " on" : ""}" data-i="${i}" fill="${z.c}" points="${150 - w1},${z.y} ${150 + w1},${z.y} ${150 + w2},${z.y + z.h} ${150 - w2},${z.y + z.h}"/>`; g += `<text class="t" x="150" y="${z.y + z.h / 2 + 4}" text-anchor="middle">${z.t.split(" (")[0]}</text>`; });
+    g += `<path class="arr" d="M150 6 V28 M144 22 L150 28 L156 22"/><text x="160" y="16">Erz, Koks, Kalk</text><path class="arr" d="M18 300 H58 M52 294 L58 300 L52 306"/><text x="10" y="290">Heißwind</text><path class="arr" d="M232 375 H292 M286 369 L292 375 L286 381"/><text x="190" y="405">Abstich: Roheisen, Schlacke</text>`;
+    $("#hSvg").innerHTML = g;
+    $$("#hSvg .zone").forEach((p) => p.addEventListener("click", () => { cur = +p.dataset.i; drawH(); }));
+    const z = Z[cur]; $("#hTitle").textContent = z.t; $("#hEq").innerHTML = z.eq.replace(/\n/g, "<br>"); $("#hText").textContent = z.x;
+  }
+  drawH();
+
+  // ---------- stoichiometry ----------
+  const M = { Fe: 55.85, O: 16.0, Al: 26.98, Cu: 63.55, S: 32.06, Zn: 65.38, C: 12.01, Pb: 207.2 };
+  const ORES = [
+    { n: "Hämatit Fe₂O₃", met: "Fe", k: 2, parts: [["Fe", 2], ["O", 3]] }, { n: "Magnetit Fe₃O₄", met: "Fe", k: 3, parts: [["Fe", 3], ["O", 4]] },
+    { n: "Aluminiumoxid Al₂O₃", met: "Al", k: 2, parts: [["Al", 2], ["O", 3]] }, { n: "Kupfer(I)-sulfid Cu₂S", met: "Cu", k: 2, parts: [["Cu", 2], ["S", 1]] },
+    { n: "Zinkblende ZnS", met: "Zn", k: 1, parts: [["Zn", 1], ["S", 1]] }, { n: "Bleiglanz PbS", met: "Pb", k: 1, parts: [["Pb", 1], ["S", 1]] }
+  ];
+  const molar = (o) => o.parts.reduce((s, [e, c]) => s + M[e] * c, 0);
+  $("#cOre").innerHTML = ORES.map((o, i) => `<option value="${i}">${o.n}</option>`).join("");
+  function calc() {
+    const o = ORES[+$("#cOre").value], m = Math.max(0, +$("#cMass").value || 0), Mo = molar(o), n = m / Mo, mm = n * o.k * M[o.met];
+    $("#cOut").textContent = `${fmt(mm, 1)} kg ${o.met}`;
+    $("#cSteps").innerHTML = `<li>M(Erz) = ${o.parts.map(([e, c]) => `${c} · ${fmt(M[e], 2)}`).join(" + ")} = ${fmt(Mo, 2)} g/mol</li><li>n(Erz) = ${fmt(m, 0)} kg : ${fmt(Mo, 2)} g/mol = ${fmt(n, 2)} kmol</li><li>Pro Formeleinheit ${o.k} ${o.met}-Atom${o.k > 1 ? "e" : ""}: n(${o.met}) = ${fmt(n * o.k, 2)} kmol</li><li>m(${o.met}) = ${fmt(n * o.k, 2)} kmol · ${fmt(M[o.met], 2)} g/mol = <b>${fmt(mm, 1)} kg</b> (Massenanteil ${fmt((mm / m) * 100 || 0, 1)} %)</li>`;
+  }
+  ["#cOre", "#cMass"].forEach((id) => $(id).addEventListener("input", calc));
+  calc();
+
+  // ---------- trainer ----------
+  const METH = { Au: "gediegen", Ag: "gediegen", Cu: "Kohlenstoff", Fe: "Kohlenstoff", Zn: "Kohlenstoff", Pb: "Kohlenstoff", Sn: "Kohlenstoff", Al: "Elektrolyse", Mg: "Elektrolyse", Na: "Elektrolyse", K: "Elektrolyse", Ca: "Elektrolyse", Li: "Elektrolyse" };
+  const MN = { Au: "Gold", Ag: "Silber", Cu: "Kupfer", Fe: "Eisen", Zn: "Zink", Pb: "Blei", Sn: "Zinn", Al: "Aluminium", Mg: "Magnesium", Na: "Natrium", K: "Kalium", Ca: "Calcium", Li: "Lithium" };
+  function genMeth() { const m = pick(Object.keys(METH).filter((x) => METH[x] !== "gediegen")), want = METH[m];
+    return { html: `Wie wird <b>${MN[m]}</b> technisch aus seinen Verbindungen gewonnen: durch Reduktion mit <b>Kohlenstoff</b> oder durch <b>Elektrolyse</b>?`, label: "Verfahren:", placeholder: "Kohlenstoff oder Elektrolyse", answer: want,
+      check: (raw) => { const t = raw.trim().toLowerCase(); const v = /elek/.test(t) ? "Elektrolyse" : /kohl|koks|c\b|co\b/.test(t) ? "Kohlenstoff" : null; if (!v) return { ok: false, msg: "Antworte mit <code>Kohlenstoff</code> oder <code>Elektrolyse</code>." }; return v === want ? { ok: true } : { ok: false, msg: "Denke an die Stellung in der Redoxreihe." }; },
+      solution: `<b>${want}</b>: ${want === "Elektrolyse" ? "sehr unedel, Kohlenstoff reduziert die Ionen nicht" : "mittlere Stellung, Kohlenstoff bzw. CO reicht aus"}` }; }
+  function genMass() { const o = pick(ORES), m = pick([100, 160, 200, 500, 1000, 250]); const mm = (m / molar(o)) * o.k * M[o.met];
+    return { html: `Wie viel ${o.met} lässt sich höchstens aus <b>${m} kg ${o.n}</b> gewinnen? (M: ${o.parts.map(([e]) => `${e} ${fmt(M[e], 2)}`).join(", ")} g/mol)`, label: "Masse in kg:", answer: fmt(mm, 1), check: LK.check.num(mm, { abs: Math.max(0.15, mm * 0.01) }),
+      solution: `n = ${m} kg : ${fmt(molar(o), 2)} g/mol = ${fmt(m / molar(o), 3)} kmol; m(${o.met}) = ${o.k} · n · ${fmt(M[o.met], 2)} = <b>${fmt(mm, 1)} kg</b>` }; }
+  function genZone() { const i = pick([1, 2, 3, 4]), z = Z[i]; const l = z.eq.split("\n")[0];
+    return { html: `In welcher Zone des Hochofens läuft vor allem diese Reaktion ab? <span class="eq">${l}</span>`, label: "Zone:", placeholder: "Reduktion, Kohlung, Schmelz oder Gestell", answer: z.t.split(" ")[0],
+      check: (raw) => { const t = raw.trim().toLowerCase(); const ok = [/redu/, /kohl/, /schmelz|verbrenn/, /gestell|abstich|roheisen/][i - 1].test(t); return ok ? { ok: true } : { ok: false, msg: "Oben Vorwärmen, dann Reduktion, Kohlung, Schmelzen, unten das Gestell." }; },
+      solution: `<b>${z.t}</b>` }; }
+  function genRed() { const x = pick([["Fe₂O₃ + 3 CO → 2 Fe + 3 CO₂", "CO", "Fe₂O₃"], ["2 Al₂O₃ → 4 Al + 3 O₂ (Elektrolyse)", "O²⁻", "Al³⁺"], ["Fe₂O₃ + 2 Al → 2 Fe + Al₂O₃", "Al", "Fe₂O₃"], ["2 ZnO + C → 2 Zn + CO₂", "C", "ZnO"], ["Fe₂O₃ + 3 H₂ → 2 Fe + 3 H₂O", "H₂", "Fe₂O₃"], ["2 Cu₂O + Cu₂S → 6 Cu + SO₂", "Cu₂S (S)", "Cu₂O"]]);
+    const norm = (t) => t.replace(/\s/g, "").replace(/[₀-₉]/g, (c) => "₀₁₂₃₄₅₆₇₈₉".indexOf(c)).toLowerCase();
+    return { html: `Welcher Stoff ist das <b>Reduktionsmittel</b>? <span class="eq">${x[0]}</span>`, label: "Stoff:", answer: x[1], check: (raw) => (norm(raw) && norm(x[1]).startsWith(norm(raw).replace(/[⁺⁻²³+-]/g, "").slice(0, 2)) ? { ok: true } : { ok: false, msg: "Das Reduktionsmittel gibt Elektronen ab und wird oxidiert." }), solution: `<b>${x[1]}</b> wird oxidiert, ${x[2]} wird reduziert.` }; }
+  LK.trainer({ el: "#trainer", modes: [
+    { id: "verfahren", label: "Verfahren", gen: genMeth },
+    { id: "masse", label: "Metallmasse", gen: genMass },
+    { id: "zone", label: "Hochofen-Zonen", gen: genZone },
+    { id: "rm", label: "Reduktionsmittel", gen: genRed }
+  ] });
+
+  LK.quiz({ box: "#quizBox", bar: "#qBar", progress: "#qProgress", key: "metalle.best", n: 8, questions: [
+    { q: "Was passiert mit den Metall-Ionen bei der Metallgewinnung?", o: ["Sie werden oxidiert", "Sie werden reduziert", "Sie bleiben gleich", "Sie verdampfen"], a: 1, e: "Sie nehmen Elektronen auf." },
+    { q: "Welches Reduktionsmittel wirkt im Hochofen hauptsächlich?", o: ["Sauerstoff", "Kohlenstoffmonooxid", "Wasser", "Kalk"], a: 1, e: "Fe₂O₃ + 3 CO → 2 Fe + 3 CO₂." },
+    { q: "Wozu dient der Kalk im Hochofen?", o: ["Als Brennstoff", "Er bindet Gangart zu Schlacke", "Er reduziert Eisen", "Er kühlt"], a: 1, e: "CaO + SiO₂ → CaSiO₃." },
+    { q: "Warum gewinnt man Aluminium durch Elektrolyse?", o: ["Weil es billig ist", "Weil Al sehr unedel ist und C es nicht reduziert", "Weil Al gediegen vorkommt", "Wegen der Farbe"], a: 1, e: "Nur Strom erzwingt die Reduktion." },
+    { q: "Wozu dient Kryolith bei der Aluminiumgewinnung?", o: ["Es senkt die Schmelztemperatur", "Es ist das Erz", "Es ist die Anode", "Es färbt"], a: 0, e: "Von 2050 °C auf etwa 950 °C." },
+    { q: "Was unterscheidet Stahl von Roheisen?", o: ["Mehr Kohlenstoff", "Weniger Kohlenstoff", "Kein Eisen", "Mehr Schwefel"], a: 1, e: "Frischen verbrennt den Kohlenstoff." },
+    { q: "Was sammelt sich bei der Kupferraffination als Anodenschlamm?", o: ["Zink und Eisen", "Silber und Gold", "Aluminium", "Wasserstoff"], a: 1, e: "Edlere Metalle werden nicht oxidiert." },
+    { q: "Wie viel Energie spart Aluminium-Recycling etwa?", o: ["5 %", "50 %", "95 %", "0 %"], a: 2, e: "Einschmelzen braucht nur etwa 5 % der Energie." }
+  ] });
+
+  LK.views(["verstehen", "hochofen", "elektrolyse", "rechnen", "ueben", "alltag", "quiz"], {});
+})();
+</script>
+<script>
+(function () {
+  "use strict";
+  // Light/dark switch shared by all LearningDesk pages; the choice is remembered in this browser
+  var KEY = "learningdesk.theme", root = document.documentElement;
+  var header = document.querySelector("header");
+  if (!header) return;
+  function effective() {
+    var t = root.getAttribute("data-theme");
+    if (t === "dark" || t === "light") return t;
+    return window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+  }
+  var btn = document.createElement("button");
+  btn.type = "button"; btn.className = "theme-toggle";
+  function paint() {
+    var dark = effective() === "dark";
+    var label = dark ? "Helles Design einschalten" : "Dunkles Design einschalten";
+    btn.textContent = dark ? "\u2600" : "\u263E";
+    btn.setAttribute("aria-label", label); btn.title = label;
+  }
+  btn.addEventListener("click", function () {
+    var next = effective() === "dark" ? "light" : "dark";
+    root.setAttribute("data-theme", next);
+    try { localStorage.setItem(KEY, next); } catch (e) { /* storage unavailable */ }
+    paint();
+    // canvases read the colour tokens when they draw, so ask them to redraw
+    window.dispatchEvent(new Event("resize"));
+  });
+  header.classList.add("has-theme-toggle");
+  header.appendChild(btn);
+  paint();
+  try { window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", paint); } catch (e) { /* old browsers */ }
+})();
+</script>
+<script>
+(function () {
+  "use strict";
+  // keep the last breadcrumb in sync with the active section tab
+  var last = document.querySelector("nav.crumbs [data-crumb-section]");
+  if (!last) return;
+  function update() {
+    var a = document.querySelector('nav.tabs a[aria-current="page"]');
+    if (!a) { last.hidden = true; return; }
+    var t = a.cloneNode(true); var n = t.querySelector(".n"); if (n) n.remove();
+    last.querySelector("span").textContent = t.textContent.trim();
+    last.hidden = false;
+  }
+  window.addEventListener("hashchange", function () { setTimeout(update, 0); });
+  setTimeout(update, 0);
+})();
+</script>

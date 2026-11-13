@@ -2232,6 +2232,48 @@ SHEETS["redoxreaktionen"] = dict(title="Redoxreaktionen und Oxidationszahlen", e
     </div>
   </div>''')
 
+SHEETS["gebrauchsmetalle"] = dict(title="Gebrauchsmetalle", eyebrow="Chemie · Klasse 11 · Redox", accent=CH11, body=f'''
+  <div class="kern">Metalle liegen in <strong>Erzen</strong> als Kationen vor. Ihre Gewinnung ist eine <strong>Reduktion</strong>. Je unedler das Metall, desto stärker muss das Reduktionsmittel sein: edle Metalle gediegen, mittlere mit <strong>Kohlenstoff</strong>, unedle durch <strong>Elektrolyse</strong>.</div>
+  <div class="cols">
+    <div class="box">
+      <h2>Hochofen (Eisen)</h2>
+      <ul>
+        <li>Beschickung: Erz, Koks, Kalk; unten Heißwind.</li>
+        <li>C + O₂ → CO₂; CO₂ + C → 2 CO</li>
+        <li><strong>Fe₂O₃ + 3 CO → 2 Fe + 3 CO₂</strong></li>
+        <li>Kalk + Gangart → Schlacke</li>
+        <li>Roheisen (4 % C) → Frischen → Stahl</li>
+      </ul>
+    </div>
+    <div class="box">
+      <h2>Elektrolyse</h2>
+      <ul>
+        <li>Al: Al₂O₃ in Kryolith, 950 °C</li>
+        <li>Kathode (−): Al³⁺ + 3 e⁻ → Al</li>
+        <li>Anode (+): 2 O²⁻ → O₂ + 4 e⁻</li>
+        <li>Cu-Raffination: Rohkupfer (+) → Reinkupfer (−), Ag/Au im Anodenschlamm</li>
+      </ul>
+    </div>
+    <div class="box full">
+      <h2>Rechnen</h2>
+      <table>
+        <tr><th>Schritt</th><th>Beispiel: Eisen aus 1000 kg Fe₂O₃</th></tr>
+        <tr><td>M(Erz)</td><td>2 · 55,85 + 3 · 16,00 = 159,7 g/mol</td></tr>
+        <tr><td>n = m / M</td><td>1000 kg : 159,7 g/mol = 6,26 kmol</td></tr>
+        <tr><td>Verhältnis</td><td>2 Fe pro Fe₂O₃ ⇒ 12,52 kmol Fe</td></tr>
+        <tr><td>m = n · M</td><td>12,52 kmol · 55,85 g/mol = 699 kg</td></tr>
+      </table>
+    </div>
+    <div class="box">
+      <h2>Im Alltag</h2>
+      <ul><li>Al-Recycling spart 95 % Energie.</li><li>Gold aus Althandys.</li><li>Grüner Stahl mit H₂.</li></ul>
+    </div>
+    <div class="box warn">
+      <h2>Typische Fehler</h2>
+      <ul><li>Eisen wird reduziert, nicht oxidiert.</li><li>Roheisen ≠ Stahl.</li><li>Al lässt sich nicht mit C gewinnen.</li></ul>
+    </div>
+  </div>''')
+
 OUT = sys.argv[1] if len(sys.argv) > 1 else os.path.join(os.path.dirname(__file__), "_build")
 os.makedirs(OUT, exist_ok=True)
 shutil.copyfile(os.path.join(os.path.dirname(os.path.abspath(__file__)), "factsheet.css"), os.path.join(OUT, "factsheet.css"))

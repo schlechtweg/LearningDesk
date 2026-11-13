@@ -937,10 +937,21 @@ def redoxreaktionen():
                     extra_sol='<p class="q"><b>Ox: Zn → Zn²⁺ + 2 e⁻</b>; <b>Red: Cu²⁺ + 2 e⁻ → Cu</b>. Zn ist unedler und Reduktionsmittel.</p>', cols=1)
 
 
+def gebrauchsmetalle():
+    d = ('<polygon points="110,20 190,20 215,90 230,160 215,215 85,215 70,160 85,90" fill="#f3d9bf" stroke="#56626d" stroke-width="2"/>'
+         '<polygon points="85,185 215,185 215,215 85,215" fill="#b54a3c"/><polygon points="85,172 215,172 215,185 85,185" fill="#d9c27a"/>'
+         + arrow(150, 0, 150, 18) + arrow(30, 150, 68, 150) + arrow(218, 200, 262, 200) + arrow(150, 22, 150, 2, "arr thin"))
+    items = [(1, 150, 4, 260, 12), (2, 150, 60, 270, 60), (3, 150, 125, 270, 120), (4, 40, 150, 20, 120), (5, 150, 178, 20, 190), (6, 150, 200, 270, 215)]
+    names = ["Beschickung: Erz, Koks, Kalk", "Reduktionszone (CO reduziert Fe₂O₃)", "Kohlungs- und Schmelzzone", "Heißwind (heiße Luft)", "Schlacke", "Roheisen"]
+    return labeling("Der Hochofen", "★☆☆", "0 -6 300 228", d, items, names, "Beschrifte den Hochofen.",
+                    extra_task='<p class="q">Hauptreaktion der Reduktion: <span class="blank wide"></span></p>',
+                    extra_sol='<p class="q"><b>Fe₂O₃ + 3 CO → 2 Fe + 3 CO₂</b>; Fe wird reduziert (+III → 0), C oxidiert (+II → +IV).</p>', cols=1)
+
+
 FIGS = {
     "osmose": osmose, "natrium-kalium-pumpe": nak, "symport-antiport": symport, "endocytose-exocytose": endo,
     "ableiten": ableiten, "nervensystem": nerven, "auge": auge,
-    "termstruktur": termstruktur, "zufallsexperimente": zufallsexperimente, "laplace": laplace, "baumdiagramme": baumdiagramme, "unabhaengige-ereignisse": unabhaengig, "funktionsbegriff": funktionsbegriff, "eigenschaften-funktionen": eigenschaften, "lineare-funktionen": lineare_funktionen, "funktionsgleichungen": funktionsgleichungen, "lgs-grafisch": lgs_grafisch, "gleichsetzungsverfahren": gleichsetzungsverfahren, "additionsverfahren": additionsverfahren, "lgs-anwendungen": lgs_anwendungen, "zentrische-streckung": zentrische_streckung, "aehnliche-dreiecke": aehnliche_dreiecke, "flaeche-volumen-aehnlich": flaeche_volumen_aehnlich, "strahlensaetze": strahlensaetze, "atombau": atombau, "periodensystem": periodensystem, "stoffklassen": stoffklassen, "orbitalmodell": orbitalmodell, "redoxreaktionen": redoxreaktionen, "binomische-formeln": binom, "bruchterme": bruchterme, "ausmultiplizieren-faktorisieren": ausmult, "terme-vereinfachen": terme,
+    "termstruktur": termstruktur, "zufallsexperimente": zufallsexperimente, "laplace": laplace, "baumdiagramme": baumdiagramme, "unabhaengige-ereignisse": unabhaengig, "funktionsbegriff": funktionsbegriff, "eigenschaften-funktionen": eigenschaften, "lineare-funktionen": lineare_funktionen, "funktionsgleichungen": funktionsgleichungen, "lgs-grafisch": lgs_grafisch, "gleichsetzungsverfahren": gleichsetzungsverfahren, "additionsverfahren": additionsverfahren, "lgs-anwendungen": lgs_anwendungen, "zentrische-streckung": zentrische_streckung, "aehnliche-dreiecke": aehnliche_dreiecke, "flaeche-volumen-aehnlich": flaeche_volumen_aehnlich, "strahlensaetze": strahlensaetze, "atombau": atombau, "periodensystem": periodensystem, "stoffklassen": stoffklassen, "orbitalmodell": orbitalmodell, "redoxreaktionen": redoxreaktionen, "gebrauchsmetalle": gebrauchsmetalle, "binomische-formeln": binom, "bruchterme": bruchterme, "ausmultiplizieren-faktorisieren": ausmult, "terme-vereinfachen": terme,
     "gleichungen": gleichungen, "ungleichungen": ungleichungen,
     "druck": druck, "hydraulik": hydraulik, "schweredruck": schweredruck, "auftrieb": auftrieb, "luftdruck": luftdruck,
 }

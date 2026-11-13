@@ -285,6 +285,14 @@ TOPICS = [
         "fonts": "base", "first_view": "verstehen", "factsheet": "Factsheet als PDF ↓",
     },
     {
+        "slug": "gebrauchsmetalle", "grade": "11", "subject": "chemie", "chapter": "2", "order": 2, "kit": True, "accent": ACCENT_CHEM,
+        "title": "Gebrauchsmetalle werden großtechnisch hergestellt", "short": "Gebrauchsmetalle", "tag": "Redox",
+        "card": "Erze und Reduktion, Hochofen zum Anklicken, Stahl, Schmelzflusselektrolyse, Kupfer-Raffination, Metallmasse berechnen, Recycling, Trainer, Quiz",
+        "description": "Interaktive Lernhilfe zur großtechnischen Herstellung von Eisen, Aluminium und Kupfer (Chemie, Klasse 11)",
+        "intro": "Wie Eisen, Aluminium und Kupfer aus Erzen gewonnen werden und warum das immer eine Reduktion ist.",
+        "fonts": "base", "first_view": "verstehen", "factsheet": "Factsheet als PDF ↓",
+    },
+    {
         "slug": "binomische-formeln", "grade": "8", "subject": "mathematik", "chapter": "I", "order": 4,
         "title": "Binomische Formeln", "short": "Binomische Formeln", "tag": "Terme",
         "card": "Die drei Formeln, Erklärung mit Flächen, Trainer mit Lückenaufgaben, Kopfrechen-Trick, Quiz",

@@ -3047,6 +3047,93 @@ def redoxreaktionen():
     return L
 
 
+def gebrauchsmetalle():
+    r = random.Random(206)
+    L = {1: [], 2: [], 3: []}
+    seen = set()
+    M = {"Fe": 55.85, "O": 16.0, "Al": 26.98, "Cu": 63.55, "S": 32.06, "Zn": 65.38, "C": 12.01, "Pb": 207.2}
+    de = lambda v, n=1: f"{v:,.{n}f}".replace(",", " ").replace(".", ",").replace(" ", ".")
+
+    def add(lvl, q, a):
+        if q not in seen and len(L[lvl]) < 120:
+            seen.add(q)
+            L[lvl].append((q, a))
+    METH = {"Kupfer": "Reduktion (Rösten), Reinigung durch Elektrolyse", "Eisen": "Reduktion mit Kohlenstoff/CO im Hochofen", "Zink": "Reduktion mit Kohlenstoff", "Blei": "Reduktion mit Kohlenstoff",
+            "Aluminium": "Schmelzflusselektrolyse", "Magnesium": "Schmelzflusselektrolyse", "Natrium": "Schmelzflusselektrolyse", "Gold": "kommt gediegen vor"}
+    for m, v in METH.items():
+        add(1, f"Mit welchem Verfahren wird {m} gewonnen?", f"<b>{v}</b>")
+    facts = [("Was ist ein Erz?", "Gestein mit so viel <b>Metallverbindung</b>, dass sich die Gewinnung lohnt"), ("Welche Teilchenart liegt das Metall in Erzen meist vor?", "als <b>Kation</b> (z. B. Fe³⁺ in Fe₂O₃)"),
+             ("Ist die Metallgewinnung eine Oxidation oder Reduktion?", "<b>Reduktion</b> der Metall-Ionen"), ("Welche Stoffe werden oben in den Hochofen gefüllt?", "<b>Eisenerz, Koks, Kalk</b> (Zuschläge)"),
+             ("Was wird unten in den Hochofen eingeblasen?", "<b>Heißwind</b> (heiße Luft, ca. 1200 °C)"), ("Was ist Schlacke?", "Calciumsilicat aus <b>Gangart und Kalk</b>, schwimmt auf dem Roheisen"),
+             ("Wie viel Kohlenstoff enthält Roheisen etwa?", "etwa <b>4 %</b>"), ("Wie entsteht aus Roheisen Stahl?", "<b>Frischen</b>: Sauerstoff verbrennt Kohlenstoff zu CO/CO₂"),
+             ("Was ist Bauxit?", "Erz für <b>Aluminium</b> (Aluminiumoxid-Hydrat)"), ("Wozu dient Kryolith?", "senkt die <b>Schmelztemperatur</b> des Al₂O₃ auf ca. 950 °C"),
+             ("An welchem Pol entsteht bei der Elektrolyse das Metall?", "am <b>Minuspol (Kathode)</b>: Reduktion"), ("Was ist Anodenschlamm?", "<b>Edelmetalle</b> (Ag, Au), die bei der Kupferraffination zu Boden fallen"),
+             ("Warum ist Aluminium-Recycling sinnvoll?", "spart etwa <b>95 % Energie</b> gegenüber der Elektrolyse"), ("Welches Gas entsteht im Hochofen als Reduktionsmittel?", "<b>Kohlenstoffmonooxid CO</b>"),
+             ("Gib die Hauptreaktion im Hochofen an.", "<b>Fe₂O₃ + 3 CO → 2 Fe + 3 CO₂</b>"), ("Kathodenreaktion bei der Aluminiumelektrolyse?", "<b>Al³⁺ + 3 e⁻ → Al</b>"),
+             ("Anodenreaktion bei der Kupferraffination?", "<b>Cu → Cu²⁺ + 2 e⁻</b>"), ("Was ist Thermit?", "Gemisch aus <b>Eisenoxid und Aluminiumpulver</b>, liefert flüssiges Eisen"),
+             ("Warum wird Kalk in den Hochofen gegeben?", "bindet die Gangart (SiO₂) zu <b>Schlacke</b>"), ("Welches Treibhausgas entsteht beim Hochofen?", "<b>CO₂</b>")]
+    for q_, a_ in facts:
+        add(1, q_, a_)
+
+    ore_names = [("Hämatit", "Fe₂O₃", "Fe", "+III"), ("Magnetit", "Fe₃O₄", "Fe", "+II und +III"), ("Kupferglanz", "Cu₂S", "Cu", "+I"), ("Zinkblende", "ZnS", "Zn", "+II"), ("Bleiglanz", "PbS", "Pb", "+II"),
+                 ("Bauxit (Hauptbestandteil)", "Al₂O₃", "Al", "+III"), ("Zinnstein", "SnO₂", "Sn", "+IV"), ("Siderit", "FeCO₃", "Fe", "+II"), ("Pyrit", "FeS₂", "Fe", "+II"), ("Cuprit", "Cu₂O", "Cu", "+I")]
+    for n_, f_, met, oz in ore_names:
+        add(1, f"Welche Oxidationszahl hat {met} im Erz {n_} ({f_})?", f"<b>{oz}</b>")
+        add(1, f"Welches Metall gewinnt man aus {n_} ({f_})?", f"<b>{met}</b>")
+    for ion_, n_, met in [("Al³⁺", 3, "Al"), ("Mg²⁺", 2, "Mg"), ("Na⁺", 1, "Na"), ("Cu²⁺", 2, "Cu"), ("Zn²⁺", 2, "Zn"), ("Ag⁺", 1, "Ag")]:
+        add(1, f"Kathodenreaktion bei der Abscheidung von {met} aus {ion_}?", f"<b>{ion_} + {'' if n_ == 1 else n_} e⁻ → {met}</b> (Reduktion)")
+    for f_, met, k, Mo in [("Fe₂O₃", "Fe", 2, 159.7), ("Al₂O₃", "Al", 2, 101.96), ("CuO", "Cu", 1, 79.55), ("ZnS", "Zn", 1, 97.44), ("Cu₂S", "Cu", 2, 159.16)]:
+        add(1, f"Berechne die molare Masse von {f_}.", f"<b>{de(Mo, 2)} g/mol</b>")
+    ores = [("Fe₂O₃", "Fe", 2, M["Fe"] * 2 + M["O"] * 3), ("Fe₃O₄", "Fe", 3, M["Fe"] * 3 + M["O"] * 4), ("Al₂O₃", "Al", 2, M["Al"] * 2 + M["O"] * 3),
+            ("Cu₂S", "Cu", 2, M["Cu"] * 2 + M["S"]), ("ZnS", "Zn", 1, M["Zn"] + M["S"]), ("PbS", "Pb", 1, M["Pb"] + M["S"]), ("CuO", "Cu", 1, M["Cu"] + M["O"]), ("ZnO", "Zn", 1, M["Zn"] + M["O"])]
+    for i in range(200):
+        f, met, k, Mo = r.choice(ores)
+        m = r.choice([50, 100, 160, 200, 250, 500, 1000])
+        mm = m / Mo * k * M[met]
+        if i % 2:
+            add(2, f"Wie viel kg {met} lassen sich höchstens aus {m} kg {f} gewinnen?", f"M({f}) = {de(Mo, 2)} g/mol; n = {m} : {de(Mo, 2)} = {de(m / Mo, 3)} kmol; m({met}) = {k} · {de(m / Mo, 3)} · {de(M[met], 2)} = <b>{de(mm)} kg</b>")
+        else:
+            add(2, f"Massenanteil des Metalls in {f}?", f"{k} · {de(M[met], 2)} : {de(Mo, 2)} = <b>{de(k * M[met] / Mo * 100)} %</b>")
+    eqs = [("Reduktion von Fe₃O₄ durch CO", "Fe₃O₄ + 4 CO → 3 Fe + 4 CO₂"), ("Boudouard-Reaktion", "CO₂ + C ⇌ 2 CO"), ("Rösten von Zinkblende ZnS", "2 ZnS + 3 O₂ → 2 ZnO + 2 SO₂"),
+           ("Reduktion von ZnO mit Kohlenstoff", "ZnO + C → Zn + CO"), ("Thermitreaktion", "Fe₂O₃ + 2 Al → 2 Fe + Al₂O₃"), ("Bildung der Schlacke", "CaO + SiO₂ → CaSiO₃"),
+           ("Kalkbrennen im Hochofen", "CaCO₃ → CaO + CO₂"), ("Gesamtgleichung der Aluminiumelektrolyse", "2 Al₂O₃ → 4 Al + 3 O₂"), ("Frischen (C im Roheisen)", "2 C + O₂ → 2 CO bzw. C + O₂ → CO₂"),
+           ("Reduktion von Fe₂O₃ mit Wasserstoff (grüner Stahl)", "Fe₂O₃ + 3 H₂ → 2 Fe + 3 H₂O"), ("Anodenreaktion Aluminiumelektrolyse (Kohleanode)", "2 O²⁻ + C → CO₂ + 4 e⁻"), ("Röstreaktion Cu₂S", "2 Cu₂S + 3 O₂ → 2 Cu₂O + 2 SO₂")]
+    for k_, e_ in eqs:
+        add(2, f"Stelle die Reaktionsgleichung auf: {k_}. Kennzeichne Oxidation und Reduktion, falls es eine Redoxreaktion ist.", f"<b>{e_}</b>" + ("" if k_ in ("Bildung der Schlacke", "Kalkbrennen im Hochofen") else " (Redoxreaktion: OZ ändern sich)" if True else ""))
+    calc3 = []
+    for t in [1, 2, 5, 10]:
+        nFe = t * 1e6 / M["Fe"]
+        mCO2 = nFe * 1.5 * (M["C"] + 2 * M["O"]) / 1e6
+        calc3.append((f"Wie viel CO₂ entsteht mindestens, wenn im Hochofen {t} t Eisen nach Fe₂O₃ + 3 CO → 2 Fe + 3 CO₂ gewonnen werden?", f"n(Fe) = {de(nFe / 1000, 1)} kmol; n(CO₂) = 1,5 · n(Fe) = {de(nFe * 1.5 / 1000, 1)} kmol; m = <b>{de(mCO2, 2)} t CO₂</b>"))
+    for kg in [1, 5, 20]:
+        calc3.append((f"Die Elektrolyse braucht etwa 13 kWh pro kg Aluminium, das Recycling 5 % davon. Wie viel Energie spart das Recycling von {kg} kg Aluminium?", f"Neu: {kg * 13} kWh, Recycling: {de(kg * 13 * 0.05, 2)} kWh ⇒ Ersparnis <b>{de(kg * 13 * 0.95, 2)} kWh</b>"))
+    for m in [100, 500]:
+        nAl2O3 = m * 1000 / (2 * M["Al"] + 3 * M["O"])
+        calc3.append((f"Wie viel Bauxit (als reines Al₂O₃ gerechnet) braucht man für {m} kg Aluminium?", f"n(Al) = {de(m * 1000 / M['Al'], 0)} mol; n(Al₂O₃) = n(Al) : 2 = {de(m * 500 / M['Al'], 0)} mol; m = <b>{de(m * 500 / M['Al'] * (2 * M['Al'] + 3 * M['O']) / 1000, 1)} kg</b>"))
+    for q_, a_ in calc3:
+        add(3, q_, a_)
+    fixed = [
+        ("Erkläre, warum Eisen mit Kohlenstoff, Aluminium aber nur durch Elektrolyse gewonnen werden kann.", "Al ist viel <b>unedler</b> als Fe: Al³⁺ hält die Elektronen nicht freiwillig fest, C ist kein ausreichend starkes Reduktionsmittel. Strom liefert die Elektronen <b>erzwungen</b>."),
+        ("Beschreibe den Weg des Eisenoxids im Hochofen von der Gicht bis zum Abstich.", "Vorwärmen und Trocknen in der Gicht; stufenweise <b>Reduktion</b> durch CO (Fe₂O₃ → Fe₃O₄ → FeO → Fe); <b>Kohlung</b>: Fe nimmt C auf, Schmelztemperatur sinkt; Schmelzen; Abstich als <b>Roheisen</b> unter der Schlacke."),
+        ("Erkläre die Kupferraffination und warum Zink und Silber als Verunreinigungen unterschiedlich enden.", "Rohkupfer-Anode: Cu und <b>unedleres Zn</b> werden oxidiert und gehen in Lösung, an der Kathode scheidet sich nur Cu ab (Zn²⁺ bleibt gelöst). <b>Edleres Ag</b> wird nicht oxidiert und fällt als Anodenschlamm."),
+        ("Warum werden bei der Aluminiumelektrolyse die Kohleanoden verbraucht?", "Der an der Anode entstehende <b>Sauerstoff</b> reagiert bei 950 °C mit dem Kohlenstoff zu <b>CO₂</b>; die Anoden müssen regelmäßig ersetzt werden."),
+        ("Bewerte Wasserstoff als Reduktionsmittel für die Stahlherstellung.", "Vorteil: Produkt ist <b>Wasser statt CO₂</b>. Nachteil: Wasserstoff muss mit viel (möglichst erneuerbarem) Strom hergestellt werden; teurer, Infrastruktur nötig."),
+        ("Warum sind Althandys eine wertvolle Rohstoffquelle?", "Sie enthalten Gold, Silber, Kupfer, Cobalt in <b>höherer Konzentration</b> als viele Erze (ca. 250 g Au pro t); Recycling spart Energie, Bergbauflächen und Abfall."),
+        ("Begründe, warum Roheisen spröde ist und Stahl verformbar.", "Der hohe Kohlenstoffgehalt (≈ 4 %) bildet <b>Eisencarbid</b> und stört das Metallgitter; die Schichten können schlechter gleiten. Stahl enthält höchstens etwa 2 % C."),
+        ("Warum wird im Hochofen CO und nicht der feste Koks als Hauptreduktionsmittel betrachtet?", "Feststoffe reagieren kaum miteinander. Das <b>gasförmige CO</b> durchströmt die Schüttung und erreicht jedes Erzkorn; Koks liefert Wärme und bildet ständig neues CO (Boudouard)."),
+        ("Warum wird für die Aluminiumherstellung oft billiger Strom aus Wasserkraft genutzt?", "Die Schmelzflusselektrolyse braucht sehr viel <b>elektrische Energie</b> (ca. 13 kWh/kg); der Strompreis bestimmt die Kosten, Hütten stehen daher bei Wasserkraftwerken."),
+        ("Begründe, warum man edle Metalle wie Gold manchmal gediegen findet, Natrium aber nie.", "Gold gibt Elektronen kaum ab und reagiert nicht mit Luft und Wasser. <b>Natrium</b> ist so unedel, dass es sofort mit Sauerstoff und Wasser reagiert; es kommt nur als <b>Na⁺</b> in Salzen vor."),
+        ("Die Thermitreaktion ist stark exotherm. Was sagt das über die Stellung von Fe und Al in der Redoxreihe?", "Al ist <b>unedler</b> als Fe und gibt seine Elektronen bereitwillig an Fe³⁺ ab; Al₂O₃ ist sehr stabil, dabei wird viel Energie frei (flüssiges Eisen über 2000 °C)."),
+        ("Warum muss das Aluminiumoxid vor der Elektrolyse geschmolzen oder gelöst sein?", "Im Feststoff sind die Ionen <b>unbeweglich</b>. Nur in der Schmelze können Al³⁺ zur Kathode und O²⁻ zur Anode wandern."),
+        ("Berechne, wie viele Elektronen (in mol) für 1 kg Aluminium nötig sind.", "n(Al) = 1000 g : 26,98 g/mol = 37,1 mol; pro Al³⁺ 3 e⁻ ⇒ <b>111 mol Elektronen</b>."),
+        ("Vergleiche Hochofen und Elektrolyse als Reduktionsverfahren.", "Hochofen: <b>chemisches Reduktionsmittel</b> (CO/C), sehr große Mengen, CO₂-Ausstoß. Elektrolyse: <b>Strom</b> als Elektronenquelle, für sehr unedle Metalle nötig, hoher Energiebedarf, dafür sehr rein."),
+    ]
+    for q_, a_ in fixed:
+        add(3, q_, a_)
+    r.shuffle(L[3])
+    return L
+
+
 M8, PH = "#1f6e8c", "#b4531f"
 TOPICS = {
     "osmose": ({"title": "Osmose", "eyebrow": "Biologie · Klasse 11", "accent": "#0d6f74", "cols": [1, 1, 1], "sol_cols": [1, 1, 1]}, osmose),
@@ -3078,6 +3165,7 @@ TOPICS = {
     "stoffklassen": ({"title": "Stoffklassen", "eyebrow": "Chemie · Klasse 11", "accent": "#6a3fa0", "cols": [2, 1, 1], "sol_cols": [2, 1, 1]}, stoffklassen),
     "orbitalmodell": ({"title": "Orbitalmodell und Elektronenkonfiguration", "eyebrow": "Chemie · Klasse 11", "accent": "#6a3fa0", "cols": [2, 2, 1], "sol_cols": [2, 2, 1]}, orbitalmodell),
     "redoxreaktionen": ({"title": "Redoxreaktionen und Oxidationszahlen", "eyebrow": "Chemie · Klasse 11", "accent": "#6a3fa0", "cols": [2, 1, 1], "sol_cols": [2, 1, 1]}, redoxreaktionen),
+    "gebrauchsmetalle": ({"title": "Gebrauchsmetalle", "eyebrow": "Chemie · Klasse 11", "accent": "#6a3fa0", "cols": [2, 1, 1], "sol_cols": [2, 1, 1]}, gebrauchsmetalle),
     "binomische-formeln": ({"title": "Binomische Formeln", "eyebrow": "Mathematik · Klasse 8", "accent": M8, "cols": 2, "sol_cols": 2}, binomische_formeln),
     "bruchterme": ({"title": "Bruchterme", "eyebrow": "Mathematik · Klasse 8", "accent": "#2d6a4f", "cols": 3, "sol_cols": 3}, bruchterme),
     "ausmultiplizieren-faktorisieren": ({"title": "Ausmultiplizieren und Faktorisieren", "eyebrow": "Mathematik · Klasse 8", "accent": M8, "cols": 3, "sol_cols": 3}, ausmultiplizieren),

@@ -1,0 +1,14 @@
+.ptab { width: 100%; border-collapse: collapse; font-size: var(--step--1); }
+.ptab th, .ptab td { padding: 6px 8px; border-bottom: 1px solid var(--line); text-align: left; overflow-wrap: anywhere; }
+.ptab th { color: var(--muted); }
+.scene { width: 100%; height: auto; display: block; max-height: 460px; }
+.scene .zone { cursor: pointer; stroke: #56626d; stroke-width: 1.2; transition: opacity .2s; }
+.scene .zone:hover, .scene .zone.on { opacity: .75; stroke-width: 3; stroke: var(--ink); }
+.scene text { font: 12px var(--font-body); fill: #15232d; pointer-events: none; }
+.scene .t { font-weight: 700; }
+.scene .wall { fill: #8a8f96; }
+.scene .arr { stroke: #56626d; stroke-width: 2; fill: none; }
+.eq { font-family: var(--font-mono); font-size: 0.95rem; overflow-wrap: anywhere; }
+.calc { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.calc select, .calc input { width: 100%; }
+.big { font-family: var(--font-display); font-size: 1.8rem; font-weight: 800; margin: 0; }

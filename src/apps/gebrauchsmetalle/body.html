@@ -1,0 +1,79 @@
+  <nav class="tabs" aria-label="Bereiche">
+    <a href="#verstehen" data-view="verstehen"><span class="n">1</span>Verstehen</a>
+    <a href="#hochofen" data-view="hochofen"><span class="n">2</span>Hochofen</a>
+    <a href="#elektrolyse" data-view="elektrolyse"><span class="n">3</span>Elektrolyse</a>
+    <a href="#rechnen" data-view="rechnen"><span class="n">4</span>Rechnen</a>
+    <a href="#ueben" data-view="ueben"><span class="n">5</span>Üben</a>
+    <a href="#alltag" data-view="alltag"><span class="n">6</span>Im Alltag</a>
+    <a href="#quiz" data-view="quiz"><span class="n">7</span>Quiz</a>
+  </nav>
+
+  <section class="view" id="view-verstehen">
+    <div class="einfach">
+      <span class="eyebrow">Einfach erklärt</span>
+      <p>In der Natur kommen die meisten Metalle nicht rein vor, sondern als <strong>Erze</strong>, also Oxide, Sulfide oder Carbonate. Darin sind die Metalle Kationen. Um das Metall zu gewinnen, muss man es <strong>reduzieren</strong>: Die Metall-Ionen müssen Elektronen zurückbekommen.</p>
+    </div>
+    <div class="panel stack">
+      <h3>Welches Verfahren für welches Metall?</h3>
+      <table class="ptab">
+        <tr><th>Metall</th><th>Erz</th><th>Reduktion mit</th><th>Warum?</th></tr>
+        <tr><td>Gold, Silber</td><td>oft gediegen (rein)</td><td>kaum nötig</td><td>sehr edel</td></tr>
+        <tr><td>Kupfer</td><td>Kupferkies CuFeS₂</td><td>Rösten, dann elektrolytische Reinigung</td><td>edel, leicht zu reduzieren</td></tr>
+        <tr><td>Eisen, Zink</td><td>Hämatit Fe₂O₃, Zinkblende ZnS</td><td><strong>Kohlenstoff / CO</strong> (Hochofen)</td><td>mittlere Stellung in der Redoxreihe</td></tr>
+        <tr><td>Aluminium, Magnesium, Natrium</td><td>Bauxit (Al₂O₃), Salze</td><td><strong>Elektrolyse</strong> (Strom)</td><td>sehr unedel, Kohlenstoff reicht nicht</td></tr>
+      </table>
+      <p class="small">Faustregel: Je <strong>unedler</strong> ein Metall ist, desto fester hält es an seinem Partner fest und desto <strong>mehr Energie</strong> braucht die Gewinnung.</p>
+    </div>
+    <div class="grid-2">
+      <div class="panel stack"><h3>Eisen: der Hochofen</h3><p class="small">Koks verbrennt zu CO. Kohlenstoffmonooxid reduziert das Eisenoxid: <span class="eq">Fe₂O₃ + 3 CO → 2 Fe + 3 CO₂</span>. Heraus kommt <strong>Roheisen</strong> mit etwa 4 % Kohlenstoff. Beim <strong>Frischen</strong> wird Sauerstoff eingeblasen, der den Kohlenstoff verbrennt: Aus Roheisen wird <strong>Stahl</strong>.</p></div>
+      <div class="panel stack"><h3>Aluminium: Schmelzflusselektrolyse</h3><p class="small">Aluminiumoxid wird in geschmolzenem Kryolith gelöst (senkt die Schmelztemperatur von 2050 °C auf etwa 950 °C). Strom zwingt die Al³⁺-Ionen, Elektronen aufzunehmen: <span class="eq">Al³⁺ + 3 e⁻ → Al</span>. Sehr energieaufwendig: etwa 13 kWh pro kg.</p></div>
+    </div>
+    <div class="merksatz"><span class="eyebrow">Merke</span><p>Metallgewinnung ist immer eine <strong>Reduktion</strong> der Metall-Ionen. Das Reduktionsmittel muss unedler sein als das Metall, sonst braucht man den elektrischen Strom.</p></div>
+    <div class="panel stack"><h3>Typische Fehler</h3><ul class="list small"><li>„Eisen wird im Hochofen oxidiert“: Das Eisenoxid wird reduziert, CO wird oxidiert.</li><li>Roheisen und Stahl verwechselt: Stahl enthält höchstens etwa 2 % Kohlenstoff.</li><li>Aluminium mit Kohlenstoff reduzieren wollen: Aluminium ist dafür zu unedel.</li></ul></div>
+  </section>
+
+  <section class="view" id="view-hochofen" hidden>
+    <div class="stack"><span class="eyebrow">Interaktiv</span><h2>Im Hochofen</h2><p class="muted">Tippe auf eine Zone. Oben werden Erz, Koks und Kalk eingefüllt, unten wird heiße Luft eingeblasen.</p></div>
+    <div class="sim-layout">
+      <div class="figure"><svg class="scene" id="hSvg" viewBox="0 0 300 420" role="img" aria-label="Querschnitt eines Hochofens"></svg></div>
+      <div class="panel stack"><h3 id="hTitle"></h3><p class="eq" id="hEq"></p><p class="small" id="hText"></p></div>
+    </div>
+  </section>
+
+  <section class="view" id="view-elektrolyse" hidden>
+    <div class="stack"><span class="eyebrow">Strom als Reduktionsmittel</span><h2>Elektrolyse</h2><p class="muted">Bei der Elektrolyse erzwingt eine Spannungsquelle die Redoxreaktion. Am Minuspol (Kathode) werden Elektronen aufgenommen (Reduktion), am Pluspol (Anode) abgegeben (Oxidation).</p></div>
+    <div class="grid-2">
+      <div class="panel stack"><h3>Aluminium (Schmelzflusselektrolyse)</h3><svg class="scene" viewBox="0 0 260 200" aria-hidden="true"><rect x="20" y="60" width="220" height="120" fill="#f2d9b8" stroke="#56626d"/><rect x="20" y="150" width="220" height="30" fill="#c5c9ce"/><rect x="60" y="20" width="30" height="85" fill="#3b3f44"/><rect x="170" y="20" width="30" height="85" fill="#3b3f44"/><text x="130" y="132" text-anchor="middle">Al₂O₃ in Kryolith (950 °C)</text><text x="130" y="170" text-anchor="middle">flüssiges Aluminium = Kathode (−)</text><text x="75" y="15" text-anchor="middle">Anode (+)</text><text x="185" y="15" text-anchor="middle">Anode (+)</text></svg>
+        <p class="eq">Kathode (−): Al³⁺ + 3 e⁻ → Al<br>Anode (+): 2 O²⁻ → O₂ + 4 e⁻ (O₂ verbrennt die Kohleanoden zu CO₂)<br>Gesamt: 2 Al₂O₃ → 4 Al + 3 O₂</p></div>
+      <div class="panel stack"><h3>Kupfer-Raffination</h3><svg class="scene" viewBox="0 0 260 200" aria-hidden="true"><rect x="20" y="50" width="220" height="130" fill="#cfe4f6" stroke="#56626d"/><rect x="55" y="20" width="22" height="140" fill="#b87333"/><rect x="183" y="20" width="10" height="140" fill="#d38a4a"/><text x="66" y="15" text-anchor="middle">Rohkupfer (+)</text><text x="188" y="15" text-anchor="middle">Reinkupfer (−)</text><text x="30" y="175">Anodenschlamm (Ag, Au)</text><path class="arr" d="M90 110 H170 M162 104 L170 110 L162 116"/><text x="130" y="100" text-anchor="middle">Cu²⁺</text></svg>
+        <p class="eq">Anode (+): Cu → Cu²⁺ + 2 e⁻<br>Kathode (−): Cu²⁺ + 2 e⁻ → Cu</p>
+        <p class="small">Unedlere Verunreinigungen (Zn, Fe) bleiben als Ionen gelöst, edlere (Ag, Au) fallen als <strong>Anodenschlamm</strong> herunter und werden verkauft. So entsteht Kupfer mit 99,99 % Reinheit.</p></div>
+    </div>
+  </section>
+
+  <section class="view" id="view-rechnen" hidden>
+    <div class="stack"><span class="eyebrow">Stöchiometrie</span><h2>Wie viel Metall steckt im Erz?</h2><p class="muted">Wähle ein Erz und eine Masse. Die App rechnet über die Stoffmenge n = m / M.</p></div>
+    <div class="panel stack"><div class="calc"><select id="cOre" aria-label="Erz"></select><input id="cMass" type="number" min="1" step="1" value="1000" aria-label="Masse in kg"></div><p class="big" id="cOut"></p><ol class="list small" id="cSteps"></ol></div>
+  </section>
+
+  <section class="view" id="view-ueben" hidden>
+    <div class="stack"><span class="eyebrow">Trainer</span><h2>Metallgewinnung üben</h2><p class="muted">Massen auf ganze kg oder eine Nachkommastelle runden.</p></div>
+    <div id="trainer" class="stack"></div>
+  </section>
+
+  <section class="view" id="view-alltag" hidden>
+    <div class="stack"><span class="eyebrow">Im Alltag</span><h2>Wohin mit den Althandys?</h2></div>
+    <div class="grid-2">
+      <div class="panel stack"><span class="eyebrow">Recycling</span><h3>Urban Mining</h3><p class="small">Eine Tonne Althandys enthält etwa 250 g Gold, eine Tonne Golderz nur etwa 5 g. Altgeräte sind eine reiche „Mine“ in der Stadt.</p></div>
+      <div class="panel stack"><span class="eyebrow">Energie</span><h3>Aluminium recyceln</h3><p class="small">Altaluminium einzuschmelzen braucht nur etwa 5 % der Energie der Elektrolyse. Jede Getränkedose zählt.</p></div>
+      <div class="panel stack"><span class="eyebrow">Industrie</span><h3>Grüner Stahl</h3><p class="small">Statt Koks soll Wasserstoff das Eisenoxid reduzieren: Fe₂O₃ + 3 H₂ → 2 Fe + 3 H₂O. Dann entsteht Wasser statt CO₂.</p></div>
+      <div class="panel stack"><span class="eyebrow">Thermit</span><h3>Schienen schweißen</h3><p class="small">Aluminium reduziert Eisenoxid so heftig, dass flüssiges Eisen entsteht: Fe₂O₃ + 2 Al → 2 Fe + Al₂O₃.</p></div>
+      <div class="panel stack"><span class="eyebrow">Kupfer</span><h3>Kabel und Leitungen</h3><p class="small">Für Stromkabel braucht man sehr reines Kupfer, denn schon Spuren anderer Metalle verschlechtern die Leitfähigkeit. Deshalb die Raffination.</p></div>
+      <div class="panel stack"><span class="eyebrow">Umwelt</span><h3>Bergbau</h3><p class="small">Für 1 t Kupfer müssen etwa 100 t Gestein bewegt werden. Recycling schont Landschaft und Klima.</p></div>
+    </div>
+  </section>
+
+  <section class="view" id="view-quiz" hidden>
+    <div class="stack"><span class="eyebrow">Selbsttest</span><h2>Quiz</h2><div class="progress-line"><div class="bar" aria-hidden="true"><i id="qBar"></i></div><span class="score-line" id="qProgress"></span></div></div>
+    <div class="panel quiz" id="quizBox" aria-live="polite"></div>
+  </section>
