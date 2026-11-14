@@ -3902,6 +3902,84 @@ def puffersysteme():
     return L
 
 
+def binomische_faktorisieren():
+    r = random.Random(217)
+    L = {1: [], 2: [], 3: []}
+    seen = set()
+    M = MINUS
+
+    def make(p, q, v, w, kind, k=1):
+        A = f"{'' if p == 1 else p}{v}"
+        B = f"{'' if q == 1 else q}{w}" if w else str(q)
+        sqA = f"{'' if p * p * k == 1 else p * p * k}{v}²"
+        sqB = f"{'' if q * q * k == 1 else q * q * k}{w}²" if w else str(q * q * k)
+        mid = f"{2 * p * q * k}{v}{w}"
+        term = f"{sqA} {M} {sqB}" if kind == 3 else f"{sqA} {'+' if kind == 1 else M} {mid} + {sqB}"
+        res = f"({A} + {B})({A} {M} {B})" if kind == 3 else f"({A} {'+' if kind == 1 else M} {B})²"
+        return term, ("" if k == 1 else str(k)) + res, A, B
+
+    def add(lvl, q, a):
+        if q not in seen and len(L[lvl]) < 120:
+            seen.add(q)
+            L[lvl].append((q, a))
+    for i in range(600):
+        v = r.choice(["x", "a", "y", "b"])
+        q, kind = r.randint(1, 12), r.choice([1, 2, 3])
+        term, res, A, B = make(1, q, v, "", kind)
+        add(1, f"Zerlege in Faktoren: {m(term)}", m(f"<b>{res}</b>"))
+    for i in range(900):
+        t = i % 3
+        v, w = r.choice([("x", ""), ("a", "b"), ("x", "y"), ("a", ""), ("y", "")])
+        p, q = r.randint(1, 6), r.randint(1, 9)
+        if math.gcd(p, q) > 1 or p == 1:
+            continue
+        kind = r.choice([1, 2, 3])
+        if t < 2:
+            term, res, A, B = make(p, q, v, w, kind)
+            why = f"a = {A}, b = {B}" + ("" if kind == 3 else f", 2ab = {2 * p * q}{v}{w}")
+            add(2, f"Zerlege in Faktoren: {m(term)}", f"{why}: " + m(f"<b>{res}</b>"))
+        else:
+            k = r.choice([2, 3, 5])
+            term, res, A, B = make(p if r.random() < 0.5 else 1, q, v, w, kind, k)
+            add(2, f"Klammere aus und zerlege: {m(term)}", f"{k} ausklammern: " + m(f"<b>{res}</b>"))
+    for i in range(300):
+        if len(L[3]) >= 12:
+            break
+        v = r.choice(["x", "a"])
+        p, q = r.choice([1, 2, 3, 4, 5]), r.randint(1, 9)
+        if math.gcd(p, q) > 1:
+            continue
+        kind = r.choice([1, 2])
+        term, res, A, B = make(p, q, v, "", kind)
+        sqA = term.split(" ")[0]
+        mid = f"{2 * p * q}{v}"
+        if i % 2:
+            add(3, f"Ergänze die Lücke so, dass ein Binom entsteht, und zerlege: {m(f'{sqA} {chr(43) if kind == 1 else M} ☐ + {q * q}')}", f"☐ = 2 · {A} · {q} = <b>{mid}</b>; " + m(f"<b>{res}</b>"))
+        else:
+            add(3, f"Ergänze das fehlende Quadrat: {m(f'{sqA} {chr(43) if kind == 1 else M} {mid} + ☐')}", f"b = {mid} : (2 · {A}) = {q} ⇒ ☐ = <b>{q * q}</b>; " + m(f"<b>{res}</b>"))
+    for a_, b_ in [(51, 49), (102, 98), (35, 25), (63, 37), (71, 29), (205, 195)]:
+        add(3, f"Berechne geschickt im Kopf mit der 3. binomischen Formel: {a_}² {M} {b_}²", f"({a_} + {b_})({a_} {M} {b_}) = {a_ + b_} · {a_ - b_} = <b>{(a_ + b_) * (a_ - b_)}</b>")
+    for n_, d in [(23, 17), (42, 38), (61, 59), (105, 95)]:
+        mm = (n_ + d) // 2
+        add(3, f"Berechne geschickt: {n_} · {d}", f"= ({mm} + {n_ - mm})({mm} {M} {n_ - mm}) = {mm * mm} {M} {(n_ - mm) ** 2} = <b>{n_ * d}</b>")
+    fixed = [
+        (f"Löse die Gleichung durch Faktorisieren: {m('x² ' + MINUS + ' 10x + 25 = 0')}", m("(x − 5)² = 0") + " ⇒ <b>x = 5</b>"),
+        (f"Löse durch Faktorisieren: {m('x² ' + MINUS + ' 49 = 0')}", m("(x + 7)(x − 7) = 0") + " ⇒ <b>x = 7 oder x = −7</b> (ein Produkt ist null, wenn ein Faktor null ist)"),
+        (f"Kürze den Bruchterm: {m('(x² ' + MINUS + ' 9) / (x + 3)')}", m("(x + 3)(x − 3)/(x + 3)") + " = <b>x − 3</b> (für x ≠ −3)"),
+        (f"Kürze: {m('(x² + 4x + 4) / (x + 2)')}", m("(x + 2)²/(x + 2)") + " = <b>x + 2</b> (für x ≠ −2)"),
+        (f"Lässt sich {m('x² + 6x + 4')} mit einer binomischen Formel zerlegen? Begründe.", "<b>Nein</b>: Für (x + 3)² müsste das letzte Glied 9 sein; 2 · x · 2 = 4x ≠ 6x."),
+        (f"Zerlege so weit wie möglich: {m('x⁴ ' + MINUS + ' 16')}", m("(x² + 4)(x² − 4)") + " = " + m("<b>(x² + 4)(x + 2)(x − 2)</b>")),
+        (f"Zerlege: {m('2x³ ' + MINUS + ' 8x')}", m("2x(x² − 4)") + " = " + m("<b>2x(x + 2)(x − 2)</b>")),
+        (f"Ein Quadrat hat den Flächeninhalt {m('9x² + 30x + 25')} cm². Wie lang ist seine Seite?", m("(3x + 5)²") + " ⇒ Seite <b>3x + 5</b> cm"),
+        (f"Zerlege: {m('a²b² ' + MINUS + ' 1')}", m("<b>(ab + 1)(ab − 1)</b>")),
+        (f"Zerlege: {m('0,25x² + x + 1')}", m("(0,5x)² + 2 · 0,5x · 1 + 1²") + " = " + m("<b>(0,5x + 1)²</b>")),
+    ]
+    for q_, a_ in fixed:
+        add(3, q_, a_)
+    r.shuffle(L[3])
+    return L
+
+
 M8, PH = "#1f6e8c", "#b4531f"
 TOPICS = {
     "osmose": ({"title": "Osmose", "eyebrow": "Biologie · Klasse 11", "accent": "#0d6f74", "cols": [1, 1, 1], "sol_cols": [1, 1, 1]}, osmose),
@@ -3944,6 +4022,7 @@ TOPICS = {
     "saeurestaerke": ({"title": "Säure- und Basenstärke", "eyebrow": "Chemie · Klasse 11", "accent": "#6a3fa0", "cols": [2, 1, 1], "sol_cols": [2, 1, 1]}, saeurestaerke),
     "titration": ({"title": "Indikatoren und Titration", "eyebrow": "Chemie · Klasse 11", "accent": "#6a3fa0", "cols": [2, 1, 1], "sol_cols": [2, 1, 1]}, titration),
     "puffersysteme": ({"title": "Puffersysteme", "eyebrow": "Chemie · Klasse 11 · Wahlpflicht", "accent": "#6a3fa0", "cols": [2, 1, 1], "sol_cols": [2, 1, 1]}, puffersysteme),
+    "binomische-faktorisieren": ({"title": "Binomische Formeln rückwärts: Faktorisieren", "eyebrow": "Mathematik · Klasse 8", "accent": M8, "cols": [3, 2, 1], "sol_cols": [3, 2, 1]}, binomische_faktorisieren),
     "binomische-formeln": ({"title": "Binomische Formeln", "eyebrow": "Mathematik · Klasse 8", "accent": M8, "cols": 2, "sol_cols": 2}, binomische_formeln),
     "bruchterme": ({"title": "Bruchterme", "eyebrow": "Mathematik · Klasse 8", "accent": "#2d6a4f", "cols": 3, "sol_cols": 3}, bruchterme),
     "ausmultiplizieren-faktorisieren": ({"title": "Ausmultiplizieren und Faktorisieren", "eyebrow": "Mathematik · Klasse 8", "accent": M8, "cols": 3, "sol_cols": 3}, ausmultiplizieren),

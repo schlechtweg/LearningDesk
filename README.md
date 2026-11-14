@@ -26,6 +26,7 @@ Interaktive Lern-Apps für die Schule, sortiert nach Klassenstufe. Alles läuft 
 | Klasse 8 · Mathematik (V) | Flächen und Volumen ähnlicher Figuren | Längen mit k, Flächen mit k², Volumen mit k³, Quadrate und Würfel zählen, Maßstäbe, Trainer, Quiz |
 | Klasse 8 · Mathematik (V) | Strahlensätze | 1. und 2. Strahlensatz, V- und X-Figur zum Verschieben, Flussbreite, Lochkamera, Trainer, Quiz |
 | Klasse 8 · Mathematik | Binomische Formeln | Formeln, Flächenmodell, Trainer (Lücken, ausmultiplizieren, faktorisieren), Kopfrechen-Trick, Quiz |
+| Klasse 8 · Mathematik (I) | Binomische Formeln rückwärts: Faktorisieren | Summen in Produkte zerlegen, Rechenweg Schritt für Schritt, Formel erkennen, Ausklammern, Lückenaufgaben, Trainer, Quiz |
 | Klasse 8 · Mathematik | Bruchterme | Definitionsmenge, Kürzen und Erweitern, Rechenregeln, Trainer, Quiz |
 | Klasse 8 · Mathematik | Ausmultiplizieren und Faktorisieren | Distributivgesetz, Klammer mal Klammer, Ausklammern, Flächenmodell, Trainer, Quiz |
 | Klasse 8 · Mathematik | Terme vereinfachen | Gleichartige Terme, Produkte mit mehreren Variablen, Termsortierer, Trainer, Quiz |

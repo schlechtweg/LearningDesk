@@ -1133,10 +1133,27 @@ def puffersysteme():
     return {"title": "Puffer gegen Wasser", "stars": "★★☆", "task": (svg("0 10 270 190", g), task), "sol": (svg("0 10 270 190", sol), soltxt)}
 
 
+def binomische_faktorisieren():
+    # area model: x² + 6x + 9 as a square of side x + 3
+    u, x, b, ox, oy = 14, 9, 3, 30, 20
+    d = (f'<rect x="{ox}" y="{oy}" width="{x * u}" height="{x * u}" fill="#dbe9f3" stroke="#1b2228"/>'
+         f'<rect x="{ox + x * u}" y="{oy}" width="{b * u}" height="{x * u}" fill="#f6e6b8" stroke="#1b2228"/>'
+         f'<rect x="{ox}" y="{oy + x * u}" width="{x * u}" height="{b * u}" fill="#f6e6b8" stroke="#1b2228"/>'
+         f'<rect x="{ox + x * u}" y="{oy + x * u}" width="{b * u}" height="{b * u}" fill="#e7d3ef" stroke="#1b2228"/>')
+    base = d + text(ox + x * u / 2, oy + x * u / 2 + 4, "x²", "ft it") + text(ox + x * u + b * u / 2, oy + x * u / 2 + 4, "3x", "ft") + text(ox + x * u / 2, oy + x * u + b * u / 2 + 4, "3x", "ft") + text(ox + x * u + b * u / 2, oy + x * u + b * u / 2 + 4, "9", "ft")
+    sol = base + text(ox + (x + b) * u / 2, oy - 5, "x + 3", "ft sol") + text(ox - 6, oy + (x + b) * u / 2, "x + 3", "ft sol", "end")
+    task = ('<p>Die vier Flächen ergeben zusammen x² + 6x + 9.</p>'
+            '<p class="q">Beschrifte die Seitenlängen des großen Quadrats.</p>'
+            '<p class="q">x² + 6x + 9 = <span class="blank"></span></p>'
+            '<p class="q">Zeichne genauso: x² + 8x + 16 = <span class="blank"></span></p>')
+    soltxt = '<p class="q">Seite <b>x + 3</b>: x² + 6x + 9 = <b>(x + 3)²</b>. Ebenso x² + 8x + 16 = <b>(x + 4)²</b> (Rechtecke 4x, kleines Quadrat 16).</p>'
+    return {"title": "Flächenmodell rückwärts", "stars": "★☆☆", "task": (svg("0 0 230 200", base), task), "sol": (svg("0 0 230 200", sol), soltxt)}
+
+
 FIGS = {
     "osmose": osmose, "natrium-kalium-pumpe": nak, "symport-antiport": symport, "endocytose-exocytose": endo,
     "ableiten": ableiten, "nervensystem": nerven, "auge": auge,
-    "termstruktur": termstruktur, "zufallsexperimente": zufallsexperimente, "laplace": laplace, "baumdiagramme": baumdiagramme, "unabhaengige-ereignisse": unabhaengig, "funktionsbegriff": funktionsbegriff, "eigenschaften-funktionen": eigenschaften, "lineare-funktionen": lineare_funktionen, "funktionsgleichungen": funktionsgleichungen, "lgs-grafisch": lgs_grafisch, "gleichsetzungsverfahren": gleichsetzungsverfahren, "additionsverfahren": additionsverfahren, "lgs-anwendungen": lgs_anwendungen, "zentrische-streckung": zentrische_streckung, "aehnliche-dreiecke": aehnliche_dreiecke, "flaeche-volumen-aehnlich": flaeche_volumen_aehnlich, "strahlensaetze": strahlensaetze, "atombau": atombau, "periodensystem": periodensystem, "stoffklassen": stoffklassen, "orbitalmodell": orbitalmodell, "redoxreaktionen": redoxreaktionen, "gebrauchsmetalle": gebrauchsmetalle, "komplexverbindungen": komplexverbindungen, "reaktionsgeschwindigkeit": reaktionsgeschwindigkeit, "chemisches-gleichgewicht": chemisches_gleichgewicht, "massenwirkungsgesetz": massenwirkungsgesetz, "loeslichkeitsgleichgewichte": loeslichkeitsgleichgewichte, "saeuren-basen": saeuren_basen, "ph-wert": ph_wert, "saeurestaerke": saeurestaerke, "titration": titration, "puffersysteme": puffersysteme, "binomische-formeln": binom, "bruchterme": bruchterme, "ausmultiplizieren-faktorisieren": ausmult, "terme-vereinfachen": terme,
+    "termstruktur": termstruktur, "zufallsexperimente": zufallsexperimente, "laplace": laplace, "baumdiagramme": baumdiagramme, "unabhaengige-ereignisse": unabhaengig, "funktionsbegriff": funktionsbegriff, "eigenschaften-funktionen": eigenschaften, "lineare-funktionen": lineare_funktionen, "funktionsgleichungen": funktionsgleichungen, "lgs-grafisch": lgs_grafisch, "gleichsetzungsverfahren": gleichsetzungsverfahren, "additionsverfahren": additionsverfahren, "lgs-anwendungen": lgs_anwendungen, "zentrische-streckung": zentrische_streckung, "aehnliche-dreiecke": aehnliche_dreiecke, "flaeche-volumen-aehnlich": flaeche_volumen_aehnlich, "strahlensaetze": strahlensaetze, "atombau": atombau, "periodensystem": periodensystem, "stoffklassen": stoffklassen, "orbitalmodell": orbitalmodell, "redoxreaktionen": redoxreaktionen, "gebrauchsmetalle": gebrauchsmetalle, "komplexverbindungen": komplexverbindungen, "reaktionsgeschwindigkeit": reaktionsgeschwindigkeit, "chemisches-gleichgewicht": chemisches_gleichgewicht, "massenwirkungsgesetz": massenwirkungsgesetz, "loeslichkeitsgleichgewichte": loeslichkeitsgleichgewichte, "saeuren-basen": saeuren_basen, "ph-wert": ph_wert, "saeurestaerke": saeurestaerke, "titration": titration, "puffersysteme": puffersysteme, "binomische-formeln": binom, "binomische-faktorisieren": binomische_faktorisieren, "bruchterme": bruchterme, "ausmultiplizieren-faktorisieren": ausmult, "terme-vereinfachen": terme,
     "gleichungen": gleichungen, "ungleichungen": ungleichungen,
     "druck": druck, "hydraulik": hydraulik, "schweredruck": schweredruck, "auftrieb": auftrieb, "luftdruck": luftdruck,
 }

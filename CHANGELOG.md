@@ -9,6 +9,10 @@ Schema **MAJOR.MINOR.PATCH**:
 
 Neue Version: oben einen Eintrag `## [x.y.z] – JJJJ-MM-TT` ergänzen und `python3 src/build.py` ausführen.
 
+## [1.16.0] – 2026-11-14
+
+- Mathematik Klasse 8, Kapitel I: neues Thema „Binomische Formeln rückwärts: Faktorisieren“ mit Rechenweg Schritt für Schritt, Formel erkennen, Ausklammern, Lückenaufgaben, Factsheet und Übungs-PDF.
+
 ## [1.15.0] – 2026-11-13
 
 - Chemie Klasse 11, Kapitel 4 „Säure-Base-Gleichgewichte“: Säuren und Basen nach Brønsted, Autoprotolyse und pH-Wert, Säure- und Basenstärke, Indikatoren und Titration (mit Leitfähigkeitstitration), Puffersysteme*.

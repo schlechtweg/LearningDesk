@@ -2595,6 +2595,47 @@ SHEETS["puffersysteme"] = dict(title="Puffersysteme", eyebrow="Chemie · Klasse 
     </div>
   </div>''')
 
+SHEETS["binomische-faktorisieren"] = dict(title="Binomische Formeln rückwärts: Faktorisieren", eyebrow="Mathematik · Klasse 8 · Terme und Gleichungen", accent=M8, body=f'''
+  <div class="kern"><strong>Faktorisieren</strong> heißt, eine Summe als <strong>Produkt</strong> zu schreiben. Mit den binomischen Formeln von rechts nach links: {m("a² + 2ab + b² = (a + b)²")}, {m("a² − 2ab + b² = (a − b)²")}, {m("a² − b² = (a + b)(a − b)")}.</div>
+  <div class="cols">
+    <div class="box">
+      <h2>Vorgehen</h2>
+      <ol>
+        <li>Gemeinsamen Faktor ausklammern.</li>
+        <li>Zwei Quadrate suchen: a und b bestimmen.</li>
+        <li>Mittelglied prüfen: ist es 2ab?</li>
+        <li>Vorzeichen: + ⇒ 1., − ⇒ 2. Formel; kein Mittelglied, Minus ⇒ 3.</li>
+        <li>Probe durch Ausmultiplizieren.</li>
+      </ol>
+    </div>
+    <div class="box">
+      <h2>Beispiele</h2>
+      <ul>
+        <li>{m("x² + 10x + 25 = (x + 5)²")}</li>
+        <li>{m("9a² − 12ab + 4b² = (3a − 2b)²")}</li>
+        <li>{m("49x² − 16 = (7x + 4)(7x − 4)")}</li>
+        <li>{m("3x² − 27 = 3(x + 3)(x − 3)")}</li>
+      </ul>
+    </div>
+    <div class="box full">
+      <h2>Lässt es sich zerlegen?</h2>
+      <table>
+        <tr><th>Term</th><th>Prüfung</th><th>Ergebnis</th></tr>
+        <tr><td>{m("x² + 6x + 9")}</td><td>2 · x · 3 = 6x ✓</td><td>{m("(x + 3)²")}</td></tr>
+        <tr><td>{m("x² + 6x + 25")}</td><td>2 · x · 5 = 10x ≠ 6x</td><td>nicht mit Binom</td></tr>
+        <tr><td>{m("x² + 9")}</td><td>Summe von Quadraten</td><td>nicht zerlegbar</td></tr>
+      </table>
+    </div>
+    <div class="box">
+      <h2>Wozu?</h2>
+      <ul><li>Kopfrechnen: 51² − 49² = 100 · 2</li><li>Gleichungen: (x − 3)² = 0 ⇒ x = 3</li><li>Bruchterme kürzen</li></ul>
+    </div>
+    <div class="box warn">
+      <h2>Typische Fehler</h2>
+      <ul><li>Mittelglied nicht geprüft.</li><li>(x + 6)² statt (x + 3)² bei 6x.</li><li>a² + b² mit der 3. Formel.</li></ul>
+    </div>
+  </div>''')
+
 OUT = sys.argv[1] if len(sys.argv) > 1 else os.path.join(os.path.dirname(__file__), "_build")
 os.makedirs(OUT, exist_ok=True)
 shutil.copyfile(os.path.join(os.path.dirname(os.path.abspath(__file__)), "factsheet.css"), os.path.join(OUT, "factsheet.css"))

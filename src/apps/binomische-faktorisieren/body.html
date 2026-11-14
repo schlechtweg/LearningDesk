@@ -1,0 +1,70 @@
+  <nav class="tabs" aria-label="Bereiche">
+    <a href="#verstehen" data-view="verstehen"><span class="n">1</span>Verstehen</a>
+    <a href="#schritte" data-view="schritte"><span class="n">2</span>Schritt für Schritt</a>
+    <a href="#erkennen" data-view="erkennen"><span class="n">3</span>Erkennen</a>
+    <a href="#ueben" data-view="ueben"><span class="n">4</span>Üben</a>
+    <a href="#alltag" data-view="alltag"><span class="n">5</span>Im Alltag</a>
+    <a href="#quiz" data-view="quiz"><span class="n">6</span>Quiz</a>
+  </nav>
+
+  <section class="view" id="view-verstehen">
+    <div class="einfach">
+      <span class="eyebrow">Einfach erklärt</span>
+      <p>Bisher hast du mit den binomischen Formeln Klammern <strong>aufgelöst</strong>. Jetzt geht es <strong>rückwärts</strong>: Aus einer Summe wird wieder ein <strong>Produkt</strong>. Das heißt <strong>Faktorisieren</strong> („in Faktoren zerlegen“). Du liest die Formeln einfach von rechts nach links.</p>
+    </div>
+    <div class="panel stack">
+      <h3>Die Formeln rückwärts</h3>
+      <table class="ptab">
+        <tr><th></th><th>Summe (gegeben)</th><th>Produkt (gesucht)</th></tr>
+        <tr><td>1. Formel</td><td class="math">a² + 2ab + b²</td><td class="math">(a + b)²</td></tr>
+        <tr><td>2. Formel</td><td class="math">a² − 2ab + b²</td><td class="math">(a − b)²</td></tr>
+        <tr><td>3. Formel</td><td class="math">a² − b²</td><td class="math">(a + b)(a − b)</td></tr>
+      </table>
+    </div>
+    <div class="panel stack">
+      <h3>So gehst du vor: x² + 10x + 25</h3>
+      <ol class="list small">
+        <li><strong>Gemeinsamen Faktor ausklammern</strong>, falls möglich (z. B. 2x² + 20x + 50 = 2 · (x² + 10x + 25)).</li>
+        <li><strong>Zwei Quadrate suchen</strong>: <span class="hl1">x²</span> = (x)² ⇒ a = x, <span class="hl2">25</span> = 5² ⇒ b = 5.</li>
+        <li><strong>Mittelglied prüfen</strong>: 2 · a · b = 2 · x · 5 = <span class="hl3">10x</span> ✓. Passt es nicht, geht es nicht mit einer binomischen Formel.</li>
+        <li><strong>Vorzeichen des Mittelglieds</strong>: plus ⇒ 1. Formel, minus ⇒ 2. Formel.</li>
+        <li><strong>Ergebnis</strong>: x² + 10x + 25 = <strong>(x + 5)²</strong>. Probe durch Ausmultiplizieren.</li>
+      </ol>
+      <p class="small">Nur zwei Quadrate mit Minus dazwischen und kein Mittelglied? Dann ist es die 3. Formel: 49x² − 16 = (7x + 4)(7x − 4).</p>
+    </div>
+    <div class="merksatz"><span class="eyebrow">Merke</span><p>Die beiden Quadrate stehen immer mit <strong>Plus</strong> da (bei der 1. und 2. Formel). Steht vor einem Quadrat ein Minus, z. B. x² − 6x − 9, klappt die 1. und 2. Formel nicht.</p></div>
+    <div class="panel stack"><h3>Typische Fehler</h3><ul class="list small"><li>Mittelglied nicht geprüft: x² + 6x + 25 ist <strong>kein</strong> Binom, denn 2 · x · 5 = 10x ≠ 6x.</li><li>Faktor 2 vergessen: Aus x² + 6x + 9 wird (x + 3)², nicht (x + 6)².</li><li>a² + b² mit der 3. Formel zerlegt: Eine Summe von Quadraten lässt sich nicht zerlegen.</li><li>Gemeinsamen Faktor übersehen: 3x² − 12 = 3(x² − 4) = 3(x + 2)(x − 2).</li></ul></div>
+  </section>
+
+  <section class="view" id="view-schritte" hidden>
+    <div class="stack"><span class="eyebrow">Rechenweg</span><h2>Faktorisieren Schritt für Schritt</h2><p class="muted">Überlege vor jedem Klick, was als Nächstes kommt.</p></div>
+    <div class="row"><div class="modes" role="group" aria-label="Schwierigkeit"><button type="button" data-l="1" aria-pressed="true">einfach</button><button type="button" data-l="2" aria-pressed="false">mit Zahlen vor x</button><button type="button" data-l="3" aria-pressed="false">mit Ausklammern</button></div><button type="button" id="sNew">Neuer Term</button></div>
+    <div class="panel stack"><p class="task" id="sTask"></p><ol class="steps" id="sSteps"></ol><div class="row"><button type="button" class="primary" id="sNext">Nächster Schritt</button><button type="button" id="sAll">Alles zeigen</button></div></div>
+  </section>
+
+  <section class="view" id="view-erkennen" hidden>
+    <div class="stack"><span class="eyebrow">Blick schärfen</span><h2>Welche Formel passt?</h2><p class="muted">Entscheide, ob sich der Term mit einer binomischen Formel zerlegen lässt, und mit welcher.</p></div>
+    <div class="panel stack"><p class="task" id="eTask"></p><div class="opts" id="eOpts"><button type="button" data-a="1">1. Formel</button><button type="button" data-a="2">2. Formel</button><button type="button" data-a="3">3. Formel</button><button type="button" data-a="0">keine</button></div><p class="small" id="eFb" aria-live="polite"></p><div class="row"><button type="button" class="primary" id="eNext">Nächster Term</button><span class="score-line" id="eScore"></span></div></div>
+  </section>
+
+  <section class="view" id="view-ueben" hidden>
+    <div class="stack"><span class="eyebrow">Trainer</span><h2>Zerlege in Faktoren</h2><p class="muted">Schreibe z. B. <code>(x+5)^2</code>, <code>(3a-2b)^2</code> oder <code>(2x+3)(2x-3)</code>. Vorfaktoren davor: <code>2(x-1)^2</code>.</p></div>
+    <div id="trainer" class="stack"></div>
+  </section>
+
+  <section class="view" id="view-alltag" hidden>
+    <div class="stack"><span class="eyebrow">Im Alltag</span><h2>Wozu Faktorisieren gut ist</h2></div>
+    <div class="grid-2">
+      <div class="panel stack"><span class="eyebrow">Kopfrechnen</span><h3>51² − 49²</h3><p class="small">Mit der 3. Formel: (51 + 49)(51 − 49) = 100 · 2 = 200. Viel schneller als 2601 − 2401.</p></div>
+      <div class="panel stack"><span class="eyebrow">Kopfrechnen</span><h3>23 · 17</h3><p class="small">= (20 + 3)(20 − 3) = 400 − 9 = 391.</p></div>
+      <div class="panel stack"><span class="eyebrow">Gleichungen</span><h3>x² − 6x + 9 = 0</h3><p class="small">(x − 3)² = 0 ⇒ x = 3. Faktorisieren macht quadratische Gleichungen leicht lösbar.</p></div>
+      <div class="panel stack"><span class="eyebrow">Bruchterme</span><h3>Kürzen</h3><p class="small">(x² − 9) / (x + 3) = (x + 3)(x − 3) / (x + 3) = x − 3. Ohne Faktorisieren kann man nicht kürzen.</p></div>
+      <div class="panel stack"><span class="eyebrow">Geometrie</span><h3>Quadrat erkennen</h3><p class="small">Eine Fläche x² + 8x + 16 ist ein Quadrat mit der Seite x + 4.</p></div>
+      <div class="panel stack"><span class="eyebrow">Ausblick</span><h3>Quadratische Ergänzung</h3><p class="small">Später ergänzt du gezielt das fehlende Quadrat, z. B. x² + 6x = (x + 3)² − 9. Damit löst man jede quadratische Gleichung.</p></div>
+    </div>
+  </section>
+
+  <section class="view" id="view-quiz" hidden>
+    <div class="stack"><span class="eyebrow">Selbsttest</span><h2>Quiz</h2><div class="progress-line"><div class="bar" aria-hidden="true"><i id="qBar"></i></div><span class="score-line" id="qProgress"></span></div></div>
+    <div class="panel quiz" id="quizBox" aria-live="polite"></div>
+  </section>

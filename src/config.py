@@ -373,6 +373,14 @@ TOPICS = [
         "fonts": "base", "first_view": "verstehen", "factsheet": "Factsheet als PDF ↓",
     },
     {
+        "slug": "binomische-faktorisieren", "grade": "8", "subject": "mathematik", "chapter": "I", "order": 4.5, "kit": True, "accent": ACCENT_MATH8,
+        "title": "Binomische Formeln rückwärts: Faktorisieren", "short": "Binomische Formeln rückwärts", "tag": "Terme",
+        "card": "Terme mit den binomischen Formeln in Faktoren zerlegen, Rechenweg Schritt für Schritt, Formel erkennen, Ausklammern, Lückenaufgaben, Trainer, Quiz",
+        "description": "Interaktive Lernhilfe zum Faktorisieren mit binomischen Formeln (Mathematik, Klasse 8)",
+        "intro": "Die binomischen Formeln von rechts nach links lesen: Summen in Produkte zerlegen.",
+        "fonts": "math", "first_view": "verstehen", "factsheet": "Factsheet als PDF ↓",
+    },
+    {
         "slug": "binomische-formeln", "grade": "8", "subject": "mathematik", "chapter": "I", "order": 4,
         "title": "Binomische Formeln", "short": "Binomische Formeln", "tag": "Terme",
         "card": "Die drei Formeln, Erklärung mit Flächen, Trainer mit Lückenaufgaben, Kopfrechen-Trick, Quiz",
