@@ -80,16 +80,15 @@ src/
   worksheets/          Übungsblätter: Aufgabenvorräte (tasks.py, extra_tasks.py), Grafiken (figures.py), Generator (sources.py), Stylesheet
 vendor/                Algebrite (Rechenkern des ClassPad-Simulators, MIT-Lizenz)
 docs/                  ERZEUGT: Website für GitHub Pages
-artifacts/             ERZEUGT: Einzeldateien je App für Claude-Artefakte
 ```
 
-Dateien in `docs/` und `artifacts/` nicht von Hand ändern, sie werden beim Build überschrieben.
+Dateien in `docs/` nicht von Hand ändern, sie werden beim Build überschrieben.
 
 ## Bauen
 
 ```bash
 pip install -r requirements.txt     # einmalig: Jinja2
-python3 src/build.py                # docs/ und artifacts/ erzeugen
+python3 src/build.py                # docs/ erzeugen
 python3 src/build.py --pdf          # zusätzlich Factsheet-PDFs (braucht Node.js + Playwright)
 ```
 
@@ -120,6 +119,5 @@ Siehe [TODO.md](TODO.md).
 
 ## Technische Hinweise
 
-- Die Links in `artifacts/` zeigen auf GitHub Pages (absolut), damit sie auch in Claude-Artefakten funktionieren; in `docs/` sind sie relativ und funktionieren auch offline.
 - Der Hell/Dunkel-Schalter speichert die Wahl im Browser (`learningdesk.theme`) und gilt für alle Seiten.
 - Der ClassPad-Simulator ist nicht mit CASIO verbunden. CASIO und ClassPad sind Marken der CASIO Computer Co., Ltd.

@@ -2,7 +2,7 @@
 """Static site generator for LearningDesk.
 
 Usage:
-  python3 src/build.py          build docs/ (GitHub Pages) and artifacts/ (single files for Claude)
+  python3 src/build.py          build docs/ (GitHub Pages)
   python3 src/build.py --pdf    additionally render the factsheet PDFs (needs Node.js + Playwright)
 
 Sources:
@@ -24,7 +24,6 @@ from jinja2 import Environment, FileSystemLoader, StrictUndefined
 ROOT = Path(__file__).resolve().parent.parent
 SRC = ROOT / "src"
 DOCS = ROOT / "docs"
-ARTIFACTS = ROOT / "artifacts"
 sys.path.insert(0, str(SRC))
 sys.path.insert(0, str(SRC / "worksheets"))
 import config  # noqa: E402
@@ -219,18 +218,15 @@ def main():
     args = ap.parse_args()
     sh = shared()
     DOCS.mkdir(exist_ok=True)
-    ARTIFACTS.mkdir(exist_ok=True)
     page = env.get_template("page.html")
     for t in config.TOPICS:
-        # single file for Claude artifacts: absolute links to the GitHub Pages site
-        (ARTIFACTS / f"{t['slug']}.html").write_text(render_app(t, config.BASE_URL, sh), encoding="utf-8")
         # standalone page for GitHub Pages: relative links
         back = "index.html" if t.get("tool") else grade(t["grade"])["page"]
         (DOCS / f"{t['slug']}.html").write_text(page.render(fragment=render_app(t, "", sh), back=back), encoding="utf-8")
         for asset in t.get("assets", []):
-            for target in (DOCS / asset, ARTIFACTS / asset):
-                target.parent.mkdir(parents=True, exist_ok=True)
-                shutil.copyfile(ROOT / asset, target)
+            target = DOCS / asset
+            target.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copyfile(ROOT / asset, target)
     shutil.copyfile(ROOT / "vendor" / "algebrite-LICENSE.txt", DOCS / "vendor" / "algebrite-LICENSE.txt")
     build_menus(sh)
     if args.pdf:
