@@ -7,7 +7,11 @@ Schema **MAJOR.MINOR.PATCH**:
 - **PATCH** (1.0.**1**): Korrekturen an Texten, Aufgaben oder Darstellung.
 - **MAJOR** (**2**.0.0): grundlegender Umbau.
 
-Neue Version: oben einen Eintrag `## [x.y.z] – JJJJ-MM-TT` ergänzen und `python3 src/build.py` ausführen.
+Neue Version: oben einen Eintrag `## 1.16.1
+
+- Binomische Formeln rückwärts: Verstehen tab and step texts rewritten in simpler language (3-question method, cheat sheet).
+
+## [x.y.z] – JJJJ-MM-TT` ergänzen und `python3 src/build.py` ausführen.
 
 ## [1.16.0] – 2026-11-14
 

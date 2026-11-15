@@ -9,31 +9,59 @@
 
   <section class="view" id="view-verstehen">
     <div class="einfach">
-      <span class="eyebrow">Einfach erklärt</span>
-      <p>Bisher hast du mit den binomischen Formeln Klammern <strong>aufgelöst</strong>. Jetzt geht es <strong>rückwärts</strong>: Aus einer Summe wird wieder ein <strong>Produkt</strong>. Das heißt <strong>Faktorisieren</strong> („in Faktoren zerlegen“). Du liest die Formeln einfach von rechts nach links.</p>
+      <span class="eyebrow">Worum geht es?</span>
+      <p>Du kennst schon: <strong>(x + 3)² = x² + 6x + 9</strong>. Das war Klammern <strong>auflösen</strong>.</p>
+      <p>Jetzt drehen wir es um. Du bekommst <strong>x² + 6x + 9</strong> und sollst herausfinden: Aus welcher Klammer ist das entstanden? Die Antwort ist <strong>(x + 3)²</strong>.</p>
+      <p class="small">Stell es dir wie ein Rätsel vor: Du siehst das Ergebnis und suchst die Aufgabe.</p>
     </div>
+
     <div class="panel stack">
-      <h3>Die Formeln rückwärts</h3>
+      <h3>Das Rätsel in 3 Fragen lösen</h3>
+      <p class="small">Beispiel: <strong>x² + 6x + 9</strong></p>
+      <ol class="list">
+        <li><strong>Was steht vorne im Quadrat?</strong><br><span class="small">x² ist x mal x. Also steht in der Klammer vorne ein <span class="hl1">x</span>.</span></li>
+        <li><strong>Was steht hinten im Quadrat?</strong><br><span class="small">9 ist 3 mal 3. Also steht in der Klammer hinten eine <span class="hl2">3</span>.</span></li>
+        <li><strong>Passt die Mitte?</strong><br><span class="small">Rechne: 2 · <span class="hl1">x</span> · <span class="hl2">3</span> = <span class="hl3">6x</span>. Das steht wirklich in der Mitte. Es passt!</span></li>
+      </ol>
+      <p><strong>Ergebnis: x² + 6x + 9 = (x + 3)²</strong></p>
+      <p class="small">Steht in der Mitte ein <strong>Minus</strong> (x² − 6x + 9), dann kommt auch in die Klammer ein Minus: <strong>(x − 3)²</strong>.</p>
+    </div>
+
+    <div class="panel stack">
+      <h3>Noch ein Fall: nur zwei Teile mit Minus</h3>
+      <p class="small">Beispiel: <strong>x² − 25</strong>. Hier gibt es keine Mitte.</p>
+      <ul class="list small">
+        <li>x² ist x mal x, 25 ist 5 mal 5.</li>
+        <li>Dann schreibst du <strong>zwei</strong> Klammern, einmal mit Plus, einmal mit Minus:</li>
+      </ul>
+      <p><strong>x² − 25 = (x + 5)(x − 5)</strong></p>
+    </div>
+
+    <div class="panel stack">
+      <h3>Spickzettel</h3>
       <table class="ptab">
-        <tr><th></th><th>Summe (gegeben)</th><th>Produkt (gesucht)</th></tr>
-        <tr><td>1. Formel</td><td class="math">a² + 2ab + b²</td><td class="math">(a + b)²</td></tr>
-        <tr><td>2. Formel</td><td class="math">a² − 2ab + b²</td><td class="math">(a − b)²</td></tr>
-        <tr><td>3. Formel</td><td class="math">a² − b²</td><td class="math">(a + b)(a − b)</td></tr>
+        <tr><th>Du siehst …</th><th>Du schreibst …</th><th>Beispiel</th></tr>
+        <tr><td>Quadrat + Mitte + Quadrat</td><td>(… + …)²</td><td>x² + 10x + 25 = (x + 5)²</td></tr>
+        <tr><td>Quadrat − Mitte + Quadrat</td><td>(… − …)²</td><td>x² − 10x + 25 = (x − 5)²</td></tr>
+        <tr><td>Quadrat − Quadrat (keine Mitte)</td><td>(… + …)(… − …)</td><td>x² − 25 = (x + 5)(x − 5)</td></tr>
       </table>
     </div>
+
+    <div class="merksatz"><span class="eyebrow">Wichtig</span><p>Immer die <strong>Mitte prüfen</strong>! Bei x² + 6x + 25 wäre die Mitte 2 · x · 5 = 10x. Da steht aber 6x. Dann klappt es <strong>nicht</strong>.</p></div>
+
     <div class="panel stack">
-      <h3>So gehst du vor: x² + 10x + 25</h3>
-      <ol class="list small">
-        <li><strong>Gemeinsamen Faktor ausklammern</strong>, falls möglich (z. B. 2x² + 20x + 50 = 2 · (x² + 10x + 25)).</li>
-        <li><strong>Zwei Quadrate suchen</strong>: <span class="hl1">x²</span> = (x)² ⇒ a = x, <span class="hl2">25</span> = 5² ⇒ b = 5.</li>
-        <li><strong>Mittelglied prüfen</strong>: 2 · a · b = 2 · x · 5 = <span class="hl3">10x</span> ✓. Passt es nicht, geht es nicht mit einer binomischen Formel.</li>
-        <li><strong>Vorzeichen des Mittelglieds</strong>: plus ⇒ 1. Formel, minus ⇒ 2. Formel.</li>
-        <li><strong>Ergebnis</strong>: x² + 10x + 25 = <strong>(x + 5)²</strong>. Probe durch Ausmultiplizieren.</li>
-      </ol>
-      <p class="small">Nur zwei Quadrate mit Minus dazwischen und kein Mittelglied? Dann ist es die 3. Formel: 49x² − 16 = (7x + 4)(7x − 4).</p>
+      <h3>Schwerer: mit Zahl vor dem x</h3>
+      <p class="small">Beispiel: <strong>4x² + 12x + 9</strong></p>
+      <ul class="list small">
+        <li>4x² ist 2x mal 2x ⇒ vorne <strong>2x</strong>.</li>
+        <li>9 ist 3 mal 3 ⇒ hinten <strong>3</strong>.</li>
+        <li>Mitte: 2 · 2x · 3 = 12x ✓</li>
+      </ul>
+      <p><strong>4x² + 12x + 9 = (2x + 3)²</strong></p>
+      <p class="small">Haben alle Teile eine gemeinsame Zahl, zieh sie zuerst nach vorne: 2x² + 12x + 18 = 2 · (x² + 6x + 9) = 2(x + 3)².</p>
     </div>
-    <div class="merksatz"><span class="eyebrow">Merke</span><p>Die beiden Quadrate stehen immer mit <strong>Plus</strong> da (bei der 1. und 2. Formel). Steht vor einem Quadrat ein Minus, z. B. x² − 6x − 9, klappt die 1. und 2. Formel nicht.</p></div>
-    <div class="panel stack"><h3>Typische Fehler</h3><ul class="list small"><li>Mittelglied nicht geprüft: x² + 6x + 25 ist <strong>kein</strong> Binom, denn 2 · x · 5 = 10x ≠ 6x.</li><li>Faktor 2 vergessen: Aus x² + 6x + 9 wird (x + 3)², nicht (x + 6)².</li><li>a² + b² mit der 3. Formel zerlegt: Eine Summe von Quadraten lässt sich nicht zerlegen.</li><li>Gemeinsamen Faktor übersehen: 3x² − 12 = 3(x² − 4) = 3(x + 2)(x − 2).</li></ul></div>
+
+    <div class="panel stack"><h3>Typische Fehler</h3><ul class="list small"><li>Die Zahl aus der Mitte in die Klammer geschrieben: x² + 6x + 9 ist <strong>nicht</strong> (x + 6)², sondern (x + 3)². Die Zahl in der Klammer kommt vom <strong>hinteren</strong> Quadrat.</li><li>Bei x² + 9 (Plus, keine Mitte) geht es nicht. Nur bei <strong>Minus</strong> klappt die Variante mit zwei Klammern.</li></ul></div>
   </section>
 
   <section class="view" id="view-schritte" hidden>

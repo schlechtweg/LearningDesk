@@ -25,10 +25,10 @@
   }
   function steps(t) {
     const st = [];
-    if (t.k > 1) st.push([`Gemeinsamen Faktor ausklammern: ${t.term} = ${t.k} · (${t.kind === 3 ? `${t.sqA} ${M} ${t.sqB}` : `${t.sqA} ${t.kind === 1 ? "+" : M} ${t.mid} + ${t.sqB}`})`, `Alle Glieder sind durch ${t.k} teilbar.`]);
-    st.push([`Quadrate erkennen: <span class="hl1">${t.sqA} = (${t.A})²</span> und <span class="hl2">${t.sqB} = (${t.B})²</span>`, `Also a = ${t.A} und b = ${t.B}.`]);
-    if (t.kind === 3) st.push(["Kein Mittelglied, Minus zwischen den Quadraten ⇒ <b>3. binomische Formel</b>", "a² − b² = (a + b)(a − b)"]);
-    else st.push([`Mittelglied prüfen: 2 · ${t.A} · ${t.B} = <span class="hl3">${t.mid}</span> ✓`, `Vorzeichen ${t.kind === 1 ? "plus ⇒ 1. binomische Formel" : "minus ⇒ 2. binomische Formel"}.`]);
+    if (t.k > 1) st.push([`Zuerst die gemeinsame Zahl nach vorne ziehen: ${t.term} = ${t.k} · (${t.kind === 3 ? `${t.sqA} ${M} ${t.sqB}` : `${t.sqA} ${t.kind === 1 ? "+" : M} ${t.mid} + ${t.sqB}`})`, `Alle Glieder sind durch ${t.k} teilbar.`]);
+    st.push([`Was steht vorne und hinten im Quadrat? <span class="hl1">${t.sqA} = ${t.A} · ${t.A}</span> und <span class="hl2">${t.sqB} = ${t.B} · ${t.B}</span>`, `Also kommt vorne ${t.A} und hinten ${t.B} in die Klammer.`]);
+    if (t.kind === 3) st.push(["Es gibt keine Mitte, nur ein Minus ⇒ zwei Klammern: einmal +, einmal −", "Das ist die 3. binomische Formel."]);
+    else st.push([`Passt die Mitte? 2 · ${t.A} · ${t.B} = <span class="hl3">${t.mid}</span> ✓`, `In der Mitte steht ${t.kind === 1 ? "Plus ⇒ in die Klammer kommt + (1. Formel)" : "Minus ⇒ in die Klammer kommt − (2. Formel)"}.`]);
     st.push([`Ergebnis: <b>${t.term} = ${t.res}</b>`, "Probe: Ausmultiplizieren ergibt wieder den Ausgangsterm."]);
     return st;
   }
