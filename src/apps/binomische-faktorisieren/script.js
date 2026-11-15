@@ -64,13 +64,32 @@
       return { html: `Ergänze, sodass ein Binom entsteht: <span class="math">${t.sqA} ${t.kind === 1 ? "+" : M} ☐ + ${t.sqB} = ${t.res}</span>`, label: "☐ =", answer: t.mid, check: LK.check.expr(f, { vars: "abxy", fallback: "Das Mittelglied ist 2 · a · b." }), solution: `2 · ${t.A} · ${t.B} = <b>${t.mid}</b>` }; }
     const f = LK.parse(t.sqB.replace(/²/g, "^2").replace(/(\d)([a-z])/g, "$1*$2"));
     return { html: `Ergänze das fehlende Quadrat: <span class="math">${t.sqA} ${t.kind === 1 ? "+" : M} ${t.mid} + ☐ = (${t.A} ${t.kind === 1 ? "+" : M} ☐)²</span>. Welcher Term fehlt hinten?`, label: "☐ =", answer: t.sqB.replace("²", "^2"), check: LK.check.expr(f, { vars: "abxy", fallback: "b = Mittelglied : (2 · a), dann quadrieren." }), solution: `b = ${t.mid} : (2 · ${t.A}) = ${t.B} ⇒ b² = <b>${t.sqB}</b>` }; }
+  // Product-sum trick: find m, n with m·n = c and m + n = b for x² + bx + c
+  const sg = (n) => (n < 0 ? `${M} ${-n}` : `+ ${n}`);
+  function genPair() {
+    let m, n;
+    // Favour perfect squares (m = n) and differences of squares (n = -m)
+    m = pick([-1, 1]) * rnd(1, 9); n = Math.random() < 0.4 ? m : (Math.random() < 0.2 ? -m : pick([-1, 1]) * rnd(1, 9));
+    const b = m + n, c = m * n;
+    const term = `x² ${b === 0 ? "" : (b < 0 ? `${M} ` : "+ ") + (Math.abs(b) === 1 ? "" : Math.abs(b)) + "x "}${sg(c)}`;
+    const res = m === n ? `(x ${sg(m)})²` : `(x ${sg(m)})(x ${sg(n)})`;
+    const pairs = [];
+    for (let i = 1; i <= Math.abs(c); i++) if (Math.abs(c) % i === 0) { const j = Math.abs(c) / i; if (i > j) break; for (const [u, v] of c > 0 ? [[i, j], [-i, -j]] : [[i, -j], [-i, j]]) pairs.push([u, v]); }
+    const f = LK.parse(`(x+(${m}))*(x+(${n}))`);
+    const row = ([u, v]) => `${u} · ${v} = ${c}, Summe ${u} + ${v} = ${u + v} ${u + v === b ? "✓" : "✗"}`.replace(/-/g, M);
+    return { html: `Finde zwei Zahlen: <b>mal</b> genommen ${String(c).replace("-", M)}, <b>plus</b> gerechnet ${String(b).replace("-", M)}. Zerlege dann: <span class="math">${term}</span>`,
+      label: "Produkt:", placeholder: "z. B. (x+2)(x+3)", answer: res.replace(/ /g, "").replace(/−/g, "-").replace("²", "^2"),
+      check: LK.check.expr(f, { vars: "x", form: factored, fallback: "Schreibe alle Zahlenpaare auf, die mal genommen die hintere Zahl ergeben, und prüfe ihre Summe." }),
+      solution: pairs.map(row).join("<br>") + `<br>⇒ <b>${term} = ${res}</b>` };
+  }
   LK.trainer({ el: "#trainer", modes: [
     { id: "f1", label: "1. Formel", gen: gen(1, 1) },
     { id: "f2", label: "2. Formel", gen: gen(1, 2) },
     { id: "f3", label: "3. Formel", gen: gen(1, 3) },
     { id: "mix", label: "Gemischt mit Zahlen vor x", gen: () => gen(2)() },
     { id: "aus", label: "Mit Ausklammern", gen: () => gen(3)() },
-    { id: "luecke", label: "Lücken füllen", gen: genGap }
+    { id: "luecke", label: "Lücken füllen", gen: genGap },
+    { id: "paar", label: "Zahlenpaar-Trick", gen: genPair }
   ] });
 
   LK.quiz({ box: "#quizBox", bar: "#qBar", progress: "#qProgress", key: "binomf.best", n: 8, questions: [

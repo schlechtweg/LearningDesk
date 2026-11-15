@@ -9,6 +9,10 @@ Schema **MAJOR.MINOR.PATCH**:
 
 Neue Version: oben einen Eintrag `## [x.y.z] – JJJJ-MM-TT` ergänzen und `python3 src/build.py` ausführen.
 
+## [1.17.0] – 2026-11-15
+
+- Binomische Formeln rückwärts: neuer Abschnitt „Zahlenpaar-Trick“ (Produkt und Summe) und neuer Übungsmodus dazu.
+
 ## [1.16.1] – 2026-11-15
 
 - Binomische Formeln rückwärts: Erklärung deutlich einfacher geschrieben (3-Fragen-Methode, Spickzettel, einfachere Rechenschritte).
