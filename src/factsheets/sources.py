@@ -2639,7 +2639,21 @@ SHEETS["binomische-faktorisieren"] = dict(title="Binomische Formeln rückwärts:
 OUT = sys.argv[1] if len(sys.argv) > 1 else os.path.join(os.path.dirname(__file__), "_build")
 os.makedirs(OUT, exist_ok=True)
 shutil.copyfile(os.path.join(os.path.dirname(os.path.abspath(__file__)), "factsheet.css"), os.path.join(OUT, "factsheet.css"))
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), ".."))
+import classpad_tips  # noqa: E402
+
+
+def classpad_strip(name):
+    # compact ClassPad check strip above the footer (same data as the apps)
+    tip = classpad_tips.TIPS.get(name)
+    if not tip:
+        return ""
+    rows = "".join(f'<li><code>{i.replace("·", "×")}</code> → <code>{r}</code></li>' for _, i, r in tip[1])
+    return (f'  <div class="cp"><b>🧮 Kontrolle mit dem ClassPad</b> <span>(App Main, Eingabe tippen, EXE)</span>'
+            f'<ul>{rows}</ul></div>\n')
+
+
 for name, s in SHEETS.items():
-    html = HEAD.format(**{"extra": "", **s}) + s["body"] + "\n" + FOOT.format(eyebrow=s["eyebrow"], app=name)
+    html = HEAD.format(**{"extra": "", **s}) + s["body"] + "\n" + classpad_strip(name) + FOOT.format(eyebrow=s["eyebrow"], app=name)
     open(os.path.join(OUT, f"{name}.html"), "w").write(html)
 print("factsheet sources:", ", ".join(SHEETS))

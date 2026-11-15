@@ -40,3 +40,9 @@ th { font-family: var(--font-display); font-weight: 700; background: var(--soft)
 .ca { color: #2f5fb3; font-weight: 600; } .cb { color: #c4561c; font-weight: 600; } .cab { color: #3d8a4c; font-weight: 600; }
 .ok { color: var(--good); font-weight: 700; } .no { color: var(--bad); font-weight: 700; }
 footer { display: flex; justify-content: space-between; gap: 4mm; white-space: nowrap; font-family: var(--font-mono); font-size: 7pt; color: var(--muted); border-top: 1px solid var(--line); padding-top: 1.5mm; }
+
+/* ClassPad check strip above the footer */
+.cp { margin-top: auto; border: 1px dashed var(--line); border-radius: 2mm; padding: 1.6mm 3mm; font-size: 8pt; line-height: 1.35; }
+.cp > span { color: var(--muted); }
+.cp ul { list-style: none; margin: 0.8mm 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0.6mm 5mm; }
+.cp code { font-family: var(--font-mono); font-size: 7.5pt; }

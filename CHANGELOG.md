@@ -9,6 +9,10 @@ Schema **MAJOR.MINOR.PATCH**:
 
 Neue Version: oben einen Eintrag `## [x.y.z] – JJJJ-MM-TT` ergänzen und `python3 src/build.py` ausführen.
 
+## [1.19.0] – 2026-11-15
+
+- Factsheets: Streifen „Kontrolle mit dem ClassPad“ mit denselben Eingaben wie in den Apps (37 Factsheets).
+
 ## [1.18.1] – 2026-11-15
 
 - Aufgeräumt: Claude-Artefakte werden nicht mehr erzeugt, der Ordner `artifacts/` ist entfernt. LearningDesk läuft nur noch über GitHub Pages.
