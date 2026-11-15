@@ -209,6 +209,13 @@ b.ok { color: var(--good); } b.no { color: var(--bad); }
 .chart .lab { font-family: var(--font-body); font-size: 12px; fill: var(--ink); }
 #eSel, #oSel { width: 100%; }
 .controls > * { min-width: 0; }
+
+details.cp-box { margin-top: 16px; border: 1px dashed var(--line, #bbb); border-radius: 12px; padding: 12px 16px; background: var(--surface, transparent); }
+details.cp-box summary { cursor: pointer; font-weight: 700; }
+details.cp-box ul { margin: 8px 0; padding-left: 20px; }
+details.cp-box li { margin: 8px 0; overflow-wrap: anywhere; }
+details.cp-box code { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: .92em; padding: 1px 5px; border-radius: 5px; background: color-mix(in srgb, currentColor 8%, transparent); }
+details.cp-box .cp-note { font-size: .9em; opacity: .85; margin: 6px 0; }
 </style>
 <style>
 nav.crumbs ol { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 2px 6px; font-size: 0.85rem; line-height: 1.5; }
@@ -291,6 +298,7 @@ header:not(.top) > .theme-toggle { top: 0; }
         <li>Relative Häufigkeit und absolute Häufigkeit verwechselt: <span class="math"><i>h</i></span> ist ein Anteil, <span class="math"><i>k</i></span> eine Anzahl.</li>
       </ul>
     </div>
+  <details class="cp-box"><summary>🧮 So prüfst du es mit dem ClassPad</summary><p class="cp-note">CASIO fx-CP400, App <b>Main</b>. Eingaben so tippen, dann <b>EXE</b>. In Arbeiten zählt der Rechenweg: Nutze den Rechner zur Kontrolle.</p><ul><li>Relative Häufigkeit als Bruch und Dezimalzahl (Standard/Dezimal umschalten)<br><code class="cp-in">37/50</code> <span class="cp-arrow">→</span> <code class="cp-out">0.74</code></li></ul><p class="cp-note"><a href="classpad.html#lektion-brueche">Im ClassPad-Simulator ausprobieren →</a></p></details>
   </section>
 
   <section class="view" id="view-versuch" hidden>

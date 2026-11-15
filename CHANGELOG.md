@@ -9,6 +9,11 @@ Schema **MAJOR.MINOR.PATCH**:
 
 Neue Version: oben einen Eintrag `## [x.y.z] – JJJJ-MM-TT` ergänzen und `python3 src/build.py` ausführen.
 
+## [1.18.0] – 2026-11-15
+
+- Neuer aufklappbarer Kasten „So prüfst du es mit dem ClassPad“ in 37 Apps (Mathe 8 und 11, Physik 8, Chemie 11) mit Eingaben für den CASIO fx-CP400 und Link zur passenden Simulator-Lektion.
+- ClassPad-Simulator: Lektionen lassen sich direkt verlinken (#lektion-…).
+
 ## [1.17.0] – 2026-11-15
 
 - Binomische Formeln rückwärts: neuer Abschnitt „Zahlenpaar-Trick“ (Produkt und Summe) und neuer Übungsmodus dazu.

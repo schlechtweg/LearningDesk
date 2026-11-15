@@ -208,6 +208,13 @@ b.ok { color: var(--good); } b.no { color: var(--bad); }
 .bars2 div { display: grid; grid-template-columns: 70px 1fr; gap: 8px; align-items: center; }
 .bars2 i { display: block; height: 14px; border-radius: 4px; }
 @media (max-width: 560px) { .calc { grid-template-columns: 1fr; } }
+
+details.cp-box { margin-top: 16px; border: 1px dashed var(--line, #bbb); border-radius: 12px; padding: 12px 16px; background: var(--surface, transparent); }
+details.cp-box summary { cursor: pointer; font-weight: 700; }
+details.cp-box ul { margin: 8px 0; padding-left: 20px; }
+details.cp-box li { margin: 8px 0; overflow-wrap: anywhere; }
+details.cp-box code { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: .92em; padding: 1px 5px; border-radius: 5px; background: color-mix(in srgb, currentColor 8%, transparent); }
+details.cp-box .cp-note { font-size: .9em; opacity: .85; margin: 6px 0; }
 </style>
 <style>
 nav.crumbs ol { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 2px 6px; font-size: 0.85rem; line-height: 1.5; }
@@ -258,6 +265,7 @@ header:not(.top) > .theme-toggle { top: 0; }
     <div class="panel stack"><h3>pH starker Säuren und Basen</h3><p class="small">Starke Säuren (HCl, HNO₃) protolysieren vollständig: <strong>c(H₃O⁺) = c₀(Säure)</strong>. Beispiel: c(HCl) = 0,01 mol/L ⇒ pH = 2.</p><p class="small">Starke Basen (NaOH, KOH): <strong>c(OH⁻) = c₀(Base)</strong> ⇒ pOH berechnen, dann pH = 14 − pOH. Beispiel: c(NaOH) = 0,01 mol/L ⇒ pOH 2 ⇒ pH 12.</p><p class="small">Mehrwertige: c(Ba(OH)₂) = 0,005 mol/L ⇒ c(OH⁻) = 0,01 mol/L.</p></div>
     <div class="merksatz"><span class="eyebrow">Merke</span><p>Ein kleiner pH bedeutet eine <strong>große</strong> H₃O⁺-Konzentration. Wegen des Minuszeichens im Logarithmus läuft die Skala „verkehrt herum“.</p></div>
     <div class="panel stack"><h3>Typische Fehler</h3><ul class="list small"><li>Bei Basen direkt −lg c(OH⁻) als pH angegeben: Das ist der pOH.</li><li>pH 4 für „doppelt so sauer“ wie pH 8 gehalten: Es ist das 10 000-fache.</li><li>Bei sehr verdünnten Säuren (pH über 6) die Autoprotolyse vergessen: Säure wird durch Verdünnen nie basisch.</li></ul></div>
+  <details class="cp-box"><summary>🧮 So prüfst du es mit dem ClassPad</summary><p class="cp-note">CASIO fx-CP400, App <b>Main</b>. Eingaben so tippen, dann <b>EXE</b>. In Arbeiten zählt der Rechenweg: Nutze den Rechner zur Kontrolle.</p><ul><li>pH = −lg c(H₃O⁺), lg über Keyboard ▸ Math (log)<br><code class="cp-in">-log(0.001)</code> <span class="cp-arrow">→</span> <code class="cp-out">3</code></li><li>Rückwärts: c = 10^(−pH)<br><code class="cp-in">10^(-4.5)</code> <span class="cp-arrow">→</span> <code class="cp-out">3.16E-5</code></li></ul><p class="cp-note"><a href="https://schlechtweg.github.io/LearningDesk/classpad.html#lektion-potenzen">Im ClassPad-Simulator ausprobieren →</a></p></details>
   </section>
 
   <section class="view" id="view-skala" hidden>

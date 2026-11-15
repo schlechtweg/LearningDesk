@@ -202,6 +202,13 @@ b.ok { color: var(--good); } b.no { color: var(--bad); }
 .beaker { width: 100%; height: auto; display: block; }
 .big { font-family: var(--font-display); font-size: 1.4rem; font-weight: 800; margin: 0; }
 @media (max-width: 560px) { .cmp { grid-template-columns: 1fr; } }
+
+details.cp-box { margin-top: 16px; border: 1px dashed var(--line, #bbb); border-radius: 12px; padding: 12px 16px; background: var(--surface, transparent); }
+details.cp-box summary { cursor: pointer; font-weight: 700; }
+details.cp-box ul { margin: 8px 0; padding-left: 20px; }
+details.cp-box li { margin: 8px 0; overflow-wrap: anywhere; }
+details.cp-box code { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: .92em; padding: 1px 5px; border-radius: 5px; background: color-mix(in srgb, currentColor 8%, transparent); }
+details.cp-box .cp-note { font-size: .9em; opacity: .85; margin: 6px 0; }
 </style>
 <style>
 nav.crumbs ol { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 2px 6px; font-size: 0.85rem; line-height: 1.5; }
@@ -253,6 +260,7 @@ header:not(.top) > .theme-toggle { top: 0; }
     <div class="panel stack"><h3>Protolysen verschieden starker Säuren und Basen</h3><p class="small">Eine Protolyse läuft bevorzugt in die Richtung, in der die <strong>schwächere Säure und schwächere Base</strong> entstehen. Faustregel: Eine Säure gibt ihr Proton an die Base eines Paares mit <strong>größerem</strong> pK<sub>S</sub> ab.</p><p class="small">Beispiel: CH₃COOH (pK<sub>S</sub> 4,75) + NH₃ → CH₃COO⁻ + NH₄⁺ (pK<sub>S</sub> 9,25): läuft weitgehend ab.</p><p class="small"><strong>Salzlösungen</strong>: Natriumacetat-Lösung ist basisch (Acetat ist eine Base), Ammoniumchlorid-Lösung sauer (NH₄⁺ ist eine Säure), Kochsalzlösung neutral.</p></div>
     <div class="merksatz"><span class="eyebrow">Merke</span><p>„Stark“ und „konzentriert“ sind verschiedene Dinge: Die Stärke ist eine Eigenschaft des Stoffes (pK<sub>S</sub>), die Konzentration sagt, wie viel davon gelöst ist. Verdünnte Salzsäure ist stark, aber verdünnt.</p></div>
     <div class="panel stack"><h3>Typische Fehler</h3><ul class="list small"><li>Großer pK<sub>S</sub> = starke Säure: Es ist umgekehrt.</li><li>Für schwache Säuren pH = −lg c₀ gerechnet: Das gilt nur für starke Säuren.</li><li>Gedacht, eine schwache Säure verbrauche bei der Titration weniger Lauge: Gleiche Stoffmenge braucht gleich viel Lauge.</li></ul></div>
+  <details class="cp-box"><summary>🧮 So prüfst du es mit dem ClassPad</summary><p class="cp-note">CASIO fx-CP400, App <b>Main</b>. Eingaben so tippen, dann <b>EXE</b>. In Arbeiten zählt der Rechenweg: Nutze den Rechner zur Kontrolle.</p><ul><li>pKs aus Ks<br><code class="cp-in">-log(1.8E-5)</code> <span class="cp-arrow">→</span> <code class="cp-out">4.74</code></li><li>pH schwacher Säure ≈ ½(pKs − lg c)<br><code class="cp-in">0.5(4.74-log(0.1))</code> <span class="cp-arrow">→</span> <code class="cp-out">2.87</code></li></ul><p class="cp-note"><a href="https://schlechtweg.github.io/LearningDesk/classpad.html#lektion-potenzen">Im ClassPad-Simulator ausprobieren →</a></p></details>
   </section>
 
   <section class="view" id="view-tabelle" hidden>

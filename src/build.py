@@ -29,6 +29,7 @@ sys.path.insert(0, str(SRC))
 sys.path.insert(0, str(SRC / "worksheets"))
 import config  # noqa: E402
 import tasks as worksheet_tasks  # noqa: E402
+import classpad_tips  # noqa: E402
 
 MENU_FONTS = "https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=JetBrains+Mono&display=swap"
 
@@ -102,11 +103,42 @@ def topic_crumbs(t, base):
     return crumbs_html(items, section=True)
 
 
+def classpad_box(slug, base):
+    # collapsible hint how to check the topic on the CASIO ClassPad
+    tip = classpad_tips.TIPS.get(slug)
+    if not tip:
+        return ""
+    lesson, rows = tip
+    items = "".join(f'<li>{w}<br><code class="cp-in">{i.replace("·", "×")}</code> <span class="cp-arrow">→</span> <code class="cp-out">{r}</code></li>' for w, i, r in rows)
+    link = f'{base}classpad.html' + (f'#lektion-{lesson}' if lesson else '')
+    return (f'<details class="cp-box"><summary>🧮 So prüfst du es mit dem ClassPad</summary>'
+            f'<p class="cp-note">CASIO fx-CP400, App <b>Main</b>. Eingaben so tippen, dann <b>EXE</b>. In Arbeiten zählt der Rechenweg: Nutze den Rechner zur Kontrolle.</p>'
+            f'<ul>{items}</ul><p class="cp-note"><a href="{link}">Im ClassPad-Simulator ausprobieren →</a></p></details>')
+
+
+CP_CSS = """
+details.cp-box { margin-top: 16px; border: 1px dashed var(--line, #bbb); border-radius: 12px; padding: 12px 16px; background: var(--surface, transparent); }
+details.cp-box summary { cursor: pointer; font-weight: 700; }
+details.cp-box ul { margin: 8px 0; padding-left: 20px; }
+details.cp-box li { margin: 8px 0; overflow-wrap: anywhere; }
+details.cp-box code { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: .92em; padding: 1px 5px; border-radius: 5px; background: color-mix(in srgb, currentColor 8%, transparent); }
+details.cp-box .cp-note { font-size: .9em; opacity: .85; margin: 6px 0; }
+"""
+
+
 def render_app(t, base, sh):
     app = {name: read(f"apps/{t['slug']}/{file}") for name, file in
            [("css", "style.css"), ("body", "body.html"), ("js", "script.js")]}
     # shared data files (e.g. element data) are inlined in front of the app script
     app["js"] = "".join(read(f"shared/{f}") + "\n" for f in t.get("prelude", [])) + app["js"]
+    box = classpad_box(t["slug"], base)
+    if box:
+        # append the box at the end of the first view section
+        m = re.search(r'<section[^>]*id="view-%s"' % re.escape(t["first_view"]), app["body"])
+        assert m, t["slug"]
+        end = app["body"].index("</section>", m.end())
+        app["body"] = app["body"][:end] + box + "\n  " + app["body"][end:]
+        app["css"] += CP_CSS
     t = {"scripts": [], "kit": False, "worksheet": t["slug"] in worksheet_tasks.TOPICS, **t}
     return env.get_template("app.html").render(
         t=t, app=app, shared=sh, base=base, fonts=config.FONTS[t["fonts"]], crumbs=topic_crumbs(t, base))

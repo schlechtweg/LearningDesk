@@ -1140,11 +1140,14 @@ header:not(.top) > .theme-toggle { top: 0; }
   const VIEWS = ["lernen", "rechner"];
   function showView() {
     const name = location.hash.replace("#", "");
+    // deep link from topic apps: #lektion-<id> opens that lesson
+    const deep = name.startsWith("lektion-") && LESSONS.find((l) => l.id === name.slice(8));
     const v = VIEWS.includes(name) ? name : "lernen";
     $$("nav.tabs a").forEach((a) => { if (a.dataset.view === v) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current"); });
     $("#lessonPanel").hidden = v !== "lernen"; $("#freePanel").hidden = v !== "rechner";
     document.body.id = v === "rechner" ? "view-free-active" : "";
     if (v === "rechner" && lesson.cur) { lesson.cur = null; S = freshState(); }
+    if (deep) { lesson.start(deep.id); return; }
     render(); renderPanel();
   }
   window.addEventListener("hashchange", showView);
