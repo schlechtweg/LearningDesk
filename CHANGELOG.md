@@ -9,6 +9,10 @@ Schema **MAJOR.MINOR.PATCH**:
 
 Neue Version: oben einen Eintrag `## [x.y.z] – JJJJ-MM-TT` ergänzen und `python3 src/build.py` ausführen.
 
+## [1.22.0] – 2026-11-16
+
+- Bruchterme-App: neuer Übungsmodus „Erweitern“ (fehlenden Zähler ☐ finden, mit Lösungsweg).
+
 ## [1.21.0] – 2026-11-16
 
 - Übungsblatt Bruchterme: neue Aufgaben zum Erweitern (leicht: mit Zahl erweitern und Zähler ergänzen, mittel: auf Produkt-Nenner erweitern, schwer: auf den Hauptnenner erweitern).

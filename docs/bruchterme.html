@@ -182,7 +182,7 @@ header:not(.top) > .theme-toggle { top: 0; }
     <nav class="crumbs" aria-label="Brotkrümelnavigation"><ol><li><a href="index.html">LearningDesk</a></li><li><a href="klasse-8.html">Klasse 8</a></li><li><a href="klasse-8.html#mathematik">Mathematik</a></li><li><a href="#grundlagen">Bruchterme</a></li><li data-crumb-section hidden><span aria-current="location"></span></li></ol></nav>
     <h1>Bruchterme</h1>
     <p>Brüche mit Variablen: Was ist erlaubt, wie kürzt man, und wie rechnet man damit? Mit Trainer, der deine Antworten prüft.</p>
-    <p style="display:flex; flex-wrap:wrap; gap:8px"><a class="btn" href="factsheets/bruchterme.pdf?v=1.21.0" target="_blank" rel="noopener">Factsheet als PDF ↓</a><a class="btn" href="aufgaben/bruchterme.pdf?v=1.21.0" target="_blank" rel="noopener">Übungsaufgaben als PDF ↓</a></p>
+    <p style="display:flex; flex-wrap:wrap; gap:8px"><a class="btn" href="factsheets/bruchterme.pdf?v=1.22.0" target="_blank" rel="noopener">Factsheet als PDF ↓</a><a class="btn" href="aufgaben/bruchterme.pdf?v=1.22.0" target="_blank" rel="noopener">Übungsaufgaben als PDF ↓</a></p>
   </header>
 
   <nav class="tabs" aria-label="Bereiche">
@@ -334,6 +334,7 @@ header:not(.top) > .theme-toggle { top: 0; }
       <div class="modes" role="group" aria-label="Übungsart">
         <button type="button" data-mode="def" aria-pressed="true">Definitionsmenge</button>
         <button type="button" data-mode="kuerzen" aria-pressed="false">Kürzen</button>
+        <button type="button" data-mode="erweitern" aria-pressed="false">Erweitern</button>
         <button type="button" data-mode="rechnen" aria-pressed="false">Rechnen</button>
       </div>
     </div>
@@ -609,17 +610,48 @@ header:not(.top) > .theme-toggle { top: 0; }
       return pick(kinds)();
     }
 
+    // ----- Erweitern: find the missing numerator -----
+    function genErweitern() {
+      const B = "☐";
+      // expanded quadratic (x + a)(x + b) as HTML
+      const quad = (a, b) => { const p = a + b, q = a * b; return `${X}<sup>2</sup>${p ? ` ${p > 0 ? "+" : "−"} ${Math.abs(p) === 1 ? "" : Math.abs(p)}${X}` : ""}${q ? ` ${q > 0 ? "+" : "−"} ${Math.abs(q)}` : ""}`; };
+      const kinds = [
+        () => { // monomial denominator
+          const p = rnd(1, 9), q = rnd(2, 5), s = rnd(2, 4);
+          return { html: `${fr(p, mono(q, 1))} = ${fr(B, mono(q * s, 2))}`, f: (x) => p * s * x, ref: `${p * s}x`, res: mono(p * s, 1),
+            step: `Vergleiche die Nenner: ${mono(q, 1)} · ${mono(s, 1)} = ${mono(q * s, 2)}. Also mit ${mono(s, 1)} erweitern: Zähler ${p} · ${mono(s, 1)} = ${mono(p * s, 1)}.` };
+        },
+        () => { // 3rd binomial formula in the denominator
+          const p = rnd(1, 9), a = rnd(1, 9) * pick([1, -1]);
+          return { html: `${fr(p, lin(a))} = ${fr(B, `${X}<sup>2</sup> − ${a * a}`)}`, f: (x) => p * (x - a), ref: `${p}(${linT(-a)})`, res: p === 1 ? lin(-a) : `${p}(${lin(-a)})`,
+            step: `${X}<sup>2</sup> − ${a * a} = (${lin(a)})(${lin(-a)}). Es fehlt der Faktor (${lin(-a)}), also damit erweitern: Zähler ${p}·(${lin(-a)}).` };
+        },
+        () => { // product of two linear factors
+          const k = rnd(1, 9), a = rnd(1, 6) * pick([1, -1]); let b = rnd(1, 6) * pick([1, -1]); if (b === a) b = -b;
+          return { html: `${fr(k, lin(a))} = ${fr(B, quad(a, b))}`, f: (x) => k * (x + b), ref: `${k}(${linT(b)})`, res: k === 1 ? lin(b) : `${k}(${lin(b)})`,
+            step: `Nenner zerlegen: ${quad(a, b)} = (${lin(a)})(${lin(b)}). Es fehlt (${lin(b)}), also damit erweitern: Zähler ${k}·(${lin(b)}).` };
+        },
+        () => { // number denominator to x-denominator
+          const a = rnd(1, 9) * pick([1, -1]), q = rnd(2, 4), s = rnd(2, 3);
+          return { html: `${fr(lin(a), q)} = ${fr(B, mono(q * s, 1))}`, f: (x) => s * x * (x + a), ref: `${s}x(${linT(a)})`, res: `${mono(s, 1)}(${lin(a)})`,
+            step: `${q} · ${mono(s, 1)} = ${mono(q * s, 1)}. Also mit ${mono(s, 1)} erweitern: Zähler ${mono(s, 1)}·(${lin(a)}) = ${mono(s, 2)} ${s * a >= 0 ? "+" : "−"} ${mono(Math.abs(s * a), 1)}.` };
+        }
+      ];
+      return pick(kinds)();
+    }
+
     const TEXT = {
       def: { instr: "Welche Zahlen darf man für x nicht einsetzen? Gib sie durch Komma oder Semikolon getrennt ein. Wenn keine Zahl verboten ist, schreibe „keine“.", label: "verboten:", ph: "z. B. 2 oder -3; 3", hint: "Beispiel: <code>-3; 3</code> oder <code>0, 2</code>" },
       kuerzen: { instr: "Kürze so weit wie möglich. Du darfst das Ergebnis als Bruch schreiben, z. B. 2x/3.", label: "=", ph: "z. B. 2x/3 oder x - 3", hint: "Schreibweise: <code>2x/3</code>, <code>x^2</code>, <code>(x+1)/(x-2)</code>, <code>1/(2x)</code>" },
+      erweitern: { instr: "Erweitere: Welcher Zähler gehört in das Kästchen ☐? Ausmultiplizieren ist nicht nötig.", label: "☐ =", ph: "z. B. 3(x+2) oder 6x", hint: "Schreibweise: <code>6x</code>, <code>3(x-2)</code>, <code>2x(x+1)</code>, <code>x^2+3x</code>" },
       rechnen: { instr: "Berechne und fasse zu einem einzigen Bruch zusammen. Kürze, wenn möglich.", label: "=", ph: "z. B. 7/(2x)", hint: "Schreibweise: <code>7/(2x)</code>, <code>(3x-2)/x^2</code>, <code>(2x+1)/(x(x+1))</code>. Nenner in Klammern setzen!" }
     };
     function newTask() {
-      task = mode === "def" ? genDef() : mode === "kuerzen" ? genKuerzen() : genRechnen();
+      task = mode === "def" ? genDef() : mode === "kuerzen" ? genKuerzen() : mode === "erweitern" ? genErweitern() : genRechnen();
       task.attempted = false;
       const t = TEXT[mode];
       $("#trInstr").textContent = t.instr; $("#trLabel").textContent = t.label; $("#trInput").placeholder = t.ph; $("#trHint").innerHTML = t.hint;
-      $("#trTask").innerHTML = task.html + (mode === "def" ? "" : " =");
+      $("#trTask").innerHTML = task.html + (mode === "def" || mode === "erweitern" ? "" : " =");
       $("#trInput").value = ""; $("#trFb").hidden = true;
     }
     function solution() {
@@ -627,6 +659,7 @@ header:not(.top) > .theme-toggle { top: 0; }
         const set = task.ex.map(neg).join("; ");
         return `<ol><li><span class="math">${task.step}</span></li></ol><span>Ergebnis: <span class="math">D = ℚ \\ {${set}}</span></span>`;
       }
+      if (mode === "erweitern") return `<ol><li><span class="math">${task.step}</span></li></ol><span>Ergebnis: <span class="math">☐ = ${task.res}</span></span>`;
       if (mode === "kuerzen") return `<ol><li><span class="math">${task.step}</span></li></ol><span>Ergebnis: <span class="math">${task.html} = ${task.res}</span></span>`;
       return `<ol>${task.steps.map((s) => `<li><span class="math">${s}</span></li>`).join("")}</ol><span>Ergebnis: <span class="math">${task.html} = ${task.res}</span></span>`;
     }
@@ -654,10 +687,11 @@ header:not(.top) > .theme-toggle { top: 0; }
         const eq = same(g, task.f);
         const short = tokenCount(raw) <= tokenCount(task.ref) + 3;
         const oneFrac = (raw.match(/[/:]/g) || []).length <= 1;
-        ok = eq && short && (mode !== "rechnen" || oneFrac);
+        ok = eq && (short || mode === "erweitern") && (mode !== "rechnen" || oneFrac);
         if (!ok) {
           if (eq && mode === "rechnen" && !oneFrac) hint = "Der Wert stimmt, aber fasse alles zu einem einzigen Bruch zusammen.";
           else if (eq) hint = "Der Wert stimmt, aber du kannst noch weiter kürzen.";
+          else if (mode === "erweitern") hint = "Zerlege den neuen Nenner und vergleiche mit dem alten: Welcher Faktor fehlt? Mit genau diesem Faktor musst du den Zähler malnehmen.";
           else if (mode === "kuerzen") hint = "Zerlege Zähler und Nenner zuerst in Faktoren (ausklammern oder binomische Formel). Kürzen darfst du nur Faktoren.";
           else hint = "Prüfe Hauptnenner und Erweiterung. Hast du beim Teilen den Kehrwert genommen? Nenner mit mehreren Teilen in Klammern setzen.";
         }
