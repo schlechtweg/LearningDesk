@@ -154,6 +154,10 @@ b.ok { color: var(--good); } b.no { color: var(--bad); }
 .quiz .opts button.wrong { border-color: var(--bad); background: var(--bad-soft); }
 .score-big { font-family: var(--font-display); font-size: 3.2rem; font-weight: 800; line-height: 1; }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+/* Example table: expanding to a given denominator */
+table.ptab { border-collapse: collapse; width: 100%; font-size: var(--step--1); }
+table.ptab th, table.ptab td { padding: 8px 10px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: middle; }
+table.ptab th { background: var(--surface-2); }
 
 details.cp-box { margin-top: 16px; border: 1px dashed var(--line, #bbb); border-radius: 12px; padding: 12px 16px; background: var(--surface, transparent); }
 details.cp-box summary { cursor: pointer; font-weight: 700; }
@@ -182,7 +186,7 @@ header:not(.top) > .theme-toggle { top: 0; }
     <nav class="crumbs" aria-label="Brotkrümelnavigation"><ol><li><a href="index.html">LearningDesk</a></li><li><a href="klasse-8.html">Klasse 8</a></li><li><a href="klasse-8.html#mathematik">Mathematik</a></li><li><a href="#grundlagen">Bruchterme</a></li><li data-crumb-section hidden><span aria-current="location"></span></li></ol></nav>
     <h1>Bruchterme</h1>
     <p>Brüche mit Variablen: Was ist erlaubt, wie kürzt man, und wie rechnet man damit? Mit Trainer, der deine Antworten prüft.</p>
-    <p style="display:flex; flex-wrap:wrap; gap:8px"><a class="btn" href="factsheets/bruchterme.pdf?v=1.22.0" target="_blank" rel="noopener">Factsheet als PDF ↓</a><a class="btn" href="aufgaben/bruchterme.pdf?v=1.22.0" target="_blank" rel="noopener">Übungsaufgaben als PDF ↓</a></p>
+    <p style="display:flex; flex-wrap:wrap; gap:8px"><a class="btn" href="factsheets/bruchterme.pdf?v=1.23.0" target="_blank" rel="noopener">Factsheet als PDF ↓</a><a class="btn" href="aufgaben/bruchterme.pdf?v=1.23.0" target="_blank" rel="noopener">Übungsaufgaben als PDF ↓</a></p>
   </header>
 
   <nav class="tabs" aria-label="Bereiche">
@@ -272,6 +276,25 @@ header:not(.top) > .theme-toggle { top: 0; }
       <h3>Erweitern</h3>
       <p class="small">Erweitern brauchst du, um Bruchterme auf einen <strong>gemeinsamen Nenner</strong> zu bringen. Zähler und Nenner werden mit demselben Term malgenommen:</p>
       <p class="math"><span class="frac"><span>3</span><span><i>x</i></span></span> = <span class="frac"><span>3 · 2</span><span><i>x</i> · 2</span></span> = <span class="frac"><span>6</span><span>2<i>x</i></span></span> &nbsp;&nbsp;&nbsp; <span class="frac"><span>5</span><span><i>x</i></span></span> = <span class="frac"><span>5 · <i>x</i></span><span><i>x</i> · <i>x</i></span></span> = <span class="frac"><span>5<i>x</i></span><span><i>x</i><sup>2</sup></span></span></p>
+    </div>
+    <div class="panel stack">
+      <h3>Auf einen vorgegebenen Nenner erweitern</h3>
+      <p class="small">Typische Aufgabe: <strong>„Erweitere so, dass 6<i>x</i>(<i>x</i> + 3) als Nenner entsteht. Multipliziere Zähler und Nenner aus.“</strong> So gehst du vor:</p>
+      <ol class="small">
+        <li><strong>Erweiterungsfaktor finden:</strong> Neuer Nenner geteilt durch alten Nenner. Was fehlt dem alten Nenner noch?</li>
+        <li><strong>Zähler</strong> mit diesem Faktor malnehmen und ausmultiplizieren.</li>
+        <li><strong>Nenner</strong> ausmultiplizieren: 6<i>x</i>(<i>x</i> + 3) = 6<i>x</i><sup>2</sup> + 18<i>x</i>.</li>
+      </ol>
+      <div class="table-scroll"><table class="ptab">
+        <tr><th>Bruch</th><th>Was fehlt?</th><th>Ergebnis</th></tr>
+        <tr><td class="math"><span class="frac"><span><i>x</i> − 1</span><span>2<i>x</i></span></span></td><td class="small">6<i>x</i>(<i>x</i> + 3) : 2<i>x</i> = 3(<i>x</i> + 3)</td><td class="math"><span class="frac"><span>3(<i>x</i> − 1)(<i>x</i> + 3)</span><span>6<i>x</i>(<i>x</i> + 3)</span></span> = <span class="frac"><span>3<i>x</i><sup>2</sup> + 6<i>x</i> − 9</span><span>6<i>x</i><sup>2</sup> + 18<i>x</i></span></span></td></tr>
+        <tr><td class="math">1</td><td class="small">der ganze Nenner 6<i>x</i>(<i>x</i> + 3)</td><td class="math"><span class="frac"><span>6<i>x</i>(<i>x</i> + 3)</span><span>6<i>x</i>(<i>x</i> + 3)</span></span> = <span class="frac"><span>6<i>x</i><sup>2</sup> + 18<i>x</i></span><span>6<i>x</i><sup>2</sup> + 18<i>x</i></span></span></td></tr>
+        <tr><td class="math"><span class="frac"><span>1</span><span><i>x</i></span></span></td><td class="small">6(<i>x</i> + 3)</td><td class="math"><span class="frac"><span>6<i>x</i> + 18</span><span>6<i>x</i><sup>2</sup> + 18<i>x</i></span></span></td></tr>
+        <tr><td class="math"><span class="frac"><span>6<i>x</i> + 1</span><span>3</span></span></td><td class="small">6<i>x</i>(<i>x</i> + 3) : 3 = 2<i>x</i>(<i>x</i> + 3)</td><td class="math"><span class="frac"><span>12<i>x</i><sup>3</sup> + 38<i>x</i><sup>2</sup> + 6<i>x</i></span><span>6<i>x</i><sup>2</sup> + 18<i>x</i></span></span></td></tr>
+        <tr><td class="math"><span class="frac"><span>1</span><span>−<i>x</i> − 3</span></span></td><td class="small">−<i>x</i> − 3 = −(<i>x</i> + 3), also mit <strong>−6<i>x</i></strong> erweitern</td><td class="math"><span class="frac"><span>−6<i>x</i></span><span>6<i>x</i><sup>2</sup> + 18<i>x</i></span></span></td></tr>
+        <tr><td class="math"><span class="frac"><span>2 − <i>x</i></span><span>6 + 2<i>x</i></span></span></td><td class="small">6 + 2<i>x</i> = 2(<i>x</i> + 3), es fehlt 3<i>x</i></td><td class="math"><span class="frac"><span>6<i>x</i> − 3<i>x</i><sup>2</sup></span><span>6<i>x</i><sup>2</sup> + 18<i>x</i></span></span></td></tr>
+      </table></div>
+      <p class="small muted">Tipp: Zerlege den alten Nenner zuerst in Faktoren (ausklammern, Minus herausziehen). Dann siehst du sofort, welcher Faktor fehlt.</p>
     </div>
   </section>
 
@@ -635,6 +658,20 @@ header:not(.top) > .theme-toggle { top: 0; }
           const a = rnd(1, 9) * pick([1, -1]), q = rnd(2, 4), s = rnd(2, 3);
           return { html: `${fr(lin(a), q)} = ${fr(B, mono(q * s, 1))}`, f: (x) => s * x * (x + a), ref: `${s}x(${linT(a)})`, res: `${mono(s, 1)}(${lin(a)})`,
             step: `${q} · ${mono(s, 1)} = ${mono(q * s, 1)}. Also mit ${mono(s, 1)} erweitern: Zähler ${mono(s, 1)}·(${lin(a)}) = ${mono(s, 2)} ${s * a >= 0 ? "+" : "−"} ${mono(Math.abs(s * a), 1)}.` };
+        },
+        () => { // book style: given target denominator c·x(x + d)
+          const c = pick([2, 3, 4, 6]), d = rnd(1, 5), N = `${c}${X}(${lin(d)})`;
+          const k = pick([0, 1, 2, 3]);
+          if (k === 0) { const e = rnd(1, 5) * pick([1, -1]); const c1 = pick([1, 2].filter((v) => c % v === 0)), q = c / c1;
+            return { html: `Erweitere so, dass ${N} als Nenner entsteht: ${fr(lin(e), mono(c1, 1))} = ${fr(B, N)}`, f: (x) => q * (x + e) * (x + d), ref: `${q}(${linT(e)})(${linT(d)})`, res: `${q === 1 ? "" : q}(${lin(e)})(${lin(d)})`,
+              step: `${N} : ${mono(c1, 1)} = ${q === 1 ? "" : q}(${lin(d)}). Zähler (${lin(e)}) damit malnehmen.` }; }
+          if (k === 1) return { html: `Erweitere so, dass ${N} als Nenner entsteht: ${fr(1, X)} = ${fr(B, N)}`, f: (x) => c * (x + d), ref: `${c}(${linT(d)})`, res: `${c}(${lin(d)})`,
+            step: `${N} : ${X} = ${c}(${lin(d)}). Zähler 1 damit malnehmen.` };
+          if (k === 2) return { html: `Erweitere so, dass ${N} als Nenner entsteht: ${fr(1, `−${X} − ${d}`)} = ${fr(B, N)}`, f: (x) => -c * x, ref: `-${c}x`, res: `−${c}${X}`,
+            step: `−${X} − ${d} = −(${lin(d)}). Es fehlt −${c}${X} (Minus nicht vergessen!).` };
+          const c1 = pick([2, 3].filter((v) => c % v === 0).concat(c % 2 ? [1] : [])), q = c / c1, e = rnd(1, 5);
+          return { html: `Erweitere so, dass ${N} als Nenner entsteht: ${fr(`${e} − ${X}`, `${c1 * d} + ${mono(c1, 1)}`)} = ${fr(B, N)}`, f: (x) => q * x * (e - x), ref: `${q}x(${e}-x)`, res: `${mono(q, 1)}(${e} − ${X})`,
+            step: `${c1 * d} + ${mono(c1, 1)} = ${c1 === 1 ? "" : c1}(${lin(d)}). Es fehlt ${mono(q, 1)}.` };
         }
       ];
       return pick(kinds)();

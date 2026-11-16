@@ -35,6 +35,16 @@ window.__fit = function () {
       const id = items[items.length - 1].dataset.id;
       document.querySelectorAll('li[data-id="' + id + '"]').forEach((e) => e.remove());
     }
+    // spread the remaining tasks over a half-empty task page (more room to write)
+    const tp = pages[0], lis = tp.querySelectorAll('.tasks li');
+    const setPad = (v) => lis.forEach((li) => { li.style.paddingTop = li.style.paddingBottom = v; });
+    for (let pad = 1.0; pad <= 9; pad += 0.25) {
+      setPad(pad + 'mm');
+      if (over(tp) || over(tp.querySelector('.content'))) {
+        setPad(pad > 1.0 ? (pad - 0.25) + 'mm' : '');   // '' = back to the stylesheet value
+        break;
+      }
+    }
     const fill = (p) => { const c = p.querySelector('.content'); return Math.round(100 * (Array.from(c.children).reduce((h, e) => h + e.getBoundingClientRect().height, 0) + 8 * (c.children.length - 1)) / c.clientHeight); };
     res.push(document.querySelectorAll('.tasks li[data-lvl="' + lvl + '"]').length + ' (' + fill(pages[0]) + '%, Lösung ' + fill(pages[1]) + '%)');
   }

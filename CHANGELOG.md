@@ -9,6 +9,13 @@ Schema **MAJOR.MINOR.PATCH**:
 
 Neue Version: oben einen Eintrag `## [x.y.z] – JJJJ-MM-TT` ergänzen und `python3 src/build.py` ausführen.
 
+## [1.23.0] – 2026-11-16
+
+- Übungsblatt Bruchterme überarbeitet: Jede Aufgabe nennt jetzt, was zu tun ist (z. B. „Addiere und fasse zusammen“, „Kürze so weit wie möglich“). Die Lösungen zeigen den Lösungsweg Schritt für Schritt.
+- Neuer Aufgabentyp wie im Schulbuch: „Erweitere so, dass 6x(x + 3) als Nenner entsteht. Multipliziere Zähler und Nenner aus.“
+- Bruchterme-App: Beispieltabelle „Auf einen vorgegebenen Nenner erweitern“ und passende Aufgaben im Trainer-Modus „Erweitern“.
+- Alle Übungsblätter: Mehrzeilige Lösungswege brechen sauber um. Halb leere Aufgabenseiten verteilen die Aufgaben mit mehr Platz zum Rechnen.
+
 ## [1.22.0] – 2026-11-16
 
 - Bruchterme-App: neuer Übungsmodus „Erweitern“ (fehlenden Zähler ☐ finden, mit Lösungsweg).

@@ -90,3 +90,7 @@ section.roomy ol.items li:last-child { border-bottom: 0; }
 .sq, .sa { display: inline; }
 .sq { color: var(--muted, #5b6670); font-size: 0.88em; }
 .sq::after { content: " ⇒ "; color: var(--muted, #5b6670); }
+/* multi-step solutions: own block below the task, lines may wrap */
+.sa:has(br) { display: block; margin-top: 0.5mm; font-size: 0.92em; line-height: 1.35; }
+.sa .m, .sq .m { white-space: normal; }
+.sa .fr, .sq .fr { white-space: nowrap; }

@@ -446,102 +446,204 @@ def ungleichungen():
 
 
 def bruchterme():
+    """Rational terms: every task states what to do, every solution shows the way."""
     r = random.Random(86)
     L = {1: [], 2: [], 3: []}
-    for i in range(160):
-        t = i % 3
-        if t == 0:
-            k, a0 = r.randint(2, 9), pick_nz(r, -9, 9)
-            den = x - a0
-            L[1].append(("Definitionsmenge: " + m(fr(k, den.html())), m(f"<b>D = ℚ \\ {{{fnum(a0)}}}</b>")))
-        elif t == 1:
-            g = r.randint(2, 6)
-            while True:
-                p, q = r.randint(1, 5), r.randint(1, 5)
-                if math.gcd(p, q) == 1 and (p, q) != (1, 1):
-                    break
-            e1, e2 = r.randint(1, 3), r.randint(1, 3)
-            num, den = g * p * x ** e1, g * q * x ** e2
-            e = e1 - e2
-            rn = (p * x ** e) if e > 0 else P.of(p)
-            rd = (q * x ** (-e)) if e < 0 else P.of(q)
-            res = rn.html() if rd == P.of(1) else fr(rn.html(), rd.html())
-            L[1].append(("Kürze: " + m(fr(num.html(), den.html())), m(f"<b>{res}</b>")))
-        else:
-            p, q, c = r.randint(1, 9), r.randint(1, 9), pick_nz(r, -6, 6)
-            den = (x + c).html()
-            L[1].append((m(f"{fr(p, den)} + {fr(q, den)}"), m(f"<b>{fr(p + q, den)}</b>")))
-    for i in range(144):
-        t = i % 4
-        if t == 0:
-            a0 = pick_nz(r, -7, 7)
-            L[2].append(("Definitionsmenge: " + m(fr(1, f"<i>x</i>({(x - a0).html()})")),
-                         m(f"<b>D = ℚ \\ {{{', '.join(fnum(v) for v in sorted([0, a0]))}}}</b>".replace(", ", "; "))))
-        elif t == 1:
-            k = r.randint(2, 9)
-            s = r.choice([1, -1])
-            L[2].append(("Kürze: " + m(fr((x ** 2 - k * k).html(), (x + s * k).html())), m(f"<b>{(x - s * k).html()}</b>")))
-        elif t == 2:
-            p, q, kk = r.randint(1, 9), r.randint(1, 9), r.randint(2, 5)
-            L[2].append((m(f"{fr(p, X)} + {fr(q, f'{kk}{X}')}"), m(f"{fr(p * kk, f'{kk}{X}')} + {fr(q, f'{kk}{X}')} = <b>{fr(p * kk + q, f'{kk}{X}')}</b>")))
-        else:
-            p, q, s, t2 = r.randint(1, 6), r.randint(2, 6), r.randint(2, 9), r.randint(2, 6)
-            n, d = p * s, q * t2
-            g = math.gcd(n, d)
-            N, D = n // g, d // g
-            res = fr(N, f"{'' if D == 1 else D}{X}")
-            L[2].append((m(f"{fr(f'{p}{X}' if p > 1 else X, q)} · {fr(s, f'{t2}{X}<sup>2</sup>')}"), m(f"{fr(f'{n}{X}', f'{d}{X}<sup>2</sup>')} = <b>{res}</b>")))
-    for i in range(128):
-        t = i % 4
-        if t == 0:
-            p, q = r.randint(2, 9), r.randint(1, 9)
-            L[3].append((m(f"{fr(p, X)} {MINUS} {fr(q, f'{X}<sup>2</sup>')}"), m(f"<b>{fr(f'{p}{X} {MINUS} {q}', f'{X}<sup>2</sup>')}</b>")))
-        elif t == 1:
-            c = pick_nz(r, -6, 6)
-            num = (2 * x + c).html()
-            L[3].append((m(f"{fr(1, X)} + {fr(1, (x + c).html())}"), m(f"<b>{fr(num, f'{X}({(x + c).html()})')}</b>")))
-        elif t == 2:
-            p, q, s, t2 = r.randint(1, 9), r.randint(1, 5), r.randint(1, 9), r.randint(1, 5)
-            n, d = p * t2, q * s
-            g = math.gcd(n, d)
-            N, D = n // g, d // g
-            res = f"{'' if N == 1 else N}{X}" if D == 1 else fr(f"{'' if N == 1 else N}{X}", D)
-            L[3].append((m(f"{fr(p, f'{q}{X}' if q > 1 else X)} : {fr(s, f'{t2}{X}<sup>2</sup>' if t2 > 1 else f'{X}<sup>2</sup>')}"),
-                         m(f"{fr(p, f'{q}{X}' if q > 1 else X)} · {fr(f'{t2}{X}<sup>2</sup>' if t2 > 1 else f'{X}<sup>2</sup>', s)} = <b>{res}</b>")))
-        else:
-            k = r.randint(1, 8)
-            num, den = (x + k) ** 2, x ** 2 - k * k
-            L[3].append(("Kürze und gib D an: " + m(fr(num.html(), den.html())),
-                         m(f"{fr(f'({(x + k).html()})<sup>2</sup>', f'({(x + k).html()})({(x - k).html()})')} = <b>{fr((x + k).html(), (x - k).html())}</b>, D = ℚ \\ {{{MINUS}{k}; {k}}}")))
-    # expanding fractions (Erweitern): every 4th task of each level
     B = "☐"
-    E = {1: [], 2: [], 3: []}
-    for i in range(60):
+    W = lambda *steps: "<br>".join(m(s) for s in steps)          # solution steps, one per line
+
+    def br(p):
+        """Polynomial in brackets when it has more than one term."""
+        return par(p) if len(p.t) > 1 else p.html()
+
+    def neg_den(c):
+        return f"{MINUS}{X} {MINUS} {c}"
+
+    # ---------- task types ----------
+    def t_def1():
+        k, a0 = r.randint(2, 9), pick_nz(r, -9, 9)
+        den = x - a0
+        return ("Gib die Definitionsmenge an: " + m(fr(k, den.html())),
+                W(f"Nenner = 0 setzen: {den.html()} = 0 ⇒ {X} = {fnum(a0)}", f"<b>D = ℚ \\ {{{fnum(a0)}}}</b>"))
+
+    def t_kuerz_mono():
+        g = r.randint(2, 6)
+        while True:
+            p, q = r.randint(1, 5), r.randint(1, 5)
+            if math.gcd(p, q) == 1 and (p, q) != (1, 1):
+                break
+        e1, e2 = r.randint(1, 3), r.randint(1, 3)
+        num, den = g * p * x ** e1, g * q * x ** e2
+        e = e1 - e2
+        rn = (p * x ** e) if e > 0 else P.of(p)
+        rd = (q * x ** (-e)) if e < 0 else P.of(q)
+        res = rn.html() if rd == P.of(1) else fr(rn.html(), rd.html())
+        common = (g * x ** min(e1, e2)).html()
+        return ("Kürze so weit wie möglich: " + m(fr(num.html(), den.html())),
+                W(f"Gemeinsamer Faktor im Zähler und Nenner: {common}", f"Zähler und Nenner durch {common} teilen: <b>{res}</b>"))
+
+    def t_add_same():
+        p, q, c = r.randint(1, 9), r.randint(1, 9), pick_nz(r, -6, 6)
+        den = (x + c).html()
+        return ("Addiere und fasse zusammen: " + m(f"{fr(p, den)} + {fr(q, den)}"),
+                W(f"Gleicher Nenner: Zähler addieren, Nenner bleibt", f"{fr(f'{p} + {q}', den)} = <b>{fr(p + q, den)}</b>"))
+
+    def t_erw_k():
+        p, q, k = r.randint(1, 9), r.randint(2, 5), r.randint(2, 6)
+        return (f"Erweitere mit {k}: " + m(fr(p, (q * x).html())),
+                W(f"Zähler und Nenner mit {k} malnehmen", f"{fr(f'{p} · {k}', f'{(q * x).html()} · {k}')} = <b>{fr(k * p, (k * q * x).html())}</b>"))
+
+    def t_erw_box1():
         p, q, s2 = r.randint(1, 9), r.randint(2, 5), r.randint(2, 4)
-        if i % 2 == 0:
-            k = r.randint(2, 6)
-            E[1].append((f"Erweitere mit {k}: " + m(fr(p, (q * x).html())), m(f"<b>{fr(k * p, (k * q * x).html())}</b>")))
-        else:
-            E[1].append(("Ergänze: " + m(f"{fr(p, (q * x).html())} = {fr(B, (q * s2 * x ** 2).html())}"),
-                         m(f"erweitert mit {(s2 * x).html()}: <b>{fr((p * s2 * x).html(), (q * s2 * x ** 2).html())}</b>")))
-        a, b = pick_nz(r, -6, 6), pick_nz(r, -6, 6)
-        if a == b:
-            b = -a if a != 0 else 1
+        f = (s2 * x).html()
+        return ("Setze den passenden Zähler ein: " + m(f"{fr(p, (q * x).html())} = {fr(B, (q * s2 * x ** 2).html())}"),
+                W(f"Neuer Nenner : alter Nenner = {(q * s2 * x ** 2).html()} : {(q * x).html()} = {f}", f"Zähler · {f}: ☐ = <b>{(p * s2 * x).html()}</b>"))
+
+    def t_def2():
+        a0 = pick_nz(r, -7, 7)
+        return ("Gib die Definitionsmenge an: " + m(fr(1, f"{X}({(x - a0).html()})")),
+                W(f"Ein Produkt ist 0, wenn ein Faktor 0 ist: {X} = 0 oder {(x - a0).html()} = 0 ⇒ {X} = {fnum(a0)}",
+                  f"<b>D = ℚ \\ {{{'; '.join(fnum(v) for v in sorted([0, a0]))}}}</b>"))
+
+    def t_kuerz_bin3():
+        k = r.randint(2, 9)
+        s = r.choice([1, -1])
+        return ("Kürze so weit wie möglich: " + m(fr((x ** 2 - k * k).html(), (x + s * k).html())),
+                W(f"Zähler mit der 3. binomischen Formel zerlegen: {(x ** 2 - k * k).html()} = ({(x + k).html()})({(x - k).html()})",
+                  f"Den gemeinsamen Faktor ({(x + s * k).html()}) kürzen: <b>{(x - s * k).html()}</b>"))
+
+    def t_add_hn():
+        p, q, kk = r.randint(1, 9), r.randint(1, 9), r.randint(2, 5)
+        return ("Addiere und fasse zusammen: " + m(f"{fr(p, X)} + {fr(q, f'{kk}{X}')}"),
+                W(f"Hauptnenner: {kk}{X}. Den ersten Bruch mit {kk} erweitern", f"{fr(p * kk, f'{kk}{X}')} + {fr(q, f'{kk}{X}')} = <b>{fr(p * kk + q, f'{kk}{X}')}</b>"))
+
+    def t_mul():
+        p, q, s, t2 = r.randint(1, 6), r.randint(2, 6), r.randint(2, 9), r.randint(2, 6)
+        n, d = p * s, q * t2
+        g = math.gcd(n, d)
+        N, D = n // g, d // g
+        res = fr(N, f"{'' if D == 1 else D}{X}")
+        return ("Multipliziere und kürze: " + m(f"{fr(f'{p}{X}' if p > 1 else X, q)} · {fr(s, f'{t2}{X}<sup>2</sup>')}"),
+                W("Zähler mal Zähler, Nenner mal Nenner", f"{fr(f'{n}{X}', f'{d}{X}<sup>2</sup>')}", f"Kürzen durch {g}{X}: <b>{res}</b>".replace(f"durch 1{X}", f"durch {X}")))
+
+    def t_erw_box2():
+        a1, b1 = pick_nz(r, -6, 6), pick_nz(r, -6, 6)
+        if a1 == b1:
+            b1 = -a1
         k = r.randint(1, 7)
-        den = (x + a) * (x + b)
-        E[2].append(("Ergänze: " + m(f"{fr(k, (x + a).html())} = {fr(B, den.html())}"),
-                     m(f"erweitert mit ({(x + b).html()}): <b>{fr((k * (x + b)).html(), den.html())}</b>")))
+        den = (x + a1) * (x + b1)
+        return ("Setze den passenden Zähler ein: " + m(f"{fr(k, (x + a1).html())} = {fr(B, den.html())}"),
+                W(f"Neuen Nenner zerlegen: {den.html()} = ({(x + a1).html()})({(x + b1).html()})",
+                  f"Es fehlt der Faktor ({(x + b1).html()}): ☐ = {k if k > 1 else ''}({(x + b1).html()}) = <b>{(k * (x + b1)).html()}</b>"))
+
+    def t_erw_target():
+        """Book style: expand so that c·x(x + d) is the denominator, then multiply out."""
+        c, d = r.choice([2, 3, 4, 6]), r.randint(1, 5)
+        N = c * x * (x + d)
+        Nf = f"{c}{X}({(x + d).html()})"
+        divs = [v for v in (1, 2, 3, 6) if c % v == 0 and v < c] or [1]
+        kind = r.randint(0, 5)
+        if kind == 0:      # (x + e)/(c1 x)
+            c1, e = r.choice(divs), pick_nz(r, -5, 5)
+            num, old, oldh = x + e, c1 * x, (c1 * x).html()
+        elif kind == 1:    # 1
+            c1, num, old, oldh = 1, P.of(1), P.of(1), "1"
+        elif kind == 2:    # 1/x
+            num, old, oldh = P.of(1), x, X
+        elif kind == 3:    # (e x + f)/c1
+            c1 = r.choice([v for v in (2, 3) if c % v == 0] or [1])
+            num, old, oldh = r.randint(1, 6) * x + pick_nz(r, -5, 5), P.of(c1), str(c1)
+        elif kind == 4:    # 1/(−x − d)
+            num, old, oldh = P.of(1), -x - d, neg_den(d)
+        else:              # (e − x)/(c1·d + c1 x)
+            c1 = r.choice([v for v in (2, 3) if c % v == 0] or [1])
+            num, old = r.randint(1, 5) - x, c1 * d + c1 * x
+            oldh = f"{c1 * d} + {c1}{X}"
+        # factor F with old · F = N
+        if kind == 1:
+            F, Fh = N, Nf
+        elif kind == 0:
+            k = c // c1
+            F, Fh = k * (x + d), (f"{k}" if k > 1 else "") + f"({(x + d).html()})"
+        elif kind == 2:
+            F, Fh = c * (x + d), f"{c}({(x + d).html()})"
+        elif kind == 3:
+            k = c // old.ev({"x": 1})
+            F, Fh = k * x * (x + d), f"{'' if k == 1 else k}{X}({(x + d).html()})"
+        elif kind == 4:
+            F, Fh = -c * x, (-c * x).html()
+        else:
+            k = c // c1
+            F, Fh = k * x, (k * x).html()
+        assert old * F == N
+        task_frac = "1" if kind == 1 else fr(num.html(), oldh)
+        newnum = num * F
+        if kind == 4:
+            note = f"({neg_den(d)}) · ({MINUS}{c}{X}) = {Nf}, Achtung Vorzeichen"
+        elif kind == 5:
+            note = f"{oldh} = {c1}({(x + d).html()}), es fehlt {Fh}"
+        elif kind == 1:
+            note = f"Der ganze Nenner {Nf} fehlt"
+        else:
+            note = f"{Nf} : {oldh} = {Fh}"
+        return ("Erweitere so, dass " + m(Nf) + " als Nenner entsteht. Multipliziere Zähler und Nenner aus: " + m(task_frac),
+                W(f"Erweiterungsfaktor: {note}",
+                  f"Zähler: {br(num) if kind != 1 else '1'} · {Fh if kind != 4 else '(' + Fh + ')'} = {newnum.html()}",
+                  f"Nenner: {Nf} = {N.html()}",
+                  f"<b>{fr(newnum.html(), N.html())}</b>"))
+
+    def t_sub_x2():
+        p, q = r.randint(2, 9), r.randint(1, 9)
+        return ("Subtrahiere und fasse zusammen: " + m(f"{fr(p, X)} {MINUS} {fr(q, f'{X}<sup>2</sup>')}"),
+                W(f"Hauptnenner {X}<sup>2</sup>: den ersten Bruch mit {X} erweitern", f"{fr(f'{p}{X}', f'{X}<sup>2</sup>')} {MINUS} {fr(q, f'{X}<sup>2</sup>')} = <b>{fr(f'{p}{X} {MINUS} {q}', f'{X}<sup>2</sup>')}</b>"))
+
+    def t_add_two():
+        c = pick_nz(r, -6, 6)
+        xc = (x + c).html()
+        return ("Addiere und fasse zusammen: " + m(f"{fr(1, X)} + {fr(1, xc)}"),
+                W(f"Hauptnenner {X}({xc}): mit ({xc}) bzw. mit {X} erweitern",
+                  f"{fr(xc, f'{X}({xc})')} + {fr(X, f'{X}({xc})')} = <b>{fr((2 * x + c).html(), f'{X}({xc})')}</b>"))
+
+    def t_div():
+        p, q, s, t2 = r.randint(1, 9), r.randint(1, 5), r.randint(1, 9), r.randint(1, 5)
+        n, d = p * t2, q * s
+        g = math.gcd(n, d)
+        N, D = n // g, d // g
+        res = f"{'' if N == 1 else N}{X}" if D == 1 else fr(f"{'' if N == 1 else N}{X}", D)
+        a_ = fr(p, f'{q}{X}' if q > 1 else X)
+        b_ = fr(s, f'{t2}{X}<sup>2</sup>' if t2 > 1 else f'{X}<sup>2</sup>')
+        kw = fr(f'{t2}{X}<sup>2</sup>' if t2 > 1 else f'{X}<sup>2</sup>', s)
+        return ("Dividiere und kürze: " + m(f"{a_} : {b_}"),
+                W(f"Mit dem Kehrwert malnehmen: {a_} · {kw}", f"= {fr(f'{n}{X}<sup>2</sup>', f'{d}{X}')} = <b>{res}</b>"))
+
+    def t_kuerz_d():
+        k = r.randint(1, 8)
+        num, den = (x + k) ** 2, x ** 2 - k * k
+        return ("Kürze so weit wie möglich und gib die Definitionsmenge an: " + m(fr(num.html(), den.html())),
+                W(f"Zähler: 1. binomische Formel, Nenner: 3. binomische Formel",
+                  f"{fr(f'({(x + k).html()})<sup>2</sup>', f'({(x + k).html()})({(x - k).html()})')} = <b>{fr((x + k).html(), (x - k).html())}</b>",
+                  f"Nenner = 0 für {X} = {MINUS}{k} oder {X} = {k}: <b>D = ℚ \\ {{{MINUS}{k}; {k}}}</b>"))
+
+    def t_hn():
         c, p2, q2 = r.randint(1, 8), r.randint(1, 9), r.randint(1, 9)
         hn = x ** 2 - c * c
-        E[3].append(("Erweitere beide auf den Hauptnenner: " + m(f"{fr(p2, (x - c).html())} und {fr(q2, (x + c).html())}"),
-                     m(f"HN = {hn.html()}: <b>{fr((p2 * (x + c)).html(), hn.html())}</b> und <b>{fr((q2 * (x - c)).html(), hn.html())}</b>")))
-    for lvl in (1, 2, 3):
-        out, it = [], iter(E[lvl])
-        for j, item in enumerate(L[lvl]):
-            if j % 3 == 2:
-                out.append(next(it, None))
-            out.append(item)
-        L[lvl] = [t for t in out if t]
+        return ("Erweitere beide Brüche auf den Hauptnenner: " + m(f"{fr(p2, (x - c).html())} und {fr(q2, (x + c).html())}"),
+                W(f"Hauptnenner: ({(x - c).html()})({(x + c).html()}) = {hn.html()}",
+                  f"Ersten Bruch mit ({(x + c).html()}) erweitern: <b>{fr((p2 * (x + c)).html(), hn.html())}</b>",
+                  f"Zweiten Bruch mit ({(x - c).html()}) erweitern: <b>{fr((q2 * (x - c)).html(), hn.html())}</b>"))
+
+    plan = {1: [t_def1, t_kuerz_mono, t_add_same, t_erw_k, t_erw_box1],
+            2: [t_def2, t_kuerz_bin3, t_add_hn, t_erw_target, t_mul, t_erw_box2],
+            3: [t_sub_x2, t_add_two, t_erw_target, t_div, t_kuerz_d, t_hn]}
+    for lvl, gens in plan.items():
+        seen = set()
+        for i in range(400):
+            if len(L[lvl]) >= 150:
+                break
+            item = gens[i % len(gens)]()
+            if item[0] not in seen:
+                seen.add(item[0])
+                L[lvl].append(item)
     return L
 
 
@@ -4053,7 +4155,7 @@ TOPICS = {
     "puffersysteme": ({"title": "Puffersysteme", "eyebrow": "Chemie · Klasse 11 · Wahlpflicht", "accent": "#6a3fa0", "cols": [2, 1, 1], "sol_cols": [2, 1, 1]}, puffersysteme),
     "binomische-faktorisieren": ({"title": "Binomische Formeln rückwärts: Faktorisieren", "eyebrow": "Mathematik · Klasse 8", "accent": M8, "cols": [3, 2, 1], "sol_cols": [3, 2, 1]}, binomische_faktorisieren),
     "binomische-formeln": ({"title": "Binomische Formeln", "eyebrow": "Mathematik · Klasse 8", "accent": M8, "cols": 2, "sol_cols": 2}, binomische_formeln),
-    "bruchterme": ({"title": "Bruchterme", "eyebrow": "Mathematik · Klasse 8", "accent": "#2d6a4f", "cols": 3, "sol_cols": 3}, bruchterme),
+    "bruchterme": ({"title": "Bruchterme", "eyebrow": "Mathematik · Klasse 8", "accent": "#2d6a4f", "cols": [3, 2, 2], "sol_cols": [3, 2, 2]}, bruchterme),
     "ausmultiplizieren-faktorisieren": ({"title": "Ausmultiplizieren und Faktorisieren", "eyebrow": "Mathematik · Klasse 8", "accent": M8, "cols": 3, "sol_cols": 3}, ausmultiplizieren),
     "terme-vereinfachen": ({"title": "Terme vereinfachen", "eyebrow": "Mathematik · Klasse 8", "accent": M8, "cols": 3, "sol_cols": 3}, terme),
     "gleichungen": ({"title": "Gleichungen", "eyebrow": "Mathematik · Klasse 8", "accent": M8, "cols": 3, "sol_cols": 3}, gleichungen),

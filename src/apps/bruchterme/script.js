@@ -233,6 +233,20 @@
           const a = rnd(1, 9) * pick([1, -1]), q = rnd(2, 4), s = rnd(2, 3);
           return { html: `${fr(lin(a), q)} = ${fr(B, mono(q * s, 1))}`, f: (x) => s * x * (x + a), ref: `${s}x(${linT(a)})`, res: `${mono(s, 1)}(${lin(a)})`,
             step: `${q} · ${mono(s, 1)} = ${mono(q * s, 1)}. Also mit ${mono(s, 1)} erweitern: Zähler ${mono(s, 1)}·(${lin(a)}) = ${mono(s, 2)} ${s * a >= 0 ? "+" : "−"} ${mono(Math.abs(s * a), 1)}.` };
+        },
+        () => { // book style: given target denominator c·x(x + d)
+          const c = pick([2, 3, 4, 6]), d = rnd(1, 5), N = `${c}${X}(${lin(d)})`;
+          const k = pick([0, 1, 2, 3]);
+          if (k === 0) { const e = rnd(1, 5) * pick([1, -1]); const c1 = pick([1, 2].filter((v) => c % v === 0)), q = c / c1;
+            return { html: `Erweitere so, dass ${N} als Nenner entsteht: ${fr(lin(e), mono(c1, 1))} = ${fr(B, N)}`, f: (x) => q * (x + e) * (x + d), ref: `${q}(${linT(e)})(${linT(d)})`, res: `${q === 1 ? "" : q}(${lin(e)})(${lin(d)})`,
+              step: `${N} : ${mono(c1, 1)} = ${q === 1 ? "" : q}(${lin(d)}). Zähler (${lin(e)}) damit malnehmen.` }; }
+          if (k === 1) return { html: `Erweitere so, dass ${N} als Nenner entsteht: ${fr(1, X)} = ${fr(B, N)}`, f: (x) => c * (x + d), ref: `${c}(${linT(d)})`, res: `${c}(${lin(d)})`,
+            step: `${N} : ${X} = ${c}(${lin(d)}). Zähler 1 damit malnehmen.` };
+          if (k === 2) return { html: `Erweitere so, dass ${N} als Nenner entsteht: ${fr(1, `−${X} − ${d}`)} = ${fr(B, N)}`, f: (x) => -c * x, ref: `-${c}x`, res: `−${c}${X}`,
+            step: `−${X} − ${d} = −(${lin(d)}). Es fehlt −${c}${X} (Minus nicht vergessen!).` };
+          const c1 = pick([2, 3].filter((v) => c % v === 0).concat(c % 2 ? [1] : [])), q = c / c1, e = rnd(1, 5);
+          return { html: `Erweitere so, dass ${N} als Nenner entsteht: ${fr(`${e} − ${X}`, `${c1 * d} + ${mono(c1, 1)}`)} = ${fr(B, N)}`, f: (x) => q * x * (e - x), ref: `${q}x(${e}-x)`, res: `${mono(q, 1)}(${e} − ${X})`,
+            step: `${c1 * d} + ${mono(c1, 1)} = ${c1 === 1 ? "" : c1}(${lin(d)}). Es fehlt ${mono(q, 1)}.` };
         }
       ];
       return pick(kinds)();
