@@ -513,6 +513,35 @@ def bruchterme():
             num, den = (x + k) ** 2, x ** 2 - k * k
             L[3].append(("Kürze und gib D an: " + m(fr(num.html(), den.html())),
                          m(f"{fr(f'({(x + k).html()})<sup>2</sup>', f'({(x + k).html()})({(x - k).html()})')} = <b>{fr((x + k).html(), (x - k).html())}</b>, D = ℚ \\ {{{MINUS}{k}; {k}}}")))
+    # expanding fractions (Erweitern): every 4th task of each level
+    B = "☐"
+    E = {1: [], 2: [], 3: []}
+    for i in range(60):
+        p, q, s2 = r.randint(1, 9), r.randint(2, 5), r.randint(2, 4)
+        if i % 2 == 0:
+            k = r.randint(2, 6)
+            E[1].append((f"Erweitere mit {k}: " + m(fr(p, (q * x).html())), m(f"<b>{fr(k * p, (k * q * x).html())}</b>")))
+        else:
+            E[1].append(("Ergänze: " + m(f"{fr(p, (q * x).html())} = {fr(B, (q * s2 * x ** 2).html())}"),
+                         m(f"erweitert mit {(s2 * x).html()}: <b>{fr((p * s2 * x).html(), (q * s2 * x ** 2).html())}</b>")))
+        a, b = pick_nz(r, -6, 6), pick_nz(r, -6, 6)
+        if a == b:
+            b = -a if a != 0 else 1
+        k = r.randint(1, 7)
+        den = (x + a) * (x + b)
+        E[2].append(("Ergänze: " + m(f"{fr(k, (x + a).html())} = {fr(B, den.html())}"),
+                     m(f"erweitert mit ({(x + b).html()}): <b>{fr((k * (x + b)).html(), den.html())}</b>")))
+        c, p2, q2 = r.randint(1, 8), r.randint(1, 9), r.randint(1, 9)
+        hn = x ** 2 - c * c
+        E[3].append(("Erweitere beide auf den Hauptnenner: " + m(f"{fr(p2, (x - c).html())} und {fr(q2, (x + c).html())}"),
+                     m(f"HN = {hn.html()}: <b>{fr((p2 * (x + c)).html(), hn.html())}</b> und <b>{fr((q2 * (x - c)).html(), hn.html())}</b>")))
+    for lvl in (1, 2, 3):
+        out, it = [], iter(E[lvl])
+        for j, item in enumerate(L[lvl]):
+            if j % 3 == 2:
+                out.append(next(it, None))
+            out.append(item)
+        L[lvl] = [t for t in out if t]
     return L
 
 
