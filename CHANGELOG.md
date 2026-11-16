@@ -9,6 +9,10 @@ Schema **MAJOR.MINOR.PATCH**:
 
 Neue Version: oben einen Eintrag `## [x.y.z] – JJJJ-MM-TT` ergänzen und `python3 src/build.py` ausführen.
 
+## [1.20.1] – 2026-11-16
+
+- PDF-Links enthalten jetzt die Versionsnummer, damit der Browser nach einem Update keine alten Factsheets oder Übungsblätter aus dem Zwischenspeicher zeigt.
+
 ## [1.20.0] – 2026-11-16
 
 - Übungsblätter: Auf den Lösungsseiten steht jetzt vor jeder Lösung die Aufgabe (grau, mit ⇒).
