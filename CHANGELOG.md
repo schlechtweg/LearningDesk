@@ -9,6 +9,11 @@ Schema **MAJOR.MINOR.PATCH**:
 
 Neue Version: oben einen Eintrag `## [x.y.z] – JJJJ-MM-TT` ergänzen und `python3 src/build.py` ausführen.
 
+## [1.20.0] – 2026-11-16
+
+- Übungsblätter: Auf den Lösungsseiten steht jetzt vor jeder Lösung die Aufgabe (grau, mit ⇒).
+- Übungsblätter: Anpassen an die Seite bricht nicht mehr zu früh ab (lgs-anwendungen lief über).
+
 ## [1.19.0] – 2026-11-15
 
 - Factsheets: Streifen „Kontrolle mit dem ClassPad“ mit denselben Eingaben wie in den Apps (37 Factsheets).

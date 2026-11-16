@@ -29,7 +29,7 @@ window.__fit = function () {
   for (const lvl of [1, 2, 3]) {
     const pages = Array.from(document.querySelectorAll('.page[data-lvl="' + lvl + '"]'));
     const tooBig = () => pages.some((p) => over(p) || over(p.querySelector('.content')));
-    for (let guard = 0; guard < 500 && tooBig(); guard++) {
+    for (let guard = 0; guard < 5000 && tooBig(); guard++) {
       const items = document.querySelectorAll('.tasks li[data-lvl="' + lvl + '"]');
       if (items.length <= 1) break;
       const id = items[items.length - 1].dataset.id;
@@ -53,7 +53,7 @@ def page(meta, lvl, is_sol, pool, fig, start):
     _, stars, name, hint = LEVELS[lvl - 1]
     cols = meta["sol_cols" if is_sol else "cols"]
     cols = cols[lvl - 1] if isinstance(cols, (list, tuple)) else cols
-    items = "".join(f'<li data-lvl="{lvl}" data-id="{lvl}-{i}">{sol if is_sol else task}</li>' for i, (task, sol) in enumerate(pool))
+    items = "".join(f'<li data-lvl="{lvl}" data-id="{lvl}-{i}">{f'<div class="sq">{task}</div><div class="sa">{sol}</div>' if is_sol else task}</li>' for i, (task, sol) in enumerate(pool))
     # one-column levels hold written tasks: larger type and more room between the tasks
     secs = [f'<section class="lvl{" roomy" if cols == 1 else ""}"><h2><span class="stars">{stars}</span>{name}<span class="hint">{hint}</span></h2>'
             f'<ol class="items" style="--cols:{cols}">{items}</ol></section>']

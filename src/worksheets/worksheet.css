@@ -85,3 +85,8 @@ ol.lab li > .lt .blank { min-width: 18mm; width: 30mm; flex: none; }
 /* Levels with written tasks in one column: larger type, more room */
 section.roomy ol.items li { font-size: 10pt; line-height: 1.4; padding: 1.5mm 0 1.5mm 7mm; border-bottom: 1px dotted var(--line); }
 section.roomy ol.items li:last-child { border-bottom: 0; }
+
+/* solution pages repeat the task above each answer */
+.sq, .sa { display: inline; }
+.sq { color: var(--muted, #5b6670); font-size: 0.88em; }
+.sq::after { content: " ⇒ "; color: var(--muted, #5b6670); }
