@@ -232,10 +232,10 @@ header.has-theme-toggle { position: relative; padding-right: 54px; }
 header:not(.top) > .theme-toggle { top: 0; }
 .theme-toggle:hover { border-color: var(--accent, currentColor); }
 .theme-toggle:focus-visible { outline: 3px solid var(--accent, currentColor); outline-offset: 2px; }
-/* haptic on/off button, left of the theme switch (touch devices only) */
-header.has-haptic-toggle { padding-right: 102px; }
-.theme-toggle.haptic-toggle { right: 48px; font-size: 16px; }
-.theme-toggle.haptic-toggle[aria-pressed="false"] { color: var(--muted); }
+/* sound on/off button, left of the theme switch */
+header.has-sound-toggle { padding-right: 102px; }
+.theme-toggle.sound-toggle { right: 48px; font-size: 16px; }
+.theme-toggle.sound-toggle[aria-pressed="false"] { color: var(--muted); }
 
 </style>
 
@@ -244,7 +244,7 @@ header.has-haptic-toggle { padding-right: 102px; }
     <nav class="crumbs" aria-label="Brotkrümelnavigation"><ol><li><a href="index.html">LearningDesk</a></li><li><a href="klasse-8.html">Klasse 8</a></li><li><a href="klasse-8.html#mathematik">Mathematik</a></li><li><a href="#verstehen">Gleichungen mit zwei Variablen und LGS</a></li><li data-crumb-section hidden><span aria-current="location"></span></li></ol></nav>
     <h1>Gleichungen mit zwei Variablen und LGS</h1>
     <p>Zwei Unbekannte, zwei Bedingungen: Wie Gleichungen mit zwei Variablen zu Geraden werden und wo sich die Lösung eines Gleichungssystems versteckt.</p>
-    <p style="display:flex; flex-wrap:wrap; gap:8px"><a class="btn" href="factsheets/lgs-grafisch.pdf?v=1.24.0" target="_blank" rel="noopener">Factsheet als PDF ↓</a><a class="btn" href="aufgaben/lgs-grafisch.pdf?v=1.24.0" target="_blank" rel="noopener">Übungsaufgaben als PDF ↓</a></p>
+    <p style="display:flex; flex-wrap:wrap; gap:8px"><a class="btn" href="factsheets/lgs-grafisch.pdf?v=1.25.0" target="_blank" rel="noopener">Factsheet als PDF ↓</a><a class="btn" href="aufgaben/lgs-grafisch.pdf?v=1.25.0" target="_blank" rel="noopener">Übungsaufgaben als PDF ↓</a></p>
   </header>
   <nav class="tabs" aria-label="Bereiche">
     <a href="#verstehen" data-view="verstehen"><span class="n">1</span>Verstehen</a>
@@ -902,77 +902,78 @@ header.has-haptic-toggle { padding-right: 102px; }
 
 (function () {
   "use strict";
-  // Haptic feedback on taps (menu items, tabs, buttons).
-  // Android: Vibration API. iPhone (iOS 18+): Safari plays a system haptic when an
-  // <input type="checkbox" switch> is toggled, so a hidden switch is toggled on each tap.
-  // Neither is available on desktops; the toggle button only appears on touch devices.
-  var KEY = "learningdesk.haptics";
-  var coarse = window.matchMedia && window.matchMedia("(pointer: coarse)").matches;
-  var canVibrate = typeof navigator.vibrate === "function";
-  var probe = document.createElement("input");
-  var canSwitch = "switch" in probe;
-  if (!coarse || !(canVibrate || canSwitch)) return;
+  // Optional sounds, off by default: a soft click on taps, a chime for right answers,
+  // a low tone for wrong ones. Generated with the Web Audio API, so no audio files are needed.
+  var KEY = "learningdesk.sound";
+  var AC = window.AudioContext || window.webkitAudioContext;
+  if (!AC) return;
+  var on = false;
+  try { on = localStorage.getItem(KEY) === "on"; } catch (e) { /* storage unavailable */ }
+  var ctx = null;
 
-  var on = true;
-  try { on = localStorage.getItem(KEY) !== "off"; } catch (e) { /* storage unavailable */ }
-
-  // hidden switch for iOS
-  var label = null;
-  if (!canVibrate && canSwitch) {
-    label = document.createElement("label");
-    label.setAttribute("aria-hidden", "true");
-    label.style.cssText = "position:fixed;left:-9999px;top:0;width:1px;height:1px;overflow:hidden;opacity:0;pointer-events:none";
-    var sw = document.createElement("input");
-    sw.type = "checkbox"; sw.setAttribute("switch", ""); sw.tabIndex = -1;
-    label.appendChild(sw);
-    document.body.appendChild(label);
+  function audio() {
+    if (!ctx) {
+      // iPhone: play even when the ring/silent switch is set to silent (Safari 16.4+)
+      try { if (navigator.audioSession) navigator.audioSession.type = "playback"; } catch (e) { /* ignored */ }
+      ctx = new AC();
+    }
+    if (ctx.state === "suspended") ctx.resume();
+    return ctx;
   }
-
-  function tick(pattern) {
-    if (!on) return;
-    if (canVibrate) { try { navigator.vibrate(pattern || 10); } catch (e) { /* ignored */ } }
-    else if (label) label.click();
+  // one short sine tone; start offset t (s), duration d (s)
+  function tone(freq, t, d, vol) {
+    var c = audio(), o = c.createOscillator(), g = c.createGain(), s = c.currentTime + t;
+    o.type = "sine"; o.frequency.value = freq;
+    g.gain.setValueAtTime(0.0001, s);
+    g.gain.exponentialRampToValueAtTime(vol, s + 0.01);
+    g.gain.exponentialRampToValueAtTime(0.0001, s + d);
+    o.connect(g); g.connect(c.destination);
+    o.start(s); o.stop(s + d + 0.02);
   }
-  window.LDHaptics = { tick: tick };
+  var SOUNDS = {
+    tap: function () { tone(880, 0, 0.05, 0.05); },
+    right: function () { tone(660, 0, 0.12, 0.12); tone(990, 0.1, 0.22, 0.12); },
+    wrong: function () { tone(220, 0, 0.25, 0.12); }
+  };
+  function play(name) { if (on) { try { SOUNDS[name](); } catch (e) { /* audio unavailable */ } } }
+  window.LDSound = { play: play };
 
   // taps on interactive elements
-  var SEL = "a, button, summary, [role='tab'], select, input[type='checkbox'], input[type='radio']";
+  var SEL = "a, button, summary, [role='tab'], select";
   document.addEventListener("click", function (ev) {
-    if (label && label.contains(ev.target)) return;           // our own hidden switch
     var el = ev.target.closest && ev.target.closest(SEL);
-    if (el && !el.disabled) tick(10);
+    if (el && !el.disabled && !el.classList.contains("sound-toggle")) play("tap");
   }, true);
 
-  // Android only: distinct patterns when feedback marks an answer right or wrong
-  if (canVibrate) {
-    new MutationObserver(function (list) {
-      for (var i = 0; i < list.length; i++) {
-        var n = list[i].target;
-        if (!(n instanceof Element)) continue;
-        if (n.querySelector("b.ok, .right") || n.classList.contains("right")) { tick([15, 60, 15]); return; }
-        if (n.querySelector("b.no, .wrong") || n.classList.contains("wrong")) { tick([60]); return; }
-      }
-    }).observe(document.body, { subtree: true, childList: true, attributes: true, attributeFilter: ["class"] });
-  }
+  // feedback that marks an answer right or wrong (trainers and quizzes)
+  var last = 0;
+  new MutationObserver(function (list) {
+    for (var i = 0; i < list.length; i++) {
+      var n = list[i].target;
+      if (!(n instanceof Element)) continue;
+      var r = n.classList.contains("right") || n.querySelector("b.ok"), w = n.classList.contains("wrong") || n.querySelector("b.no");
+      if ((r || w) && Date.now() - last > 300) { last = Date.now(); setTimeout(function () { play(w ? "wrong" : "right"); }, 60); return; }
+    }
+  }).observe(document.body, { subtree: true, childList: true, attributes: true, attributeFilter: ["class"] });
 
   // on/off button next to the theme toggle
   var header = document.querySelector("header");
   if (!header) return;
   var btn = document.createElement("button");
-  btn.type = "button"; btn.className = "theme-toggle haptic-toggle";
+  btn.type = "button"; btn.className = "theme-toggle sound-toggle";
   function paint() {
-    var label2 = on ? "Haptik ausschalten" : "Haptik einschalten";
-    btn.textContent = on ? "〰" : "—";
-    btn.setAttribute("aria-label", label2); btn.title = label2;
+    var label = on ? "Töne ausschalten" : "Töne einschalten";
+    btn.textContent = on ? "🔊" : "🔇";
+    btn.setAttribute("aria-label", label); btn.title = label;
     btn.setAttribute("aria-pressed", String(on));
   }
   btn.addEventListener("click", function () {
     on = !on;
     try { localStorage.setItem(KEY, on ? "on" : "off"); } catch (e) { /* storage unavailable */ }
     paint();
-    tick(20);
+    if (on) play("right");
   });
-  header.classList.add("has-haptic-toggle");
+  header.classList.add("has-sound-toggle");
   header.appendChild(btn);
   paint();
 })();

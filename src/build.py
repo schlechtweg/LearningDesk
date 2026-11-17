@@ -61,8 +61,8 @@ def shared():
         # menu pages have no accent colour; their breadcrumb links use the text colour
         "crumbs_css_menu": crumbs_css.replace("var(--accent)", "var(--ink)"),
         "toggle_css": read("shared/theme-toggle.css"),
-        # theme switch first, haptics second (its button sits left of the theme switch)
-        "toggle_js": read("shared/theme-toggle.js") + "\n" + read("shared/haptics.js"),
+        # theme switch first, sound switch second (its button sits left of the theme switch)
+        "toggle_js": read("shared/theme-toggle.js") + "\n" + read("shared/sounds.js"),
         "fold_js": read("shared/fold.js"),
         "crumbs_js": read("shared/crumbs.js"),
         "menu_css": read("shared/menu.css"),

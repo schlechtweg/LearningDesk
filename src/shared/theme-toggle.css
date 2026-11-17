@@ -3,7 +3,7 @@ header.has-theme-toggle { position: relative; padding-right: 54px; }
 header:not(.top) > .theme-toggle { top: 0; }
 .theme-toggle:hover { border-color: var(--accent, currentColor); }
 .theme-toggle:focus-visible { outline: 3px solid var(--accent, currentColor); outline-offset: 2px; }
-/* haptic on/off button, left of the theme switch (touch devices only) */
-header.has-haptic-toggle { padding-right: 102px; }
-.theme-toggle.haptic-toggle { right: 48px; font-size: 16px; }
-.theme-toggle.haptic-toggle[aria-pressed="false"] { color: var(--muted); }
+/* sound on/off button, left of the theme switch */
+header.has-sound-toggle { padding-right: 102px; }
+.theme-toggle.sound-toggle { right: 48px; font-size: 16px; }
+.theme-toggle.sound-toggle[aria-pressed="false"] { color: var(--muted); }

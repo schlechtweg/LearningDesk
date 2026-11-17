@@ -9,9 +9,10 @@ Schema **MAJOR.MINOR.PATCH**:
 
 Neue Version: oben einen Eintrag `## [x.y.z] – JJJJ-MM-TT` ergänzen und `python3 src/build.py` ausführen.
 
-## [1.24.0] – 2026-11-17
+## [1.25.0] – 2026-11-17
 
-- Haptik auf dem Handy: kurzes Antippen bei Menüpunkten, Tabs und Buttons. iPhone ab iOS 18 über Safari, Android per Vibration (dort zusätzlich eigene Muster für richtig und falsch). Ein- und ausschalten mit dem Knopf 〰 neben dem Hell/Dunkel-Knopf; erscheint nur auf Touch-Geräten.
+- Haptik wieder entfernt (auf dem iPhone nicht spürbar).
+- Neu: Töne zum Einschalten über den Knopf 🔇/🔊 neben dem Hell/Dunkel-Knopf (Standard: aus). Leiser Klick beim Tippen, heller Doppelton bei richtigen und tiefer Ton bei falschen Antworten. Auf dem iPhone auch im Lautlos-Modus.
 
 ## [1.23.0] – 2026-11-16
 
