@@ -9,6 +9,10 @@ Schema **MAJOR.MINOR.PATCH**:
 
 Neue Version: oben einen Eintrag `## [x.y.z] – JJJJ-MM-TT` ergänzen und `python3 src/build.py` ausführen.
 
+## [1.24.0] – 2026-11-17
+
+- Haptik auf dem Handy: kurzes Antippen bei Menüpunkten, Tabs und Buttons. iPhone ab iOS 18 über Safari, Android per Vibration (dort zusätzlich eigene Muster für richtig und falsch). Ein- und ausschalten mit dem Knopf 〰 neben dem Hell/Dunkel-Knopf; erscheint nur auf Touch-Geräten.
+
 ## [1.23.0] – 2026-11-16
 
 - Übungsblatt Bruchterme überarbeitet: Jede Aufgabe nennt jetzt, was zu tun ist (z. B. „Addiere und fasse zusammen“, „Kürze so weit wie möglich“). Die Lösungen zeigen den Lösungsweg Schritt für Schritt.
