@@ -469,6 +469,14 @@ TOPICS = [
         "fonts": "math", "first_view": "verstehen", "factsheet": "Factsheet als PDF ↓",
     },
     {
+        "slug": "elektrisches-feld", "grade": "11", "subject": "physik", "kit": True, "accent": ACCENT_PHYS,
+        "title": "Elektrisches Feld", "short": "Elektrisches Feld", "tag": "Elektrizität",
+        "card": "Ladung, Feldlinien, Feldstärke E = F/q, Plattenkondensator E = U/d, Coulomb-Gesetz, Feldlinien-Simulation, Trainer, Quiz",
+        "description": "Interaktive Lernhilfe zum elektrischen Feld (Physik, Klasse 11)",
+        "intro": "Was ein elektrisches Feld ist, wie man es mit Feldlinien darstellt und mit der Feldstärke berechnet: vom Radialfeld einer Ladung bis zum homogenen Feld im Plattenkondensator.",
+        "fonts": "math", "first_view": "verstehen", "factsheet": "Factsheet als PDF ↓",
+    },
+    {
         "slug": "classpad", "tool": True,
         "title": "ClassPad-Simulator", "card_title": "Taschenrechner: ClassPad-Simulator", "icon": "⌨",
         "card": "Übungsrechner nach dem Vorbild des CASIO fx-CP400 mit Lektionen zur Bedienung von Klasse 8 bis 12",

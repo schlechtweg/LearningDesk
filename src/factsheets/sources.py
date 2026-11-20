@@ -771,6 +771,73 @@ SHEETS["schweredruck"] = dict(title="Schweredruck in Flüssigkeiten", eyebrow="P
     </div>
   </div>''')
 
+SHEETS["elektrisches-feld"] = dict(title="Elektrisches Feld", eyebrow="Physik · Klasse 11 · Elektrizität", accent=PH, body=f'''
+  <div class="kern">Eine Ladung verändert den Raum um sich: Auf jede andere Ladung wirkt dort eine Kraft. Diesen Raum nennt man <strong>elektrisches Feld</strong>. Man beschreibt es mit <strong>Feldlinien</strong> und der <strong>Feldstärke</strong> {m("<i>E</i> = <i>F</i> / <i>q</i>")}.</div>
+  <div class="cols">
+    <div class="box">
+      <h2>Ladung</h2>
+      <ul>
+        <li>Gleiche Ladungen stoßen sich ab, ungleiche ziehen sich an.</li>
+        <li>Einheit Coulomb: {m("1 C = 1 A · 1 s")}</li>
+        <li>Elementarladung {m("<i>e</i> = 1,602 · 10<sup>−19</sup> C")}</li>
+        <li>Elektron: −<i>e</i>, Proton: +<i>e</i></li>
+      </ul>
+    </div>
+    <div class="box">
+      <h2>Feldlinien</h2>
+      <ul>
+        <li>beginnen bei <strong>+</strong>, enden bei <strong>−</strong></li>
+        <li>zeigen die Kraftrichtung auf eine <strong>positive</strong> Probeladung</li>
+        <li>schneiden sich nie, stehen senkrecht auf Leitern</li>
+        <li>dicht = starkes Feld</li>
+      </ul>
+    </div>
+    <div class="box">
+      <h2>Feldstärke</h2>
+      <p class="big">{m("<i>E</i> = " + fr("<i>F</i>", "<i>q</i>"))}</p>
+      <p>Einheit: {m("1 N/C = 1 V/m")}. <i>E</i> ist ein Vektor und hängt nicht von der Probeladung ab.</p>
+    </div>
+    <div class="box">
+      <h2>Homogenes Feld (Plattenkondensator)</h2>
+      <p class="big">{m("<i>E</i> = " + fr("<i>U</i>", "<i>d</i>"))}</p>
+      <p>Parallele, gleich dichte Feldlinien. <i>d</i> immer in m einsetzen.</p>
+    </div>
+    <div class="box">
+      <h2>Radialfeld und Coulomb-Gesetz</h2>
+      <p>{m("<i>E</i> = <i>k</i> · <i>Q</i> / <i>r</i><sup>2</sup>")} &nbsp; {m("<i>F</i> = <i>k</i> · <i>Q q</i> / <i>r</i><sup>2</sup>")}</p>
+      <p>{m("<i>k</i> = 1/(4π<i>ε</i><sub>0</sub>) ≈ 8,99 · 10<sup>9</sup> N·m²/C²")}</p>
+      <p>Doppelter Abstand: ¼ der Kraft.</p>
+    </div>
+    <div class="box">
+      <h2>Arbeit und Energie</h2>
+      <p>{m("<i>W</i> = <i>q</i> · <i>U</i>")} (homogen: {m("<i>W</i> = <i>q E d</i>")})</p>
+      <p>Elektron aus der Ruhe: {m("<i>eU</i> = ½ <i>m v</i><sup>2</sup>")} ⇒ {m("<i>v</i> = √(2<i>eU</i>/<i>m</i>)")}</p>
+      <p>{m("<i>m</i><sub>e</sub> = 9,109 · 10<sup>−31</sup> kg")}</p>
+    </div>
+    <div class="box">
+      <h2>Beispiel</h2>
+      <p>{m("<i>U</i> = 1 000 V")}, {m("<i>d</i> = 2 cm = 0,02 m")}:</p>
+      <p>{m("<i>E</i> = 1 000 / 0,02 = 50 000 V/m")}</p>
+      <p>Kraft auf ein Elektron: {m("<i>F</i> = <i>eE</i> ≈ 8,0 · 10<sup>−15</sup> N")}</p>
+    </div>
+    <div class="box">
+      <h2>Im Alltag</h2>
+      <ul>
+        <li><strong>Blitz</strong>: Feld zwischen Wolke und Boden</li>
+        <li><strong>Faraday-Käfig</strong>: Auto ist innen feldfrei</li>
+        <li><strong>Laserdrucker</strong>, <strong>Elektrofilter</strong>, <strong>Touchscreen</strong></li>
+      </ul>
+    </div>
+    <div class="box warn full">
+      <h2>Typische Fehler</h2>
+      <ul>
+        <li>cm oder mm nicht in m umgerechnet; nC = 10<sup>−9</sup> C, µC = 10<sup>−6</sup> C vergessen.</li>
+        <li>Beim Coulomb-Gesetz das Quadrat von <i>r</i> vergessen.</li>
+        <li>Kraft auf Elektronen in Feldlinienrichtung gezeichnet: Sie wirkt <strong>entgegen</strong>.</li>
+      </ul>
+    </div>
+  </div>''')
+
 SHEETS["auftrieb"] = dict(title="Auftrieb", eyebrow="Physik · Klasse 8 · Druck", accent=PH, body=f'''
   <div class="kern">Eine Flüssigkeit drückt jeden eingetauchten Körper nach oben: die <strong>Auftriebskraft</strong>. Ob er schwimmt oder sinkt, entscheidet der Vergleich von <strong>Gewichtskraft</strong> und Auftrieb, also der Vergleich der <strong>Dichten</strong>.</div>
   <div class="cols">

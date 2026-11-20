@@ -9,6 +9,10 @@ Schema **MAJOR.MINOR.PATCH**:
 
 Neue Version: oben einen Eintrag `## [x.y.z] – JJJJ-MM-TT` ergänzen und `python3 src/build.py` ausführen.
 
+## [1.26.0] – 2026-11-20
+
+- Neues Fach Physik in Klasse 11 mit dem Thema „Elektrisches Feld“: Ladung, Feldlinien, Feldstärke E = F/q, homogenes Feld im Plattenkondensator (E = U/d), Radialfeld und Coulomb-Gesetz, Arbeit W = q·U. Mit Feldlinien-Simulation (Ladungen verschiebbar, Probeladung misst E), Plattenkondensator zum Einstellen, Trainer mit 5 Aufgabentypen, Alltag, Quiz, Factsheet, Übungsblatt mit Lösungsweg und ClassPad-Hinweisen.
+
 ## [1.25.0] – 2026-11-17
 
 - Haptik wieder entfernt (auf dem iPhone nicht spürbar).

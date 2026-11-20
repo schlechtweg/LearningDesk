@@ -835,6 +835,130 @@ def schweredruck():
     return L
 
 
+# ---- physics 11: electric field
+KC, QE, ME_ = 8.99e9, 1.602e-19, 9.109e-31
+
+
+def sci_de(v, d=2):
+    """Number as 1,23 · 10^5 (German decimal comma) for solutions."""
+    if v == 0:
+        return "0"
+    ex = math.floor(math.log10(abs(v)))
+    if -2 <= ex <= 4:
+        return de(v, d if ex >= 0 else d + 1)
+    return f"{de(v / 10 ** ex, d)} · 10<sup>{fnum(ex)}</sup>"
+
+
+def elektrisches_feld():
+    r = random.Random(111)
+    L = {1: [], 2: [], 3: []}
+    W = lambda *s: "<br>".join(s)
+    seen = set()
+
+    def add(lvl, q, a):
+        if q not in seen and len(L[lvl]) < 120:
+            seen.add(q)
+            L[lvl].append((q, a))
+
+    for i in range(400):
+        t = i % 4
+        if t == 0:
+            F, q = r.choice([0.2, 0.5, 0.8, 1, 1.2, 1.5, 2, 3, 4, 6]), r.choice([2, 4, 5, 8, 10, 20, 25, 40, 50])
+            E = F * 1e-3 / (q * 1e-9)
+            add(1, f"Berechne die Feldstärke: Auf eine Probeladung {m(f'<i>q</i> = {q} nC')} wirkt die Kraft {m(f'<i>F</i> = {de(F, 1)} mN')}.",
+                W(f"Umrechnen: {de(F, 1)} mN = {sci_de(F * 1e-3)} N, {q} nC = {sci_de(q * 1e-9)} C",
+                  f"{m('<i>E</i> = <i>F</i> / <i>q</i>')} = <b>{sci_de(E)} N/C</b>"))
+        elif t == 1:
+            U, dcm = r.choice([100, 200, 230, 500, 1000, 2000, 4000, 5000]), r.choice([0.5, 1, 2, 2.5, 4, 5, 10])
+            E = U / (dcm / 100)
+            add(1, f"Berechne die Feldstärke im Plattenkondensator: {m(f'<i>U</i> = {de(U, 0)} V')}, Plattenabstand {m(f'<i>d</i> = {de(dcm, 1)} cm')}.",
+                W(f"{de(dcm, 1)} cm = {de(dcm / 100, 3)} m", f"{m('<i>E</i> = <i>U</i> / <i>d</i>')} = {de(U, 0)} V / {de(dcm / 100, 3)} m = <b>{de(E, 0)} V/m</b>"))
+        elif t == 2:
+            E, q = r.choice([500, 1000, 2000, 5000, 10000, 20000, 50000]), r.choice([1, 2, 5, 10, 20, 50])
+            F = E * q * 1e-9
+            add(1, f"Berechne die Kraft auf die Ladung {m(f'<i>q</i> = {q} nC')} im Feld {m(f'<i>E</i> = {de(E, 0)} N/C')}.",
+                W(f"{m('<i>F</i> = <i>E</i> · <i>q</i>')} = {de(E, 0)} N/C · {sci_de(q * 1e-9)} C", f"= <b>{sci_de(F)} N</b> = {de(F * 1e3, 3)} mN"))
+        else:
+            qs = [
+                ("Gib an, wo elektrische Feldlinien beginnen und wo sie enden.", "Sie beginnen an <b>positiven</b> und enden an <b>negativen</b> Ladungen."),
+                ("Erkläre, was die Dichte der Feldlinien angibt.", "Je <b>dichter</b> die Linien, desto <b>stärker</b> das Feld."),
+                ("Begründe, warum sich Feldlinien nie schneiden.", "An jedem Punkt hat die Kraft auf eine Probeladung nur <b>eine Richtung</b>."),
+                ("Beschreibe das Feld zwischen den Platten eines Plattenkondensators.", "<b>Homogen</b>: parallele, gleich dichte Feldlinien von + nach −; E ist überall gleich."),
+                ("Beschreibe das Feld einer positiven Punktladung.", "<b>Radialfeld</b>: Feldlinien zeigen strahlenförmig nach außen; nach außen wird es schwächer."),
+                ("Gib die Einheit der elektrischen Feldstärke in zwei Formen an.", "<b>N/C</b> und <b>V/m</b> (beide gleich)."),
+                ("Gib an, in welche Richtung die Kraft auf ein Elektron im Feld wirkt.", "<b>Entgegen</b> der Feldlinienrichtung, weil das Elektron negativ geladen ist."),
+                ("Nenne den Wert der Elementarladung.", "<i>e</i> = <b>1,602 · 10<sup>−19</sup> C</b>"),
+            ]
+            add(1, *qs[(i // 4) % len(qs)])
+
+    for i in range(400):
+        t = i % 5
+        if t == 0:
+            q1, q2, rcm = r.choice([5, 10, 20, 30, 50]), r.choice([5, 10, 20, 40]), r.choice([2, 3, 5, 10, 20])
+            F = KC * q1 * q2 * 1e-18 / (rcm / 100) ** 2
+            add(2, f"Berechne die Coulomb-Kraft zwischen {m(f'<i>q</i><sub>1</sub> = {q1} nC')} und {m(f'<i>q</i><sub>2</sub> = {q2} nC')} im Abstand {m(f'<i>r</i> = {rcm} cm')}.",
+                W(f"{m('<i>F</i> = <i>k</i> · <i>q</i><sub>1</sub><i>q</i><sub>2</sub> / <i>r</i><sup>2</sup>')}, <i>r</i> = {de(rcm / 100, 2)} m",
+                  f"= 8,99 · 10<sup>9</sup> · {q1} · 10<sup>−9</sup> · {q2} · 10<sup>−9</sup> / {de(rcm / 100, 2)}<sup>2</sup> = <b>{sci_de(F)} N</b>"))
+        elif t == 1:
+            Q, rcm = r.choice([1, 2, 5, 10, 20, 50]), r.choice([5, 10, 20, 25, 50])
+            E = KC * Q * 1e-9 / (rcm / 100) ** 2
+            add(2, f"Berechne die Feldstärke im Abstand {m(f'<i>r</i> = {rcm} cm')} von einer Punktladung {m(f'<i>Q</i> = {Q} nC')}.",
+                W(f"{m('<i>E</i> = <i>k</i> · <i>Q</i> / <i>r</i><sup>2</sup>')}, <i>r</i> = {de(rcm / 100, 2)} m",
+                  f"= 8,99 · 10<sup>9</sup> · {Q} · 10<sup>−9</sup> / {de(rcm / 100, 2)}<sup>2</sup> = <b>{sci_de(E)} N/C</b>"))
+        elif t == 2:
+            E, dcm = r.choice([1000, 2000, 5000, 10000, 25000, 50000]), r.choice([1, 2, 4, 5, 8])
+            U = E * dcm / 100
+            add(2, f"Berechne die Spannung am Plattenkondensator: Feldstärke {m(f'<i>E</i> = {de(E, 0)} V/m')}, Abstand {m(f'<i>d</i> = {dcm} cm')}.",
+                W(f"{m('<i>U</i> = <i>E</i> · <i>d</i>')} = {de(E, 0)} V/m · {de(dcm / 100, 2)} m", f"= <b>{de(U, 0)} V</b>"))
+        elif t == 3:
+            q, U = r.choice([2, 5, 10, 20, 50]), r.choice([100, 230, 500, 1000, 2000])
+            Wj = q * 1e-9 * U
+            add(2, f"Berechne die Arbeit, die das Feld an der Ladung {m(f'<i>q</i> = {q} nC')} verrichtet, wenn sie die Spannung {m(f'<i>U</i> = {de(U, 0)} V')} durchläuft.",
+                W(f"{m('<i>W</i> = <i>q</i> · <i>U</i>')} = {sci_de(q * 1e-9)} C · {de(U, 0)} V", f"= <b>{sci_de(Wj)} J</b>"))
+        else:
+            U, dcm = r.choice([500, 1000, 2000, 3000]), r.choice([1, 2, 4, 5])
+            E = U / (dcm / 100)
+            F = QE * E
+            add(2, f"Berechne die Kraft auf ein Elektron im Plattenkondensator ({m(f'<i>U</i> = {de(U, 0)} V')}, {m(f'<i>d</i> = {dcm} cm')}).",
+                W(f"<i>E</i> = <i>U</i> / <i>d</i> = {de(U, 0)} V / {de(dcm / 100, 2)} m = {de(E, 0)} V/m",
+                  f"<i>F</i> = <i>e</i> · <i>E</i> = 1,602 · 10<sup>−19</sup> C · {de(E, 0)} V/m = <b>{sci_de(F)} N</b>"))
+
+    for i in range(300):
+        t = i % 4
+        if t == 0:
+            U = r.choice([50, 100, 200, 500, 1000, 2000, 5000])
+            v = math.sqrt(2 * QE * U / ME_)
+            add(3, f"Ein Elektron wird aus der Ruhe durch {m(f'<i>U</i> = {de(U, 0)} V')} beschleunigt. Berechne seine Endgeschwindigkeit ({m('<i>m</i> = 9,109 · 10<sup>−31</sup> kg')}).",
+                W(f"Energieerhaltung: {m('<i>e</i> · <i>U</i> = ½ <i>m</i> <i>v</i><sup>2</sup>')}",
+                  f"{m('<i>v</i> = √(2<i>eU</i> / <i>m</i>)')} = √(2 · 1,602 · 10<sup>−19</sup> · {de(U, 0)} / 9,109 · 10<sup>−31</sup>)",
+                  f"= <b>{sci_de(v)} m/s</b>"))
+        elif t == 1:
+            k = r.choice([2, 3, 4, 5])
+            which = r.choice(["Abstand", "eine der Ladungen", "beide Ladungen"])
+            fac = {"Abstand": f"1/{k * k}", "eine der Ladungen": f"{k}", "beide Ladungen": f"{k * k}"}[which]
+            why = {"Abstand": f"<i>F</i> ~ 1/<i>r</i><sup>2</sup>: ({k})<sup>2</sup> = {k * k}, also nur noch <b>1/{k * k}</b> der Kraft",
+                   "eine der Ladungen": f"<i>F</i> ~ <i>q</i><sub>1</sub>: die Kraft wird <b>{k}-mal</b> so groß",
+                   "beide Ladungen": f"<i>F</i> ~ <i>q</i><sub>1</sub> · <i>q</i><sub>2</sub>: {k} · {k} = <b>{k * k}-mal</b> so groß"}[which]
+            add(3, f"Gib an, wie sich die Coulomb-Kraft ändert, wenn man {which} {k}-mal so groß macht.", W(why))
+        elif t == 2:
+            n, dmm, U = r.randint(1, 6), r.choice([5, 8, 10]), r.choice([400, 500, 600, 800, 1000])
+            E = U / (dmm / 1000)
+            mass = n * QE * E / 9.81            # chosen so that the charge is n·e
+            mshow = float(f"{mass / 1e-15:.3g}")
+            q = mshow * 1e-15 * 9.81 / E
+            add(3, f"Ein Öltröpfchen ({m(f'<i>m</i> = {de(mshow, 3)} · 10<sup>−15</sup> kg')}) schwebt im Kondensator ({m(f'<i>U</i> = {de(U, 0)} V')}, {m(f'<i>d</i> = {dmm} mm')}). Berechne seine Ladung und gib sie als Vielfaches von <i>e</i> an.",
+                W(f"Schweben: {m('<i>q</i> · <i>E</i> = <i>m</i> · <i>g</i>')}, <i>E</i> = {de(U, 0)} V / {de(dmm / 1000, 3)} m = {de(E, 0)} V/m",
+                  f"<i>q</i> = <i>m g</i> / <i>E</i> = {sci_de(q)} C ≈ <b>{n} · <i>e</i></b> (Millikan-Versuch)"))
+        else:
+            U, dcm = r.choice([1000, 2000, 5000]), r.choice([2, 4, 5])
+            E = U / (dcm / 100)
+            a = QE * E / ME_
+            add(3, f"Berechne die Beschleunigung eines Elektrons im Plattenkondensator ({m(f'<i>U</i> = {de(U, 0)} V')}, {m(f'<i>d</i> = {dcm} cm')}).",
+                W(f"<i>E</i> = <i>U</i> / <i>d</i> = {de(E, 0)} V/m, <i>F</i> = <i>e E</i> = {sci_de(QE * E)} N",
+                  f"<i>a</i> = <i>F</i> / <i>m</i> = {sci_de(QE * E)} N / 9,109 · 10<sup>−31</sup> kg = <b>{sci_de(a)} m/s<sup>2</sup></b>"))
+    return L
+
+
 def auftrieb():
     r = random.Random(94)
     L = {1: [], 2: [], 3: []}
@@ -4162,6 +4286,7 @@ TOPICS = {
     "ungleichungen": ({"title": "Ungleichungen", "eyebrow": "Mathematik · Klasse 8", "accent": M8, "cols": [3, 2, 2], "sol_cols": [3, 2, 2]}, ungleichungen),
     "druck": ({"title": "Druck", "eyebrow": "Physik · Klasse 8", "accent": PH, "cols": [2, 2, 1], "sol_cols": [2, 2, 1]}, druck),
     "hydraulik": ({"title": "Hydraulische Anlagen", "eyebrow": "Physik · Klasse 8", "accent": PH, "cols": [2, 2, 1], "sol_cols": [2, 2, 1]}, hydraulik),
+    "elektrisches-feld": ({"title": "Elektrisches Feld", "eyebrow": "Physik · Klasse 11", "accent": PH, "cols": [2, 2, 1], "sol_cols": [2, 2, 1]}, elektrisches_feld),
     "schweredruck": ({"title": "Schweredruck", "eyebrow": "Physik · Klasse 8", "accent": PH, "cols": [2, 2, 1], "sol_cols": [2, 2, 1]}, schweredruck),
     "auftrieb": ({"title": "Auftrieb", "eyebrow": "Physik · Klasse 8", "accent": PH, "cols": [2, 2, 1], "sol_cols": [2, 2, 1]}, auftrieb),
     "luftdruck": ({"title": "Luftdruck", "eyebrow": "Physik · Klasse 8", "accent": PH, "cols": [2, 2, 1], "sol_cols": [2, 2, 1]}, luftdruck),

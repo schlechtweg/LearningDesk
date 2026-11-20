@@ -120,6 +120,12 @@ TIPS = {
     "luftdruck": ("start", [
         ("Kraft der Luft auf eine Fläche: F = p·A", "101300·0.5", "50650 (N)"),
     ]),
+    # --- Physik Klasse 11 ---
+    "elektrisches-feld": ("potenzen", [
+        ("Homogenes Feld E = U/d (d in m)", "1000/0.02", "50000 (V/m)"),
+        ("Coulomb-Kraft, Zehnerpotenzen mit der EXP-Taste", "8.99E9·5E-9·20E-9/0.1^2", "8.99E-5 (N)"),
+        ("Elektron nach U = 500 V", "√(2·1.602E-19·500/9.109E-31)", "1.33E7 (m/s)"),
+    ]),
     # --- Chemie Klasse 11 ---
     "reaktionsgeschwindigkeit": ("start", [
         ("Mittlere Geschwindigkeit v = Δc/Δt", "(0.8-0.5)/30", "0.01 (mol/(L·s))"),
