@@ -9,6 +9,10 @@ Schema **MAJOR.MINOR.PATCH**:
 
 Neue Version: oben einen Eintrag `## [x.y.z] – JJJJ-MM-TT` ergänzen und `python3 src/build.py` ausführen.
 
+## [1.27.0] – 2026-11-24
+
+- Physik Klasse 11: neues Thema „Kondensator“ mit Aufbau, Kapazität C = Q/U, Plattenkondensator C = ε₀εr·A/d, Dielektrikum, Energie W = ½CU², Laden und Entladen (τ = R·C), Reihen- und Parallelschaltung. Mit drei interaktiven Versuchen, Trainer mit 5 Aufgabentypen, Alltag, Quiz, Factsheet, Übungsblatt mit Lösungsweg und ClassPad-Hinweisen.
+
 ## [1.26.0] – 2026-11-20
 
 - Neues Fach Physik in Klasse 11 mit dem Thema „Elektrisches Feld“: Ladung, Feldlinien, Feldstärke E = F/q, homogenes Feld im Plattenkondensator (E = U/d), Radialfeld und Coulomb-Gesetz, Arbeit W = q·U. Mit Feldlinien-Simulation (Ladungen verschiebbar, Probeladung misst E), Plattenkondensator zum Einstellen, Trainer mit 5 Aufgabentypen, Alltag, Quiz, Factsheet, Übungsblatt mit Lösungsweg und ClassPad-Hinweisen.

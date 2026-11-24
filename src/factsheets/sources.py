@@ -838,6 +838,70 @@ SHEETS["elektrisches-feld"] = dict(title="Elektrisches Feld", eyebrow="Physik ·
     </div>
   </div>''')
 
+SHEETS["kondensator"] = dict(title="Kondensator", eyebrow="Physik · Klasse 11 · Elektrizität", accent=PH, body=f'''
+  <div class="kern">Ein Kondensator <strong>speichert Ladung und Energie</strong>. Er besteht aus zwei Leitern (Platten), die durch einen Isolator getrennt sind. Seine wichtigste Größe ist die <strong>Kapazität</strong> {m("<i>C</i> = <i>Q</i> / <i>U</i>")}.</div>
+  <div class="cols">
+    <div class="box">
+      <h2>Kapazität</h2>
+      <p class="big">{m("<i>C</i> = " + fr("<i>Q</i>", "<i>U</i>"))}</p>
+      <p>Einheit Farad: {m("1 F = 1 C/V")}. Üblich: pF (10<sup>−12</sup>), nF (10<sup>−9</sup>), µF (10<sup>−6</sup>).</p>
+    </div>
+    <div class="box">
+      <h2>Plattenkondensator</h2>
+      <p class="big">{m("<i>C</i> = <i>ε</i><sub>0</sub> <i>ε</i><sub>r</sub> · " + fr("<i>A</i>", "<i>d</i>"))}</p>
+      <p>{m("<i>ε</i><sub>0</sub> = 8,854 · 10<sup>−12</sup> F/m")}. Größere Fläche, kleinerer Abstand, Dielektrikum: größere Kapazität.</p>
+    </div>
+    <div class="box">
+      <h2>Energie</h2>
+      <p class="big">{m("<i>W</i> = ½ <i>C U</i><sup>2</sup>")}</p>
+      <p>Gespeichert im elektrischen Feld. Doppelte Spannung: vierfache Energie.</p>
+    </div>
+    <div class="box">
+      <h2>Dielektrikum</h2>
+      <table>
+        <tr><td>Luft</td><td>{m("<i>ε</i><sub>r</sub> = 1")}</td></tr>
+        <tr><td>Papier</td><td>≈ 2 bis 4</td></tr>
+        <tr><td>Glas</td><td>≈ 5 bis 10</td></tr>
+        <tr><td>Wasser</td><td>≈ 80</td></tr>
+      </table>
+    </div>
+    <div class="box">
+      <h2>Schaltungen</h2>
+      <p><strong>Parallel</strong>: {m("<i>C</i> = <i>C</i><sub>1</sub> + <i>C</i><sub>2</sub>")}, gleiche Spannung.</p>
+      <p><strong>Reihe</strong>: {m("1/<i>C</i> = 1/<i>C</i><sub>1</sub> + 1/<i>C</i><sub>2</sub>")}, gleiche Ladung.</p>
+      <p>Umgekehrt wie bei Widerständen!</p>
+    </div>
+    <div class="box">
+      <h2>Laden und Entladen</h2>
+      <p>Zeitkonstante {m("τ = <i>R</i> · <i>C</i>")}</p>
+      <p>Laden: {m("<i>U</i> = <i>U</i><sub>0</sub>(1 − e<sup>−<i>t</i>/τ</sup>)")}, nach 1 τ: 63 %</p>
+      <p>Entladen: {m("<i>U</i> = <i>U</i><sub>0</sub> e<sup>−<i>t</i>/τ</sup>")}, nach 1 τ: 37 %</p>
+      <p>Nach 5 τ: praktisch voll bzw. leer.</p>
+    </div>
+    <div class="box">
+      <h2>Beispiel</h2>
+      <p>{m("<i>C</i> = 470 µF")} an {m("12 V")}:</p>
+      <p>{m("<i>Q</i> = 470 µF · 12 V = 5 640 µC ≈ 5,6 mC")}</p>
+      <p>{m("<i>W</i> = ½ · 470 · 10<sup>−6</sup> · 12<sup>2</sup> ≈ 34 mJ")}</p>
+    </div>
+    <div class="box">
+      <h2>Im Alltag</h2>
+      <ul>
+        <li><strong>Kamerablitz</strong>, <strong>Defibrillator</strong></li>
+        <li><strong>Touchscreen</strong>, <strong>Arbeitsspeicher</strong></li>
+        <li><strong>Netzteil</strong>: Spannung glätten</li>
+      </ul>
+    </div>
+    <div class="box warn full">
+      <h2>Typische Fehler</h2>
+      <ul>
+        <li>Vorsilben vergessen (µF = 10<sup>−6</sup> F); cm² nicht in m² umgerechnet (1 cm² = 10<sup>−4</sup> m²).</li>
+        <li>Bei der Energie das Quadrat von <i>U</i> vergessen.</li>
+        <li>Reihen- und Parallelschaltung verwechselt.</li>
+      </ul>
+    </div>
+  </div>''')
+
 SHEETS["auftrieb"] = dict(title="Auftrieb", eyebrow="Physik · Klasse 8 · Druck", accent=PH, body=f'''
   <div class="kern">Eine Flüssigkeit drückt jeden eingetauchten Körper nach oben: die <strong>Auftriebskraft</strong>. Ob er schwimmt oder sinkt, entscheidet der Vergleich von <strong>Gewichtskraft</strong> und Auftrieb, also der Vergleich der <strong>Dichten</strong>.</div>
   <div class="cols">

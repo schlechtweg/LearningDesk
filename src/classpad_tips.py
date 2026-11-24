@@ -126,6 +126,11 @@ TIPS = {
         ("Coulomb-Kraft, Zehnerpotenzen mit der EXP-Taste", "8.99E9·5E-9·20E-9/0.1^2", "8.99E-5 (N)"),
         ("Elektron nach U = 500 V", "√(2·1.602E-19·500/9.109E-31)", "1.33E7 (m/s)"),
     ]),
+    "kondensator": ("potenzen", [
+        ("Plattenkondensator C = ε₀·εr·A/d", "8.854E-12·3·0.01/0.001", "2.66E-10 (F)"),
+        ("Energie W = ½·C·U²", "0.5·470E-6·12^2", "0.03384 (J)"),
+        ("Laden: Spannung nach t = 2τ", "10(1-e^(-2))", "8.65 (V)"),
+    ]),
     # --- Chemie Klasse 11 ---
     "reaktionsgeschwindigkeit": ("start", [
         ("Mittlere Geschwindigkeit v = Δc/Δt", "(0.8-0.5)/30", "0.01 (mol/(L·s))"),

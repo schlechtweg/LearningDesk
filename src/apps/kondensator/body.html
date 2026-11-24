@@ -1,0 +1,208 @@
+
+  <nav class="tabs" aria-label="Bereiche">
+    <a href="#verstehen" data-view="verstehen"><span class="n">1</span>Verstehen</a>
+    <a href="#kapazitaet" data-view="kapazitaet"><span class="n">2</span>Kapazität</a>
+    <a href="#laden" data-view="laden"><span class="n">3</span>Laden und Entladen</a>
+    <a href="#schaltungen" data-view="schaltungen"><span class="n">4</span>Schaltungen</a>
+    <a href="#ueben" data-view="ueben"><span class="n">5</span>Üben</a>
+    <a href="#alltag" data-view="alltag"><span class="n">6</span>Im Alltag</a>
+    <a href="#quiz" data-view="quiz"><span class="n">7</span>Quiz</a>
+  </nav>
+
+  <section class="view" id="view-verstehen">
+    <div class="einfach">
+      <span class="eyebrow">Einfach erklärt</span>
+      <p>Ein Kondensator ist ein <strong>Speicher für elektrische Ladung</strong>. Im einfachsten Fall sind das zwei Metallplatten, die sich nicht berühren. Legt man eine Spannung an, sammeln sich auf der einen Platte positive, auf der anderen negative Ladungen.</p>
+      <p>Stell ihn dir wie einen <strong>Wassertank</strong> vor: Die Ladung <i>Q</i> ist die Wassermenge, die Spannung <i>U</i> ist die Füllhöhe. Wie viel Wasser pro Zentimeter Höhe hineinpasst, ist die Grundfläche: Das ist die <strong>Kapazität</strong> <i>C</i>.</p>
+    </div>
+
+    <div class="grid-2">
+      <div class="panel stack">
+        <span class="eyebrow">Aufbau</span>
+        <h3>Zwei Leiter, dazwischen ein Isolator</h3>
+        <ul class="list small">
+          <li>Zwei leitende Platten (Elektroden) mit der Fläche <i>A</i> im Abstand <i>d</i>.</li>
+          <li>Dazwischen Luft oder ein Isolator, das <strong>Dielektrikum</strong>.</li>
+          <li>Beide Platten tragen gleich viel Ladung mit entgegengesetztem Vorzeichen: +<i>Q</i> und −<i>Q</i>.</li>
+          <li>Zwischen den Platten entsteht ein <strong>homogenes elektrisches Feld</strong> <span class="math"><i>E</i> = <i>U</i> / <i>d</i></span>.</li>
+          <li>Schaltzeichen: zwei kurze parallele Striche.</li>
+        </ul>
+      </div>
+      <div class="panel stack">
+        <span class="eyebrow">Kenngröße</span>
+        <h3>Kapazität</h3>
+        <p class="formel"><i>C</i> = <span class="frac"><span><i>Q</i></span><span><i>U</i></span></span></p>
+        <table class="data">
+          <tr><td class="math"><i>C</i></td><td>Kapazität</td><td>in Farad (F)</td></tr>
+          <tr><td class="math"><i>Q</i></td><td>Ladung auf einer Platte</td><td>in C</td></tr>
+          <tr><td class="math"><i>U</i></td><td>Spannung</td><td>in V</td></tr>
+        </table>
+        <p class="small">1 F = 1 C/V ist sehr groß. Übliche Werte: pF (10<sup>−12</sup>), nF (10<sup>−9</sup>), µF (10<sup>−6</sup>).</p>
+      </div>
+    </div>
+
+    <div class="merksatz">
+      <span class="eyebrow">Plattenkondensator</span>
+      <p class="formel"><i>C</i> = <i>ε</i><sub>0</sub> · <i>ε</i><sub>r</sub> · <span class="frac"><span><i>A</i></span><span><i>d</i></span></span></p>
+      <p class="small">Größere Plattenfläche ⇒ größere Kapazität. Kleinerer Abstand ⇒ größere Kapazität. Ein Dielektrikum mit der Permittivitätszahl <i>ε</i><sub>r</sub> vergrößert die Kapazität um den Faktor <i>ε</i><sub>r</sub>. Feldkonstante: <span class="math"><i>ε</i><sub>0</sub> = 8,854 · 10<sup>−12</sup> F/m</span>.</p>
+    </div>
+
+    <div class="grid-2">
+      <div class="panel stack">
+        <span class="eyebrow">Energie</span>
+        <h3>Gespeicherte Energie</h3>
+        <p class="formel"><i>W</i> = ½ · <i>C</i> · <i>U</i><sup>2</sup></p>
+        <p class="small">Die Energie steckt im elektrischen Feld zwischen den Platten. Doppelte Spannung bedeutet <strong>vierfache</strong> Energie. Gleichwertig: <span class="math"><i>W</i> = ½ <i>Q U</i> = <i>Q</i><sup>2</sup> / (2<i>C</i>)</span>.</p>
+      </div>
+      <div class="panel stack">
+        <span class="eyebrow">Dielektrikum</span>
+        <h3>Permittivitätszahlen</h3>
+        <table class="data">
+          <tr><td>Vakuum, Luft</td><td class="num">1</td></tr>
+          <tr><td>Papier</td><td class="num">≈ 2 bis 4</td></tr>
+          <tr><td>Glas</td><td class="num">≈ 5 bis 10</td></tr>
+          <tr><td>Wasser</td><td class="num">≈ 80</td></tr>
+          <tr><td>Keramik (Bariumtitanat)</td><td class="num">bis 10 000</td></tr>
+        </table>
+        <p class="small muted">Im Dielektrikum richten sich Ladungen in den Molekülen aus (Polarisation) und schwächen das Feld. So passt bei gleicher Spannung mehr Ladung auf die Platten.</p>
+      </div>
+    </div>
+
+    <div class="grid-2">
+      <div class="panel stack">
+        <span class="eyebrow">Zeitverhalten</span>
+        <h3>Laden und Entladen über einen Widerstand</h3>
+        <p class="small">Ein Kondensator lädt sich nicht sofort auf. Über einen Widerstand <i>R</i> steigt die Spannung erst schnell, dann immer langsamer. Das Maß dafür ist die <strong>Zeitkonstante</strong></p>
+        <p class="formel"><i>τ</i> = <i>R</i> · <i>C</i></p>
+        <p class="small">Nach 1 <i>τ</i>: 63 % geladen. Nach 5 <i>τ</i>: praktisch voll (99 %). Beim Entladen ist nach 1 <i>τ</i> noch 37 % übrig.</p>
+      </div>
+      <div class="panel stack">
+        <h3>Typische Fehler</h3>
+        <ul class="list small">
+          <li>Vorsilben vergessen: <span class="math">1 µF = 10<sup>−6</sup> F</span>, <span class="math">1 nF = 10<sup>−9</sup> F</span>, <span class="math">1 pF = 10<sup>−12</sup> F</span>.</li>
+          <li>Fläche in cm² eingesetzt: <span class="math">1 cm² = 10<sup>−4</sup> m²</span>.</li>
+          <li>Bei der Energie das Quadrat vergessen: <span class="math"><i>W</i> = ½ <i>C</i> <i>U</i><sup>2</sup></span>.</li>
+          <li>Reihen- und Parallelschaltung vertauscht: Bei Kondensatoren ist es <strong>umgekehrt</strong> wie bei Widerständen.</li>
+        </ul>
+      </div>
+    </div>
+
+    <details class="profi">
+      <summary>Für Profis: Formeln für Laden und Entladen</summary>
+      <p>Laden an der Spannung <i>U</i><sub>0</sub>: <span class="math"><i>U</i><sub>C</sub>(<i>t</i>) = <i>U</i><sub>0</sub> · (1 − e<sup>−<i>t</i>/<i>τ</i></sup>)</span>, Strom <span class="math"><i>I</i>(<i>t</i>) = (<i>U</i><sub>0</sub>/<i>R</i>) · e<sup>−<i>t</i>/<i>τ</i></sup></span>.</p>
+      <p>Entladen: <span class="math"><i>U</i><sub>C</sub>(<i>t</i>) = <i>U</i><sub>0</sub> · e<sup>−<i>t</i>/<i>τ</i></sup></span>. Die Halbwertszeit ist <span class="math"><i>t</i><sub>½</sub> = <i>τ</i> · ln 2 ≈ 0,69 <i>τ</i></span>.</p>
+      <p>Mit Ladung <i>Q</i> und abgetrennter Spannungsquelle: Zieht man die Platten auseinander, bleibt <i>Q</i> gleich, <i>C</i> sinkt, also steigen <i>U</i> und die Energie. Die zusätzliche Energie stammt aus der Arbeit beim Auseinanderziehen.</p>
+    </details>
+  </section>
+
+  <section class="view" id="view-kapazitaet" hidden>
+    <div class="stack">
+      <span class="eyebrow">Versuch</span>
+      <h2>Kapazität des Plattenkondensators</h2>
+      <p class="muted">Verändere Fläche, Abstand und Dielektrikum. Die Spannung bleibt angeschlossen. Beobachte, wie sich Kapazität, Ladung, Feldstärke und Energie ändern.</p>
+    </div>
+    <div class="sim-layout">
+      <div class="figure"><svg class="cap" id="cSvg" viewBox="0 0 420 300" role="img" aria-label="Plattenkondensator mit einstellbarer Fläche und Abstand"></svg></div>
+      <div class="panel controls">
+        <div><label class="lbl" for="cA"><span>Plattenfläche <i>A</i></span><span class="val" id="cAOut"></span></label><input type="range" id="cA" min="50" max="1000" step="10" value="400"></div>
+        <div><label class="lbl" for="cD"><span>Abstand <i>d</i></span><span class="val" id="cDOut"></span></label><input type="range" id="cD" min="0.5" max="10" step="0.5" value="2"></div>
+        <div><label class="lbl" for="cU"><span>Spannung <i>U</i></span><span class="val" id="cUOut"></span></label><input type="range" id="cU" min="10" max="500" step="10" value="100"></div>
+        <label class="lbl" for="cEr"><span>Dielektrikum</span></label>
+        <select id="cEr">
+          <option value="1">Luft (εr = 1)</option>
+          <option value="3">Papier (εr ≈ 3)</option>
+          <option value="7">Glas (εr ≈ 7)</option>
+          <option value="80">Wasser (εr ≈ 80)</option>
+        </select>
+        <dl class="readout" id="cRo"></dl>
+      </div>
+    </div>
+  </section>
+
+  <section class="view" id="view-laden" hidden>
+    <div class="stack">
+      <span class="eyebrow">Versuch</span>
+      <h2>Laden und Entladen</h2>
+      <p class="muted">Ein Kondensator wird über einen Widerstand an 10 V geladen und danach wieder entladen. Stelle <i>R</i> und <i>C</i> ein und verschiebe den Zeitpunkt <i>t</i>. Die gestrichelten Linien markieren 1 <i>τ</i> bis 5 <i>τ</i>.</p>
+    </div>
+    <div class="sim-layout">
+      <div class="figure"><svg class="curve" id="lSvg" viewBox="0 0 420 300" role="img" aria-label="Spannung am Kondensator über der Zeit"></svg></div>
+      <div class="panel controls">
+        <div class="row wrap" role="group" aria-label="Vorgang">
+          <button type="button" data-lmode="laden" aria-pressed="true">Laden</button>
+          <button type="button" data-lmode="entladen" aria-pressed="false">Entladen</button>
+        </div>
+        <div><label class="lbl" for="lR"><span>Widerstand <i>R</i></span><span class="val" id="lROut"></span></label><input type="range" id="lR" min="1" max="100" step="1" value="20"></div>
+        <div><label class="lbl" for="lC"><span>Kapazität <i>C</i></span><span class="val" id="lCOut"></span></label><input type="range" id="lC" min="10" max="1000" step="10" value="100"></div>
+        <div><label class="lbl" for="lT"><span>Zeitpunkt <i>t</i></span><span class="val" id="lTOut"></span></label><input type="range" id="lT" min="0" max="100" step="1" value="20"></div>
+        <dl class="readout" id="lRo"></dl>
+        <div class="status-box" id="lStatus"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="view" id="view-schaltungen" hidden>
+    <div class="stack">
+      <span class="eyebrow">Schaltungen</span>
+      <h2>Reihen- und Parallelschaltung</h2>
+      <p class="muted">Bei Kondensatoren ist es genau umgekehrt wie bei Widerständen.</p>
+    </div>
+    <div class="grid-2">
+      <div class="panel stack">
+        <h3>Parallelschaltung</h3>
+        <p class="formel"><i>C</i> = <i>C</i><sub>1</sub> + <i>C</i><sub>2</sub> + …</p>
+        <p class="small">Alle Kondensatoren liegen an <strong>derselben Spannung</strong>. Es ist, als würden die Plattenflächen addiert: Die Kapazität <strong>wächst</strong>. Die Ladungen addieren sich: <span class="math"><i>Q</i> = <i>Q</i><sub>1</sub> + <i>Q</i><sub>2</sub></span>.</p>
+      </div>
+      <div class="panel stack">
+        <h3>Reihenschaltung</h3>
+        <p class="formel"><span class="frac"><span>1</span><span><i>C</i></span></span> = <span class="frac"><span>1</span><span><i>C</i><sub>1</sub></span></span> + <span class="frac"><span>1</span><span><i>C</i><sub>2</sub></span></span> + …</p>
+        <p class="small">Alle tragen <strong>dieselbe Ladung</strong>, die Spannungen addieren sich. Es ist, als würde der Plattenabstand größer: Die Kapazität wird <strong>kleiner</strong> als die kleinste Einzelkapazität. Für zwei: <span class="math"><i>C</i> = <i>C</i><sub>1</sub><i>C</i><sub>2</sub> / (<i>C</i><sub>1</sub> + <i>C</i><sub>2</sub>)</span>.</p>
+      </div>
+    </div>
+    <div class="panel stack">
+      <h3>Rechner</h3>
+      <div class="grid-2">
+        <div><label class="lbl" for="sC1"><span><i>C</i><sub>1</sub></span><span class="val" id="sC1Out"></span></label><input type="range" id="sC1" min="1" max="100" step="1" value="10"></div>
+        <div><label class="lbl" for="sC2"><span><i>C</i><sub>2</sub></span><span class="val" id="sC2Out"></span></label><input type="range" id="sC2" min="1" max="100" step="1" value="40"></div>
+      </div>
+      <div><label class="lbl" for="sU"><span>Gesamtspannung <i>U</i></span><span class="val" id="sUOut"></span></label><input type="range" id="sU" min="1" max="50" step="1" value="12"></div>
+      <div class="grid-2">
+        <div class="stack"><h4>Parallel</h4><svg class="circ" id="sPar" viewBox="0 0 200 110" aria-hidden="true"></svg><dl class="readout" id="sParRo"></dl></div>
+        <div class="stack"><h4>Reihe</h4><svg class="circ" id="sSer" viewBox="0 0 200 110" aria-hidden="true"></svg><dl class="readout" id="sSerRo"></dl></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="view" id="view-ueben" hidden>
+    <div class="stack">
+      <span class="eyebrow">Trainer</span>
+      <h2>Rechnen mit Kondensatoren</h2>
+      <p class="muted">Gib nur die Zahl ein, die Einheit steht hinter dem Feld. Dezimalkomma ist erlaubt. Ein Fehler von 2 % wird toleriert.</p>
+    </div>
+    <div id="trainer" class="stack"></div>
+  </section>
+
+  <section class="view" id="view-alltag" hidden>
+    <div class="stack">
+      <span class="eyebrow">Im Alltag</span>
+      <h2>Kondensatoren im Alltag</h2>
+      <p class="muted">In fast jedem elektronischen Gerät stecken Dutzende Kondensatoren.</p>
+    </div>
+    <div class="grid-2">
+      <div class="panel stack"><span class="eyebrow">Fotografie</span><h3>Kamerablitz</h3><p class="small">Ein Kondensator wird langsam aus dem Akku geladen und gibt seine Energie in einer tausendstel Sekunde an die Blitzröhre ab. So entsteht ein sehr heller, kurzer Lichtblitz.</p></div>
+      <div class="panel stack"><span class="eyebrow">Medizin</span><h3>Defibrillator</h3><p class="small">Ein großer Kondensator speichert etwa 200 J bei über 1 000 V. Beim Auslösen fließt die Energie in Millisekunden durch das Herz und kann es wieder in den richtigen Takt bringen.</p></div>
+      <div class="panel stack"><span class="eyebrow">Handy</span><h3>Touchscreen</h3><p class="small">Unter dem Glas bilden Leiterbahnen viele kleine Kondensatoren. Dein Finger verändert ihre Kapazität. Daraus berechnet das Handy, wo du tippst.</p></div>
+      <div class="panel stack"><span class="eyebrow">Computer</span><h3>Arbeitsspeicher</h3><p class="small">Jedes Bit im RAM ist ein winziger Kondensator: geladen = 1, leer = 0. Weil er sich langsam entlädt, wird er tausende Male pro Sekunde aufgefrischt.</p></div>
+      <div class="panel stack"><span class="eyebrow">Netzteil</span><h3>Glätten der Spannung</h3><p class="small">Nach dem Gleichrichten schwankt die Spannung. Ein Kondensator lädt sich in den Spitzen auf und liefert in den Tälern Strom nach. So wird die Spannung fast glatt.</p></div>
+      <div class="panel stack"><span class="eyebrow">Fahrzeuge</span><h3>Superkondensatoren</h3><p class="small">Kondensatoren mit tausenden Farad speichern Bremsenergie in Bussen und Straßenbahnen und geben sie beim Anfahren in Sekunden wieder ab.</p></div>
+    </div>
+  </section>
+
+  <section class="view" id="view-quiz" hidden>
+    <div class="stack">
+      <span class="eyebrow">Selbsttest</span>
+      <h2>Quiz</h2>
+      <div class="progress-line"><div class="bar" aria-hidden="true"><i id="qBar"></i></div><span class="score-line" id="qProgress"></span></div>
+    </div>
+    <div class="panel quiz" id="quizBox" aria-live="polite"></div>
+  </section>

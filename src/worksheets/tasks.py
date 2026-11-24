@@ -959,6 +959,101 @@ def elektrisches_feld():
     return L
 
 
+def kondensator():
+    r = random.Random(112)
+    L = {1: [], 2: [], 3: []}
+    W = lambda *x: "<br>".join(x)
+    seen = set()
+    EPS0 = 8.854e-12
+
+    def add(lvl, q, a):
+        if q not in seen and len(L[lvl]) < 120:
+            seen.add(q)
+            L[lvl].append((q, a))
+
+    concept = [
+        ("Beschreibe den Aufbau eines Plattenkondensators.", "Zwei leitende <b>Platten</b> im Abstand <i>d</i>, getrennt durch Luft oder einen <b>Isolator</b> (Dielektrikum)."),
+        ("Gib an, was die Kapazität eines Kondensators beschreibt.", "Wie viel <b>Ladung pro Volt</b> er speichert: <i>C</i> = <i>Q</i> / <i>U</i>."),
+        ("Nenne drei Möglichkeiten, die Kapazität eines Plattenkondensators zu vergrößern.", "<b>Fläche vergrößern</b>, <b>Abstand verkleinern</b>, <b>Dielektrikum</b> mit großem <i>ε</i><sub>r</sub> einsetzen."),
+        ("Gib an, wo die Energie eines geladenen Kondensators gespeichert ist.", "Im <b>elektrischen Feld</b> zwischen den Platten."),
+        ("Gib an, wie viel Prozent der Endspannung ein Kondensator nach 1 τ beim Laden erreicht.", "<b>63 %</b> (1 − e<sup>−1</sup>); nach 5 τ etwa 99 %."),
+        ("Gib an, wann beim Laden der größte Strom fließt, und begründe.", "<b>Ganz am Anfang</b>: Der Kondensator ist leer, die ganze Spannung liegt am Widerstand."),
+    ]
+    for i in range(400):
+        t = i % 4
+        if t == 0:
+            C, U = r.choice([1, 2.2, 4.7, 10, 22, 47, 100, 220, 470]), r.choice([3, 5, 6, 9, 12, 24, 50, 100])
+            add(1, f"Berechne die Ladung: {m(f'<i>C</i> = {de(C, 1)} µF')}, {m(f'<i>U</i> = {U} V')}.",
+                W(f"{m('<i>Q</i> = <i>C</i> · <i>U</i>')} = {de(C, 1)} µF · {U} V", f"= <b>{de(C * U, 1)} µC</b>"))
+        elif t == 1:
+            C, U = r.choice([2, 4, 5, 10, 20, 50, 100]), r.choice([5, 6, 10, 12, 20, 24])
+            add(1, f"Berechne die Kapazität: Bei {m(f'<i>U</i> = {U} V')} trägt der Kondensator {m(f'<i>Q</i> = {de(C * U, 0)} µC')}.",
+                W(f"{m('<i>C</i> = <i>Q</i> / <i>U</i>')} = {de(C * U, 0)} µC / {U} V", f"= <b>{de(C, 1)} µF</b>"))
+        elif t == 2:
+            C1, C2 = r.choice([2, 3, 5, 10, 22, 47]), r.choice([1, 4, 5, 10, 33, 100])
+            add(1, f"Berechne die Gesamtkapazität der <b>Parallelschaltung</b> von {m(f'{C1} µF')} und {m(f'{C2} µF')}.",
+                W(f"Parallel: Kapazitäten addieren", f"{m(f'<i>C</i> = {C1} + {C2}')} = <b>{C1 + C2} µF</b>"))
+        else:
+            add(1, *concept[(i // 4) % len(concept)])
+
+    for i in range(400):
+        t = i % 4
+        if t == 0:
+            Acm, dmm, er = r.choice([25, 50, 100, 200, 400, 1000]), r.choice([0.1, 0.2, 0.5, 1, 2]), r.choice([1, 2, 3, 5, 7])
+            C = EPS0 * er * Acm * 1e-4 / (dmm * 1e-3)
+            add(2, f"Berechne die Kapazität eines Plattenkondensators: {m(f'<i>A</i> = {Acm} cm²')}, {m(f'<i>d</i> = {de(dmm, 1)} mm')}, {m(f'<i>ε</i><sub>r</sub> = {er}')}.",
+                W(f"Umrechnen: {Acm} cm² = {de(Acm * 1e-4, 4)} m², {de(dmm, 1)} mm = {de(dmm * 1e-3, 4)} m",
+                  f"{m('<i>C</i> = <i>ε</i><sub>0</sub> <i>ε</i><sub>r</sub> <i>A</i> / <i>d</i>')} = 8,854 · 10<sup>−12</sup> · {er} · {de(Acm * 1e-4, 4)} / {de(dmm * 1e-3, 4)}",
+                  f"= <b>{de(C * 1e12, 1)} pF</b>"))
+        elif t == 1:
+            C, U = r.choice([10, 47, 100, 220, 470, 1000]), r.choice([5, 9, 12, 24, 50, 100])
+            Wj = 0.5 * C * 1e-6 * U * U
+            add(2, f"Berechne die gespeicherte Energie: {m(f'<i>C</i> = {C} µF')}, {m(f'<i>U</i> = {U} V')}.",
+                W(f"{m('<i>W</i> = ½ <i>C U</i><sup>2</sup>')} = ½ · {C} · 10<sup>−6</sup> F · ({U} V)<sup>2</sup>", f"= {de(Wj, 5)} J = <b>{de(Wj * 1e3, 2)} mJ</b>"))
+        elif t == 2:
+            C1, C2 = r.choice([2, 3, 4, 6, 10, 12, 20, 30]), r.choice([2, 4, 6, 12, 15, 20, 60])
+            C = C1 * C2 / (C1 + C2)
+            add(2, f"Berechne die Gesamtkapazität der <b>Reihenschaltung</b> von {m(f'{C1} µF')} und {m(f'{C2} µF')}.",
+                W(f"Reihe: {m('1/<i>C</i> = 1/<i>C</i><sub>1</sub> + 1/<i>C</i><sub>2</sub>')}, für zwei: {m('<i>C</i> = <i>C</i><sub>1</sub><i>C</i><sub>2</sub> / (<i>C</i><sub>1</sub> + <i>C</i><sub>2</sub>)')}",
+                  f"= {C1 * C2} / {C1 + C2} = <b>{de(C, 2)} µF</b>"))
+        else:
+            R, C = r.choice([1, 2.2, 4.7, 10, 22, 47, 100]), r.choice([10, 22, 47, 100, 220, 470, 1000])
+            tau = R * 1e3 * C * 1e-6
+            add(2, f"Berechne die Zeitkonstante für {m(f'<i>R</i> = {de(R, 1)} kΩ')} und {m(f'<i>C</i> = {C} µF')}.",
+                W(f"{m('τ = <i>R</i> · <i>C</i>')} = {de(R * 1e3, 0)} Ω · {C} · 10<sup>−6</sup> F", f"= <b>{de(tau, 4)} s</b>"))
+
+    for i in range(300):
+        t = i % 4
+        if t == 0:
+            n, U0, load = r.choice([1, 2, 3, 4]), r.choice([5, 9, 10, 12, 24]), r.random() < 0.5
+            f = (1 - math.exp(-n)) if load else math.exp(-n)
+            add(3, f"Ein Kondensator wird {'an ' + str(U0) + ' V geladen' if load else 'von ' + str(U0) + ' V aus entladen'}. Berechne seine Spannung nach {m(f'<i>t</i> = {n} τ')}.",
+                W(f"{m('<i>U</i> = <i>U</i><sub>0</sub> · (1 − e<sup>−<i>t</i>/τ</sup>)') if load else m('<i>U</i> = <i>U</i><sub>0</sub> · e<sup>−<i>t</i>/τ</sup>')}",
+                  f"= {U0} V · {de(f, 3)} = <b>{de(U0 * f, 2)} V</b>"))
+        elif t == 1:
+            C, Wj = r.choice([100, 220, 470, 1000]), r.choice([0.05, 0.1, 0.2, 0.5, 1])
+            U = math.sqrt(2 * Wj / (C * 1e-6))
+            add(3, f"Ein Kondensator mit {m(f'<i>C</i> = {C} µF')} soll {m(f'<i>W</i> = {de(Wj, 2)} J')} speichern. Berechne die nötige Spannung.",
+                W(f"{m('<i>W</i> = ½ <i>C U</i><sup>2</sup>')} nach <i>U</i> umstellen: {m('<i>U</i> = √(2<i>W</i> / <i>C</i>)')}",
+                  f"= √(2 · {de(Wj, 2)} J / {C} · 10<sup>−6</sup> F) = <b>{de(U, 1)} V</b>"))
+        elif t == 2:
+            k = r.choice([2, 3, 4])
+            what = r.choice(["Abstand", "Spannung", "Fläche"])
+            ans = {"Abstand": f"<i>C</i> ~ 1/<i>d</i>: Die Kapazität wird <b>1/{k}</b> so groß.",
+                   "Spannung": f"<i>W</i> ~ <i>U</i><sup>2</sup>: Die Energie wird <b>{k * k}-mal</b> so groß (Kapazität bleibt gleich).",
+                   "Fläche": f"<i>C</i> ~ <i>A</i>: Die Kapazität wird <b>{k}-mal</b> so groß."}[what]
+            art = {"Abstand": "den", "Spannung": "die", "Fläche": "die"}[what]
+            add(3, f"Gib an, was sich ändert, wenn man beim Plattenkondensator {art} {what} {k}-mal so groß macht.", W(ans))
+        else:
+            C1, C2, U = r.choice([2, 3, 4, 6, 10]), r.choice([4, 6, 12, 15]), r.choice([6, 9, 12, 24])
+            Cs = C1 * C2 / (C1 + C2)
+            Q = Cs * U
+            add(3, f"{m(f'{C1} µF')} und {m(f'{C2} µF')} sind in Reihe an {m(f'{U} V')} angeschlossen. Berechne die Ladung und die Teilspannungen.",
+                W(f"<i>C</i> = {C1 * C2} / {C1 + C2} = {de(Cs, 2)} µF, <i>Q</i> = <i>C U</i> = <b>{de(Q, 2)} µC</b> (auf beiden gleich)",
+                  f"<i>U</i><sub>1</sub> = <i>Q</i> / <i>C</i><sub>1</sub> = <b>{de(Q / C1, 2)} V</b>, <i>U</i><sub>2</sub> = <i>Q</i> / <i>C</i><sub>2</sub> = <b>{de(Q / C2, 2)} V</b>"))
+    return L
+
+
 def auftrieb():
     r = random.Random(94)
     L = {1: [], 2: [], 3: []}
@@ -4286,6 +4381,7 @@ TOPICS = {
     "ungleichungen": ({"title": "Ungleichungen", "eyebrow": "Mathematik · Klasse 8", "accent": M8, "cols": [3, 2, 2], "sol_cols": [3, 2, 2]}, ungleichungen),
     "druck": ({"title": "Druck", "eyebrow": "Physik · Klasse 8", "accent": PH, "cols": [2, 2, 1], "sol_cols": [2, 2, 1]}, druck),
     "hydraulik": ({"title": "Hydraulische Anlagen", "eyebrow": "Physik · Klasse 8", "accent": PH, "cols": [2, 2, 1], "sol_cols": [2, 2, 1]}, hydraulik),
+    "kondensator": ({"title": "Kondensator", "eyebrow": "Physik · Klasse 11", "accent": PH, "cols": [2, 2, 1], "sol_cols": [2, 2, 1]}, kondensator),
     "elektrisches-feld": ({"title": "Elektrisches Feld", "eyebrow": "Physik · Klasse 11", "accent": PH, "cols": [2, 2, 1], "sol_cols": [2, 2, 1]}, elektrisches_feld),
     "schweredruck": ({"title": "Schweredruck", "eyebrow": "Physik · Klasse 8", "accent": PH, "cols": [2, 2, 1], "sol_cols": [2, 2, 1]}, schweredruck),
     "auftrieb": ({"title": "Auftrieb", "eyebrow": "Physik · Klasse 8", "accent": PH, "cols": [2, 2, 1], "sol_cols": [2, 2, 1]}, auftrieb),

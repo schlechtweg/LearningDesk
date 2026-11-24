@@ -477,6 +477,14 @@ TOPICS = [
         "fonts": "math", "first_view": "verstehen", "factsheet": "Factsheet als PDF ↓",
     },
     {
+        "slug": "kondensator", "grade": "11", "subject": "physik", "kit": True, "accent": ACCENT_PHYS,
+        "title": "Kondensator", "short": "Kondensator", "tag": "Elektrizität",
+        "card": "Aufbau, Kapazität C = Q/U, Plattenkondensator, Dielektrikum, Energie, Laden und Entladen, Reihe und parallel, Trainer, Quiz",
+        "description": "Interaktive Lernhilfe zum Kondensator (Physik, Klasse 11)",
+        "intro": "Wie ein Kondensator Ladung und Energie speichert, wovon seine Kapazität abhängt, wie er sich über einen Widerstand lädt und entlädt und wie man Kondensatoren zusammenschaltet.",
+        "fonts": "math", "first_view": "verstehen", "factsheet": "Factsheet als PDF ↓",
+    },
+    {
         "slug": "classpad", "tool": True,
         "title": "ClassPad-Simulator", "card_title": "Taschenrechner: ClassPad-Simulator", "icon": "⌨",
         "card": "Übungsrechner nach dem Vorbild des CASIO fx-CP400 mit Lektionen zur Bedienung von Klasse 8 bis 12",

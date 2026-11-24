@@ -38,6 +38,7 @@ Interaktive Lern-Apps für die Schule, sortiert nach Klassenstufe. Alles läuft 
 | Klasse 8 · Physik | Auftrieb | Archimedes, Dichtevergleich, Versuch, Vorhersagen, Trainer, Quiz |
 | Klasse 8 · Physik | Luftdruck | Versuche, Barometer, Höhenreise mit Siedetemperatur, Wetter, Trainer, Quiz |
 | Klasse 11 · Physik | Elektrisches Feld | Ladung, Feldlinien, E = F/q, Plattenkondensator E = U/d, Coulomb-Gesetz, Feldlinien-Simulation, Trainer, Quiz |
+| Klasse 11 · Physik | Kondensator | Kapazität C = Q/U, Plattenkondensator, Dielektrikum, Energie, Laden und Entladen, Reihe und parallel, Trainer, Quiz |
 | Klasse 11 · Biologie | Osmose | Grundlagen, Osmometer-Simulation, Zellen in Lösungen, Alltagsbeispiele, Quiz |
 | Klasse 11 · Biologie | Natrium-Kalium-Pumpe | Pumpzyklus, Simulation von Gradienten und Membranpotential, Fallbeispiele, Quiz |
 | Klasse 11 · Biologie | Symport und Antiport | Uni-, Sym-, Antiport, primär/sekundär aktiv, Transporter-Simulation, Trainer, Quiz |
